@@ -83,12 +83,26 @@ jobs:
         timeout-minutes: 15
         shell: pwsh
         run: ./scripts/build-alpha.ps1 -Phase Package
+      - name: Set up verified Inno Setup 6.7.3
+        id: inno
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $iscc = & ./scripts/setup-inno.ps1
+          "iscc=$iscc" >> $env:GITHUB_OUTPUT
+      - name: Compile per-user installer
+        timeout-minutes: 10
+        shell: pwsh
+        env:
+          ISCC_PATH: ${{ steps.inno.outputs.iscc }}
+        run: ./scripts/build-alpha.ps1 -Phase Installer -Iscc $env:ISCC_PATH
       - name: Retain exact candidate for acceptance
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: alpha-win-x64-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             artifacts/alpha/*.zip
+            artifacts/alpha/*-installer.exe
             artifacts/alpha/SHA256SUMS
             artifacts/alpha/candidate.json
           if-no-files-found: error
