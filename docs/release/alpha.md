@@ -6,7 +6,7 @@ Every product change arrives through a pull request into `main`. Maintainers rev
 
 ## Candidate build
 
-After merge, open **Actions → Alpha candidate** and download the `alpha-win-x64-…` artifact within its 14-day retention period. It contains the self-contained ZIP, `SHA256SUMS` and `candidate.json` with the public commit. The build does not sign, install, publish a release or establish real Explorer/Excel acceptance. Failed tests stop packaging. Direct pushes without a matching merged PR fail the workflow.
+After merge, open **Actions → Alpha candidate** and download the `alpha-win-x64-…` artifact within its 14-day retention period. It contains the self-contained ZIP, `SHA256SUMS` and `candidate.json` with the public commit. The build does not sign, install, publish a release or establish real Explorer/Excel acceptance. Build, tests and packaging have separate visible steps and time limits. The test command uses a three-minute VSTest hang timeout with memory dumps disabled. On a hang it terminates the test host and records the test sequence; failures still stop packaging. The workflow attempts to retain XML/TRX test diagnostics even after failure or cancellation as `alpha-tests-…` for seven days. Download the sequence report to locate tests that started but did not complete; a timeout does not prove its root cause. A separate ten-minute test-step limit bounds failures outside the test collector. Direct pushes without a matching merged PR fail the workflow.
 
 For an equivalent local Windows build from a clean public checkout:
 
@@ -14,7 +14,7 @@ For an equivalent local Windows build from a clean public checkout:
 ./scripts/build-alpha.ps1
 ```
 
-The script refuses an existing output directory. Move earlier candidates to a safe location before a new local build. Never overwrite evidence for an accepted candidate.
+The default command runs all phases and stops before packaging on a failed build or test. The workflow invokes `-Phase Build`, `-Phase Test` and `-Phase Package` in that order; individual phase switches are for staged execution and do not themselves establish that earlier phases passed. The script refuses an existing output directory. Move earlier candidates to a safe location before a new local build. Never overwrite evidence for an accepted candidate.
 
 ## Public release approval
 

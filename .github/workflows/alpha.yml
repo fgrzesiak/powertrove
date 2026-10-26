@@ -61,9 +61,28 @@ jobs:
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
         with:
           dotnet-version: '10.0.x'
-      - name: Build, test and package Windows x64
+      - name: Build Windows solution
+        timeout-minutes: 15
         shell: pwsh
-        run: ./scripts/build-alpha.ps1
+        run: ./scripts/build-alpha.ps1 -Phase Build
+      - name: Test Windows solution
+        timeout-minutes: 10
+        shell: pwsh
+        run: ./scripts/build-alpha.ps1 -Phase Test
+      - name: Retain test diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: alpha-tests-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/test-results/**/*.trx
+            artifacts/test-results/**/*.xml
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Package Windows x64 candidate
+        timeout-minutes: 15
+        shell: pwsh
+        run: ./scripts/build-alpha.ps1 -Phase Package
       - name: Retain exact candidate for acceptance
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

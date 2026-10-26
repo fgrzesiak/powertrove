@@ -1,6 +1,9 @@
 #requires -Version 7.0
 [CmdletBinding()]
-param()
+param(
+    [ValidateSet('All', 'Build', 'Test', 'Package')]
+    [string]$Phase = 'All'
+)
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 if (-not $IsWindows) { throw 'The alpha candidate must be built on Windows.' }
@@ -16,10 +19,20 @@ try {
     if ($LASTEXITCODE -ne 0 -or $revision -cnotmatch '^[a-f0-9]{40}$') { throw 'Cannot identify public source revision.' }
     $status = & git status --porcelain
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Build requires a clean public checkout.' }
-    & dotnet build PowerTrove.slnx -c Release
-    if ($LASTEXITCODE -ne 0) { throw 'Windows build failed.' }
-    & dotnet test PowerTrove.slnx -c Release --no-build
-    if ($LASTEXITCODE -ne 0) { throw 'Automated tests failed.' }
+    if ($Phase -in @('All', 'Build')) {
+        Write-Host 'Building the Windows solution.'
+        & dotnet build PowerTrove.slnx -c Release
+        if ($LASTEXITCODE -ne 0) { throw 'Windows build failed.' }
+    }
+    if ($Phase -in @('All', 'Test')) {
+        $results = Join-Path $root 'artifacts/test-results'
+        Write-Host 'Testing with a three-minute hang limit; reports are written to artifacts/test-results.'
+        & dotnet test PowerTrove.slnx -c Release --no-build --no-restore `
+            --blame-hang --blame-hang-timeout 3m --blame-hang-dump-type none `
+            --logger trx --logger 'console;verbosity=normal' --results-directory $results
+        if ($LASTEXITCODE -ne 0) { throw 'Automated tests failed or timed out. Inspect artifacts/test-results.' }
+    }
+    if ($Phase -notin @('All', 'Package')) { return }
     $output = Join-Path $root 'artifacts/alpha'
     & dotnet run --project src/PowerTrove.ReleaseTools -- package --repo-root $root --output-dir $output --version $release.version --alpha-sequence $release.sequence
     if ($LASTEXITCODE -ne 0) { throw 'Candidate packaging failed.' }
