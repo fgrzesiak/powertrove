@@ -35,10 +35,12 @@ public sealed class MediaToolActionTests : IDisposable
         var frames = new MediaToolAction("extract-frames", new([engine]), inspector, Services());
         Assert.Contains((await frames.PreviewAsync(Snapshots.ForPaths(source), Snapshots.Parameters(("Mode", "interval")), default)).Warnings, w => w.Contains("500"));
     }
-    [Fact]
-    public async Task MergeRejectsMixedFamiliesUsesNaturalOrderAndWarnsAboutSizes()
+    [Theory]
+    [InlineData("fixture-10")]
+    [InlineData("fixture-20")]
+    public async Task MergeRejectsMixedFamiliesUsesNaturalOrderAndWarnsAboutSizes(string parent)
     {
-        string video10 = _dir.Write("video10.mp4", "x"), video2 = _dir.Write("video2.mp4", "x"), audio = _dir.Write("audio.wav", "x");
+        string video10 = _dir.Write(Path.Combine(parent, "video10.mp4"), "x"), video2 = _dir.Write(Path.Combine(parent, "video2.mp4"), "x"), audio = _dir.Write(Path.Combine(parent, "audio.wav"), "x");
         var engine = new Engine(); var inspector = new Inspector { VariableSize = true }; var action = new JoinMediaAction(new([engine]), inspector, Services());
         var mixed = await action.ExecuteAsync(Snapshots.ForPaths(video2, audio), new EmptyParameters(), null, default); Assert.False(mixed.IsSuccess); Assert.Null(engine.LastRequest);
         var preview = await action.PreviewAsync(Snapshots.ForPaths(video10, video2), new EmptyParameters(), default); Assert.NotEmpty(preview.Warnings);
@@ -70,7 +72,7 @@ public sealed class MediaToolActionTests : IDisposable
     private sealed class Inspector : IMediaInspector
     {
         public bool IsAvailable => true; public bool VariableSize { get; init; }
-        public Task<MediaDetails> InspectAsync(string path, CancellationToken ct) => Task.FromResult(new MediaDetails(TimeSpan.FromSeconds(60), path.EndsWith("wav") ? null : VariableSize && path.Contains("10") ? 1280 : 640, path.EndsWith("wav") ? null : 360, 30, "h264", "aac", 1000000, 2, 48000, true));
+        public Task<MediaDetails> InspectAsync(string path, CancellationToken ct) => Task.FromResult(new MediaDetails(TimeSpan.FromSeconds(60), path.EndsWith("wav") ? null : VariableSize && Path.GetFileName(path).Contains("10", StringComparison.Ordinal) ? 1280 : 640, path.EndsWith("wav") ? null : 360, 30, "h264", "aac", 1000000, 2, 48000, true));
     }
     private sealed class Engine : IMediaEngine
     {
