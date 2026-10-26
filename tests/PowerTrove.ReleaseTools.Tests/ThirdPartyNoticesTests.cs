@@ -54,6 +54,24 @@ public sealed class ThirdPartyNoticesTests : IDisposable
     }
 
     [Fact]
+    public async Task SupplierApacheText_DoesNotInheritProjectCopyright()
+    {
+        Fixture();
+        string metadataPath = Path.Combine(Package, "supplier.fixture.nuspec");
+        var xml = XDocument.Load(metadataPath);
+        xml.Root!.Element("metadata")!.Element("license")!.ReplaceWith(
+            new XElement("license", new XAttribute("type", "expression"), "Apache-2.0"));
+        xml.Save(metadataPath);
+        File.WriteAllText(Path.Combine(Repository, "LICENSE"), "Project-specific copyright header");
+        string canonical = Path.Combine(Repository, "packaging", "windows", "licenses", "Apache-2.0.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(canonical)!);
+        File.WriteAllText(canonical, "Synthetic generic license fixture without project attribution.");
+        await ThirdPartyNotices.BuildAsync(Repository, Stage);
+        Assert.Equal(File.ReadAllBytes(canonical), File.ReadAllBytes(
+            Path.Combine(Stage, "licenses", "supplier.fixture", "1.2.3", "LICENSE-Apache-2.0.txt")));
+    }
+
+    [Fact]
     public async Task MissingTextsRemainBlockedInsteadOfInventingTerms()
     {
         Fixture(null);

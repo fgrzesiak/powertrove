@@ -100,8 +100,9 @@ public static class ThirdPartyNotices
                     throw new InvalidDataException("Unsafe supplier license path.");
                 sources[declared] = Path.Combine(package, declared.Replace('/', Path.DirectorySeparatorChar));
             }
-            // Apache expressions refer to the standard license text, already supplied by this project.
-            if (expression == "Apache-2.0") sources.TryAdd("LICENSE-Apache-2.0.txt", Path.Combine(repository, "LICENSE"));
+            // Supplier terms must not inherit the project's own copyright header.
+            if (expression == "Apache-2.0") sources.TryAdd("LICENSE-Apache-2.0.txt",
+                Path.Combine(repository, "packaging", "windows", "licenses", "Apache-2.0.txt"));
             string? supplementalUrl = null;
             if (supplemental.TryGetValue(identity, out var extra))
             {
