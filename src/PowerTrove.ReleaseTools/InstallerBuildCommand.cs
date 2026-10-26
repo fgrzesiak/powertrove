@@ -27,13 +27,21 @@ public static class InstallerBuildCommand
         if (script.Contains('"') || stage.Contains('"') || artifacts.Contains('"'))
             throw new InvalidDataException("Unsafe tool argument.");
         await ValidateExactPayload(stage, zip, version, artifacts, token);
+        string installer = Path.Combine(artifacts, name + "-installer.exe");
+        if (File.Exists(installer) || Directory.Exists(installer))
+            throw new IOException("Installer output already exists. Use a fresh candidate directory.");
         // No launch, elevation, registration or network operation is performed by this command.
         string args = "/Q /DAppVersion=" + version + " /DPayloadDir=\"" + stage + "\" /O\"" + artifacts + "\" \"" + script + "\"";
         var compiled = await runner.RunAsync(iscc, args, root);
         if (compiled.ExitCode != 0) throw new InvalidOperationException("Installer compilation failed (inspect local ISCC output).");
-        string installer = Path.Combine(artifacts, name + "-installer.exe");
         if (!File.Exists(installer) || new FileInfo(installer).Length == 0)
             throw new InvalidDataException("Installer compiler did not produce the expected artifact.");
+        await using var input = File.OpenRead(installer);
+        string hash = Convert.ToHexString(await SHA256.HashDataAsync(input, token)).ToLowerInvariant();
+        string sums = Path.Combine(artifacts, "SHA256SUMS");
+        string previous = await File.ReadAllTextAsync(sums, token);
+        await File.WriteAllTextAsync(sums, previous.TrimEnd('\r', '\n') + "\n" +
+            hash + " *" + Path.GetFileName(installer) + "\n", token);
     }
 
     private static IEnumerable<string> EnumerateSafeFiles(string directory)

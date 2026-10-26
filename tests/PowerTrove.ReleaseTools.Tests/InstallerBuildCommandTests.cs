@@ -10,6 +10,59 @@ public sealed class InstallerBuildCommandTests : IDisposable
     private readonly string _root = Path.Combine(Path.GetTempPath(), "PowerTrove-Installer-" + Guid.NewGuid().ToString("N"));
 
     [Fact]
+    public async Task Build_WritesInstallerChecksumWithoutLosingZipChecksum()
+    {
+        var (_, zip, artifacts) = Fixture();
+        string compiler = CompilerFixture();
+        string installer = Path.Combine(artifacts, "PowerTrove-v1.0.0-win-x64-installer.exe");
+        var runner = new Fake { OnRun = () => File.WriteAllText(installer, "compiled installer") };
+        await InstallerBuildCommand.ExecuteAsync(_root, artifacts, "1.0.0", compiler, runner);
+        string[] lines = File.ReadAllLines(Path.Combine(artifacts, "SHA256SUMS"));
+        Assert.Equal(2, lines.Length);
+        foreach (string file in new[] { zip, installer })
+        {
+            string hash = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(file))).ToLowerInvariant();
+            Assert.Contains(hash + " *" + Path.GetFileName(file), lines);
+        }
+    }
+
+    [Fact]
+    public async Task Build_RefusesExistingInstallerBeforeInvokingCompiler()
+    {
+        var (_, _, artifacts) = Fixture();
+        string compiler = CompilerFixture();
+        string installer = Path.Combine(artifacts, "PowerTrove-v1.0.0-win-x64-installer.exe");
+        File.WriteAllText(installer, "previous candidate");
+        var runner = new Fake();
+        await Assert.ThrowsAsync<IOException>(() =>
+            InstallerBuildCommand.ExecuteAsync(_root, artifacts, "1.0.0", compiler, runner));
+        Assert.False(runner.WasInvoked);
+        Assert.Equal("previous candidate", File.ReadAllText(installer));
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(0)]
+    public async Task Build_CompilerFailureOrMissingOutputDoesNotAddChecksum(int exitCode)
+    {
+        var (_, _, artifacts) = Fixture();
+        string compiler = CompilerFixture();
+        string sums = File.ReadAllText(Path.Combine(artifacts, "SHA256SUMS"));
+        await Assert.ThrowsAnyAsync<Exception>(() => InstallerBuildCommand.ExecuteAsync(
+            _root, artifacts, "1.0.0", compiler, new Fake { ExitCode = exitCode }));
+        Assert.Equal(sums, File.ReadAllText(Path.Combine(artifacts, "SHA256SUMS")));
+    }
+
+    private string CompilerFixture()
+    {
+        Directory.CreateDirectory(Path.Combine(_root, "packaging", "windows"));
+        File.WriteAllText(Path.Combine(_root, "packaging", "windows", "PowerTrove.iss"), "test script");
+        string compiler = Path.Combine(_root, "ISCC.exe");
+        File.WriteAllText(compiler, "test compiler");
+        return compiler;
+    }
+
+    [Fact]
     public async Task RefusesMissingCompiler_WithoutInvokingBuild()
     {
         var runner = new Fake();
@@ -81,11 +134,14 @@ public sealed class InstallerBuildCommandTests : IDisposable
     private sealed class Fake : IProcessRunner
     {
         public bool WasInvoked;
+        public Action? OnRun;
+        public int ExitCode;
         public Task<(int ExitCode, string StandardOutput, string StandardError)> RunAsync(
             string filename, string args, string? workingDirectory = null)
         {
             WasInvoked = true;
-            return Task.FromResult((0, "", ""));
+            OnRun?.Invoke();
+            return Task.FromResult((ExitCode, "", ""));
         }
     }
 
