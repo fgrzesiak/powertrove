@@ -333,6 +333,24 @@ public sealed partial class SettingsWindow : Window
     }
 
     private async void CheckForUpdates_Click(object sender, RoutedEventArgs e) => await Updates.CheckAsync();
+    private async void ShowNotices_Click(object sender, RoutedEventArgs e)
+    {
+        NoticesButton.IsEnabled = false;
+        NoticesStatus.Text = string.Empty;
+        try
+        {
+            string notice = System.IO.Path.Combine(AppContext.BaseDirectory, "THIRD-PARTY-NOTICES.txt");
+            if (!System.IO.File.Exists(notice)) { NoticesStatus.Text = UiText.SettingsNoticesUnavailable; return; }
+            var result = await System.Threading.Tasks.Task.Run(() => new ShellNavigator().OpenFolderAndSelect(new[] { notice }))
+                .WaitAsync(TimeSpan.FromSeconds(5));
+            if (!result.IsSuccess) NoticesStatus.Text = UiText.SettingsNoticesUnavailable;
+        }
+        catch (Exception ex) when (ex is TimeoutException or System.IO.IOException or UnauthorizedAccessException)
+        {
+            NoticesStatus.Text = UiText.SettingsNoticesUnavailable;
+        }
+        finally { NoticesButton.IsEnabled = true; }
+    }
     private async void OpenReleasePage_Click(object sender, RoutedEventArgs e) => await Updates.OpenReleasePageAsync();
 
     private void CancelPackInstall_Click(object sender, RoutedEventArgs e) { _packInstallCancellation?.Cancel(); Packs?.Cancel(); }

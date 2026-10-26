@@ -43,7 +43,7 @@ try {
         if ($LASTEXITCODE -ne 0) { throw 'Candidate packaging failed.' }
         @{ version = $release.version; tag = "v$($release.version)-alpha.$($release.sequence)";
            repository = 'fgrzesiak/powertrove'; revision = $revision; target = 'win-x64';
-           publicReady = $false; windowsAcceptance = 'Not run'; signing = 'Blocked' } |
+           publicReady = $false; windowsAcceptance = 'Not run'; signing = 'Unsigned' } |
             ConvertTo-Json | Set-Content -LiteralPath (Join-Path $output 'candidate.json') -Encoding utf8NoBOM
     }
     if ($Phase -in @('All', 'Installer')) {

@@ -142,6 +142,8 @@ public static class UiText
     public static string SettingsFiles => Get(nameof(SettingsFiles));
     public static string SettingsAbout => Get(nameof(SettingsAbout));
     public static string SettingsAboutText => Get(nameof(SettingsAboutText));
+    public static string SettingsNotices => Get(nameof(SettingsNotices));
+    public static string SettingsNoticesUnavailable => Get(nameof(SettingsNoticesUnavailable));
     public static string OrganizerTitle => Get(nameof(OrganizerTitle));
     public static string OrganizerOpenVisual => Get(nameof(OrganizerOpenVisual));
     public static string OrganizerRotateLeft => Get(nameof(OrganizerRotateLeft));

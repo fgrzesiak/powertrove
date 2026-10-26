@@ -65,6 +65,7 @@ public static class PackageCommand
         Console.WriteLine("Validating payload and checking for unsafe assets...");
         ValidateAndCleanPayload(stagingDir);
         ValidateDesktopResources(stagingDir);
+        await ThirdPartyNotices.BuildAsync(repoRoot, stagingDir);
 
         // Step 5: Generate Manifest
         Console.WriteLine("Generating manifest with component inventory...");

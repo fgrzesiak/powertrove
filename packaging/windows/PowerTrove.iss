@@ -11,6 +11,7 @@ AppName=PowerTrove
 AppVersion={#AppVersion}
 AppPublisher=PowerTrove
 SetupIconFile=..\..\src\PowerTrove.Desktop\Assets\PowerTrove.ico
+InfoAfterFile={#PayloadDir}\THIRD-PARTY-NOTICES.txt
 DefaultDirName={localappdata}\Programs\PowerTrove
 DefaultGroupName=PowerTrove
 UninstallDisplayIcon={app}\PowerTrove.exe

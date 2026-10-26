@@ -1,0 +1,2 @@
+# Preserve supplier legal artifacts byte-for-byte across Windows and other checkouts.
+packaging/windows/licenses/*.rtf binary

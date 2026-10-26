@@ -54,6 +54,10 @@ public class PackageCommandTests : IDisposable
                 if (parts.Length > 1)
                 {
                     var outputDir = parts[1].Split("\"")[0];
+                    Directory.CreateDirectory(outputDir);
+                    string depsName = arguments.Contains("PowerTrove.PackHost.csproj", StringComparison.Ordinal)
+                        ? "PowerTrove.PackHost.deps.json" : "PowerTrove.deps.json";
+                    File.WriteAllText(Path.Combine(outputDir, depsName), "{\"libraries\":{}}");
                     if (arguments.Contains("PowerTrove.PackHost.csproj", StringComparison.Ordinal))
                 {
                     Directory.CreateDirectory(outputDir);
@@ -205,6 +209,8 @@ public class PackageCommandTests : IDisposable
         Assert.NotNull(archive.GetEntry("LICENSE"));
         Assert.NotNull(archive.GetEntry("NOTICE"));
         Assert.NotNull(archive.GetEntry("QUICKSTART.md"));
+        Assert.NotNull(archive.GetEntry("THIRD-PARTY-NOTICES.txt"));
+        Assert.NotNull(archive.GetEntry("licenses/dependency-inventory.json"));
 
         // Verify dev artifacts were stripped
         Assert.Null(archive.GetEntry("PowerTrove.pdb"));
@@ -305,6 +311,16 @@ public class PackageCommandTests : IDisposable
         var workerDir = Path.Combine(_repoRoot, "src", "PowerTrove.PackHost");
         Directory.CreateDirectory(workerDir);
         File.WriteAllText(Path.Combine(workerDir, "PowerTrove.PackHost.csproj"), "<Project></Project>");
+        string packages = Path.Combine(_testBaseDir, "packages");
+        Directory.CreateDirectory(packages);
+        foreach (string project in new[] { desktopProjectDir, workerDir })
+        {
+            Directory.CreateDirectory(Path.Combine(project, "obj"));
+            File.WriteAllText(Path.Combine(project, "obj", "project.assets.json"), JsonSerializer.Serialize(new
+            {
+                packageFolders = new Dictionary<string, object> { [packages] = new { } }, libraries = new { }
+            }));
+        }
         File.WriteAllText(Path.Combine(_repoRoot, "LICENSE"), "Test fixture license");
         File.WriteAllText(Path.Combine(_repoRoot, "NOTICE"), "Test fixture notices");
         Directory.CreateDirectory(Path.Combine(_repoRoot, "packaging", "windows"));

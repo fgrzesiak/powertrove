@@ -43,21 +43,32 @@ public static class Program
         }, publishedRootOption, outputDirOption, keyFileOption, dryRunOption);
         rootCommand.AddCommand(bundlesCommand);
 
+        var noticesCommand = new Command("collect-notices", "Collect supplier legal texts for an existing published payload; does not grant redistribution clearance.")
+        {
+            repoRootOption, publishedRootOption
+        };
+        noticesCommand.SetHandler(async (repoRoot, publishedRoot) =>
+        {
+            await ThirdPartyNotices.BuildAsync(repoRoot, publishedRoot);
+        }, repoRootOption, publishedRootOption);
+        rootCommand.AddCommand(noticesCommand);
+
         var candidateZip = new Option<string>("--zip", "Exact candidate ZIP path.") { IsRequired = true };
         var candidateEvidence = new Option<string>("--evidence", "Candidate-specific evidence JSON file.") { IsRequired = true };
         var reportDirectory = new Option<string>("--report-dir", "Directory for generated JSON and Markdown reports.") { IsRequired = true };
         var installerPath = new Option<string?>("--installer", "Matching installer EXE path.");
         var publicAudience = new Option<bool>("--public", "Evaluate public distribution evidence as mandatory.");
+        var unsignedAlpha = new Option<bool>("--allow-unsigned-alpha", "Explicitly defer publisher/installer signatures for an alpha prerelease; all other evidence remains required.");
         var verifyCommand = new Command("verify-candidate", "Fail-closed exact-candidate acceptance report.")
         {
-            candidateZip, candidateEvidence, reportDirectory, installerPath, publicAudience
+            candidateZip, candidateEvidence, reportDirectory, installerPath, publicAudience, unsignedAlpha
         };
-        verifyCommand.SetHandler(async (zip, evidence, reportDir, installer, audience) =>
+        verifyCommand.SetHandler(async (zip, evidence, reportDir, installer, audience, unsigned) =>
         {
-            var report = await ReleaseCandidateGate.VerifyAsync(zip, evidence, reportDir, audience, installer);
+            var report = await ReleaseCandidateGate.VerifyAsync(zip, evidence, reportDir, audience, installer, allowUnsignedAlpha: unsigned);
             if (!report.MandatoryChecksPass || audience && !report.PublicReady)
                 throw new InvalidOperationException("Candidate evidence is incomplete or blocked. Inspect the report.");
-        }, candidateZip, candidateEvidence, reportDirectory, installerPath, publicAudience);
+        }, candidateZip, candidateEvidence, reportDirectory, installerPath, publicAudience, unsignedAlpha);
         rootCommand.AddCommand(verifyCommand);
 
         var isccPathOption = new Option<string>("--iscc", "Explicit local Inno Setup compiler executable.") { IsRequired = true };

@@ -104,6 +104,49 @@ public sealed class ReleaseCandidateGateTests : IDisposable
         return zip;
     }
 
+    [Fact]
+    public async Task UnsignedPolicy_CannotBeUsedForStableRelease()
+    {
+        string zip = MakeCandidate("1.0.0");
+        await Assert.ThrowsAsync<ArgumentException>(() => ReleaseCandidateGate.VerifyAsync(
+            zip, "absent", Path.Combine(_root, "out"), allowUnsignedAlpha: true));
+    }
+
+    [Theory]
+    [InlineData(null, true)]
+    [InlineData("owner-approval", false)]
+    [InlineData("redistribution-clearance", false)]
+    [InlineData("license-and-notices", false)]
+    [InlineData("package-offline-clean-machine", false)]
+    public async Task UnsignedAlpha_OnlyDefersSignaturesAndRetainsAllOtherGates(string? missing, bool ready)
+    {
+        string zip = MakeCandidate("1.0.0-alpha.6");
+        var baseline = await ReleaseCandidateGate.VerifyAsync(zip, "absent", Path.Combine(_root, "baseline"));
+        string installer = Path.Combine(_root, "installer.exe");
+        File.WriteAllText(installer, "synthetic installer");
+        string evidence = Path.Combine(_root, "observations.json");
+        File.WriteAllText(evidence, JsonSerializer.Serialize(new
+        {
+            Version = baseline.Version, Revision = baseline.Revision, PayloadSha256 = baseline.PayloadSha256,
+            InstallerSha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(installer))),
+            Checks = baseline.Checks.Where(x => x.Id != missing && x.Id is not ("publisher-signature" or "installer-signature"))
+                .Select(x => new { x.Id, Status = "Pass", Revision = baseline.Revision, PayloadSha256 = baseline.PayloadSha256,
+                    EvidenceRef = "synthetic-observation-0001", Environment = "synthetic-test-environment", ObservedUtc = DateTimeOffset.UtcNow })
+        }));
+        var report = await ReleaseCandidateGate.VerifyAsync(zip, evidence, Path.Combine(_root, "unsigned"),
+            publicAudience: true, installerPath: installer, allowUnsignedAlpha: true);
+        Assert.Equal(ready, report.PublicReady);
+        Assert.True(report.UnsignedAlpha);
+        Assert.Equal(2, report.Checks.Count(x => x.Status == "Deferred"));
+        Assert.All(report.Checks.Where(x => x.Status == "Deferred"), x =>
+            Assert.Contains(x.Id, new[] { "publisher-signature", "installer-signature" }));
+        var strict = await ReleaseCandidateGate.VerifyAsync(zip, evidence, Path.Combine(_root, "strict"),
+            publicAudience: true, installerPath: installer);
+        Assert.False(strict.PublicReady);
+        Assert.False(strict.UnsignedAlpha);
+        Assert.DoesNotContain(strict.Checks, x => x.Status == "Deferred");
+    }
+
     public void Dispose()
     {
         try { if (Directory.Exists(_root)) Directory.Delete(_root, true); }

@@ -150,4 +150,6 @@
   <data name="SeparateProcessDescription" xml:space="preserve"><value>Isoliert PDF-, Bild- und Medienwerkzeuge vom Hauptfenster. Neustart erforderlich.</value></data>
   <data name="SeparateProcessRestart" xml:space="preserve"><value>PowerTrove neu starten, um diese Einstellung anzuwenden.</value></data>
   <data name="IsolationUnavailable" xml:space="preserve"><value>Isolierte Dateiwerkzeuge sind nicht verfügbar. Pack-Dateien prüfen und neu starten.</value></data>
+  <data name="SettingsNotices" xml:space="preserve"><value>Lizenzen und Hinweise zu Drittanbietern anzeigen</value></data>
+  <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>Die Hinweisdateien konnten nicht geöffnet werden. Prüfe die installierten Programmdateien.</value></data>
 </root>
