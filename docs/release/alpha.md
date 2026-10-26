@@ -6,7 +6,7 @@ Every product change arrives through a pull request into `main`. Maintainers rev
 
 ## Candidate build
 
-After merge, open **Actions → Alpha candidate** and download the `alpha-win-x64-…` artifact within its 14-day retention period. GitHub wraps every artifact in a ZIP download. Extract that outer ZIP: it contains `PowerTrove-v0.1.0-win-x64-installer.exe` for installation, the separate self-contained portable ZIP, `SHA256SUMS` for both files and `candidate.json` with the public commit. The `alpha-tests-…` artifact contains test reports, not the application. The installer is an unsigned test candidate; it installs for the current user without administrator privileges and adds a Start menu shortcut. The build does not sign, install, publish a release or establish real Explorer/Excel acceptance. Build, tests and packaging have separate visible steps and time limits. The test command uses a three-minute VSTest hang timeout with memory dumps disabled. On a hang it terminates the test host and records the test sequence; failures still stop packaging. The workflow attempts to retain XML/TRX test diagnostics even after failure or cancellation as `alpha-tests-…` for seven days. Download the sequence report to locate tests that started but did not complete; a timeout does not prove its root cause. A separate ten-minute test-step limit bounds failures outside the test collector. Direct pushes without a matching merged PR fail the workflow.
+After merge, open **Actions → Alpha candidate** and download the `alpha-win-x64-…` artifact within its 14-day retention period. GitHub wraps every artifact in a ZIP download. Extract that outer ZIP: it contains `PowerTrove-v0.1.0-win-x64-installer.exe` for installation, the separate self-contained portable ZIP, `SHA256SUMS` for both files and `candidate.json` with the public commit. The `alpha-tests-…` artifact contains test reports, not the application. The installer is an unsigned test candidate; it installs for the current user without administrator privileges and adds a Start menu shortcut. The build does not sign, install, publish a release or establish real Explorer/Excel acceptance. Build, tests, packaging, published-app startup and installer compilation have separate visible steps and time limits. Packaging requires the application PRI and compiled window resources. Before building the installer, the workflow launches the actual staged EXE, requires a responsive startup window and embedded Windows icon, and stops only that test process. This catches startup failures but does not establish action workflows or clean-machine acceptance. The test command uses a three-minute VSTest hang timeout with memory dumps disabled. On a hang it terminates the test host and records the test sequence; failures still stop packaging. The workflow attempts to retain XML/TRX test diagnostics even after failure or cancellation as `alpha-tests-…` for seven days. Download the sequence report to locate tests that started but did not complete; a timeout does not prove its root cause. A separate ten-minute test-step limit bounds failures outside the test collector. Direct pushes without a matching merged PR fail the workflow.
 
 For an equivalent local Windows build from a clean public checkout:
 
@@ -16,6 +16,14 @@ $iscc = ./scripts/setup-inno.ps1
 ```
 
 The default command runs all phases and stops before packaging on a failed build or test. The workflow invokes `-Phase Build`, `-Phase Test`, `-Phase Package` and `-Phase Installer -Iscc <path>` in that order; individual phase switches are for staged execution and do not themselves establish that earlier phases passed. The packaging script refuses an existing output directory and installer compilation refuses an existing EXE. `setup-inno.ps1` downloads Inno Setup 6.7.3 from its official release, checks its pinned SHA-256 and valid Pyrsys B.V. Authenticode signature, then installs the compiler for the current user in `artifacts/toolchain/`. It refuses an existing compiler directory. Review the [compiler license](https://jrsoftware.org/isinfo.php) for your intended usage. Move earlier candidates to a safe location before a new local build. Never overwrite evidence for an accepted candidate.
+
+For a local startup check of an extracted candidate (close any existing app instance first):
+
+```powershell
+./scripts/smoke-startup.ps1 -Executable C:/Releases/extracted/PowerTrove.exe
+```
+
+The check opens the app with the current user profile and stops its own instance afterward. It does not change files selected in other applications.
 
 ## Public release approval
 

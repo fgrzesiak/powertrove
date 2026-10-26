@@ -59,7 +59,13 @@ public class PackageCommandTests : IDisposable
                     Directory.CreateDirectory(outputDir);
                     File.WriteAllText(Path.Combine(outputDir, "PowerTrove.PackHost.exe"), "dummy worker");
                 }
-                else OnPublish?.Invoke(outputDir);
+                else
+                {
+                    foreach (string name in new[] { "PowerTrove.exe", "PowerTrove.pri", "App.xbf", "MainWindow.xbf",
+                        "SettingsWindow.xbf", "PageOrganizerWindow.xbf" })
+                        File.WriteAllText(Path.Combine(outputDir, name), "synthetic runtime resource");
+                    OnPublish?.Invoke(outputDir);
+                }
                 }
 
                 return Task.FromResult((0, "Build succeeded.", ""));
@@ -67,6 +73,35 @@ public class PackageCommandTests : IDisposable
 
             return Task.FromResult((0, "", ""));
         }
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_RejectsMissingUiResourcesBeforeCreatingZip()
+    {
+        CreateDummyDesktopProject();
+        var runner = new FakeProcessRunner { OnPublish = dir => File.Delete(Path.Combine(dir, "PowerTrove.pri")) };
+        await Assert.ThrowsAsync<InvalidDataException>(() =>
+            PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.0.0", runner));
+        Assert.False(File.Exists(Path.Combine(_outputDir, "PowerTrove-v1.0.0-win-x64.zip")));
+    }
+
+    [Theory]
+    [InlineData("PowerTrove.exe")]
+    [InlineData("PowerTrove.pri")]
+    [InlineData("App.xbf")]
+    [InlineData("MainWindow.xbf")]
+    [InlineData("SettingsWindow.xbf")]
+    [InlineData("PageOrganizerWindow.xbf")]
+    public void ValidateDesktopResources_RejectsMissingOrEmptyFiles(string missing)
+    {
+        foreach (string name in new[] { "PowerTrove.exe", "PowerTrove.pri", "App.xbf", "MainWindow.xbf",
+            "SettingsWindow.xbf", "PageOrganizerWindow.xbf" })
+            File.WriteAllText(Path.Combine(_outputDir, name), "resource");
+        PackageCommand.ValidateDesktopResources(_outputDir);
+        File.WriteAllText(Path.Combine(_outputDir, missing), "");
+        Assert.Throws<InvalidDataException>(() => PackageCommand.ValidateDesktopResources(_outputDir));
+        File.Delete(Path.Combine(_outputDir, missing));
+        Assert.Throws<InvalidDataException>(() => PackageCommand.ValidateDesktopResources(_outputDir));
     }
 
     [Fact]
@@ -162,7 +197,7 @@ public class PackageCommandTests : IDisposable
         // Assert components array exists
         var components = manifest.GetProperty("Components");
         Assert.Equal(JsonValueKind.Array, components.ValueKind);
-        Assert.Equal(2, components.GetArrayLength()); // Desktop test DLL and isolated worker EXE
+        Assert.Equal(3, components.GetArrayLength()); // Desktop EXE/DLL and isolated worker EXE
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.dll" && c.GetProperty("Sha256").GetString()?.Length == 64);
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.PackHost.exe");
         Assert.NotNull(archive.GetEntry("packhost/PowerTrove.PackHost.exe"));

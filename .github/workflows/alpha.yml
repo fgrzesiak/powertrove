@@ -83,6 +83,12 @@ jobs:
         timeout-minutes: 15
         shell: pwsh
         run: ./scripts/build-alpha.ps1 -Phase Package
+      - name: Check published application startup and icon
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $release = Get-Content release.json -Raw | ConvertFrom-Json
+          ./scripts/smoke-startup.ps1 -Executable "artifacts/alpha/PowerTrove-v$($release.version)-win-x64/PowerTrove.exe"
       - name: Set up verified Inno Setup 6.7.3
         id: inno
         timeout-minutes: 5

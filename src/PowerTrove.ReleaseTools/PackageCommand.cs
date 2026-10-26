@@ -64,6 +64,7 @@ public static class PackageCommand
         // Step 4: Validate Payload and Filter Unsafe Assets
         Console.WriteLine("Validating payload and checking for unsafe assets...");
         ValidateAndCleanPayload(stagingDir);
+        ValidateDesktopResources(stagingDir);
 
         // Step 5: Generate Manifest
         Console.WriteLine("Generating manifest with component inventory...");
@@ -167,6 +168,17 @@ public static class PackageCommand
             if (name.EndsWith(".pdb", StringComparison.OrdinalIgnoreCase) ||
                 name.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
                 File.Delete(path);
+        }
+    }
+
+    internal static void ValidateDesktopResources(string stagingDir)
+    {
+        foreach (string name in new[] { "PowerTrove.exe", "PowerTrove.pri", "App.xbf", "MainWindow.xbf",
+            "SettingsWindow.xbf", "PageOrganizerWindow.xbf" })
+        {
+            var file = new FileInfo(Path.Combine(stagingDir, name));
+            if (!file.Exists || file.Length == 0)
+                throw new InvalidDataException("Published desktop runtime or compiled UI resource is missing: " + name);
         }
     }
 

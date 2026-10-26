@@ -7,6 +7,7 @@
     <AssemblyName>PowerTrove</AssemblyName>
     <Product>PowerTrove</Product>
     <Title>PowerTrove</Title>
+    <ApplicationIcon>Assets\PowerTrove.ico</ApplicationIcon>
     <Platforms>x86;x64;ARM64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
@@ -54,4 +55,20 @@
     <Using Include="PowerTrove.Abstractions" />
   </ItemGroup>
 
+  <!-- WinUI copies compiled pages and the app PRI to build output, but the .NET
+       publish inventory does not include those generated files automatically. -->
+  <Target Name="PublishWinUiResources" BeforeTargets="ComputeFilesToPublish"
+          DependsOnTargets="AddProcessedXamlFilesToCopyLocal">
+    <Error Condition="!Exists('$(ProjectPriFullPath)')" Text="The generated WinUI resource index is missing." />
+    <ItemGroup>
+      <ResolvedFileToPublish Include="@(_ProcessedXamlFilesToCopyLocalWithTargetPath)">
+        <RelativePath>%(_ProcessedXamlFilesToCopyLocalWithTargetPath.TargetPath)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+      <ResolvedFileToPublish Include="$(ProjectPriFullPath)">
+        <RelativePath>$(ProjectPriFileName)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>
