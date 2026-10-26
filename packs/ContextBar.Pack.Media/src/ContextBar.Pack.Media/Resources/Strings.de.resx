@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>In {0} umwandeln</value></data>
+  <data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>Wandelt die ausgewählten Audiodateien in {0} um.</value></data>
+  <data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>In {0} umwandeln</value></data>
+  <data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>Wandelt die ausgewählten Videos mit einer kompatiblen Vorgabe in {0} um.</value></data>
+  <data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>Audio aus Video extrahieren</value></data>
+  <data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>Speichert die Tonspur der ausgewählten Videos als MP3-Dateien.</value></data>
+  <data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>Ton entfernen</value></data>
+  <data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>Erstellt Kopien der ausgewählten Videos ohne Tonspur.</value></data>
+  <data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>Einzelbilder extrahieren</value></data>
+  <data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>Speichert aus den ausgewählten Videos jede Sekunde ein Einzelbild als JPEG in einem neuen Ordner.</value></data>
+  <data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>In GIF umwandeln</value></data>
+  <data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>Wandelt die ersten 10 Sekunden der ausgewählten Videos in eine GIF-Animation ohne Ton um.</value></data>
+  <data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>Wandelt {0} in {1} um.</value></data>
+  <data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>Wandelt {0} in {1} um.</value></data>
+  <data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>Extrahiert die Tonspur aus {0} als MP3.</value></data>
+  <data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>Erstellt eine Kopie von {0} ohne Tonspur.</value></data>
+  <data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>Speichert aus {0} jede Sekunde ein Einzelbild als JPEG in einem neuen Ordner.</value></data>
+  <data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>Wandelt die ersten 10 Sekunden von {0} in eine GIF-Animation ohne Ton um.</value></data>
+  <data name="Media_AudioFile" xml:space="preserve"><value>Audiodatei</value></data>
+  <data name="Media_AudioFiles" xml:space="preserve"><value>Audiodateien</value></data>
+  <data name="Media_Video" xml:space="preserve"><value>Video</value></data>
+  <data name="Media_Videos" xml:space="preserve"><value>Videos</value></data>
+  <data name="Media_Progress_Converting" xml:space="preserve"><value>Umwandeln</value></data>
+  <data name="Media_Progress_Extracting" xml:space="preserve"><value>Extrahieren</value></data>
+  <data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>Die Medienumwandlung hat zu lange gedauert.</value></data>
+  <data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>Die Medienumwandlung ist fehlgeschlagen (Exitcode {0}).</value></data>
+  <data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>Tonspur ersetzen</value></data>
+  <data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>Ersetzt die Tonspur des ausgewählten Videos durch die ausgewählte Audiodatei.</value></data>
+  <data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>Wird die Tonspur des Videos ersetzen.</value></data>
+  <data name="Media_RequiresFFmpeg" xml:space="preserve"><value>Benötigt FFmpeg</value></data>
+  <data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>Untertitel hinzufügen</value></data>
+  <data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>Fügt dem Video Untertitelspuren hinzu, ohne es neu zu kodieren.</value></data>
+  <data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>Wird dem Video Untertitel hinzufügen.</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>Mediendetails anzeigen</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>Zeigen Sie technische Eigenschaften ohne Titel, Interpret oder andere Tags an.</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>Audio oder Video zuschneiden</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>Speichern Sie den gewählten Zeitbereich als neue Datei.</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>Video komprimieren</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>Erstellen Sie eine kleinere MP4 ohne Hochskalieren. Ergebnisse ohne Größenersparnis werden übersprungen.</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>Videos oder Audiodateien zusammenfügen</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>Fügen Sie Dateien eines Typs in natürlicher Dateinamensreihenfolge zu einer neuen MP4 oder M4A zusammen.</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>Video in GIF konvertieren</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>Erstellen Sie aus einem kurzen Videobereich ein animiertes GIF mit höchstens 600 Bildern.</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>Videobilder als Bilder speichern</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>Speichern Sie ein Bild oder eine Folge von Bildern in voller Auflösung in einem neuen Ordner.</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>Lautstärke normalisieren</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>Erstellen Sie mit einer Analyse in zwei Durchläufen eine auf −16 LUFS normalisierte Kopie. Erfordert FFmpeg.</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>Video drehen</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>Drehen Sie ein Video in eine neue Kopie. Erfordert FFmpeg.</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>Beginn (Zeit)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>Ende (leer = bis zum Ende)</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>Genaues Zuschneiden mit neuer Kodierung</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>Qualitätsvorgabe</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>Ton beibehalten</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>Dauer (Sekunden)</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>Bilder pro Sekunde</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>GIF-Breite (Pixel)</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>Bildauswahl</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>Zeitpunkt</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>Intervall (0.5–3600 Sekunden)</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>Bildformat</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>Drehung im Uhrzeigersinn</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>Nur Drehungsmetadaten ändern</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>Hoch · bis 1080p, 5 Mbit/s</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>Mittel · bis 720p, 2,5 Mbit/s</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>Klein · bis 480p, 1 Mbit/s</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>Einzelbild</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>In Intervallen</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° im Uhrzeigersinn</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° im Uhrzeigersinn</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° im Uhrzeigersinn</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>Mediendateien</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>Audiodateien</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>Videodateien</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>Es ist kein lokaler Mediendienst zur Prüfung verfügbar. Verwenden Sie die Windows-Medienkomponenten oder installieren Sie FFprobe neben FFmpeg.</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>Die Medieneigenschaften konnten nicht gelesen werden oder überschreiten die unterstützten Grenzen.</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>Die lokale Medien-Engine konnte diese Datei nicht verarbeiten.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Keine installierte Medien-Engine unterstützt diese Aktion für die Auswahl.</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>Verwenden Sie Sekunden, mm:ss oder hh:mm:ss. Das Ende muss nach dem Beginn liegen.</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>Geben Sie eine gültige Zeit ein. Intervalle müssen 0,5–3600 Sekunden betragen; verwenden Sie einen Dezimalpunkt.</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>Der angeforderte Bereich überschreitet die Dauer dieser Datei.</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>Die Datei enthält keine verwendbare Videospur.</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>Der gewählte GIF-Bereich überschreitet 600 Bilder oder die unterstützten Abmessungen. Verringern Sie Dauer, Bildrate oder Breite.</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Schnelles Zuschneiden mit FFmpeg orientiert sich an Schlüsselbildern. Die Windows-Medienverarbeitung und genaues Zuschneiden kodieren neu.</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>Die Intervallausgabe speichert ab dem Beginn höchstens 500 Bilder.</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>Die reine Metadatendrehung ist verlustfrei, wird aber von manchen Abspielprogrammen ignoriert.</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>Wählen Sie zum Zusammenfügen ausschließlich Audio- oder ausschließlich Videodateien aus.</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>Videos werden auf die Größe des ersten Videos skaliert und bei Bedarf mit Rändern ergänzt.</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>Unbekannt / nicht zutreffend</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>Dauer: {0}
+Auflösung: {1}
+Bildrate: {2} fps
+Videocodec: {3}
+Audiocodec: {4}
+Bitrate: {5} kbit/s
+Audiokanäle: {6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>Die Lautheit konnte nicht zuverlässig gemessen werden. Stilles oder ungültiges Audio kann nicht normalisiert werden.</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>Die reine Metadatendrehung erfordert einen MP4-/MOV-Container. Deaktivieren Sie die Option, um die Bilddaten zu drehen.</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>Video aus Bild und Ton erstellen</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>Video aus Bild und Ton erstellen</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>Erstellt ein Video aus Bild und Ton.</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>Audio- und Videowerkzeuge</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>Audio umwandeln</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>Video verarbeiten</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>Die WebM-Umwandlung erfordert FFmpeg, das nicht installiert ist.</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>Keine Medien-Engine auf diesem System unterstützt diese Umwandlung. Installieren Sie bei Windows-N-Editionen das Media Feature Pack.</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>Wandelt {0} Audiodatei in {1} um.</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>Wandelt {0} Audiodateien in {1} um.</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>Wandelt {0} Video in {1} um. Die Videoumwandlung kann eine Weile dauern.</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>Wandelt {0} Videos in {1} um. Die Videoumwandlung kann eine Weile dauern.</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>Speichert die Tonspur von {0} Video als {1}.</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>Speichert die Tonspuren von {0} Videos als {1}.</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>Erstellt {0} Kopie ohne Tonspur.</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>Erstellt {0} Kopien ohne Tonspur.</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>Die Umwandlung eines verlustfreien in ein verlustbehaftetes Format verringert die Audioqualität.</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>Die Umwandlung eines verlustbehafteten in ein verlustfreies Format vergrößert die Datei, ohne die Qualität zu verbessern.</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>Die Umwandlung zwischen verlustbehafteten Formaten verringert die Audioqualität durch erneute Kodierung.</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>Die Datei enthält keine verwendbare Audio- oder Videospur.</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>Diese Umwandlung wird von FFmpeg nicht unterstützt.</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>Diashow-Video erstellen</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>Erstellt ein Video aus den ausgewählten Bildern mit optionaler Tonspur.</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>Erstellt ein Diashow-Video aus den ausgewählten Bildern und einer optionalen Tonspur.</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>Dauer pro Bild</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>Videogröße</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>Automatisch (an Audiodauer anpassen)</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0} Sekunde</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0} Sekunden</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p Querformat</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p Querformat</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>Quadratisch (1080 × 1080)</value></data>
+</root>

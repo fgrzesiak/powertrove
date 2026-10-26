@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ContextBar.Pack.Images\ContextBar.Pack.Images.csproj" />
+    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.17.2" />
+    <PackageReference Include="BitMiracle.LibJpeg.NET" Version="1.5.324" />
+    <Using Include="ContextBar.Abstractions" />
+    <Using Include="ContextBar.Abstractions.Files" />
+  </ItemGroup>
+</Project>

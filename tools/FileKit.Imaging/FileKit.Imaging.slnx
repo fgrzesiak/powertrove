@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/FileKit.Imaging/FileKit.Imaging.csproj" />
+  <Project Path="tests/FileKit.Imaging.Tests/FileKit.Imaging.Tests.csproj" />
+</Solution>

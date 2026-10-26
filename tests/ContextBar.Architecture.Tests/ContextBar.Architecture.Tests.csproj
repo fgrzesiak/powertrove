@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="ContextBar.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Compile the real managed host recipe factory without referencing the WinUI executable. -->
+    <Compile Include="..\..\src\ContextBar.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />
+    <Compile Include="..\..\src\ContextBar.Desktop\UiText.cs" Link="Desktop\UiText.cs" />
+    <EmbeddedResource Include="..\..\src\ContextBar.Desktop\Resources\Strings.resx" Link="Resources\DesktopStrings.resx" LogicalName="ContextBar.Desktop.Resources.Strings.resources" />
+    <EmbeddedResource Include="..\..\src\ContextBar.Desktop\Resources\Strings.de.resx" Link="Resources\DesktopStrings.de.resx" LogicalName="ContextBar.Desktop.Resources.Strings.de.resources" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ContextBar.Abstractions.Testing\ContextBar.Abstractions.Testing.csproj" />
+    <ProjectReference Include="..\..\src\ContextBar.Core\ContextBar.Core.csproj" />
+    <ProjectReference Include="..\..\src\ContextBar.Infrastructure\ContextBar.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Files\src\ContextBar.Pack.Files\ContextBar.Pack.Files.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Images\src\ContextBar.Pack.Images\ContextBar.Pack.Images.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Media\src\ContextBar.Pack.Media\ContextBar.Pack.Media.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Pdf\src\ContextBar.Pack.Pdf\ContextBar.Pack.Pdf.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Office\src\ContextBar.Pack.Office\ContextBar.Pack.Office.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Tables\src\ContextBar.Pack.Tables\ContextBar.Pack.Tables.csproj" />
+    <ProjectReference Include="..\..\packs\ContextBar.Pack.Data\src\ContextBar.Pack.Data\ContextBar.Pack.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Files\composition\ContextBar.Pack.Files.Composition\ContextBar.Pack.Files.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Images\composition\ContextBar.Pack.Images.Composition\ContextBar.Pack.Images.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Pdf\composition\ContextBar.Pack.Pdf.Composition\ContextBar.Pack.Pdf.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Office\composition\ContextBar.Pack.Office.Composition\ContextBar.Pack.Office.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Media\composition\ContextBar.Pack.Media.Composition\ContextBar.Pack.Media.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Tables\composition\ContextBar.Pack.Tables.Composition\ContextBar.Pack.Tables.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\ContextBar.Pack.Data\composition\ContextBar.Pack.Data.Composition\ContextBar.Pack.Data.Composition.csproj" /></ItemGroup>
+</Project>

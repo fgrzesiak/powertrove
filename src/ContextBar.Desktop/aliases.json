@@ -1,0 +1,79 @@
+{
+  "contextbar.image.convert-webp": [
+    "bild",
+    "konvertieren",
+    "umwandeln",
+    "picture"
+  ],
+  "contextbar.image.convert-avif": [
+    "avif"
+  ],
+  "contextbar.image.resize": [
+    "verkleinern",
+    "komprimieren",
+    "shrink",
+    "skalieren"
+  ],
+  "contextbar.general.settings": [
+    "einstellungen",
+    "optionen",
+    "options",
+    "setup"
+  ],
+  "contextbar.image.convert-jpeg": [
+    "jpg",
+    "heic",
+    "iphone",
+    "foto"
+  ],
+  "contextbar.image.compress": [
+    "verkleinern",
+    "optimieren",
+    "kleiner"
+  ],
+  "contextbar.pdf.merge": [
+    "zusammenfügen",
+    "zusammenführen",
+    "kombinieren"
+  ],
+  "contextbar.pdf.split": [
+    "aufteilen",
+    "trennen",
+    "seiten"
+  ],
+  "contextbar.pdf.extract-pages": [
+    "seiten extrahieren",
+    "auswählen"
+  ],
+  "contextbar.pdf.remove-pages": [
+    "seiten löschen",
+    "entfernen"
+  ],
+  "contextbar.pdf.rotate": [
+    "drehen",
+    "rotieren"
+  ],
+  "contextbar.pdf.images-to-pdf": [
+    "bilder zu pdf",
+    "scan",
+    "fotos"
+  ],
+  "contextbar.pdf.to-images": [
+    "pdf zu bild",
+    "png",
+    "jpg"
+  ],
+  "contextbar.files.zip": [
+    "zippen",
+    "packen",
+    "archiv"
+  ],
+  "contextbar.files.unzip": [
+    "entpacken",
+    "auspacken"
+  ],
+  "contextbar.files.checksum": [
+    "prüfsumme",
+    "hashwert"
+  ]
+}

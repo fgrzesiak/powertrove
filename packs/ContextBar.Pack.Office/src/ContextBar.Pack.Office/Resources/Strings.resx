@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Office tools</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Office documents</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Convert Word to PDF</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Create new PDFs using installed Microsoft Word.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Convert Excel to PDF</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Create new PDFs using installed Microsoft Excel and its print layout.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>Convert PowerPoint to PDF</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Create new PDFs using installed Microsoft PowerPoint.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>Convert PDF to Word</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Create editable DOCX copies using installed Word PDF Reflow.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>Microsoft Word is required.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>Microsoft Excel is required.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>Microsoft PowerPoint is required.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Converting</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Will export one Office document to a new PDF.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>Will export {0} Office documents to new PDFs.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Will convert one PDF to a new Word document.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>Will convert {0} PDFs to new Word documents.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Requires locally installed Office. Layout depends on Office, fonts and print settings. Unsupported macro content and formula-capable CSV are rejected; documents over 64 MiB and some legacy containers are unsupported.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>Word PDF Reflow can change layout, fonts, tables and page breaks. Scanned pages may remain images. The Word 16.0 conversion-warning preference is changed temporarily and restored afterwards.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>The required Microsoft Office application is not installed.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>The document is password-protected.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>This document contains macros or formula content that cannot be opened safely for conversion.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>The document format is invalid, unsupported or exceeds the conversion limits.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>A separate Office instance could not be obtained. Close that Office application and try again.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>Office conversion timed out. No output was saved.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Office could not convert this document. No output was saved.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>The temporary Word preference could not be restored. Check the PDF conversion warning setting in Word.</value></data>
+</root>

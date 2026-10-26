@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>filekit-pdf</AssemblyName>
+    <RootNamespace>FileKit.Pdf.Cli</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FileKit.Pdf\FileKit.Pdf.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Action pack: PDF page tools. References only the SDK and FileKit tools. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ContextBar.Pack.Pdf</RootNamespace>
+    <VersionPrefix>0.1.0</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="ContextBar.Abstractions" />
+    <Using Include="ContextBar.Abstractions.Files" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ContextBar.Pack.Pdf.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\ContextBar.Abstractions\ContextBar.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Pdf\src\FileKit.Pdf\FileKit.Pdf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup><InternalsVisibleTo Include="ContextBar.Pack.Pdf.Composition" /></ItemGroup>
+</Project>

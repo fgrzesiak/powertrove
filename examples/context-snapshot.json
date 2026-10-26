@@ -1,0 +1,25 @@
+{
+  "invocationId": "11111111-2222-3333-4444-555555555555",
+  "providerId": "contextbar.windows.explorer",
+  "status": "available",
+  "capturedAt": "2026-10-11T12:00:00Z",
+  "source": {
+    "application": "explorer.exe",
+    "windowHandle": "<opaque-runtime-value>"
+  },
+  "content": {
+    "kind": "files",
+    "files": [
+      {
+        "path": "C:\\Users\\Example\\Pictures\\sample-1.png",
+        "mime": "image/png",
+        "availableLocally": true
+      },
+      {
+        "path": "C:\\Users\\Example\\Pictures\\sample-2.jpg",
+        "mime": "image/jpeg",
+        "availableLocally": true
+      }
+    ]
+  }
+}

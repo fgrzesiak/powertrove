@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ContextBar.Pack.Office</RootNamespace>
+    <VersionPrefix>0.1.0</VersionPrefix>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="ContextBar.Abstractions" />
+    <Using Include="ContextBar.Abstractions.Files" />
+    <ProjectReference Include="..\..\..\..\src\ContextBar.Abstractions\ContextBar.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup><InternalsVisibleTo Include="ContextBar.Pack.Office.Composition" /></ItemGroup>
+</Project>
