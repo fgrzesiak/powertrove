@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Action pack: exports of table selections (CSV, JSON, Markdown, SQL). References only the SDK. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PowerTrove.Pack.Data</RootNamespace>
+    <VersionPrefix>0.1.0</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="PowerTrove.Abstractions" />
+    <Using Include="PowerTrove.Abstractions.Files" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Tabular\src\FileKit.Tabular\FileKit.Tabular.csproj" />
+    <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Xlsx\src\FileKit.Xlsx\FileKit.Xlsx.csproj" />
+  </ItemGroup>
+
+  <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Data.Composition" /></ItemGroup>
+</Project>

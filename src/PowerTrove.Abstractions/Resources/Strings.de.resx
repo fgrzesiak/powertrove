@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>Gilt für {0} von {1} Elementen.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>Neue Dateien werden neben den Originalen erstellt; die Originale werden nicht verändert.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>Die Datei existiert nicht mehr.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>Der Ordner existiert nicht mehr.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>Der Inhalt ist kein unterstütztes {0}-Format.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>Zugriff verweigert.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>Eine erforderliche Datei wurde nicht gefunden.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>Ein erforderlicher Ordner wurde nicht gefunden.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>Der Pfad ist zu lang.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Ein Dateisystemfehler ist aufgetreten.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Dieser Vorgang wird nicht unterstützt.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>Die Verarbeitung ist unerwartet fehlgeschlagen.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>Die Auswahl ist abgelaufen. Wählen Sie die Dateien erneut aus.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Keine Dateiauswahl.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>Keine unterstützten {0} in der Auswahl.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>Wählen Sie mindestens {0} {1} aus.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>Wählen Sie höchstens {0} {1} aus.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Wählen Sie eine vorhandene {0}-Datei aus.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Wählen Sie eine vorhandene Datei aus.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>Abgebrochen.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>Abgebrochen. 1 Ausgabe wurde vor dem Abbruch abgeschlossen.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>Abgebrochen. {0} Ausgaben wurden vor dem Abbruch abgeschlossen.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>1 Ausgabe erstellt.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>{0} Ausgaben erstellt.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>1 Ausgabe erstellt; 1 Element ist fehlgeschlagen.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>1 Ausgabe erstellt; {1} Elemente sind fehlgeschlagen.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>{0} Ausgaben erstellt; 1 Element ist fehlgeschlagen.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>{0} Ausgaben erstellt; {1} Elemente sind fehlgeschlagen.</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>Es wurde keine Ausgabe erstellt.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>1 nicht unterstütztes Element übersprungen.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>{0} nicht unterstützte Elemente übersprungen.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 Element benötigte keine Änderungen.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} Elemente benötigten keine Änderungen.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>1 Ausgabe erstellt. {1} gespart ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>{0} Ausgaben erstellt. {1} gespart ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>1 Ausgabe erstellt. Ausgabe ist {1} größer ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>{0} Ausgaben erstellt. Ausgabe ist {1} größer ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Wird gestartet …</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>Wird verarbeitet</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} von Element {1} von {2} …</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Fertig.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>Mindestens {0} gültige {1} sind erforderlich.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Wird ausgeführt …</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>Die Verarbeitungs-Engine hat keine Ausgabe erzeugt.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>Die Ausgabe konnte nicht unter einem freien Namen gespeichert werden.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>Der Ausgabeordner ist nicht verfügbar.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>Der Ausgabeordner existiert nicht mehr.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Das Element benötigte keine Änderungen.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>Kontext ist nicht verfügbar.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Erforderliche Funktionen fehlen.</value></data><data name="RequiresType" xml:space="preserve"><value>Erfordert {0}, aber die aktuelle Auswahl ist {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>Wählen Sie mindestens {0} {1}-Datei aus.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>Wählen Sie mindestens {0} {1}-Dateien aus.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Wählen Sie nur {0} {1}-Datei aus.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Wählen Sie nur {0} {1}-Dateien aus.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Entfernen Sie die anderen ausgewählten Elemente.</value></data></root>

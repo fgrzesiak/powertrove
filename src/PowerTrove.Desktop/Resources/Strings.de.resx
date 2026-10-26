@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MainWindowTitle" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StatusReady" xml:space="preserve"><value>Bereit</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Aktionen suchen …</value></data>
+  <data name="SearchAutomationName" xml:space="preserve"><value>Aktionen suchen</value></data>
+  <data name="SearchRetry" xml:space="preserve"><value>Erneut versuchen</value></data>
+  <data name="SearchRetryAutomationName" xml:space="preserve"><value>Suche erneut versuchen</value></data>
+  <data name="ActionListAutomationName" xml:space="preserve"><value>Verfügbare Aktionen</value></data>
+  <data name="ExecutionPressEscToCancel" xml:space="preserve"><value>Zum Abbrechen Esc drücken</value></data>
+  <data name="CancelQuestion" xml:space="preserve"><value>Diesen Vorgang abbrechen?</value></data>
+  <data name="CancelContinueRunning" xml:space="preserve"><value>Weiter ausführen</value></data>
+  <data name="CancelOperation" xml:space="preserve"><value>Vorgang abbrechen</value></data>
+  <data name="ResultShowInExplorer" xml:space="preserve"><value>Im Explorer anzeigen</value></data>
+  <data name="ResultOpen" xml:space="preserve"><value>Öffnen</value></data>
+  <data name="ResultDone" xml:space="preserve"><value>Fertig</value></data>
+  <data name="FirstRunTitle" xml:space="preserve"><value>Willkommen bei PowerTrove</value></data>
+  <data name="FirstRunShortcut" xml:space="preserve"><value>Drücken Sie jederzeit Ihr Tastenkürzel (standardmäßig Alt+Leertaste).</value></data>
+  <data name="FirstRunContext" xml:space="preserve"><value>PowerTrove erkennt Ihren aktuellen Kontext (Dateien, Excel und mehr) offline. Wird die aktuelle Anwendung nicht unterstützt, sehen Sie allgemeine Aktionen.</value></data>
+  <data name="FirstRunOutputs" xml:space="preserve"><value>Ihre Dateien sind sicher: Aktionen erstellen neue Dateien, statt die Originale zu überschreiben.</value></data>
+  <data name="FirstRunPrivacy" xml:space="preserve"><value>Datenschutz zuerst: Alles läuft offline. Ein Cloud-Konto ist nicht nötig.</value></data>
+  <data name="FirstRunGetStarted" xml:space="preserve"><value>Los geht’s</value></data>
+  <data name="FirstRunGetStartedAutomationName" xml:space="preserve"><value>Mit PowerTrove loslegen</value></data>
+  <data name="HotkeyConflict" xml:space="preserve"><value>Das Tastenkürzel wird bereits von einer anderen Anwendung verwendet.</value></data>
+  <data name="HotkeyRegistrationFailed" xml:space="preserve"><value>Das globale Tastenkürzel konnte nicht registriert werden.</value></data>
+  <data name="SettingsWindowTitle" xml:space="preserve"><value>PowerTrove-Einstellungen</value></data>
+  <data name="SettingsHeading" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="SettingsReadOnlyWarning" xml:space="preserve"><value>Die Einstellungsdatei stammt aus einer neueren PowerTrove-Version. Änderungen können in dieser Sitzung nicht gespeichert werden.</value></data>
+  <data name="SettingsLanguage" xml:space="preserve"><value>Sprache</value></data>
+  <data name="SettingsLanguageSystem" xml:space="preserve"><value>Windows-Standard</value></data>
+  <data name="SettingsLanguageEnglish" xml:space="preserve"><value>English</value></data>
+  <data name="SettingsLanguageGerman" xml:space="preserve"><value>Deutsch</value></data>
+  <data name="SettingsLanguageRestart" xml:space="preserve"><value>Starten Sie PowerTrove neu, um die neue Sprache anzuwenden.</value></data>
+  <data name="SettingsGlobalShortcut" xml:space="preserve"><value>Globales Tastenkürzel</value></data>
+  <data name="SettingsShortcutPlaceholder" xml:space="preserve"><value>Tastenkombination drücken …</value></data>
+  <data name="SettingsResetShortcut" xml:space="preserve"><value>Tastenkürzel zurücksetzen</value></data>
+  <data name="SettingsShortcutNeedsModifier" xml:space="preserve"><value>Verwenden Sie eine Zusatztaste (Strg, Alt, Umschalt oder Win).</value></data>
+  <data name="SettingsPinnedActions" xml:space="preserve"><value>Angeheftete Aktionen</value></data>
+  <data name="SettingsUnpinPlaceholder" xml:space="preserve"><value>ID der zu lösenden Aktion eingeben …</value></data>
+  <data name="SettingsUnpinAction" xml:space="preserve"><value>Aktion lösen</value></data>
+  <data name="SettingsUnpinDone" xml:space="preserve"><value>Aktion gelöst.</value></data>
+  <data name="SettingsOutputDefaults" xml:space="preserve"><value>Standards für Ausgaben</value></data>
+  <data name="SettingsOutputDefaultsText" xml:space="preserve"><value>PowerTrove behält Ihre Originaldateien. Aktionen erstellen neue Dateien und lösen Namenskonflikte automatisch.</value></data>
+  <data name="SettingsRanking" xml:space="preserve"><value>Reihenfolge</value></data>
+  <data name="SettingsClearRecent" xml:space="preserve"><value>Zuletzt verwendete Aktionen löschen</value></data>
+  <data name="SettingsRecentCleared" xml:space="preserve"><value>Zuletzt verwendete Aktionen gelöscht.</value></data>
+  <data name="SettingsClearSuggestions" xml:space="preserve"><value>Vorschlagsverlauf löschen</value></data>
+  <data name="SettingsSuggestionsPrivacy" xml:space="preserve"><value>Für Vorschläge werden nur Auswahltypen und Anzahlen gespeichert.</value></data>
+  <data name="SettingsClearSuggestionsTitle" xml:space="preserve"><value>Vorschlagsverlauf löschen?</value></data>
+  <data name="SettingsClearSuggestionsText" xml:space="preserve"><value>Dadurch wird der lokale Verlauf der Aktionen je Auswahlart gelöscht.</value></data>
+  <data name="SettingsSuggestionsCleared" xml:space="preserve"><value>Vorschlagsverlauf gelöscht.</value></data>
+  <data name="SettingsResetDefaults" xml:space="preserve"><value>Auf Standardeinstellungen zurücksetzen</value></data>
+  <data name="SettingsResetDone" xml:space="preserve"><value>Einstellungen auf Standard zurückgesetzt.</value></data>
+  <data name="CommonClear" xml:space="preserve"><value>Löschen</value></data>
+  <data name="CommonCancel" xml:space="preserve"><value>Abbrechen</value></data>
+  <data name="CommonClose" xml:space="preserve"><value>Schließen</value></data>
+  <data name="OptionsRemember" xml:space="preserve"><value>Diese Optionen merken</value></data>
+  <data name="OptionsRun" xml:space="preserve"><value>Ausführen</value></data>
+  <data name="OptionsChecking" xml:space="preserve"><value>Auswahl wird geprüft …</value></data>
+  <data name="OptionsSelectionGone" xml:space="preserve"><value>Die Auswahl ist nicht mehr verfügbar.</value></data>
+  <data name="OptionsOneOutput" xml:space="preserve"><value>Ein neues Element wird erstellt.</value></data>
+  <data name="OptionsManyOutputs" xml:space="preserve"><value>{0} neue Elemente werden erstellt.</value></data>
+  <data name="OptionsPathPlaceholder" xml:space="preserve"><value>Pfad zur Datei</value></data>
+  <data name="OptionsBrowse" xml:space="preserve"><value>Durchsuchen …</value></data>
+  <data name="SettingsTooltip" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="LegendRun" xml:space="preserve"><value>Ausführen</value></data>
+  <data name="LegendSelect" xml:space="preserve"><value>Auswählen</value></data>
+  <data name="LegendClose" xml:space="preserve"><value>Schließen</value></data>
+  <data name="KeySettings" xml:space="preserve"><value>Strg+,</value></data>
+  <data name="KeyEsc" xml:space="preserve"><value>Esc</value></data>
+  <data name="TrayTooltip" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="TrayOpen" xml:space="preserve"><value>PowerTrove öffnen</value></data>
+  <data name="TraySettings" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="TrayExit" xml:space="preserve"><value>Beenden</value></data>
+  <data name="SettingsGeneral" xml:space="preserve"><value>Allgemein</value></data>
+  <data name="SettingsLanguageDescription" xml:space="preserve"><value>Sprache der PowerTrove-Oberfläche.</value></data>
+  <data name="SettingsShortcutDescription" xml:space="preserve"><value>Öffnet die Palette aus jeder Anwendung.</value></data>
+  <data name="SettingsSuggestions" xml:space="preserve"><value>Vorschläge</value></data>
+  <data name="SettingsPinnedDescription" xml:space="preserve"><value>Angeheftete Aktionen erscheinen zuerst. Geben Sie eine Aktions-ID ein, um sie zu lösen.</value></data>
+  <data name="SettingsFiles" xml:space="preserve"><value>Dateien</value></data>
+  <data name="SettingsAbout" xml:space="preserve"><value>Info</value></data>
+  <data name="SettingsAboutText" xml:space="preserve"><value>PowerTrove läuft vollständig offline. Ihre Dateien und Auswahlen verlassen diesen PC nie.</value></data>
+  <data name="OrganizerTitle" xml:space="preserve"><value>Seiten organisieren</value></data>
+  <data name="OrganizerOpenVisual" xml:space="preserve"><value>Seiten visuell bearbeiten …</value></data>
+  <data name="OrganizerRotateLeft" xml:space="preserve"><value>Nach links drehen</value></data>
+  <data name="OrganizerRotateRight" xml:space="preserve"><value>Nach rechts drehen</value></data>
+  <data name="OrganizerRemove" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="OrganizerSelectAll" xml:space="preserve"><value>Alle auswählen</value></data>
+  <data name="OrganizerReset" xml:space="preserve"><value>Zurücksetzen</value></data>
+  <data name="OrganizerZoom" xml:space="preserve"><value>Vorschaugröße</value></data>
+  <data name="OrganizerHint" xml:space="preserve"><value>Seiten zum Sortieren ziehen. Mit Strg oder Umschalt mehrere auswählen.</value></data>
+  <data name="OrganizerPageLabel" xml:space="preserve"><value>Seite {0}</value></data>
+  <data name="OrganizerPageCount" xml:space="preserve"><value>{0} Seiten</value></data>
+  <data name="OrganizerSave" xml:space="preserve"><value>Als neue PDF speichern</value></data>
+  <data name="OrganizerSaved" xml:space="preserve"><value>Neue PDF erstellt. Die Originaldateien sind unverändert.</value></data>
+  <data name="OrganizerSaveFailed" xml:space="preserve"><value>Die neue PDF konnte nicht erstellt werden.</value></data>
+  <data name="OrganizerProtected" xml:space="preserve"><value>Diese PDF ist kennwortgeschützt. Entsperren Sie sie zuerst mit „PDF entsperren“.</value></data>
+  <data name="OrganizerOpenFailed" xml:space="preserve"><value>Die PDF konnte nicht geöffnet werden.</value></data>
+  <data name="OrganizerTooLarge" xml:space="preserve"><value>Zu viele Seiten für die Anzeige (höchstens {0}).</value></data>
+  <data name="NoMatchingActions" xml:space="preserve"><value>Keine passenden Aktionen. Versuchen Sie eine andere Suche.</value></data>
+  <data name="UnavailableFilterLabel" xml:space="preserve"><value>Nicht verfügbar ({0})</value></data>
+  <data name="GroupActionsOne" xml:space="preserve"><value>{0}, {1} Aktion</value></data>
+  <data name="GroupActionsOther" xml:space="preserve"><value>{0}, {1} Aktionen</value></data>
+  <data name="ResultUndo" xml:space="preserve"><value>Rückgängig</value></data>
+  <data name="RenameOldName" xml:space="preserve"><value>Aktueller Name</value></data>
+  <data name="RenameNewName" xml:space="preserve"><value>Neuer Name</value></data>
+  <data name="UpdatesHeading" xml:space="preserve"><value>Aktualisierungen</value></data>
+  <data name="UpdatesPrivacy" xml:space="preserve"><value>Nur über diese Schaltfläche werden Release-Informationen von GitHub abgerufen. GitHub erhält übliche Verbindungsdaten wie Ihre IP-Adresse und HTTP-Header. Ausgewählte Dateien oder Inhalte werden nicht gesendet. Die Release-Seite öffnet sich erst nach einem weiteren Klick. PowerTrove lädt keine Updates herunter und installiert sie nicht.</value></data>
+  <data name="UpdatesCheck" xml:space="preserve"><value>Nach Updates suchen</value></data>
+  <data name="UpdatesOpenPage" xml:space="preserve"><value>Release-Seite öffnen</value></data>
+<data name="RecipePackTitle" xml:space="preserve"><value>Rezepte</value></data>
+<data name="RecipeImagesForEmailTitle" xml:space="preserve"><value>Bilder für E-Mail vorbereiten</value></data>
+<data name="RecipeImagesForEmailDescription" xml:space="preserve"><value>Verkleinert Bilder auf höchstens 1600 px, komprimiert sie mit 75 % Qualität und packt das Ergebnis in eine ZIP-Datei.</value></data>
+<data name="RecipeMixedForEmailTitle" xml:space="preserve"><value>Für E-Mail vorbereiten</value></data>
+<data name="RecipeMixedForEmailDescription" xml:space="preserve"><value>Verkleinert Bilder auf höchstens 1600 px, komprimiert PDFs und packt das Ergebnis in eine ZIP-Datei.</value></data>
+  <data name="ActivationRejected" xml:space="preserve"><value>Die ausgewählten Dateien konnten nicht geöffnet werden. Verwenden Sie vorhandene lokale Dateien und versuchen Sie es erneut.</value></data>
+  <data name="ExplorerHeading" xml:space="preserve"><value>Datei-Explorer</value></data>
+  <data name="ExplorerDescription" xml:space="preserve"><value>Fügen Sie „In PowerTrove öffnen“ für eine einzelne lokale Datei hinzu. Unter Windows 11 finden Sie den Eintrag unter „Weitere Optionen anzeigen“. Für mehrere Dateien verwenden Sie das globale Tastenkürzel.</value></data>
+  <data name="ExplorerAdd" xml:space="preserve"><value>Menüeintrag hinzufügen oder aktualisieren</value></data>
+  <data name="ExplorerRemove" xml:space="preserve"><value>Menüeintrag entfernen</value></data>
+  <data name="ExplorerMenuLabel" xml:space="preserve"><value>In PowerTrove öffnen</value></data>
+  <data name="ExplorerRegistered" xml:space="preserve"><value>Der Menüeintrag ist für diese Kopie von PowerTrove registriert.</value></data>
+  <data name="ExplorerAbsent" xml:space="preserve"><value>Der Menüeintrag ist nicht registriert.</value></data>
+  <data name="ExplorerIncomplete" xml:space="preserve"><value>Der Eintrag ist unvollständig. Fügen Sie ihn erneut hinzu oder entfernen Sie ihn.</value></data>
+  <data name="ExplorerConflict" xml:space="preserve"><value>Der vorhandene Eintrag gehört zu einer anderen App-Kopie oder hat unerwartete Einstellungen. Er wurde unverändert beibehalten.</value></data>
+  <data name="ExplorerUnavailable" xml:space="preserve"><value>Der Menüeintrag konnte nicht gelesen oder geändert werden. Prüfen Sie die Zugriffsrechte und den Speicherort der App.</value></data>
+  <data name="PacksHeading" xml:space="preserve"><value>Aktionspakete</value></data>
+  <data name="PacksLocalDescription" xml:space="preserve"><value>Installieren Sie ein signiertes PowerTrove-Paket aus einer lokalen .cbpack-Datei.</value></data>
+  <data name="PacksInstallFromFile" xml:space="preserve"><value>Paket aus Datei installieren…</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>Das Paket wird geprüft und installiert…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>Das Paket ist installiert. Seine Aktionen sind beim nächsten Öffnen der Palette verfügbar.</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>Die Paketinstallation wurde abgebrochen.</value></data>
+  <data name="PacksInstallFailed" xml:space="preserve"><value>Das Paket konnte nicht geprüft oder aktiviert werden. Vorhandene Werkzeuge bleiben verfügbar.</value></data>
+  <data name="PacksPrivacy" xml:space="preserve"><value>Beim Öffnen dieses Bereichs wird der Katalog des Herausgebers geprüft. Downloads starten, nachdem Sie eine Installation bestätigt haben.</value></data>
+  <data name="PacksShowMissing" xml:space="preserve"><value>Aktionen nicht installierter Pakete anzeigen</value></data>
+  <data name="PacksRefresh" xml:space="preserve"><value>Katalog aktualisieren</value></data>
+  <data name="PacksUninstall" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="PacksBundled" xml:space="preserve"><value>In der Anwendung enthalten</value></data>
+  <data name="PackDownloadConsent" xml:space="preserve"><value>Möchten Sie {0} ({1}) von {2} herunterladen und installieren?</value></data>
+  <data name="PackRemoveConsent" xml:space="preserve"><value>Möchten Sie {0} entfernen? Seine heruntergeladenen Versionen werden gelöscht. Enthaltene Werkzeuge bleiben verfügbar.</value></data>
+  <data name="PackInstallAndRun" xml:space="preserve"><value>Installieren und fortfahren</value></data>
+  <data name="PackSelectAgain" xml:space="preserve"><value>Wählen Sie die Dateien erneut aus.</value></data>
+  <data name="PackNeedsInstall" xml:space="preserve"><value>{0} ist nicht installiert</value></data>
+  <data name="PackNameVersion" xml:space="preserve"><value>{0}, Version {1}</value></data>
+  <data name="SeparateProcessTitle" xml:space="preserve"><value>Dateiwerkzeuge in einem separaten Prozess ausführen</value></data>
+  <data name="SeparateProcessDescription" xml:space="preserve"><value>Isoliert PDF-, Bild- und Medienwerkzeuge vom Hauptfenster. Neustart erforderlich.</value></data>
+  <data name="SeparateProcessRestart" xml:space="preserve"><value>PowerTrove neu starten, um diese Einstellung anzuwenden.</value></data>
+  <data name="IsolationUnavailable" xml:space="preserve"><value>Isolierte Dateiwerkzeuge sind nicht verfügbar. Pack-Dateien prüfen und neu starten.</value></data>
+</root>

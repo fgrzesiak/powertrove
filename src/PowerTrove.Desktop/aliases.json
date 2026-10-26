@@ -1,0 +1,79 @@
+{
+  "powertrove.image.convert-webp": [
+    "bild",
+    "konvertieren",
+    "umwandeln",
+    "picture"
+  ],
+  "powertrove.image.convert-avif": [
+    "avif"
+  ],
+  "powertrove.image.resize": [
+    "verkleinern",
+    "komprimieren",
+    "shrink",
+    "skalieren"
+  ],
+  "powertrove.general.settings": [
+    "einstellungen",
+    "optionen",
+    "options",
+    "setup"
+  ],
+  "powertrove.image.convert-jpeg": [
+    "jpg",
+    "heic",
+    "iphone",
+    "foto"
+  ],
+  "powertrove.image.compress": [
+    "verkleinern",
+    "optimieren",
+    "kleiner"
+  ],
+  "powertrove.pdf.merge": [
+    "zusammenfügen",
+    "zusammenführen",
+    "kombinieren"
+  ],
+  "powertrove.pdf.split": [
+    "aufteilen",
+    "trennen",
+    "seiten"
+  ],
+  "powertrove.pdf.extract-pages": [
+    "seiten extrahieren",
+    "auswählen"
+  ],
+  "powertrove.pdf.remove-pages": [
+    "seiten löschen",
+    "entfernen"
+  ],
+  "powertrove.pdf.rotate": [
+    "drehen",
+    "rotieren"
+  ],
+  "powertrove.pdf.images-to-pdf": [
+    "bilder zu pdf",
+    "scan",
+    "fotos"
+  ],
+  "powertrove.pdf.to-images": [
+    "pdf zu bild",
+    "png",
+    "jpg"
+  ],
+  "powertrove.files.zip": [
+    "zippen",
+    "packen",
+    "archiv"
+  ],
+  "powertrove.files.unzip": [
+    "entpacken",
+    "auspacken"
+  ],
+  "powertrove.files.checksum": [
+    "prüfsumme",
+    "hashwert"
+  ]
+}

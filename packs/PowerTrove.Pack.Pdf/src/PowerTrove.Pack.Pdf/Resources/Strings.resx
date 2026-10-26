@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MergePdfAction_Title" xml:space="preserve"><value>Merge PDFs</value></data><data name="MergePdfAction_Description" xml:space="preserve"><value>Combines the selected PDFs into one file in file-name order.</value></data><data name="MergePdfAction_Operation_Description" xml:space="preserve"><value>Will merge {0} into one document in file-name order.</value></data><data name="MergePdfAction_DefaultOutput" xml:space="preserve"><value>Merged PDFs</value></data><data name="MergePdfAction_ParamTitle_AddBookmarks" xml:space="preserve"><value>Create bookmarks for each file</value></data><data name="Pdf_File" xml:space="preserve"><value>PDF</value></data><data name="Pdf_Files" xml:space="preserve"><value>PDFs</value></data><data name="SplitPdfAction_Title" xml:space="preserve"><value>Split PDF into Pages</value></data><data name="SplitPdfAction_Description" xml:space="preserve"><value>Splits the selected PDFs, saving the results in a new folder.</value></data><data name="SplitPdfAction_ProgressVerb" xml:space="preserve"><value>Splitting</value></data><data name="SplitPdfAction_Operation_Description" xml:space="preserve"><value>Will split {0} based on selected mode into a new folder.</value></data><data name="ExtractPagesAction_Title" xml:space="preserve"><value>Extract PDF Pages</value></data><data name="ExtractPagesAction_Description" xml:space="preserve"><value>Creates a new PDF with the selected pages. You can reorder or duplicate pages.</value></data><data name="Pdf_ParamTitle_Pages" xml:space="preserve"><value>Pages</value></data><data name="Pdf_ParamDesc_Pages" xml:space="preserve"><value>Page numbers and ranges, for example 1-3, 5, 2.</value></data><data name="ExtractPagesAction_Operation_Description" xml:space="preserve"><value>Will extract pages {0} from {1} into {2}.</value></data><data name="Pdf_NewDoc" xml:space="preserve"><value>a new document</value></data><data name="Pdf_NewDocs" xml:space="preserve"><value>new documents</value></data><data name="RemovePagesAction_Title" xml:space="preserve"><value>Remove PDF Pages</value></data><data name="RemovePagesAction_Description" xml:space="preserve"><value>Creates a new PDF without the specified pages.</value></data><data name="RemovePagesAction_ParamTitle_Pages" xml:space="preserve"><value>Pages to remove</value></data><data name="RemovePagesAction_ParamDesc_Pages" xml:space="preserve"><value>Page numbers and ranges, for example 1-3, 5.</value></data><data name="RemovePagesAction_Operation_Description" xml:space="preserve"><value>Will remove pages {0} from {1} and save the rest as {2}.</value></data><data name="RotatePdfAction_Title" xml:space="preserve"><value>Rotate PDF Pages</value></data><data name="RotatePdfAction_Description" xml:space="preserve"><value>Creates a copy of the PDF with pages rotated clockwise.</value></data><data name="RotatePdfAction_ParamTitle_Angle" xml:space="preserve"><value>Rotation</value></data><data name="RotatePdfAction_ParamChoice_90" xml:space="preserve"><value>90° clockwise</value></data><data name="RotatePdfAction_ParamChoice_180" xml:space="preserve"><value>180°</value></data><data name="RotatePdfAction_ParamChoice_270" xml:space="preserve"><value>270°</value></data><data name="RotatePdfAction_ParamTitle_Pages" xml:space="preserve"><value>Pages to rotate</value></data><data name="RotatePdfAction_ParamDesc_Pages" xml:space="preserve"><value>"all" or page numbers and ranges, for example 1-3, 5.</value></data><data name="RotatePdfAction_Operation_Description" xml:space="preserve"><value>Will create {0} ({1}° clockwise, pages: {2}).</value></data><data name="Pdf_AllPages" xml:space="preserve"><value>all</value></data><data name="RemovePdfMetadataAction_Title" xml:space="preserve"><value>Remove PDF Metadata</value></data><data name="EditPdfMetadataAction_Title" xml:space="preserve"><value>Edit PDF Properties</value></data><data name="EditPdfMetadataAction_Description" xml:space="preserve"><value>Sets the document title, author, subject and keywords. Empty fields remove the value.</value></data><data name="EditPdfMetadataAction_ParamTitle_Title" xml:space="preserve"><value>Title</value></data><data name="EditPdfMetadataAction_ParamDesc_Title" xml:space="preserve"><value>The document's title.</value></data><data name="EditPdfMetadataAction_ParamTitle_Author" xml:space="preserve"><value>Author</value></data><data name="EditPdfMetadataAction_ParamDesc_Author" xml:space="preserve"><value>The name of the person who created the document.</value></data><data name="EditPdfMetadataAction_ParamTitle_Subject" xml:space="preserve"><value>Subject</value></data><data name="EditPdfMetadataAction_ParamDesc_Subject" xml:space="preserve"><value>What the document is about.</value></data><data name="EditPdfMetadataAction_ParamTitle_Keywords" xml:space="preserve"><value>Keywords</value></data><data name="EditPdfMetadataAction_ParamDesc_Keywords" xml:space="preserve"><value>Comma-separated keywords.</value></data><data name="EditPdfMetadataAction_Operation_Description" xml:space="preserve"><value>Will create {0} with the specified properties.</value></data><data name="EditPdfMetadataAction_Error_TooLong" xml:space="preserve"><value>The text is longer than 500 characters.</value></data><data name="RemovePdfMetadataAction_Description" xml:space="preserve"><value>Creates a copy of the PDF without metadata (such as author or title).</value></data><data name="RemovePdfMetadataAction_Operation_Description" xml:space="preserve"><value>Will create {0} without metadata.</value></data><data name="Pdf_Copy" xml:space="preserve"><value>copy</value></data><data name="Pdf_Copies" xml:space="preserve"><value>copies</value></data><data name="ImagesToPdfAction_Title" xml:space="preserve"><value>Create PDF from Images</value></data><data name="ImagesToPdfAction_Description" xml:space="preserve"><value>Puts the selected JPEG and PNG images into one PDF, one image per page, in file-name order.</value></data><data name="ImagesToPdfAction_ParamTitle_PageSize" xml:space="preserve"><value>Page size</value></data><data name="ImagesToPdfAction_ParamChoice_A4" xml:space="preserve"><value>A4</value></data><data name="ImagesToPdfAction_ParamChoice_Letter" xml:space="preserve"><value>US Letter</value></data><data name="ImagesToPdfAction_ParamChoice_Fit" xml:space="preserve"><value>Same as image</value></data><data name="ImagesToPdfAction_Operation_Description" xml:space="preserve"><value>Will create one PDF with {0} from the selected images in file-name order. JPEG images are embedded without quality loss.</value></data><data name="ImagesToPdfAction_DefaultOutput" xml:space="preserve"><value>Images</value></data><data name="Pdf_Page" xml:space="preserve"><value>page</value></data><data name="Pdf_Pages" xml:space="preserve"><value>pages</value></data><data name="PdfToImagesAction_Title" xml:space="preserve"><value>Convert PDF to Images</value></data><data name="PdfToImagesAction_Description" xml:space="preserve"><value>Saves PDF pages as PNG or JPEG images in a new folder.</value></data><data name="PdfToImagesAction_ParamTitle_Format" xml:space="preserve"><value>Image format</value></data><data name="PdfToImagesAction_ParamChoice_Png" xml:space="preserve"><value>PNG (sharp text)</value></data><data name="PdfToImagesAction_ParamChoice_Jpeg" xml:space="preserve"><value>JPEG (smaller photos)</value></data><data name="PdfToImagesAction_ParamTitle_Dpi" xml:space="preserve"><value>Resolution (DPI)</value></data><data name="PdfToImagesAction_ParamDesc_Pages" xml:space="preserve"><value>"all" or page numbers and ranges, for example 1-3, 5.</value></data><data name="PdfToImagesAction_ProgressVerb" xml:space="preserve"><value>Rendering PDF</value></data><data name="PdfToImagesAction_Operation_Description" xml:space="preserve"><value>Will render pages of {0} as {1} images at {2} DPI, each PDF into a new folder.</value></data><data name="PdfToImagesAction_Error_NoRenderer" xml:space="preserve"><value>PDF rendering is not available on this system.</value></data><data name="PdfInfoAction_Title" xml:space="preserve"><value>PDF Properties</value></data><data name="PdfInfoAction_Description" xml:space="preserve"><value>Shows page count, page size, PDF version and author of the selected PDF.</value></data><data name="PdfInfoAction_Preview_Encrypted" xml:space="preserve"><value>Encrypted</value></data><data name="PdfInfoAction_Preview_Pages" xml:space="preserve"><value>page(s)</value></data><data name="PdfPack_Title" xml:space="preserve"><value>PDF Tools</value></data><data name="PdfSupport_FilterDescription" xml:space="preserve"><value>PDF documents</value></data><data name="PdfSupport_Error_InvalidPageSyntax" xml:space="preserve"><value>Enter at least one valid page range.</value></data><data name="PdfSupport_Error_PageOutOfRange" xml:space="preserve"><value>Page numbers must be between 1 and {0}.</value></data><data name="PdfSupport_Error_Encrypted" xml:space="preserve"><value>Password-protected or encrypted PDFs are not supported yet.</value></data><data name="PdfSupport_Error_Damaged" xml:space="preserve"><value>The PDF is damaged and could not be read.</value></data><data name="InterleavePdfAction_Title" xml:space="preserve"><value>Combine Front and Back Scans</value></data>
+<data name="InterleavePdfAction_Description" xml:space="preserve"><value>Combines two PDFs by alternately taking pages from the first and second.</value></data>
+<data name="InterleavePdfAction_ParamTitle_ReverseSecond" xml:space="preserve"><value>Reverse second PDF</value></data>
+<data name="InterleavePdfAction_Operation_Description" xml:space="preserve"><value>Will combine {0} and {1}.</value></data>
+<data name="InterleavePdfAction_Warning_UnequalPages" xml:space="preserve"><value>The PDFs have a different number of pages. The remaining pages will be appended.</value></data>
+<data name="InsertPdfAction_Title" xml:space="preserve"><value>Insert PDF into PDF</value></data>
+<data name="InsertPdfAction_Description" xml:space="preserve"><value>Inserts one PDF into another.</value></data>
+<data name="InsertPdfAction_ParamTitle_Position" xml:space="preserve"><value>Position</value></data>
+<data name="InsertPdfAction_ParamChoice_Start" xml:space="preserve"><value>At the start</value></data>
+<data name="InsertPdfAction_ParamChoice_End" xml:space="preserve"><value>At the end</value></data>
+<data name="InsertPdfAction_ParamChoice_After" xml:space="preserve"><value>After page</value></data>
+<data name="InsertPdfAction_ParamTitle_AfterPage" xml:space="preserve"><value>Page number</value></data>
+<data name="InsertPdfAction_ParamTitle_Swap" xml:space="preserve"><value>Insert first into second</value></data>
+<data name="InsertPdfAction_Operation_Description" xml:space="preserve"><value>Will insert {0} into {1}.</value></data>
+<data name="InsertPdfAction_Error_AfterPageOutOfBounds" xml:space="preserve"><value>The target PDF has fewer pages than the requested AfterPage.</value></data>
+<data name="InsertBlankPdfAction_Title" xml:space="preserve"><value>Insert Blank Pages</value></data>
+<data name="InsertBlankPdfAction_Description" xml:space="preserve"><value>Inserts blank pages into the PDF.</value></data>
+<data name="InsertBlankPdfAction_ParamTitle_Mode" xml:space="preserve"><value>Mode</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AfterEach" xml:space="preserve"><value>After each page</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AtPositions" xml:space="preserve"><value>At specific positions</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_MakeEven" xml:space="preserve"><value>Make page count even</value></data>
+<data name="InsertBlankPdfAction_Operation_Description" xml:space="preserve"><value>Will insert blank pages into {0}.</value></data>
+<data name="OrganizePages_Title" xml:space="preserve"><value>Organize Pages</value></data><data name="OrganizePages_Description" xml:space="preserve"><value>Reorder, rotate and remove pages visually, also across several PDFs.</value></data><data name="OrganizePages_Param_Pages" xml:space="preserve"><value>Pages</value></data><data name="OrganizePages_Param_PagesDescription" xml:space="preserve"><value>Pages of the new PDF as file:page, optionally with @90, @180 or @270 for rotation.</value></data><data name="OrganizePages_Operation" xml:space="preserve"><value>Will create one new PDF with {0} pages.</value></data><data name="OrganizePages_Error_Empty" xml:space="preserve"><value>Keep at least one page.</value></data><data name="OrganizePages_Error_TooMany" xml:space="preserve"><value>A new PDF can have at most {0} pages.</value></data><data name="OrganizePages_Error_Syntax" xml:space="preserve"><value>Enter pages as file:page, for example 1:3, 2:1.</value></data><data name="OrganizePages_Error_Rotation" xml:space="preserve"><value>Rotation must be a multiple of 90 degrees.</value></data><data name="OrganizePages_Error_UnknownFile" xml:space="preserve"><value>The page list refers to a PDF that is not selected.</value></data><data name="OrganizePages_Error_UnknownPage" xml:space="preserve"><value>The page list refers to a page that does not exist.</value></data><data name="CombineToPdf_Title" xml:space="preserve"><value>Combine into One PDF</value></data><data name="CombineToPdf_Description" xml:space="preserve"><value>Combines selected PDFs, images and Office documents into a new PDF in the chosen order.</value></data><data name="CombineToPdf_Operation" xml:space="preserve"><value>Will combine {0} items into a new PDF: PDFs keep all pages, images become pages and Office documents are exported first.</value></data><data name="CombineToPdf_Error_UnsupportedImage" xml:space="preserve"><value>This image format cannot be added to a PDF on this PC.</value></data><data name="NUpPdfAction_Title" xml:space="preserve"><value>Print Multiple Pages per Sheet</value></data><data name="NUpPdfAction_Description" xml:space="preserve"><value>Creates N-up pages.</value></data><data name="NUpPdfAction_ParamTitle_PerSheet" xml:space="preserve"><value>Pages per sheet</value></data><data name="NUpPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Sheet</value></data><data name="NUpPdfAction_Operation" xml:space="preserve"><value>Will create a {0}-up PDF.</value></data><data name="BookletPdfAction_Title" xml:space="preserve"><value>Create Booklet</value></data><data name="BookletPdfAction_Description" xml:space="preserve"><value>Creates a saddle-stitch booklet.</value></data><data name="BookletPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Sheet</value></data><data name="BookletPdfAction_Operation" xml:space="preserve"><value>Will create a booklet PDF. Print settings: double-sided (short-edge binding).</value></data><data name="CombineToPdf_ParamTitle_Order" xml:space="preserve"><value>Order</value></data><data name="CombineToPdf_ParamChoice_Name" xml:space="preserve"><value>File name</value></data><data name="CombineToPdf_ParamChoice_PdfsFirst" xml:space="preserve"><value>PDFs first</value></data><data name="CombineToPdf_ParamChoice_ImagesFirst" xml:space="preserve"><value>Images first</value></data><data name="HeaderFooterPdfAction_Title" xml:space="preserve"><value>Add Header or Footer</value></data><data name="HeaderFooterPdfAction_Description" xml:space="preserve"><value>Adds a header or footer text to the selected PDFs.</value></data><data name="HeaderFooterPdfAction_Operation_Description" xml:space="preserve"><value>Will add header/footer to {0}.</value></data><data name="HeaderFooterPdfAction_ParamTitle_Text" xml:space="preserve"><value>Text</value></data><data name="HeaderFooterPdfAction_ParamTitle_Placement" xml:space="preserve"><value>Placement</value></data><data name="HeaderFooterPdfAction_ParamChoice_Header" xml:space="preserve"><value>Header</value></data><data name="HeaderFooterPdfAction_ParamChoice_Footer" xml:space="preserve"><value>Footer</value></data><data name="HeaderFooterPdfAction_ParamTitle_Alignment" xml:space="preserve"><value>Alignment</value></data><data name="HeaderFooterPdfAction_ParamChoice_Left" xml:space="preserve"><value>Left</value></data><data name="HeaderFooterPdfAction_ParamChoice_Center" xml:space="preserve"><value>Center</value></data><data name="HeaderFooterPdfAction_ParamChoice_Right" xml:space="preserve"><value>Right</value></data><data name="HeaderFooterPdfAction_ParamTitle_FontSize" xml:space="preserve"><value>Font Size</value></data><data name="HeaderFooterPdfAction_Error_TooLong" xml:space="preserve"><value>Text must not exceed 200 characters.</value></data><data name="HeaderFooterPdfAction_Error_InvalidChars" xml:space="preserve"><value>The text contains characters that cannot be written with the built-in fonts.</value></data>  <data name="PdfSupport_Error_PasswordRequired" xml:space="preserve">
+    <value>The password is not correct.</value>
+  </data>
+  <data name="PdfSupport_Error_LimitExceeded" xml:space="preserve">
+    <value>The PDF exceeds the supported size or complexity.</value>
+  </data>
+  <data name="PdfSupport_Error_OperationFailed" xml:space="preserve">
+    <value>The PDF operation failed.</value>
+  </data>
+  <data name="Pdf_Error_UnknownMode" xml:space="preserve">
+    <value>Unknown mode: {0}</value>
+  </data>
+  <data name="PdfSupport_Warning_UsageRestrictionsRemoved" xml:space="preserve">
+    <value>This PDF had usage restrictions; the new file will not have them.</value>
+  </data>
+  <data name="UnlockPdfAction_Title" xml:space="preserve">
+    <value>Unlock PDF</value>
+  </data>
+  <data name="UnlockPdfAction_Description" xml:space="preserve">
+    <value>Creates a copy of the PDF without password protection.</value>
+  </data>
+  <data name="UnlockPdfAction_ParamTitle_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UnlockPdfAction_Operation_Description" xml:space="preserve">
+    <value>Will create {0} without password protection.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Split by</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Single" xml:space="preserve">
+    <value>Every single page</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Ranges" xml:space="preserve">
+    <value>Custom page ranges</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Every" xml:space="preserve">
+    <value>Every N pages</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_OddEven" xml:space="preserve">
+    <value>Odd and even pages</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Ranges" xml:space="preserve">
+    <value>Page ranges</value>
+  </data>
+  <data name="SplitPdfAction_ParamDesc_Ranges" xml:space="preserve">
+    <value>Page ranges, for example 1-5; 6-10; 11-15.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Every" xml:space="preserve">
+    <value>Pages per file</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoRanges" xml:space="preserve">
+    <value>Enter at least one page range.</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoValidPages" xml:space="preserve">
+    <value>No valid pages found in range '{0}'.</value>
+  </data>
+  <data name="SplitPdfAction_Error_InvalidRangeOrder" xml:space="preserve">
+    <value>A page range must go from a lower to a higher position.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Title" xml:space="preserve">
+    <value>Extract PDF Pages</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Description" xml:space="preserve">
+    <value>Creates a new PDF containing only the chosen pages, in the order entered.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Will create {0} with pages {1}.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Title" xml:space="preserve">
+    <value>Remove PDF Pages</value>
+  </data>
+  <data name="RemovePdfPagesAction_Description" xml:space="preserve">
+    <value>Creates a copy of the PDF without the chosen pages.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Will create {0} without pages {1}.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Title" xml:space="preserve">
+    <value>Reorder PDF Pages</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Description" xml:space="preserve">
+    <value>Reorders the pages in a PDF.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Custom" xml:space="preserve">
+    <value>Custom Order</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Reverse" xml:space="preserve">
+    <value>Reverse</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamDesc_Order" xml:space="preserve">
+    <value>Pages in the new order, for example 3,1,2.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Will create {0} with reordered pages.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Error_NoValidRanges" xml:space="preserve">
+    <value>Enter at least one valid page range.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Title" xml:space="preserve">
+    <value>Add Page Numbers</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Description" xml:space="preserve">
+    <value>Adds page numbers to the selected PDF files.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopLeft" xml:space="preserve">
+    <value>Top Left</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopCenter" xml:space="preserve">
+    <value>Top Center</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopRight" xml:space="preserve">
+    <value>Top Right</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomLeft" xml:space="preserve">
+    <value>Bottom Left</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomCenter" xml:space="preserve">
+    <value>Bottom Center</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomRight" xml:space="preserve">
+    <value>Bottom Right</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Operation_Description" xml:space="preserve">
+    <value>Will add page numbers to {0}.</value>
+  </data>
+  <data name="WatermarkPdfAction_Title" xml:space="preserve">
+    <value>Add Watermark</value>
+  </data>
+  <data name="WatermarkPdfAction_Description" xml:space="preserve">
+    <value>Adds a text watermark to the PDF.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_Text" xml:space="preserve">
+    <value>The text to use as watermark (max 100 characters).</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Diagonal" xml:space="preserve">
+    <value>Diagonal</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Horizontal" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Tiled" xml:space="preserve">
+    <value>Tiled</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_FontSize" xml:space="preserve">
+    <value>0 for automatic size.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="WatermarkPdfAction_Operation_Description" xml:space="preserve">
+    <value>Will create {0}. Watermarks can be removed by others and are not a security measure.</value>
+  </data>
+  <data name="StampPdfImageAction_Title" xml:space="preserve">
+    <value>Add Image or Signature</value>
+  </data>
+  <data name="StampPdfImageAction_Description" xml:space="preserve">
+    <value>Stamps an image onto PDF pages.</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleLeft" xml:space="preserve">
+    <value>Middle Left</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleRight" xml:space="preserve">
+    <value>Middle Right</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Width" xml:space="preserve">
+    <value>Width (mm)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opacity (%)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamDesc_Pages" xml:space="preserve">
+    <value>Page ranges, 'all', 'first', or 'last'</value>
+  </data>
+  <data name="StampPdfImageAction_Error_InvalidImage" xml:space="preserve">
+    <value>Please select a valid image file.</value>
+  </data>
+  <data name="StampPdfImageAction_Error_UnreadableImage" xml:space="preserve">
+    <value>The image file could not be read.</value>
+  </data>
+  <data name="StampPdfImageAction_Operation_Description" xml:space="preserve">
+    <value>Will stamp the image onto {0}.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoPositions" xml:space="preserve">
+    <value>Enter at least one page position.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoValidPositions" xml:space="preserve">
+    <value>Enter at least one valid page position.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PagePositions" xml:space="preserve">
+    <value>Page positions must be between 0 and {0}.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PositionsMustBeNonNegative" xml:space="preserve">
+    <value>Page positions must be non-negative integers.</value>
+  </data>
+  <data name="CropPdfAction_Error_MarginBounds" xml:space="preserve">
+    <value>Margin must be between 0 and 100 mm.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NotFileSelection" xml:space="preserve">
+    <value>Not a file selection.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoPdfs" xml:space="preserve">
+    <value>No supported PDF files in the selection.</value>
+  </data>
+  <data name="PdfInfoAction_Error_MaxFiles" xml:space="preserve">
+    <value>Select at most {0} PDF files.</value>
+  </data>
+  <data name="PdfInfoAction_Error_Stale" xml:space="preserve">
+    <value>The selection has expired. Select the files again.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoReadablePdfs" xml:space="preserve">
+    <value>No readable PDF in the selection.</value>
+  </data>
+  <data name="PdfInfoAction_TotalPages" xml:space="preserve">
+    <value>Total: {0} page(s).</value>
+  </data>
+  <data name="PdfInfoAction_Repaired" xml:space="preserve">
+    <value> (damaged structure was repaired while reading)</value>
+  </data>
+  <data name="PdfInfoAction_Canceled" xml:space="preserve">
+    <value>Canceled.</value>
+  </data>
+  <data name="PdfInfoAction_PdfLabel" xml:space="preserve">
+    <value>PDF {0}</value>
+  </data>
+  <data name="PdfInfoAction_Details" xml:space="preserve">
+    <value>{0}: {1} page(s), version {2}, first page {3:0} x {4:0} mm{5}</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddThenEven" xml:space="preserve">
+    <value>Odd then Even</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenThenOdd" xml:space="preserve">
+    <value>Even then Odd</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Shuffle" xml:space="preserve">
+    <value>Shuffle</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1" xml:space="preserve">
+    <value>Page 1, Page 2...</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_Format1ofN" xml:space="preserve">
+    <value>1 of N</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1ofN" xml:space="preserve">
+    <value>Page 1 of N</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Start" xml:space="preserve">
+    <value>Start At</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_SkipFirst" xml:space="preserve">
+    <value>Skip First Page</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="PdfSupport_Error_PageListedTwice" xml:space="preserve">
+    <value>Page {0} is listed twice.</value>
+  </data>
+  <data name="PdfSupport_Error_PageMissing" xml:space="preserve">
+    <value>Page {0} is missing.</value>
+  </data>
+  <data name="PdfSupport_Error_UnsupportedImage" xml:space="preserve">
+    <value>Only JPEG and PNG images can be added to a PDF.</value>
+  </data>
+  <data name="PdfSupport_Pages_Title" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="PdfSupport_Pages_Description" xml:space="preserve">
+    <value>Page numbers and ranges, for example 1-3, 5, 8- or last.</value>
+  </data>
+  <data name="CompressPdfAction_Title" xml:space="preserve">
+    <value>Compress PDF</value>
+  </data>
+  <data name="CompressPdfAction_Description" xml:space="preserve">
+    <value>Reduces the file size of PDF documents.</value>
+  </data>
+  <data name="CompressPdfAction_ParamTitle_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Balanced" xml:space="preserve">
+    <value>Balanced</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Strong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="CompressPdfAction_Operation_One" xml:space="preserve">
+    <value>Will create a smaller copy.</value>
+  </data>
+  <data name="CompressPdfAction_Operation_Many" xml:space="preserve">
+    <value>Will create smaller copies.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_QualityReduced" xml:space="preserve">
+    <value>Image quality is reduced at balanced and strong levels.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_UnsupportedImages" xml:space="preserve">
+    <value>Found {0} unsupported images that will be left untouched.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_NOfTotal" xml:space="preserve">
+    <value>Page n of N</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddFirst" xml:space="preserve">
+    <value>Odd Pages First</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenFirst" xml:space="preserve">
+    <value>Even Pages First</value>
+  </data>
+  <data name="StampSelectedImagePdfAction_Title" xml:space="preserve">
+    <value>Place Image on PDF</value>
+  </data>
+  <data name="RepairPdfAction_Title" xml:space="preserve">
+    <value>Repair PDF</value>
+  </data>
+  <data name="RepairPdfAction_Description" xml:space="preserve">
+    <value>Rewrites the document to fix structural problems.</value>
+  </data>
+  <data name="RepairPdfAction_Operation_Description" xml:space="preserve">
+    <value>Will repair {0}.</value>
+  </data>
+  <data name="RepairPdfAction_NoProblems" xml:space="preserve">
+    <value>No problems were found.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Title" xml:space="preserve">
+    <value>Remove Blank Pages</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Description" xml:space="preserve">
+    <value>Removes blank pages from the PDF.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamTitle_Sensitivity" xml:space="preserve">
+    <value>Sensitivity</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Strict" xml:space="preserve">
+    <value>Strict</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Relaxed" xml:space="preserve">
+    <value>Relaxed</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Operation_Description" xml:space="preserve">
+    <value>Will remove blank pages from {0}.</value>
+  </data>
+  <data name="PdfToTextAction_Title" xml:space="preserve">
+    <value>Convert PDF to Text</value>
+  </data>
+  <data name="PdfToTextAction_Description" xml:space="preserve">
+    <value>Extracts text from the PDF into a text file.</value>
+  </data>
+  <data name="PdfToTextAction_Operation_Description" xml:space="preserve">
+    <value>Will create a text file containing the extracted text from {0}.</value>
+  </data>
+  <data name="PdfToTextAction_Warning_NoText" xml:space="preserve">
+    <value>No text was found. If this is a scanned document, you can use 'Make PDF Searchable (OCR)' first.</value>
+  </data>
+<data name="SanitizePdfAction_Title" xml:space="preserve"><value>Remove Hidden Content</value></data><data name="SanitizePdfAction_Description" xml:space="preserve"><value>Removes JavaScript, attachments, metadata and actions from PDFs.</value></data><data name="SanitizePdfAction_ParamTitle_KeepLinks" xml:space="preserve"><value>Keep Links</value></data><data name="SanitizePdfAction_Operation_Description" xml:space="preserve"><value>Will remove hidden content from {0}.</value></data><data name="SanitizePdfAction_NothingToRemove" xml:space="preserve"><value>Nothing to remove.</value></data><data name="PdfSanitize_Scripts_One" xml:space="preserve"><value>1 script</value></data><data name="PdfSanitize_Scripts_Other" xml:space="preserve"><value>{0} scripts</value></data><data name="PdfSanitize_Attachments_One" xml:space="preserve"><value>1 attachment</value></data><data name="PdfSanitize_Attachments_Other" xml:space="preserve"><value>{0} attachments</value></data><data name="PdfSanitize_LaunchActions_One" xml:space="preserve"><value>1 launch action</value></data><data name="PdfSanitize_LaunchActions_Other" xml:space="preserve"><value>{0} launch actions</value></data><data name="PdfSanitize_UriActions_One" xml:space="preserve"><value>1 link action</value></data><data name="PdfSanitize_UriActions_Other" xml:space="preserve"><value>{0} link actions</value></data><data name="PdfSanitize_Metadata_One" xml:space="preserve"><value>1 metadata item</value></data><data name="PdfSanitize_Metadata_Other" xml:space="preserve"><value>{0} metadata items</value></data><data name="PdfSanitize_Found" xml:space="preserve"><value>Found: {0}</value></data>  <data name="OcrPdfAction_Title" xml:space="preserve">
+    <value>Make PDF Searchable (OCR)</value>
+  </data>
+  <data name="OcrPdfAction_Description" xml:space="preserve">
+    <value>Recognizes text in scanned PDFs and makes it searchable. This process runs locally and can take a while (about 1-3 seconds per page).</value>
+  </data>
+  <data name="OcrPdfAction_ParamTitle_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="OcrPdfAction_RendererUnavailable" xml:space="preserve">
+    <value>PDF rendering is not available on this system.</value>
+  </data>
+  <data name="OcrPdfAction_RecognizerUnavailable" xml:space="preserve">
+    <value>OCR text recognition is not available on this system.</value>
+  </data>
+  <data name="OcrPdfAction_NoLanguagesInstalled" xml:space="preserve">
+    <value>No OCR languages are installed on this system.</value>
+  </data>
+  <data name="OcrPdfAction_Message" xml:space="preserve">
+    <value>Will create {0} searchable PDFs using OCR.</value>
+  </data>
+  <data name="OcrPdfAction_OutputSuffix" xml:space="preserve">
+    <value> (searchable)</value>
+  </data>
+  <data name="OcrPdfAction_Skipped_HasText" xml:space="preserve">
+    <value>The PDF already contains extractable text.</value>
+  </data>
+
+<data name="CombineToPdf_OfficeMissing" xml:space="preserve"><value>The selection contains documents requiring an Office application that is not installed. Nothing will be combined.</value></data>
+<data name="CombineToPdf_OfficeLayoutWarning" xml:space="preserve"><value>Office documents are converted to temporary PDFs at their sorted position. Office layout, fonts and print settings affect the result.</value></data>
+<data name="CombineToPdf_OfficeMissingApplication" xml:space="preserve"><value>The required Microsoft Office application is not installed.</value></data>
+<data name="CombineToPdf_OfficePasswordProtected" xml:space="preserve"><value>The document is password-protected.</value></data>
+<data name="CombineToPdf_OfficeUnsafeMacros" xml:space="preserve"><value>This document contains macros or formula content that cannot be opened safely for conversion.</value></data>
+<data name="CombineToPdf_OfficeInvalidDocument" xml:space="preserve"><value>The document format is invalid, unsupported or exceeds the conversion limits.</value></data>
+<data name="CombineToPdf_OfficeBusy" xml:space="preserve"><value>A separate Office instance could not be obtained. Close that Office application and try again.</value></data>
+<data name="CombineToPdf_OfficeTimedOut" xml:space="preserve"><value>Office conversion timed out. No output was saved.</value></data>
+<data name="CombineToPdf_OfficeConversionFailed" xml:space="preserve"><value>Office could not convert this document. No output was saved.</value></data>
+<data name="CombineToPdf_OfficePreferenceRestoreFailed" xml:space="preserve"><value>The temporary Word preference could not be restored. Check the PDF conversion warning setting in Word.</value></data>
+<data name="CombineToPdf_Inputs" xml:space="preserve"><value>PDFs, images and Office documents</value></data>
+<data name="ExtractPdfImages_Title" xml:space="preserve"><value>Extract Images from PDF</value></data>
+<data name="ExtractPdfImages_Description" xml:space="preserve"><value>Saves supported embedded images into a new folder for each PDF.</value></data>
+<data name="ExtractPdfImages_MinSize" xml:space="preserve"><value>Minimum width and height (px)</value></data>
+<data name="ExtractPdfImages_Preview_One" xml:space="preserve"><value>Will extract images at least {1} px wide and high from {0} PDF into a new folder.</value></data>
+<data name="ExtractPdfImages_Preview_Other" xml:space="preserve"><value>Will extract images at least {1} px wide and high from {0} PDFs into separate new folders.</value></data>
+<data name="ExtractPdfImages_Warning" xml:space="preserve"><value>Extracts embedded JPEG and 8-bit Gray/RGB Flate images, not rendered pages. Masks, custom sample decoding, other encodings and inline images are not supported. Images below the minimum width or height are skipped. Image count and output size are limited.</value></data>
+<data name="ExtractPdfImages_NoImages" xml:space="preserve"><value>No images found.</value></data>
+<data name="ExtractPdfImages_NoEligibleImages" xml:space="preserve"><value>No supported images meet the minimum size.</value></data>
+<data name="ExtractPdfImages_Extracted_One" xml:space="preserve"><value>Extracted {0} image.</value></data>
+<data name="ExtractPdfImages_Extracted_Other" xml:space="preserve"><value>Extracted {0} images.</value></data>
+<data name="ExtractPdfImages_Unsupported_One" xml:space="preserve"><value>Skipped {0} unsupported image.</value></data>
+<data name="ExtractPdfImages_Unsupported_Other" xml:space="preserve"><value>Skipped {0} unsupported images.</value></data>
+<data name="ExtractPdfImages_TooSmall_One" xml:space="preserve"><value>Skipped {0} image below the minimum size.</value></data>
+<data name="ExtractPdfImages_TooSmall_Other" xml:space="preserve"><value>Skipped {0} images below the minimum size.</value></data>
+  <data name="HeaderFooterPdfAction_ParamDesc_Text" xml:space="preserve"><value>Text to add to the header or footer, up to 200 characters.</value></data>
+  <data name="ProtectPdf_Title" xml:space="preserve"><value>Protect PDF with Password</value></data>
+  <data name="ProtectPdf_Description" xml:space="preserve"><value>Encrypt a copy with AES-256.</value></data>
+  <data name="ProtectPdf_Password" xml:space="preserve"><value>Password</value></data>
+  <data name="ProtectPdf_ConfirmPassword" xml:space="preserve"><value>Confirm password</value></data>
+  <data name="ProtectPdf_Print" xml:space="preserve"><value>Allow printing</value></data>
+  <data name="ProtectPdf_Copy" xml:space="preserve"><value>Allow copying</value></data>
+  <data name="ProtectPdf_Empty" xml:space="preserve"><value>Enter a password before continuing.</value></data>
+  <data name="ProtectPdf_Mismatch" xml:space="preserve"><value>The two passwords do not match.</value></data>
+  <data name="ProtectPdf_Warning" xml:space="preserve"><value>If you forget this password, it cannot be recovered. PDF printing and copying permissions depend on the viewer and do not provide DRM.</value></data>
+  <data name="ProtectPdf_Operation" xml:space="preserve"><value>Create password-protected PDF copies.</value></data>
+  <data name="FlattenPdf_Title" xml:space="preserve"><value>Flatten Form Fields and Comments</value></data>
+  <data name="FlattenPdf_Description" xml:space="preserve"><value>Convert visible field and comment appearances into page content.</value></data>
+  <data name="FlattenPdf_KeepLinks" xml:space="preserve"><value>Keep hyperlinks</value></data>
+  <data name="FlattenPdf_Operation" xml:space="preserve"><value>Flatten form fields and comments in PDF copies.</value></data>
+  <data name="FlattenPdf_SignatureWarning" xml:space="preserve"><value>Flattening may invalidate existing digital signatures; signed originals are not changed.</value></data>
+  <data name="FlattenPdf_Counts" xml:space="preserve"><value>Annotations with appearances: {0}; without supported appearances: {1}; kept links: {2}.</value></data>
+  <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>Annotations without usable appearances will be removed and their visual content may be lost.</value></data>
+  <data name="FlattenPdf_Nothing" xml:space="preserve"><value>There are no annotations to flatten.</value></data>
+</root>

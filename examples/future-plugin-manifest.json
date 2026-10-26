@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "id": "community.image.tools",
+  "version": "1.2.0",
+  "displayName": "Image Tools",
+  "publisher": "example-contributor",
+  "protocolVersion": "1",
+  "permissions": [
+    "files.read:selected",
+    "files.write:user-approved-output"
+  ],
+  "platformConstraints": {
+    "os": ["windows"],
+    "minimumArchitecture": ["x64", "arm64"]
+  },
+  "actions": [
+    {
+      "id": "community.image.tools.to-webp",
+      "title": "Convert to WebP",
+      "inputKinds": [
+        "files"
+      ],
+      "acceptedMimeTypes": [
+        "image/png",
+        "image/jpeg"
+      ],
+      "requiresPreview": true,
+      "parameters": [
+        {
+          "name": "quality",
+          "type": "number",
+          "title": "Quality",
+          "description": "Image quality from 1 to 100",
+          "required": false
+        },
+        {
+          "name": "mode",
+          "type": "choice",
+          "title": "Mode",
+          "choices": ["lossy", "lossless"],
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="ExportCsvAction_Title" xml:space="preserve"><value>Als CSV exportieren</value></data>
+  <data name="ExportCsvAction_Description" xml:space="preserve"><value>Exportiert die ausgewählte Tabelle als kommagetrennte Werte.</value></data>
+  <data name="ExportCsvAction_ParamTitle_Delimiter" xml:space="preserve"><value>Trennzeichen</value></data>
+  <data name="ExportCsvAction_ParamChoice_Comma" xml:space="preserve"><value>Komma</value></data>
+  <data name="ExportCsvAction_ParamChoice_Semicolon" xml:space="preserve"><value>Semikolon</value></data>
+  <data name="ExportCsvAction_ParamChoice_Tab" xml:space="preserve"><value>Tabulator</value></data>
+  <data name="ExportCsvAction_Operation_Description" xml:space="preserve"><value>Exportiert {0} als CSV.</value></data>
+  <data name="Tables_Table" xml:space="preserve"><value>Tabelle</value></data>
+  <data name="Tables_Tables" xml:space="preserve"><value>Tabellen</value></data>
+  <data name="Tables_Progress_Exporting" xml:space="preserve"><value>Exportieren</value></data>
+  <data name="ExportJsonAction_Title" xml:space="preserve"><value>Als JSON exportieren</value></data>
+  <data name="ExportJsonAction_Description" xml:space="preserve"><value>Exportiert die ausgewählte Tabelle in eine JSON-Datei.</value></data>
+  <data name="ExportJsonAction_ParamTitle_Format" xml:space="preserve"><value>Format</value></data>
+  <data name="ExportJsonAction_ParamChoice_Indented" xml:space="preserve"><value>Eingerückt (gut lesbar)</value></data>
+  <data name="ExportJsonAction_ParamChoice_Minified" xml:space="preserve"><value>Minimiert (kleiner)</value></data>
+  <data name="ExportJsonAction_Operation_Description" xml:space="preserve"><value>Exportiert {0} als JSON.</value></data>
+  <data name="ExportMarkdownAction_Title" xml:space="preserve"><value>Als Markdown exportieren</value></data>
+  <data name="ExportMarkdownAction_Description" xml:space="preserve"><value>Exportiert die ausgewählte Tabelle in eine Markdown-Datei.</value></data>
+  <data name="ExportMarkdownAction_Operation_Description" xml:space="preserve"><value>Exportiert {0} als Markdown.</value></data>
+  <data name="ExportSqlInsertAction_Title" xml:space="preserve"><value>Als SQL-INSERT exportieren</value></data>
+  <data name="ExportSqlInsertAction_Description" xml:space="preserve"><value>Exportiert die ausgewählte Tabelle als SQL-INSERT-Anweisungen.</value></data>
+  <data name="ExportSqlInsertAction_ParamTitle_TableName" xml:space="preserve"><value>Tabellenname</value></data>
+  <data name="ExportSqlInsertAction_ParamDesc_TableName" xml:space="preserve"><value>Name der SQL-Zieltabelle. Ist er leer, wird der Dateiname verwendet.</value></data>
+  <data name="ExportSqlInsertAction_ParamTitle_BatchSize" xml:space="preserve"><value>Batchgröße</value></data>
+  <data name="ExportSqlInsertAction_Operation_Description" xml:space="preserve"><value>Exportiert {0} als SQL-INSERT-Skripte.</value></data>
+  <data name="TablesPack_Title" xml:space="preserve"><value>Tabellenexport</value></data>
+  <data name="CombineWorkbook" xml:space="preserve"><value>Zu einer Arbeitsmappe zusammenführen</value></data>
+  <data name="CombineWorkbookDescription" xml:space="preserve"><value>Kopieren Sie CSV-, TSV- und Excel-Tabellenblätter in eine neue Arbeitsmappe.</value></data>
+  <data name="CombineWorkbookOperation" xml:space="preserve"><value>Führen Sie die ausgewählten Tabellen in einer neuen Arbeitsmappe zusammen.</value></data>
+  <data name="SpreadsheetFiles" xml:space="preserve"><value>Tabellendateien</value></data>
+  <data name="CachedFormulas" xml:space="preserve"><value>Gespeicherte Formelergebnisse werden verwendet. Formeln werden nicht neu berechnet.</value></data>
+  <data name="InvalidWorkbook" xml:space="preserve"><value>Eine Tabelle ist ungültig oder die zusammengeführte Arbeitsmappe überschreitet die unterstützten Grenzen.</value></data>
+<data name="TableEmpty" xml:space="preserve"><value>Die Tabelle ist leer.</value></data>
+<data name="TableSelectionRequired" xml:space="preserve"><value>Die Auswahl ist keine Tabelle.</value></data>
+<data name="TableRequired" xml:space="preserve"><value>Keine Tabelle.</value></data>
+<data name="TableContextExpired" xml:space="preserve"><value>Die Auswahl ist abgelaufen. Wählen Sie erneut aus.</value></data>
+<data name="TablePermissionDenied" xml:space="preserve"><value>Der Zugriff auf das Exportziel wurde verweigert.</value></data>
+<data name="TableSaveFailed" xml:space="preserve"><value>Der Tabellenexport konnte nicht gespeichert werden.</value></data>
+<data name="TableInvalidData" xml:space="preserve"><value>Die Tabellendaten sind ungültig oder überschreiten die unterstützten Grenzen.</value></data>
+<data name="TableInvalidOptions" xml:space="preserve"><value>Die Optionen oder das Ziel des Tabellenexports sind ungültig.</value></data>
+<data name="TableExportFailed" xml:space="preserve"><value>Die Tabelle konnte nicht exportiert werden.</value></data>
+<data name="TablePreviewTruncated" xml:space="preserve"><value> … (Vorschau gekürzt)</value></data>
+</root>

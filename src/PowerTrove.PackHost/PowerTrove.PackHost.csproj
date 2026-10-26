@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
+    <ProjectReference Include="..\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
+    <Using Include="PowerTrove.Abstractions" />
+    <Using Include="PowerTrove.Abstractions.Files" />
+  </ItemGroup>
+</Project>

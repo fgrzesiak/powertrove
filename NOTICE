@@ -1,0 +1,11 @@
+PowerTrove
+Copyright 2026 PowerTrove contributors
+
+First-party PowerTrove code, documentation and FileKit code are licensed
+under the Apache License, Version 2.0, except where explicitly stated otherwise.
+See LICENSE.
+
+Third-party components and separately attributed assets retain their own
+copyrights and licenses. A binary release must also include the applicable
+notices for its exact bundled components. This file is not a complete
+third-party notice inventory or a redistribution-clearance statement.

@@ -1,0 +1,167 @@
+using System.Globalization;
+using System.Resources;
+
+namespace PowerTrove.Desktop;
+
+/// <summary>
+/// User-visible texts of the desktop shell (Resources/Strings*.resx), bound from XAML with
+/// {x:Bind local:UiText.Name}. Property names equal resource keys. The UI culture is chosen
+/// once at startup (ADR 0009), so one-time bindings are sufficient.
+/// </summary>
+public static class UiText
+{
+    public static string RecipePackTitle => Get(nameof(RecipePackTitle));
+    public static string RecipeImagesForEmailTitle => Get(nameof(RecipeImagesForEmailTitle));
+    public static string RecipeImagesForEmailDescription => Get(nameof(RecipeImagesForEmailDescription));
+    public static string RecipeMixedForEmailTitle => Get(nameof(RecipeMixedForEmailTitle));
+    public static string RecipeMixedForEmailDescription => Get(nameof(RecipeMixedForEmailDescription));
+    public static string UpdatesHeading => Get(nameof(UpdatesHeading));
+    public static string UpdatesPrivacy => Get(nameof(UpdatesPrivacy));
+    public static string UpdatesCheck => Get(nameof(UpdatesCheck));
+    public static string SeparateProcessTitle => Get(nameof(SeparateProcessTitle));
+    public static string SeparateProcessDescription => Get(nameof(SeparateProcessDescription));
+    public static string SeparateProcessRestart => Get(nameof(SeparateProcessRestart));
+    public static string IsolationUnavailable => Get(nameof(IsolationUnavailable));
+    public static string PacksHeading => Get(nameof(PacksHeading));
+    public static string PackInstallAndRun => Get(nameof(PackInstallAndRun));
+    public static string PackSelectAgain => Get(nameof(PackSelectAgain));
+    public static string PackNeedsInstall(string name) => Format(Get("PackNeedsInstall"), name);
+    public static string PackNameVersion(string name, string version) => Format(Get("PackNameVersion"), name, version);
+    public static string PacksPrivacy => Get(nameof(PacksPrivacy));
+    public static string PacksShowMissing => Get(nameof(PacksShowMissing));
+    public static string PacksRefresh => Get(nameof(PacksRefresh));
+    public static string PacksUninstall => Get(nameof(PacksUninstall));
+    public static string PacksBundled => Get(nameof(PacksBundled));
+    public static string PackDownloadConsent(string name, string size, string publisher) => Format(Get("PackDownloadConsent"), name, size, publisher);
+    public static string PackRemoveConsent(string name) => Format(Get("PackRemoveConsent"), name);
+    public static string PacksLocalDescription => Get(nameof(PacksLocalDescription));
+    public static string PacksInstallFromFile => Get(nameof(PacksInstallFromFile));
+    public static string PacksInstalling => Get(nameof(PacksInstalling));
+    public static string PacksInstalled => Get(nameof(PacksInstalled));
+    public static string PacksCanceled => Get(nameof(PacksCanceled));
+    public static string PacksInstallFailed => Get(nameof(PacksInstallFailed));
+    public static string UpdatesOpenPage => Get(nameof(UpdatesOpenPage));
+    public static string ResultUndo => Get(nameof(ResultUndo));
+    public static string RenameOldName => Get(nameof(RenameOldName));
+    public static string RenameNewName => Get(nameof(RenameNewName));
+    public static string UnavailableFilterLabel => Get(nameof(UnavailableFilterLabel));
+    public static string GroupActionsOne => Get(nameof(GroupActionsOne));
+    public static string GroupActionsOther => Get(nameof(GroupActionsOther));
+    public static string FormatUnavailableFilter(int count) => Format(UnavailableFilterLabel, count);
+    public static string NoMatchingActions => Get(nameof(NoMatchingActions));
+    private static readonly ResourceManager Resources =
+        new("PowerTrove.Desktop.Resources.Strings", typeof(UiText).Assembly);
+
+    public static string MainWindowTitle => Get(nameof(MainWindowTitle));
+    public static string StatusReady => Get(nameof(StatusReady));
+    public static string SearchPlaceholder => Get(nameof(SearchPlaceholder));
+    public static string SearchAutomationName => Get(nameof(SearchAutomationName));
+    public static string SearchRetry => Get(nameof(SearchRetry));
+    public static string SearchRetryAutomationName => Get(nameof(SearchRetryAutomationName));
+    public static string ActionListAutomationName => Get(nameof(ActionListAutomationName));
+    public static string ExecutionPressEscToCancel => Get(nameof(ExecutionPressEscToCancel));
+    public static string CancelQuestion => Get(nameof(CancelQuestion));
+    public static string CancelContinueRunning => Get(nameof(CancelContinueRunning));
+    public static string CancelOperation => Get(nameof(CancelOperation));
+    public static string ExplorerHeading => Get(nameof(ExplorerHeading));
+    public static string ExplorerDescription => Get(nameof(ExplorerDescription));
+    public static string ExplorerAdd => Get(nameof(ExplorerAdd));
+    public static string ExplorerRemove => Get(nameof(ExplorerRemove));
+    public static string ExplorerMenuLabel => Get(nameof(ExplorerMenuLabel));
+    public static string ExplorerRegistered => Get(nameof(ExplorerRegistered));
+    public static string ExplorerAbsent => Get(nameof(ExplorerAbsent));
+    public static string ExplorerIncomplete => Get(nameof(ExplorerIncomplete));
+    public static string ExplorerConflict => Get(nameof(ExplorerConflict));
+    public static string ExplorerUnavailable => Get(nameof(ExplorerUnavailable));
+    public static string ResultShowInExplorer => Get(nameof(ResultShowInExplorer));
+    public static string ResultOpen => Get(nameof(ResultOpen));
+    public static string ResultDone => Get(nameof(ResultDone));
+    public static string FirstRunTitle => Get(nameof(FirstRunTitle));
+    public static string FirstRunShortcut => Get(nameof(FirstRunShortcut));
+    public static string FirstRunContext => Get(nameof(FirstRunContext));
+    public static string FirstRunOutputs => Get(nameof(FirstRunOutputs));
+    public static string FirstRunPrivacy => Get(nameof(FirstRunPrivacy));
+    public static string FirstRunGetStarted => Get(nameof(FirstRunGetStarted));
+    public static string FirstRunGetStartedAutomationName => Get(nameof(FirstRunGetStartedAutomationName));
+    public static string HotkeyConflict => Get(nameof(HotkeyConflict));
+    public static string HotkeyRegistrationFailed => Get(nameof(HotkeyRegistrationFailed));
+    public static string SettingsWindowTitle => Get(nameof(SettingsWindowTitle));
+    public static string SettingsHeading => Get(nameof(SettingsHeading));
+    public static string SettingsReadOnlyWarning => Get(nameof(SettingsReadOnlyWarning));
+    public static string SettingsLanguage => Get(nameof(SettingsLanguage));
+    public static string SettingsLanguageSystem => Get(nameof(SettingsLanguageSystem));
+    public static string SettingsLanguageEnglish => Get(nameof(SettingsLanguageEnglish));
+    public static string SettingsLanguageGerman => Get(nameof(SettingsLanguageGerman));
+    public static string SettingsLanguageRestart => Get(nameof(SettingsLanguageRestart));
+    public static string SettingsGlobalShortcut => Get(nameof(SettingsGlobalShortcut));
+    public static string SettingsShortcutPlaceholder => Get(nameof(SettingsShortcutPlaceholder));
+    public static string SettingsResetShortcut => Get(nameof(SettingsResetShortcut));
+    public static string SettingsShortcutNeedsModifier => Get(nameof(SettingsShortcutNeedsModifier));
+    public static string SettingsPinnedActions => Get(nameof(SettingsPinnedActions));
+    public static string SettingsUnpinPlaceholder => Get(nameof(SettingsUnpinPlaceholder));
+    public static string SettingsUnpinAction => Get(nameof(SettingsUnpinAction));
+    public static string SettingsUnpinDone => Get(nameof(SettingsUnpinDone));
+    public static string SettingsOutputDefaults => Get(nameof(SettingsOutputDefaults));
+    public static string SettingsOutputDefaultsText => Get(nameof(SettingsOutputDefaultsText));
+    public static string SettingsRanking => Get(nameof(SettingsRanking));
+    public static string SettingsClearRecent => Get(nameof(SettingsClearRecent));
+    public static string SettingsRecentCleared => Get(nameof(SettingsRecentCleared));
+    public static string SettingsClearSuggestions => Get(nameof(SettingsClearSuggestions));
+    public static string SettingsSuggestionsPrivacy => Get(nameof(SettingsSuggestionsPrivacy));
+    public static string SettingsClearSuggestionsTitle => Get(nameof(SettingsClearSuggestionsTitle));
+    public static string SettingsClearSuggestionsText => Get(nameof(SettingsClearSuggestionsText));
+    public static string SettingsSuggestionsCleared => Get(nameof(SettingsSuggestionsCleared));
+    public static string SettingsResetDefaults => Get(nameof(SettingsResetDefaults));
+    public static string SettingsResetDone => Get(nameof(SettingsResetDone));
+    public static string CommonClear => Get(nameof(CommonClear));
+    public static string CommonCancel => Get(nameof(CommonCancel));
+    public static string CommonClose => Get(nameof(CommonClose));
+    public static string OptionsRemember => Get(nameof(OptionsRemember));
+    public static string OptionsRun => Get(nameof(OptionsRun));
+    public static string OptionsChecking => Get(nameof(OptionsChecking));
+    public static string OptionsSelectionGone => Get(nameof(OptionsSelectionGone));
+    public static string OptionsOneOutput => Get(nameof(OptionsOneOutput));
+    public static string OptionsManyOutputs => Get(nameof(OptionsManyOutputs));
+    public static string OptionsPathPlaceholder => Get(nameof(OptionsPathPlaceholder));
+    public static string OptionsBrowse => Get(nameof(OptionsBrowse));
+    public static string SettingsTooltip => Get(nameof(SettingsTooltip));
+    public static string LegendRun => Get(nameof(LegendRun));
+    public static string LegendSelect => Get(nameof(LegendSelect));
+    public static string LegendClose => Get(nameof(LegendClose));
+    public static string KeySettings => Get(nameof(KeySettings));
+    public static string KeyEsc => Get(nameof(KeyEsc));
+    public static string TrayTooltip => Get(nameof(TrayTooltip));
+    public static string TrayOpen => Get(nameof(TrayOpen));
+    public static string TraySettings => Get(nameof(TraySettings));
+    public static string TrayExit => Get(nameof(TrayExit));
+    public static string SettingsGeneral => Get(nameof(SettingsGeneral));
+    public static string SettingsLanguageDescription => Get(nameof(SettingsLanguageDescription));
+    public static string SettingsShortcutDescription => Get(nameof(SettingsShortcutDescription));
+    public static string SettingsSuggestions => Get(nameof(SettingsSuggestions));
+    public static string SettingsPinnedDescription => Get(nameof(SettingsPinnedDescription));
+    public static string SettingsFiles => Get(nameof(SettingsFiles));
+    public static string SettingsAbout => Get(nameof(SettingsAbout));
+    public static string SettingsAboutText => Get(nameof(SettingsAboutText));
+    public static string OrganizerTitle => Get(nameof(OrganizerTitle));
+    public static string OrganizerOpenVisual => Get(nameof(OrganizerOpenVisual));
+    public static string OrganizerRotateLeft => Get(nameof(OrganizerRotateLeft));
+    public static string OrganizerRotateRight => Get(nameof(OrganizerRotateRight));
+    public static string OrganizerRemove => Get(nameof(OrganizerRemove));
+    public static string OrganizerSelectAll => Get(nameof(OrganizerSelectAll));
+    public static string OrganizerReset => Get(nameof(OrganizerReset));
+    public static string OrganizerZoom => Get(nameof(OrganizerZoom));
+    public static string OrganizerHint => Get(nameof(OrganizerHint));
+    public static string OrganizerPageLabel => Get(nameof(OrganizerPageLabel));
+    public static string OrganizerPageCount => Get(nameof(OrganizerPageCount));
+    public static string OrganizerSave => Get(nameof(OrganizerSave));
+    public static string OrganizerSaved => Get(nameof(OrganizerSaved));
+    public static string OrganizerSaveFailed => Get(nameof(OrganizerSaveFailed));
+    public static string OrganizerProtected => Get(nameof(OrganizerProtected));
+    public static string OrganizerOpenFailed => Get(nameof(OrganizerOpenFailed));
+    public static string OrganizerTooLarge => Get(nameof(OrganizerTooLarge));
+
+    public static string Format(string format, params object[] arguments) =>
+        string.Format(CultureInfo.CurrentCulture, format, arguments);
+
+    private static string Get(string key) => Resources.GetString(key, CultureInfo.CurrentUICulture) ?? key;
+}

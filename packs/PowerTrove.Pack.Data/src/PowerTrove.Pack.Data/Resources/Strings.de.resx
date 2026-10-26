@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve">
+    <value>Datenwerkzeuge</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Erstellt eine separate Kopie und erhält die ausgewählten Eingaben.</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Textdateien</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>Die Daten überschreiten die unterstützte Größenbegrenzung.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>Die Textkodierung ist ungültig.</value>
+  </data>
+  <data name="InvalidTable" xml:space="preserve">
+    <value>Die CSV-Daten sind ungültig oder überschreiten die Grenzen.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Die ausgewählten Daten konnten nicht gelesen werden.</value>
+  </data>
+  <data name="InvalidJson" xml:space="preserve">
+    <value>Ungültiges JSON in Zeile {0}, Spalte {1}.</value>
+  </data>
+  <data name="JsonArray" xml:space="preserve">
+    <value>Wähle ein JSON-Array mit Objekten aus.</value>
+  </data>
+  <data name="JsonDuplicate" xml:space="preserve">
+    <value>JSON-Objekte enthalten doppelte Schlüssel.</value>
+  </data>
+  <data name="InvalidTableName" xml:space="preserve">
+    <value>Gib einen Tabellennamen ein.</value>
+  </data>
+  <data name="HeaderMismatch" xml:space="preserve">
+    <value>Die CSV-Kopfzeilen unterscheiden sich. Wähle Vereinigung, um Spalten zu kombinieren.</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>Die Auswahl ist nicht verfügbar oder abgelaufen.</value>
+  </data>
+  <data name="ValidJson" xml:space="preserve">
+    <value>{0} gültige JSON-Datei(en).</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>{0} Datei(en) verarbeiten.</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>{0} Zeilen, {1} Spalten.</value>
+  </data>
+  <data name="merge-text" xml:space="preserve">
+    <value>Textdateien zusammenführen</value>
+  </data>
+  <data name="to-utf8" xml:space="preserve">
+    <value>In UTF-8 umwandeln</value>
+  </data>
+  <data name="line-endings" xml:space="preserve">
+    <value>Zeilenenden ändern</value>
+  </data>
+  <data name="csv-to-json" xml:space="preserve">
+    <value>CSV in JSON umwandeln</value>
+  </data>
+  <data name="csv-to-markdown" xml:space="preserve">
+    <value>CSV in Markdown umwandeln</value>
+  </data>
+  <data name="csv-to-sql" xml:space="preserve">
+    <value>CSV in SQL umwandeln</value>
+  </data>
+  <data name="merge-csv" xml:space="preserve">
+    <value>CSV-Dateien zusammenführen</value>
+  </data>
+  <data name="json-format" xml:space="preserve">
+    <value>JSON formatieren</value>
+  </data>
+  <data name="json-minify" xml:space="preserve">
+    <value>JSON minimieren</value>
+  </data>
+  <data name="json-validate" xml:space="preserve">
+    <value>JSON prüfen</value>
+  </data>
+  <data name="json-to-csv" xml:space="preserve">
+    <value>JSON in CSV umwandeln</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>Byte-Reihenfolgemarkierung hinzufügen</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Art der Zeilenenden</value>
+  </data>
+  <data name="HeaderMode" xml:space="preserve">
+    <value>Kopfzeile</value>
+  </data>
+  <data name="Dialect" xml:space="preserve">
+    <value>SQL-Dialekt</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Tabellenname</value>
+  </data>
+  <data name="Indent" xml:space="preserve">
+    <value>Einrückung</value>
+  </data>
+  <data name="Separator" xml:space="preserve">
+    <value>Trennzeichen</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Zusammenführungsmodus</value>
+  </data>
+  <data name="windows" xml:space="preserve">
+    <value>Windows (CRLF)</value>
+  </data>
+  <data name="unix" xml:space="preserve">
+    <value>Unix (LF)</value>
+  </data>
+  <data name="first-row" xml:space="preserve">
+    <value>Erste Zeile enthält Überschriften</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="2" xml:space="preserve">
+    <value>2 Leerzeichen</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>4 Leerzeichen</value>
+  </data>
+  <data name="tabs" xml:space="preserve">
+    <value>Tabulatoren</value>
+  </data>
+  <data name="blank-line" xml:space="preserve">
+    <value>Leerzeile</value>
+  </data>
+  <data name="header" xml:space="preserve">
+    <value>Dateiname als Überschrift</value>
+  </data>
+  <data name="identical" xml:space="preserve">
+    <value>Identische Kopfzeilen</value>
+  </data>
+  <data name="union" xml:space="preserve">
+    <value>Vereinigung der Spalten</value>
+  </data>
+  <data name="postgresql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="mysql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="sqlite" xml:space="preserve">
+    <value>SQLite</value>
+  </data>
+  <data name="sqlserver" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="xlsx-to-csv" xml:space="preserve"><value>Excel-Datei in CSV konvertieren</value></data>
+  <data name="xlsx-to-json" xml:space="preserve"><value>Excel-Datei in JSON konvertieren</value></data>
+  <data name="csv-to-xlsx" xml:space="preserve"><value>CSV in Excel-Datei konvertieren</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Konvertieren Sie Tabellen ohne Excel in neue Dateien.</value></data>
+  <data name="Sheet" xml:space="preserve"><value>Tabellenblätter</value></data>
+  <data name="first" xml:space="preserve"><value>Erstes Tabellenblatt</value></data>
+  <data name="all" xml:space="preserve"><value>Alle Tabellenblätter</value></data>
+  <data name="CachedFormulas" xml:space="preserve"><value>Gespeicherte Formelergebnisse werden verwendet. Formeln werden nicht neu berechnet.</value></data>
+  <data name="InvalidWorkbook" xml:space="preserve"><value>Die Arbeitsmappe ist ungültig oder überschreitet die unterstützten Grenzen.</value></data>
+</root>

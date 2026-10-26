@@ -1,0 +1,76 @@
+name: Alpha candidate
+
+on:
+  push:
+    branches: [main]
+    paths: [release.json]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: alpha-candidate-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    if: github.repository == 'fgrzesiak/powertrove' && github.ref == 'refs/heads/main'
+    runs-on: windows-2025
+    timeout-minutes: 45
+    steps:
+      - name: Require an owner-merged pull request for this commit
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          REVISION: ${{ github.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $response = gh api "repos/$env:REPOSITORY/commits/$env:REVISION/pulls"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot verify merged pull request.' }
+          $matches = @($response | ConvertFrom-Json | Where-Object {
+            $_.merged_at -and $_.base.ref -eq 'main' -and $_.merge_commit_sha -eq $env:REVISION -and
+            $_.head.ref -like 'release/*' -and $_.head.repo.full_name -ceq $env:REPOSITORY
+          })
+          if ($matches.Count -eq 0) { throw 'This commit must arrive through a merged pull request into main.' }
+      - name: Checkout exact public commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Refuse an already tagged release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $release = Get-Content release.json -Raw | ConvertFrom-Json
+          if ($release.version -cnotmatch '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$' -or
+              "$($release.sequence)" -cnotmatch '^[1-9][0-9]{0,5}$' -or $release.channel -cne 'alpha') {
+            throw 'Invalid alpha version.'
+          }
+          $tag = "v$($release.version)-alpha.$($release.sequence)"
+          $response = gh api "repos/$env:REPOSITORY/git/matching-refs/tags/$tag"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot verify release tag availability.' }
+          $existing = @($response | ConvertFrom-Json | Where-Object { $_.ref -ceq "refs/tags/$tag" })
+          if ($existing.Count) { throw 'Release tag already exists. Prepare a new alpha sequence.' }
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build, test and package Windows x64
+        shell: pwsh
+        run: ./scripts/build-alpha.ps1
+      - name: Retain exact candidate for acceptance
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: alpha-win-x64-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/alpha/*.zip
+            artifacts/alpha/SHA256SUMS
+            artifacts/alpha/candidate.json
+          if-no-files-found: error
+          retention-days: 14

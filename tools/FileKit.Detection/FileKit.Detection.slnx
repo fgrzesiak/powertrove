@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/FileKit.Detection/FileKit.Detection.csproj" />
+  <Project Path="tests/FileKit.Detection.Tests/FileKit.Detection.Tests.csproj" />
+</Solution>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>Some outputs could not be shown in Explorer. Try again.</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excel not available.</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>Excel window changed.</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>Excel window is unavailable.</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>Selected item is not a range (e.g., a chart or shape).</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>Disjoint selections are not supported.</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>Selected range is too large.</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>Excel returned inconsistent range dimensions.</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>Excel returned invalid range values.</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>Access to Excel was denied.</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>An error occurred communicating with Excel.</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>Excel capture is still busy.</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>Excel returned no range data.</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Excel capture could not start.</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Excel capture timed out.</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>Explorer capture is still busy.</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>No files or folders are currently selected.</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>Unsupported view or could not access selection.</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>Explorer selection could not be captured.</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>Explorer capture could not start.</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>Explorer capture timed out.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows Imaging cannot preserve metadata.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>The image could not be decoded.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>The image could not be encoded.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Unsupported output format.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>The media file could not be opened.</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>A required codec is not installed on this system.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>This conversion is not supported for the file.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>The media file cannot be converted.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Media conversion failed.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Unsupported audio format.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>The file has no video track.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Unsupported media operation.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>Password-protected PDFs are not supported yet.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>The PDF could not be opened.</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>Local OCR is unavailable. Install an OCR language in Windows Settings &gt; Time &amp; language.</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>Text could not be recognized.</value></data>
+</root>

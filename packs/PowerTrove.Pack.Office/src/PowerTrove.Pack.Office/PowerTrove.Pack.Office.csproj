@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PowerTrove.Pack.Office</RootNamespace>
+    <VersionPrefix>0.1.0</VersionPrefix>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="PowerTrove.Abstractions" />
+    <Using Include="PowerTrove.Abstractions.Files" />
+    <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Office.Composition" /></ItemGroup>
+</Project>

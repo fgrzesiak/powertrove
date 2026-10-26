@@ -1,0 +1,15 @@
+using PowerTrove.Abstractions.Packs;
+
+[assembly: ActionPackFactory(typeof(PowerTrove.Pack.Files.FilesPackFactory))]
+
+namespace PowerTrove.Pack.Files;
+
+public sealed class FilesPackFactory : IPackFactory
+{
+    public ActionPackInfo Info => FilesPack.Describe();
+    public IActionPack Create(IPackHostServices host)
+    {
+        ArgumentNullException.ThrowIfNull(host);
+        return new FilesPack(host.Files, host.GetService<IDirectoryScanner>(), host.GetService<IFileRenameService>());
+    }
+}

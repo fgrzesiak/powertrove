@@ -1,0 +1,385 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powertrove.local/schemas/action-pack-schema.json",
+  "title": "PowerTrove Action Pack Manifest",
+  "description": "Schema for describing a bundle of PowerTrove actions.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "enum": [
+        "1.0",
+        "2.0"
+      ],
+      "description": "Readers support v1; new manifests are emitted as v2."
+    },
+    "id": {
+      "type": "string",
+      "description": "A globally unique identifier for this action pack (e.g., 'community.image.tools')."
+    },
+    "version": {
+      "type": "string",
+      "description": "The semantic version of the action pack."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The human-readable name of the action pack."
+    },
+    "publisher": {
+      "type": "string",
+      "description": "The author or publisher of the action pack."
+    },
+    "protocolVersion": {
+      "type": "string",
+      "description": "The version of the IPC or execution protocol this pack targets."
+    },
+    "permissions": {
+      "type": "array",
+      "description": "A list of required execution privileges. No undocumented privileges are permitted.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "platformConstraints": {
+      "type": "object",
+      "description": "Constraints on which platforms the action pack can run.",
+      "properties": {
+        "os": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Supported operating systems (e.g., 'windows')."
+        },
+        "minimumArchitecture": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Supported architectures (e.g., 'x64', 'arm64')."
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "The list of actions provided by this pack.",
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "minHostVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+){0,2}$"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "payload": {
+      "$ref": "#/$defs/payload"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "displayName",
+    "publisher",
+    "protocolVersion",
+    "actions"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "action": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this specific action."
+        },
+        "title": {
+          "type": "string",
+          "description": "The display name for the action."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of what the action does."
+        },
+        "inputKinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "none",
+              "files",
+              "table",
+              "text"
+            ]
+          },
+          "description": "The types of contexts this action can accept."
+        },
+        "acceptedMimeTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "For file actions, the MIME types it supports."
+        },
+        "requiredCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific required snapshot capabilities."
+        },
+        "requiresPreview": {
+          "type": "boolean",
+          "description": "Whether this action mandates a preview and confirmation step."
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/parameter"
+          },
+          "description": "Optional parameters required to run the action."
+        },
+        "selection": {
+          "$ref": "#/$defs/selection"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\.[^/\\\\:*?]+$"
+          },
+          "uniqueItems": true
+        },
+        "changesFiles": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "inputKinds"
+      ],
+      "additionalProperties": false
+    },
+    "parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The internal name of the parameter."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "boolean",
+            "number",
+            "choice",
+            "password",
+            "file",
+            "color"
+          ],
+          "description": "The data type of the parameter."
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable label for the parameter."
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed values if type is 'choice'."
+        },
+        "default": {
+          "type": "string",
+          "description": "Never emitted for password parameters."
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "families": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "minItems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "idealMinItems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "idealMaxItems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowOtherItems": {
+          "type": "boolean"
+        },
+        "idealNeedsEveryFamily": {
+          "type": "boolean"
+        },
+        "idealMinDistinctFamilies": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "familyLimits": {
+          "type": "object",
+          "maxProperties": 100,
+          "additionalProperties": {
+            "$ref": "#/$defs/familyLimit"
+          }
+        }
+      },
+      "required": [
+        "families",
+        "minItems",
+        "allowOtherItems"
+      ],
+      "additionalProperties": false
+    },
+    "familyLimit": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "min"
+      ],
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "entryAssembly": {
+          "type": "string",
+          "pattern": "^[^\\\\:*?\"<>|]+\\.dll$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "items": {
+            "$ref": "#/$defs/payloadFile"
+          }
+        }
+      },
+      "required": [
+        "entryAssembly",
+        "sizeBytes",
+        "files"
+      ],
+      "additionalProperties": false
+    },
+    "payloadFile": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schemaVersion": {
+            "const": "2.0"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "minHostVersion",
+          "capabilities"
+        ],
+        "properties": {
+          "actions": {
+            "items": {
+              "required": [
+                "changesFiles"
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "inputKinds": {
+                        "contains": {
+                          "const": "files"
+                        }
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "selection"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
