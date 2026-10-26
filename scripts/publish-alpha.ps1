@@ -3,7 +3,8 @@
 param(
     [Parameter(Mandatory)][string]$CandidateDirectory,
     [Parameter(Mandatory)][string]$Evidence,
-    [Parameter(Mandatory)][string]$Installer
+    [Parameter(Mandatory)][string]$Installer,
+    [switch]$AllowUnsignedAlpha
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -24,17 +25,26 @@ try {
     if ($LASTEXITCODE -ne 0 -or $head -cne $identity.revision) { throw 'Use the exact public checkout recorded by the candidate.' }
     $status = & git status --porcelain
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Release verification requires a clean public checkout.' }
-    # The evidence must match the final signed payload, not an earlier unsigned build.
-    & dotnet run --project src/PowerTrove.ReleaseTools -- verify-candidate --zip $zip --evidence $evidencePath --report-dir $report --installer $installerPath --public
+    # The evidence must match the final bytes. Unsigned alpha is an explicit policy, not a passing signature.
+    $signingArguments = @()
+    if ($AllowUnsignedAlpha) { $signingArguments = @('--allow-unsigned-alpha') }
+    & dotnet run --project src/PowerTrove.ReleaseTools -- verify-candidate --zip $zip --evidence $evidencePath --report-dir $report --installer $installerPath --public @signingArguments
     if ($LASTEXITCODE -ne 0) { throw 'Public release gate did not pass. Nothing was uploaded.' }
     $gate = Get-Content -LiteralPath (Join-Path $report 'release-readiness.json') -Raw | ConvertFrom-Json
     if ($gate.Revision -cne $identity.revision -or $gate.Version -cne $identity.version -or
-        $gate.ReleaseVersion -cne $identity.tag.Substring(1) -or -not $gate.PublicReady) {
+        $gate.ReleaseVersion -cne $identity.tag.Substring(1) -or -not $gate.PublicReady -or
+        $gate.UnsignedAlpha -ne [bool]$AllowUnsignedAlpha) {
         throw 'Candidate identity does not match the public release gate.'
     }
     $notes = Join-Path $candidate 'release-notes.md'
     if (-not (Test-Path -LiteralPath $notes) -or (Get-Item -LiteralPath $notes).Length -eq 0) {
         throw 'Write candidate-specific release-notes.md with supported workflows and known limitations first.'
+    }
+    if ($AllowUnsignedAlpha) {
+        $originalNotes = Get-Content -LiteralPath $notes -Raw
+        $notes = Join-Path $report 'release-notes.md'
+        "> **Unsigned experimental alpha.** Publisher identity is not verified by a code-signing certificate.`n`n$originalNotes" |
+            Set-Content -LiteralPath $notes -Encoding utf8NoBOM
     }
     & gh release create $identity.tag $zip (Join-Path $candidate 'SHA256SUMS') $installerPath `
         --repo 'fgrzesiak/powertrove' --target $identity.revision --title "PowerTrove $($identity.tag)" `

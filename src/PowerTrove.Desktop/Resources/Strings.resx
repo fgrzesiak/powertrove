@@ -150,4 +150,6 @@
   <data name="SeparateProcessDescription" xml:space="preserve"><value>Isolate PDF, image and media tools from the main window. Requires a restart.</value></data>
   <data name="SeparateProcessRestart" xml:space="preserve"><value>Restart PowerTrove to apply this setting.</value></data>
   <data name="IsolationUnavailable" xml:space="preserve"><value>Isolated file tools are unavailable. Verify the installed pack files and restart.</value></data>
+  <data name="SettingsNotices" xml:space="preserve"><value>Show third-party licenses and notices</value></data>
+  <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>The notice files could not be opened. Verify the installed application files.</value></data>
 </root>

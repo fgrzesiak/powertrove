@@ -1,6 +1,6 @@
 # PowerTrove alpha quickstart
 
-Use Windows 11 x64 and download only an explicitly published release. Check its version, SHA-256 and publisher signature using the accompanying release information. Candidate build artifacts are not approved public releases.
+Use Windows 11 x64 and download only an explicitly published release. Check its version and SHA-256 using the accompanying release information. Verify the publisher signature for signed releases. Explicitly labelled unsigned experimental alphas have no code-signing publisher verification and may show Windows security warnings. Candidate build artifacts are not approved public releases.
 
 ## Portable ZIP
 

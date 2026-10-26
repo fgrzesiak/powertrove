@@ -187,6 +187,8 @@
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                     <TextBlock Text="{x:Bind local:UiText.MainWindowTitle}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
                                     <TextBlock Text="{x:Bind local:UiText.SettingsAboutText}" Style="{StaticResource SettingsDescriptionStyle}" />
+                                    <Button x:Name="NoticesButton" Content="{x:Bind local:UiText.SettingsNotices}" Click="ShowNotices_Click" Margin="0,8,0,0" />
+                                    <TextBlock x:Name="NoticesStatus" TextWrapping="Wrap" Style="{StaticResource SettingsDescriptionStyle}" AutomationProperties.LiveSetting="Polite" />
                                 </StackPanel>
                             </Grid>
                         </Border>

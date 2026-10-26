@@ -9,7 +9,7 @@ public sealed record ReleaseGateItem(string Id, string Status, string Detail, st
 public sealed record ReleaseGateReport(
     string Version, string Revision, string Target, string PayloadSha256,
     bool CandidateVerified, bool MandatoryChecksPass, bool PublicReady,
-    IReadOnlyList<ReleaseGateItem> Checks, string? ReleaseVersion = null);
+    IReadOnlyList<ReleaseGateItem> Checks, string? ReleaseVersion = null, bool UnsignedAlpha = false);
 
 /// <summary>
 /// Local read-only acceptance gate tied to an exact ZIP, revision, and evidence identity.
@@ -48,7 +48,7 @@ public static class ReleaseCandidateGate
 
     public static async Task<ReleaseGateReport> VerifyAsync(string zipPath, string evidencePath,
         string reportDirectory, bool publicAudience = false, string? installerPath = null,
-        CancellationToken token = default)
+        CancellationToken token = default, bool allowUnsignedAlpha = false)
     {
         token.ThrowIfCancellationRequested();
         if (!File.Exists(zipPath)) throw new FileNotFoundException("Release ZIP is missing.");
@@ -76,6 +76,8 @@ public static class ReleaseCandidateGate
             if (releaseVersion != version && !System.Text.RegularExpressions.Regex.IsMatch(releaseVersion,
                 "\\A" + System.Text.RegularExpressions.Regex.Escape(version) + "-alpha\\.[1-9][0-9]{0,5}\\z"))
                 throw new InvalidDataException("Candidate release channel is invalid.");
+            if (allowUnsignedAlpha && releaseVersion == version)
+                throw new ArgumentException("Unsigned distribution is only allowed for an explicitly selected alpha prerelease.");
             string revision = ReadText(manifest.RootElement, "GitRevision");
             string target = ReadText(manifest.RootElement, "Target");
             string dateText = ReadText(manifest.RootElement, "Date");
@@ -121,6 +123,11 @@ public static class ReleaseCandidateGate
             var results = new List<ReleaseGateItem>();
             foreach (string id in MandatoryChecks.Concat(PublicChecks))
             {
+                if (allowUnsignedAlpha && IsSignatureCheck(id))
+                {
+                    results.Add(new(id, "Deferred", "Explicit unsigned alpha policy; publisher signing is not verified.", null));
+                    continue;
+                }
                 if (!byId.TryGetValue(id, out var value))
                 {
                     results.Add(new(id, "Not run", evidenceError ?? "No candidate-specific observation provided.", null));
@@ -160,8 +167,9 @@ public static class ReleaseCandidateGate
             }
 
             bool mandatory = MandatoryChecks.All(id => results.Any(x => x.Id == id && x.Status == "Pass"));
-            bool publicReady = mandatory && PublicChecks.All(id => results.Any(x => x.Id == id && x.Status == "Pass"));
-            var report = new ReleaseGateReport(version, revision, target, payloadHash, true, mandatory, publicReady, results, releaseVersion);
+            bool publicReady = mandatory && PublicChecks.Where(id => !allowUnsignedAlpha || !IsSignatureCheck(id))
+                .All(id => results.Any(x => x.Id == id && x.Status == "Pass"));
+            var report = new ReleaseGateReport(version, revision, target, payloadHash, true, mandatory, publicReady, results, releaseVersion, allowUnsignedAlpha);
             Directory.CreateDirectory(reportDirectory);
             string jsonPath = Path.Combine(reportDirectory, "release-readiness.json");
             string markdownPath = Path.Combine(reportDirectory, "release-readiness.md");
@@ -170,6 +178,8 @@ public static class ReleaseCandidateGate
             return report;
         }
     }
+
+    private static bool IsSignatureCheck(string id) => id is "publisher-signature" or "installer-signature";
 
     private static bool ValidObservation(EvidenceCheck check, string revision, string hash, DateTimeOffset created)
     {
@@ -219,6 +229,7 @@ public static class ReleaseCandidateGate
             .AppendLine("ZIP SHA-256: " + report.PayloadSha256)
             .AppendLine("Mandatory acceptance: " + (report.MandatoryChecksPass ? "Pass" : "Blocked"))
             .AppendLine("Public ready: " + (report.PublicReady ? "Pass" : "Blocked"))
+            .AppendLine("Signing policy: " + (report.UnsignedAlpha ? "Explicit unsigned alpha; publisher identity not verified" : "Public signatures required"))
             .AppendLine()
             .AppendLine("| Check | Status | Reason |")
             .AppendLine("| --- | --- | --- |");
