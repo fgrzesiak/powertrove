@@ -19,21 +19,21 @@ $output = [IO.Path]::GetFullPath($OutputDirectory)
 if (Test-Path $output) { throw 'Output directory already exists. Use a fresh directory.' }
 New-Item -ItemType Directory -Path $output | Out-Null
 try {
-    $desktopProject = Join-Path $root 'src/ContextBar.Desktop/ContextBar.Desktop.csproj'
-    & dotnet publish $desktopProject -c Release -r win-x64 --self-contained true "-p:ContextBarProfile=$Profile" -o $output
+    $desktopProject = Join-Path $root 'src/PowerTrove.Desktop/PowerTrove.Desktop.csproj'
+    & dotnet publish $desktopProject -c Release -r win-x64 --self-contained true "-p:PowerTroveProfile=$Profile" -o $output
     if ($LASTEXITCODE -ne 0) { throw 'Desktop publish failed.' }
 
-    $hostProject = Join-Path $root 'src/ContextBar.PackHost/ContextBar.PackHost.csproj'
+    $hostProject = Join-Path $root 'src/PowerTrove.PackHost/PowerTrove.PackHost.csproj'
     $hostOutput = Join-Path $output 'packhost'
     & dotnet publish $hostProject -c Release -r win-x64 --self-contained true -o $hostOutput
     if ($LASTEXITCODE -ne 0) { throw 'PackHost publish failed.' }
-    if (-not (Test-Path (Join-Path $hostOutput 'ContextBar.PackHost.exe'))) {
+    if (-not (Test-Path (Join-Path $hostOutput 'PowerTrove.PackHost.exe'))) {
         throw 'Expected PackHost executable is missing.'
     }
 
     # Keep the original app-root launch path functional until the Desktop host
     # prefers the isolated packhost directory (CB-167).
-    foreach ($name in @('ContextBar.PackHost.exe', 'ContextBar.PackHost.deps.json', 'ContextBar.PackHost.runtimeconfig.json')) {
+    foreach ($name in @('PowerTrove.PackHost.exe', 'PowerTrove.PackHost.deps.json', 'PowerTrove.PackHost.runtimeconfig.json')) {
         $source = Join-Path $hostOutput $name
         $target = Join-Path $output $name
         if (-not (Test-Path $source) -or (Test-Path $target)) { throw "Worker compatibility asset conflict: $name" }
@@ -43,7 +43,7 @@ try {
     if ($Profile -eq 'Base') {
         # The checked-in catalog.json is a placeholder. Replace it only with
         # real factory metadata generated from published compositions.
-        $catalogRoot = Join-Path $env:TEMP ('ContextBar-Catalog-' + [guid]::NewGuid().ToString('N'))
+        $catalogRoot = Join-Path $env:TEMP ('PowerTrove-Catalog-' + [guid]::NewGuid().ToString('N'))
         try {
             & pwsh -NoProfile -File (Join-Path $root 'scripts/build-packs.ps1') -DryRun -OutputDirectory $catalogRoot
             if ($LASTEXITCODE -ne 0) { throw 'Pack metadata generation failed.' }

@@ -1,10 +1,10 @@
 <#
 .SYNOPSIS
-Builds and starts the ContextBar WinUI desktop app (unpackaged, framework-dependent).
+Builds and starts the PowerTrove WinUI desktop app (unpackaged, framework-dependent).
 
 .DESCRIPTION
 Checks the .NET SDK and the Windows App Runtime that matches the Microsoft.WindowsAppSDK
-package referenced by src/ContextBar.Desktop, builds the desktop project and starts the EXE.
+package referenced by src/PowerTrove.Desktop, builds the desktop project and starts the EXE.
 A WinUI WinExe does not print startup exceptions to the terminal, so if the app exits right
 away, recent Application event log errors are shown.
 
@@ -24,7 +24,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 Set-Location (Split-Path -Parent $PSScriptRoot)
-$project = 'src\ContextBar.Desktop\ContextBar.Desktop.csproj'
+$project = 'src\PowerTrove.Desktop\PowerTrove.Desktop.csproj'
 
 if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
     throw '.NET SDK not found. Install the .NET 10 SDK: https://dotnet.microsoft.com/download'
@@ -54,19 +54,19 @@ if (-not $NoBuild) {
     if ($LASTEXITCODE -ne 0) { throw "Build failed (exit code $LASTEXITCODE)." }
 }
 
-$exe = Get-ChildItem "src\ContextBar.Desktop\bin\$Configuration" -Recurse -Filter 'PowerTrove.exe' -ErrorAction SilentlyContinue |
+$exe = Get-ChildItem "src\PowerTrove.Desktop\bin\$Configuration" -Recurse -Filter 'PowerTrove.exe' -ErrorAction SilentlyContinue |
     Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if (-not $exe) { throw "PowerTrove.exe not found for $Configuration. Run without -NoBuild." }
 
 $started = Get-Date
 $process = Start-Process -FilePath $exe.FullName -WorkingDirectory $exe.DirectoryName -PassThru
-Write-Host "Started ContextBar (PID $($process.Id)): $($exe.FullName)"
+Write-Host "Started PowerTrove (PID $($process.Id)): $($exe.FullName)"
 
 Start-Sleep -Seconds 3
 if ($process.HasExited) {
-    Write-Warning "ContextBar exited immediately (exit code $($process.ExitCode))."
+    Write-Warning "PowerTrove exited immediately (exit code $($process.ExitCode))."
     Get-WinEvent -FilterHashtable @{ LogName = 'Application'; Level = 2; StartTime = $started } -ErrorAction SilentlyContinue |
-        Where-Object { $_.Message -match 'ContextBar' } | Select-Object -First 3 |
+        Where-Object { $_.Message -match 'PowerTrove' } | Select-Object -First 3 |
         ForEach-Object { Write-Host "--- $($_.TimeCreated) $($_.ProviderName)"; Write-Host $_.Message }
     exit 1
 }

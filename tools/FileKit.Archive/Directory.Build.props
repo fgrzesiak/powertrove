@@ -10,7 +10,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Authors>ContextBar contributors</Authors>
+    <Authors>PowerTrove contributors</Authors>
     <Product>FileKit</Product>
     <Description>Safe ZIP creation and extraction with explicit limits (path traversal, zip bombs, links).</Description>
     <PackageTags>zip;archive;extraction;security</PackageTags>

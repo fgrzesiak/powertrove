@@ -10,7 +10,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Authors>ContextBar contributors</Authors>
+    <Authors>PowerTrove contributors</Authors>
     <Product>FileKit</Product>
     <Description>Managed, dependency-free PDF page operations: merge, split, extract, remove, rotate, strip metadata and images to PDF.</Description>
     <PackageTags>pdf;merge;split;rotate</PackageTags>

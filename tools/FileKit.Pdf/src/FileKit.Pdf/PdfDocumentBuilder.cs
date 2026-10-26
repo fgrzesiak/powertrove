@@ -840,7 +840,7 @@ public sealed class PdfDocumentBuilder
             {
                 excludedPagesRoot = pagesRef.ObjectNumber;
             }
-            // And any encryption dictionary would be excluded, but ContextBar doesn't natively rewrite encryption dicts unless preserving them.
+            // And any encryption dictionary would be excluded, but PowerTrove doesn't natively rewrite encryption dicts unless preserving them.
 
             void FlushBatch()
             {

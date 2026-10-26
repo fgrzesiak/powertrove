@@ -1,6 +1,6 @@
 # Action pack manifests v1 and v2
 
-`ContextBar.Abstractions.Manifest.ActionPackManifest.Create(pack)` now derives schema **2.0** metadata from a compiled pack. `ToJson` validates and serializes it; `Read` accepts schema **1.0** and **2.0** with bounded parsing and semantic checks. The formal schema is [action-pack-schema.json](action-pack-schema.json).
+`PowerTrove.Abstractions.Manifest.ActionPackManifest.Create(pack)` now derives schema **2.0** metadata from a compiled pack. `ToJson` validates and serializes it; `Read` accepts schema **1.0** and **2.0** with bounded parsing and semantic checks. The formal schema is [action-pack-schema.json](action-pack-schema.json).
 
 This is discovery metadata. Reading a manifest never loads an assembly, starts a process, downloads a pack, checks a signature or grants permissions. Arbitrary third-party execution is outside the current MVP. Worker loading, signed bundles and installation are separate mechanisms, outside manifest parsing.
 

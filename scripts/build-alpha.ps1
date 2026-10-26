@@ -16,12 +16,12 @@ try {
     if ($LASTEXITCODE -ne 0 -or $revision -cnotmatch '^[a-f0-9]{40}$') { throw 'Cannot identify public source revision.' }
     $status = & git status --porcelain
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Build requires a clean public checkout.' }
-    & dotnet build ContextBar.slnx -c Release
+    & dotnet build PowerTrove.slnx -c Release
     if ($LASTEXITCODE -ne 0) { throw 'Windows build failed.' }
-    & dotnet test ContextBar.slnx -c Release --no-build
+    & dotnet test PowerTrove.slnx -c Release --no-build
     if ($LASTEXITCODE -ne 0) { throw 'Automated tests failed.' }
     $output = Join-Path $root 'artifacts/alpha'
-    & dotnet run --project src/ContextBar.ReleaseTools -- package --repo-root $root --output-dir $output --version $release.version --alpha-sequence $release.sequence
+    & dotnet run --project src/PowerTrove.ReleaseTools -- package --repo-root $root --output-dir $output --version $release.version --alpha-sequence $release.sequence
     if ($LASTEXITCODE -ne 0) { throw 'Candidate packaging failed.' }
     @{ version = $release.version; tag = "v$($release.version)-alpha.$($release.sequence)";
        repository = 'fgrzesiak/powertrove'; revision = $revision; target = 'win-x64';

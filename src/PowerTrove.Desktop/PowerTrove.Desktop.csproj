@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>PowerTrove.Desktop</RootNamespace>
+    <AssemblyName>PowerTrove</AssemblyName>
+    <Product>PowerTrove</Product>
+    <Title>PowerTrove</Title>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <!-- Launch as an unpackaged WinUI desktop EXE; enable Windows App Runtime bootstrapper. -->
+    <WindowsPackageType>None</WindowsPackageType>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Preserve our explicit single-instance entry point; suppress generated WinUI Program.Main. -->
+    <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    <PowerTroveProfile Condition="'$(PowerTroveProfile)' == ''">Full</PowerTroveProfile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="BuiltInActionPacks.Full.cs" Condition="'$(PowerTroveProfile)' == 'Base'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PowerTrove.Application\PowerTrove.Application.csproj" />
+    <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
+    <ProjectReference Include="..\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
+    <ProjectReference Include="..\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\composition\PowerTrove.Pack.Files.Composition\PowerTrove.Pack.Files.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\composition\PowerTrove.Pack.Images.Composition\PowerTrove.Pack.Images.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\composition\PowerTrove.Pack.Media.Composition\PowerTrove.Pack.Media.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Pdf\composition\PowerTrove.Pack.Pdf.Composition\PowerTrove.Pack.Pdf.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Office\composition\PowerTrove.Pack.Office.Composition\PowerTrove.Pack.Office.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="aliases.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="catalog.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="PowerTrove.Abstractions" />
+  </ItemGroup>
+
+</Project>

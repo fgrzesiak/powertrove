@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PowerTrove.Pack.Images\PowerTrove.Pack.Images.csproj" />
+    <Using Include="PowerTrove.Abstractions" />
+    <Using Include="PowerTrove.Abstractions.Files" />
+  </ItemGroup>
+</Project>

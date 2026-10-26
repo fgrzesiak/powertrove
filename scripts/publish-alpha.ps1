@@ -25,7 +25,7 @@ try {
     $status = & git status --porcelain
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Release verification requires a clean public checkout.' }
     # The evidence must match the final signed payload, not an earlier unsigned build.
-    & dotnet run --project src/ContextBar.ReleaseTools -- verify-candidate --zip $zip --evidence $evidencePath --report-dir $report --installer $installerPath --public
+    & dotnet run --project src/PowerTrove.ReleaseTools -- verify-candidate --zip $zip --evidence $evidencePath --report-dir $report --installer $installerPath --public
     if ($LASTEXITCODE -ne 0) { throw 'Public release gate did not pass. Nothing was uploaded.' }
     $gate = Get-Content -LiteralPath (Join-Path $report 'release-readiness.json') -Raw | ConvertFrom-Json
     if ($gate.Revision -cne $identity.revision -or $gate.Version -cne $identity.version -or

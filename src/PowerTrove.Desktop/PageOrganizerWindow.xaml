@@ -1,0 +1,168 @@
+<Window
+    x:Class="PowerTrove.Desktop.PageOrganizerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PowerTrove.Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Transparent" KeyDown="Root_KeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title bar (drag region) -->
+        <Grid x:Name="AppTitleBar" Padding="16,0,140,0">
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <Image x:Name="TitleBarIcon" Width="16" Height="16" />
+                <TextBlock x:Name="TitleText" Style="{ThemeResource CaptionTextBlockStyle}" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Toolbar -->
+        <Grid Grid.Row="1" Padding="16,0,16,8" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <Button Click="RotateLeft_Click" ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRotateLeft}"
+                        AutomationProperties.Name="{x:Bind local:UiText.OrganizerRotateLeft}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE7AD;" FontSize="16" RenderTransformOrigin="0.5,0.5">
+                            <FontIcon.RenderTransform><ScaleTransform ScaleX="-1" /></FontIcon.RenderTransform>
+                        </FontIcon>
+                        <TextBlock Text="{x:Bind local:UiText.OrganizerRotateLeft}" />
+                    </StackPanel>
+                </Button>
+                <Button Click="RotateRight_Click" ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRotateRight}"
+                        AutomationProperties.Name="{x:Bind local:UiText.OrganizerRotateRight}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE7AD;" FontSize="16" />
+                        <TextBlock Text="{x:Bind local:UiText.OrganizerRotateRight}" />
+                    </StackPanel>
+                </Button>
+                <Button Click="Remove_Click" ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRemove}"
+                        AutomationProperties.Name="{x:Bind local:UiText.OrganizerRemove}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE74D;" FontSize="16" />
+                        <TextBlock Text="{x:Bind local:UiText.OrganizerRemove}" />
+                    </StackPanel>
+                </Button>
+                <AppBarSeparator />
+                <Button Click="SelectAll_Click" Content="{x:Bind local:UiText.OrganizerSelectAll}" />
+                <Button Click="Reset_Click" ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerReset}"
+                        AutomationProperties.Name="{x:Bind local:UiText.OrganizerReset}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE7A7;" FontSize="16" />
+                        <TextBlock Text="{x:Bind local:UiText.OrganizerReset}" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <!-- Which file is A, B, …: the organizer edits the user's own files, so names are shown here only. -->
+            <StackPanel Grid.Column="1" x:Name="SourceLegend" Orientation="Horizontal" Spacing="14"
+                        VerticalAlignment="Center" Margin="16,0,0,0" />
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <FontIcon Glyph="&#xE71E;" FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                <Slider x:Name="ZoomSlider" Width="140" Minimum="100" Maximum="280" Value="160" StepFrequency="10"
+                        ValueChanged="ZoomSlider_ValueChanged"
+                        AutomationProperties.Name="{x:Bind local:UiText.OrganizerZoom}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Pages -->
+        <Grid Grid.Row="2" Margin="12,0,12,0" CornerRadius="8"
+              Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+            <GridView x:Name="PagesGrid"
+                      ItemsSource="{x:Bind Pages}"
+                      SelectionMode="Extended"
+                      CanDragItems="True"
+                      CanReorderItems="True"
+                      AllowDrop="True"
+                      Padding="12"
+                      SelectionChanged="PagesGrid_SelectionChanged"
+                      AutomationProperties.Name="{x:Bind local:UiText.OrganizerTitle}">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:PageTile">
+                        <StackPanel Width="{x:Bind TileSize, Mode=OneWay}" Spacing="6" Margin="4"
+                                    AutomationProperties.Name="{x:Bind AccessibleName, Mode=OneWay}">
+                            <Grid Height="{x:Bind TileSize, Mode=OneWay}" CornerRadius="6"
+                                  Background="{ThemeResource ControlFillColorSecondaryBrush}">
+                                <ProgressRing Width="24" Height="24" IsActive="{x:Bind IsLoading, Mode=OneWay}" />
+                                <Image Source="{x:Bind Thumbnail, Mode=OneWay}" Stretch="Uniform" Margin="8"
+                                       RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <RotateTransform Angle="{x:Bind Rotation, Mode=OneWay}" />
+                                    </Image.RenderTransform>
+                                </Image>
+                                <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="6"
+                                        CornerRadius="4" Padding="6,1,6,2"
+                                        Background="{x:Bind SourceBrush}"
+                                        Visibility="{x:Bind local:Converters.BoolToVisibility(ShowSource)}">
+                                    <TextBlock Text="{x:Bind SourceBadge}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="White" />
+                                </Border>
+                            </Grid>
+                            <Grid ColumnSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{x:Bind Label}" VerticalAlignment="Center" Margin="2,0,0,0"
+                                           Style="{ThemeResource CaptionTextBlockStyle}" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="1" Tag="{x:Bind}" Click="TileRotateLeft_Click" Padding="5" Background="Transparent" BorderThickness="0"
+                                        ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRotateLeft}" AutomationProperties.Name="{x:Bind local:UiText.OrganizerRotateLeft}">
+                                    <FontIcon Glyph="&#xE7AD;" FontSize="12" RenderTransformOrigin="0.5,0.5">
+                                        <FontIcon.RenderTransform><ScaleTransform ScaleX="-1" /></FontIcon.RenderTransform>
+                                    </FontIcon>
+                                </Button>
+                                <Button Grid.Column="2" Tag="{x:Bind}" Click="TileRotateRight_Click" Padding="5" Background="Transparent" BorderThickness="0"
+                                        ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRotateRight}" AutomationProperties.Name="{x:Bind local:UiText.OrganizerRotateRight}">
+                                    <FontIcon Glyph="&#xE7AD;" FontSize="12" />
+                                </Button>
+                                <Button Grid.Column="3" Tag="{x:Bind}" Click="TileRemove_Click" Padding="5" Background="Transparent" BorderThickness="0"
+                                        ToolTipService.ToolTip="{x:Bind local:UiText.OrganizerRemove}" AutomationProperties.Name="{x:Bind local:UiText.OrganizerRemove}">
+                                    <FontIcon Glyph="&#xE74D;" FontSize="12" />
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+            <InfoBar x:Name="LoadInfo" IsOpen="False" IsClosable="False" Severity="Error"
+                     VerticalAlignment="Top" Margin="12" />
+        </Grid>
+
+        <!-- Footer -->
+        <Grid Grid.Row="3" Padding="16,10,16,14" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock x:Name="CountText" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                <TextBlock Text="{x:Bind local:UiText.OrganizerHint}" Style="{ThemeResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+            </StackPanel>
+            <InfoBar Grid.Column="1" x:Name="ResultInfo" IsOpen="False" IsClosable="False" Margin="0">
+                <InfoBar.ActionButton>
+                    <Button x:Name="RevealButton" Content="{x:Bind local:UiText.ResultShowInExplorer}" Click="Reveal_Click" />
+                </InfoBar.ActionButton>
+            </InfoBar>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <ProgressRing x:Name="SaveProgress" Width="20" Height="20" IsActive="False" />
+                <Button x:Name="CloseButton" Content="{x:Bind local:UiText.CommonCancel}" Click="Close_Click" />
+                <Button x:Name="SaveButton" Content="{x:Bind local:UiText.OrganizerSave}" Click="Save_Click"
+                        Style="{ThemeResource AccentButtonStyle}" IsEnabled="False" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

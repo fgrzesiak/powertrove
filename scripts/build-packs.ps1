@@ -32,12 +32,12 @@ $publishRoot = Join-Path $output ('.publish-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $publishRoot -Force | Out-Null
 try {
     foreach ($pack in $Packs) {
-        $project = Join-Path $root "packs/ContextBar.Pack.$pack/composition/ContextBar.Pack.$pack.Composition/ContextBar.Pack.$pack.Composition.csproj"
-        $destination = Join-Path $publishRoot "ContextBar.Pack.$pack"
+        $project = Join-Path $root "packs/PowerTrove.Pack.$pack/composition/PowerTrove.Pack.$pack.Composition/PowerTrove.Pack.$pack.Composition.csproj"
+        $destination = Join-Path $publishRoot "PowerTrove.Pack.$pack"
         & dotnet publish $project -c Release -r win-x64 --self-contained false -o $destination
         if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed for $pack." }
     }
-    $generator = Join-Path $root 'src/ContextBar.ReleaseTools/ContextBar.ReleaseTools.csproj'
+    $generator = Join-Path $root 'src/PowerTrove.ReleaseTools/PowerTrove.ReleaseTools.csproj'
     $arguments = @('run', '--project', $generator, '--', 'pack-bundles',
         '--published-root', $publishRoot, '--output-dir', $output)
     if ($DryRun) { $arguments += '--dry-run' }

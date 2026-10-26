@@ -10,7 +10,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Authors>ContextBar contributors</Authors>
+    <Authors>PowerTrove contributors</Authors>
     <Product>FileKit</Product>
     <Description>Header-only image probing (format, dimensions, orientation) without decoding pixels.</Description>
     <PackageTags>image;dimensions;probe;exif</PackageTags>

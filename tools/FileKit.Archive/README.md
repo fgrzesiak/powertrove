@@ -11,7 +11,7 @@ Treats every archive as untrusted:
 - limits on entry count, per-entry and total uncompressed size, path depth and length, and compression ratio (zip bomb guard) are enforced on the bytes actually written, not on declared sizes;
 - existing files are never overwritten (`FileMode.CreateNew`), and only files created by the extractor are cleaned up on failure.
 
-Typed errors: `InvalidArchiveException`, `ArchiveLimitExceededException`, `UnsafeArchiveEntryException` (all `ArchiveException`). Extract into a fresh, empty directory and move it into place afterwards; ContextBar does this transactionally.
+Typed errors: `InvalidArchiveException`, `ArchiveLimitExceededException`, `UnsafeArchiveEntryException` (all `ArchiveException`). Extract into a fresh, empty directory and move it into place afterwards; PowerTrove does this transactionally.
 
 ```csharp
 await SafeZipExtractor.ExtractAsync("download.zip", emptyDirectory,

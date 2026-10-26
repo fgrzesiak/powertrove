@@ -15,8 +15,8 @@ Initial target: **Windows 11 x64**. Excel actions require a supported desktop Ex
 On Windows, install the .NET 10 SDK and compatible WinUI development tools. Use PowerShell 7:
 
 ```powershell
-dotnet build ContextBar.slnx -c Release
-dotnet test ContextBar.slnx -c Release --no-build
+dotnet build PowerTrove.slnx -c Release
+dotnet test PowerTrove.slnx -c Release --no-build
 ```
 
 Run the desktop project using Visual Studio or `scripts/run-desktop.ps1`. Building from source requires development prerequisites; release ZIPs are packaged separately with app-local runtimes.

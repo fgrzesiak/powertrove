@@ -10,7 +10,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <Authors>ContextBar contributors</Authors>
+    <Authors>PowerTrove contributors</Authors>
     <Product>FileKit</Product>
     <Description>Dependency-free file format detection from content signatures (magic bytes).</Description>
     <PackageTags>file-format;magic-bytes;detection</PackageTags>

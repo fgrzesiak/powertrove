@@ -62,4 +62,4 @@ All notable changes to FileKit.Pdf are documented here. The format follows [Keep
 
 ### Added
 
-- Initial release, developed inside the ContextBar repository (see its ADR 0007).
+- Initial release, developed inside the PowerTrove repository (see its ADR 0007).

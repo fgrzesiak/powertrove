@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="PowerTrove.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Compile the real managed host recipe factory without referencing the WinUI executable. -->
+    <Compile Include="..\..\src\PowerTrove.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\UiText.cs" Link="Desktop\UiText.cs" />
+    <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.resx" Link="Resources\DesktopStrings.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.resources" />
+    <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.de.resx" Link="Resources\DesktopStrings.de.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.de.resources" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PowerTrove.Abstractions.Testing\PowerTrove.Abstractions.Testing.csproj" />
+    <ProjectReference Include="..\..\src\PowerTrove.Core\PowerTrove.Core.csproj" />
+    <ProjectReference Include="..\..\src\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\src\PowerTrove.Pack.Files\PowerTrove.Pack.Files.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\src\PowerTrove.Pack.Images\PowerTrove.Pack.Images.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\src\PowerTrove.Pack.Media\PowerTrove.Pack.Media.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Pdf\src\PowerTrove.Pack.Pdf\PowerTrove.Pack.Pdf.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Office\src\PowerTrove.Pack.Office\PowerTrove.Pack.Office.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\src\PowerTrove.Pack.Tables\PowerTrove.Pack.Tables.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\src\PowerTrove.Pack.Data\PowerTrove.Pack.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\composition\PowerTrove.Pack.Files.Composition\PowerTrove.Pack.Files.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\composition\PowerTrove.Pack.Images.Composition\PowerTrove.Pack.Images.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Pdf\composition\PowerTrove.Pack.Pdf.Composition\PowerTrove.Pack.Pdf.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Office\composition\PowerTrove.Pack.Office.Composition\PowerTrove.Pack.Office.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\composition\PowerTrove.Pack.Media.Composition\PowerTrove.Pack.Media.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" /></ItemGroup>
+</Project>

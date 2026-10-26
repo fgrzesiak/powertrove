@@ -1,0 +1,359 @@
+<Window
+    x:Class="PowerTrove.Desktop.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PowerTrove.Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Launcher layout: search header, notices, grouped results, result bar, key legend. -->
+    <Grid x:Name="PaletteRoot"
+          Background="Transparent"
+          PreviewKeyDown="PaletteRoot_PreviewKeyDown"
+          HighContrastAdjustment="Auto"
+          TabFocusNavigation="Cycle">
+        <Grid.Resources>
+            <CollectionViewSource x:Name="GroupedActionsSource"
+                                  IsSourceGrouped="True"
+                                  Source="{x:Bind GroupedActionsProxy, Mode=OneWay}"
+                                  ItemsPath="Items" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search header -->
+        <Grid Grid.Row="0" Padding="18,12,10,12" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <FontIcon Glyph="&#xE721;" FontSize="18" VerticalAlignment="Center"
+                      Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            <TextBox Grid.Column="1"
+                     x:Name="SearchBox"
+                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="{x:Bind local:UiText.SearchPlaceholder}"
+                     Loaded="SearchBox_Loaded"
+                     IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
+                     AutomationProperties.Name="{x:Bind local:UiText.SearchAutomationName}"
+                     FontSize="18"
+                     Padding="0,6,0,6"
+                     VerticalAlignment="Center"
+                     BorderThickness="0"
+                     Background="Transparent">
+                <TextBox.Resources>
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Transparent" />
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent" />
+                    <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="Transparent" />
+                    <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Transparent" />
+                    <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="Transparent" />
+                    <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
+                </TextBox.Resources>
+            </TextBox>
+            <Border Grid.Column="2"
+                    VerticalAlignment="Center"
+                    CornerRadius="12"
+                    Padding="10,3,10,4"
+                    MaxWidth="240"
+                    Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                    BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                    BorderThickness="1">
+                <TextBlock Text="{x:Bind ViewModel.ContextSummary, Mode=OneWay}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           TextTrimming="CharacterEllipsis" />
+            </Border>
+            <Button Grid.Column="3"
+                    x:Name="SettingsButton"
+                    Click="SettingsButton_Click"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="8"
+                    ToolTipService.ToolTip="{x:Bind local:UiText.SettingsTooltip}"
+                    AutomationProperties.Name="{x:Bind local:UiText.SettingsTooltip}">
+                <FontIcon Glyph="&#xE713;" FontSize="16" />
+            </Button>
+        </Grid>
+
+        <!-- Divider and notices -->
+        <StackPanel Grid.Row="1">
+            <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            <!-- Visibility, not IsOpen: a bound IsOpen could leave an empty, open bar behind. -->
+            <InfoBar IsOpen="True"
+                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.HotkeyWarningMessage), Mode=OneWay}"
+                     Message="{x:Bind ViewModel.HotkeyWarningMessage, Mode=OneWay}"
+                     Severity="Warning"
+                     IsClosable="False"
+                     Margin="12,10,12,0" />
+            <InfoBar IsOpen="True"
+                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.CatalogWarningMessage), Mode=OneWay}"
+                     Message="{x:Bind ViewModel.CatalogWarningMessage, Mode=OneWay}"
+                     Severity="Warning"
+                     IsClosable="False"
+                     Margin="12,10,12,0" />
+            <InfoBar IsOpen="True"
+                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.ContextNotice), Mode=OneWay}"
+                     Message="{x:Bind ViewModel.ContextNotice, Mode=OneWay}"
+                     Severity="Informational"
+                     IsClosable="False"
+                     Margin="12,10,12,0" />
+            <ToggleButton IsChecked="{x:Bind ViewModel.IncludeUnavailableActions, Mode=TwoWay}"
+                          Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasUnavailableActions), Mode=OneWay}"
+                          IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
+                          HorizontalAlignment="Right" Margin="12,2,12,0" Padding="8,4"
+                          Background="Transparent" BorderThickness="0"
+                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                          ToolTipService.ToolTip="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}"
+                          AutomationProperties.Name="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE71C;" FontSize="12" />
+                    <TextBlock Text="{x:Bind local:UiText.FormatUnavailableFilter(ViewModel.UnavailableActionCount), Mode=OneWay}"
+                               Style="{ThemeResource CaptionTextBlockStyle}" />
+                </StackPanel>
+            </ToggleButton>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <TextBlock Text="{x:Bind local:UiText.NoMatchingActions}"
+                       Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasNoResults), Mode=OneWay}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       MaxWidth="420" Margin="24" TextWrapping="WrapWholeWords"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            <!-- Search Error Overlay -->
+            <StackPanel VerticalAlignment="Center"
+                        Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.SearchError), Mode=OneWay}"
+                        Spacing="12" Padding="24"
+                        Canvas.ZIndex="10">
+                <TextBlock Text="{x:Bind ViewModel.SearchError, Mode=OneWay}"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="WrapWholeWords" />
+                <Button Content="{x:Bind local:UiText.SearchRetry}"
+                        x:Name="RetrySearchButton"
+                        Click="RetrySearch_Click"
+                        HorizontalAlignment="Center"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        AutomationProperties.Name="{x:Bind local:UiText.SearchRetryAutomationName}" />
+            </StackPanel>
+
+            <ListView x:Name="ActionList"
+                      Loaded="ActionList_Loaded"
+                      ItemsSource="{x:Bind GroupedActionsSource.View, Mode=OneWay}"
+                      ItemClick="ActionList_ItemClick"
+                      IsItemClickEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
+                      SelectionChanged="ActionList_SelectionChanged"
+                      Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.IsInputEnabled), Mode=OneWay}"
+                      SelectionMode="Single"
+                      Padding="6,4,6,8"
+                      AutomationProperties.Name="{x:Bind local:UiText.ActionListAutomationName}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- Transparent captions scroll with their section instead of covering rows. -->
+                        <ItemsStackPanel AreStickyGroupHeadersEnabled="False" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <!-- Keep the native header/automation peer, without its default separator chrome. -->
+                        <GroupStyle.HeaderContainerStyle>
+                            <Style TargetType="ListViewHeaderItem">
+                                <Setter Property="MinHeight" Value="0" />
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="IsTabStop" Value="False" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewHeaderItem">
+                                            <ContentPresenter Content="{TemplateBinding Content}"
+                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                              HorizontalAlignment="Stretch" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.HeaderContainerStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate x:DataType="local:ActionGroupProxy">
+                                <Grid Margin="16,12,16,5" ColumnSpacing="12"
+                                      Visibility="{x:Bind local:Converters.BoolToVisibility(HasTitle)}"
+                                      AutomationProperties.Name="{x:Bind AccessibleName}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{x:Bind DisplayTitle}" FontSize="12" FontWeight="SemiBold"
+                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Grid.Column="1" Text="{x:Bind CountText}" FontSize="11"
+                                               VerticalAlignment="Center" IsHitTestVisible="False"
+                                               AutomationProperties.AccessibilityView="Raw"
+                                               Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:ActionSearchResultProxy">
+                        <Grid Padding="2,7,4,7" ColumnSpacing="12" AutomationProperties.Name="{x:Bind AccessibleName}"
+                              Opacity="{x:Bind local:Converters.ToTextOpacity(IsCompatible)}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="34" Height="34" CornerRadius="8" VerticalAlignment="Top"
+                                    Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                                    BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                                    BorderThickness="1">
+                                <FontIcon Glyph="{x:Bind IconGlyph}" FontSize="16"
+                                          Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="1">
+                                <TextBlock Text="{x:Bind Title}" Style="{ThemeResource BodyStrongTextBlockStyle}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{x:Bind Description}" Style="{ThemeResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{x:Bind Reason}" Visibility="{x:Bind local:Converters.ToVisibility(Reason)}"
+                                           Style="{ThemeResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemFillColorCautionBrush}" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                            <Border Grid.Column="2"
+                                    CornerRadius="10"
+                                    Padding="8,3"
+                                    VerticalAlignment="Center"
+                                    Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                                    BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}" BorderThickness="1"
+                                    Visibility="{x:Bind local:Converters.BoolToVisibility(HasBadge)}">
+                                <TextBlock Text="{x:Bind BadgeText}"
+                                           FontSize="11"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Execution Progress Overlay -->
+            <StackPanel VerticalAlignment="Center"
+                        Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.IsExecuting), Mode=OneWay}"
+                        Spacing="12" Padding="32">
+                <TextBlock Text="{x:Bind ViewModel.ExecutionStatusMessage, Mode=OneWay}"
+                           Style="{ThemeResource BodyStrongTextBlockStyle}"
+                           HorizontalAlignment="Center" />
+                <ProgressBar Value="{x:Bind ViewModel.ExecutionProgress, Mode=OneWay}"
+                             Maximum="100" />
+                <TextBlock Text="{x:Bind local:UiText.ExecutionPressEscToCancel}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+
+            <!-- Cancel Confirmation Overlay -->
+            <Border Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+                    Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.ShowCancelConfirmation), Mode=OneWay}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="16" Padding="24">
+                    <TextBlock Text="{x:Bind local:UiText.CancelQuestion}"
+                               Style="{ThemeResource SubtitleTextBlockStyle}"
+                               HorizontalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+                        <Button Content="{x:Bind local:UiText.CancelContinueRunning}"
+                                Click="DismissCancel_Click"
+                                AutomationProperties.Name="{x:Bind local:UiText.CancelContinueRunning}" />
+                        <Button Content="{x:Bind local:UiText.CancelOperation}"
+                                Click="ConfirmCancel_Click"
+                                Style="{ThemeResource AccentButtonStyle}"
+                                AutomationProperties.Name="{x:Bind local:UiText.CancelOperation}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Execution result -->
+        <InfoBar Grid.Row="3"
+                 IsOpen="True"
+                 Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasExecutionResult), Mode=OneWay}"
+                 Severity="{x:Bind local:Converters.ToSeverity(ViewModel.ExecutionIsSuccess), Mode=OneWay}"
+                 Message="{x:Bind ViewModel.ExecutionResultMessage, Mode=OneWay}"
+                 IsClosable="False"
+                 Margin="12,0,12,10">
+            <StackPanel Spacing="8" Margin="0,0,0,10">
+                <TextBlock Text="{x:Bind ViewModel.OutputNavigationMessage, Mode=OneWay}"
+                           Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.OutputNavigationMessage), Mode=OneWay}"
+                           TextWrapping="Wrap" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasOutputs), Mode=OneWay}"
+                            Content="{x:Bind local:UiText.ResultShowInExplorer}"
+                            Style="{ThemeResource AccentButtonStyle}"
+                            Click="ShowInExplorer_Click" />
+                    <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanOpenSingleOutput), Mode=OneWay}"
+                            Content="{x:Bind local:UiText.ResultOpen}"
+                            Click="OpenSingle_Click" />
+                    <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanUndoResult), Mode=OneWay}"
+                            Content="{x:Bind local:UiText.ResultUndo}"
+                            Click="UndoResult_Click" />
+                    <Button Content="{x:Bind local:UiText.ResultDone}"
+                            Click="Done_Click" />
+                </StackPanel>
+            </StackPanel>
+        </InfoBar>
+
+        <!-- Key legend -->
+        <Border Grid.Row="4"
+                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="18,8,18,9">
+            <!-- The footer is the drag region of the borderless launcher (see MainWindow constructor). -->
+            <Grid x:Name="DragRegion" Background="Transparent">
+                <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                    <Image x:Name="BrandIcon" Width="16" Height="16" />
+                    <TextBlock Text="{x:Bind local:UiText.MainWindowTitle}" Style="{ThemeResource CaptionTextBlockStyle}"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="14" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Border Style="{StaticResource KeyCapStyle}"><TextBlock Text="&#x21B5;" Style="{StaticResource KeyCapTextStyle}" /></Border>
+                        <TextBlock Text="{x:Bind local:UiText.LegendRun}" Style="{StaticResource LegendTextStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Border Style="{StaticResource KeyCapStyle}"><TextBlock Text="&#x2191;&#x2193;" Style="{StaticResource KeyCapTextStyle}" /></Border>
+                        <TextBlock Text="{x:Bind local:UiText.LegendSelect}" Style="{StaticResource LegendTextStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Border Style="{StaticResource KeyCapStyle}"><TextBlock Text="{x:Bind local:UiText.KeySettings}" Style="{StaticResource KeyCapTextStyle}" /></Border>
+                        <TextBlock Text="{x:Bind local:UiText.SettingsTooltip}" Style="{StaticResource LegendTextStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Border Style="{StaticResource KeyCapStyle}"><TextBlock Text="{x:Bind local:UiText.KeyEsc}" Style="{StaticResource KeyCapTextStyle}" /></Border>
+                        <TextBlock Text="{x:Bind local:UiText.LegendClose}" Style="{StaticResource LegendTextStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- First Run Overlay -->
+        <Grid Grid.RowSpan="5"
+              Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+              Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.ShowFirstRun), Mode=OneWay}">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="14" MaxWidth="440">
+                <Image x:Name="FirstRunIcon" Width="48" Height="48" HorizontalAlignment="Center" />
+                <TextBlock Text="{x:Bind local:UiText.FirstRunTitle}" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" />
+                <TextBlock Text="{x:Bind local:UiText.FirstRunShortcut}" TextWrapping="WrapWholeWords" />
+                <TextBlock Text="{x:Bind local:UiText.FirstRunContext}" TextWrapping="WrapWholeWords" />
+                <TextBlock Text="{x:Bind local:UiText.FirstRunOutputs}" TextWrapping="WrapWholeWords" />
+                <TextBlock Text="{x:Bind local:UiText.FirstRunPrivacy}" TextWrapping="WrapWholeWords" />
+                <Button x:Name="FirstRunGetStartedButton" Content="{x:Bind local:UiText.FirstRunGetStarted}" Click="DismissFirstRun_Click" HorizontalAlignment="Center" Style="{ThemeResource AccentButtonStyle}" Margin="0,12,0,0" AutomationProperties.Name="{x:Bind local:UiText.FirstRunGetStartedAutomationName}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,81 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PowerTrove.ReleaseTools/PowerTrove.ReleaseTools.csproj" />
+    <Project Path="src/PowerTrove.Abstractions/PowerTrove.Abstractions.csproj" />
+    <Project Path="src/PowerTrove.Abstractions.Testing/PowerTrove.Abstractions.Testing.csproj" />
+    <Project Path="src/PowerTrove.Application/PowerTrove.Application.csproj" />
+    <Project Path="src/PowerTrove.Core/PowerTrove.Core.csproj" />
+    <Project Path="src/PowerTrove.Desktop/PowerTrove.Desktop.csproj" />
+    <Project Path="src/PowerTrove.Platform.Windows/PowerTrove.Platform.Windows.csproj" />
+    <Project Path="src/PowerTrove.SampleAdapters/PowerTrove.SampleAdapters.csproj" />
+    <Project Path="src/PowerTrove.PackHost/PowerTrove.PackHost.csproj" />
+    <Project Path="src/PowerTrove.Infrastructure/PowerTrove.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/packs/">
+    <Project Path="packs/PowerTrove.Pack.Office/src/PowerTrove.Pack.Office/PowerTrove.Pack.Office.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Office/tests/PowerTrove.Pack.Office.Tests/PowerTrove.Pack.Office.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Data/src/PowerTrove.Pack.Data/PowerTrove.Pack.Data.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Data/tests/PowerTrove.Pack.Data.Tests/PowerTrove.Pack.Data.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Files/src/PowerTrove.Pack.Files/PowerTrove.Pack.Files.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Files/tests/PowerTrove.Pack.Files.Tests/PowerTrove.Pack.Files.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/src/PowerTrove.Pack.Images/PowerTrove.Pack.Images.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/tests/PowerTrove.Pack.Images.Tests/PowerTrove.Pack.Images.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Media/src/PowerTrove.Pack.Media/PowerTrove.Pack.Media.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Media/tests/PowerTrove.Pack.Media.Tests/PowerTrove.Pack.Media.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Pdf/src/PowerTrove.Pack.Pdf/PowerTrove.Pack.Pdf.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Pdf/tests/PowerTrove.Pack.Pdf.Tests/PowerTrove.Pack.Pdf.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Tables/src/PowerTrove.Pack.Tables/PowerTrove.Pack.Tables.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Tables/tests/PowerTrove.Pack.Tables.Tests/PowerTrove.Pack.Tables.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/FileKit.Xlsx/src/FileKit.Xlsx/FileKit.Xlsx.csproj" />
+    <Project Path="tools/FileKit.Xlsx/tests/FileKit.Xlsx.Tests/FileKit.Xlsx.Tests.csproj" />
+    <Project Path="tools/FileKit.Text/src/FileKit.Text/FileKit.Text.csproj" />
+    <Project Path="tools/FileKit.Text/tests/FileKit.Text.Tests/FileKit.Text.Tests.csproj" />
+    <Project Path="tools/FileKit.Tabular/src/FileKit.Tabular/FileKit.Tabular.csproj" />
+    <Project Path="tools/FileKit.Tabular/tests/FileKit.Tabular.Tests/FileKit.Tabular.Tests.csproj" />
+    <Project Path="tools/FileKit.Archive/src/FileKit.Archive/FileKit.Archive.csproj" />
+    <Project Path="tools/FileKit.Archive/tests/FileKit.Archive.Tests/FileKit.Archive.Tests.csproj" />
+    <Project Path="tools/FileKit.Detection/src/FileKit.Detection/FileKit.Detection.csproj" />
+    <Project Path="tools/FileKit.Detection/tests/FileKit.Detection.Tests/FileKit.Detection.Tests.csproj" />
+    <Project Path="tools/FileKit.Imaging/src/FileKit.Imaging/FileKit.Imaging.csproj" />
+    <Project Path="tools/FileKit.Imaging/tests/FileKit.Imaging.Tests/FileKit.Imaging.Tests.csproj" />
+    <Project Path="tools/FileKit.Pdf/src/FileKit.Pdf/FileKit.Pdf.csproj" />
+    <Project Path="tools/FileKit.Pdf/tests/FileKit.Pdf.Tests/FileKit.Pdf.Tests.csproj" />
+    <Project Path="tools/FileKit.Pdf/cli/FileKit.Pdf.Cli/FileKit.Pdf.Cli.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PowerTrove.ReleaseTools.Tests/PowerTrove.ReleaseTools.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Desktop.AcceptanceTests/PowerTrove.Desktop.AcceptanceTests.csproj" />
+    <Project Path="tests/PowerTrove.Abstractions.Tests/PowerTrove.Abstractions.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Architecture.Tests/PowerTrove.Architecture.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Core.Tests/PowerTrove.Core.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Application.Tests/PowerTrove.Application.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Platform.Windows.Tests/PowerTrove.Platform.Windows.Tests.csproj" />
+    <Project Path="tests/PowerTrove.SampleAdapters.Tests/PowerTrove.SampleAdapters.Tests.csproj" />
+    <Project Path="tests/PowerTrove.PackHost.TestPack/PowerTrove.PackHost.TestPack.csproj" />
+    <Project Path="tests/PowerTrove.FakePackWorker/PowerTrove.FakePackWorker.csproj" />
+    <Project Path="tests/PowerTrove.PackHost.Tests/PowerTrove.PackHost.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Desktop.Tests/PowerTrove.Desktop.Tests.csproj" />
+    <Project Path="tests/PowerTrove.Infrastructure.Tests/PowerTrove.Infrastructure.Tests.csproj" />
+  </Folder>
+  <Folder Name="/pack-adapters/">
+    <Project Path="packs/PowerTrove.Pack.Data/composition/PowerTrove.Pack.Data.Composition/PowerTrove.Pack.Data.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Files/composition/PowerTrove.Pack.Files.Composition/PowerTrove.Pack.Files.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/adapters/PowerTrove.Pack.Images.Magick/PowerTrove.Pack.Images.Magick.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/adapters/PowerTrove.Pack.Images.Windows/PowerTrove.Pack.Images.Windows.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/composition/PowerTrove.Pack.Images.Composition/PowerTrove.Pack.Images.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/tests/PowerTrove.Pack.Images.Magick.Tests/PowerTrove.Pack.Images.Magick.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Images/tests/PowerTrove.Pack.Images.Windows.Tests/PowerTrove.Pack.Images.Windows.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Media/adapters/PowerTrove.Pack.Media.Windows/PowerTrove.Pack.Media.Windows.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Media/composition/PowerTrove.Pack.Media.Composition/PowerTrove.Pack.Media.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Media/tests/PowerTrove.Pack.Media.Windows.Tests/PowerTrove.Pack.Media.Windows.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Office/adapters/PowerTrove.Pack.Office.Windows/PowerTrove.Pack.Office.Windows.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Office/composition/PowerTrove.Pack.Office.Composition/PowerTrove.Pack.Office.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Office/tests/PowerTrove.Pack.Office.Windows.Tests/PowerTrove.Pack.Office.Windows.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Pdf/adapters/PowerTrove.Pack.Pdf.Windows/PowerTrove.Pack.Pdf.Windows.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Pdf/composition/PowerTrove.Pack.Pdf.Composition/PowerTrove.Pack.Pdf.Composition.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Pdf/tests/PowerTrove.Pack.Pdf.Windows.Tests/PowerTrove.Pack.Pdf.Windows.Tests.csproj" />
+    <Project Path="packs/PowerTrove.Pack.Tables/composition/PowerTrove.Pack.Tables.Composition/PowerTrove.Pack.Tables.Composition.csproj" />
+  </Folder>
+</Solution>

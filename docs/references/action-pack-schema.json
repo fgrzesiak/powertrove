@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://contextbar.local/schemas/action-pack-schema.json",
-  "title": "ContextBar Action Pack Manifest",
-  "description": "Schema for describing a bundle of ContextBar actions.",
+  "title": "PowerTrove Action Pack Manifest",
+  "description": "Schema for describing a bundle of PowerTrove actions.",
   "type": "object",
   "properties": {
     "schemaVersion": {

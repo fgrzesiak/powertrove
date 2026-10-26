@@ -4,11 +4,11 @@ Please open a focused issue or pull request against `main`. Describe the user-vi
 
 ## Structure
 
-- `src/ContextBar.Abstractions`: typed snapshots, action contracts and shared file pipelines.
-- `src/ContextBar.Core`: matching, ranking and other pure logic.
-- `src/ContextBar.Application`: lifecycle and view models.
-- `src/ContextBar.Platform.Windows`: Windows integration adapters.
-- `src/ContextBar.Desktop`: WinUI host and composition.
+- `src/PowerTrove.Abstractions`: typed snapshots, action contracts and shared file pipelines.
+- `src/PowerTrove.Core`: matching, ranking and other pure logic.
+- `src/PowerTrove.Application`: lifecycle and view models.
+- `src/PowerTrove.Platform.Windows`: Windows integration adapters.
+- `src/PowerTrove.Desktop`: WinUI host and composition.
 - `packs/`: actions, depending only on the abstractions and standalone tools.
 - `tools/FileKit.*`: independent processing libraries, with no PowerTrove references.
 - `tests/`: automated checks, including enforced architecture boundaries.

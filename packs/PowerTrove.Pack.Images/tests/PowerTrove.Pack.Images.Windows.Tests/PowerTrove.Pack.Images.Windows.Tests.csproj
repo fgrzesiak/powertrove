@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\adapters\PowerTrove.Pack.Images.Windows\PowerTrove.Pack.Images.Windows.csproj" />
+    <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions.Testing\PowerTrove.Abstractions.Testing.csproj" />
+    <ProjectReference Include="..\..\..\..\src\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\..\src\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <Using Include="PowerTrove.Abstractions" />
+    <Using Include="PowerTrove.Abstractions.Files" />
+    <Using Include="Xunit" />
+    <Using Include="PowerTrove.Abstractions.Testing" />
+  </ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\composition\PowerTrove.Pack.Images.Composition\PowerTrove.Pack.Images.Composition.csproj" /></ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
 # FileKit.Pdf
 
-Managed, dependency-free PDF page operations for .NET 10: merge, split, extract, remove and rotate pages, edit or remove metadata, and build PDFs from JPEG/PNG images. Part of the FileKit tool family; it has no dependency on ContextBar and can be used on its own.
+Managed, dependency-free PDF page operations for .NET 10: merge, split, extract, remove and rotate pages, edit or remove metadata, and build PDFs from JPEG/PNG images. Part of the FileKit tool family; it has no dependency on PowerTrove and can be used on its own.
 
 ## Features
 
