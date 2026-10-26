@@ -4,6 +4,9 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 Add-Type -Path (Join-Path $root 'src/PowerTrove.Platform.Windows/Shell/AppIcon.cs')
+$assetDirectory = Join-Path $root 'src/PowerTrove.Desktop/Assets'
+[IO.Directory]::CreateDirectory($assetDirectory) | Out-Null
+[IO.File]::WriteAllText((Join-Path $assetDirectory 'PowerTrove.svg'), [PowerTrove.Platform.Windows.Shell.AppIcon]::Svg + "`n")
 $sizes = @(16, 24, 32, 48, 64, 128, 256)
 $images = foreach ($size in $sizes) {
     $stream = [IO.MemoryStream]::new()
