@@ -10,6 +10,7 @@ AppId=PowerTrove
 AppName=PowerTrove
 AppVersion={#AppVersion}
 AppPublisher=PowerTrove
+SetupIconFile=..\..\src\PowerTrove.Desktop\Assets\PowerTrove.ico
 DefaultDirName={localappdata}\Programs\PowerTrove
 DefaultGroupName=PowerTrove
 UninstallDisplayIcon={app}\PowerTrove.exe
