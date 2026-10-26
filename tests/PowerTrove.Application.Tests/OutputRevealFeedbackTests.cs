@@ -76,7 +76,7 @@ public sealed class OutputRevealFeedbackTests
     private sealed class OutputAction : IAction
     {
         private readonly string[] _sameOutputs = { "synthetic-output.pdf" };
-        public ActionDescriptor Descriptor { get; } = new("contextbar.test.output", "Output", "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, true);
+        public ActionDescriptor Descriptor { get; } = new("powertrove.test.output", "Output", "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, true);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken ct) => new(new ActionAvailability(true));
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken ct) => throw new NotSupportedException();
         public Task<ActionReceipt> ExecuteAsync(ContextSnapshot context, ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken ct) =>

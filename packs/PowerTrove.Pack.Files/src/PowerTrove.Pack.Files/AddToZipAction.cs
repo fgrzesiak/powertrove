@@ -4,7 +4,7 @@ namespace PowerTrove.Pack.Files;
 
 public sealed class AddToZipAction(FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.files.add-to-zip", SR.GetString("AddToZip"), SR.GetString("AddToZipDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.files.add-to-zip", SR.GetString("AddToZip"), SR.GetString("AddToZipDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["zip", "add", "archive"], true, true,
         Selection: new SelectionRequirements(new HashSet<string>(), MinItems: 2,
             AllowOtherItems: true, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { ["archive"] = new(1, 1) }));

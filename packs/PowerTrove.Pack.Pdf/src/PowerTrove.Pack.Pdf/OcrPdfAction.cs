@@ -30,7 +30,7 @@ public sealed class OcrPdfAction : PerFileAction<OcrPdfOptions>
             : ActionParameterDefinition.Text("Language", SR.GetString("OcrPdfAction_ParamTitle_Language"), string.Empty);
 
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.ocr",
+            "powertrove.pdf.ocr",
             SR.GetString("OcrPdfAction_Title"),
             SR.GetString("OcrPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },

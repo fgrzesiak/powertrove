@@ -5,7 +5,7 @@ namespace PowerTrove.Pack.Files;
 
 public sealed class CompareTextAction(FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.files.compare-text", SR.GetString("CompareText"), SR.GetString("CompareTextDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.files.compare-text", SR.GetString("CompareText"), SR.GetString("CompareTextDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["compare", "diff", "text"], true, true,
         Parameters: [ActionParameterDefinition.Boolean("IgnoreLineEndings", SR.GetString("IgnoreLineEndings"), true)],
         Selection: new SelectionRequirements(new HashSet<string> { "text" }, MinItems: 2, MaxItems: 2, AllowOtherItems: false,

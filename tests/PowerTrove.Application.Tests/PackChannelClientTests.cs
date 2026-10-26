@@ -37,7 +37,7 @@ public sealed class PackChannelClientTests
     {
         using var fixture = new Fixture(configuration: OwnerChannelConfiguration.Default);
         Assert.Equal(PackChannelStatus.NotConfigured, (await fixture.Client.RefreshOnUserRequestAsync()).Status);
-        Assert.Equal(PackChannelStatus.NotConfigured, (await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture")).Status);
+        Assert.Equal(PackChannelStatus.NotConfigured, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
         Assert.Empty(fixture.Handler.Requests);
     }
 
@@ -46,11 +46,11 @@ public sealed class PackChannelClientTests
     {
         using var fixture = new Fixture();
         var progress = new CapturedProgress();
-        var result = await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture", progress);
+        var result = await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture", progress);
         Assert.Equal(PackChannelStatus.Installed, result.Status);
-        Assert.Equal("contextbar.fixture", result.Installed!.Manifest.Id);
+        Assert.Equal("powertrove.fixture", result.Installed!.Manifest.Id);
         Assert.Equal(3, fixture.Handler.Requests.Count);
-        Assert.Equal("/channel/packs/contextbar.fixture/0.1.0.cbpack", fixture.Handler.Requests[^1].Uri.AbsolutePath);
+        Assert.Equal("/channel/packs/powertrove.fixture/0.1.0.cbpack", fixture.Handler.Requests[^1].Uri.AbsolutePath);
         Assert.Equal(fixture.Bundle.Length, progress.Values[^1].CompletedBytes);
         Assert.Single(await fixture.Installer.GetInstalledAsync());
         fixture.AssertCleanDownloads();
@@ -60,7 +60,7 @@ public sealed class PackChannelClientTests
     public async Task ChangedApprovalFingerprintCannotStartABundleRequest()
     {
         using var fixture = new Fixture();
-        var prepared = await fixture.Client.PrepareOnUserRequestAsync("contextbar.fixture");
+        var prepared = await fixture.Client.PrepareOnUserRequestAsync("powertrove.fixture");
         Assert.Equal(PackChannelStatus.Ready, prepared.Status);
         Assert.Equal(2, fixture.Handler.Requests.Count);
         var changed = prepared.Offer! with { ManifestFingerprint = new string('0', 64) };
@@ -75,7 +75,7 @@ public sealed class PackChannelClientTests
     {
         using var fixture = new Fixture();
         fixture.Signature[0] ^= 1;
-        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture")).Status);
+        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
         Assert.Equal(2, fixture.Handler.Requests.Count);
         Assert.Empty(await fixture.Installer.GetInstalledAsync());
     }
@@ -86,7 +86,7 @@ public sealed class PackChannelClientTests
         using var fixture = new Fixture(downloadBytes: 0);
         var overflow = new RepeatedStream(fixture.PayloadSize + 1024 * 1024 + 2L);
         fixture.BundleContent = () => new StreamContent(overflow);
-        var result = await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture");
+        var result = await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture");
         Assert.Equal(PackChannelStatus.InvalidData, result.Status);
         Assert.Equal(fixture.PayloadSize + 1024 * 1024 + 1L, overflow.ReadBytes);
         Assert.Empty(await fixture.Installer.GetInstalledAsync());
@@ -119,7 +119,7 @@ public sealed class PackChannelClientTests
         using var fixture = new Fixture(clock: clock);
         var blocked = new RepeatedStream(1, block: true);
         fixture.BundleContent = () => new StreamContent(blocked);
-        var work = fixture.Client.InstallOnUserRequestAsync("contextbar.fixture");
+        var work = fixture.Client.InstallOnUserRequestAsync("powertrove.fixture");
         await blocked.ReadStarted.Task.WaitAsync(TimeSpan.FromSeconds(5));
         Assert.Equal(1, fixture.TemporaryCount);
         clock.Advance(TimeSpan.FromSeconds(10));
@@ -161,7 +161,7 @@ public sealed class PackChannelClientTests
         using var cancel = new CancellationTokenSource();
         var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         fixture.Handler.Respond = async (_, token) => { entered.TrySetResult(); await Task.Delay(Timeout.InfiniteTimeSpan, token); throw new InvalidOperationException(); };
-        var work = fixture.Client.InstallOnUserRequestAsync("contextbar.fixture", token: cancel.Token);
+        var work = fixture.Client.InstallOnUserRequestAsync("powertrove.fixture", token: cancel.Token);
         await entered.Task.WaitAsync(TimeSpan.FromSeconds(5));
         cancel.Cancel();
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => work);
@@ -175,7 +175,7 @@ public sealed class PackChannelClientTests
     {
         using var fixture = new Fixture(downloadBytes: 0);
         fixture.BundleContent = () => new ByteArrayContent(fixture.CreateBundle("0.2.0"));
-        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture")).Status);
+        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
         Assert.Empty(await fixture.Installer.GetInstalledAsync());
         fixture.AssertCleanDownloads();
     }
@@ -187,7 +187,7 @@ public sealed class PackChannelClientTests
         var catalog = await fixture.Client.RefreshOnUserRequestAsync();
         Assert.Equal(PackChannelStatus.Ready, catalog.Status);
         Assert.False(Assert.Single(catalog.Packs).IsCompatible);
-        Assert.Equal(PackChannelStatus.Incompatible, (await fixture.Client.InstallOnUserRequestAsync("contextbar.fixture")).Status);
+        Assert.Equal(PackChannelStatus.Incompatible, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
         Assert.Equal(2, fixture.Handler.Requests.Count);
     }
 
@@ -219,8 +219,8 @@ public sealed class PackChannelClientTests
         public Fixture(OwnerChannelConfiguration? configuration = null, TimeProvider? clock = null, long? downloadBytes = null, string minimum = "0.1.0")
         {
             byte[] payload = "generated fixture payload"u8.ToArray();
-            _manifest = new ActionManifest("2.0", "contextbar.fixture", "0.1.0", "Generated fixture tools", "PowerTrove tests", "1",
-                [new ManifestAction("contextbar.fixture.copy", "Generated copy", ["files"], RequiresPreview: true,
+            _manifest = new ActionManifest("2.0", "powertrove.fixture", "0.1.0", "Generated fixture tools", "PowerTrove tests", "1",
+                [new ManifestAction("powertrove.fixture.copy", "Generated copy", ["files"], RequiresPreview: true,
                     Selection: new ManifestSelection(["text"], 1, null, null, null, false), Extensions: [".txt"], ChangesFiles: true)],
                 MinHostVersion: minimum, Payload: new ManifestPayload("payload/fixture.dll", payload.LongLength,
                     [new ManifestPayloadFile("payload/fixture.dll", Convert.ToHexString(SHA256.HashData(payload)), payload.LongLength)]), Capabilities: []);

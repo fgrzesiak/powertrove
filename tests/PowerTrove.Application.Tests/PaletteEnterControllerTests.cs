@@ -105,7 +105,7 @@ public sealed class PaletteEnterControllerTests
     private sealed class CountingAction(string id, bool outputs) : IAction
     {
         public int Executions { get; private set; }
-        public ActionDescriptor Descriptor { get; } = new("contextbar.test." + id, id, "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, outputs);
+        public ActionDescriptor Descriptor { get; } = new("powertrove.test." + id, id, "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, outputs);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken ct) => new(new ActionAvailability(true));
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken ct) => throw new NotSupportedException();
         public Task<ActionReceipt> ExecuteAsync(ContextSnapshot context, ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken ct)

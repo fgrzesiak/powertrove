@@ -178,7 +178,7 @@ public sealed class PackInstaller
     private string PackRoot(string id) { ValidateId(id); string path = Path.Combine(_root, id); _files.CheckSafePath(path); return path; }
     internal static void ValidateId(string id)
     {
-        if (id is null || id.Length > 128 || !Regex.IsMatch(id, @"\Acontextbar\.[a-z0-9]+(?:[.-][a-z0-9]+)*\z", RegexOptions.CultureInvariant)) throw new InvalidDataException();
+        if (id is null || id.Length > 128 || !Regex.IsMatch(id, @"\Apowertrove\.[a-z0-9]+(?:[.-][a-z0-9]+)*\z", RegexOptions.CultureInvariant)) throw new InvalidDataException();
     }
     internal static void ValidateVersion(string version) { if (!IsVersion(version)) throw new InvalidDataException(); }
     private static bool IsVersion(string? version) => version is { Length: <= 50 } && Regex.IsMatch(version, @"\A[0-9]+\.[0-9]+\.[0-9]+(?:\.[0-9]+)?\z", RegexOptions.CultureInvariant)

@@ -4,4 +4,4 @@ PowerTrove groups built-in actions into Files, Images, PDF, Media, Tables, Offic
 
 Packs reference the abstractions SDK and standalone FileKit tools. Platform and infrastructure adapters implement engine interfaces; composition assemblies connect them to pack factories. File transformations use the shared per-file or combined-file pipeline for output planning, cancellation and source preservation.
 
-See [contributing](../CONTRIBUTING.md), [manifest metadata](../docs/references/action-pack-manifest.md) and [alpha acceptance](../docs/release/alpha.md). Stable action and pack IDs retain the `contextbar.*` prefix for compatibility. These contracts do not authorize arbitrary third-party loading.
+See [contributing](../CONTRIBUTING.md), [manifest metadata](../docs/references/action-pack-manifest.md) and [alpha acceptance](../docs/release/alpha.md). Stable action and pack IDs retain the `powertrove.*` prefix for compatibility. These contracts do not authorize arbitrary third-party loading.

@@ -15,7 +15,7 @@ public sealed record BookletPdfOptions(PdfPageSize SheetSize);
 
 public sealed class BookletPdfAction : PerFileAction<BookletPdfOptions>
 {
-    public const string ActionId = "contextbar.pdf.booklet";
+    public const string ActionId = "powertrove.pdf.booklet";
 
     public BookletPdfAction(FileActionServices services) : base(services)
     {

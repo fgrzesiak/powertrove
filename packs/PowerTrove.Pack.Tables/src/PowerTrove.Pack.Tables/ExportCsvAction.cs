@@ -22,7 +22,7 @@ public sealed class ExportCsvAction : IAction
     }
 
     public ActionDescriptor Descriptor { get; } = new(
-        Id: "contextbar.table.export-csv",
+        Id: "powertrove.table.export-csv",
         Title: SR.GetString("ExportCsvAction_Title"),
         Description: SR.GetString("ExportCsvAction_Description"),
         Accepts: new HashSet<ContentKind> { ContentKind.Table },

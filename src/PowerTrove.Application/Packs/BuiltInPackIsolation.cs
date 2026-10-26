@@ -8,7 +8,7 @@ namespace PowerTrove.Application.Packs;
 /// <summary>Routes app-owned heavy tools through pinned, supervised workers when explicitly enabled.</summary>
 public static class BuiltInPackIsolation
 {
-    private static readonly string[] Heavy = ["contextbar.pdf", "contextbar.images", "contextbar.media"];
+    private static readonly string[] Heavy = ["powertrove.pdf", "powertrove.images", "powertrove.media"];
     public sealed record IsolationResult(IReadOnlyList<IActionPack> Packs, bool Ready);
 
     public static async Task<IsolationResult> RouteAsync(
@@ -30,12 +30,12 @@ public static class BuiltInPackIsolation
             {
                 string entry = "PowerTrove.Pack." + (pack.Info.Id switch
                 {
-                    "contextbar.pdf" => "Pdf", "contextbar.images" => "Images",
-                    "contextbar.media" => "Media", _ => throw new InvalidDataException()
+                    "powertrove.pdf" => "Pdf", "powertrove.images" => "Images",
+                    "powertrove.media" => "Media", _ => throw new InvalidDataException()
                 }) + ".Composition.dll";
                 if (!inventory.Files.Any(f => f.Path == entry)) throw new InvalidDataException();
                 // User-created image presets require per-user options unavailable to worker v1.
-                var actions = pack.Actions.Where(a => pack.Info.Id != "contextbar.images" ||
+                var actions = pack.Actions.Where(a => pack.Info.Id != "powertrove.images" ||
                     imagePresetIds?.Contains(a.Descriptor.Id) != true).ToArray();
                 var manifest = ActionPackManifest.Create(new SimplePack(pack.Info, actions),
                     minHostVersion: new Version(0, 1, 0), payload: inventory with { EntryAssembly = entry });
@@ -66,7 +66,7 @@ public static class BuiltInPackIsolation
                 prepared.Select(p => p.Hash).ToArray());
             return new(packs.Select(p => Heavy.Contains(p.Info.Id, StringComparer.Ordinal)
                 ? (IActionPack)new SimplePack(p.Info, p.Actions.Select(a =>
-                    p.Info.Id == "contextbar.images" && imagePresetIds?.Contains(a.Descriptor.Id) == true ? a
+                    p.Info.Id == "powertrove.images" && imagePresetIds?.Contains(a.Descriptor.Id) == true ? a
                         : (IAction)new RemoteAction(supervisor, group, a.Descriptor,
                             (a as IFileActionMetadata)?.InputExtensions)).ToArray())
                 : p).ToArray(), true);

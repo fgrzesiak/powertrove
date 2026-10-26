@@ -119,7 +119,7 @@ public static class ActionOptionsDialog
                 };
                 previewText.Text = (result.PreviewText ?? string.Empty) + (result.IsBlocked ? string.Empty : outputs);
                 warningsText.Text = string.Join(Environment.NewLine, result.Warnings);
-                if (result.RenameRows is { Count: > 0 } rows && descriptor.Id == "contextbar.files.rename")
+                if (result.RenameRows is { Count: > 0 } rows && descriptor.Id == "powertrove.files.rename")
                 {
                     Grid Row(string oldName, string newName)
                     {

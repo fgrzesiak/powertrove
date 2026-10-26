@@ -21,7 +21,7 @@ public sealed class ExportJsonAction : IAction
     }
 
     public ActionDescriptor Descriptor { get; } = new(
-        Id: "contextbar.table.export-json",
+        Id: "powertrove.table.export-json",
         Title: SR.GetString("ExportJsonAction_Title"),
         Description: SR.GetString("ExportJsonAction_Description"),
         Accepts: new HashSet<ContentKind> { ContentKind.Table },

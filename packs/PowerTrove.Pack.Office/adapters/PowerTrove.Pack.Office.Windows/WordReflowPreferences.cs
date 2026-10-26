@@ -56,7 +56,7 @@ public sealed class WordPreferenceStore : IWordPreferenceStore
     {
         using var user = WindowsIdentity.GetCurrent();
         string identity = user.User?.Value ?? throw new OfficeConversionException(OfficeFailure.Busy);
-        var semaphore = new Semaphore(1, 1, @"Global\ContextBar.WordReflow." + identity);
+        var semaphore = new Semaphore(1, 1, @"Global\PowerTrove.WordReflow." + identity);
         if (!semaphore.WaitOne(0)) { semaphore.Dispose(); throw new OfficeConversionException(OfficeFailure.Busy); }
         return new Exclusive(semaphore);
     }

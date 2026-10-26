@@ -11,7 +11,7 @@ public sealed class OfficeActionTests : IDisposable
 {
     private readonly TempDirectory _dir = new();
     public void Dispose() => _dir.Dispose();
-    private static IAction Action(string id, IOfficeConverter? converter) => new OfficePack(FileActionServices.CreatePhysical(new FileSignatureVerifier()), converter).Actions.Single(a => a.Descriptor.Id == "contextbar.office." + id);
+    private static IAction Action(string id, IOfficeConverter? converter) => new OfficePack(FileActionServices.CreatePhysical(new FileSignatureVerifier()), converter).Actions.Single(a => a.Descriptor.Id == "powertrove.office." + id);
 
     [Theory]
     [InlineData("word-to-pdf", ".rtf", OfficeApplication.Word)]

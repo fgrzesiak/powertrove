@@ -106,7 +106,7 @@ public sealed class ManifestV2MetadataTests
         }));
     }
 
-    private static ActionManifest Valid() => new("2.0", "contextbar.test", "0.1.0", "Test", "PowerTrove", "1",
-        new[] { new ManifestAction("contextbar.test.action", "Action", new[] { "none" }, ChangesFiles: false) },
+    private static ActionManifest Valid() => new("2.0", "powertrove.test", "0.1.0", "Test", "PowerTrove", "1",
+        new[] { new ManifestAction("powertrove.test.action", "Action", new[] { "none" }, ChangesFiles: false) },
         MinHostVersion: "0.1.0", Capabilities: Array.Empty<string>());
 }

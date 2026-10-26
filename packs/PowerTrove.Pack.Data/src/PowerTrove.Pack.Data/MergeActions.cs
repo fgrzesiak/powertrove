@@ -6,7 +6,7 @@ namespace PowerTrove.Pack.Data;
 public sealed class MergeTextAction : CombineFilesAction<string>
 {
     public MergeTextAction(FileActionServices services) : base(services) { }
-    public override ActionDescriptor Descriptor => new("contextbar.data.merge-text", SR.Get("merge-text"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "text", "merge" }, true, true,
+    public override ActionDescriptor Descriptor => new("powertrove.data.merge-text", SR.Get("merge-text"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "text", "merge" }, true, true,
         Parameters: new[] { DataSupport.Choice("Separator", "blank-line", "none", "blank-line", "header") }, Selection: SelectionRequirements.Multiple("text", "spreadsheet", "other"));
     protected override FileInputFilter Input => new(SR.Get("Files"), DataSupport.TextExtensions, null);
     protected override string ReadOptions(ActionParameterValues v) => v.GetChoice("Separator");
@@ -35,7 +35,7 @@ public sealed class MergeTextAction : CombineFilesAction<string>
 public sealed class MergeCsvAction : CombineFilesAction<string>
 {
     public MergeCsvAction(FileActionServices services) : base(services) { }
-    public override ActionDescriptor Descriptor => new("contextbar.data.merge-csv", SR.Get("merge-csv"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "csv", "merge" }, true, true,
+    public override ActionDescriptor Descriptor => new("powertrove.data.merge-csv", SR.Get("merge-csv"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "csv", "merge" }, true, true,
         Parameters: new[] { DataSupport.Choice("Mode", "identical", "identical", "union") }, Selection: SelectionRequirements.Multiple("spreadsheet", "text"));
     protected override FileInputFilter Input => new(SR.Get("Files"), new[] { ".csv", ".tsv" }, null);
     protected override string ReadOptions(ActionParameterValues v) => v.GetChoice("Mode");

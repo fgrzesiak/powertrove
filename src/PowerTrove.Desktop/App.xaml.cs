@@ -64,7 +64,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     {
         // Settings first: the UI language must be applied before any window or pack reads resources.
         string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        string settingsFilePath = Path.Combine(appDataPath, "ContextBar", "settings.json");
+        string settingsFilePath = Path.Combine(appDataPath, "PowerTrove", "settings.json");
         SettingsService = new SettingsService(settingsFilePath);
         StartupUiLanguage = SettingsService.Settings.UiLanguage;
         UiLanguages.Apply(UiLanguages.Resolve(StartupUiLanguage, System.Globalization.CultureInfo.CurrentUICulture));
@@ -73,10 +73,10 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             workerExecutable = Path.Combine(AppContext.BaseDirectory, "PowerTrove.PackHost.exe");
         PackHosts = new PowerTrove.Application.Packs.PackHostSupervisor(
             new PowerTrove.Platform.Windows.Packs.WindowsPackWorkerProcessFactory(workerExecutable),
-            Path.Combine(appDataPath, "ContextBar"));
-        PackInstaller = new PowerTrove.Application.Packs.PackInstaller(Path.Combine(appDataPath, "ContextBar"),
+            Path.Combine(appDataPath, "PowerTrove"));
+        PackInstaller = new PowerTrove.Application.Packs.PackInstaller(Path.Combine(appDataPath, "PowerTrove"),
             new Version(0, 1, 0), PackHosts.StopPackAsync);
-        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, Path.Combine(appDataPath, "ContextBar"), new Version(0, 1, 0));
+        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, Path.Combine(appDataPath, "PowerTrove"), new Version(0, 1, 0));
 
         m_window = new MainWindow();
 

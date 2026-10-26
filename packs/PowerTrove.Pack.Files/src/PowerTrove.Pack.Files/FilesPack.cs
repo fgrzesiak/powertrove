@@ -23,7 +23,7 @@ public sealed class FilesPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("contextbar.files", SR.GetString("FilesPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.files", SR.GetString("FilesPack_Title"), "0.1.0", "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }

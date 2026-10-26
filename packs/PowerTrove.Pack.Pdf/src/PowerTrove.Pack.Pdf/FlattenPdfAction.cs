@@ -13,7 +13,7 @@ public sealed class FlattenPdfAction : PerFileAction<FlattenPdfOptions>
     public FlattenPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.flatten", SR.GetString("FlattenPdf_Title"), SR.GetString("FlattenPdf_Description"),
+            "powertrove.pdf.flatten", SR.GetString("FlattenPdf_Title"), SR.GetString("FlattenPdf_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             ["pdf", "flatten", "forms", "comments", "annotations"],
             RequiresPreview: true, ChangesFiles: true,

@@ -14,7 +14,7 @@ public sealed class InterleavePdfAction : CombineFilesAction<InterleavePdfOption
     {
         _renderer = renderer;
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.interleave", SR.GetString("InterleavePdfAction_Title"),
+            "powertrove.pdf.interleave", SR.GetString("InterleavePdfAction_Title"),
             SR.GetString("InterleavePdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "combine", "front", "back", "scans", "interleave" },
@@ -117,7 +117,7 @@ public sealed class InsertPdfAction : CombineFilesAction<InsertPdfOptions>
     public InsertPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.insert", SR.GetString("InsertPdfAction_Title"),
+            "powertrove.pdf.insert", SR.GetString("InsertPdfAction_Title"),
             SR.GetString("InsertPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "insert", "add" },
@@ -192,7 +192,7 @@ public sealed class MergePdfAction : CombineFilesAction<MergePdfOptions>
     public MergePdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.merge", SR.GetString("MergePdfAction_Title"),
+            "powertrove.pdf.merge", SR.GetString("MergePdfAction_Title"),
             SR.GetString("MergePdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "merge", "combine", "join" },
@@ -257,7 +257,7 @@ public sealed class SplitPdfAction : PerFileAction<SplitPdfOptions>
     public SplitPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.split", SR.GetString("SplitPdfAction_Title"),
+            "powertrove.pdf.split", SR.GetString("SplitPdfAction_Title"),
             SR.GetString("SplitPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "split", "pages", "separate" },
@@ -405,7 +405,7 @@ public sealed class ExtractPdfPagesAction : PerFileAction<PageSelectionOptions>
     public ExtractPdfPagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.extract-pages", SR.GetString("ExtractPdfPagesAction_Title"),
+            "powertrove.pdf.extract-pages", SR.GetString("ExtractPdfPagesAction_Title"),
             SR.GetString("ExtractPdfPagesAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "extract", "pages", "select", "reorder" },
@@ -459,7 +459,7 @@ public sealed class RemovePdfPagesAction : PerFileAction<PageSelectionOptions>
     public RemovePdfPagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.remove-pages", SR.GetString("RemovePdfPagesAction_Title"),
+            "powertrove.pdf.remove-pages", SR.GetString("RemovePdfPagesAction_Title"),
             SR.GetString("RemovePdfPagesAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "remove", "delete", "pages" },
@@ -515,7 +515,7 @@ public sealed class RotatePdfAction : PerFileAction<RotateOptions>
     public RotatePdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.rotate", SR.GetString("RotatePdfAction_Title"),
+            "powertrove.pdf.rotate", SR.GetString("RotatePdfAction_Title"),
             SR.GetString("RotatePdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "rotate", "turn", "orientation" },
@@ -563,7 +563,7 @@ public sealed class RemovePdfMetadataAction : PerFileAction<NoOptions>
     public RemovePdfMetadataAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.remove-metadata", SR.GetString("RemovePdfMetadataAction_Title"),
+            "powertrove.pdf.remove-metadata", SR.GetString("RemovePdfMetadataAction_Title"),
             SR.GetString("RemovePdfMetadataAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "metadata", "privacy", "author", "strip" },
@@ -619,7 +619,7 @@ public sealed class ImagesToPdfAction : CombineFilesAction<ImagesToPdfOptions>
     public ImagesToPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.images-to-pdf", SR.GetString("ImagesToPdfAction_Title"),
+            "powertrove.pdf.images-to-pdf", SR.GetString("ImagesToPdfAction_Title"),
             SR.GetString("ImagesToPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "images", "photos", "scan", "create", "convert" },
@@ -690,7 +690,7 @@ public sealed class HeaderFooterPdfAction : PerFileAction<HeaderFooterOptions>
     {
         _timeProvider = timeProvider ?? TimeProvider.System;
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.header-footer", SR.GetString("HeaderFooterPdfAction_Title"),
+            "powertrove.pdf.header-footer", SR.GetString("HeaderFooterPdfAction_Title"),
             SR.GetString("HeaderFooterPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "header", "footer", "text" },
@@ -777,7 +777,7 @@ public sealed class AddPageNumbersPdfAction : PerFileAction<PageNumbersOptions>
     public AddPageNumbersPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.page-numbers", SR.GetString("AddPageNumbersPdfAction_Title"),
+            "powertrove.pdf.page-numbers", SR.GetString("AddPageNumbersPdfAction_Title"),
             SR.GetString("AddPageNumbersPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "page", "number", "numbers", "pagination" },
@@ -864,7 +864,7 @@ public sealed class PdfToImagesAction : PerFileAction<PdfToImagesOptions>
     {
         _renderer = renderer;
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.to-images", SR.GetString("PdfToImagesAction_Title"),
+            "powertrove.pdf.to-images", SR.GetString("PdfToImagesAction_Title"),
             SR.GetString("PdfToImagesAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "image", "png", "jpeg", "render", "export", "pages" },
@@ -921,7 +921,7 @@ public sealed class ReorderPdfPagesAction : PerFileAction<ReorderPdfPagesOptions
     public ReorderPdfPagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.reorder", SR.GetString("ReorderPdfPagesAction_Title"),
+            "powertrove.pdf.reorder", SR.GetString("ReorderPdfPagesAction_Title"),
             SR.GetString("ReorderPdfPagesAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "reorder", "sort" },
@@ -1007,7 +1007,7 @@ public sealed class InsertBlankPagesAction : PerFileAction<InsertBlankPagesOptio
     public InsertBlankPagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.insert-blank", SR.GetString("InsertBlankPdfAction_Title"),
+            "powertrove.pdf.insert-blank", SR.GetString("InsertBlankPdfAction_Title"),
             SR.GetString("InsertBlankPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "insert", "blank", "empty", "page" },
@@ -1207,7 +1207,7 @@ public sealed class WatermarkPdfAction : PerFileAction<WatermarkPdfOptions>
     public WatermarkPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.watermark", SR.GetString("WatermarkPdfAction_Title"),
+            "powertrove.pdf.watermark", SR.GetString("WatermarkPdfAction_Title"),
             SR.GetString("WatermarkPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "watermark", "text", "stamp", "draft" },
@@ -1280,7 +1280,7 @@ public sealed class CropPdfAction : PerFileAction<CropPdfOptions>
     public CropPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.crop", SR.GetString("CropPdfAction_Title"),
+            "powertrove.pdf.crop", SR.GetString("CropPdfAction_Title"),
             SR.GetString("CropPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "crop", "margins", "white", "space" },
@@ -1330,7 +1330,7 @@ public sealed class ResizePdfPagesAction : PerFileAction<ResizePdfPagesOptions>
     public ResizePdfPagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.resize-pages", SR.GetString("ResizePdfPagesAction_Title"),
+            "powertrove.pdf.resize-pages", SR.GetString("ResizePdfPagesAction_Title"),
             SR.GetString("ResizePdfPagesAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "resize", "scale", "a4", "letter", "a5", "legal" },
@@ -1411,7 +1411,7 @@ public sealed class StampPdfImageAction : PerFileAction<StampPdfImageOptions>
     public StampPdfImageAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.stamp-image", SR.GetString("StampPdfImageAction_Title"),
+            "powertrove.pdf.stamp-image", SR.GetString("StampPdfImageAction_Title"),
             SR.GetString("StampPdfImageAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "image", "stamp", "signature", "watermark" },
@@ -1506,7 +1506,7 @@ public sealed class StampSelectedImagePdfAction : CombineFilesAction<StampSelect
     public StampSelectedImagePdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.stamp-selected-image", SR.GetString("StampSelectedImagePdfAction_Title"),
+            "powertrove.pdf.stamp-selected-image", SR.GetString("StampSelectedImagePdfAction_Title"),
             SR.GetString("StampPdfImageAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "image", "stamp", "signature", "watermark" },

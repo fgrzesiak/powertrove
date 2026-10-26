@@ -10,7 +10,7 @@ The Tables composition is intentionally excluded: worker protocol v1 rejects tab
 [CmdletBinding()]
 param(
     [string]$OutputDirectory = (Join-Path $PSScriptRoot '../artifacts/pack-channel'),
-    [string]$SigningKeyPath = $env:CONTEXTBAR_PACK_SIGNING_KEY_FILE,
+    [string]$SigningKeyPath = $env:POWERTROVE_PACK_SIGNING_KEY_FILE,
     [switch]$DryRun,
     [string[]]$Packs = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office')
 )
@@ -20,7 +20,7 @@ if (-not $IsWindows) { throw 'Pack publishing requires Windows for native adapte
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $output = [IO.Path]::GetFullPath($OutputDirectory)
 if (-not $DryRun -and [string]::IsNullOrWhiteSpace($SigningKeyPath)) {
-    throw 'SigningKeyPath or CONTEXTBAR_PACK_SIGNING_KEY_FILE is required.'
+    throw 'SigningKeyPath or POWERTROVE_PACK_SIGNING_KEY_FILE is required.'
 }
 $allowed = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office')
 foreach ($pack in $Packs) {

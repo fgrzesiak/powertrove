@@ -8,12 +8,12 @@ public sealed class DataActionsTests : IDisposable
     private readonly TempDirectory _dir = new();
     public void Dispose() => _dir.Dispose();
     private static FileActionServices Services() => FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier());
-    private async Task<ActionReceipt> Run(string id, string[] paths, params (string Key, string Value)[] options) => await new DataPack(Services()).Actions.Single(a => a.Descriptor.Id == "contextbar.data." + id).ExecuteAsync(Snapshots.ForPaths(paths), Snapshots.Parameters(options), null, CancellationToken.None);
+    private async Task<ActionReceipt> Run(string id, string[] paths, params (string Key, string Value)[] options) => await new DataPack(Services()).Actions.Single(a => a.Descriptor.Id == "powertrove.data." + id).ExecuteAsync(Snapshots.ForPaths(paths), Snapshots.Parameters(options), null, CancellationToken.None);
     [Fact]
     public void PackRegistersEveryImplementedDataAction()
     {
         string[] suffixes = { "merge-text", "to-utf8", "line-endings", "csv-to-json", "csv-to-markdown", "csv-to-sql", "merge-csv", "json-format", "json-minify", "xlsx-to-csv", "xlsx-to-json", "csv-to-xlsx", "json-validate", "json-to-csv" };
-        Assert.Equal(suffixes.Select(s => "contextbar.data." + s), new DataPack(Services()).Actions.Select(a => a.Descriptor.Id));
+        Assert.Equal(suffixes.Select(s => "powertrove.data." + s), new DataPack(Services()).Actions.Select(a => a.Descriptor.Id));
     }
     [Theory]
     [InlineData("utf8", false)] [InlineData("utf8", true)] [InlineData("utf16le", true)] [InlineData("utf16be", true)] [InlineData("utf32le", true)] [InlineData("utf32be", true)] [InlineData("1252", false)]
@@ -102,7 +102,7 @@ public sealed class DataActionsTests : IDisposable
 public abstract class DataContract : ActionContractTestsBase
 {
     protected virtual string Kind => "json-format";
-    protected override IAction CreateAction() => new DataPack(FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier())).Actions.Single(a => a.Descriptor.Id == "contextbar.data." + Kind);
+    protected override IAction CreateAction() => new DataPack(FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier())).Actions.Single(a => a.Descriptor.Id == "powertrove.data." + Kind);
     protected override ContextSnapshot CreateValidSnapshot() => Snapshots.ForPaths(Path.Combine(Path.GetTempPath(), "example.json"));
 }
 public sealed class JsonActionContract : DataContract { }

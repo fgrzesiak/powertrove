@@ -6,7 +6,7 @@
 #endif
 
 [Setup]
-AppId=ContextBar
+AppId=PowerTrove
 AppName=PowerTrove
 AppVersion={#AppVersion}
 AppPublisher=PowerTrove
@@ -42,7 +42,7 @@ Filename: "{app}\PowerTrove.exe"; Description: "Launch PowerTrove"; Flags: nowai
 function InstalledVersion(): String;
 begin
   if not RegQueryStringValue(HKCU,
-    'Software\Microsoft\Windows\CurrentVersion\Uninstall\ContextBar_is1', 'DisplayVersion', Result) then
+    'Software\Microsoft\Windows\CurrentVersion\Uninstall\PowerTrove_is1', 'DisplayVersion', Result) then
     Result := '';
 end;
 

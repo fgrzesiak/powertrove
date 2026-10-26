@@ -15,7 +15,7 @@ public sealed class RepairPdfAction : PerFileAction<NoOptions>
     public RepairPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.repair", SR.GetString("RepairPdfAction_Title"),
+            "powertrove.pdf.repair", SR.GetString("RepairPdfAction_Title"),
             SR.GetString("RepairPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "repair", "fix", "corrupt", "recover" },

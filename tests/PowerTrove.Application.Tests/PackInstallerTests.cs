@@ -27,9 +27,9 @@ public sealed class PackInstallerTests
             Assert.Equal("0.1.0", active.RootElement.GetProperty("PreviousVersion").GetString());
             Assert.False(active.RootElement.GetProperty("Confirmed").GetBoolean());
         }
-        await fixture.Installer.ConfirmStartedAsync("contextbar.fixture", "0.1.0");
+        await fixture.Installer.ConfirmStartedAsync("powertrove.fixture", "0.1.0");
         Assert.True(Directory.Exists(first.Directory));
-        await fixture.Installer.ConfirmStartedAsync("contextbar.fixture", "0.2.0");
+        await fixture.Installer.ConfirmStartedAsync("powertrove.fixture", "0.2.0");
         Assert.False(Directory.Exists(first.Directory));
         Assert.True(Directory.Exists(second.Directory));
         fixture.AssertNoTemporaryFiles();
@@ -45,7 +45,7 @@ public sealed class PackInstallerTests
         await Assert.ThrowsAsync<IOException>(() => fixture.Installer.InstallAsync(fixture.Bundle("0.2.0")));
         Assert.Equal(previous, File.ReadAllBytes(fixture.ActivePath));
         Assert.True(Directory.Exists(first.Directory));
-        Assert.False(Directory.Exists(fixture.Temp.File("user/packs/contextbar.fixture/0.2.0")));
+        Assert.False(Directory.Exists(fixture.Temp.File("user/packs/powertrove.fixture/0.2.0")));
         fixture.AssertNoTemporaryFiles();
     }
 
@@ -104,14 +104,14 @@ public sealed class PackInstallerTests
         var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         var release = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         fixture.StopHook = (_, token) => { entered.TrySetResult(); return release.Task.WaitAsync(token); };
-        var uninstall = fixture.Installer.UninstallAsync("contextbar.fixture");
+        var uninstall = fixture.Installer.UninstallAsync("powertrove.fixture");
         await entered.Task.WaitAsync(TimeSpan.FromSeconds(5));
-        Assert.True(Directory.Exists(fixture.Temp.File("user/packs/contextbar.fixture")));
+        Assert.True(Directory.Exists(fixture.Temp.File("user/packs/powertrove.fixture")));
         Assert.False(uninstall.IsCompleted);
         release.TrySetResult();
         await uninstall;
         Assert.True(fixture.StopCompleted);
-        Assert.False(Directory.Exists(fixture.Temp.File("user/packs/contextbar.fixture")));
+        Assert.False(Directory.Exists(fixture.Temp.File("user/packs/powertrove.fixture")));
     }
 
     [Fact]
@@ -137,9 +137,9 @@ public sealed class PackInstallerTests
         var registry = new ActionRegistry();
         var runtime = new InstalledPackRuntime(fixture.Installer, supervisor, registry, [], new EmptyCatalog());
         await runtime.ReloadAsync();
-        Assert.IsType<RemoteAction>(registry.GetAction("contextbar.fixture.copy"));
+        Assert.IsType<RemoteAction>(registry.GetAction("powertrove.fixture.copy"));
         Assert.Equal(0, factory.Starts);
-        await fixture.Installer.UninstallAsync("contextbar.fixture");
+        await fixture.Installer.UninstallAsync("powertrove.fixture");
         await runtime.ReloadAsync();
         Assert.Empty(registry.GetAllActions());
     }
@@ -171,22 +171,22 @@ public sealed class PackInstallerTests
         public bool StopCompleted;
         public Func<string, CancellationToken, Task>? StopHook;
         public PackInstaller Installer { get; }
-        public string ActivePath => Temp.File("user/packs/contextbar.fixture/active.json");
+        public string ActivePath => Temp.File("user/packs/powertrove.fixture/active.json");
         public Fixture() => Installer = new PackInstaller(Temp.File("user"), new Version(0, 1, 0), async (id, token) =>
         { if (StopHook is { } hook) await hook(id, token); StopCompleted = true; }, Files, new PackSignatureVerifier([Convert.ToBase64String(_key.ExportSubjectPublicKeyInfo())]));
         public string Bundle(string version, string? mutation = null)
         {
             byte[] payload = "generated payload"u8.ToArray();
             const string payloadName = "payload/fixture.dll";
-            var manifest = new ActionManifest("2.0", "contextbar.fixture", version, "Fixture tools", "PowerTrove tests", "1",
-                [new ManifestAction("contextbar.fixture.copy", "Fixture copy", ["files"], RequiresPreview: true,
+            var manifest = new ActionManifest("2.0", "powertrove.fixture", version, "Fixture tools", "PowerTrove tests", "1",
+                [new ManifestAction("powertrove.fixture.copy", "Fixture copy", ["files"], RequiresPreview: true,
                     Selection: new ManifestSelection(["text"], 1, null, null, null, false), Extensions: [".txt"], ChangesFiles: true)],
                 MinHostVersion: mutation == "host" ? "99.0.0" : "0.1.0",
                 Payload: new ManifestPayload(payloadName, payload.LongLength,
                     [new ManifestPayloadFile(payloadName, Convert.ToHexString(SHA256.HashData(payload)), payload.LongLength)]), Capabilities: []);
             string json = ActionPackManifest.ToJson(manifest);
             if (mutation == "signed-traversal") json = json.Replace(payloadName, "../escape.dll", StringComparison.Ordinal);
-            if (mutation == "id") json = json.Replace("contextbar.fixture\"", "../escape\"", StringComparison.Ordinal);
+            if (mutation == "id") json = json.Replace("powertrove.fixture\"", "../escape\"", StringComparison.Ordinal);
             byte[] raw = Encoding.UTF8.GetBytes(json);
             byte[] signature = _key.SignData(raw, HashAlgorithmName.SHA256, DSASignatureFormat.Rfc3279DerSequence);
             if (mutation == "manifest") raw = Encoding.UTF8.GetBytes(json.Replace("Fixture tools", "Changed tools", StringComparison.Ordinal));
@@ -236,6 +236,6 @@ public sealed class PackInstallerTests
         { if (FailActivation) throw new IOException("Synthetic atomic replace failure."); _physical.ActivateFile(a, b); }
         public void DeleteFile(string p) => _physical.DeleteFile(p);
         public void DeleteDirectory(string p)
-        { if (Path.GetFileName(p) == "contextbar.fixture") UninstallObserved?.Invoke(); _physical.DeleteDirectory(p); }
+        { if (Path.GetFileName(p) == "powertrove.fixture") UninstallObserved?.Invoke(); _physical.DeleteDirectory(p); }
     }
 }

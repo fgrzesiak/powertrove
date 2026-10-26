@@ -9,7 +9,7 @@ public class ActivationProtocolTests
     [Fact]
     public async Task FramingRoundTripsFragmentedUnicodeSelection()
     {
-        var message = new ExplicitSelectionMessage([@"C:\fixtures\Grüße one.pdf", @"D:\fixtures\two.png"], "contextbar.pdf.organize");
+        var message = new ExplicitSelectionMessage([@"C:\fixtures\Grüße one.pdf", @"D:\fixtures\two.png"], "powertrove.pdf.organize");
         using var wire = new MemoryStream();
         await ActivationProtocol.WriteAsync(wire, message, default);
         using var fragmented = new FragmentedStream(wire.ToArray());
@@ -68,10 +68,10 @@ public class ActivationProtocolTests
     {
         Assert.IsType<ActivatePaletteMessage>(ActivationProtocol.ParseArguments([]));
         var selection = Assert.IsType<ExplicitSelectionMessage>(ActivationProtocol.ParseArguments(["--organize-pages", @"C:\one.pdf"]));
-        Assert.Equal("contextbar.pdf.organize", selection.ActionId);
+        Assert.Equal("powertrove.pdf.organize", selection.ActionId);
         Assert.Null(ActivationProtocol.ParseArguments(["--open-selection"]));
         Assert.Null(ActivationProtocol.ParseArguments(["--open-selection", @"\\server\share\one.pdf"]));
-        Assert.Null(ActivationProtocol.ParseArguments(["--execute", "contextbar.pdf.organize"]));
+        Assert.Null(ActivationProtocol.ParseArguments(["--execute", "powertrove.pdf.organize"]));
     }
 
     [Fact]

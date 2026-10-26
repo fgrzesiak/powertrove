@@ -7,12 +7,12 @@ public class ExplorerMenuRegistrationTests
     private const string Executable = @"C:\Fixtures\Grüße & tools\PowerTrove.Desktop.exe";
 
     [Fact]
-    public void RegistrationIdentity_RemainsCompatibleWithExistingInstallations()
+    public void RegistrationIdentity_UsesPowerTroveKeys()
     {
-        Assert.Equal(@"Software\Classes\*\shell\ContextBar.Open", ExplorerMenuRegistration.VerbPath);
-        Assert.Equal("ContextBarOwner", ExplorerMenuRegistration.OwnerValue);
-        Assert.Equal("ContextBarExecutable", ExplorerMenuRegistration.ExecutableValue);
-        Assert.Equal("ContextBar.ExplorerVerb.v1", ExplorerMenuRegistration.OwnerMarker);
+        Assert.Equal(@"Software\Classes\*\shell\PowerTrove.Open", ExplorerMenuRegistration.VerbPath);
+        Assert.Equal("PowerTroveOwner", ExplorerMenuRegistration.OwnerValue);
+        Assert.Equal("PowerTroveExecutable", ExplorerMenuRegistration.ExecutableValue);
+        Assert.Equal("PowerTrove.ExplorerVerb.v1", ExplorerMenuRegistration.OwnerMarker);
     }
 
     [Fact]

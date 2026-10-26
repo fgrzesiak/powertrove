@@ -12,7 +12,7 @@ public sealed class PdfToTextAction : PerFileAction<PdfToTextOptions>
     public PdfToTextAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.to-text", SR.GetString("PdfToTextAction_Title"),
+            "powertrove.pdf.to-text", SR.GetString("PdfToTextAction_Title"),
             SR.GetString("PdfToTextAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "text", "txt", "extract" },

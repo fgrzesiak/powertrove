@@ -12,7 +12,7 @@ public sealed class CountFilesAction : IAction
     private readonly IDirectoryScanner _scanner;
 
     public ActionDescriptor Descriptor { get; } = new ActionDescriptor(
-        Id: "contextbar.files.count",
+        Id: "powertrove.files.count",
         Title: SR.GetString("CountFilesAction_Title"),
         Description: SR.GetString("CountFilesAction_Description"),
         Accepts: new HashSet<ContentKind> { ContentKind.Files },

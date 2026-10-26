@@ -190,7 +190,7 @@ public sealed partial class FFmpegMediaEngine
 
 internal sealed class MediaTempDirectory : IDisposable
 {
-    public string Path { get; } = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "contextbar-media-" + Guid.NewGuid().ToString("N"));
+    public string Path { get; } = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "powertrove-media-" + Guid.NewGuid().ToString("N"));
     public MediaTempDirectory() => Directory.CreateDirectory(Path);
     public void Dispose() { try { Directory.Delete(Path, true); } catch (IOException) { } catch (UnauthorizedAccessException) { } }
 }

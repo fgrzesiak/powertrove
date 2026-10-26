@@ -44,7 +44,7 @@ public class OutputPlannerTests
     [Fact]
     public void PhysicalOutputFileSystem_CreateFile_NeverTruncatesExistingOutput()
     {
-        var directory = Path.Combine(Path.GetTempPath(), "contextbar-safe-output-" + Guid.NewGuid().ToString("N"));
+        var directory = Path.Combine(Path.GetTempPath(), "powertrove-safe-output-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(directory);
         try
         {

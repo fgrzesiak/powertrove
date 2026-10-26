@@ -11,7 +11,7 @@ public sealed class CompareImagesAction : CombineFilesAction<EmptyParameters>
     {
         _codec = codec;
         Descriptor = new ActionDescriptor(
-            "contextbar.image.compare",
+            "powertrove.image.compare",
             SR.GetString("ImagesPack_Title_Compare"),
             SR.GetString("ImagesPack_Desc_Compare"),
             new HashSet<ContentKind> { ContentKind.Files },

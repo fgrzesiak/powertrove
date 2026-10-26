@@ -8,7 +8,7 @@ public sealed class ExcelAction : PerFileAction<string>
 {
     private readonly string _mode;
     public ExcelAction(FileActionServices services, string mode) : base(services) => _mode = mode;
-    public override ActionDescriptor Descriptor => new("contextbar.data." + _mode, SR.Get(_mode), SR.Get("ExcelDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.data." + _mode, SR.Get(_mode), SR.Get("ExcelDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["excel", "xlsx", "csv", "json", "convert"], true, true,
         Parameters: _mode == "csv-to-xlsx" ? [] : [DataSupport.Choice("Sheet", "first", "first", "all")],
         Selection: SelectionRequirements.Any("spreadsheet"));

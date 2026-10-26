@@ -17,7 +17,7 @@ public sealed class OfficePack : IActionPack
     }
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("contextbar.office", SR.Get("PackTitle"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.office", SR.Get("PackTitle"), "0.1.0", "PowerTrove");
     public IReadOnlyList<IAction> Actions { get; }
 }
 
@@ -39,7 +39,7 @@ public sealed class OfficeConvertAction : PerFileAction<OfficeOptions>
         var extensions = application switch { OfficeApplication.Word => OfficeFormats.WordExtensions, OfficeApplication.Excel => OfficeFormats.ExcelExtensions, _ => OfficeFormats.PowerPointExtensions };
         _filter = new FileInputFilter(SR.Get("Inputs"), pdfToWord ? new[] { ".pdf" } : extensions,
             new[] { pdfToWord ? FileFormats.Pdf : OfficeFormats.FormatFor(application) });
-        Descriptor = new ActionDescriptor("contextbar.office." + verb, SR.Get("Title" + kind), SR.Get("Description" + kind),
+        Descriptor = new ActionDescriptor("powertrove.office." + verb, SR.Get("Title" + kind), SR.Get("Description" + kind),
             new HashSet<ContentKind> { ContentKind.Files }, new[] { "office", "word", "excel", "powerpoint", "pdf", "convert", "export" },
             RequiresPreview: true, ChangesFiles: true,
             Selection: SelectionRequirements.Any(pdfToWord ? "pdf" : application == OfficeApplication.Excel ? "spreadsheet" : "document"));

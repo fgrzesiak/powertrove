@@ -145,7 +145,7 @@ public sealed class ExtendedFileToolsTests : IDisposable
 public abstract class ExtendedFileContract : ActionContractTestsBase
 {
     protected abstract string Id { get; }
-    protected override IAction CreateAction() => new FilesPack(FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier())).Actions.Single(a => a.Descriptor.Id == "contextbar.files." + Id);
+    protected override IAction CreateAction() => new FilesPack(FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier())).Actions.Single(a => a.Descriptor.Id == "powertrove.files." + Id);
     protected override ContextSnapshot CreateValidSnapshot() => Snapshots.ForPaths(Path.Combine(Path.GetTempPath(), "fixture.txt"));
 }
 public sealed class CopyContract : ExtendedFileContract { protected override string Id => "copy-paths"; }

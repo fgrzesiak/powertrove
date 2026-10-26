@@ -48,7 +48,7 @@ public class ExplorerActivationHandoffTests
     private sealed class FileAction : IAction
     {
         public int Executions { get; private set; }
-        public ActionDescriptor Descriptor { get; } = new("contextbar.test.explicit-file", "Fixture action", "Fixture description",
+        public ActionDescriptor Descriptor { get; } = new("powertrove.test.explicit-file", "Fixture action", "Fixture description",
             new HashSet<ContentKind> { ContentKind.Files }, Array.Empty<string>(), RequiresPreview: true, ChangesFiles: true);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken) => new(new ActionAvailability(true));
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken cancellationToken) =>

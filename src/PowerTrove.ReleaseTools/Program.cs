@@ -31,7 +31,7 @@ public static class Program
         rootCommand.AddCommand(packageCommand);
 
         var publishedRootOption = new Option<string>("--published-root", "Folder containing individually published pack compositions.") { IsRequired = true };
-        var keyFileOption = new Option<string?>("--key-file", "External PEM P-256 signing private-key file (or CONTEXTBAR_PACK_SIGNING_KEY_FILE).");
+        var keyFileOption = new Option<string?>("--key-file", "External PEM P-256 signing private-key file (or POWERTROVE_PACK_SIGNING_KEY_FILE).");
         var dryRunOption = new Option<bool>("--dry-run", "Produce metadata without signatures or installable bundles.");
         var bundlesCommand = new Command("pack-bundles", "Produce signed first-party pack ZIPs and owner catalog.")
         {

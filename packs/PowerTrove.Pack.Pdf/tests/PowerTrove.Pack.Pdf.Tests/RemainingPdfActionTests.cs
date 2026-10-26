@@ -14,10 +14,10 @@ public sealed class RemainingPdfActionTests
     public void PdfPackRegistersBothActionsAndNeverRemembersPasswords()
     {
         var pack = new PdfPack(Services());
-        var protect = Assert.Single(pack.Actions.Where(a => a.Descriptor.Id == "contextbar.pdf.protect"));
+        var protect = Assert.Single(pack.Actions.Where(a => a.Descriptor.Id == "powertrove.pdf.protect"));
         Assert.False(protect.Descriptor.CanRememberParameters);
         Assert.Equal(2, protect.Descriptor.Parameters!.Count(x => x.Kind == ActionParameterKind.Password));
-        var flatten = Assert.Single(pack.Actions.Where(a => a.Descriptor.Id == "contextbar.pdf.flatten"));
+        var flatten = Assert.Single(pack.Actions.Where(a => a.Descriptor.Id == "powertrove.pdf.flatten"));
         Assert.Equal("KeepLinks", Assert.Single(flatten.Descriptor.Parameters!).Name);
     }
 

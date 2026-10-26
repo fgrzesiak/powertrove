@@ -36,7 +36,7 @@ public class RasterActionTests : IDisposable
     public void Dispose() => _dir.Dispose();
     private static FileActionServices Services() => FileActionServices.CreatePhysical(new FileSignatureVerifier());
     private ImagesPack Pack() => new(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }), Services(), rasterCodec: _codec);
-    private IAction Action(string id) => Pack().Actions.Single(a => a.Descriptor.Id == "contextbar.image." + id);
+    private IAction Action(string id) => Pack().Actions.Single(a => a.Descriptor.Id == "powertrove.image." + id);
     private string Image(string name, int w = 3, int h = 2, bool alpha = true)
     {
         using var png = new MemoryStream(); PngEncoder.Encode(RasterOperations.Canvas(w, h, new BgraColor(20, 40, 80)), png, includeAlpha: alpha);
@@ -166,8 +166,8 @@ public class RasterActionTests : IDisposable
     {
         var pack = new ImagesPack(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }), Services());
         var snapshot = Snapshots.ForPaths(Image("a.png"));
-        Assert.True((await pack.Actions.Single(a => a.Descriptor.Id == "contextbar.image.convert-png").MatchAsync(snapshot, CancellationToken.None)).IsAvailable);
-        Assert.False((await pack.Actions.Single(a => a.Descriptor.Id == "contextbar.image.crop-aspect").MatchAsync(snapshot, CancellationToken.None)).IsAvailable);
+        Assert.True((await pack.Actions.Single(a => a.Descriptor.Id == "powertrove.image.convert-png").MatchAsync(snapshot, CancellationToken.None)).IsAvailable);
+        Assert.False((await pack.Actions.Single(a => a.Descriptor.Id == "powertrove.image.crop-aspect").MatchAsync(snapshot, CancellationToken.None)).IsAvailable);
     }
     [Fact]
     public async Task CancellationDuringEncoding_RemovesTemporaryOutputAndPreservesSource()
@@ -194,7 +194,7 @@ public abstract class RasterContractTests : ActionContractTestsBase, IDisposable
 {
     private readonly TempDirectory _dir = new();
     protected abstract string Id { get; }
-    protected override IAction CreateAction() => new ImagesPack(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }), FileActionServices.CreatePhysical(new FileSignatureVerifier()), rasterCodec: new RecordingRasterCodec()).Actions.Single(a => a.Descriptor.Id == "contextbar.image." + Id);
+    protected override IAction CreateAction() => new ImagesPack(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }), FileActionServices.CreatePhysical(new FileSignatureVerifier()), rasterCodec: new RecordingRasterCodec()).Actions.Single(a => a.Descriptor.Id == "powertrove.image." + Id);
     protected override ContextSnapshot CreateValidSnapshot()
     {
         using var png = new MemoryStream(); PngEncoder.Encode(RasterOperations.Canvas(3, 2, new BgraColor(30, 50, 70)), png);

@@ -21,7 +21,7 @@ public sealed class MediaActionsTests : IDisposable
         var unsupported = new FakeEngine { SupportsAnything = false };
         var engine = new FakeEngine();
 
-        var receipt = await Action("contextbar.audio.convert-mp3", unsupported, engine)
+        var receipt = await Action("powertrove.audio.convert-mp3", unsupported, engine)
             .ExecuteAsync(Snapshots.ForPaths(wav), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Message);
@@ -37,7 +37,7 @@ public sealed class MediaActionsTests : IDisposable
         string mp4 = _dir.Write("clip.mp4", IsoMediaHeader());
         var engine = new FakeEngine();
 
-        var receipt = await Action("contextbar.video.remove-audio", engine)
+        var receipt = await Action("powertrove.video.remove-audio", engine)
             .ExecuteAsync(Snapshots.ForPaths(mp4), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.Equal(_dir.File("clip.muted.mp4"), Assert.Single(receipt.OutputPaths));
@@ -49,7 +49,7 @@ public sealed class MediaActionsTests : IDisposable
         string wav = MediaFixtures.WriteSineWav(_dir.File("tone.wav"));
         var engine = new FakeEngine { Fail = true };
 
-        var receipt = await Action("contextbar.audio.convert-flac", engine)
+        var receipt = await Action("powertrove.audio.convert-flac", engine)
             .ExecuteAsync(Snapshots.ForPaths(wav), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
@@ -64,7 +64,7 @@ public sealed class MediaActionsTests : IDisposable
         string mp4 = _dir.Write("clip.mp4", IsoMediaHeader());
         var windowsLike = new FakeEngine { Targets = new[] { MediaTargets.Mp4, MediaTargets.Mp3 } };
 
-        var availability = await Action("contextbar.video.convert-webm", windowsLike).MatchAsync(Snapshots.ForPaths(mp4), CancellationToken.None);
+        var availability = await Action("powertrove.video.convert-webm", windowsLike).MatchAsync(Snapshots.ForPaths(mp4), CancellationToken.None);
 
         Assert.False(availability.IsAvailable);
         Assert.Contains("FFmpeg", availability.Reason);
@@ -75,7 +75,7 @@ public sealed class MediaActionsTests : IDisposable
     {
         string wav = MediaFixtures.WriteSineWav(_dir.File("master.wav"));
 
-        var preview = await Action("contextbar.audio.convert-mp3", new FakeEngine())
+        var preview = await Action("powertrove.audio.convert-mp3", new FakeEngine())
             .PreviewAsync(Snapshots.ForPaths(wav), new EmptyParameters(), CancellationToken.None);
 
         Assert.Contains(preview.Warnings, w => w.Contains("lossless format to a lossy format"));
@@ -122,7 +122,7 @@ public sealed class MediaActionsTests : IDisposable
         if (!service.IsAvailable) return; // FFmpeg is optional; covered by the fake-engine tests above.
 
         string wav = MediaFixtures.WriteSineWav(_dir.File("tone.wav"));
-        var receipt = await Action("contextbar.audio.convert-mp3", new FFmpegMediaEngine(service))
+        var receipt = await Action("powertrove.audio.convert-mp3", new FFmpegMediaEngine(service))
             .ExecuteAsync(Snapshots.ForPaths(wav), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Failures.FirstOrDefault()?.ErrorMessage);
@@ -133,7 +133,7 @@ public sealed class MediaActionsTests : IDisposable
     [Fact]
     public void ReplaceAudio_IsIdealForOneVideoOneAudio()
     {
-        var action = Action("contextbar.video.replace-audio", new FakeEngine());
+        var action = Action("powertrove.video.replace-audio", new FakeEngine());
 
         Assert.Equal(SelectionFit.Ideal, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("v.mp4", "a.mp3")));
         Assert.Equal(SelectionFit.None, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("v.mp4", "v2.mp4", "a.mp3")));
@@ -168,7 +168,7 @@ public sealed class MediaActionsTests : IDisposable
     public async Task ReplaceAudio_WithoutFFmpeg_IsUnavailable()
     {
         var windowsLike = new FakeEngine { Targets = new[] { MediaTargets.Mp4 } };
-        var availability = await Action("contextbar.video.replace-audio", windowsLike).MatchAsync(Snapshots.ForPaths("v.mp4", "a.mp3"), CancellationToken.None);
+        var availability = await Action("powertrove.video.replace-audio", windowsLike).MatchAsync(Snapshots.ForPaths("v.mp4", "a.mp3"), CancellationToken.None);
 
         Assert.False(availability.IsAvailable);
         Assert.Contains("FFmpeg", availability.Reason);
@@ -178,7 +178,7 @@ public sealed class MediaActionsTests : IDisposable
     [Fact]
     public void EmbedSubtitles_IsIdealForOneVideoOneToThreeSubtitles()
     {
-        var action = Action("contextbar.video.embed-subtitles", new FakeEngine());
+        var action = Action("powertrove.video.embed-subtitles", new FakeEngine());
 
         Assert.Equal(SelectionFit.Ideal, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("v.mp4", "s1.srt")));
         Assert.Equal(SelectionFit.Ideal, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("v.mp4", "s1.srt", "s2.vtt", "s3.ass")));
@@ -235,7 +235,7 @@ public sealed class MediaActionsTests : IDisposable
     public async Task EmbedSubtitles_WithoutFFmpeg_IsUnavailable()
     {
         var windowsLike = new FakeEngine { Targets = new[] { MediaTargets.Mp4 } };
-        var availability = await Action("contextbar.video.embed-subtitles", windowsLike).MatchAsync(Snapshots.ForPaths("v.mp4", "s.srt"), CancellationToken.None);
+        var availability = await Action("powertrove.video.embed-subtitles", windowsLike).MatchAsync(Snapshots.ForPaths("v.mp4", "s.srt"), CancellationToken.None);
 
         Assert.False(availability.IsAvailable);
         Assert.Contains("FFmpeg", availability.Reason);
@@ -245,7 +245,7 @@ public sealed class MediaActionsTests : IDisposable
     [Fact]
     public void StillImageVideo_IsIdealForOneImageOneAudio()
     {
-        var action = Action("contextbar.video.still-image", new FakeEngine());
+        var action = Action("powertrove.video.still-image", new FakeEngine());
 
         Assert.Equal(SelectionFit.Ideal, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("i.jpg", "a.mp3")));
         Assert.Equal(SelectionFit.None, SelectionRequirements.Evaluate(action.Descriptor.Selection!, Snapshots.ForPaths("i.jpg", "i2.jpg", "a.mp3")));
@@ -284,7 +284,7 @@ public sealed class MediaActionsTests : IDisposable
     {
         // Like WindowsMediaEngine: MP4 output, but no still-image composition.
         var windowsLike = new FakeEngine { Targets = new[] { MediaTargets.Mp4 }, Unsupported = new[] { MediaOperation.StillImageVideo } };
-        var availability = await Action("contextbar.video.still-image", windowsLike).MatchAsync(Snapshots.ForPaths("i.jpg", "a.mp3"), CancellationToken.None);
+        var availability = await Action("powertrove.video.still-image", windowsLike).MatchAsync(Snapshots.ForPaths("i.jpg", "a.mp3"), CancellationToken.None);
 
         Assert.False(availability.IsAvailable);
         Assert.Contains("FFmpeg", availability.Reason);

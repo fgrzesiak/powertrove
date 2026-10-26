@@ -19,7 +19,7 @@ public class PdfActionsAdditionalTests
     {
         var services = FileActionServices.CreatePhysical(new PowerTrove.Infrastructure.Files.FileSignatureVerifier());
         var action = new CropPdfAction(services); // assuming FileActionServices are only used during ProcessAsync or Input filtering
-        Assert.Equal("contextbar.pdf.crop", action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.crop", action.Descriptor.Id);
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public class PdfActionsAdditionalTests
     {
         var services = FileActionServices.CreatePhysical(new PowerTrove.Infrastructure.Files.FileSignatureVerifier());
         var action = new ResizePdfPagesAction(services);
-        Assert.Equal("contextbar.pdf.resize-pages", action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.resize-pages", action.Descriptor.Id);
     }
 
     [Fact]
@@ -35,7 +35,7 @@ public class PdfActionsAdditionalTests
     {
         var services = FileActionServices.CreatePhysical(new FileSignatureVerifier());
         var action = new EditPdfMetadataAction(services);
-        Assert.Equal("contextbar.pdf.edit-metadata", action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.edit-metadata", action.Descriptor.Id);
 
         string tooLong = new string('a', 501);
 

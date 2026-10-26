@@ -52,7 +52,7 @@ public class AppCompositionTests
             tableData,
             DateTimeOffset.UtcNow,
             DateTimeOffset.UtcNow.AddMinutes(5),
-            "contextbar.provider.excel",
+            "powertrove.provider.excel",
             null,
             new HashSet<string> { "table.export.v1" }
         );
@@ -61,8 +61,8 @@ public class AppCompositionTests
 
         var results = await searchEngine.SearchAsync("", snapshot);
 
-        Assert.Contains(results, r => r.Action.Descriptor.Id == "contextbar.table.export-csv");
-        Assert.Contains(results, r => r.Action.Descriptor.Id == "contextbar.table.export-json");
+        Assert.Contains(results, r => r.Action.Descriptor.Id == "powertrove.table.export-csv");
+        Assert.Contains(results, r => r.Action.Descriptor.Id == "powertrove.table.export-json");
     }
 
     [Fact]

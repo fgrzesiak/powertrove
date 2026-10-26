@@ -20,8 +20,8 @@ public sealed class BuiltInIsolationRoutingTests
             var filesAction = new StubAction();
             var builtIns = new IActionPack[]
             {
-                new StubPack(new ActionPackInfo("contextbar.pdf", "PDF", "0.1.0", "PowerTrove"), [pdfAction]),
-                new StubPack(new ActionPackInfo("contextbar.files", "Files", "0.1.0", "PowerTrove"), [filesAction])
+                new StubPack(new ActionPackInfo("powertrove.pdf", "PDF", "0.1.0", "PowerTrove"), [pdfAction]),
+                new StubPack(new ActionPackInfo("powertrove.files", "Files", "0.1.0", "PowerTrove"), [filesAction])
             };
             var result = await BuiltInPackIsolation.RouteAsync(builtIns, supervisor, root);
             Assert.False(result.Ready);
@@ -35,7 +35,7 @@ public sealed class BuiltInIsolationRoutingTests
     private sealed record StubPack(ActionPackInfo Info, IReadOnlyList<IAction> Actions) : IActionPack;
     private sealed class StubAction : IAction
     {
-        public ActionDescriptor Descriptor { get; } = new("contextbar.test.fixture", "fixture", "test", new HashSet<ContentKind> { ContentKind.Files },
+        public ActionDescriptor Descriptor { get; } = new("powertrove.test.fixture", "fixture", "test", new HashSet<ContentKind> { ContentKind.Files },
             ["fixture"], true, true);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken token) => throw new NotImplementedException();
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters values, CancellationToken token) => throw new NotImplementedException();

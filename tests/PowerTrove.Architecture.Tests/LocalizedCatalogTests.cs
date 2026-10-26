@@ -45,7 +45,7 @@ public sealed class LocalizedCatalogTests
         Assert.Equal(expected, actual);
         var packs = CreatePacks();
         Assert.All(packs, p => Assert.NotEmpty(p.Actions));
-        Assert.Contains(packs, p => p.Info.Id == "contextbar.recipes");
+        Assert.Contains(packs, p => p.Info.Id == "powertrove.recipes");
     }
 
     [Theory]
@@ -57,7 +57,7 @@ public sealed class LocalizedCatalogTests
     {
         var previous = CultureInfo.CurrentUICulture;
         var problems = LocalizedActionCatalog.FindProblems(() => new IActionPack[] { new ControlPack(brokenField) });
-        Assert.Contains("contextbar.test.localization." + brokenField + ": untranslated", problems);
+        Assert.Contains("powertrove.test.localization." + brokenField + ": untranslated", problems);
         Assert.Equal(previous, CultureInfo.CurrentUICulture);
     }
 
@@ -91,7 +91,7 @@ public sealed class LocalizedCatalogTests
     private sealed class ControlPack : IActionPack
     {
         public ControlPack(string brokenField) => Actions = new IAction[] { new ControlAction(brokenField) };
-        public ActionPackInfo Info { get; } = new("contextbar.test", "Test", "0.1.0", "Tests");
+        public ActionPackInfo Info { get; } = new("powertrove.test", "Test", "0.1.0", "Tests");
         public IReadOnlyList<IAction> Actions { get; }
     }
 
@@ -99,7 +99,7 @@ public sealed class LocalizedCatalogTests
     {
         private string Text(string field, string english, string german) => brokenField == field ? "Untranslated control" :
             CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "de" ? german : english;
-        public ActionDescriptor Descriptor => new("contextbar.test.localization", Text("Title", "Control title", "Prüftitel"),
+        public ActionDescriptor Descriptor => new("powertrove.test.localization", Text("Title", "Control title", "Prüftitel"),
             Text("Description", "Control description", "Prüfbeschreibung"), new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(),
             RequiresPreview: false, ChangesFiles: false,
             Parameters: new[] { ActionParameterDefinition.Choice("Mode", Text("Parameters[Mode].Title", "Mode", "Modus"), "value",

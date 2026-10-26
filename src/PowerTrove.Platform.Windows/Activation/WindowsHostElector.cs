@@ -23,7 +23,7 @@ public sealed class WindowsHostElector : IHostElector
     private bool _disposed;
     private int _listening;
 
-    public WindowsHostElector(string instanceKey = "ContextBar")
+    public WindowsHostElector(string instanceKey = "PowerTrove")
     {
         if (instanceKey.Length is 0 or > 64 || !instanceKey.All(char.IsAsciiLetterOrDigit))
             throw new ArgumentException("Invalid instance key.", nameof(instanceKey));

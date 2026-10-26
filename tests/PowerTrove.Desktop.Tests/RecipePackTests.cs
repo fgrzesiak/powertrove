@@ -11,7 +11,7 @@ public sealed class RecipePackTests
     {
         var runner = new RecordingRunner();
         var services = FileActionServices.CreatePhysical(new UnusedVerifier());
-        var recipe = new RecipePack(runner, services).Actions.Single(a => a.Descriptor.Id == "contextbar.recipe.mixed-for-email");
+        var recipe = new RecipePack(runner, services).Actions.Single(a => a.Descriptor.Id == "powertrove.recipe.mixed-for-email");
         var now = DateTimeOffset.UtcNow;
         var files = new[] { "image.jpg", "document.pdf", "other.txt" }.Select(name =>
             new SelectedFile(Path.Combine(Path.GetTempPath(), name), name, Path.GetExtension(name), null, 100, true, true, null)).ToArray();
@@ -21,7 +21,7 @@ public sealed class RecipePackTests
         var preview = await recipe.PreviewAsync(context, new EmptyParameters(), CancellationToken.None);
 
         Assert.False(preview.IsBlocked);
-        Assert.Equal(new[] { "contextbar.image.compress", "contextbar.pdf.compress", "contextbar.files.zip" }, runner.Steps.Select(s => s.ActionId));
+        Assert.Equal(new[] { "powertrove.image.compress", "powertrove.pdf.compress", "powertrove.files.zip" }, runner.Steps.Select(s => s.ActionId));
         var image = Assert.IsType<DictionaryParameters>(runner.Steps[0].Parameters).Values;
         Assert.Equal("1600", image["MaxDimension"]);
         Assert.Equal("75", image["Quality"]);

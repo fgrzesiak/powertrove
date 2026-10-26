@@ -25,7 +25,7 @@ public sealed class ChecksumAction : CombineFilesAction<ChecksumOptions>
     public ChecksumAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            Id: "contextbar.files.checksum",
+            Id: "powertrove.files.checksum",
             Title: SR.GetString("ChecksumAction_Title"),
             Description: SR.GetString("ChecksumAction_Description"),
             Accepts: new HashSet<ContentKind> { ContentKind.Files },

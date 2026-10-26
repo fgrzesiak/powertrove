@@ -18,7 +18,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
     private static ActionParameterDefinition Text(string key, string value) => ActionParameterDefinition.Text(key, SR.GetString("MediaParam" + key), value);
     private static ActionParameterDefinition Bool(string key, bool value) => ActionParameterDefinition.Boolean(key, SR.GetString("MediaParam" + key), value);
     private static ActionParameterDefinition Choice(string key, string value, params string[] choices) => ActionParameterDefinition.Choice(key, SR.GetString("MediaParam" + key), value, choices.Select(c => new ActionParameterChoice(c, SR.GetString("MediaChoice" + c))).ToArray());
-    public override ActionDescriptor Descriptor => new("contextbar." + (_kind == "trim" ? "media" : _kind == "normalize" ? "audio" : "video") + "." + _kind,
+    public override ActionDescriptor Descriptor => new("powertrove." + (_kind == "trim" ? "media" : _kind == "normalize" ? "audio" : "video") + "." + _kind,
         SR.GetString("MediaTitle" + _kind), SR.GetString("MediaDesc" + _kind), new HashSet<ContentKind> { ContentKind.Files }, ["media", "video", "audio", _kind], true, true,
         Parameters: _kind switch
         {
@@ -107,7 +107,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
 
 public sealed class MediaInfoAction(IMediaInspector inspector, FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.media.info", SR.GetString("MediaTitleinfo"), SR.GetString("MediaDescinfo"), new HashSet<ContentKind> { ContentKind.Files }, ["media", "info", "duration", "codec", "bitrate"], false, false, Selection: SelectionRequirements.Single("audio", "video"));
+    public override ActionDescriptor Descriptor => new("powertrove.media.info", SR.GetString("MediaTitleinfo"), SR.GetString("MediaDescinfo"), new HashSet<ContentKind> { ContentKind.Files }, ["media", "info", "duration", "codec", "bitrate"], false, false, Selection: SelectionRequirements.Single("audio", "video"));
     protected override int MinimumInputs => 1; protected override int MaximumInputs => 1;
     protected override bool RequiresEntireSelection => true;
     protected override string? UnavailableReason => inspector.IsAvailable ? null : SR.GetString("MediaInspectUnavailable");
@@ -123,7 +123,7 @@ public sealed class MediaInfoAction(IMediaInspector inspector, FileActionService
 
 public sealed class JoinMediaAction(CompositeMediaEngine engine, IMediaInspector inspector, FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.media.merge", SR.GetString("MediaTitlemerge"), SR.GetString("MediaDescmerge"), new HashSet<ContentKind> { ContentKind.Files }, ["media", "join", "merge", "audio", "video"], true, true, Selection: new SelectionRequirements(new HashSet<string> { "audio", "video" }, MinItems: 2, MaxItems: 100, AllowOtherItems: false));
+    public override ActionDescriptor Descriptor => new("powertrove.media.merge", SR.GetString("MediaTitlemerge"), SR.GetString("MediaDescmerge"), new HashSet<ContentKind> { ContentKind.Files }, ["media", "join", "merge", "audio", "video"], true, true, Selection: new SelectionRequirements(new HashSet<string> { "audio", "video" }, MinItems: 2, MaxItems: 100, AllowOtherItems: false));
     protected override int MaximumInputs => 100;
     protected override bool RequiresEntireSelection => true;
     protected override FileInputFilter Input => new(SR.GetString("MediaFiles"), MediaAction.AudioExtensions.Concat(MediaAction.VideoExtensions), MediaAction.AudioFormats.Concat(MediaAction.VideoFormats));

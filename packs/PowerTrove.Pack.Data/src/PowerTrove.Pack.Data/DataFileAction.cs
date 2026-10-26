@@ -21,7 +21,7 @@ public sealed class DataFileAction : PerFileAction<DataOptions>
             "json-format" => new[] { DataSupport.Choice("Indent", "2", "2", "4", "tabs") },
             _ => Array.Empty<ActionParameterDefinition>()
         };
-        Descriptor = new("contextbar.data." + kind, SR.Get(kind), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files },
+        Descriptor = new("powertrove.data." + kind, SR.Get(kind), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files },
             new[] { kind, "data", "text", "convert" }, true, true, Parameters: parameters,
             Selection: SelectionRequirements.Any(kind.StartsWith("csv", StringComparison.Ordinal) ? new[] { "spreadsheet", "text" } : kind.StartsWith("json", StringComparison.Ordinal) ? new[] { "text" } : new[] { "text", "spreadsheet", "other" }));
     }

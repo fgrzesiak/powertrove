@@ -152,7 +152,7 @@ public class PalettePresentationTests
         await vm.SearchTask; return vm;
     }
     private static ContextSnapshot Snapshot() => new(Guid.NewGuid(), new SourceWindowIdentity(1, 1, "test", DateTimeOffset.UtcNow), ContextStatus.Available, new NoContent(), DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddMinutes(5), "test", null);
-    private static ActionSearchResult Result(string id, ActionHighlight highlight = ActionHighlight.None, bool available = true) => new(new TestAction("contextbar." + id), available, available ? null : "Unavailable", 100, highlight);
+    private static ActionSearchResult Result(string id, ActionHighlight highlight = ActionHighlight.None, bool available = true) => new(new TestAction("powertrove." + id), available, available ? null : "Unavailable", 100, highlight);
     private sealed class ScriptedEngine(params ActionSearchResult[] results) : IActionSearchEngine
     {
         public ActionSearchResult[] Results { get; } = results;

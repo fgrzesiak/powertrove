@@ -13,9 +13,9 @@ public sealed class PackProtocolTests
     public static IEnumerable<object[]> Messages()
     {
         yield return new object[] { new HelloMessage(1, "0.1.0") };
-        yield return new object[] { new ReadyMessage(new[] { new WorkerPack("contextbar.pack.pdf", "1.0.0") }) };
-        yield return new object[] { new PreviewMessage(Id, "contextbar.pdf.rotate", Selection, Parameters, Expiry) };
-        yield return new object[] { new ExecuteMessage(Id, "contextbar.pdf.rotate", Selection, Parameters, Expiry, @"C:\staging\request") };
+        yield return new object[] { new ReadyMessage(new[] { new WorkerPack("powertrove.pack.pdf", "1.0.0") }) };
+        yield return new object[] { new PreviewMessage(Id, "powertrove.pdf.rotate", Selection, Parameters, Expiry) };
+        yield return new object[] { new ExecuteMessage(Id, "powertrove.pdf.rotate", Selection, Parameters, Expiry, @"C:\staging\request") };
         yield return new object[] { PreviewResultMessage.FromPreview(Id, new ActionPreview(true, "Preview", new[] { "synthetic (copy).pdf" },
             new[] { "Warning" }, false, new[] { new RenamePreviewRow("before.pdf", "after.pdf") }, new ActionConfirmation("Confirm", "confirm", "token"))) };
         yield return new object[] { new ProgressMessage(Id, 0.25, "Processing") };

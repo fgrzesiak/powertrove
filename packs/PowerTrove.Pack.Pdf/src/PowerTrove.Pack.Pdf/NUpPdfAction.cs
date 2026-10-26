@@ -15,7 +15,7 @@ public sealed record NUpPdfOptions(int PerSheet, PdfPageSize SheetSize);
 
 public sealed class NUpPdfAction : PerFileAction<NUpPdfOptions>
 {
-    public const string ActionId = "contextbar.pdf.n-up";
+    public const string ActionId = "powertrove.pdf.n-up";
 
     public NUpPdfAction(FileActionServices services) : base(services)
     {

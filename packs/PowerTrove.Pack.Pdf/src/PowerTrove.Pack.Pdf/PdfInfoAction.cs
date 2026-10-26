@@ -18,7 +18,7 @@ public sealed class PdfInfoAction : IAction
     }
 
     public ActionDescriptor Descriptor { get; } = new(
-        "contextbar.pdf.info", SR.GetString("PdfInfoAction_Title"),
+        "powertrove.pdf.info", SR.GetString("PdfInfoAction_Title"),
         SR.GetString("PdfInfoAction_Description"),
         new HashSet<ContentKind> { ContentKind.Files },
         new[] { "pdf", "info", "pages", "count", "details", "properties" },

@@ -53,21 +53,21 @@ public class RecipeIntegrationTests : IDisposable
         }
 
         var recipe = new RecipeDefinition(
-            "contextbar.recipe.images-for-email",
+            "powertrove.recipe.images-for-email",
             "Prepare images for email",
             "Resizes images to max 1600 px, compresses them to 75% quality, and zips the result.",
             SelectionRequirements.Multiple(new[] { "image" }),
             new List<RecipeStep>
             {
-                new RecipeStep("contextbar.image.resize", new Dictionary<string, string> { { "MaxDimension", "1600" }, { "Enlarge", "false" } }),
-                new RecipeStep("contextbar.image.compress", new Dictionary<string, string> { { "Quality", "75" } }),
-                new RecipeStep("contextbar.files.zip", new Dictionary<string, string>())
+                new RecipeStep("powertrove.image.resize", new Dictionary<string, string> { { "MaxDimension", "1600" }, { "Enlarge", "false" } }),
+                new RecipeStep("powertrove.image.compress", new Dictionary<string, string> { { "Quality", "75" } }),
+                new RecipeStep("powertrove.files.zip", new Dictionary<string, string>())
             }
         );
         var recipeAction = new RecipeAction(recipe, workflowRunner, services);
         actionRegistry.Register(recipeAction);
 
-        var registeredRecipe = actionRegistry.GetAction("contextbar.recipe.images-for-email");
+        var registeredRecipe = actionRegistry.GetAction("powertrove.recipe.images-for-email");
         Assert.NotNull(registeredRecipe);
 
         string inputImage = Path.Combine(_tempDir, "test.jpg");

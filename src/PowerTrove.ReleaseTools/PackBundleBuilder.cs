@@ -121,7 +121,7 @@ public static class PackBundleBuilder
 
     private static ECDsa LoadSigner(string? path)
     {
-        path = string.IsNullOrWhiteSpace(path) ? Environment.GetEnvironmentVariable("CONTEXTBAR_PACK_SIGNING_KEY_FILE") : path;
+        path = string.IsNullOrWhiteSpace(path) ? Environment.GetEnvironmentVariable("POWERTROVE_PACK_SIGNING_KEY_FILE") : path;
         if (string.IsNullOrWhiteSpace(path)) throw new InvalidOperationException("A private signing key file is required outside dry-run mode.");
         var signer = ECDsa.Create();
         try

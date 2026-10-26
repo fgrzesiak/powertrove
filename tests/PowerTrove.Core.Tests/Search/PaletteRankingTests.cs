@@ -7,8 +7,8 @@ public class PaletteRankingTests
     [Fact]
     public async Task ExactQueryBeatsHigherFitHistoryAndExplicitWeight()
     {
-        var exact = new TestAction("contextbar.image.compress", "Compress", SelectionRequirements.Any("image") with { IdealMinItems = 2 });
-        var weak = new TestAction("contextbar.image.resize", "Compress images", SelectionRequirements.Any("image"), weight: 500);
+        var exact = new TestAction("powertrove.image.compress", "Compress", SelectionRequirements.Any("image") with { IdealMinItems = 2 });
+        var weak = new TestAction("powertrove.image.resize", "Compress images", SelectionRequirements.Any("image"), weight: 500);
         var signals = new Signals(weak.Descriptor.Id);
         var results = await Search(ImageContext(1), "Compress", signals, exact, weak);
         Assert.Equal(exact.Descriptor.Id, results[0].Action.Descriptor.Id);
@@ -21,8 +21,8 @@ public class PaletteRankingTests
     [Fact]
     public async Task IncompatibleExactMatchCannotOutrankUsableResultsEvenWithLargeWeight()
     {
-        var unavailable = new TestAction("contextbar.pdf.compress", "Compress", SelectionRequirements.Any("pdf"), weight: 5000, available: false);
-        var usable = new TestAction("contextbar.image.compress", "Compress images", SelectionRequirements.Any("image"));
+        var unavailable = new TestAction("powertrove.pdf.compress", "Compress", SelectionRequirements.Any("pdf"), weight: 5000, available: false);
+        var usable = new TestAction("powertrove.image.compress", "Compress images", SelectionRequirements.Any("image"));
         var results = await Search(ImageContext(1), "Compress", null, unavailable, usable);
         Assert.Same(usable, results[0].Action);
         Assert.False(results[1].IsCompatible);
@@ -32,9 +32,9 @@ public class PaletteRankingTests
     [Fact]
     public async Task CommonImageTaskBreaksTiesBeforeAlphabeticalRotationAndGenericTools()
     {
-        var rotate = new TestAction("contextbar.image.auto-rotate", "Auto rotate", SelectionRequirements.Any("image"));
-        var convert = new TestAction("contextbar.image.convert-webp", "Convert to WebP", SelectionRequirements.Any("image"));
-        var generic = new TestAction("contextbar.files.zip", "Archive", SelectionRequirements.Any());
+        var rotate = new TestAction("powertrove.image.auto-rotate", "Auto rotate", SelectionRequirements.Any("image"));
+        var convert = new TestAction("powertrove.image.convert-webp", "Convert to WebP", SelectionRequirements.Any("image"));
+        var generic = new TestAction("powertrove.files.zip", "Archive", SelectionRequirements.Any());
         var results = await Search(ImageContext(1), "", null, rotate, generic, convert);
         Assert.Equal(1350, results[0].Rank);
         Assert.Same(convert, results[0].Action);
@@ -46,8 +46,8 @@ public class PaletteRankingTests
     [Fact]
     public async Task MultipleImagesPreferACompatibleCombinationWhileUsageStillWins()
     {
-        var collage = new TestAction("contextbar.image.collage", "Collage", SelectionRequirements.Multiple("image"));
-        var convert = new TestAction("contextbar.image.convert-webp", "Convert", SelectionRequirements.Any("image"));
+        var collage = new TestAction("powertrove.image.collage", "Collage", SelectionRequirements.Multiple("image"));
+        var convert = new TestAction("powertrove.image.convert-webp", "Convert", SelectionRequirements.Any("image"));
         var results = await Search(ImageContext(2), "", null, convert, collage);
         Assert.Same(collage, results[0].Action);
         results = await Search(ImageContext(2), "", new Signals(convert.Descriptor.Id), convert, collage);
@@ -58,7 +58,7 @@ public class PaletteRankingTests
     [Fact]
     public async Task StaleUnavailableHistoryDoesNotSuppressRecommendation()
     {
-        var action = new TestAction("contextbar.image.resize", "Resize", SelectionRequirements.Any("image"));
+        var action = new TestAction("powertrove.image.resize", "Resize", SelectionRequirements.Any("image"));
         var results = await Search(ImageContext(1), "", new Signals("removed.action"), action);
         Assert.Equal(ActionHighlight.BestFit, Assert.Single(results).Highlight);
     }

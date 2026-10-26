@@ -6,7 +6,7 @@ namespace PowerTrove.PackHost.TestPack;
 
 public sealed class TinyPackFactory : IPackFactory
 {
-    public ActionPackInfo Info => new("contextbar.fixture", "Generated fixture pack", "0.1.0", "PowerTrove tests");
+    public ActionPackInfo Info => new("powertrove.fixture", "Generated fixture pack", "0.1.0", "PowerTrove tests");
     public IActionPack Create(IPackHostServices host) => new TinyPack(Info, host.Files);
     private sealed class TinyPack(ActionPackInfo info, FileActionServices files) : IActionPack
     {
@@ -19,7 +19,7 @@ public sealed class TinyPackFactory : IPackFactory
 
     private sealed class WriteAction(FileActionServices files, bool wait) : PerFileAction<bool>(files)
     {
-        public override ActionDescriptor Descriptor { get; } = new(wait ? "contextbar.fixture.wait" : "contextbar.fixture.copy",
+        public override ActionDescriptor Descriptor { get; } = new(wait ? "powertrove.fixture.wait" : "powertrove.fixture.copy",
             "Fixture copy", "Writes a generated copy through a path-based engine.", new HashSet<ContentKind> { ContentKind.Files },
             Array.Empty<string>(), RequiresPreview: true, ChangesFiles: true,
             Selection: new SelectionRequirements(new HashSet<string> { "text" }, MinItems: 1));

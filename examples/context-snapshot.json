@@ -1,6 +1,6 @@
 {
   "invocationId": "11111111-2222-3333-4444-555555555555",
-  "providerId": "contextbar.windows.explorer",
+  "providerId": "powertrove.windows.explorer",
   "status": "available",
   "capturedAt": "2026-10-11T12:00:00Z",
   "source": {

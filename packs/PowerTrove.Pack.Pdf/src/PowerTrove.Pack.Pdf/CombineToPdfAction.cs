@@ -20,7 +20,7 @@ public sealed record CombineToPdfOptions(PdfPageSize PageSize, string Order);
 /// </summary>
 public sealed class CombineToPdfAction : CombineFilesAction<CombineToPdfOptions>
 {
-    public const string ActionId = "contextbar.pdf.combine";
+    public const string ActionId = "powertrove.pdf.combine";
 
     private readonly FileInputFilter _filter = new(
         SR.GetString("CombineToPdf_Inputs"),

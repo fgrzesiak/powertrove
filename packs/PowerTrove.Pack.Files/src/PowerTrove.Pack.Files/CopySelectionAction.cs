@@ -6,7 +6,7 @@ public sealed class CopySelectionAction : IAction
 {
     private readonly bool _names;
     public CopySelectionAction(bool names) => _names = names;
-    public ActionDescriptor Descriptor => new("contextbar.files." + (_names ? "copy-names" : "copy-paths"), SR.GetString(_names ? "CopyNames" : "CopyPaths"), SR.GetString("CopyDescription"),
+    public ActionDescriptor Descriptor => new("powertrove.files." + (_names ? "copy-names" : "copy-paths"), SR.GetString(_names ? "CopyNames" : "CopyPaths"), SR.GetString("CopyDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, new[] { "copy", "paths", "names", "clipboard" }, false, false,
         Parameters: new[] { FileTools.Choice("Format", "lines", "lines", "quoted", "semicolon", "json-array") },
         Selection: new SelectionRequirements(new HashSet<string>(), MaxItems: 10000));

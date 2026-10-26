@@ -1100,7 +1100,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         var fakeActions = new List<ActionDescriptor>
         {
             new ActionDescriptor(
-                "contextbar.image.convert-webp",
+                "powertrove.image.convert-webp",
                 "Convert to WebP",
                 "Converts the selected images to WebP format.",
                 new HashSet<ContentKind> { ContentKind.Files },
@@ -1108,7 +1108,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 false,
                 true),
             new ActionDescriptor(
-                "contextbar.image.convert-avif",
+                "powertrove.image.convert-avif",
                 "Convert to AVIF",
                 "Converts the selected images to AVIF format.",
                 new HashSet<ContentKind> { ContentKind.Files },
@@ -1116,7 +1116,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 false,
                 true),
             new ActionDescriptor(
-                "contextbar.image.resize",
+                "powertrove.image.resize",
                 "Resize Image",
                 "Resizes the selected images.",
                 new HashSet<ContentKind> { ContentKind.Files },
@@ -1124,7 +1124,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 false,
                 true),
             new ActionDescriptor(
-                "contextbar.general.settings",
+                "powertrove.general.settings",
                 "Settings",
                 Strings.Action_OpenSettings_Description,
                 new HashSet<ContentKind> { ContentKind.None },
@@ -1140,7 +1140,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         }
 
         registry.Register(new FakeSlowAction(new ActionDescriptor(
-            "contextbar.fake.slow",
+            "powertrove.fake.slow",
             "Slow Action",
             "A slow mock action to test progress updates and cancellation.",
             new HashSet<ContentKind> { ContentKind.None },
@@ -1148,7 +1148,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
             false, false)));
 
         registry.Register(new FakeFailAction(new ActionDescriptor(
-            "contextbar.fake.fail",
+            "powertrove.fake.fail",
             "Failing Action",
             "A mock action that always fails.",
             new HashSet<ContentKind> { ContentKind.None },
@@ -1156,12 +1156,12 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
             false, false)));
         // Stand-ins for pack actions with the same ids and titles as the real ones.
         // Real packs are composed by the desktop host; the view model stays engine-free.
-        fakeActions.RemoveAll(a => a.Id == "contextbar.image.convert-webp" || a.Id == "contextbar.image.resize");
+        fakeActions.RemoveAll(a => a.Id == "powertrove.image.convert-webp" || a.Id == "powertrove.image.resize");
         var imageStandIns = new[]
         {
-            Descriptor("contextbar.image.convert-webp", "Convert to WebP", "Converts the selected images to WebP format.", "image", "convert", "webp"),
-            Descriptor("contextbar.image.remove-metadata", "Remove Image Metadata", "Creates copies without privacy-sensitive metadata.", "image", "metadata", "exif", "strip", "privacy"),
-            Descriptor("contextbar.image.resize", "Resize Images", "Creates resized copies of the selected images.", "image", "resize", "scale")
+            Descriptor("powertrove.image.convert-webp", "Convert to WebP", "Converts the selected images to WebP format.", "image", "convert", "webp"),
+            Descriptor("powertrove.image.remove-metadata", "Remove Image Metadata", "Creates copies without privacy-sensitive metadata.", "image", "metadata", "exif", "strip", "privacy"),
+            Descriptor("powertrove.image.resize", "Resize Images", "Creates resized copies of the selected images.", "image", "resize", "scale")
         };
         foreach (var descriptor in imageStandIns)
         {
@@ -1171,9 +1171,9 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
 
         var videoStandIns = new[]
         {
-            Descriptor("contextbar.video.extract-audio", "Extract Audio from Video", "Saves the audio track of the selected videos as MP3 files.", "extract", "audio", "mp3", "video"),
-            Descriptor("contextbar.video.convert-mp4", "Convert to MP4", "Converts the selected videos to MP4.", "video", "convert", "mp4"),
-            Descriptor("contextbar.video.convert-webm", "Convert to WEBM", "Converts the selected videos to WEBM.", "video", "convert", "webm")
+            Descriptor("powertrove.video.extract-audio", "Extract Audio from Video", "Saves the audio track of the selected videos as MP3 files.", "extract", "audio", "mp3", "video"),
+            Descriptor("powertrove.video.convert-mp4", "Convert to MP4", "Converts the selected videos to MP4.", "video", "convert", "mp4"),
+            Descriptor("powertrove.video.convert-webm", "Convert to WEBM", "Converts the selected videos to WEBM.", "video", "convert", "webm")
         };
         foreach (var descriptor in videoStandIns)
         {

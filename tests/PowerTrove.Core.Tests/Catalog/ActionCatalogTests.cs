@@ -8,11 +8,11 @@ namespace PowerTrove.Core.Tests.Catalog;
 
 public sealed class ActionCatalogTests
 {
-    internal static CatalogEntry Entry(string id = "contextbar.pdf.catalog", IReadOnlyList<string>? extensions = null) => new(
+    internal static CatalogEntry Entry(string id = "powertrove.pdf.catalog", IReadOnlyList<string>? extensions = null) => new(
         new ManifestAction(id, "PDF Tool", new[] { "files" }, "Process PDF files.",
             Selection: ManifestSelection.FromRequirements(SelectionRequirements.Any("pdf")),
             Extensions: extensions ?? new[] { ".pdf" }, ChangesFiles: true),
-        new ActionPackInfo("contextbar.pack.catalog", "PDF Tools", "1.0.0", "PowerTrove"),
+        new ActionPackInfo("powertrove.pack.catalog", "PDF Tools", "1.0.0", "PowerTrove"),
         PackInstallState.NotInstalled, 4 * 1024 * 1024);
 
     internal static string Json(params CatalogEntry[] entries) => JsonSerializer.Serialize(new
@@ -42,7 +42,7 @@ public sealed class ActionCatalogTests
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en");
             var missing = new CatalogAction(Entry());
             var registry = new ActionRegistry();
-            registry.Register(new InstalledAction(missing.Descriptor with { Id = "contextbar.pdf.installed" }));
+            registry.Register(new InstalledAction(missing.Descriptor with { Id = "powertrove.pdf.installed" }));
             registry.RegisterCatalog(ActionCatalog.Read(Json(Entry()), Array.Empty<ActionPackInfo>(), new Version(0, 1, 0)));
             var results = await new ActionSearchEngine(registry).SearchAsync(query, Snapshot(".PDF"));
             Assert.Equal(2, results.Count);
@@ -120,7 +120,7 @@ public sealed class ActionCatalogTests
         var entry = Entry();
         var real = new InstalledAction(new CatalogAction(entry).Descriptor);
         var registry = new ActionRegistry(); registry.Register(real);
-        var catalog = ActionCatalog.Read(Json(Entry("contextbar.pdf.unique"), entry), Array.Empty<ActionPackInfo>(), new Version(0, 1, 0));
+        var catalog = ActionCatalog.Read(Json(Entry("powertrove.pdf.unique"), entry), Array.Empty<ActionPackInfo>(), new Version(0, 1, 0));
         Assert.Throws<InvalidOperationException>(() => registry.RegisterCatalog(catalog));
         Assert.Same(real, Assert.Single(registry.GetAllActions()));
         var reverse = new ActionRegistry(); reverse.Register(new CatalogAction(entry));
@@ -164,7 +164,7 @@ public sealed class ActionCatalogTests
         void Reject(string json) => Assert.Throws<CatalogFormatException>(() => ActionCatalog.Read(json, Array.Empty<ActionPackInfo>(), new Version(0, 1, 0)));
         Reject(new string(' ', ActionCatalog.MaximumJsonBytes + 1));
         Reject(Json(Entry(), Entry()));
-        Reject(Json(Entry(), Entry() with { Pack = Entry().Pack with { Id = "contextbar.pack.other" } }));
+        Reject(Json(Entry(), Entry() with { Pack = Entry().Pack with { Id = "powertrove.pack.other" } }));
         Reject(Json(Entry() with { DownloadBytes = -1 }));
         var tooMany = Enumerable.Range(0, ActionCatalog.MaximumPacks + 1).Select(i => Entry("action" + i) with { Pack = Entry().Pack with { Id = "pack" + i } }).ToArray();
         Reject(Json(tooMany));

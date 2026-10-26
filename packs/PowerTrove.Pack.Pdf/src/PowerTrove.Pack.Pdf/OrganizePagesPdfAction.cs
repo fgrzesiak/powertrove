@@ -21,7 +21,7 @@ public sealed record OrganizePagesOptions(string Pages);
 /// </summary>
 public sealed class OrganizePagesPdfAction : CombineFilesAction<OrganizePagesOptions>
 {
-    public const string ActionId = "contextbar.pdf.organize";
+    public const string ActionId = "powertrove.pdf.organize";
 
     public OrganizePagesPdfAction(FileActionServices services) : base(services)
     {

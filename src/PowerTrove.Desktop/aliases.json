@@ -1,78 +1,78 @@
 {
-  "contextbar.image.convert-webp": [
+  "powertrove.image.convert-webp": [
     "bild",
     "konvertieren",
     "umwandeln",
     "picture"
   ],
-  "contextbar.image.convert-avif": [
+  "powertrove.image.convert-avif": [
     "avif"
   ],
-  "contextbar.image.resize": [
+  "powertrove.image.resize": [
     "verkleinern",
     "komprimieren",
     "shrink",
     "skalieren"
   ],
-  "contextbar.general.settings": [
+  "powertrove.general.settings": [
     "einstellungen",
     "optionen",
     "options",
     "setup"
   ],
-  "contextbar.image.convert-jpeg": [
+  "powertrove.image.convert-jpeg": [
     "jpg",
     "heic",
     "iphone",
     "foto"
   ],
-  "contextbar.image.compress": [
+  "powertrove.image.compress": [
     "verkleinern",
     "optimieren",
     "kleiner"
   ],
-  "contextbar.pdf.merge": [
+  "powertrove.pdf.merge": [
     "zusammenfügen",
     "zusammenführen",
     "kombinieren"
   ],
-  "contextbar.pdf.split": [
+  "powertrove.pdf.split": [
     "aufteilen",
     "trennen",
     "seiten"
   ],
-  "contextbar.pdf.extract-pages": [
+  "powertrove.pdf.extract-pages": [
     "seiten extrahieren",
     "auswählen"
   ],
-  "contextbar.pdf.remove-pages": [
+  "powertrove.pdf.remove-pages": [
     "seiten löschen",
     "entfernen"
   ],
-  "contextbar.pdf.rotate": [
+  "powertrove.pdf.rotate": [
     "drehen",
     "rotieren"
   ],
-  "contextbar.pdf.images-to-pdf": [
+  "powertrove.pdf.images-to-pdf": [
     "bilder zu pdf",
     "scan",
     "fotos"
   ],
-  "contextbar.pdf.to-images": [
+  "powertrove.pdf.to-images": [
     "pdf zu bild",
     "png",
     "jpg"
   ],
-  "contextbar.files.zip": [
+  "powertrove.files.zip": [
     "zippen",
     "packen",
     "archiv"
   ],
-  "contextbar.files.unzip": [
+  "powertrove.files.unzip": [
     "entpacken",
     "auspacken"
   ],
-  "contextbar.files.checksum": [
+  "powertrove.files.checksum": [
     "prüfsumme",
     "hashwert"
   ]

@@ -45,7 +45,7 @@ public sealed class PdfPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("contextbar.pdf", SR.GetString("PdfPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.pdf", SR.GetString("PdfPack_Title"), "0.1.0", "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }

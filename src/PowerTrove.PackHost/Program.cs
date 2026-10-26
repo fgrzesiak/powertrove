@@ -32,7 +32,7 @@ public static class Program
             using var current = Process.GetCurrentProcess();
             if (parent.HasExited || parent.Id == current.Id || parent.SessionId != current.SessionId) return 2;
             parentWatch = WatchParentAsync(parent, lifetime);
-            string userRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ContextBar");
+            string userRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PowerTrove");
             string workRoot = Path.Combine(userRoot, "workers");
             Directory.CreateDirectory(workRoot);
             string candidateWork = options.WorkRoot is null ? Path.Combine(workRoot, Guid.NewGuid().ToString("N"))

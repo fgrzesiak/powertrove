@@ -34,7 +34,7 @@ public sealed class PackBundleBuilderTests : IDisposable
         byte[] data = [42, 10, 8, 99];
         File.WriteAllBytes(Path.Combine(_directory, "Test.Composition.dll"), data);
         var payload = PackBundleBuilder.Inventory(_directory, "Test.Composition.dll");
-        var manifest = new ActionManifest("2.0", "contextbar.test", "1.0.0", "Test", "PowerTrove",
+        var manifest = new ActionManifest("2.0", "powertrove.test", "1.0.0", "Test", "PowerTrove",
             "1", [], MinHostVersion: "0.1.0", Payload: payload, Capabilities: []);
         byte[] bytes = Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest));
         using var key = ECDsa.Create(ECCurve.NamedCurves.nistP256);

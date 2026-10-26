@@ -7,7 +7,7 @@ internal static class ExtraImageSupport
     public static ActionParameterDefinition Choice(string key, string defaultValue, params string[] values) => ActionParameterDefinition.Choice(key, Text(key), defaultValue,
         values.Select(v => new ActionParameterChoice(v, Text("Choice_" + v))).ToArray());
     public static ActionDescriptor Descriptor(string id, string key, IReadOnlyList<ActionParameterDefinition>? parameters = null, int min = 1, int max = 1000) => new(
-        "contextbar.image." + id, Text("Title_" + key), Text("Description_" + key), new HashSet<ContentKind> { ContentKind.Files },
+        "powertrove.image." + id, Text("Title_" + key), Text("Description_" + key), new HashSet<ContentKind> { ContentKind.Files },
         new[] { "image", "photo", id }, true, true, Parameters: parameters,
         Selection: new SelectionRequirements(new HashSet<string> { "image" }, MinItems: min, MaxItems: max, IdealMinItems: min));
     public static IEnumerable<string> AnimationWarning(IReadOnlyList<SelectedFile> files)

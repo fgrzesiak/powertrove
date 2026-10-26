@@ -209,7 +209,7 @@ public class ExtractPdfImagesActionTests
 
     [Fact]
     public void ActionIsRegistered_WithoutOptionalRenderingEngines() =>
-        Assert.Contains(new PdfPack(Services()).Actions, a => a.Descriptor.Id == "contextbar.pdf.extract-images");
+        Assert.Contains(new PdfPack(Services()).Actions, a => a.Descriptor.Id == "powertrove.pdf.extract-images");
 
     internal static byte[] ImagePdf(int width = 32, int height = 32, int components = 3, int count = 1)
     {

@@ -12,7 +12,7 @@ public sealed class PackHostSupervisorTests
     public async Task RealFixtureProcessCommitsWithCollisionReplanningAndReusesTheWorker()
     {
         await using var fixture = new Fixture("success");
-        var preview = await fixture.Host.PreviewAsync(fixture.Group, "contextbar.fixture.copy", fixture.Snapshot, new EmptyParameters(), fixture.Token);
+        var preview = await fixture.Host.PreviewAsync(fixture.Group, "powertrove.fixture.copy", fixture.Snapshot, new EmptyParameters(), fixture.Token);
         Assert.False(preview.IsBlocked);
         Assert.Equal(1, fixture.Factory.Starts);
         fixture.Temp.Write("copy.txt", "existing");
@@ -137,11 +137,11 @@ public sealed class PackHostSupervisorTests
         {
             Input = Temp.Write("source.txt", "original"); Snapshot = Snapshots.ForPaths(Input);
             string directory = Directory.CreateDirectory(Temp.File(mode)).FullName;
-            Group = new("fixture", [directory], [new("contextbar.fixture", "0.1.0")]);
+            Group = new("fixture", [directory], [new("powertrove.fixture", "0.1.0")]);
             Host = new PackHostSupervisor(Factory, Temp.File("user"), clock);
         }
         public Task<ActionReceipt> Execute(CancellationToken token = default, IProgress<ActionProgress>? progress = null) =>
-            Host.ExecuteAsync(Group, "contextbar.fixture.copy", Snapshot, new EmptyParameters(), progress, token.CanBeCanceled ? token : Token);
+            Host.ExecuteAsync(Group, "powertrove.fixture.copy", Snapshot, new EmptyParameters(), progress, token.CanBeCanceled ? token : Token);
         public void AssertCleanStaging() => Assert.Empty(Directory.EnumerateFileSystemEntries(Temp.File("user/staging")));
         public async ValueTask DisposeAsync()
         {

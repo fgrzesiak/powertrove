@@ -398,7 +398,7 @@ public class SettingsServiceTests : IDisposable
         string legacyJson = $@"{{
             ""Version"": {UserSettings.CurrentVersion},
             ""ActionPreferences"": {{
-                ""contextbar.general.output"": {{
+                ""powertrove.general.output"": {{
                     ""overwriteFiles"": ""true""
                 }}
             }}
@@ -408,9 +408,9 @@ public class SettingsServiceTests : IDisposable
         var service = new SettingsService(_tempFilePath);
 
         Assert.Equal(UserSettings.CurrentVersion, service.Settings.Version);
-        Assert.True(service.Settings.ActionPreferences.ContainsKey("contextbar.general.output"));
-        Assert.True(service.Settings.ActionPreferences["contextbar.general.output"].ContainsKey("overwriteFiles"));
-        Assert.Equal("true", service.Settings.ActionPreferences["contextbar.general.output"]["overwriteFiles"]);
+        Assert.True(service.Settings.ActionPreferences.ContainsKey("powertrove.general.output"));
+        Assert.True(service.Settings.ActionPreferences["powertrove.general.output"].ContainsKey("overwriteFiles"));
+        Assert.Equal("true", service.Settings.ActionPreferences["powertrove.general.output"]["overwriteFiles"]);
     }
 
     [Fact]

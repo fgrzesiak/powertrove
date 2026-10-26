@@ -14,7 +14,7 @@ namespace PowerTrove.Application.Commands;
 /// </summary>
 public sealed class OpenSettingsAction : IAction
 {
-    public const string ActionId = "contextbar.general.settings";
+    public const string ActionId = "powertrove.general.settings";
 
     private readonly Action _open;
 

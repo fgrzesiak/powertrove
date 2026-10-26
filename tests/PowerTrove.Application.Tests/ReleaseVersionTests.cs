@@ -40,7 +40,7 @@ public sealed class ReleaseVersionTests
     [InlineData("https://github.com/fgrzesiak/powertrove/releases/tag/1.0.0-beta.1", true)]
     [InlineData("http://github.com/fgrzesiak/powertrove/releases/tag/v1.0.0", false)]
     [InlineData("https://github.com.evil.test/fgrzesiak/powertrove/releases/tag/v1.0.0", false)]
-    [InlineData("https://github.com/other/contextbar/releases/tag/v1.0.0", false)]
+    [InlineData("https://github.com/other/powertrove/releases/tag/v1.0.0", false)]
     [InlineData("https://github.com/fgrzesiak/powertrove/releases/download/v1.0.0/setup.exe", false)]
     [InlineData("https://user@github.com/fgrzesiak/powertrove/releases/tag/v1.0.0", false)]
     [InlineData("https://github.com:8443/fgrzesiak/powertrove/releases/tag/v1.0.0", false)]

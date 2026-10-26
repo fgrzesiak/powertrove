@@ -23,21 +23,21 @@ public class ActionPackCatalogTests
 {
     private class MockRecipePack : IActionPack
     {
-        public ActionPackInfo Info { get; } = new ActionPackInfo("contextbar.recipes", "Recipes", "0.1.0", "PowerTrove");
+        public ActionPackInfo Info { get; } = new ActionPackInfo("powertrove.recipes", "Recipes", "0.1.0", "PowerTrove");
         public IReadOnlyList<IAction> Actions { get; }
 
         public MockRecipePack(IWorkflowRunner workflowRunner, FileActionServices services)
         {
             var recipe = new RecipeDefinition(
-                "contextbar.recipe.images-for-email",
+                "powertrove.recipe.images-for-email",
                 "Prepare images for email",
                 "Resizes images to max 1600 px, compresses them to 75% quality, and zips the result.",
                 SelectionRequirements.Multiple(new[] { "image" }),
                 new List<RecipeStep>
                 {
-                    new RecipeStep("contextbar.image.resize", new Dictionary<string, string> { { "MaxDimension", "1600" }, { "Enlarge", "false" } }),
-                    new RecipeStep("contextbar.image.compress", new Dictionary<string, string> { { "Quality", "75" } }),
-                    new RecipeStep("contextbar.files.zip", new Dictionary<string, string>())
+                    new RecipeStep("powertrove.image.resize", new Dictionary<string, string> { { "MaxDimension", "1600" }, { "Enlarge", "false" } }),
+                    new RecipeStep("powertrove.image.compress", new Dictionary<string, string> { { "Quality", "75" } }),
+                    new RecipeStep("powertrove.files.zip", new Dictionary<string, string>())
                 }
             );
 
@@ -71,7 +71,7 @@ public class ActionPackCatalogTests
         var ids = CreatePacks().SelectMany(p => p.Actions).Select(a => a.Descriptor.Id).ToList();
 
         Assert.Equal(ids.Count, ids.Distinct(StringComparer.OrdinalIgnoreCase).Count());
-        Assert.All(ids, id => Assert.Matches("^contextbar\\.[a-z]+\\.[a-z0-9-]+$", id));
+        Assert.All(ids, id => Assert.Matches("^powertrove\\.[a-z]+\\.[a-z0-9-]+$", id));
     }
 
     [Fact]
@@ -105,15 +105,15 @@ public class ActionPackCatalogTests
     public void FileDataMilestoneActions_AreRegistered()
     {
         var ids = CreatePacks().SelectMany(p => p.Actions).Select(a => a.Descriptor.Id).ToHashSet();
-        foreach (string id in new[] { "contextbar.files.rename", "contextbar.files.add-to-zip", "contextbar.files.compare-text", "contextbar.files.sort-by-type", "contextbar.data.xlsx-to-csv", "contextbar.data.xlsx-to-json", "contextbar.data.csv-to-xlsx", "contextbar.table.combine-workbook" })
+        foreach (string id in new[] { "powertrove.files.rename", "powertrove.files.add-to-zip", "powertrove.files.compare-text", "powertrove.files.sort-by-type", "powertrove.data.xlsx-to-csv", "powertrove.data.xlsx-to-json", "powertrove.data.csv-to-xlsx", "powertrove.table.combine-workbook" })
             Assert.Contains(id, ids);
     }
 
     [Fact]
     public void AdvancedMediaActions_AreRegisteredWithoutOptionalEngines()
     {
-        var ids = CreatePacks().Single(p => p.Info.Id == "contextbar.media").Actions.Select(a => a.Descriptor.Id).ToHashSet();
-        foreach (string id in new[] { "contextbar.media.info", "contextbar.media.trim", "contextbar.video.compress", "contextbar.media.merge", "contextbar.video.to-gif", "contextbar.video.extract-frames", "contextbar.audio.normalize", "contextbar.video.rotate" })
+        var ids = CreatePacks().Single(p => p.Info.Id == "powertrove.media").Actions.Select(a => a.Descriptor.Id).ToHashSet();
+        foreach (string id in new[] { "powertrove.media.info", "powertrove.media.trim", "powertrove.video.compress", "powertrove.media.merge", "powertrove.video.to-gif", "powertrove.video.extract-frames", "powertrove.audio.normalize", "powertrove.video.rotate" })
             Assert.Contains(id, ids);
     }
 
@@ -130,13 +130,13 @@ public class ActionPackCatalogTests
         // Preferences, history, pins and aliases.json refer to these ids.
         string[] stable =
         {
-            "contextbar.office.word-to-pdf", "contextbar.office.excel-to-pdf", "contextbar.office.powerpoint-to-pdf", "contextbar.office.pdf-to-word",
-            "contextbar.files.count",
-            "contextbar.image.convert-webp", "contextbar.image.convert-avif", "contextbar.image.resize", "contextbar.image.remove-metadata",
-            "contextbar.audio.convert-mp3", "contextbar.audio.convert-flac", "contextbar.audio.convert-wav",
-            "contextbar.video.convert-mp4", "contextbar.video.convert-webm", "contextbar.video.extract-audio", "contextbar.video.remove-audio", "contextbar.video.embed-subtitles", "contextbar.video.slideshow", "contextbar.video.still-image",
-            "contextbar.table.export-csv", "contextbar.table.export-json", "contextbar.table.export-markdown", "contextbar.table.export-sql-insert",
-            "contextbar.recipe.images-for-email", "contextbar.pdf.header-footer", "contextbar.pdf.stamp-selected-image", "contextbar.pdf.remove-blank", "contextbar.pdf.to-text", "contextbar.pdf.edit-metadata", "contextbar.pdf.repair", "contextbar.pdf.extract-images"
+            "powertrove.office.word-to-pdf", "powertrove.office.excel-to-pdf", "powertrove.office.powerpoint-to-pdf", "powertrove.office.pdf-to-word",
+            "powertrove.files.count",
+            "powertrove.image.convert-webp", "powertrove.image.convert-avif", "powertrove.image.resize", "powertrove.image.remove-metadata",
+            "powertrove.audio.convert-mp3", "powertrove.audio.convert-flac", "powertrove.audio.convert-wav",
+            "powertrove.video.convert-mp4", "powertrove.video.convert-webm", "powertrove.video.extract-audio", "powertrove.video.remove-audio", "powertrove.video.embed-subtitles", "powertrove.video.slideshow", "powertrove.video.still-image",
+            "powertrove.table.export-csv", "powertrove.table.export-json", "powertrove.table.export-markdown", "powertrove.table.export-sql-insert",
+            "powertrove.recipe.images-for-email", "powertrove.pdf.header-footer", "powertrove.pdf.stamp-selected-image", "powertrove.pdf.remove-blank", "powertrove.pdf.to-text", "powertrove.pdf.edit-metadata", "powertrove.pdf.repair", "powertrove.pdf.extract-images"
         };
         var ids = CreatePacks().SelectMany(p => p.Actions).Select(a => a.Descriptor.Id).ToHashSet();
         Assert.All(stable, id => Assert.Contains(id, ids));
@@ -152,17 +152,17 @@ public class ActionPackCatalogTests
     [Fact]
     public void ImageToolIds_AreRegisteredEvenWithoutAnOptionalRasterCodec()
     {
-        var ids = CreatePacks().Single(p => p.Info.Id == "contextbar.images").Actions.Select(a => a.Descriptor.Id).ToHashSet();
+        var ids = CreatePacks().Single(p => p.Info.Id == "powertrove.images").Actions.Select(a => a.Descriptor.Id).ToHashSet();
         foreach (string suffix in new[] { "crop-aspect", "pad", "target-size", "optimize-png", "grayscale", "stitch", "collage", "info", "to-ico", "convert-other" })
-            Assert.Contains("contextbar.image." + suffix, ids);
+            Assert.Contains("powertrove.image." + suffix, ids);
     }
 
     [Fact]
     public void RemainingImageToolIds_AreRegisteredWithoutPlatformPorts()
     {
-        var ids = CreatePacks().Single(p => p.Info.Id == "contextbar.images").Actions.Select(a => a.Descriptor.Id).ToHashSet();
+        var ids = CreatePacks().Single(p => p.Info.Id == "powertrove.images").Actions.Select(a => a.Descriptor.Id).ToHashSet();
         foreach (string suffix in new[] { "rotate-right", "rotate-left", "rotate-180", "flip-horizontal", "flip-vertical", "auto-rotate", "watermark-text", "watermark-image", "to-gif", "to-text", "blur-faces", "remove-location" })
-            Assert.Contains("contextbar.image." + suffix, ids);
+            Assert.Contains("powertrove.image." + suffix, ids);
     }
 
     [Fact]
@@ -173,10 +173,10 @@ public class ActionPackCatalogTests
         var engines = new CompositeImageEngine(new IImageEngine[] { new CatalogImageEngine() });
         var pack = new ImagesPack(engines, services, rasterCodec: new CatalogRasterCodec());
         var registry = new ActionRegistry();
-        registry.Register(pack.Actions.Single(a => a.Descriptor.Id == "contextbar.image.convert-jpeg"));
-        registry.Register(pack.Actions.Single(a => a.Descriptor.Id == "contextbar.image.convert-other"));
+        registry.Register(pack.Actions.Single(a => a.Descriptor.Id == "powertrove.image.convert-jpeg"));
+        registry.Register(pack.Actions.Single(a => a.Descriptor.Id == "powertrove.image.convert-other"));
         var results = await new PowerTrove.Core.Search.ActionSearchEngine(registry).SearchAsync("", Snapshots.ForPaths(Path.Combine(Path.GetTempPath(), "catalog.png")));
-        Assert.Equal("contextbar.image.convert-jpeg", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.image.convert-jpeg", results[0].Action.Descriptor.Id);
         Assert.True(results[0].Rank > results[1].Rank);
     }
 

@@ -296,54 +296,54 @@ public class SelectionRankingTests
         // Unit-level selection cases. Pack integration coverage uses actual actions
         // in PowerTrove.Architecture.Tests.
 
-        var stampPdfImage = new MockAction("contextbar.pdf.stamp-selected-image", "Stamp Selected Image",
+        var stampPdfImage = new MockAction("powertrove.pdf.stamp-selected-image", "Stamp Selected Image",
             SelectionRequirements.Multiple("pdf", "image") with { MaxItems = 2, AllowOtherItems = false, FamilyLimits = new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "pdf", new FamilyLimit(1, 1) }, { "image", new FamilyLimit(1, 1) } } });
         registry.Register(stampPdfImage);
 
-        var combineToPdf = new MockAction("contextbar.pdf.combine", "Combine into One PDF",
+        var combineToPdf = new MockAction("powertrove.pdf.combine", "Combine into One PDF",
             new SelectionRequirements(new HashSet<string>(new[] { "pdf", "image", "document", "spreadsheet" }, StringComparer.OrdinalIgnoreCase), MinItems: 2, AllowOtherItems: false, IdealMinItems: 2, IdealMinDistinctFamilies: 2, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "pdf", new FamilyLimit(0, 500) }, { "image", new FamilyLimit(0, 500) }, { "document", new FamilyLimit(0, 500) }, { "spreadsheet", new FamilyLimit(0, 500) } }));
         registry.Register(combineToPdf);
 
-        var replaceAudio = new MockAction("contextbar.video.replace-audio", "Replace Audio",
+        var replaceAudio = new MockAction("powertrove.video.replace-audio", "Replace Audio",
             SelectionRequirements.Multiple("video", "audio") with { MaxItems = 2, AllowOtherItems = false, FamilyLimits = new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "video", new FamilyLimit(1, 1) }, { "audio", new FamilyLimit(1, 1) } } });
         registry.Register(replaceAudio);
 
-        var stillImageVideo = new MockAction("contextbar.video.still-image", "Create Video from Image and Audio",
+        var stillImageVideo = new MockAction("powertrove.video.still-image", "Create Video from Image and Audio",
             SelectionRequirements.Multiple("image", "audio") with { AllowOtherItems = false, FamilyLimits = new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "image", new FamilyLimit(1, 1) }, { "audio", new FamilyLimit(1, 1) } } });
         registry.Register(stillImageVideo);
 
-        var embedSubtitles = new MockAction("contextbar.video.embed-subtitles", "Embed Subtitles",
+        var embedSubtitles = new MockAction("powertrove.video.embed-subtitles", "Embed Subtitles",
             SelectionRequirements.Multiple("video", "subtitle") with { MaxItems = 4, AllowOtherItems = false, FamilyLimits = new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "video", new FamilyLimit(1, 1) }, { "subtitle", new FamilyLimit(1, 3) } } });
         registry.Register(embedSubtitles);
 
-        var slideshow = new MockAction("contextbar.video.slideshow", "Slideshow Video",
+        var slideshow = new MockAction("powertrove.video.slideshow", "Slideshow Video",
             SelectionRequirements.Multiple("image", "audio") with { AllowOtherItems = false, FamilyLimits = new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "image", new FamilyLimit(2, 300) }, { "audio", new FamilyLimit(0, 1) } } });
         registry.Register(slideshow);
 
-        var addToZip = new MockAction("contextbar.files.add-to-zip", "Add to ZIP",
+        var addToZip = new MockAction("powertrove.files.add-to-zip", "Add to ZIP",
             new SelectionRequirements(new HashSet<string>(), MinItems: 2, AllowOtherItems: true, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "archive", new FamilyLimit(1, 1) } }));
         registry.Register(addToZip);
 
-        var compareText = new MockAction("contextbar.files.compare-text", "Compare",
+        var compareText = new MockAction("powertrove.files.compare-text", "Compare",
             new SelectionRequirements(new HashSet<string> { "text" }, MinItems: 2, MaxItems: 2, AllowOtherItems: false, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "text", new FamilyLimit(2, 2) } }));
         registry.Register(compareText);
 
-        var compareImages = new MockAction("contextbar.image.compare", "Compare Images",
+        var compareImages = new MockAction("powertrove.image.compare", "Compare Images",
             new SelectionRequirements(new HashSet<string> { "image" }, MinItems: 2, MaxItems: 2, IdealMinItems: 2, IdealMaxItems: 2, AllowOtherItems: false, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "image", new FamilyLimit(2, 2) } }));
         registry.Register(compareImages);
 
-        var combineWorkbook = new MockAction("contextbar.table.combine-workbook", "Combine into One Workbook",
+        var combineWorkbook = new MockAction("powertrove.table.combine-workbook", "Combine into One Workbook",
             new SelectionRequirements(new HashSet<string> { "spreadsheet" }, MinItems: 2, MaxItems: 50, AllowOtherItems: false, FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { { "spreadsheet", new FamilyLimit(2, 50) } }));
         registry.Register(combineWorkbook);
 
-        var zip = new MockAction("contextbar.files.zip", "ZIP", SelectionRequirements.Any());
+        var zip = new MockAction("powertrove.files.zip", "ZIP", SelectionRequirements.Any());
         registry.Register(zip);
 
-        var sortByType = new MockAction("contextbar.files.sort-by-type", "Sort Copies by Type",
+        var sortByType = new MockAction("powertrove.files.sort-by-type", "Sort Copies by Type",
             new SelectionRequirements(new HashSet<string>(), MinItems: 2, IdealMinDistinctFamilies: 2));
         registry.Register(sortByType);
 
-        var mixedEmail = new MockAction("contextbar.recipe.mixed-for-email", "Prepare for Email",
+        var mixedEmail = new MockAction("powertrove.recipe.mixed-for-email", "Prepare for Email",
             SelectionRequirements.Multiple("image", "pdf") with { AllowOtherItems = true });
         registry.Register(mixedEmail);
     }
@@ -357,8 +357,8 @@ public class SelectionRankingTests
         var context = CreateSnapshot("doc.pdf", "img.jpg");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 2);
-        Assert.Equal("contextbar.pdf.stamp-selected-image", results[0].Action.Descriptor.Id);
-        Assert.Equal("contextbar.pdf.combine", results[1].Action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.stamp-selected-image", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.combine", results[1].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -370,7 +370,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("doc1.pdf", "doc2.pdf", "img1.jpg");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.pdf.combine", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.combine", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -382,7 +382,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("vid.mp4", "aud.mp3");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.video.replace-audio", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.video.replace-audio", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -394,7 +394,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("img.jpg", "aud.mp3");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.video.still-image", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.video.still-image", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -406,7 +406,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("vid.mp4", "sub.srt");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.video.embed-subtitles", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.video.embed-subtitles", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -418,7 +418,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("img1.jpg", "img2.jpg", "aud.mp3");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.video.slideshow", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.video.slideshow", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -430,7 +430,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("archive.zip", "file.txt");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.files.add-to-zip", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.files.add-to-zip", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -442,7 +442,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("f1.txt", "f2.txt");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.files.compare-text", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.files.compare-text", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -454,7 +454,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("i1.jpg", "i2.jpg");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.image.compare", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.image.compare", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -466,7 +466,7 @@ public class SelectionRankingTests
         var context = CreateSnapshot("s1.xlsx", "s2.xlsx");
         var results = await engine.SearchAsync("", context);
         Assert.True(results.Count >= 1);
-        Assert.Equal("contextbar.table.combine-workbook", results[0].Action.Descriptor.Id);
+        Assert.Equal("powertrove.table.combine-workbook", results[0].Action.Descriptor.Id);
     }
 
     [Fact]
@@ -481,9 +481,9 @@ public class SelectionRankingTests
 
         var top3 = results.Take(3).Select(r => r.Action.Descriptor.Id).ToList();
 
-        Assert.Contains("contextbar.recipe.mixed-for-email", top3);
-        Assert.Contains("contextbar.files.zip", top3);
-        Assert.Contains("contextbar.files.sort-by-type", top3);
+        Assert.Contains("powertrove.recipe.mixed-for-email", top3);
+        Assert.Contains("powertrove.files.zip", top3);
+        Assert.Contains("powertrove.files.sort-by-type", top3);
     }
 
 }

@@ -9,7 +9,7 @@ namespace PowerTrove.Platform.Windows.Excel;
 public sealed class ExcelSelectionProvider : IContextProvider
 {
     private readonly IExcelInterop _interop;
-    public string Id => "contextbar.provider.excel";
+    public string Id => "powertrove.provider.excel";
 
     public ExcelSelectionProvider() : this(new ExcelInterop())
     {

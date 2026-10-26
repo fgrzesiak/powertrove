@@ -4,7 +4,7 @@ public sealed class JsonValidateAction : IAction
 {
     private readonly FileActionServices _services;
     public JsonValidateAction(FileActionServices services) => _services = services;
-    public ActionDescriptor Descriptor => new("contextbar.data.json-validate", SR.Get("json-validate"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "json", "validate" }, false, false, Selection: SelectionRequirements.Any("text"));
+    public ActionDescriptor Descriptor => new("powertrove.data.json-validate", SR.Get("json-validate"), SR.Get("Description"), new HashSet<ContentKind> { ContentKind.Files }, new[] { "json", "validate" }, false, false, Selection: SelectionRequirements.Any("text"));
     public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken ct) { ct.ThrowIfCancellationRequested(); return new(new ActionAvailability(!context.IsStale && context.Status == ContextStatus.Available && context.Content is FileSelection f && f.Files.Count <= 1000 && f.Files.Any(x => !x.IsDirectory && x.IsAccessible && x.IsAvailableLocally && x.Extension.Equals(".json", StringComparison.OrdinalIgnoreCase)))); }
     public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken ct) { ct.ThrowIfCancellationRequested(); return new(new ActionPreview(false, SR.Get("json-validate"), Array.Empty<string>(), Array.Empty<string>(), context.IsStale)); }
     public async Task<ActionReceipt> ExecuteAsync(ContextSnapshot context, ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken ct)

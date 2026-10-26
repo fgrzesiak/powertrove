@@ -13,7 +13,7 @@ public sealed class WorkerSessionTests
         await using var host = new Harness();
         await host.StartAsync();
         var previewId = Guid.NewGuid();
-        await host.Send(new PreviewMessage(previewId, "contextbar.fixture.copy", host.Selection, new Dictionary<string, string>(), host.Expires));
+        await host.Send(new PreviewMessage(previewId, "powertrove.fixture.copy", host.Selection, new Dictionary<string, string>(), host.Expires));
         var preview = await host.Receive<PreviewResultMessage>();
         Assert.Equal(previewId, preview.RequestId);
         Assert.False(preview.IsBlocked);
@@ -42,7 +42,7 @@ public sealed class WorkerSessionTests
         var clock = new ManualClock();
         await using var host = new Harness(clock);
         await host.StartAsync();
-        var execute = host.Execute("contextbar.fixture.wait");
+        var execute = host.Execute("powertrove.fixture.wait");
         await host.Send(execute);
         await TinyPackFactory.Started.Task.WaitAsync(host.Token);
         clock.Advance(TimeSpan.FromSeconds(5));
@@ -72,7 +72,7 @@ public sealed class WorkerSessionTests
         Assert.DoesNotContain(host.InputPath, expired.Message);
         await host.Send(host.Execute() with { StagingDirectory = Path.GetDirectoryName(host.InputPath)! });
         Assert.Equal("invalidRequest", (await host.Receive<ErrorMessage>()).Code);
-        await host.Send(host.Execute("contextbar.fixture.missing"));
+        await host.Send(host.Execute("powertrove.fixture.missing"));
         Assert.Equal("unknownAction", (await host.Receive<ErrorMessage>()).Code);
         Assert.False(File.Exists(host.OutputPath));
     }
@@ -80,7 +80,7 @@ public sealed class WorkerSessionTests
     [Fact]
     public async Task ManifestActionInventoryCannotBeExpandedByAFactory()
     {
-        await using var host = new Harness(declaredIds: new HashSet<string> { "contextbar.fixture.copy" });
+        await using var host = new Harness(declaredIds: new HashSet<string> { "powertrove.fixture.copy" });
         await host.StartAsync();
         await host.Send(host.Execute());
         Assert.Equal("invalidRequest", (await host.Receive<ErrorMessage>()).Code);
@@ -95,7 +95,7 @@ public sealed class WorkerSessionTests
         await host.Send(host.Execute());
         Assert.Equal("invalidRequest", (await host.Receive<ErrorMessage>()).Code);
         await host.StartAsync();
-        await host.Send(host.Execute("contextbar.fixture.wait"));
+        await host.Send(host.Execute("powertrove.fixture.wait"));
         await TinyPackFactory.Started.Task.WaitAsync(host.Token);
         await host.Send(new ShutdownMessage());
         await host.Completion.WaitAsync(host.Token);
@@ -134,9 +134,9 @@ public sealed class WorkerSessionTests
         {
             await Send(new HelloMessage(1, "0.1.0"));
             var ready = await Receive<ReadyMessage>();
-            Assert.Equal("contextbar.fixture", Assert.Single(ready.Packs).Id);
+            Assert.Equal("powertrove.fixture", Assert.Single(ready.Packs).Id);
         }
-        public ExecuteMessage Execute(string action = "contextbar.fixture.copy") => new(Guid.NewGuid(), action, Selection,
+        public ExecuteMessage Execute(string action = "powertrove.fixture.copy") => new(Guid.NewGuid(), action, Selection,
             new Dictionary<string, string>(), Expires, Directory.CreateDirectory(Path.Combine(_staging, Guid.NewGuid().ToString("N"))).FullName);
         public Task Send(PackMessage message) => _writer.WriteAsync(message, Token);
         public async Task<T> Receive<T>() where T : PackMessage

@@ -9,7 +9,7 @@ public static class ActivationProtocol
     public const int MaxMessageBytes = 65536;
     public const int MaxFiles = 100;
     public const int MaxPathCharacters = 2048;
-    public const string OrganizePagesActionId = "contextbar.pdf.organize";
+    public const string OrganizePagesActionId = "powertrove.pdf.organize";
 
     // Syntax only. The Windows adapter additionally checks existence, drive type and reparse points.
     public static bool IsLocalPath(string? path)
@@ -23,7 +23,7 @@ public static class ActivationProtocol
     }
 
     public static bool IsActionId(string? id) => id is null || (id.Length is > 0 and <= 128
-        && id.StartsWith("contextbar.", StringComparison.Ordinal)
+        && id.StartsWith("powertrove.", StringComparison.Ordinal)
         && id.All(c => char.IsAsciiLetterOrDigit(c) || c is '.' or '-'));
 
     public static byte[] Encode(ActivationMessage message)

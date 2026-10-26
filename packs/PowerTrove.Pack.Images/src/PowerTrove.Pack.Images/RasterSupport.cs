@@ -19,7 +19,7 @@ internal static class RasterSupport
         ActionParameterDefinition.Choice(key, SR.GetString("Raster_" + key), defaultValue,
             choices.Select(value => new ActionParameterChoice(value, SR.GetString("Raster_Choice_" + value.Replace(':', '_')))).ToArray());
     public static ActionDescriptor Descriptor(string id, string key, IReadOnlyList<ActionParameterDefinition>? parameters = null, int min = 1, int max = 1000, int weight = 0) => new(
-        "contextbar.image." + id, SR.GetString("Raster_Title_" + key), SR.GetString("Raster_Description_" + key),
+        "powertrove.image." + id, SR.GetString("Raster_Title_" + key), SR.GetString("Raster_Description_" + key),
         new HashSet<ContentKind> { ContentKind.Files }, new[] { "image", id, "picture", "photo" },
         RequiresPreview: true, ChangesFiles: true, ExplicitWeight: weight, Parameters: parameters,
         Selection: new SelectionRequirements(new HashSet<string> { "image" }, MinItems: min, MaxItems: max, IdealMinItems: min));

@@ -38,47 +38,47 @@ public sealed class ImagesPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("contextbar.images", SR.GetString("ImagesPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.images", SR.GetString("ImagesPack_Title"), "0.1.0", "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 
     public static IReadOnlyList<ImageExportProfile> BuiltInProfiles => new[]
     {
         new ImageExportProfile(
-            "contextbar.image.convert-webp", SR.GetString("ImagesPack_Title_ConvertWebP"),
+            "powertrove.image.convert-webp", SR.GetString("ImagesPack_Title_ConvertWebP"),
             SR.GetString("ImagesPack_Desc_ConvertWebP"),
             new[] { "image", "convert", "webp" },
             ImageTarget.WebP, QualityDefault: 80, ExposeQuality: true, ExposeStripMetadata: true),
         new ImageExportProfile(
-            "contextbar.image.convert-avif", SR.GetString("ImagesPack_Title_ConvertAvif"),
+            "powertrove.image.convert-avif", SR.GetString("ImagesPack_Title_ConvertAvif"),
             SR.GetString("ImagesPack_Desc_ConvertAvif"),
             new[] { "image", "convert", "avif" },
             ImageTarget.Avif, QualityDefault: 60, ExposeQuality: true, ExposeStripMetadata: true),
         new ImageExportProfile(
-            "contextbar.image.convert-jpeg", SR.GetString("ImagesPack_Title_ConvertJpeg"),
+            "powertrove.image.convert-jpeg", SR.GetString("ImagesPack_Title_ConvertJpeg"),
             SR.GetString("ImagesPack_Desc_ConvertJpeg"),
             new[] { "image", "convert", "jpeg", "jpg", "heic", "iphone" },
             ImageTarget.Jpeg, QualityDefault: 88, ExposeQuality: true, ExposeStripMetadata: true),
         new ImageExportProfile(
-            "contextbar.image.convert-png", SR.GetString("ImagesPack_Title_ConvertPng"),
+            "powertrove.image.convert-png", SR.GetString("ImagesPack_Title_ConvertPng"),
             SR.GetString("ImagesPack_Desc_ConvertPng"),
             new[] { "image", "convert", "png", "lossless" },
             ImageTarget.Png, ExposeStripMetadata: true),
         new ImageExportProfile(
-            "contextbar.image.resize", SR.GetString("ImagesPack_Title_Resize"),
+            "powertrove.image.resize", SR.GetString("ImagesPack_Title_Resize"),
             SR.GetString("ImagesPack_Desc_Resize"),
             new[] { "image", "resize", "scale", "shrink", "dimensions" },
             ImageTarget.SameAsSource, OutputSuffix: ".resized",
             MaxWidthDefault: 1920, MaxHeightDefault: 1920, ExposeSize: true,
             StripMetadataDefault: false, ExposeStripMetadata: true),
         new ImageExportProfile(
-            "contextbar.image.compress", SR.GetString("ImagesPack_Title_Compress"),
+            "powertrove.image.compress", SR.GetString("ImagesPack_Title_Compress"),
             SR.GetString("ImagesPack_Desc_Compress"),
             new[] { "image", "compress", "optimize", "smaller", "reduce", "size" },
             ImageTarget.SameAsSource, OutputSuffix: " (compressed)",
             QualityDefault: 75, ExposeQuality: true, MaxWidthDefault: 2560, ExposeMaxDimension: true),
         new ImageExportProfile(
-            "contextbar.image.remove-metadata", SR.GetString("ImagesPack_Title_RemoveMetadata"),
+            "powertrove.image.remove-metadata", SR.GetString("ImagesPack_Title_RemoveMetadata"),
             SR.GetString("ImagesPack_Desc_RemoveMetadata"),
             new[] { "image", "metadata", "exif", "strip", "privacy", "gps", "location" },
             ImageTarget.SameAsSource, OutputSuffix: ".stripped"),

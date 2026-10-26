@@ -179,7 +179,7 @@ public class InvocationCoordinatorTests
 
     private class ControlledAction : IAction
     {
-        public ActionDescriptor Descriptor { get; } = new ActionDescriptor("contextbar.test.controlled", "Controlled", "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, false);
+        public ActionDescriptor Descriptor { get; } = new ActionDescriptor("powertrove.test.controlled", "Controlled", "", new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, false);
         private readonly TaskCompletionSource _executionStarted = new();
         private readonly TaskCompletionSource _continueExecution = new();
 
@@ -225,7 +225,7 @@ public class InvocationCoordinatorTests
         coordinator.PaletteRequested += (s, e) => { paletteRequestedCount++; requestedSource = e; };
         coordinator.ResurfaceRequested += (s, e) => { resurfaceRequestedCount++; };
 
-        vm.SelectedAction = vm.FilteredActions.First(a => a.Action.Descriptor.Id == "contextbar.test.controlled");
+        vm.SelectedAction = vm.FilteredActions.First(a => a.Action.Descriptor.Id == "powertrove.test.controlled");
 
         var execTask = vm.ExecuteSelectedActionAsync();
 
@@ -318,7 +318,7 @@ public class InvocationCoordinatorTests
 
         var coordinator = new InvocationCoordinator(null, capture, resolver, vm, registry, searchEngine);
 
-        vm.SelectedAction = vm.FilteredActions.First(a => a.Action.Descriptor.Id == "contextbar.test.controlled");
+        vm.SelectedAction = vm.FilteredActions.First(a => a.Action.Descriptor.Id == "powertrove.test.controlled");
 
         // Act
         var execTask = vm.ExecuteSelectedActionAsync();

@@ -14,7 +14,7 @@ public sealed class RemoveBlankPagesPdfAction : PerFileAction<RemoveBlankPagesOp
         _renderer = renderer;
 
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.remove-blank", SR.GetString("RemoveBlankPagesPdfAction_Title"),
+            "powertrove.pdf.remove-blank", SR.GetString("RemoveBlankPagesPdfAction_Title"),
             SR.GetString("RemoveBlankPagesPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "remove", "blank", "empty" },

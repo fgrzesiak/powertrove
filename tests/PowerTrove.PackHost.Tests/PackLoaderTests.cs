@@ -43,7 +43,7 @@ public sealed class PackLoaderTests : IDisposable
         var (directory, manifest) = WriteFixture(minimum: new Version(99, 0));
         await Assert.ThrowsAsync<InvalidDataException>(() => LoadedPack.LoadAsync(directory, manifest, _temp.File("work"), new Version(0, 1, 0)));
         var original = ActionPackManifest.Read(File.ReadAllText(manifest));
-        File.WriteAllText(manifest, ActionPackManifest.ToJson(original with { MinHostVersion = "0.1.0", Id = "contextbar.wrong" }));
+        File.WriteAllText(manifest, ActionPackManifest.ToJson(original with { MinHostVersion = "0.1.0", Id = "powertrove.wrong" }));
         await Assert.ThrowsAsync<InvalidDataException>(() => LoadedPack.LoadAsync(directory, manifest, _temp.File("work"), new Version(0, 1, 0)));
     }
 

@@ -23,15 +23,15 @@ public sealed class ActionPacksViewModelTests
         var factory = new NoWorkerFactory();
         await using var supervisor = new PackHostSupervisor(factory, temp.File("user"));
         IActionPack[] builtIns = [new GeneratedPack()];
-        var catalog = new TestCatalog([new CatalogEntry(new ManifestAction("contextbar.optional.copy", "Generated optional", ["files"]),
-            new ActionPackInfo("contextbar.optional", "Generated optional tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000)]);
+        var catalog = new TestCatalog([new CatalogEntry(new ManifestAction("powertrove.optional.copy", "Generated optional", ["files"]),
+            new ActionPackInfo("powertrove.optional", "Generated optional tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000)]);
         var runtime = new InstalledPackRuntime(installer, supervisor, new ActionRegistry(), builtIns, catalog);
         var service = new PackManagementService(installer, channel, runtime, builtIns, catalog);
         var snapshot = await service.OpenOnUserRequestAsync(default);
         Assert.Equal(PackChannelStatus.NotConfigured, snapshot.Status);
-        var bundled = snapshot.Packs.Single(p => p.Id == "contextbar.fixture");
+        var bundled = snapshot.Packs.Single(p => p.Id == "powertrove.fixture");
         Assert.Equal(PackInstallState.Installed, bundled.State); Assert.True(bundled.IsBuiltIn); Assert.False(bundled.CanUninstall);
-        var missing = snapshot.Packs.Single(p => p.Id == "contextbar.optional");
+        var missing = snapshot.Packs.Single(p => p.Id == "powertrove.optional");
         Assert.Equal(PackInstallState.NotInstalled, missing.State); Assert.False(missing.CanDownload);
         Assert.Equal(0, factory.Starts);
     }
@@ -47,19 +47,19 @@ public sealed class ActionPacksViewModelTests
         await vm.OpenAsync();
         Assert.Equal(1, service.Opens);
         Assert.Equal(4, vm.Rows.Count);
-        Assert.False(vm.Rows.Single(r => r.Id == "contextbar.installed").CanDownload);
-        Assert.True(vm.Rows.Single(r => r.Id == "contextbar.missing").CanDownload);
-        Assert.Equal("Update", vm.Rows.Single(r => r.Id == "contextbar.update").PrimaryText);
-        Assert.False(vm.Rows.Single(r => r.Id == "contextbar.incompatible").CanDownload);
-        Assert.False(vm.Rows.Single(r => r.Id == "contextbar.incompatible").CanUninstall);
-        await vm.InstallAsync((await vm.PrepareInstallAsync("contextbar.missing"))!);
-        await vm.InstallAsync((await vm.PrepareInstallAsync("contextbar.update"))!);
-        await vm.UninstallAsync("contextbar.installed");
+        Assert.False(vm.Rows.Single(r => r.Id == "powertrove.installed").CanDownload);
+        Assert.True(vm.Rows.Single(r => r.Id == "powertrove.missing").CanDownload);
+        Assert.Equal("Update", vm.Rows.Single(r => r.Id == "powertrove.update").PrimaryText);
+        Assert.False(vm.Rows.Single(r => r.Id == "powertrove.incompatible").CanDownload);
+        Assert.False(vm.Rows.Single(r => r.Id == "powertrove.incompatible").CanUninstall);
+        await vm.InstallAsync((await vm.PrepareInstallAsync("powertrove.missing"))!);
+        await vm.InstallAsync((await vm.PrepareInstallAsync("powertrove.update"))!);
+        await vm.UninstallAsync("powertrove.installed");
         await vm.InstallFileAsync(temp.File("generated.cbpack"));
-        Assert.Equal(new[] { "install:contextbar.missing", "install:contextbar.update", "remove:contextbar.installed", "file" }, service.Commands);
+        Assert.Equal(new[] { "install:powertrove.missing", "install:powertrove.update", "remove:powertrove.installed", "file" }, service.Commands);
         Assert.Equal(4, service.LocalLoads);
-        await vm.InstallAsync(new PackInstallOffer("contextbar.incompatible", "99.0.0", "Generated incompatible", "PowerTrove tests", 1000, "generated"));
-        await vm.UninstallAsync("contextbar.missing");
+        await vm.InstallAsync(new PackInstallOffer("powertrove.incompatible", "99.0.0", "Generated incompatible", "PowerTrove tests", 1000, "generated"));
+        await vm.UninstallAsync("powertrove.missing");
         Assert.Equal(4, service.Commands.Count);
     }
 
@@ -107,9 +107,9 @@ public sealed class ActionPacksViewModelTests
         var settings = new SettingsService(path);
         Assert.True(settings.Settings.ShowNotInstalledActions);
         var registry = new ActionRegistry(); registry.Register(new InstalledAction());
-        registry.RegisterCatalog(new TestCatalog([new CatalogEntry(new ManifestAction("contextbar.optional.copy", "Generated fixture optional", ["files"],
+        registry.RegisterCatalog(new TestCatalog([new CatalogEntry(new ManifestAction("powertrove.optional.copy", "Generated fixture optional", ["files"],
             Selection: new ManifestSelection(["text"], 1, null, null, null, false), Extensions: [".txt"], ChangesFiles: true),
-            new ActionPackInfo("contextbar.optional", "Generated optional tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000)]));
+            new ActionPackInfo("powertrove.optional", "Generated optional tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000)]));
         var palette = new PaletteViewModel();
         palette.Initialize(Snapshots.ForPaths(temp.Write("input.txt", "generated")), registry, new ActionSearchEngine(registry), settings);
         await palette.SearchTask;
@@ -117,7 +117,7 @@ public sealed class ActionPacksViewModelTests
         using var vm = new ActionPacksViewModel(new FakeManagement(), settings, palette.RefreshPackVisibility);
         vm.ShowNotInstalledActions = false;
         Assert.DoesNotContain(palette.FilteredActions, r => r.InstallState == PackInstallState.NotInstalled);
-        Assert.Contains(palette.FilteredActions, r => r.Action.Descriptor.Id == "contextbar.fixture.installed");
+        Assert.Contains(palette.FilteredActions, r => r.Action.Descriptor.Id == "powertrove.fixture.installed");
         palette.IncludeUnavailableActions = true; palette.SearchText = "fixture"; await palette.SearchTask;
         Assert.DoesNotContain(palette.FilteredActions, r => r.InstallState == PackInstallState.NotInstalled);
         Assert.False(new SettingsService(path).Settings.ShowNotInstalledActions);
@@ -148,7 +148,7 @@ public sealed class ActionPacksViewModelTests
     private sealed class TestCatalog(IReadOnlyList<CatalogEntry> entries) : IActionCatalog { public IReadOnlyList<CatalogEntry> Entries => entries; }
     private sealed class GeneratedPack : IActionPack
     {
-        public ActionPackInfo Info => new("contextbar.fixture", "Generated bundled tools", "0.1.0", "PowerTrove tests");
+        public ActionPackInfo Info => new("powertrove.fixture", "Generated bundled tools", "0.1.0", "PowerTrove tests");
         public IReadOnlyList<IAction> Actions => [new InstalledAction()];
     }
     private sealed class NoWorkerFactory : IPackWorkerProcessFactory
@@ -159,7 +159,7 @@ public sealed class ActionPacksViewModelTests
     }
     private sealed class InstalledAction : IAction
     {
-        public ActionDescriptor Descriptor { get; } = new("contextbar.fixture.installed", "Generated fixture action", "Generated fixture", new HashSet<ContentKind> { ContentKind.Files }, [], true, true);
+        public ActionDescriptor Descriptor { get; } = new("powertrove.fixture.installed", "Generated fixture action", "Generated fixture", new HashSet<ContentKind> { ContentKind.Files }, [], true, true);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken) => new(new ActionAvailability(true));
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken cancellationToken) => new(new ActionPreview(true, null, [], []));
         public Task<ActionReceipt> ExecuteAsync(ContextSnapshot context, ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken cancellationToken) => Task.FromResult(new ActionReceipt(true, false, [], [], false));
@@ -167,10 +167,10 @@ public sealed class ActionPacksViewModelTests
     private sealed class FakeManagement : IPackManagementService
     {
         public static readonly PackListItem[] Items =
-        [new("contextbar.installed", "Generated installed", "PowerTrove tests", "0.1.0", "0.1.0", 2097152, 2, PackInstallState.Installed, false, true, false),
-         new("contextbar.missing", "Generated missing", "PowerTrove tests", null, "0.1.0", 1000, 1, PackInstallState.NotInstalled, true, false, false),
-         new("contextbar.update", "Generated update", "PowerTrove tests", "0.1.0", "0.2.0", 1000, 1, PackInstallState.UpdateAvailable, true, true, false),
-         new("contextbar.incompatible", "Generated incompatible", "PowerTrove tests", null, "99.0.0", 1000, 1, PackInstallState.Incompatible, false, false, false)];
+        [new("powertrove.installed", "Generated installed", "PowerTrove tests", "0.1.0", "0.1.0", 2097152, 2, PackInstallState.Installed, false, true, false),
+         new("powertrove.missing", "Generated missing", "PowerTrove tests", null, "0.1.0", 1000, 1, PackInstallState.NotInstalled, true, false, false),
+         new("powertrove.update", "Generated update", "PowerTrove tests", "0.1.0", "0.2.0", 1000, 1, PackInstallState.UpdateAvailable, true, true, false),
+         new("powertrove.incompatible", "Generated incompatible", "PowerTrove tests", null, "99.0.0", 1000, 1, PackInstallState.Incompatible, false, false, false)];
         public int Opens, LocalLoads, Canceled;
         public bool HoldOpen;
         public PackChannelStatus Status = PackChannelStatus.Ready;

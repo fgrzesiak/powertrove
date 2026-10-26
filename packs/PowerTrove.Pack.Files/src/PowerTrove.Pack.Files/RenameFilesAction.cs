@@ -7,7 +7,7 @@ public sealed class RenameFilesAction(FileActionServices services, IFileRenameSe
 {
     public const string ApprovalParameter = "RenameApproval";
     protected override string? UnavailableReason => renamer is null ? SR.GetString("RenameUnavailable") : null;
-    public override ActionDescriptor Descriptor => new("contextbar.files.rename", SR.GetString("RenameFiles"), SR.GetString("RenameDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.files.rename", SR.GetString("RenameFiles"), SR.GetString("RenameDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["rename", "names", "number", "batch"], true, true,
         Parameters: [ActionParameterDefinition.Text("Pattern", SR.GetString("RenamePattern"), "{name}", SR.GetString("RenameTokens")),
             ActionParameterDefinition.Text("Find", SR.GetString("RenameFind"), ""), ActionParameterDefinition.Text("Replace", SR.GetString("RenameReplace"), ""),

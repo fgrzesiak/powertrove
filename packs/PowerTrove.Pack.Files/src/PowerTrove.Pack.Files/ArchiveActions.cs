@@ -34,7 +34,7 @@ public sealed class CompressToZipAction : CombineFilesAction<ZipOptions>
     public CompressToZipAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            Id: "contextbar.files.zip",
+            Id: "powertrove.files.zip",
             Title: SR.GetString("CompressToZipAction_Title"),
             Description: SR.GetString("CompressToZipAction_Description"),
             Accepts: new HashSet<ContentKind> { ContentKind.Files },
@@ -95,7 +95,7 @@ public sealed class ExtractZipAction : PerFileAction<ExtractOptions>
     public ExtractZipAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            Id: "contextbar.files.unzip",
+            Id: "powertrove.files.unzip",
             Title: SR.GetString("ExtractZipAction_Title"),
             Description: SR.GetString("ExtractZipAction_Description"),
             Accepts: new HashSet<ContentKind> { ContentKind.Files },

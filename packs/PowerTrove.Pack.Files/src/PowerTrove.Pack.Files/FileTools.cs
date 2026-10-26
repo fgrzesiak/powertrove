@@ -8,7 +8,7 @@ internal static class FileTools
     public static ActionParameterDefinition Choice(string name, string fallback, params string[] choices) => ActionParameterDefinition.Choice(name, SR.GetString(name), fallback, choices.Select(c => new ActionParameterChoice(c, SR.GetString(c))).ToArray());
     public static FileInputFilter Any(bool directories = false) => new(SR.GetString("FileItems"), null, null, acceptDirectories: directories);
     public static ActionDescriptor Descriptor(string id, string title, bool changes = true, IReadOnlyList<ActionParameterDefinition>? parameters = null, SelectionRequirements? selection = null) =>
-        new("contextbar.files." + id, SR.GetString(title), SR.GetString("ToolsDescription"), new HashSet<ContentKind> { ContentKind.Files }, new[] { id, "files", "tools" }, changes, changes, Parameters: parameters, Selection: selection ?? SelectionRequirements.Any());
+        new("powertrove.files." + id, SR.GetString(title), SR.GetString("ToolsDescription"), new HashSet<ContentKind> { ContentKind.Files }, new[] { id, "files", "tools" }, changes, changes, Parameters: parameters, Selection: selection ?? SelectionRequirements.Any());
     public static string Escape(string value) => "\"" + value.Replace("\"", "\"\"") + "\"";
     public static Task WriteText(FileOutputWriter output, string directory, string name, string extension, string text, CancellationToken ct, bool bom = false) =>
         output.WriteFileAsync(directory, name, extension, async (stream, token) =>

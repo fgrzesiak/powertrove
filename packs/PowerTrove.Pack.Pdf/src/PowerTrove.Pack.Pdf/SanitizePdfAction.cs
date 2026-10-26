@@ -17,7 +17,7 @@ public sealed class SanitizePdfAction : PerFileAction<SanitizePdfOptions>
     public SanitizePdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.sanitize", SR.GetString("SanitizePdfAction_Title"),
+            "powertrove.pdf.sanitize", SR.GetString("SanitizePdfAction_Title"),
             SR.GetString("SanitizePdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "sanitize", "hidden", "javascript", "attachments", "metadata", "remove" },

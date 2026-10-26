@@ -76,7 +76,7 @@ public sealed class PackOnDemandControllerTests
         using var controller = new PackOnDemandController(fixture.Service, fixture.Registry);
         var changed = await controller.ResolveAsync(fixture.Missing, fixture.Snapshot, (_, _) => Task.FromResult(true), () => current);
         Assert.Equal(PackOnDemandOutcome.SelectionChanged, changed.Outcome); Assert.Null(changed.Action);
-        fixture.Registry.RegisterPack("contextbar.fixture", [fixture.Missing]);
+        fixture.Registry.RegisterPack("powertrove.fixture", [fixture.Missing]);
         current = true; fixture.Service.ThrowPrivate = true;
         var failed = await controller.ResolveAsync(fixture.Missing, fixture.Snapshot, (_, _) => Task.FromResult(true), () => current);
         Assert.Equal(PackOnDemandOutcome.Failed, failed.Outcome); Assert.Null(failed.Action);
@@ -87,7 +87,7 @@ public sealed class PackOnDemandControllerTests
     public async Task AnAlreadyInstalledActionSkipsAllConsentAndDownloadWork()
     {
         using var fixture = new Fixture();
-        fixture.Registry.RegisterPack("contextbar.fixture", [fixture.Real]);
+        fixture.Registry.RegisterPack("powertrove.fixture", [fixture.Real]);
         using var controller = new PackOnDemandController(fixture.Service, fixture.Registry);
         var result = await controller.ResolveAsync(fixture.Missing, fixture.Snapshot, (_, _) => throw new InvalidOperationException(), () => true);
         Assert.Equal(PackOnDemandOutcome.Ready, result.Outcome); Assert.Same(fixture.Real, result.Action);
@@ -98,7 +98,7 @@ public sealed class PackOnDemandControllerTests
     public async Task PreviewCannotUseAReplacementSnapshotOrActionBehindTheOptionsDialog()
     {
         using var fixture = new Fixture();
-        fixture.Registry.RegisterPack("contextbar.fixture", [fixture.Real]);
+        fixture.Registry.RegisterPack("powertrove.fixture", [fixture.Real]);
         var vm = new PaletteViewModel();
         var engine = new PowerTrove.Core.Search.ActionSearchEngine(fixture.Registry);
         vm.Initialize(fixture.Snapshot, fixture.Registry, engine); await vm.SearchTask;
@@ -106,7 +106,7 @@ public sealed class PackOnDemandControllerTests
         vm.Initialize(newer, fixture.Registry, engine); await vm.SearchTask;
         var stalePreview = await vm.PreviewSelectedActionAsync(new EmptyParameters(), expectedSnapshot: fixture.Snapshot);
         Assert.True(stalePreview!.IsBlocked); Assert.Equal(0, fixture.Real.Previews);
-        fixture.Registry.RegisterPack("contextbar.fixture", [new RealAction()]);
+        fixture.Registry.RegisterPack("powertrove.fixture", [new RealAction()]);
         var replacedAction = await vm.PreviewSelectedActionAsync(new EmptyParameters(), expectedSnapshot: newer, expectedAction: fixture.Real);
         Assert.True(replacedAction!.IsBlocked); Assert.Equal(0, fixture.Real.Previews);
     }
@@ -137,16 +137,16 @@ public sealed class PackOnDemandControllerTests
         public Fixture()
         {
             Input = _temp.Write("input.txt", "original"); Snapshot = Snapshots.ForPaths(Input);
-            Missing = new CatalogAction(new CatalogEntry(new ManifestAction("contextbar.fixture.copy", "Generated copy", ["files"],
+            Missing = new CatalogAction(new CatalogEntry(new ManifestAction("powertrove.fixture.copy", "Generated copy", ["files"],
                 Selection: new ManifestSelection(["text"], 1, null, null, null, false), Extensions: [".txt"], ChangesFiles: true),
-                new ActionPackInfo("contextbar.fixture", "Generated tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000));
+                new ActionPackInfo("powertrove.fixture", "Generated tools", "0.1.0", "PowerTrove tests"), PackInstallState.NotInstalled, 1000));
             Registry.Register(Missing); Service = new FakeService(Registry, Real);
         }
         public void Dispose() => _temp.Dispose();
     }
     private sealed class FakeService(ActionRegistry registry, RealAction real) : IPackManagementService
     {
-        public PackInstallOffer Offer = new("contextbar.fixture", "0.1.0", "Generated tools", "PowerTrove tests", 1000, "generated");
+        public PackInstallOffer Offer = new("powertrove.fixture", "0.1.0", "Generated tools", "PowerTrove tests", 1000, "generated");
         public PackInstallOffer? Approved;
         public int Prepares, Installs;
         public bool Block, ThrowPrivate;
@@ -168,7 +168,7 @@ public sealed class PackOnDemandControllerTests
     {
         public int Executions, Previews;
         public ContextSnapshot? MatchedSnapshot;
-        public ActionDescriptor Descriptor { get; } = new("contextbar.fixture.copy", "Generated real copy", "Generated real action", new HashSet<ContentKind> { ContentKind.Files }, [], true, true);
+        public ActionDescriptor Descriptor { get; } = new("powertrove.fixture.copy", "Generated real copy", "Generated real action", new HashSet<ContentKind> { ContentKind.Files }, [], true, true);
         public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken)
         { MatchedSnapshot = context; return new(new ActionAvailability(true)); }
         public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken cancellationToken)

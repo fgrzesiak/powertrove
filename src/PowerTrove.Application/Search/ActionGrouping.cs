@@ -36,7 +36,7 @@ internal static class ActionGrouping
     private static string Key(string id)
     {
         string[] parts = id.Split('.');
-        if (parts.Length < 3 || parts[0] != "contextbar") return "All";
+        if (parts.Length < 3 || parts[0] != "powertrove") return "All";
         string family = parts[1], op = parts[2];
         if (family == "general") return "General";
         if (family == "recipe") return "Workflows";

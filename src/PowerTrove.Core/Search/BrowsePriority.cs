@@ -8,7 +8,7 @@ internal static class BrowsePriority
     public static int For(ActionDescriptor descriptor, SelectionSignature selection)
     {
         int specificity = descriptor.Selection?.Families.Count > 0 ? 100 : 0;
-        if (!descriptor.Id.StartsWith("contextbar.", StringComparison.Ordinal)) return specificity;
+        if (!descriptor.Id.StartsWith("powertrove.", StringComparison.Ordinal)) return specificity;
         string operation = descriptor.Id[(descriptor.Id.LastIndexOf('.') + 1)..];
         // A stamp has a narrower two-family contract than a general PDF combination.
         if (operation == "stamp-selected-image") return specificity + 95;

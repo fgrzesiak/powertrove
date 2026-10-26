@@ -8,11 +8,11 @@ public sealed class PackRegistrationTests
     public void PackReplacementPublishesANewSnapshotAndRemovesObsoleteActions()
     {
         var registry = new ActionRegistry();
-        var old = new StubAction("contextbar.fixture.old");
-        var replacement = new StubAction("contextbar.fixture.new");
-        registry.RegisterPack("contextbar.fixture", [old]);
+        var old = new StubAction("powertrove.fixture.old");
+        var replacement = new StubAction("powertrove.fixture.new");
+        registry.RegisterPack("powertrove.fixture", [old]);
         var snapshot = registry.GetAllActions().ToArray();
-        registry.RegisterPack("contextbar.fixture", [replacement]);
+        registry.RegisterPack("powertrove.fixture", [replacement]);
         Assert.Same(old, Assert.Single(snapshot));
         Assert.Null(registry.GetAction(old.Descriptor.Id));
         Assert.Same(replacement, Assert.Single(registry.GetAllActions()));
@@ -22,16 +22,16 @@ public sealed class PackRegistrationTests
     public void CollisionOrDuplicateCannotPartiallyReplaceAnExistingPack()
     {
         var registry = new ActionRegistry();
-        var original = new StubAction("contextbar.fixture.copy");
-        var command = new StubAction("contextbar.app.command");
-        registry.RegisterPack("contextbar.fixture", [original]);
+        var original = new StubAction("powertrove.fixture.copy");
+        var command = new StubAction("powertrove.app.command");
+        registry.RegisterPack("powertrove.fixture", [original]);
         registry.Register(command);
-        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("contextbar.fixture", [new StubAction("contextbar.fixture.new"), command]));
+        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("powertrove.fixture", [new StubAction("powertrove.fixture.new"), command]));
         Assert.Same(original, registry.GetAction(original.Descriptor.Id));
         Assert.Same(command, registry.GetAction(command.Descriptor.Id));
-        Assert.Null(registry.GetAction("contextbar.fixture.new"));
-        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("contextbar.other", [original]));
-        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("contextbar.fixture", [original, original]));
+        Assert.Null(registry.GetAction("powertrove.fixture.new"));
+        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("powertrove.other", [original]));
+        Assert.Throws<InvalidOperationException>(() => registry.RegisterPack("powertrove.fixture", [original, original]));
         Assert.Same(original, registry.GetAction(original.Descriptor.Id));
     }
     private sealed class StubAction(string id) : IAction

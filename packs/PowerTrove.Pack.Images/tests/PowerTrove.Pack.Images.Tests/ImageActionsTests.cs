@@ -30,7 +30,7 @@ public sealed class ImageActionsTests : IDisposable
     {
         string png = WriteImage("photo.png", 64, 32, MagickFormat.Png);
 
-        var receipt = await Action("contextbar.image.convert-webp", new MagickImageEngine())
+        var receipt = await Action("powertrove.image.convert-webp", new MagickImageEngine())
             .ExecuteAsync(Snapshots.ForPaths(png), Snapshots.Parameters(("Quality", "70")), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Message);
@@ -53,7 +53,7 @@ public sealed class ImageActionsTests : IDisposable
         });
         Assert.Equal(6, (await FileKit.Imaging.ImageProbe.ProbeFileAsync(jpeg)).Orientation);
 
-        var receipt = await Action("contextbar.image.convert-png", new MagickImageEngine())
+        var receipt = await Action("powertrove.image.convert-png", new MagickImageEngine())
             .ExecuteAsync(Snapshots.ForPaths(jpeg), new EmptyParameters(), null, CancellationToken.None);
 
         using var result = new MagickImage(Assert.Single(receipt.OutputPaths));
@@ -70,7 +70,7 @@ public sealed class ImageActionsTests : IDisposable
             img.SetProfile(exif);
         });
 
-        var receipt = await Action("contextbar.image.remove-metadata", new MagickImageEngine())
+        var receipt = await Action("powertrove.image.remove-metadata", new MagickImageEngine())
             .ExecuteAsync(Snapshots.ForPaths(jpeg), new EmptyParameters(), null, CancellationToken.None);
 
         string output = Assert.Single(receipt.OutputPaths);
@@ -86,7 +86,7 @@ public sealed class ImageActionsTests : IDisposable
         string large = WriteImage("large.png", 400, 200, MagickFormat.Png);
         string small = WriteImage("small.png", 50, 50, MagickFormat.Png);
 
-        var receipt = await Action("contextbar.image.resize", new MagickImageEngine())
+        var receipt = await Action("powertrove.image.resize", new MagickImageEngine())
             .ExecuteAsync(Snapshots.ForPaths(large, small), Snapshots.Parameters(("MaxWidth", "100"), ("MaxHeight", "100")), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Message);
@@ -108,7 +108,7 @@ public sealed class ImageActionsTests : IDisposable
         string path = _dir.Write("bomb.png", png);
         var engine = new RecordingEngine();
 
-        var receipt = await Action("contextbar.image.convert-webp", engine)
+        var receipt = await Action("powertrove.image.convert-webp", engine)
             .ExecuteAsync(Snapshots.ForPaths(path), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
@@ -122,7 +122,7 @@ public sealed class ImageActionsTests : IDisposable
         string fake = _dir.Write("not-an-image.jpg", "%PDF-1.7 this is a PDF");
         var engine = new RecordingEngine();
 
-        var receipt = await Action("contextbar.image.convert-webp", engine)
+        var receipt = await Action("powertrove.image.convert-webp", engine)
             .ExecuteAsync(Snapshots.ForPaths(fake), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
@@ -136,7 +136,7 @@ public sealed class ImageActionsTests : IDisposable
         string png = WriteImage("a.png", 8, 8, MagickFormat.Png);
         var engine = new RecordingEngine(); // cannot encode AVIF
 
-        var availability = await Action("contextbar.image.convert-avif", engine).MatchAsync(Snapshots.ForPaths(png), CancellationToken.None);
+        var availability = await Action("powertrove.image.convert-avif", engine).MatchAsync(Snapshots.ForPaths(png), CancellationToken.None);
 
         Assert.False(availability.IsAvailable);
         Assert.Contains("AVIF", availability.Reason);
@@ -149,7 +149,7 @@ public sealed class ImageActionsTests : IDisposable
         var windowsLike = new RecordingEngine { Preserves = false };
         var fallback = new RecordingEngine { Preserves = true };
         var pack = new ImagesPack(new CompositeImageEngine(new IImageEngine[] { windowsLike, fallback }), Services());
-        var resize = pack.Actions.Single(a => a.Descriptor.Id == "contextbar.image.resize");
+        var resize = pack.Actions.Single(a => a.Descriptor.Id == "powertrove.image.resize");
 
         await resize.ExecuteAsync(Snapshots.ForPaths(png), Snapshots.Parameters(("StripMetadata", "false")), null, CancellationToken.None);
         await resize.ExecuteAsync(Snapshots.ForPaths(png), Snapshots.Parameters(("StripMetadata", "true")), null, CancellationToken.None);
@@ -163,7 +163,7 @@ public sealed class ImageActionsTests : IDisposable
     {
         string gif = WriteImage("anim.gif", 8, 8, MagickFormat.Gif);
 
-        var preview = await Action("contextbar.image.convert-jpeg", new MagickImageEngine())
+        var preview = await Action("powertrove.image.convert-jpeg", new MagickImageEngine())
             .PreviewAsync(Snapshots.ForPaths(gif), new EmptyParameters(), CancellationToken.None);
 
         Assert.Contains(preview.Warnings, w => w.Contains("first frame"));
@@ -247,7 +247,7 @@ public sealed class ConvertWebpContractTests : ActionContractTestsBase, IDisposa
 
     protected override IAction CreateAction() =>
         new ImagesPack(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }), FileActionServices.CreatePhysical(new FileSignatureVerifier()))
-            .Actions.Single(a => a.Descriptor.Id == "contextbar.image.convert-webp");
+            .Actions.Single(a => a.Descriptor.Id == "powertrove.image.convert-webp");
 
     protected override ContextSnapshot CreateValidSnapshot()
     {

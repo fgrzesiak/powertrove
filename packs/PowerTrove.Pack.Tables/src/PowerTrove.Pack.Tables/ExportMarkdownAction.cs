@@ -22,7 +22,7 @@ public sealed class ExportMarkdownAction : IAction
     }
 
     public ActionDescriptor Descriptor { get; } = new(
-        Id: "contextbar.table.export-markdown",
+        Id: "powertrove.table.export-markdown",
         Title: SR.GetString("ExportMarkdownAction_Title"),
         Description: SR.GetString("ExportMarkdownAction_Description"),
         Accepts: new HashSet<ContentKind> { ContentKind.Table },

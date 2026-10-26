@@ -293,7 +293,7 @@ public abstract class RemainingImageContract : ActionContractTestsBase, IDisposa
     private readonly TempDirectory _dir = new(); protected abstract string Id { get; }
     protected override IAction CreateAction() => new ImagesPack(new CompositeImageEngine(new IImageEngine[] { new MagickImageEngine() }),
         FileActionServices.CreatePhysical(new FileSignatureVerifier()), rasterCodec: new RecordingRasterCodec(), losslessTransformer: new StubLossless(),
-        watermarker: new StubWatermarker(), gifEncoder: new StubGifEncoder(), textRecognizer: new StubRecognizer(), faceDetector: new StubFaces()).Actions.Single(a => a.Descriptor.Id == "contextbar.image." + Id);
+        watermarker: new StubWatermarker(), gifEncoder: new StubGifEncoder(), textRecognizer: new StubRecognizer(), faceDetector: new StubFaces()).Actions.Single(a => a.Descriptor.Id == "powertrove.image." + Id);
     protected override ContextSnapshot CreateValidSnapshot()
     {
         using var png = new MemoryStream(); PngEncoder.Encode(RasterOperations.Canvas(8, 4, new(20, 40, 70)), png);

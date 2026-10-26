@@ -26,7 +26,7 @@ public static class Program
             switch (message)
             {
                 case HelloMessage when mode != "startup-hang":
-                    await writer.WriteAsync(new ReadyMessage([new WorkerPack("contextbar.fixture", "0.1.0")])); break;
+                    await writer.WriteAsync(new ReadyMessage([new WorkerPack("powertrove.fixture", "0.1.0")])); break;
                 case PreviewMessage preview:
                     await writer.WriteAsync(new PreviewResultMessage(preview.RequestId, true, "Generated fixture preview", [], [], false)); break;
                 case ExecuteMessage execute:

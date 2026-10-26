@@ -132,8 +132,8 @@ public class PaletteViewModelTests
 
         // Assert
         Assert.Equal(4, vm.FilteredActions.Count);
-        Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Id == "contextbar.image.convert-avif");
-        Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Id == "contextbar.image.remove-metadata");
+        Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Id == "powertrove.image.convert-avif");
+        Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Id == "powertrove.image.remove-metadata");
         Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Title == "Convert to WebP");
         Assert.Contains(vm.FilteredActions, a => a.Action.Descriptor.Title == "Resize Images");
     }
@@ -144,8 +144,8 @@ public class PaletteViewModelTests
         // Arrange
         var aliases = new Dictionary<string, IReadOnlyList<string>>
         {
-            { "contextbar.image.convert-webp", new List<string> { "konvertieren" } },
-            { "contextbar.general.settings", new List<string> { "einstellungen" } }
+            { "powertrove.image.convert-webp", new List<string> { "konvertieren" } },
+            { "powertrove.general.settings", new List<string> { "einstellungen" } }
         };
         var vm = PaletteViewModel.CreateFake(aliases);
         await vm.SearchTask;
@@ -198,7 +198,7 @@ public class PaletteViewModelTests
         // Arrange
         var vm = PaletteViewModel.CreateFake();
         await vm.SearchTask;
-        vm.SelectedAction = vm.FilteredActions.Single(a => a.Action.Descriptor.Id == "contextbar.image.resize");
+        vm.SelectedAction = vm.FilteredActions.Single(a => a.Action.Descriptor.Id == "powertrove.image.resize");
         Assert.Equal("Resize Images", vm.SelectedAction!.Action.Descriptor.Title);
 
         // Act - Filtering still leaves "Resize Images" in the results
@@ -216,7 +216,7 @@ public class PaletteViewModelTests
         // Arrange
         var vm = PaletteViewModel.CreateFake();
         await vm.SearchTask;
-        vm.SelectedAction = vm.FilteredActions.Single(a => a.Action.Descriptor.Id == "contextbar.image.resize");
+        vm.SelectedAction = vm.FilteredActions.Single(a => a.Action.Descriptor.Id == "powertrove.image.resize");
         Assert.Equal("Resize Images", vm.SelectedAction!.Action.Descriptor.Title);
 
         // Act - Filtering removes "Resize Images" from the results
@@ -244,13 +244,13 @@ public class PaletteViewModelTests
         // Assert
         Assert.Equal(new[]
         {
-            "contextbar.image.convert-webp",
-            "contextbar.image.convert-avif",
-            "contextbar.image.resize",
-            "contextbar.image.remove-metadata",
-            "contextbar.fake.fail",
-            "contextbar.fake.slow",
-            "contextbar.general.settings"
+            "powertrove.image.convert-webp",
+            "powertrove.image.convert-avif",
+            "powertrove.image.resize",
+            "powertrove.image.remove-metadata",
+            "powertrove.fake.fail",
+            "powertrove.fake.slow",
+            "powertrove.general.settings"
         }, vm.FilteredActions.Select(action => action.Action.Descriptor.Id));
     }
 
@@ -265,13 +265,13 @@ public class PaletteViewModelTests
         Assert.Equal("2 images", vm.ContextSummary);
         Assert.Equal(new[]
         {
-            "contextbar.image.convert-webp",
-            "contextbar.image.convert-avif",
-            "contextbar.image.resize",
-            "contextbar.image.remove-metadata",
-            "contextbar.fake.fail",
-            "contextbar.fake.slow",
-            "contextbar.general.settings"
+            "powertrove.image.convert-webp",
+            "powertrove.image.convert-avif",
+            "powertrove.image.resize",
+            "powertrove.image.remove-metadata",
+            "powertrove.fake.fail",
+            "powertrove.fake.slow",
+            "powertrove.general.settings"
         }, vm.FilteredActions.Select(action => action.Action.Descriptor.Id));
         Assert.Empty(vm.SearchText);
     }

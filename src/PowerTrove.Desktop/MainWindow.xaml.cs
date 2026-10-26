@@ -83,7 +83,7 @@ public class ActionSearchResultProxy
 
     internal static string IconFor(string actionId)
     {
-        string family = actionId.StartsWith("contextbar.", StringComparison.Ordinal)
+        string family = actionId.StartsWith("powertrove.", StringComparison.Ordinal)
             ? actionId.Split('.') is { Length: > 2 } parts ? parts[1] : string.Empty
             : string.Empty;
         return family switch
@@ -185,7 +185,7 @@ public partial class MainWindow : Window
     /// <summary>PDF page actions that also offer the visual page organizer in their options dialog.</summary>
     private static readonly HashSet<string> VisualPageActions = new(StringComparer.Ordinal)
     {
-        "contextbar.pdf.reorder", "contextbar.pdf.rotate", "contextbar.pdf.remove-pages", "contextbar.pdf.extract-pages"
+        "powertrove.pdf.reorder", "powertrove.pdf.rotate", "powertrove.pdf.remove-pages", "powertrove.pdf.extract-pages"
     };
 
     /// <summary>Opens the visual page organizer for the PDFs in the current selection.</summary>

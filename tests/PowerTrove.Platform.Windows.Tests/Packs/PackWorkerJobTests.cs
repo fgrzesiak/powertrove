@@ -21,8 +21,8 @@ public sealed class PackWorkerJobTests
         try
         {
             string input = temp.Write("source.txt", "original");
-            var group = new PackWorkerGroup("fixture", [pack], [new("contextbar.fixture", "0.1.0")]);
-            var preview = await host.PreviewAsync(group, "contextbar.fixture.copy", Snapshots.ForPaths(input), new EmptyParameters(), default);
+            var group = new PackWorkerGroup("fixture", [pack], [new("powertrove.fixture", "0.1.0")]);
+            var preview = await host.PreviewAsync(group, "powertrove.fixture.copy", Snapshots.ForPaths(input), new EmptyParameters(), default);
             Assert.False(preview.IsBlocked);
             string pidPath = Assert.Single(Directory.GetFiles(temp.File("user/workers"), "process-id.txt", SearchOption.AllDirectories));
             using var process = Process.GetProcessById(int.Parse(File.ReadAllText(pidPath), System.Globalization.CultureInfo.InvariantCulture));

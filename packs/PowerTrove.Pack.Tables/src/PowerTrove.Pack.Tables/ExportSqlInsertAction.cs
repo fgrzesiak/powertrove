@@ -18,7 +18,7 @@ public sealed class ExportSqlInsertAction : IAction
     }
 
     public ActionDescriptor Descriptor { get; } = new(
-        Id: "contextbar.table.export-sql-insert",
+        Id: "powertrove.table.export-sql-insert",
         Title: SR.GetString("ExportSqlInsertAction_Title"),
         Description: SR.GetString("ExportSqlInsertAction_Description"),
         Accepts: new HashSet<ContentKind> { ContentKind.Table },

@@ -93,7 +93,7 @@ public sealed class MediaAction : PerFileAction<MediaOptions>
 
     public static MediaAction ConvertAudio(string target, CompositeMediaEngine engine, FileActionServices services) => new(
         new ActionDescriptor(
-            $"contextbar.audio.convert-{target}", SR.Format("MediaActions_Title_ConvertAudio", target.ToUpperInvariant()),
+            $"powertrove.audio.convert-{target}", SR.Format("MediaActions_Title_ConvertAudio", target.ToUpperInvariant()),
             SR.Format("MediaActions_Desc_ConvertAudio", target.ToUpperInvariant()),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "audio", "convert", target, "music", "sound" },
@@ -103,7 +103,7 @@ public sealed class MediaAction : PerFileAction<MediaOptions>
 
     public static MediaAction ConvertVideo(string target, CompositeMediaEngine engine, FileActionServices services) => new(
         new ActionDescriptor(
-            $"contextbar.video.convert-{target}", SR.Format("MediaActions_Title_ConvertAudio", target.ToUpperInvariant()),
+            $"powertrove.video.convert-{target}", SR.Format("MediaActions_Title_ConvertAudio", target.ToUpperInvariant()),
             SR.Format("MediaActions_Desc_ConvertVideo", target.ToUpperInvariant()),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "video", "convert", target },
@@ -113,7 +113,7 @@ public sealed class MediaAction : PerFileAction<MediaOptions>
 
     public static MediaAction ExtractAudio(CompositeMediaEngine engine, FileActionServices services) => new(
         new ActionDescriptor(
-            "contextbar.video.extract-audio", SR.GetString("MediaActions_Title_ExtractAudio"),
+            "powertrove.video.extract-audio", SR.GetString("MediaActions_Title_ExtractAudio"),
             SR.GetString("MediaActions_Desc_ExtractAudio"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "extract", "audio", "mp3", "video", "sound" },
@@ -123,7 +123,7 @@ public sealed class MediaAction : PerFileAction<MediaOptions>
 
     public static MediaAction RemoveAudio(CompositeMediaEngine engine, FileActionServices services) => new(
         new ActionDescriptor(
-            "contextbar.video.remove-audio", SR.GetString("MediaActions_Title_RemoveAudio"),
+            "powertrove.video.remove-audio", SR.GetString("MediaActions_Title_RemoveAudio"),
             SR.GetString("MediaActions_Desc_RemoveAudio"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "video", "mute", "remove", "audio", "silent" },
@@ -164,7 +164,7 @@ public sealed class MediaPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("contextbar.media", SR.GetString("MediaPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.media", SR.GetString("MediaPack_Title"), "0.1.0", "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }
@@ -179,7 +179,7 @@ public sealed class ReplaceAudioAction : CombineFilesAction<MediaOptions>
         _input = new FileInputFilter(SR.GetString("MediaFiles"), MediaAction.VideoExtensions.Concat(MediaAction.AudioExtensions).ToArray(), MediaAction.VideoFormats.Concat(MediaAction.AudioFormats).ToArray());
 
         Descriptor = new ActionDescriptor(
-            "contextbar.video.replace-audio",
+            "powertrove.video.replace-audio",
             SR.GetString("MediaActions_Title_ReplaceAudio"),
             SR.GetString("MediaActions_Desc_ReplaceAudio"),
             new HashSet<ContentKind> { ContentKind.Files },
@@ -242,7 +242,7 @@ public sealed class EmbedSubtitlesAction : CombineFilesAction<MediaOptions>
         _input = new FileInputFilter(SR.GetString("MediaFiles"), MediaAction.VideoExtensions.Concat(MediaAction.SubtitleExtensions).ToArray(), MediaAction.VideoFormats);
 
         Descriptor = new ActionDescriptor(
-            "contextbar.video.embed-subtitles",
+            "powertrove.video.embed-subtitles",
             SR.GetString("MediaActions_Title_EmbedSubtitles"),
             SR.GetString("MediaActions_Desc_EmbedSubtitles"),
             new HashSet<ContentKind> { ContentKind.Files },
@@ -306,7 +306,7 @@ public sealed class StillImageVideoAction : CombineFilesAction<MediaOptions>
         _input = new FileInputFilter(SR.GetString("MediaFiles"), new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tif", ".tiff", ".webp", ".avif", ".heic", ".heif" }.Concat(MediaAction.AudioExtensions).ToArray(), new[] { FileFormats.Jpeg, FileFormats.Png, FileFormats.Gif, FileFormats.Bmp, FileFormats.Tiff, FileFormats.WebP, FileFormats.Avif, FileFormats.Heic }.Concat(MediaAction.AudioFormats).ToArray());
 
         Descriptor = new ActionDescriptor(
-            "contextbar.video.still-image",
+            "powertrove.video.still-image",
             SR.GetString("MediaActions_Title_StillImageVideo"),
             SR.GetString("MediaActions_Desc_StillImageVideo"),
             new HashSet<ContentKind> { ContentKind.Files },
@@ -372,7 +372,7 @@ public sealed class SlideshowVideoAction : CombineFilesAction<MediaOptions>
         var sizeChoices = new[] { "1080p", "720p", "square" }.Select(c => new ActionParameterChoice(c, SR.GetString("MediaChoice" + c))).ToArray();
 
         Descriptor = new ActionDescriptor(
-            "contextbar.video.slideshow",
+            "powertrove.video.slideshow",
             SR.GetString("MediaActions_Title_SlideshowVideo"),
             SR.GetString("MediaActions_Desc_SlideshowVideo"),
             new HashSet<ContentKind> { ContentKind.Files },

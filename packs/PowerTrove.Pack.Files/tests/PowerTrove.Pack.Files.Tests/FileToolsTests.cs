@@ -109,7 +109,7 @@ public sealed class FileToolsTests : IDisposable
     public void Pack_ExposesAllActions()
     {
         var pack = new FilesPack(Services());
-        Assert.Equal(new[] { "contextbar.files.count", "contextbar.files.rename", "contextbar.files.add-to-zip", "contextbar.files.compare-text", "contextbar.files.sort-by-type", "contextbar.files.zip", "contextbar.files.unzip", "contextbar.files.checksum", "contextbar.files.tar", "contextbar.files.untar", "contextbar.files.find-duplicates", "contextbar.files.folder-report", "contextbar.files.copy-paths", "contextbar.files.copy-names", "contextbar.files.split", "contextbar.files.join", "contextbar.files.base64-encode", "contextbar.files.base64-decode", "contextbar.files.verify-checksums" },
+        Assert.Equal(new[] { "powertrove.files.count", "powertrove.files.rename", "powertrove.files.add-to-zip", "powertrove.files.compare-text", "powertrove.files.sort-by-type", "powertrove.files.zip", "powertrove.files.unzip", "powertrove.files.checksum", "powertrove.files.tar", "powertrove.files.untar", "powertrove.files.find-duplicates", "powertrove.files.folder-report", "powertrove.files.copy-paths", "powertrove.files.copy-names", "powertrove.files.split", "powertrove.files.join", "powertrove.files.base64-encode", "powertrove.files.base64-decode", "powertrove.files.verify-checksums" },
             pack.Actions.Select(a => a.Descriptor.Id));
     }
 

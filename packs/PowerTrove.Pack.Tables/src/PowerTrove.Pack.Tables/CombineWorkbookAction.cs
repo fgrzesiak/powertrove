@@ -5,7 +5,7 @@ namespace PowerTrove.Pack.Tables;
 
 public sealed class CombineWorkbookAction(FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.table.combine-workbook", SR.GetString("CombineWorkbook"), SR.GetString("CombineWorkbookDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.table.combine-workbook", SR.GetString("CombineWorkbook"), SR.GetString("CombineWorkbookDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["excel", "xlsx", "workbook", "combine", "csv"], true, true,
         Selection: new SelectionRequirements(new HashSet<string> { "spreadsheet" }, MinItems: 2, MaxItems: 50, AllowOtherItems: false,
             FamilyLimits: new Dictionary<string, FamilyLimit>(StringComparer.OrdinalIgnoreCase) { ["spreadsheet"] = new(2, 50) }));

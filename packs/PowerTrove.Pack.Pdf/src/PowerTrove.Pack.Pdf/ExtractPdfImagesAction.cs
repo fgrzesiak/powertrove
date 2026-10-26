@@ -35,7 +35,7 @@ public sealed class ExtractPdfImagesAction : PerFileAction<ExtractPdfImagesOptio
     public ExtractPdfImagesAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.extract-images", SR.GetString("ExtractPdfImages_Title"), SR.GetString("ExtractPdfImages_Description"),
+            "powertrove.pdf.extract-images", SR.GetString("ExtractPdfImages_Title"), SR.GetString("ExtractPdfImages_Description"),
             new HashSet<ContentKind> { ContentKind.Files }, new[] { "pdf", "extract", "image", "jpeg", "png", "pictures" },
             RequiresPreview: true, ChangesFiles: true,
             Parameters: new[] { ActionParameterDefinition.Integer("MinSize", SR.GetString("ExtractPdfImages_MinSize"), 32, 1, 30_000) },

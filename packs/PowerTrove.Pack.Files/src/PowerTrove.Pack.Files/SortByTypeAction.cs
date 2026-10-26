@@ -2,7 +2,7 @@ namespace PowerTrove.Pack.Files;
 
 public sealed class SortByTypeAction(FileActionServices services) : CombineFilesAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor => new("contextbar.files.sort-by-type", SR.GetString("SortByType"), SR.GetString("SortByTypeDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.files.sort-by-type", SR.GetString("SortByType"), SR.GetString("SortByTypeDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["sort", "type", "copy", "organize"], true, true,
         Selection: new SelectionRequirements(new HashSet<string>(), MinItems: 2, IdealMinDistinctFamilies: 2));
     protected override bool RequiresEntireSelection => true;

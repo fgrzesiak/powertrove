@@ -29,7 +29,7 @@ public sealed partial class UndoService : IFileRenameService
             Guid id = Guid.NewGuid(); DateTimeOffset expiry = _clock.GetUtcNow().AddMinutes(10);
             await MoveTransactionAsync(journal, id, expiry, cancellationToken).ConfigureAwait(false);
             expiry = _clock.GetUtcNow().AddMinutes(10);
-            _history[id] = new(id, "contextbar.files.rename", _clock.GetUtcNow(), Array.Empty<FileOutputReceipt>(), journal, expiry);
+            _history[id] = new(id, "powertrove.files.rename", _clock.GetUtcNow(), Array.Empty<FileOutputReceipt>(), journal, expiry);
             return new(id, expiry, journal.Count);
         }
         finally { _renameGate.Release(); }
@@ -103,7 +103,7 @@ public sealed partial class UndoService : IFileRenameService
             var outstanding = stages.Where(s => s.Current != s.Entry.OriginalPath).Select(s => s.Entry with { CurrentPath = s.Current }).ToArray();
             if (outstanding.Length > 0)
             {
-                _history[id] = new(id, "contextbar.files.rename", _clock.GetUtcNow(), Array.Empty<FileOutputReceipt>(), outstanding, expiry);
+                _history[id] = new(id, "powertrove.files.rename", _clock.GetUtcNow(), Array.Empty<FileOutputReceipt>(), outstanding, expiry);
                 throw new RenameRecoveryException(id, expiry, original);
             }
             throw;

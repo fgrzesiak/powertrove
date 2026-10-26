@@ -11,7 +11,7 @@ public sealed class EditPdfMetadataAction : PerFileAction<EditPdfMetadataOptions
     public EditPdfMetadataAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.edit-metadata", SR.GetString("EditPdfMetadataAction_Title"),
+            "powertrove.pdf.edit-metadata", SR.GetString("EditPdfMetadataAction_Title"),
             SR.GetString("EditPdfMetadataAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "metadata", "properties", "author", "title", "subject", "keywords" },

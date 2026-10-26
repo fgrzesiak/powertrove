@@ -13,7 +13,7 @@ public sealed class ProtectPdfAction : PerFileAction<ProtectPdfOptions>
     public ProtectPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.protect", SR.GetString("ProtectPdf_Title"), SR.GetString("ProtectPdf_Description"),
+            "powertrove.pdf.protect", SR.GetString("ProtectPdf_Title"), SR.GetString("ProtectPdf_Description"),
             new HashSet<ContentKind> { ContentKind.Files }, ["pdf", "password", "encrypt", "protect", "aes256"],
             RequiresPreview: true, ChangesFiles: true,
             Parameters:

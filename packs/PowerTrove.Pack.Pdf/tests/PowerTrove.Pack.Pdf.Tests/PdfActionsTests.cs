@@ -31,7 +31,7 @@ public sealed class PdfActionsTests : IDisposable
             FileKit.Pdf.PdfTools.ExtractPages(FileKit.Pdf.PdfDocument.Open(first), new[] { 0 }, fs);
         }
 
-        var action = Action("contextbar.pdf.interleave");
+        var action = Action("powertrove.pdf.interleave");
         var preview = await action.PreviewAsync(Snapshots.ForPaths(first, second), new DictionaryParameters(new Dictionary<string, string>()), CancellationToken.None);
 
         Assert.Contains(preview.Warnings, w => w.Contains("different number of pages"));
@@ -43,7 +43,7 @@ public sealed class PdfActionsTests : IDisposable
         string input = Fixture("linked-objstm.pdf");
         string image = _dir.Write("corrupt.png", new byte[] { 0x01, 0x02, 0x03 });
 
-        var action = Action("contextbar.pdf.stamp-image");
+        var action = Action("powertrove.pdf.stamp-image");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Image"] = image
@@ -80,7 +80,7 @@ public sealed class PdfActionsTests : IDisposable
         string second = Fixture("linked-objstm.pdf", "s.pdf");
 
         var renderer = new DelayingRenderer();
-        var action = Action("contextbar.pdf.interleave", renderer);
+        var action = Action("powertrove.pdf.interleave", renderer);
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["ReverseSecond"] = "true"
@@ -106,7 +106,7 @@ public sealed class PdfActionsTests : IDisposable
         byte[] validPng = new byte[] { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0, 0, 0, 144, 119, 83, 222, 0, 0, 0, 12, 73, 68, 65, 84, 8, 215, 99, 248, 255, 255, 63, 0, 5, 254, 2, 254, 220, 204, 89, 231, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130 };
         string image = _dir.Write("valid.png", validPng);
 
-        var action = Action("contextbar.pdf.stamp-image");
+        var action = Action("powertrove.pdf.stamp-image");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Image"] = image
@@ -129,7 +129,7 @@ public sealed class PdfActionsTests : IDisposable
         byte[] validPng = new byte[] { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0, 0, 0, 144, 119, 83, 222, 0, 0, 0, 12, 73, 68, 65, 84, 8, 215, 99, 248, 255, 255, 63, 0, 5, 254, 2, 254, 220, 204, 89, 231, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130 };
         string imagePath = _dir.Write("test_image.png", validPng);
 
-        var action = Action("contextbar.pdf.stamp-selected-image");
+        var action = Action("powertrove.pdf.stamp-selected-image");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Position"] = "bottom-center",
@@ -151,7 +151,7 @@ public sealed class PdfActionsTests : IDisposable
     [Fact]
     public void StampSelectedImagePdfAction_SelectionFit()
     {
-        var action = Action("contextbar.pdf.stamp-selected-image");
+        var action = Action("powertrove.pdf.stamp-selected-image");
 
         // 1 PDF, 1 Image
         var context1 = Snapshots.ForPaths(Fixture("linked-objstm.pdf"), _dir.Write("test_image.png", new byte[0]));
@@ -173,7 +173,7 @@ public sealed class PdfActionsTests : IDisposable
         try
         {
             System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
-            var action = Action("contextbar.pdf.stamp-selected-image");
+            var action = Action("powertrove.pdf.stamp-selected-image");
             Assert.Equal("Bild auf PDF platzieren", action.Descriptor.Title);
         }
         finally
@@ -186,7 +186,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task InsertBlankPages_HandlesAllPositions()
     {
         string input = Fixture("linked-objstm.pdf"); // 3 pages
-        var action = Action("contextbar.pdf.insert-blank");
+        var action = Action("powertrove.pdf.insert-blank");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Mode"] = "at-positions",
@@ -203,7 +203,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task InsertBlankPages_BeyondPageCount_Fails()
     {
         string input = Fixture("linked-objstm.pdf"); // 3 pages
-        var action = Action("contextbar.pdf.insert-blank");
+        var action = Action("powertrove.pdf.insert-blank");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Mode"] = "at-positions",
@@ -220,7 +220,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task InsertBlankPages_ReversedRange_Fails()
     {
         string input = Fixture("linked-objstm.pdf"); // 3 pages
-        var action = Action("contextbar.pdf.insert-blank");
+        var action = Action("powertrove.pdf.insert-blank");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Mode"] = "at-positions",
@@ -237,7 +237,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task SplitPdf_OpenEndedBeyondPageCount_FailsAndLeavesNoOutput()
     {
         string input = Fixture("linked-objstm.pdf"); // 3 pages
-        var action = Action("contextbar.pdf.split");
+        var action = Action("powertrove.pdf.split");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Mode"] = "ranges",
@@ -257,7 +257,7 @@ public sealed class PdfActionsTests : IDisposable
         string first = Fixture("linked-objstm.pdf", "1.pdf"); // target, 3 pages
         string second = Fixture("linked-objstm.pdf", "2.pdf"); // source
 
-        var action = Action("contextbar.pdf.insert");
+        var action = Action("powertrove.pdf.insert");
         var parameters = new DictionaryParameters(new Dictionary<string, string>
         {
             ["Position"] = "after",
@@ -274,7 +274,7 @@ public sealed class PdfActionsTests : IDisposable
     [Fact]
     public async Task Interleave_SelectionRequirements_Rejects1Or3()
     {
-        var action = Action("contextbar.pdf.interleave");
+        var action = Action("powertrove.pdf.interleave");
         var reqs = action.Descriptor.Selection!;
 
         Assert.Equal(SelectionFit.None, SelectionRequirements.Evaluate(reqs, Snapshots.ForPaths("1.pdf")));
@@ -288,7 +288,7 @@ public sealed class PdfActionsTests : IDisposable
         string second = Fixture("linked-objstm.pdf", "part10.pdf");
         string first = Fixture("linked-objstm.pdf", "part2.pdf");
 
-        var receipt = await Action("contextbar.pdf.merge").ExecuteAsync(Snapshots.ForPaths(second, first), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.merge").ExecuteAsync(Snapshots.ForPaths(second, first), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Message);
         string output = Assert.Single(receipt.OutputPaths);
@@ -306,7 +306,7 @@ public sealed class PdfActionsTests : IDisposable
         text = text.Replace("/Type/XRef", "/Type/XRef/Encrypt<</Filter/Standard>>").Replace("/Type /XRef", "/Type /XRef /Encrypt << /Filter /Standard >>");
         string encrypted = _dir.Write("b.pdf", Encoding.Latin1.GetBytes(text));
 
-        var receipt = await Action("contextbar.pdf.merge").ExecuteAsync(Snapshots.ForPaths(good, encrypted), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.merge").ExecuteAsync(Snapshots.ForPaths(good, encrypted), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
         Assert.Empty(receipt.OutputPaths);
@@ -318,7 +318,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Merge_NeedsTwoPdfs()
     {
         string only = Fixture("linked-objstm.pdf", "a.pdf");
-        var availability = await Action("contextbar.pdf.merge").MatchAsync(Snapshots.ForPaths(only), CancellationToken.None);
+        var availability = await Action("powertrove.pdf.merge").MatchAsync(Snapshots.ForPaths(only), CancellationToken.None);
         Assert.False(availability.IsAvailable);
     }
 
@@ -327,7 +327,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "report.pdf");
 
-        var receipt = await Action("contextbar.pdf.split").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.split").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
 
         string folder = Assert.Single(receipt.OutputPaths);
         Assert.Equal(_dir.File("report (pages)"), folder);
@@ -342,7 +342,7 @@ public sealed class PdfActionsTests : IDisposable
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
         // The document linked-objstm.pdf has 3 pages, so let's use 3,1,2
-        var receipt = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "3,1,2")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "3,1,2")), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess, receipt.Message);
         string output = Assert.Single(receipt.OutputPaths);
@@ -354,7 +354,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Reorder_ReverseMode_Works()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var receipt = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "reverse")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "reverse")), null, CancellationToken.None);
         Assert.True(receipt.IsSuccess, receipt.Message);
     }
 
@@ -362,10 +362,10 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Reorder_OddEven_EvenOdd_Works()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var receiptOdd = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "odd-even")), null, CancellationToken.None);
+        var receiptOdd = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "odd-even")), null, CancellationToken.None);
         Assert.True(receiptOdd.IsSuccess, receiptOdd.Message);
 
-        var receiptEven = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "even-odd")), null, CancellationToken.None);
+        var receiptEven = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "even-odd")), null, CancellationToken.None);
         Assert.True(receiptEven.IsSuccess, receiptEven.Message);
     }
 
@@ -373,7 +373,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Reorder_MissingPage_FailsWithClearMessage()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var receipt = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "1,2")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "1,2")), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
         Assert.Equal("Page 3 is missing.", Assert.Single(receipt.Failures).ErrorMessage);
@@ -383,7 +383,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Reorder_DuplicatePage_FailsWithClearMessage()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var receipt = await Action("contextbar.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "1,2,2")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.reorder").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "1,2,2")), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
         Assert.Equal("Page 2 is listed twice.", Assert.Single(receipt.Failures).ErrorMessage);
@@ -393,7 +393,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task Reorder_SyntaxError_BlocksPreview()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var preview = await Action("contextbar.pdf.reorder").PreviewAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "abc")), CancellationToken.None);
+        var preview = await Action("powertrove.pdf.reorder").PreviewAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Mode", "custom"), ("Order", "abc")), CancellationToken.None);
         Assert.True(preview.IsBlocked);
     }
 
@@ -402,7 +402,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var receipt = await Action("contextbar.pdf.extract-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "3, 1")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.extract-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "3, 1")), null, CancellationToken.None);
 
         string output = Assert.Single(receipt.OutputPaths);
         Assert.Equal(_dir.File("doc (selected pages).pdf"), output);
@@ -414,7 +414,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var receipt = await Action("contextbar.pdf.extract-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "2-9")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.extract-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "2-9")), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
         Assert.Equal("Page numbers must be between 1 and 3.", Assert.Single(receipt.Failures).ErrorMessage);
@@ -425,7 +425,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var preview = await Action("contextbar.pdf.extract-pages").PreviewAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "one to three")), CancellationToken.None);
+        var preview = await Action("powertrove.pdf.extract-pages").PreviewAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "one to three")), CancellationToken.None);
 
         Assert.True(preview.IsBlocked);
     }
@@ -435,7 +435,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var receipt = await Action("contextbar.pdf.remove-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "2")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.remove-pages").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "2")), null, CancellationToken.None);
 
         Assert.Equal(2, Pages(Assert.Single(receipt.OutputPaths)));
     }
@@ -445,7 +445,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var receipt = await Action("contextbar.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Angle", "180"), ("Pages", "2")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Angle", "180"), ("Pages", "2")), null, CancellationToken.None);
 
         var document = PdfDocument.Open(Assert.Single(receipt.OutputPaths));
         Assert.Equal(new[] { 0, 180, 0 }, document.Pages.Select(p => p.Rotate));
@@ -456,7 +456,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
 
-        var receipt = await Action("contextbar.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.All(PdfDocument.Open(receipt.OutputPaths[0]).Pages, p => Assert.Equal(90, p.Rotate));
     }
@@ -474,7 +474,7 @@ public sealed class PdfActionsTests : IDisposable
             System.Console.WriteLine($"Exception in library: {e}");
         }
 
-        var receipt = await Action("contextbar.pdf.page-numbers").ExecuteAsync(
+        var receipt = await Action("powertrove.pdf.page-numbers").ExecuteAsync(
             Snapshots.ForPaths(pdf),
             Snapshots.Parameters(("Format", "n-of-total"), ("StartAt", "2"), ("Position", "bottom-center"), ("SkipFirst", "false"), ("FontSize", "10")),
             null, CancellationToken.None);
@@ -498,7 +498,7 @@ public sealed class PdfActionsTests : IDisposable
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
         Assert.NotNull(PdfDocument.Open(pdf).Info);
 
-        var receipt = await Action("contextbar.pdf.remove-metadata").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.remove-metadata").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.Null(PdfDocument.Open(Assert.Single(receipt.OutputPaths)).Info);
     }
@@ -509,7 +509,7 @@ public sealed class PdfActionsTests : IDisposable
         string b = Fixture("photo.jpg", "scan 2.jpg");
         string a = Fixture("gray.jpg", "scan 1.jpg");
 
-        var receipt = await Action("contextbar.pdf.images-to-pdf").ExecuteAsync(Snapshots.ForPaths(b, a), Snapshots.Parameters(("PageSize", "letter")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.images-to-pdf").ExecuteAsync(Snapshots.ForPaths(b, a), Snapshots.Parameters(("PageSize", "letter")), null, CancellationToken.None);
 
         string output = Assert.Single(receipt.OutputPaths);
         Assert.Equal(2, Pages(output));
@@ -523,7 +523,7 @@ public sealed class PdfActionsTests : IDisposable
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
         var renderer = new FakeRenderer();
 
-        var receipt = await Action("contextbar.pdf.to-images", renderer).ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "1-2"), ("Dpi", "300")), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.to-images", renderer).ExecuteAsync(Snapshots.ForPaths(pdf), Snapshots.Parameters(("Pages", "1-2"), ("Dpi", "300")), null, CancellationToken.None);
 
         string folder = Assert.Single(receipt.OutputPaths);
         Assert.Equal(_dir.File("doc (images)"), folder);
@@ -536,7 +536,7 @@ public sealed class PdfActionsTests : IDisposable
     public async Task PdfToImages_WithoutRenderer_IsUnavailable()
     {
         string pdf = Fixture("linked-objstm.pdf", "doc.pdf");
-        var availability = await Action("contextbar.pdf.to-images").MatchAsync(Snapshots.ForPaths(pdf), CancellationToken.None);
+        var availability = await Action("powertrove.pdf.to-images").MatchAsync(Snapshots.ForPaths(pdf), CancellationToken.None);
         Assert.False(availability.IsAvailable);
     }
 
@@ -545,7 +545,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string pdf = Fixture("linked-objstm.pdf", "confidential.pdf");
 
-        var receipt = await Action("contextbar.pdf.info").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.info").ExecuteAsync(Snapshots.ForPaths(pdf), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.True(receipt.IsSuccess);
         Assert.Contains("3 page(s)", receipt.Message);
@@ -559,7 +559,7 @@ public sealed class PdfActionsTests : IDisposable
     {
         string broken = _dir.Write("broken.pdf", "%PDF-1.7\nthis is not really a pdf");
 
-        var receipt = await Action("contextbar.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(broken), new EmptyParameters(), null, CancellationToken.None);
+        var receipt = await Action("powertrove.pdf.rotate").ExecuteAsync(Snapshots.ForPaths(broken), new EmptyParameters(), null, CancellationToken.None);
 
         Assert.False(receipt.IsSuccess);
         Assert.Equal("The PDF is damaged and could not be read.", Assert.Single(receipt.Failures).ErrorMessage);
@@ -750,7 +750,7 @@ public class InsertBlankPagesActionTests
     public void Constructor_SetsDescriptorAndSelection()
     {
         var action = new InsertBlankPagesAction(_services);
-        Assert.Equal("contextbar.pdf.insert-blank", action.Descriptor.Id);
+        Assert.Equal("powertrove.pdf.insert-blank", action.Descriptor.Id);
         Assert.True(action.Descriptor.RequiresPreview);
         Assert.True(action.Descriptor.ChangesFiles);
     }

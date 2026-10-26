@@ -30,7 +30,7 @@ public sealed class ExplorerContextProvider : IContextProvider
     {
     }
 
-    public string Id => "contextbar.provider.windows.explorer";
+    public string Id => "powertrove.provider.windows.explorer";
 
     public ValueTask<bool> CanCaptureAsync(SourceWindowIdentity source, CancellationToken cancellationToken)
     {

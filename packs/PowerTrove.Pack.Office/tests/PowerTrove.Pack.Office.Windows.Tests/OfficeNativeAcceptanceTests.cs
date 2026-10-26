@@ -14,7 +14,7 @@ public sealed class OfficeNativeAcceptanceTests
     [InlineData(OfficeApplication.Excel, ".csv", "Name,Count\r\nGenerated,3\r\n")]
     public async Task GeneratedDocument_ExportsReadablePdfWithoutChangingInput(OfficeApplication application, string extension, string content)
     {
-        if (!OperatingSystem.IsWindows() || Environment.GetEnvironmentVariable("CONTEXTBAR_RUN_OFFICE_ACCEPTANCE") != "1") return;
+        if (!OperatingSystem.IsWindows() || Environment.GetEnvironmentVariable("POWERTROVE_RUN_OFFICE_ACCEPTANCE") != "1") return;
         var converter = new OfficeComConverter(new OfficeInputValidator());
         if (!converter.IsAvailable(application)) return; // record Blocked in the manual worksheet
         using var dir = new TempDirectory();

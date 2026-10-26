@@ -13,7 +13,7 @@ public sealed class UnlockPdfAction : PerFileAction<UnlockPdfOptions>
     public UnlockPdfAction(FileActionServices services) : base(services)
     {
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.unlock", SR.GetString("UnlockPdfAction_Title"),
+            "powertrove.pdf.unlock", SR.GetString("UnlockPdfAction_Title"),
             SR.GetString("UnlockPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "unlock", "decrypt", "password" },

@@ -20,7 +20,7 @@ public sealed class CompressPdfAction : PerFileAction<CompressPdfOptions>
     {
         _recompressor = recompressor;
         Descriptor = new ActionDescriptor(
-            "contextbar.pdf.compress", SR.GetString("CompressPdfAction_Title"),
+            "powertrove.pdf.compress", SR.GetString("CompressPdfAction_Title"),
             SR.GetString("CompressPdfAction_Description"),
             new HashSet<ContentKind> { ContentKind.Files },
             new[] { "pdf", "compress", "shrink", "reduce", "size" },

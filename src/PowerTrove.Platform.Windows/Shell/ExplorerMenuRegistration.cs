@@ -25,11 +25,11 @@ public interface IExplorerVerbRegistry
 /// <summary>Explicit per-user classic registration. Reading or constructing this service performs no mutation.</summary>
 public sealed class ExplorerMenuRegistration(IExplorerVerbRegistry? registry = null) : IExplorerMenuRegistration
 {
-    public const string VerbPath = @"Software\Classes\*\shell\ContextBar.Open";
+    public const string VerbPath = @"Software\Classes\*\shell\PowerTrove.Open";
     public const string CommandPath = VerbPath + @"\command";
-    public const string OwnerValue = "ContextBarOwner";
-    public const string ExecutableValue = "ContextBarExecutable";
-    public const string OwnerMarker = "ContextBar.ExplorerVerb.v1";
+    public const string OwnerValue = "PowerTroveOwner";
+    public const string ExecutableValue = "PowerTroveExecutable";
+    public const string OwnerMarker = "PowerTrove.ExplorerVerb.v1";
     private static readonly HashSet<string> RootValues = new(StringComparer.OrdinalIgnoreCase)
         { OwnerValue, ExecutableValue, "MUIVerb", "Icon", "MultiSelectModel" };
     private readonly IExplorerVerbRegistry _registry = registry ?? new CurrentUserExplorerVerbRegistry();
