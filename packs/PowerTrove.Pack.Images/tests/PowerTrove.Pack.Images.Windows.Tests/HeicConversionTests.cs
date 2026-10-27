@@ -19,7 +19,10 @@ public sealed class HeicConversionTests : IDisposable
         var codec = BitmapEncoder.GetEncoderInformationEnumerator().FirstOrDefault(info => info.FileExtensions.Contains(".heic"));
         if (codec is null || !new WindowsImagingEngine().CanDecode(FileFormats.Heic)) return;
         using var stream = new InMemoryRandomAccessStream();
-        var encoder = await BitmapEncoder.CreateAsync(codec.CodecId, stream);
+        BitmapEncoder encoder;
+        // A listed HEIF encoder without the HEVC extension (e.g. Windows Server) cannot create the fixture.
+        try { encoder = await BitmapEncoder.CreateAsync(codec.CodecId, stream); }
+        catch (System.Runtime.InteropServices.COMException) { return; }
         var pixels = new byte[32 * 24 * 4];
         for (int i = 0; i < pixels.Length; i += 4) { pixels[i] = 40; pixels[i + 1] = 100; pixels[i + 2] = 200; pixels[i + 3] = 255; }
         encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, 32, 24, 96, 96, pixels);
