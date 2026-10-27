@@ -44,6 +44,8 @@ public sealed partial class WindowsMediaEngine
             if (request.Operation == MediaOperation.CompressVideo)
             {
                 var info = Details(request); var size = MediaPlanning.CompressionSize(info.Width ?? 0, info.Height ?? 0, Option(request, "Quality", "medium"));
+                int targetMb = Int(request, "TargetSizeMb", 0);
+                if (targetMb > 0) size = size with { Bitrate = MediaPlanning.TargetVideoBitrate(info.Duration, targetMb * 1000000L, Flag(request, "KeepAudio", true) && info.HasAudio, size.Bitrate) };
                 encoding = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Auto);
                 encoding.Video.Width = (uint)size.Width; encoding.Video.Height = (uint)size.Height; encoding.Video.Bitrate = (uint)size.Bitrate;
                 if (!Flag(request, "KeepAudio", true) || !info.HasAudio) encoding.Audio = null;

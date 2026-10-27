@@ -779,6 +779,350 @@
               "de": "Lies die Zeilen einer Arbeitsmappe in einem Skript ein, ohne Excel zu automatisieren."
             }
           }
+        },
+        {
+          "id": "powertrove.data.json-to-xlsx",
+          "slug": "json-to-excel",
+          "title": {
+            "en": "Convert JSON to Excel",
+            "de": "JSON in Excel umwandeln"
+          },
+          "description": {
+            "en": "Exports arrays of JSON objects as new XLSX workbooks with typed cells and optional nested columns.",
+            "de": "Exportiert Arrays von JSON-Objekten als neue XLSX-Arbeitsmappen mit typisierten Zellen und optional verschachtelten Spalten."
+          },
+          "searchTerms": {
+            "en": [
+              "json",
+              "excel",
+              "xlsx",
+              "table",
+              "convert"
+            ],
+            "de": [
+              "json",
+              "excel",
+              "xlsx",
+              "table",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "text"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local JSON files containing a nonempty array of objects in File Explorer. No Excel installation is required.",
+              "de": "Wähle lokale JSON-Dateien mit einem nicht leeren Array von Objekten im Explorer aus. Eine Excel-Installation ist nicht erforderlich."
+            },
+            "configure": {
+              "en": "Choose the columns from a checkbox list and use the arrows to set their order. Keep all columns selected to export every field. Optionally put nested fields into separate columns. For several files, the list contains shared columns; all columns preserves each file’s own fields. Preview shows counts, never cell values. Very large field lists use all columns. Limits: one million rows, 16,384 columns and four million cells including headers.",
+              "de": "Wählen Sie Spalten per Kontrollkästchen aus und ändern Sie die Reihenfolge mit den Pfeilen. Mit „Alle übernehmen“ werden alle Felder exportiert. Unterfelder können eigene Spalten erhalten. Bei mehreren Dateien zeigt die Liste gemeinsame Spalten; „Alle übernehmen“ behält die Felder jeder Datei. Die Vorschau zeigt Anzahlen, keine Zellwerte. Sehr umfangreiche Listen verwenden alle Spalten. Grenzen: eine Million Zeilen, 16.384 Spalten und vier Millionen Zellen einschließlich Überschriften."
+            },
+            "output": {
+              "en": "A new XLSX workbook per JSON input with headers and a frozen first row. Numbers and booleans retain types; missing values are empty. Dates, numbers beyond Excel precision, arrays and unflattened objects stay text. Formula-looking text is not executed. Originals and existing outputs are preserved.",
+              "de": "Eine neue XLSX-Arbeitsmappe pro JSON-Eingabe mit Überschriften und fixierter erster Zeile. Zahlen und Wahrheitswerte behalten ihren Typ; fehlende Werte bleiben leer. Datumswerte, Zahlen außerhalb der Excel-Genauigkeit, Arrays und nicht aufgelöste Objekte bleiben Text. Formelähnlicher Text wird nicht ausgeführt. Originale und bestehende Ausgaben bleiben erhalten."
+            },
+            "example": {
+              "en": "Export records with id and customer.name into an Excel workbook without a CSV intermediate. Choose only the columns needed for review; imprecise large identifiers remain text instead of being rounded.",
+              "de": "Exportiere Datensätze mit id und customer.name ohne CSV-Zwischenschritt nach Excel. Wähle nur die benötigten Spalten; große Kennungen bleiben Text, statt gerundet zu werden."
+            }
+          }
+        },
+        {
+          "id": "powertrove.data.vcf-to-csv",
+          "slug": "vcf-to-csv",
+          "title": {
+            "en": "Convert contacts to CSV",
+            "de": "Kontakte in CSV umwandeln"
+          },
+          "description": {
+            "en": "Exports common vCard contact fields to new CSV tables, including repeated phone numbers and email addresses.",
+            "de": "Exportiert übliche vCard-Kontaktfelder als neue CSV-Tabellen, einschließlich mehrerer Telefonnummern und E-Mail-Adressen."
+          },
+          "searchTerms": {
+            "en": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "vcf-to-csv"
+            ],
+            "de": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "vcf-to-csv"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 .vcf contact files in File Explorer. Supports vCard 3.0 and 4.0, not 2.1, quoted-printable or embedded binary encodings.",
+              "de": "Wähle lokale UTF-8-.vcf-Kontaktdateien im Explorer aus. Unterstützt werden vCard 3.0 und 4.0, nicht 2.1, Quoted-Printable oder eingebettete Binärcodierungen."
+            },
+            "configure": {
+              "en": "Review the contact count before starting. Tables map common names, organizations, titles, notes and repeated phone/email/address values. Canonical headers are English: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type, and subsequent numbered fields. A limited set of common export header spellings is also recognized; complete iCloud/Google/Outlook compatibility has not been established.",
+              "de": "Prüfe die Anzahl vor dem Start. Tabellen übernehmen übliche Namen, Organisationen, Titel, Notizen und mehrere Telefon-, E-Mail- und Adresswerte. Die kanonischen Überschriften sind Englisch: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type sowie weitere nummerierte Felder. Einige übliche Export-Schreibweisen werden erkannt; vollständige iCloud-/Google-/Outlook-Kompatibilität ist nicht belegt."
+            },
+            "output": {
+              "en": "A new CSV table per VCF file. Multiple phone numbers and email addresses get separate numbered value/type columns. Photos, birthdays and unsupported vendor properties are not exported into these common-field tables; original contact files are kept. XLSX values are text, not formulas.",
+              "de": "Eine neue CSV-Tabelle pro VCF-Datei. Mehrere Telefonnummern und E-Mail-Adressen erhalten eigene nummerierte Wert-/Typspalten. Fotos, Geburtstage und nicht unterstützte Herstellerfelder werden nicht in diese Standardtabellen exportiert; die Originaldateien bleiben erhalten. XLSX-Werte sind Text, keine Formeln."
+            },
+            "example": {
+              "en": "Review contacts with two phone numbers and two email addresses in a table, then use the corresponding CSV/Excel-to-vCard action to import supported fields back.",
+              "de": "Prüfe Kontakte mit zwei Telefonnummern und zwei E-Mail-Adressen in einer Tabelle. Mit der passenden CSV-/Excel-zu-vCard-Aktion lassen sich unterstützte Felder wieder importieren."
+            }
+          }
+        },
+        {
+          "id": "powertrove.data.csv-to-vcf",
+          "slug": "csv-to-vcf",
+          "title": {
+            "en": "Convert CSV to vCard",
+            "de": "CSV in vCard umwandeln"
+          },
+          "description": {
+            "en": "Converts UTF-8 CSV or TSV contact tables with supported headers into new vCard 3.0 files.",
+            "de": "Wandelt UTF-8-CSV- oder TSV-Kontakttabellen mit unterstützten Überschriften in neue vCard-Dateien der Version 3.0 um."
+          },
+          "searchTerms": {
+            "en": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "csv-to-vcf"
+            ],
+            "de": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "csv-to-vcf"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "spreadsheet"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select UTF-8 CSV or TSV contact tables with headers in File Explorer. Unknown nonempty columns and ambiguous field mappings are rejected.",
+              "de": "Wähle UTF-8-CSV- oder TSV-Kontakttabellen mit Überschriften im Explorer aus. Unbekannte gefüllte Spalten und mehrdeutige Feldzuordnungen werden abgewiesen."
+            },
+            "configure": {
+              "en": "Review the contact count before starting. Tables map common names, organizations, titles, notes and repeated phone/email/address values. Canonical headers are English: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type, and subsequent numbered fields. A limited set of common export header spellings is also recognized; complete iCloud/Google/Outlook compatibility has not been established.",
+              "de": "Prüfe die Anzahl vor dem Start. Tabellen übernehmen übliche Namen, Organisationen, Titel, Notizen und mehrere Telefon-, E-Mail- und Adresswerte. Die kanonischen Überschriften sind Englisch: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type sowie weitere nummerierte Felder. Einige übliche Export-Schreibweisen werden erkannt; vollständige iCloud-/Google-/Outlook-Kompatibilität ist nicht belegt."
+            },
+            "output": {
+              "en": "One new UTF-8 vCard 3.0 file per input. Escaping and line folding are applied. Phone/email identifiers must be text cells in Excel so leading zeros and plus signs are not guessed or rounded. Originals are preserved.",
+              "de": "Eine neue UTF-8-vCard-Datei der Version 3.0 pro Eingabe. Escaping und Zeilenfaltung werden angewendet. Telefon-/E-Mail-Kennungen müssen in Excel Textzellen sein, damit führende Nullen und Pluszeichen nicht interpretiert oder gerundet werden. Originale bleiben erhalten."
+            },
+            "example": {
+              "en": "Import a table with Given Name, Family Name, Phone 1 and Email 1 into an address book. Keep phone numbers as text and remove or explicitly map unknown columns before conversion.",
+              "de": "Übernimm eine Tabelle mit Given Name, Family Name, Phone 1 und Email 1 in ein Adressbuch. Behalte Telefonnummern als Text und entferne unbekannte Spalten oder ordne sie ausdrücklich zu."
+            }
+          }
+        },
+        {
+          "id": "powertrove.data.vcf-to-xlsx",
+          "slug": "vcf-to-excel",
+          "title": {
+            "en": "Convert contacts to Excel",
+            "de": "Kontakte in Excel umwandeln"
+          },
+          "description": {
+            "en": "Exports common vCard contact fields to new XLSX workbooks with text cells; Excel does not need to be installed.",
+            "de": "Exportiert übliche vCard-Kontaktfelder als neue XLSX-Arbeitsmappen mit Textzellen; Excel muss nicht installiert sein."
+          },
+          "searchTerms": {
+            "en": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "vcf-to-xlsx"
+            ],
+            "de": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "vcf-to-xlsx"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 .vcf contact files in File Explorer. Supports vCard 3.0 and 4.0, not 2.1, quoted-printable or embedded binary encodings.",
+              "de": "Wähle lokale UTF-8-.vcf-Kontaktdateien im Explorer aus. Unterstützt werden vCard 3.0 und 4.0, nicht 2.1, Quoted-Printable oder eingebettete Binärcodierungen."
+            },
+            "configure": {
+              "en": "Review the contact count before starting. Tables map common names, organizations, titles, notes and repeated phone/email/address values. Canonical headers are English: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type, and subsequent numbered fields. A limited set of common export header spellings is also recognized; complete iCloud/Google/Outlook compatibility has not been established.",
+              "de": "Prüfe die Anzahl vor dem Start. Tabellen übernehmen übliche Namen, Organisationen, Titel, Notizen und mehrere Telefon-, E-Mail- und Adresswerte. Die kanonischen Überschriften sind Englisch: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type sowie weitere nummerierte Felder. Einige übliche Export-Schreibweisen werden erkannt; vollständige iCloud-/Google-/Outlook-Kompatibilität ist nicht belegt."
+            },
+            "output": {
+              "en": "A new XLSX table per VCF file. Multiple phone numbers and email addresses get separate numbered value/type columns. Photos, birthdays and unsupported vendor properties are not exported into these common-field tables; original contact files are kept. XLSX values are text, not formulas.",
+              "de": "Eine neue XLSX-Tabelle pro VCF-Datei. Mehrere Telefonnummern und E-Mail-Adressen erhalten eigene nummerierte Wert-/Typspalten. Fotos, Geburtstage und nicht unterstützte Herstellerfelder werden nicht in diese Standardtabellen exportiert; die Originaldateien bleiben erhalten. XLSX-Werte sind Text, keine Formeln."
+            },
+            "example": {
+              "en": "Review contacts with two phone numbers and two email addresses in a table, then use the corresponding CSV/Excel-to-vCard action to import supported fields back.",
+              "de": "Prüfe Kontakte mit zwei Telefonnummern und zwei E-Mail-Adressen in einer Tabelle. Mit der passenden CSV-/Excel-zu-vCard-Aktion lassen sich unterstützte Felder wieder importieren."
+            }
+          }
+        },
+        {
+          "id": "powertrove.data.xlsx-to-vcf",
+          "slug": "excel-to-vcf",
+          "title": {
+            "en": "Convert Excel to vCard",
+            "de": "Excel in vCard umwandeln"
+          },
+          "description": {
+            "en": "Converts single-sheet XLSX contact tables with text values into new vCard 3.0 files without running Excel.",
+            "de": "Wandelt XLSX-Kontakttabellen mit einem Blatt und Textwerten in neue vCard-Dateien der Version 3.0 um, ohne Excel zu starten."
+          },
+          "searchTerms": {
+            "en": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "xlsx-to-vcf"
+            ],
+            "de": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "csv",
+              "excel",
+              "xlsx-to-vcf"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "spreadsheet"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select XLSX workbooks with exactly one sheet, a text header row and text contact values. No Excel installation is required.",
+              "de": "Wähle XLSX-Arbeitsmappen mit genau einem Blatt, einer Text-Kopfzeile und Kontaktwerten als Text aus. Eine Excel-Installation ist nicht erforderlich."
+            },
+            "configure": {
+              "en": "Review the contact count before starting. Tables map common names, organizations, titles, notes and repeated phone/email/address values. Canonical headers are English: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type, and subsequent numbered fields. A limited set of common export header spellings is also recognized; complete iCloud/Google/Outlook compatibility has not been established.",
+              "de": "Prüfe die Anzahl vor dem Start. Tabellen übernehmen übliche Namen, Organisationen, Titel, Notizen und mehrere Telefon-, E-Mail- und Adresswerte. Die kanonischen Überschriften sind Englisch: Full Name, Given Name, Family Name, Phone 1, Phone 1 Type, Email 1, Email 1 Type sowie weitere nummerierte Felder. Einige übliche Export-Schreibweisen werden erkannt; vollständige iCloud-/Google-/Outlook-Kompatibilität ist nicht belegt."
+            },
+            "output": {
+              "en": "One new UTF-8 vCard 3.0 file per input. Escaping and line folding are applied. Phone/email identifiers must be text cells in Excel so leading zeros and plus signs are not guessed or rounded. Originals are preserved.",
+              "de": "Eine neue UTF-8-vCard-Datei der Version 3.0 pro Eingabe. Escaping und Zeilenfaltung werden angewendet. Telefon-/E-Mail-Kennungen müssen in Excel Textzellen sein, damit führende Nullen und Pluszeichen nicht interpretiert oder gerundet werden. Originale bleiben erhalten."
+            },
+            "example": {
+              "en": "Import a table with Given Name, Family Name, Phone 1 and Email 1 into an address book. Keep phone numbers as text and remove or explicitly map unknown columns before conversion.",
+              "de": "Übernimm eine Tabelle mit Given Name, Family Name, Phone 1 und Email 1 in ein Adressbuch. Behalte Telefonnummern als Text und entferne unbekannte Spalten oder ordne sie ausdrücklich zu."
+            }
+          }
+        },
+        {
+          "id": "powertrove.data.merge-vcf",
+          "slug": "merge-vcf",
+          "title": {
+            "en": "Merge contact files",
+            "de": "Kontaktdateien zusammenführen"
+          },
+          "description": {
+            "en": "Combines UTF-8 vCard 3.0/4.0 files into a new contact file without removing duplicate contacts.",
+            "de": "Führt UTF-8-vCard-Dateien der Versionen 3.0/4.0 in einer neuen Kontaktdatei zusammen, ohne doppelte Kontakte zu entfernen."
+          },
+          "searchTerms": {
+            "en": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "merge",
+              "combine"
+            ],
+            "de": [
+              "contacts",
+              "vcf",
+              "vcard",
+              "merge",
+              "combine"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 2,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select at least two local UTF-8 .vcf files containing vCard 3.0 or 4.0 contacts.",
+              "de": "Wähle mindestens zwei lokale UTF-8-.vcf-Dateien mit Kontakten im vCard-Format 3.0 oder 4.0 aus."
+            },
+            "configure": {
+              "en": "Review the contact count. Contacts are concatenated without deduplication, and unknown properties are retained. Combined inputs must fit 32 MiB and 100,000 contacts.",
+              "de": "Prüfe die Anzahl der Kontakte. Kontakte werden ohne Deduplizierung aneinandergefügt; unbekannte Eigenschaften bleiben erhalten. Die Eingaben dürfen zusammen 32 MiB und 100.000 Kontakte nicht überschreiten."
+            },
+            "output": {
+              "en": "One new merged VCF file with UTF-8 and folded vCard lines; originals remain unchanged.",
+              "de": "Eine neue zusammengeführte VCF-Datei mit UTF-8 und gefalteten vCard-Zeilen; Originale bleiben unverändert."
+            },
+            "example": {
+              "en": "Combine separate contact files into one local address-book import without uploading contact details. Duplicate contacts remain separate.",
+              "de": "Führe separate Kontaktdateien lokal für einen Adressbuch-Import zusammen, ohne Kontaktdaten hochzuladen. Doppelte Kontakte bleiben separat."
+            }
+          }
         }
       ]
     },
@@ -2166,7 +2510,49 @@
               "en": "Convert a phone photo for an application that only accepts JPEG.",
               "de": "Wandle ein Handyfoto für eine Anwendung um, die nur JPEG akzeptiert."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "heic-to-jpg",
+              "inputFormat": "heic",
+              "outputFormat": "jpeg",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition and the Windows HEIF/HEVC image extensions. The bundled Windows Magick.NET build does not provide HEIC decoding. Keep metadata removal enabled for the Windows engine.",
+                "de": "Benötigt das Bilder-Pack der Vollversion und die Windows-HEIF/HEVC-Bilderweiterungen. Die enthaltene Windows-Version von Magick.NET decodiert kein HEIC. Lasse die Metadatenentfernung für die Windows-Engine aktiviert."
+              }
+            },
+            {
+              "slug": "webp-to-jpg",
+              "inputFormat": "webp",
+              "outputFormat": "jpeg",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition. Magick.NET handles WebP when Windows cannot decode it.",
+                "de": "Benötigt das Bilder-Pack der Vollversion. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
+              }
+            },
+            {
+              "slug": "avif-to-jpg",
+              "inputFormat": "avif",
+              "outputFormat": "jpeg",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
+                "de": "Benötigt das Bilder-Pack der Vollversion und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
+              }
+            },
+            {
+              "slug": "png-to-jpg",
+              "inputFormat": "png",
+              "outputFormat": "jpeg",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition. The bundled image engines support PNG decoding and JPEG encoding.",
+                "de": "Benötigt das Bilder-Pack der Vollversion. Die enthaltenen Bild-Engines unterstützen PNG-Eingaben und JPEG-Ausgaben."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.image.convert-other",
@@ -2274,7 +2660,39 @@
               "en": "Convert a supported graphic to PNG for further editing.",
               "de": "Wandle eine unterstützte Grafik zur weiteren Bearbeitung in PNG um."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "webp-to-png",
+              "inputFormat": "webp",
+              "outputFormat": "png",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition. Magick.NET handles WebP when Windows cannot decode it.",
+                "de": "Benötigt das Bilder-Pack der Vollversion. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
+              }
+            },
+            {
+              "slug": "avif-to-png",
+              "inputFormat": "avif",
+              "outputFormat": "png",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
+                "de": "Benötigt das Bilder-Pack der Vollversion und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
+              }
+            },
+            {
+              "slug": "jpg-to-png",
+              "inputFormat": "jpeg",
+              "outputFormat": "png",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Images pack in the full edition. The bundled image engines support JPEG decoding and PNG encoding.",
+                "de": "Benötigt das Bilder-Pack der Vollversion. Die enthaltenen Bild-Engines unterstützen JPEG-Eingaben und PNG-Ausgaben."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.image.convert-webp",
@@ -3395,6 +3813,120 @@
               "de": "Kennzeichne Vorschaubilder vor dem Teilen als Entwurf."
             }
           }
+        },
+        {
+          "id": "powertrove.image.svg-to-png",
+          "slug": "svg-to-png",
+          "title": {
+            "en": "Convert SVG to PNG",
+            "de": "SVG in PNG umwandeln"
+          },
+          "description": {
+            "en": "Renders supported static SVG graphics as new transparent PNG images, fitted within your chosen resolution.",
+            "de": "Rendert unterstützte statische SVG-Grafiken als neue transparente PNG-Bilder innerhalb der gewählten Auflösung."
+          },
+          "searchTerms": {
+            "en": [
+              "svg",
+              "png",
+              "render",
+              "vector",
+              "convert"
+            ],
+            "de": [
+              "svg",
+              "png",
+              "render",
+              "vector",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "image"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local SVG files with static shapes, text or gradients. A viewBox or pixel width/height is required.",
+              "de": "Wähle lokale SVG-Dateien mit statischen Formen, Text oder Verläufen aus. Eine viewBox oder Breite/Höhe in Pixeln ist erforderlich."
+            },
+            "configure": {
+              "en": "Choose maximum output width and height (default 1,024 × 1,024). Aspect ratio is preserved. Limits: 1 MiB input, 5,000 elements, 64 levels, 10,000 pixels per side and 40 million output pixels. DTDs, scripting, stylesheets, animation, embedded images, use references, foreign namespaces and external resources are rejected before rendering.",
+              "de": "Wähle maximale Ausgabebreite und -höhe (Standard 1.024 × 1.024). Das Seitenverhältnis bleibt erhalten. Grenzen: 1 MiB Eingabe, 5.000 Elemente, 64 Ebenen, 10.000 Pixel pro Seite und 40 Millionen Ausgabepixel. DTDs, Skripte, Stylesheets, Animation, eingebettete Bilder, use-Verweise, fremde Namensräume und externe Ressourcen werden vor dem Rendern abgewiesen."
+            },
+            "output": {
+              "en": "One new PNG per SVG using the existing Magick.NET adapter. Transparency is retained. Unsupported SVG features fail explicitly; originals and existing output files are preserved.",
+              "de": "Pro SVG entsteht eine neue PNG-Datei über den bestehenden Magick.NET-Adapter. Transparenz bleibt erhalten. Nicht unterstützte SVG-Funktionen führen zu einem Fehler; Originale und bestehende Ausgaben bleiben erhalten."
+            },
+            "example": {
+              "en": "Render a static 2:1 SVG logo within 200 × 200 pixels to get a 200 × 100 transparent PNG for a slide or document. No external images or fonts are fetched.",
+              "de": "Rendere ein statisches SVG-Logo im Verhältnis 2:1 innerhalb von 200 × 200 Pixeln als transparentes PNG mit 200 × 100 Pixeln für eine Präsentation oder ein Dokument. Externe Bilder oder Schriftarten werden nicht abgerufen."
+            }
+          }
+        },
+        {
+          "id": "powertrove.image.png-to-svg",
+          "slug": "png-to-svg",
+          "title": {
+            "en": "Vectorize PNG to SVG",
+            "de": "PNG in SVG vektorisieren"
+          },
+          "description": {
+            "en": "Traces quantized PNG color regions into closed SVG polygon paths for logos and simple illustrations.",
+            "de": "Zeichnet quantisierte PNG-Farbflächen als geschlossene SVG-Polygonpfade für Logos und einfache Illustrationen nach."
+          },
+          "searchTerms": {
+            "en": [
+              "png",
+              "svg",
+              "vector",
+              "trace",
+              "logo",
+              "convert"
+            ],
+            "de": [
+              "png",
+              "svg",
+              "vector",
+              "trace",
+              "logo",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "image"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local PNG images of logos, icons or simple flat illustrations. The existing Windows PNG codec decodes the pixels locally; no vectorization service or extra executable is required. Animation is not retained.",
+              "de": "Wähle lokale PNG-Bilder mit Logos, Symbolen oder einfachen flächigen Illustrationen aus. Der vorhandene Windows-PNG-Codec decodiert die Pixel lokal; ein Vektorisierungsdienst oder zusätzliches Programm ist nicht erforderlich. Animationen bleiben nicht erhalten."
+            },
+            "configure": {
+              "en": "Choose color or black/white and a detail level. Low uses up to 256 px and 8 colors, medium 512 px and 16 colors, high 1024 px and 32 colors. Black/white adds a 0–255 brightness threshold. Limits: 16 million source pixels, 250,000 boundary edges and 5 MiB SVG output. Higher detail can exceed the complexity limit on photos or noisy art.",
+              "de": "Wähle Farbe oder Schwarz-Weiß und eine Detailstufe. Niedrig verwendet bis 256 px und 8 Farben, mittel 512 px und 16 Farben, hoch 1024 px und 32 Farben. Schwarz-Weiß ergänzt eine Helligkeitsschwelle von 0–255. Grenzen: 16 Millionen Quellpixel, 250.000 Konturkanten und 5 MiB SVG-Ausgabe. Hohe Details können bei Fotos oder verrauschten Bildern die Komplexitätsgrenze überschreiten."
+            },
+            "output": {
+              "en": "Creates a new SVG of closed polygon paths, preserving holes and separate regions. No bitmap is embedded. Original display dimensions remain while the working grid bounds detail. Colors and alpha are quantized; black/white thresholds alpha. Photos, gradients, smooth curves and small text are approximated and can look worse than the PNG. Original and existing files are preserved.",
+              "de": "Erzeugt eine neue SVG mit geschlossenen Polygonpfaden und erhält Löcher sowie getrennte Flächen. Es wird keine Rastergrafik eingebettet. Die ursprüngliche Anzeigegröße bleibt erhalten, während das Arbeitsraster Details begrenzt. Farben und Alpha werden quantisiert; Schwarz-Weiß verwendet eine Alpha-Schwelle. Fotos, Verläufe, glatte Kurven und kleine Schrift werden angenähert und können schlechter aussehen als das PNG. Originale und bestehende Dateien bleiben erhalten."
+            },
+            "example": {
+              "en": "Trace a flat logo with a transparent center into editable color paths. Use black/white with a brightness threshold for a monochrome mark. Inspect the SVG at the intended display size before using it in print or a design editor; the tracer produces polygons rather than fitted Bézier curves.",
+              "de": "Zeichne ein flächiges Logo mit transparenter Mitte als bearbeitbare Farbpfade nach. Verwende Schwarz-Weiß mit Helligkeitsschwelle für ein einfarbiges Zeichen. Prüfe die SVG in der vorgesehenen Anzeigegröße, bevor du sie druckst oder in einem Grafikeditor nutzt; der Tracer erzeugt Polygone statt angepasster Bézierkurven."
+            }
+          }
         }
       ]
     },
@@ -3574,7 +4106,19 @@
               "en": "Convert a supported recording to MP3 for a portable player.",
               "de": "Wandle eine unterstützte Aufnahme für einen tragbaren Player in MP3 um."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "wav-to-mp3",
+              "inputFormat": "wav",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Media pack in the full edition and a compatible audio encoder. Windows Media Foundation handles supported PCM WAV files; FFmpeg is an optional fallback.",
+                "de": "Benötigt das Medien-Pack der Vollversion und einen passenden Audio-Encoder. Windows Media Foundation verarbeitet unterstützte PCM-WAV-Dateien; FFmpeg ist eine optionale Ergänzung."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.audio.convert-wav",
@@ -3842,8 +4386,8 @@
               "de": "Wähle unterstützte lokale Audio- oder Videodateien im Explorer aus. Die erforderlichen lokalen Medienwerkzeuge müssen verfügbar sein."
             },
             "configure": {
-              "en": "Enter start and end times. Choose precise cutting when needed; fast cuts can follow nearby keyframes.",
-              "de": "Gib Start- und Endzeit ein. Wähle bei Bedarf genaues Schneiden; schnelle Schnitte können sich an nahen Schlüsselbildern orientieren."
+              "en": "For one local file, choose Trim visually to play a preview, seek on the timeline and select the start and end with sliders or the current playback position. Preview volume does not change the export. Windows must support the preview codec. Alternatively enter times, including for batches. Precise cutting can take longer; fast cuts may follow nearby frames. The preview checks ranges against each source duration.",
+              "de": "Bei einer einzelnen lokalen Datei öffnen Sie „Visuell zuschneiden“: Vorschau abspielen, auf der Zeitleiste springen und Anfang und Ende mit Reglern oder der aktuellen Wiedergabeposition festlegen. Die Vorschau-Lautstärke verändert den Export nicht. Windows muss den Vorschau-Codec unterstützen. Alternativ geben Sie Zeiten ein, auch für mehrere Dateien. Genaues Zuschneiden kann länger dauern; schnelle Schnitte können leicht abweichen. Die Vorschau prüft den Bereich gegen die Laufzeit jeder Datei."
             },
             "output": {
               "en": "Saves a chosen time range from each selected audio or video file as a new file. Source files stay unchanged.",
@@ -3896,8 +4440,8 @@
               "de": "Wähle unterstützte lokale Videodateien im Explorer aus. Der erforderliche lokale Codec oder die Medienverarbeitung muss verfügbar sein."
             },
             "configure": {
-              "en": "Choose high, medium or small quality and whether to keep audio.",
-              "de": "Wähle hohe, mittlere oder kleine Qualität und ob die Tonspur erhalten bleiben soll."
+              "en": "Choose a quality/resolution preset and whether to keep audio. Optionally set maximum size per video in decimal MB (1 MB = 1,000,000 bytes); zero uses the preset alone. The preview calculates bitrate from each video duration, reserves audio/container space and blocks impossible budgets. Output size is checked before committing; exceeding the limit fails without publishing a file.",
+              "de": "Wähle eine Qualitäts-/Auflösungsvorgabe und ob Audio erhalten bleibt. Optional lässt sich die maximale Größe pro Video in dezimalen MB festlegen (1 MB = 1.000.000 Bytes); null verwendet nur die Vorgabe. Die Vorschau berechnet die Bitrate aus der jeweiligen Dauer, reserviert Platz für Audio/Container und blockiert unmögliche Budgets. Die Ausgabegröße wird vor dem Speichern geprüft; bei Überschreitung wird keine Datei veröffentlicht."
             },
             "output": {
               "en": "Creates smaller MP4 copies without enlarging video dimensions; outputs that are not smaller are skipped. Source files stay unchanged.",
@@ -3959,7 +4503,19 @@
               "en": "Convert a supported video for an application that accepts MP4.",
               "de": "Wandle ein unterstütztes Video für eine Anwendung um, die MP4 akzeptiert."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "mov-to-mp4",
+              "inputFormat": "mov",
+              "outputFormat": "mp4",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Media pack in the full edition. Decoding depends on the codecs inside the MOV file. A separately installed FFmpeg can handle additional codecs.",
+                "de": "Benötigt das Medien-Pack der Vollversion. Die Decodierung hängt von den Codecs in der MOV-Datei ab. Ein separat installiertes FFmpeg kann weitere Codecs verarbeiten."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.video.convert-webm",
@@ -4122,7 +4678,19 @@
               "en": "Keep the sound from a recorded talk as a separate audio file.",
               "de": "Speichere den Ton eines aufgezeichneten Vortrags als separate Audiodatei."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "mp4-to-mp3",
+              "inputFormat": "mp4",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Media pack in the full edition and a supported audio track. Windows Media Foundation is tried first; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das Medien-Pack der Vollversion und eine unterstützte Audiospur. Zuerst wird Windows Media Foundation verwendet; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.video.extract-frames",
@@ -4506,6 +5074,186 @@
             "example": {
               "en": "Create a short looping demonstration from a screen recording.",
               "de": "Erstelle aus einer Bildschirmaufnahme eine kurze, wiederholende Demonstration."
+            }
+          },
+          "conversions": [
+            {
+              "slug": "mp4-to-gif",
+              "inputFormat": "mp4",
+              "outputFormat": "gif",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the Media pack in the full edition and a decodable video track. Windows handles supported clips; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das Medien-Pack der Vollversion und eine decodierbare Videospur. Windows verarbeitet unterstützte Clips; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            }
+          ]
+        },
+        {
+          "id": "powertrove.subtitle.srt-to-vtt",
+          "slug": "srt-to-vtt",
+          "title": {
+            "en": "Convert SRT to VTT",
+            "de": "SRT in VTT umwandeln"
+          },
+          "description": {
+            "en": "Creates UTF-8 WebVTT copies of SRT subtitles, preserving cue timing and line breaks.",
+            "de": "Erstellt UTF-8-WebVTT-Kopien von SRT-Untertiteln und erhält Zeitangaben und Zeilenumbrüche."
+          },
+          "searchTerms": {
+            "en": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "srt-to-vtt"
+            ],
+            "de": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "srt-to-vtt"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "subtitle"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 SRT subtitle files in File Explorer. No FFmpeg or media codec is needed.",
+              "de": "Wähle lokale UTF-8-Untertitel im SRT-Format im Explorer aus. FFmpeg oder ein Mediencodec ist nicht erforderlich."
+            },
+            "configure": {
+              "en": "Review the cue count and planned new files. Timing must be valid and within seven days; files are limited to 16 MiB and 100,000 cues. WebVTT header metadata, STYLE/REGION/NOTE blocks and markup or layout that cannot be represented in the target format are rejected. Simple bold, italic and underline tags are supported.",
+              "de": "Prüfe die Anzahl der Untertitel und die geplanten neuen Dateien. Zeitangaben müssen gültig sein und innerhalb von sieben Tagen liegen; Dateien sind auf 16 MiB und 100.000 Untertitel begrenzt. WebVTT-Kopfmetadaten, STYLE-/REGION-/NOTE-Blöcke und nicht übertragbare Formatierung oder Layoutangaben werden abgewiesen. Einfache Fett-, Kursiv- und Unterstreichungstags werden unterstützt."
+            },
+            "output": {
+              "en": "New .vtt files with millisecond cue timing, Unicode text and line breaks retained. Output is UTF-8 with CRLF line endings. Originals and existing destination files are preserved.",
+              "de": "Neue .vtt-Dateien mit erhaltenen Millisekunden, Unicode-Texten und Zeilenumbrüchen. Ausgabe in UTF-8 mit CRLF-Zeilenenden. Originale und bestehende Zieldateien bleiben erhalten."
+            },
+            "example": {
+              "en": "Prepare SRT captions for an HTML video track that needs WebVTT without retyping timestamps or uploading the subtitle text.",
+              "de": "Bereite SRT-Untertitel für eine HTML-Videospur vor, die WebVTT benötigt, ohne Zeitangaben abzutippen oder Texte hochzuladen."
+            }
+          }
+        },
+        {
+          "id": "powertrove.subtitle.vtt-to-srt",
+          "slug": "vtt-to-srt",
+          "title": {
+            "en": "Convert VTT to SRT",
+            "de": "VTT in SRT umwandeln"
+          },
+          "description": {
+            "en": "Creates UTF-8 SRT copies of supported WebVTT cues without silently losing unsupported formatting.",
+            "de": "Erstellt UTF-8-SRT-Kopien unterstützter WebVTT-Untertitel, ohne nicht unterstützte Formatierung stillschweigend zu verlieren."
+          },
+          "searchTerms": {
+            "en": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "vtt-to-srt"
+            ],
+            "de": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "vtt-to-srt"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "subtitle"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 WebVTT subtitle files in File Explorer. No FFmpeg or media codec is needed.",
+              "de": "Wähle lokale UTF-8-Untertitel im WebVTT-Format im Explorer aus. FFmpeg oder ein Mediencodec ist nicht erforderlich."
+            },
+            "configure": {
+              "en": "Review the cue count and planned new files. Timing must be valid and within seven days; files are limited to 16 MiB and 100,000 cues. WebVTT header metadata, STYLE/REGION/NOTE blocks and markup or layout that cannot be represented in the target format are rejected. Simple bold, italic and underline tags are supported.",
+              "de": "Prüfe die Anzahl der Untertitel und die geplanten neuen Dateien. Zeitangaben müssen gültig sein und innerhalb von sieben Tagen liegen; Dateien sind auf 16 MiB und 100.000 Untertitel begrenzt. WebVTT-Kopfmetadaten, STYLE-/REGION-/NOTE-Blöcke und nicht übertragbare Formatierung oder Layoutangaben werden abgewiesen. Einfache Fett-, Kursiv- und Unterstreichungstags werden unterstützt."
+            },
+            "output": {
+              "en": "New .srt files with millisecond cue timing, Unicode text and line breaks retained. Output is UTF-8 with CRLF line endings. Originals and existing destination files are preserved.",
+              "de": "Neue .srt-Dateien mit erhaltenen Millisekunden, Unicode-Texten und Zeilenumbrüchen. Ausgabe in UTF-8 mit CRLF-Zeilenenden. Originale und bestehende Zieldateien bleiben erhalten."
+            },
+            "example": {
+              "en": "Export plain WebVTT captions for an editor that needs SRT. Files with WebVTT-only layout or voice markup fail instead of silently losing that information.",
+              "de": "Exportiere einfache WebVTT-Untertitel für einen Editor, der SRT benötigt. Dateien mit WebVTT-spezifischen Layout- oder Sprecherangaben werden abgewiesen, statt diese Informationen stillschweigend zu verlieren."
+            }
+          }
+        },
+        {
+          "id": "powertrove.subtitle.shift",
+          "slug": "shift-subtitles",
+          "title": {
+            "en": "Shift subtitle timing",
+            "de": "Untertitel zeitlich verschieben"
+          },
+          "description": {
+            "en": "Shifts every SRT or VTT cue by a positive or negative offset and creates a new file.",
+            "de": "Verschiebt alle SRT- oder VTT-Untertitel um einen positiven oder negativen Zeitversatz und erstellt eine neue Datei."
+          },
+          "searchTerms": {
+            "en": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "shift"
+            ],
+            "de": [
+              "subtitle",
+              "srt",
+              "vtt",
+              "captions",
+              "shift"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "subtitle"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 SRT or WebVTT subtitle files in File Explorer. No FFmpeg or media codec is needed.",
+              "de": "Wähle lokale UTF-8-Untertitel im SRT- oder WebVTT-Format im Explorer aus. FFmpeg oder ein Mediencodec ist nicht erforderlich."
+            },
+            "configure": {
+              "en": "Set an offset in milliseconds: 1,000 ms equals one second. Positive values delay captions; negative values move them earlier. Offsets before zero are rejected without clipping or dropping cues. Maximum offset: one day in either direction. Preview shows cue counts only.",
+              "de": "Wähle einen Versatz in Millisekunden: 1.000 ms entsprechen einer Sekunde. Positive Werte verzögern Untertitel; negative Werte ziehen sie vor. Zeitangaben vor null werden ohne Abschneiden oder Entfernen von Untertiteln abgewiesen. Maximaler Versatz: ein Tag in beide Richtungen. Die Vorschau zeigt nur die Anzahl."
+            },
+            "output": {
+              "en": "New .shifted.srt or .shifted.vtt files in the same format. Cue text and line breaks are retained; supported WebVTT cue identifiers/settings are kept. Inline timestamp shifts and unsupported metadata are rejected. UTF-8, CRLF line endings; original files stay unchanged.",
+              "de": "Neue .shifted.srt- oder .shifted.vtt-Dateien im gleichen Format. Text und Zeilenumbrüche bleiben erhalten, ebenso unterstützte WebVTT-Kennungen und Layoutangaben. Verschiebungen eingebetteter Zeitmarken und nicht unterstützte Metadaten werden abgewiesen. UTF-8 und CRLF-Zeilenenden; Originale bleiben unverändert."
+            },
+            "example": {
+              "en": "If captions appear one second late, use -1000 ms. A cue starting at 2.000 seconds moves to 1.000 seconds; a cue starting at 0.500 seconds would block that shift.",
+              "de": "Wenn Untertitel eine Sekunde zu spät erscheinen, verwende -1000 ms. Ein Start bei 2,000 Sekunden wird zu 1,000 Sekunden; ein Start bei 0,500 Sekunden würde diesen Versatz blockieren."
             }
           }
         }
@@ -5288,7 +6036,29 @@
               "en": "Bundle several scanned page images into one PDF.",
               "de": "Bündle mehrere gescannte Seitenbilder in einer PDF."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "jpg-to-pdf",
+              "inputFormat": "jpeg",
+              "outputFormat": "pdf",
+              "parameters": {},
+              "requirements": {
+                "en": "Uses the PDF pack and its local PDF writer. No Office installation is required.",
+                "de": "Verwendet das PDF-Pack und dessen lokalen PDF-Writer. Eine Office-Installation ist nicht erforderlich."
+              }
+            },
+            {
+              "slug": "png-to-pdf",
+              "inputFormat": "png",
+              "outputFormat": "pdf",
+              "parameters": {},
+              "requirements": {
+                "en": "Included in the PDF pack. Accepts local PNG/JPEG images; Microsoft Office is not required.",
+                "de": "Im PDF-Pack enthalten. Verarbeitet lokale PNG-/JPEG-Bilder; Microsoft Office ist nicht erforderlich."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.pdf.info",
@@ -6405,7 +7175,33 @@
               "en": "Export a whole page as an image for a presentation.",
               "de": "Exportiere eine ganze Seite als Bild für eine Präsentation."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "pdf-to-jpg",
+              "inputFormat": "pdf",
+              "outputFormat": "jpeg",
+              "parameters": {
+                "Format": "jpeg"
+              },
+              "requirements": {
+                "en": "Requires the PDF pack and the Windows PDF renderer. Choose JPEG in the existing page-to-images action.",
+                "de": "Benötigt das PDF-Pack und den Windows-PDF-Renderer. Wähle JPEG in der bestehenden Aktion zum Exportieren von Seiten als Bilder."
+              }
+            },
+            {
+              "slug": "pdf-to-png",
+              "inputFormat": "pdf",
+              "outputFormat": "png",
+              "parameters": {
+                "Format": "png"
+              },
+              "requirements": {
+                "en": "Requires Windows PDF rendering and the PDF pack. Encrypted or damaged documents can be refused.",
+                "de": "Benötigt den Windows-PDF-Renderer und das PDF-Pack. Verschlüsselte oder beschädigte Dokumente können abgewiesen werden."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.pdf.to-text",
@@ -6568,6 +7364,230 @@
             "example": {
               "en": "Mark a review copy as DRAFT without changing the original.",
               "de": "Kennzeichne eine Prüfungskopie als ENTWURF, ohne das Original zu verändern."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.html-to-pdf",
+          "slug": "html-to-pdf",
+          "title": {
+            "en": "Convert HTML to PDF",
+            "de": "HTML in PDF umwandeln"
+          },
+          "description": {
+            "en": "Prints self-contained local HTML with inline CSS and embedded images to new PDF files.",
+            "de": "Druckt eigenständiges lokales HTML mit Inline-CSS und eingebetteten Bildern in neue PDF-Dateien."
+          },
+          "searchTerms": {
+            "en": [
+              "html",
+              "htm",
+              "pdf",
+              "print",
+              "convert"
+            ],
+            "de": [
+              "html",
+              "htm",
+              "pdf",
+              "print",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UTF-8 .html or .htm files containing passive, self-contained HTML. An installed Microsoft Edge browser is required; it is used locally without an account or download.",
+              "de": "Wähle lokale UTF-8-.html- oder .htm-Dateien mit passivem, eigenständigem HTML aus. Ein installierter Microsoft-Edge-Browser wird lokal ohne Konto oder Download verwendet."
+            },
+            "configure": {
+              "en": "Choose A4 or Letter, portrait or landscape, and margins from 0–50 mm (default 10 mm). Input is limited to 5 MiB and 50,000 elements. Inline CSS and data-embedded images/fonts are supported. Scripts, automatic redirects, frames, templates, forms and inline foreign markup are refused; external stylesheets and local/relative resources are not loaded.",
+              "de": "Wähle A4 oder Letter, Hoch- oder Querformat und Ränder von 0–50 mm (Standard 10 mm). Die Eingabe ist auf 5 MiB und 50.000 Elemente begrenzt. Inline-CSS sowie als Daten eingebettete Bilder/Schriften werden unterstützt. Skripte, automatische Weiterleitungen, Frames, Vorlagen, Formulare und fremdes Inline-Markup werden abgewiesen; externe Stylesheets und lokale/relative Ressourcen werden nicht geladen."
+            },
+            "output": {
+              "en": "One new PDF per input. Each document uses a fresh, memory-limited browser process tree with network/script restrictions and a 60-second timeout. Original files and existing PDFs are preserved. Dynamic JavaScript pages are not executed or captured.",
+              "de": "Pro Eingabe entsteht eine neue PDF. Jedes Dokument verwendet einen neuen, speicherbegrenzten Browser-Prozessbaum mit Netzwerk-/Skriptsperren und 60 Sekunden Zeitgrenze. Originale und bestehende PDFs bleiben erhalten. Dynamische JavaScript-Seiten werden nicht ausgeführt oder aufgenommen."
+            },
+            "example": {
+              "en": "Print a local report with inline table styling and an embedded PNG to a Letter landscape PDF. Use a CSS page break between sections. Keep required images embedded as data instead of linking files or remote URLs.",
+              "de": "Drucke einen lokalen Bericht mit eingebetteter Tabellenformatierung und PNG als Letter-PDF im Querformat. Ein CSS-Seitenumbruch trennt Abschnitte. Bette benötigte Bilder als Daten ein, statt Dateien oder entfernte URLs zu verknüpfen."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.epub-to-pdf",
+          "slug": "epub-to-pdf",
+          "title": {
+            "en": "Convert EPUB to PDF",
+            "de": "EPUB in PDF umwandeln"
+          },
+          "description": {
+            "en": "Reflows local EPUB chapters, supported images and styles into new PDF files.",
+            "de": "Setzt lokale EPUB-Kapitel, unterstützte Bilder und Formatierungen in neue PDF-Dateien um."
+          },
+          "searchTerms": {
+            "en": [
+              "epub",
+              "ebook",
+              "book",
+              "pdf",
+              "convert"
+            ],
+            "de": [
+              "epub",
+              "ebook",
+              "book",
+              "pdf",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local, unprotected EPUB 2/3 books with reflowable UTF-8 XHTML chapters. An installed Microsoft Edge browser is used locally; no account, download or upload is required.",
+              "de": "Wähle lokale, ungeschützte EPUB-2/3-Bücher mit fließenden UTF-8-XHTML-Kapiteln aus. Ein installierter Microsoft Edge wird lokal verwendet; Konto, Download oder Upload sind nicht erforderlich."
+            },
+            "configure": {
+              "en": "Choose A4 or Letter, portrait or landscape and 0–50 mm margins. Chapter order follows the spine, including supplementary entries. Internal CSS and PNG/JPEG/GIF/WebP images are embedded. Simple CSS imports and internal fonts are supported; CSS escapes and conditional imports are unsupported. Limits: 25 MiB archive, 50 MiB expanded, 10 MiB per resource, 500 chapters and 5 MiB prepared HTML.",
+              "de": "Wähle A4 oder Letter, Hoch- oder Querformat und 0–50 mm Ränder. Die Kapitel folgen der Spine-Reihenfolge einschließlich ergänzender Einträge. Interne CSS-Dateien und PNG/JPEG/GIF/WebP-Bilder werden eingebettet. Einfache CSS-Importe und interne Schriften werden unterstützt; CSS-Escape-Sequenzen und bedingte Importe nicht. Grenzen: 25 MiB Archiv, 50 MiB entpackt, 10 MiB pro Ressource, 500 Kapitel und 5 MiB aufbereitetes HTML."
+            },
+            "output": {
+              "en": "Creates one new PDF per book without overwriting sources. Chapters start on new pages; raster images and static formatting are reflowed for paper. Encrypted or obfuscated resources, fixed layouts, scripts, SVG, media and remote resources fail explicitly. Printed links are removed, and global chapter styles may affect the combined reflow; e-reader layout is not reproduced exactly.",
+              "de": "Erzeugt pro Buch eine neue PDF ohne Überschreiben der Quelle. Kapitel beginnen auf neuen Seiten; Rasterbilder und statische Formatierungen werden für Papier neu gesetzt. Verschlüsselte oder verschleierte Ressourcen, feste Layouts, Skripte, SVG, Medien und entfernte Ressourcen werden ausdrücklich abgewiesen. Gedruckte Links werden entfernt; globale Kapitelstile können das zusammengeführte Layout beeinflussen. Das E-Reader-Layout wird nicht exakt nachgebildet."
+            },
+            "example": {
+              "en": "Print an unprotected two-chapter EPUB with internal styles and a PNG illustration to Letter paper with 12 mm margins. Both chapters retain reading order and start on separate pages. Review the PDF before sharing, particularly when the book uses complex typography.",
+              "de": "Drucke ein ungeschütztes EPUB mit zwei Kapiteln, internen Formatierungen und einer PNG-Illustration auf Letter mit 12 mm Rand. Die Kapitel behalten die Lesereihenfolge und beginnen auf getrennten Seiten. Prüfe die PDF vor dem Teilen, besonders bei komplexer Typografie."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.eml-to-pdf",
+          "slug": "eml-to-pdf",
+          "title": {
+            "en": "Convert EML to PDF",
+            "de": "EML in PDF umwandeln"
+          },
+          "description": {
+            "en": "Creates local PDF visualizations of email headers and static message bodies, with optional separate attachment export.",
+            "de": "Erstellt lokale PDF-Ansichten von E-Mail-Kopfzeilen und statischen Nachrichtentexten mit optionalem separatem Anhangexport."
+          },
+          "searchTerms": {
+            "en": [
+              "eml",
+              "email",
+              "mail",
+              "pdf",
+              "convert"
+            ],
+            "de": [
+              "eml",
+              "email",
+              "mail",
+              "pdf",
+              "convert"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "other"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local .eml messages with sender, date and a plain-text or HTML body. Messages are parsed locally without Outlook or mailbox access. An installed Microsoft Edge browser renders the prepared static document.",
+              "de": "Wähle lokale .eml-Nachrichten mit Absender, Datum und Klartext- oder HTML-Inhalt aus. Die Verarbeitung erfolgt lokal ohne Outlook oder Postfachzugriff. Ein installierter Microsoft Edge rendert das aufbereitete statische Dokument."
+            },
+            "configure": {
+              "en": "Choose A4 or Letter, orientation and margins from 0–50 mm. Enable attachment export to create a new folder containing message.pdf and numbered, sanitized attachment files. Limits: 25 MiB message, 100 attachments, 10 MiB per exported attachment, 2 MiB per CID image, 1,000 MIME parts and 5 MiB prepared HTML. Complex or deeply nested MIME is rejected.",
+              "de": "Wähle A4 oder Letter, Ausrichtung und Ränder von 0–50 mm. Aktiviere den Anhangexport für einen neuen Ordner mit message.pdf und nummerierten Anhängen mit bereinigten Namen. Grenzen: 25 MiB Nachricht, 100 Anhänge, 10 MiB pro exportiertem Anhang, 2 MiB pro CID-Bild, 1.000 MIME-Teile und 5 MiB aufbereitetes HTML. Komplexes oder tief verschachteltes MIME wird abgewiesen."
+            },
+            "output": {
+              "en": "Creates one new PDF per message, or one atomic PDF-and-attachments folder when requested. Sender, recipients, subject and date appear above the static body. Supported CID raster images are embedded. Active content, external images, resource-bearing CSS and links are removed. MSG, encrypted mail and TNEF bodies are unsupported. The PDF is a visualization, not authentication or signature validation.",
+              "de": "Erstellt pro Nachricht eine neue PDF oder auf Wunsch einen gemeinsamen neuen Ordner mit PDF und Anhängen. Absender, Empfänger, Betreff und Datum stehen über dem statischen Text. Unterstützte CID-Rasterbilder werden eingebettet. Aktive Inhalte, externe Bilder, ressourcenladendes CSS und Links werden entfernt. MSG, verschlüsselte E-Mails und TNEF-Inhalte werden nicht unterstützt. Die PDF ist eine Ansicht und keine Echtheits- oder Signaturprüfung."
+            },
+            "example": {
+              "en": "Archive an exported EML with a styled HTML body, an embedded PNG and two attachments. Keep the EML unchanged; inspect message.pdf and the separately exported attachments. Remote tracking images are omitted and no attachment is opened automatically.",
+              "de": "Archiviere eine exportierte EML mit formatiertem HTML-Inhalt, eingebettetem PNG und zwei Anhängen. Die EML bleibt unverändert; prüfe message.pdf und die separat exportierten Anhänge. Entfernte Tracking-Bilder werden ausgelassen und Anhänge nicht automatisch geöffnet."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.to-xlsx",
+          "slug": "pdf-to-excel",
+          "title": {
+            "en": "Extract PDF Tables to Excel",
+            "de": "PDF-Tabellen nach Excel extrahieren"
+          },
+          "description": {
+            "en": "Detects supported rectangular text tables and exports one worksheet per table into a new Excel workbook.",
+            "de": "Erkennt unterstützte rechteckige Texttabellen und exportiert pro Tabelle ein Blatt in eine neue Excel-Arbeitsmappe."
+          },
+          "searchTerms": {
+            "en": [
+              "pdf",
+              "excel",
+              "xlsx",
+              "table",
+              "extract"
+            ],
+            "de": [
+              "pdf",
+              "excel",
+              "xlsx",
+              "table",
+              "extract"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local text-based PDFs with complete rectangular table grids, or clearly aligned unruled tables. No Excel installation or upload is required. Scanned image-only tables are unsupported because this action does not perform OCR.",
+              "de": "Wähle lokale textbasierte PDFs mit vollständigen rechteckigen Tabellenrastern oder klar ausgerichteten Tabellen ohne Rahmen aus. Eine Excel-Installation oder ein Upload ist nicht erforderlich. Gescannte Bildtabellen werden nicht unterstützt, da diese Aktion keine OCR ausführt."
+            },
+            "configure": {
+              "en": "Leave unruled detection enabled for aligned tables with at least 3 columns and 3 rows, or disable it to require complete grids. Preview reports counts only. Limits: 25 MiB, 200 pages, 128 tables, one million workbook cells, 128 columns per table, 100,000 cells per table and 32,767 characters per cell. Horizontal text only; unsupported filters, encrypted files, merged cells and unclear layouts fail explicitly.",
+              "de": "Lass die Erkennung rahmenloser Tabellen für ausgerichtete Tabellen ab 3 Spalten und 3 Zeilen aktiv oder deaktiviere sie, um vollständige Raster zu verlangen. Die Vorschau zeigt nur Anzahlen. Grenzen: 25 MiB, 200 Seiten, 128 Tabellen, eine Million Arbeitsmappenzellen, 128 Spalten pro Tabelle, 100.000 Zellen pro Tabelle und 32.767 Zeichen pro Zelle. Nur horizontaler Text; nicht unterstützte Filter, verschlüsselte Dateien, verbundene Zellen und unklare Layouts werden ausdrücklich abgewiesen."
+            },
+            "output": {
+              "en": "Creates one new XLSX per PDF, with one worksheet per detected table and source page. Tables are ordered by page and top-to-bottom position; page continuations are not automatically merged. Empty and multiline grid cells are retained. All cell values remain text, preserving identifiers and formula-looking strings. Non-table content is omitted and inferred structures require checking against the PDF.",
+              "de": "Erstellt pro PDF eine neue XLSX mit einem Blatt pro erkannter Tabelle und Quellseite. Die Reihenfolge folgt den Seiten und der Position von oben nach unten; Seitenfortsetzungen werden nicht automatisch zusammengeführt. Leere und mehrzeilige Rasterzellen bleiben erhalten. Alle Zellwerte bleiben Text; Kennungen und formelähnliche Zeichenfolgen bleiben so erhalten. Inhalte außerhalb der Tabellen werden ausgelassen; abgeleitete Strukturen müssen mit der PDF verglichen werden."
+            },
+            "example": {
+              "en": "Extract two rectangular tables on each of two report pages into four worksheets. A code such as 00123 stays text and =2+2 stays a literal value. Review cell boundaries and reading order before editing or sharing the workbook; this tool does not promise universal PDF table recognition.",
+              "de": "Extrahiere je zwei rechteckige Tabellen auf zwei Berichtsseiten in vier Tabellenblätter. Ein Code wie 00123 bleibt Text und =2+2 ein wörtlicher Wert. Prüfe Zellgrenzen und Lesereihenfolge vor dem Bearbeiten oder Teilen; das Werkzeug verspricht keine universelle PDF-Tabellenerkennung."
             }
           }
         }
@@ -6842,6 +7862,378 @@
             "example": {
               "en": "Prepare selected spreadsheet rows for a later database import.",
               "de": "Bereite ausgewählte Tabellenzeilen für einen späteren Datenbankimport vor."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "powertrove.einvoice",
+      "version": "0.1.0",
+      "publisher": "PowerTrove",
+      "profile": "full",
+      "title": {
+        "en": "E-Invoice Tools",
+        "de": "E-Rechnungswerkzeuge"
+      },
+      "actions": [
+        {
+          "id": "powertrove.einvoice.view",
+          "slug": "view-xrechnung",
+          "title": {
+            "en": "View XRechnung",
+            "de": "XRechnung ansehen"
+          },
+          "description": {
+            "en": "Creates a new self-contained HTML view of supported invoice parties, lines, taxes and source totals.",
+            "de": "Erstellt eine neue eigenständige HTML-Ansicht unterstützter Rechnungsparteien, Positionen, Steuern und Quellsummen."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "html"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "html"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "text"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UBL Invoice/CreditNote or CII 100 invoice XML with supported parties, line items, tax information and source totals. The declared profile is displayed as source data and is not certification. All sensitive invoice data stays on the PC.",
+              "de": "Wähle lokale UBL-Invoice/CreditNote- oder CII-100-Rechnungs-XML mit unterstützten Parteien, Positionen, Steuerinformationen und Quellsummen aus. Das angegebene Profil wird als Quelldatum und nicht als Zertifizierung angezeigt. Alle sensiblen Rechnungsdaten bleiben auf dem PC."
+            },
+            "configure": {
+              "en": "Review the preview before creating the new output. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Prüfe die Vorschau, bevor du eine neue Ausgabe erzeugst. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new self-contained HTML invoice visualization. Open the generated result from the app to inspect parties, lines, taxes, totals and payment details. Values are HTML-encoded and no external resources are loaded. The visible notice distinguishes selected-field viewing from the original invoice and standards validation.",
+              "de": "Erzeugt eine neue eigenständige HTML-Rechnungsansicht. Öffne das Ergebnis aus der App, um Parteien, Positionen, Steuern, Summen und Zahlungsinformationen anzusehen. Werte werden HTML-codiert und externe Ressourcen nicht geladen. Der sichtbare Hinweis unterscheidet die Felderansicht von der Originalrechnung und einer Normvalidierung."
+            },
+            "example": {
+              "en": "Inspect a supported invoice locally without uploading it. Compare the displayed source tax and payable amounts with the original XML; a readable visualization is not a conformance certificate.",
+              "de": "Sieh eine unterstützte Rechnung lokal ohne Upload an. Vergleiche angezeigte Steuer- und Zahlbeträge mit der Original-XML; eine lesbare Ansicht ist kein Konformitätszertifikat."
+            }
+          }
+        },
+        {
+          "id": "powertrove.einvoice.to-pdf",
+          "slug": "xrechnung-to-pdf",
+          "title": {
+            "en": "Convert XRechnung to PDF",
+            "de": "XRechnung in PDF umwandeln"
+          },
+          "description": {
+            "en": "Creates a new PDF visualization of supported invoice fields through the local contained document printer.",
+            "de": "Erstellt über den lokal begrenzten Dokumentdrucker eine neue PDF-Ansicht unterstützter Rechnungsfelder."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "pdf"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "pdf"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "text"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UBL Invoice/CreditNote or CII 100 invoice XML with supported parties, line items, tax information and source totals. The declared profile is displayed as source data and is not certification. All sensitive invoice data stays on the PC.",
+              "de": "Wähle lokale UBL-Invoice/CreditNote- oder CII-100-Rechnungs-XML mit unterstützten Parteien, Positionen, Steuerinformationen und Quellsummen aus. Das angegebene Profil wird als Quelldatum und nicht als Zertifizierung angezeigt. Alle sensiblen Rechnungsdaten bleiben auf dem PC."
+            },
+            "configure": {
+              "en": "Choose A4 or Letter and 0–50 mm margins. An installed Microsoft Edge and the shared local print service are required. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Wähle A4 oder Letter und 0–50 mm Ränder. Ein installierter Microsoft Edge und der gemeinsame lokale Druckdienst sind erforderlich. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new PDF visualization of supported fields with a visible notice. Source totals are copied without recalculation; omitted fields and attachments remain in the original. It is not the original electronic invoice or a validity report.",
+              "de": "Erstellt eine neue PDF-Ansicht unterstützter Felder mit sichtbarem Hinweis. Quellsummen werden ohne Neuberechnung übernommen; ausgelassene Felder und Anhänge bleiben im Original. Die Ausgabe ist weder die elektronische Originalrechnung noch ein Gültigkeitsbericht."
+            },
+            "example": {
+              "en": "Inspect a supported invoice locally without uploading it. Compare the displayed source tax and payable amounts with the original XML; a readable visualization is not a conformance certificate.",
+              "de": "Sieh eine unterstützte Rechnung lokal ohne Upload an. Vergleiche angezeigte Steuer- und Zahlbeträge mit der Original-XML; eine lesbare Ansicht ist kein Konformitätszertifikat."
+            }
+          }
+        },
+        {
+          "id": "powertrove.einvoice.to-csv",
+          "slug": "xrechnung-to-csv",
+          "title": {
+            "en": "Export XRechnung Lines to CSV",
+            "de": "XRechnungspositionen als CSV exportieren"
+          },
+          "description": {
+            "en": "Exports invoice line items with invoice identity and source totals into a new UTF-8 CSV file.",
+            "de": "Exportiert Rechnungspositionen mit Rechnungskennung und Quellsummen in eine neue UTF-8-CSV-Datei."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "csv"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "csv"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "text"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UBL Invoice/CreditNote or CII 100 invoice XML with supported parties, line items, tax information and source totals. The declared profile is displayed as source data and is not certification. All sensitive invoice data stays on the PC.",
+              "de": "Wähle lokale UBL-Invoice/CreditNote- oder CII-100-Rechnungs-XML mit unterstützten Parteien, Positionen, Steuerinformationen und Quellsummen aus. Das angegebene Profil wird als Quelldatum und nicht als Zertifizierung angezeigt. Alle sensiblen Rechnungsdaten bleiben auf dem PC."
+            },
+            "configure": {
+              "en": "Review the preview before creating the new output. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Prüfe die Vorschau, bevor du eine neue Ausgabe erzeugst. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new UTF-8 CSV with one row per line, invoice identity, currency and source totals. Formula-like text is prefixed with an apostrophe; use XLSX to keep literal identifiers in spreadsheets. Other tax/payment details remain in the original. No business-rule or standards validation is performed.",
+              "de": "Erzeugt eine neue UTF-8-CSV mit einer Zeile pro Position, Rechnungskennung, Währung und Quellsummen. Formelähnlicher Text erhält ein Apostroph; verwende XLSX für wörtliche Kennungen in Tabellenprogrammen. Weitere Steuer-/Zahlungsdetails verbleiben im Original. Es erfolgt keine Geschäftsregel- oder Normvalidierung."
+            },
+            "example": {
+              "en": "Export invoice line items for a local reconciliation workflow, using invoice ID and currency to associate every row with its source. Retain the original XML as the authoritative electronic document.",
+              "de": "Exportiere Rechnungspositionen für einen lokalen Abgleich und ordne jede Zeile über Rechnungskennung und Währung ihrer Quelle zu. Bewahre die Original-XML als maßgebliches elektronisches Dokument auf."
+            }
+          }
+        },
+        {
+          "id": "powertrove.einvoice.to-xlsx",
+          "slug": "xrechnung-to-excel",
+          "title": {
+            "en": "Export XRechnung to Excel",
+            "de": "XRechnung nach Excel exportieren"
+          },
+          "description": {
+            "en": "Exports supported invoice headers, lines, tax breakdown and payments into four new Excel worksheets.",
+            "de": "Exportiert unterstützte Rechnungskopfdaten, Positionen, Steueraufteilung und Zahlungen in vier neue Excel-Blätter."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "xlsx"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "xlsx"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "text"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local UBL Invoice/CreditNote or CII 100 invoice XML with supported parties, line items, tax information and source totals. The declared profile is displayed as source data and is not certification. All sensitive invoice data stays on the PC.",
+              "de": "Wähle lokale UBL-Invoice/CreditNote- oder CII-100-Rechnungs-XML mit unterstützten Parteien, Positionen, Steuerinformationen und Quellsummen aus. Das angegebene Profil wird als Quelldatum und nicht als Zertifizierung angezeigt. Alle sensiblen Rechnungsdaten bleiben auf dem PC."
+            },
+            "configure": {
+              "en": "Review the preview before creating the new output. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Prüfe die Vorschau, bevor du eine neue Ausgabe erzeugst. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new XLSX with invoice header/totals, line items, tax breakdown and payment worksheets. Identifiers and exact invariant decimal strings remain text; formulas are not created. Original files remain intact. This is a selected-field export, not an original invoice or standards validation.",
+              "de": "Erstellt eine neue XLSX mit Blättern für Rechnungskopf/Summen, Positionen, Steueraufteilung und Zahlungen. Kennungen und exakte Dezimalzeichenfolgen bleiben Text; Formeln werden nicht erstellt. Originale bleiben erhalten. Dies ist ein Export ausgewählter Felder und keine Originalrechnung oder Normvalidierung."
+            },
+            "example": {
+              "en": "Review a generated workbook while keeping invoice ID 000123 and line ID 001 as literal text. Check the copied tax and payable totals against the source; parsing does not prove that those totals are correct.",
+              "de": "Prüfe eine erzeugte Arbeitsmappe und erhalte Rechnungsnummer 000123 und Positionsnummer 001 als wörtlichen Text. Vergleiche Steuer- und Zahlbeträge mit der Quelle; die Verarbeitung beweist nicht deren Richtigkeit."
+            }
+          }
+        },
+        {
+          "id": "powertrove.einvoice.extract-xml",
+          "slug": "extract-factur-x-xml",
+          "title": {
+            "en": "Extract Factur-X / ZUGFeRD Invoice XML",
+            "de": "Factur-X-/ZUGFeRD-Rechnungs-XML extrahieren"
+          },
+          "description": {
+            "en": "Extracts one recognized embedded invoice XML as a new file, preserving its decoded bytes and the original PDF.",
+            "de": "Extrahiert eine erkannte eingebettete Rechnungs-XML als neue Datei und erhält deren decodierte Bytes sowie die Original-PDF."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "xml"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "xml"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select a local, unencrypted PDF containing exactly one recognized embedded factur-x.xml, zugferd-invoice.xml or xrechnung.xml. Its XML must use the supported UBL Invoice/CreditNote or CII 100 structure with line items. The action does not verify PDF/A or Factur-X profile conformance.",
+              "de": "Wähle eine lokale unverschlüsselte PDF mit genau einer erkannten eingebetteten factur-x.xml, zugferd-invoice.xml oder xrechnung.xml. Die XML muss die unterstützte UBL-Invoice/CreditNote- oder CII-100-Struktur mit Positionen verwenden. Die Aktion prüft keine PDF/A- oder Factur-X-Profilkonformität."
+            },
+            "configure": {
+              "en": "Review the preview before creating the new output. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Prüfe die Vorschau, bevor du eine neue Ausgabe erzeugst. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new XML file containing the exact decoded invoice attachment bytes. Embedded names are never used as output paths. Existing files and the original PDF remain intact. Extraction plus parsing does not establish authenticity, PDF/A, EN16931 or XRechnung validity.",
+              "de": "Erzeugt eine neue XML-Datei mit den exakt decodierten Rechnungsanhangbytes. Eingebettete Namen werden nie als Ausgabepfade verwendet. Bestehende Dateien und die Original-PDF bleiben erhalten. Extraktion und Verarbeitung belegen keine Echtheit, PDF/A-, EN16931- oder XRechnungs-Gültigkeit."
+            },
+            "example": {
+              "en": "Extract the recognized invoice XML from a hybrid PDF into a separate file for inspection. Keep the PDF and its original attachment unchanged; use a dedicated standards validator if conformance evidence is required.",
+              "de": "Extrahiere die erkannte Rechnungs-XML aus einer hybriden PDF zur separaten Prüfung. Bewahre PDF und Originalanhang unverändert auf; nutze einen eigenen Normvalidator, wenn ein Konformitätsnachweis benötigt wird."
+            }
+          }
+        },
+        {
+          "id": "powertrove.einvoice.view-embedded",
+          "slug": "view-embedded-invoice",
+          "title": {
+            "en": "View Embedded Invoice Data",
+            "de": "Eingebettete Rechnungsdaten ansehen"
+          },
+          "description": {
+            "en": "Reads one supported embedded invoice XML from a local PDF without extracting attachment paths or validating PDF/A conformance.",
+            "de": "Liest eine unterstützte eingebettete Rechnungs-XML aus einer lokalen PDF, ohne Anhangpfade zu entpacken oder PDF/A-Konformität zu prüfen."
+          },
+          "searchTerms": {
+            "en": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "html"
+            ],
+            "de": [
+              "invoice",
+              "xrechnung",
+              "zugferd",
+              "factur-x",
+              "ubl",
+              "cii",
+              "html"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select a local, unencrypted PDF containing exactly one recognized embedded factur-x.xml, zugferd-invoice.xml or xrechnung.xml. Its XML must use the supported UBL Invoice/CreditNote or CII 100 structure with line items. The action does not verify PDF/A or Factur-X profile conformance.",
+              "de": "Wähle eine lokale unverschlüsselte PDF mit genau einer erkannten eingebetteten factur-x.xml, zugferd-invoice.xml oder xrechnung.xml. Die XML muss die unterstützte UBL-Invoice/CreditNote- oder CII-100-Struktur mit Positionen verwenden. Die Aktion prüft keine PDF/A- oder Factur-X-Profilkonformität."
+            },
+            "configure": {
+              "en": "Review the preview before creating the new output. The E-Invoice pack is separately configurable in the Full desktop profile. XML limits: 5 MiB, depth 64, 100,000 elements, 10,000 lines and 32,767 characters per text field. PDF containers: 25 MiB and 200 pages. Unsupported or ambiguous fields, mixed amount currencies and decimals that cannot be represented exactly are refused. Browser views/printing also have the documented static HTML limits.",
+              "de": "Prüfe die Vorschau, bevor du eine neue Ausgabe erzeugst. Das E-Invoice-Pack ist im vollständigen Desktop-Profil separat einstellbar. XML-Grenzen: 5 MiB, Tiefe 64, 100.000 Elemente, 10.000 Positionen und 32.767 Zeichen pro Textfeld. PDF-Container: 25 MiB und 200 Seiten. Nicht unterstützte oder mehrdeutige Felder, gemischte Betragswährungen und nicht exakt darstellbare Dezimalwerte werden abgewiesen. Browseransichten und Druck unterliegen zusätzlich den dokumentierten Grenzen für statisches HTML."
+            },
+            "output": {
+              "en": "Creates a new self-contained HTML invoice visualization. Open the generated result from the app to inspect parties, lines, taxes, totals and payment details. Values are HTML-encoded and no external resources are loaded. The visible notice distinguishes selected-field viewing from the original invoice and standards validation.",
+              "de": "Erzeugt eine neue eigenständige HTML-Rechnungsansicht. Öffne das Ergebnis aus der App, um Parteien, Positionen, Steuern, Summen und Zahlungsinformationen anzusehen. Werte werden HTML-codiert und externe Ressourcen nicht geladen. Der sichtbare Hinweis unterscheidet die Felderansicht von der Originalrechnung und einer Normvalidierung."
+            },
+            "example": {
+              "en": "Inspect a supported invoice locally without uploading it. Compare the displayed source tax and payable amounts with the original XML; a readable visualization is not a conformance certificate.",
+              "de": "Sieh eine unterstützte Rechnung lokal ohne Upload an. Vergleiche angezeigte Steuer- und Zahlbeträge mit der Original-XML; eine lesbare Ansicht ist kein Konformitätszertifikat."
             }
           }
         }

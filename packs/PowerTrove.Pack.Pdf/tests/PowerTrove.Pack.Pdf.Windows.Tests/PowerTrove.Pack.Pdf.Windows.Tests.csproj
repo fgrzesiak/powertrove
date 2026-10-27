@@ -20,4 +20,7 @@
   </ItemGroup>
   <ItemGroup><None Include="..\..\..\..\tools\FileKit.Pdf\tests\FileKit.Pdf.Tests\Fixtures\**" LinkBase="Fixtures" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
   <ItemGroup><ProjectReference Include="..\..\composition\PowerTrove.Pack.Pdf.Composition\PowerTrove.Pack.Pdf.Composition.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Html/testing/TestEpubFactory.cs" Link="TestEpubFactory.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Html/testing/TestEmlFactory.cs" Link="TestEmlFactory.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Pdf/testing/TestTablePdfFactory.cs" Link="TestTablePdfFactory.cs" /><Compile Include="../../../../tools/FileKit.Pdf/tests/FileKit.Pdf.Tests/TestPdfFactory.cs" Link="TestPdfFactory.cs" /></ItemGroup>
 </Project>

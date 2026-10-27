@@ -105,4 +105,21 @@ Audio channels: {6}</value></data>
 <data name="MediaChoice1080p" xml:space="preserve"><value>1080p landscape</value></data>
 <data name="MediaChoice720p" xml:space="preserve"><value>720p landscape</value></data>
 <data name="MediaChoicesquare" xml:space="preserve"><value>Square (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>Convert SRT to VTT</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>Convert VTT to SRT</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Shift subtitle timing</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>Creates UTF-8 WebVTT copies of SRT subtitles, preserving cue timing and line breaks.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Creates UTF-8 SRT copies of supported WebVTT cues without silently losing unsupported formatting.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Shifts every SRT or VTT cue by a positive or negative offset and creates a new file.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Offset in milliseconds</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1,000 ms = 1 second. Negative values move cues earlier. A shift before time zero is rejected; no cues are dropped.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Subtitle files</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>Will process {0} subtitle cues.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>The subtitles are invalid, exceed supported limits, contain unsupported metadata or formatting, or the shift would place a cue before zero. Use UTF-8 SRT or WebVTT with timestamps within seven days.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>The subtitle input could not be read.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Maximum size per video (MB; 0 = preset)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1,000,000 bytes. Zero uses the quality preset alone. A positive value budgets video bitrate from duration, reserves audio and container space, then verifies the actual output size.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Maximum {0} MB per video. Planned video bitrate: {1}–{2} kbit/s. Audio uses up to 128 kbit/s when retained. The final file size is checked before saving.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>The requested size is too small for this duration and the retained audio, or the video dimensions/duration are unsupported. Increase the size or remove audio.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>The encoder could not meet the requested maximum size. No output was saved. Increase the limit, choose a smaller quality preset or remove audio.</value></data>
 </root>

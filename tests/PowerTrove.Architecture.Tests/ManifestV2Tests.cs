@@ -40,6 +40,9 @@ public sealed class ManifestV2Tests
             {
                 var metadata = parsed.Actions.Single(a => a.Id == action.Descriptor.Id);
                 Assert.Equal(action.Descriptor.ChangesFiles, metadata.ChangesFiles);
+                foreach (var parameter in action.Descriptor.Parameters ?? [])
+                    Assert.Equal(parameter.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null,
+                        metadata.Parameters!.Single(p => p.Name == parameter.Name).Editor);
                 if (action.Descriptor.Selection is not null)
                 {
                     Assert.NotNull(metadata.Selection);

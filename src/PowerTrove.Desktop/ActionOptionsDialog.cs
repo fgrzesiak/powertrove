@@ -10,7 +10,7 @@ using Microsoft.UI.Xaml.Media;
 
 namespace PowerTrove.Desktop;
 
-public sealed record ActionOptionsResult(DictionaryParameters Parameters, bool Remember);
+public sealed record ActionOptionsResult(DictionaryParameters Parameters, bool Remember, bool EditMediaVisually = false);
 
 /// <summary>
 /// Generic options and confirmation dialog generated from an action's declared
@@ -25,12 +25,15 @@ public static class ActionOptionsDialog
         ActionDescriptor descriptor,
         IReadOnlyDictionary<string, string>? savedValues,
         Func<ActionParameters, CancellationToken, Task<ActionPreview?>> preview,
-        Action? openVisualEditor = null)
+        Action? openVisualEditor = null,
+        bool allowMediaEditor = false,
+        IReadOnlyDictionary<string, string>? initialValues = null)
     {
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
         {
-            values[parameter.Name] = descriptor.CanRememberParameters && savedValues != null && savedValues.TryGetValue(parameter.Name, out var saved)
+            values[parameter.Name] = initialValues != null && initialValues.TryGetValue(parameter.Name, out var draft) ? draft :
+                descriptor.CanRememberParameters && savedValues != null && savedValues.TryGetValue(parameter.Name, out var saved)
                 ? saved
                 : parameter.DefaultValue ?? string.Empty;
         }
@@ -52,7 +55,7 @@ public static class ActionOptionsDialog
         var panel = new StackPanel { MinWidth = 360 };
         bool openVisual = false;
         ContentDialog? dialogRef = null;
-        if (openVisualEditor != null)
+        if (openVisualEditor != null || allowMediaEditor)
         {
             // Second, visual way to do the same: pages as thumbnails instead of typed numbers.
             var visual = new HyperlinkButton
@@ -61,15 +64,23 @@ public static class ActionOptionsDialog
                 {
                     Orientation = Orientation.Horizontal,
                     Spacing = 8,
-                    Children = { new FontIcon { Glyph = "\uE8A9", FontSize = 14 }, new TextBlock { Text = UiText.OrganizerOpenVisual } }
+                    Children = { new FontIcon { Glyph = "\uE8A9", FontSize = 14 }, new TextBlock { Text = allowMediaEditor ? UiText.MediaTrimOpenVisual : UiText.OrganizerOpenVisual } }
                 },
                 Margin = new Thickness(-10, 0, 0, 8)
             };
             visual.Click += (_, _) => { openVisual = true; dialogRef?.Hide(); };
             panel.Children.Add(visual);
         }
+        var selectionEditors = new Dictionary<string, MultiSelectParameterEditor>(StringComparer.OrdinalIgnoreCase);
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
-            panel.Children.Add(CreateEditor(parameter, values, window));
+        {
+            if (parameter.Editor == ActionParameterEditor.MultiSelect)
+            {
+                var editor = new MultiSelectParameterEditor(parameter, values);
+                selectionEditors.Add(parameter.Name, editor); panel.Children.Add(editor.Root);
+            }
+            else panel.Children.Add(CreateEditor(parameter, values, window));
+        }
         panel.Children.Add(previewText);
         panel.Children.Add(warningsText);
         panel.Children.Add(renameTable);
@@ -99,6 +110,11 @@ public static class ActionOptionsDialog
             var cts = refresh = new CancellationTokenSource();
             previewText.Text = UiText.OptionsChecking;
             dialog.IsPrimaryButtonEnabled = false;
+            if (selectionEditors.Values.Any(editor => !editor.IsWithinLimit))
+            {
+                previewText.Text = UiText.OptionsSelectionTooLarge;
+                return;
+            }
             try
             {
                 await Task.Delay(150, cts.Token);
@@ -110,6 +126,11 @@ public static class ActionOptionsDialog
                     warningsText.Text = string.Empty;
                     return;
                 }
+
+                bool selectionChanged = false;
+                foreach (var (name, editor) in selectionEditors)
+                    selectionChanged |= editor.ApplyChoices(result.ParameterChoices?.FirstOrDefault(set => string.Equals(set.ParameterName, name, StringComparison.OrdinalIgnoreCase)));
+                if (selectionChanged) { _ = RefreshAsync(); return; }
 
                 string outputs = result.ExpectedOutputs.Count switch
                 {
@@ -166,7 +187,7 @@ public static class ActionOptionsDialog
                     {
                         if (!values.TryGetValue(p.VisibleWhenParameter, out var v))
                         {
-                            var dependentParam = descriptor.Parameters.FirstOrDefault(dp => dp.Name == p.VisibleWhenParameter);
+                            var dependentParam = descriptor.Parameters?.FirstOrDefault(dp => dp.Name == p.VisibleWhenParameter);
                             v = dependentParam?.DefaultValue ?? string.Empty;
                         }
                         bool visible = string.Equals(v, p.VisibleWhenValue, StringComparison.OrdinalIgnoreCase);
@@ -192,6 +213,8 @@ public static class ActionOptionsDialog
 
         if (openVisual)
         {
+            if (allowMediaEditor)
+                return new ActionOptionsResult(new DictionaryParameters(values), descriptor.CanRememberParameters && remember.IsChecked == true, true);
             openVisualEditor!();
             return null;
         }

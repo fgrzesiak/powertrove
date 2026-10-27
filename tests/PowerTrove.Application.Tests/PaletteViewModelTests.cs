@@ -427,6 +427,44 @@ public class PaletteViewModelTests
         Assert.Equal(2, vm.CurrentOutputPaths.Count);
         Assert.Equal(string.Format(PowerTrove.Application.Resources.Strings.GetString("Execution_Completed_Outputs_Other"), 2), vm.ExecutionResultMessage);
     }
+
+    [Theory]
+    [InlineData(null, true, 0, "Execution_Completed")]
+    [InlineData("", true, 0, "Execution_Completed")]
+    [InlineData(" \t\r\n", true, 0, "Execution_Completed")]
+    [InlineData("", true, 1, "Execution_Completed_Outputs_One")]
+    [InlineData(" \t", true, 2, "Execution_Completed_Outputs_Other")]
+    [InlineData(null, false, 0, "Execution_Failed")]
+    [InlineData("", false, 0, "Execution_Failed")]
+    [InlineData(" \t\r\n", false, 0, "Execution_Failed")]
+    public async Task ExecuteSelectedActionAsync_BlankReceiptMessage_ShowsLocalizedResult(
+        string? message, bool success, int outputCount, string resourceKey)
+    {
+        var descriptor = new ActionDescriptor("test.blank-message", "Test", "",
+            new HashSet<ContentKind> { ContentKind.None }, Array.Empty<string>(), false, false);
+        var outputs = Enumerable.Range(0, outputCount).Select(i => $"C:/test/output-{i}.txt").ToArray();
+        var receipt = new ActionReceipt(success, false, outputs, Array.Empty<ActionFailure>(), false, message);
+        var registry = new ActionRegistry();
+        registry.Register(new FakeActionWithReceipt(descriptor, receipt));
+        var snapshot = new ContextSnapshot(Guid.NewGuid(), new SourceWindowIdentity(IntPtr.Zero, 1, "test", DateTimeOffset.UtcNow),
+            ContextStatus.Available, new NoContent(), DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddMinutes(1), "test", null);
+        var vm = new PaletteViewModel();
+        vm.Initialize(snapshot, registry, new ActionSearchEngine(registry));
+        await vm.SearchTask;
+
+        // A visible result must already have its message when observers display it.
+        vm.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(vm.HasExecutionResult) && vm.HasExecutionResult)
+                Assert.False(string.IsNullOrWhiteSpace(vm.ExecutionResultMessage));
+        };
+        await vm.ExecuteSelectedActionAsync();
+
+        Assert.True(vm.HasExecutionResult);
+        Assert.Equal(success, vm.ExecutionIsSuccess);
+        Assert.Equal(string.Format(PowerTrove.Application.Resources.Strings.GetString(resourceKey), outputCount), vm.ExecutionResultMessage);
+    }
+
     [Fact]
     public async Task ExecuteSelectedActionAsync_Failure_UpdatesState()
     {

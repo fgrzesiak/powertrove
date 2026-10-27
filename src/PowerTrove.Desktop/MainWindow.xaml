@@ -14,6 +14,13 @@
           HighContrastAdjustment="Auto"
           TabFocusNavigation="Cycle">
         <Grid.Resources>
+            <Style x:Key="NoticeCardStyle" TargetType="Border">
+                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="Padding" Value="14" />
+                <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
             <CollectionViewSource x:Name="GroupedActionsSource"
                                   IsSourceGrouped="True"
                                   Source="{x:Bind GroupedActionsProxy, Mode=OneWay}"
@@ -87,25 +94,52 @@
         <!-- Divider and notices -->
         <StackPanel Grid.Row="1">
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-            <!-- Visibility, not IsOpen: a bound IsOpen could leave an empty, open bar behind. -->
-            <InfoBar IsOpen="True"
-                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.HotkeyWarningMessage), Mode=OneWay}"
-                     Message="{x:Bind ViewModel.HotkeyWarningMessage, Mode=OneWay}"
-                     Severity="Warning"
-                     IsClosable="False"
-                     Margin="12,10,12,0" />
-            <InfoBar IsOpen="True"
-                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.CatalogWarningMessage), Mode=OneWay}"
-                     Message="{x:Bind ViewModel.CatalogWarningMessage, Mode=OneWay}"
-                     Severity="Warning"
-                     IsClosable="False"
-                     Margin="12,10,12,0" />
-            <InfoBar IsOpen="True"
-                     Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.ContextNotice), Mode=OneWay}"
-                     Message="{x:Bind ViewModel.ContextNotice, Mode=OneWay}"
-                     Severity="Informational"
-                     IsClosable="False"
-                     Margin="12,10,12,0" />
+            <!-- Presence follows the rendered text, including whitespace-only messages. -->
+            <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
+                    Visibility="{Binding Text, ElementName=HotkeyNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Glyph="&#xE7BA;" FontSize="18" VerticalAlignment="Center"
+                              AutomationProperties.AccessibilityView="Raw"
+                              Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+                    <TextBlock x:Name="HotkeyNoticeText" Grid.Column="1" TextWrapping="WrapWholeWords"
+                               AutomationProperties.LiveSetting="Polite"
+                               Text="{x:Bind ViewModel.HotkeyWarningMessage, Mode=OneWay}" />
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
+                    Visibility="{Binding Text, ElementName=CatalogNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Glyph="&#xE7BA;" FontSize="18" VerticalAlignment="Center"
+                              AutomationProperties.AccessibilityView="Raw"
+                              Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+                    <TextBlock x:Name="CatalogNoticeText" Grid.Column="1" TextWrapping="WrapWholeWords"
+                               AutomationProperties.LiveSetting="Polite"
+                               Text="{x:Bind ViewModel.CatalogWarningMessage, Mode=OneWay}" />
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
+                    Visibility="{Binding Text, ElementName=ContextNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Glyph="&#xE946;" FontSize="18" VerticalAlignment="Center"
+                              AutomationProperties.AccessibilityView="Raw"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    <TextBlock x:Name="ContextNoticeText" Grid.Column="1" TextWrapping="WrapWholeWords"
+                               AutomationProperties.LiveSetting="Polite"
+                               Text="{x:Bind ViewModel.ContextNotice, Mode=OneWay}" />
+                </Grid>
+            </Border>
             <ToggleButton IsChecked="{x:Bind ViewModel.IncludeUnavailableActions, Mode=TwoWay}"
                           Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasUnavailableActions), Mode=OneWay}"
                           IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
@@ -213,7 +247,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Border Width="34" Height="34" CornerRadius="8" VerticalAlignment="Top"
+                            <Border Width="34" Height="34" CornerRadius="8" VerticalAlignment="Center"
                                     Background="{ThemeResource ControlFillColorSecondaryBrush}"
                                     BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
                                     BorderThickness="1">
@@ -280,18 +314,37 @@
         </Grid>
 
         <!-- Execution result -->
-        <InfoBar Grid.Row="3"
-                 IsOpen="True"
-                 Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasExecutionResult), Mode=OneWay}"
-                 Severity="{x:Bind local:Converters.ToSeverity(ViewModel.ExecutionIsSuccess), Mode=OneWay}"
-                 Message="{x:Bind ViewModel.ExecutionResultMessage, Mode=OneWay}"
-                 IsClosable="False"
-                 Margin="12,0,12,10">
-            <StackPanel Spacing="8" Margin="0,0,0,10">
-                <TextBlock Text="{x:Bind ViewModel.OutputNavigationMessage, Mode=OneWay}"
-                           Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.OutputNavigationMessage), Mode=OneWay}"
-                           TextWrapping="Wrap" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
-                <StackPanel Orientation="Horizontal" Spacing="8">
+        <Border Grid.Row="3" Style="{StaticResource NoticeCardStyle}" Margin="12,0,12,10"
+                Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasExecutionResult), Mode=OneWay}">
+            <Grid ColumnSpacing="12" RowSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border Width="30" Height="30" CornerRadius="8" VerticalAlignment="Top"
+                        Background="{ThemeResource ControlFillColorSecondaryBrush}">
+                    <Grid>
+                        <FontIcon Glyph="&#xE73E;" FontSize="16" AutomationProperties.AccessibilityView="Raw"
+                                  Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.ExecutionIsSuccess), Mode=OneWay}"
+                                  Foreground="{ThemeResource SystemFillColorSuccessBrush}" />
+                        <FontIcon Glyph="&#xEA39;" FontSize="16" AutomationProperties.AccessibilityView="Raw"
+                                  Visibility="{x:Bind local:Converters.InvertedBoolToVisibility(ViewModel.ExecutionIsSuccess), Mode=OneWay}"
+                                  Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                    </Grid>
+                </Border>
+                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                    <TextBlock x:Name="ExecutionResultText" Text="{x:Bind ViewModel.ExecutionResultMessage, Mode=OneWay}"
+                               AutomationProperties.LiveSetting="Polite"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}" TextWrapping="WrapWholeWords" />
+                    <TextBlock Text="{x:Bind ViewModel.OutputNavigationMessage, Mode=OneWay}"
+                               Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.OutputNavigationMessage), Mode=OneWay}"
+                               TextWrapping="WrapWholeWords" Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="8">
                     <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasOutputs), Mode=OneWay}"
                             Content="{x:Bind local:UiText.ResultShowInExplorer}"
                             Style="{ThemeResource AccentButtonStyle}"
@@ -305,8 +358,8 @@
                     <Button Content="{x:Bind local:UiText.ResultDone}"
                             Click="Done_Click" />
                 </StackPanel>
-            </StackPanel>
-        </InfoBar>
+            </Grid>
+        </Border>
 
         <!-- Key legend -->
         <Border Grid.Row="4"

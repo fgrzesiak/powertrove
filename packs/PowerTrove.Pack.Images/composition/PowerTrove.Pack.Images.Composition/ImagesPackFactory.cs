@@ -28,6 +28,7 @@ public sealed class ImagesPackFactory : IPackFactory
         return new ImagesPack(engine,
             host.Files, options?.Presets, options?.Limits, host.GetService<IImageRasterCodec>() ?? (windows ? new CompositeRasterCodec(new WindowsRasterCodec(), engine) : null),
             host.GetService<IImageLosslessTransformer>() ?? new CoefficientJpegTransformer(), host.GetService<IImageWatermarker>() ?? new MagickImageWatermarker(), host.GetService<IAnimatedGifEncoder>() ?? (windows ? new WindowsAnimatedGifEncoder() : null),
-            host.GetService<ITextRecognizer>(), host.GetService<IFaceDetector>() ?? (windows ? new WindowsFaceDetector() : null));
+            host.GetService<ITextRecognizer>(), host.GetService<IFaceDetector>() ?? (windows ? new WindowsFaceDetector() : null),
+            host.GetService<ISvgRenderer>() ?? new MagickSvgRenderer());
     }
 }

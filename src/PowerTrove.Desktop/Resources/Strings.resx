@@ -152,4 +152,35 @@
   <data name="IsolationUnavailable" xml:space="preserve"><value>Isolated file tools are unavailable. Verify the installed pack files and restart.</value></data>
   <data name="SettingsNotices" xml:space="preserve"><value>Show third-party licenses and notices</value></data>
   <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>The notice files could not be opened. Verify the installed application files.</value></data>
+  <data name="OptionsSelectAll" xml:space="preserve"><value>Use all</value></data>
+  <data name="OptionsSelectNone" xml:space="preserve"><value>Clear selection</value></data>
+  <data name="OptionsSelectionAdjusted" xml:space="preserve"><value>The available fields changed. Please check your selection.</value></data>
+  <data name="OptionsSelectionTooLarge" xml:space="preserve"><value>Please select fewer fields for this export.</value></data>
+  <data name="OptionsMoveUp" xml:space="preserve"><value>Move up</value></data>
+  <data name="OptionsMoveDown" xml:space="preserve"><value>Move down</value></data>
+  <data name="MediaTrimTitle" xml:space="preserve"><value>Trim audio or video</value></data>
+  <data name="MediaTrimOpenVisual" xml:space="preserve"><value>Trim visually…</value></data>
+  <data name="MediaTrimAudioPreview" xml:space="preserve"><value>Audio preview</value></data>
+  <data name="MediaTrimLoading" xml:space="preserve"><value>Opening local preview…</value></data>
+  <data name="MediaTrimPosition" xml:space="preserve"><value>Playback position</value></data>
+  <data name="MediaTrimPositionValue" xml:space="preserve"><value>Position: {0}</value></data>
+  <data name="MediaTrimDuration" xml:space="preserve"><value>File duration: {0}</value></data>
+  <data name="MediaTrimStart" xml:space="preserve"><value>Start of selection</value></data>
+  <data name="MediaTrimEnd" xml:space="preserve"><value>End of selection</value></data>
+  <data name="MediaTrimSeconds" xml:space="preserve"><value>Seconds</value></data>
+  <data name="MediaTrimPlay" xml:space="preserve"><value>Play selection</value></data>
+  <data name="MediaTrimPause" xml:space="preserve"><value>Pause</value></data>
+  <data name="MediaTrimSetStart" xml:space="preserve"><value>Set start here</value></data>
+  <data name="MediaTrimSetEnd" xml:space="preserve"><value>Set end here</value></data>
+  <data name="MediaTrimVolume" xml:space="preserve"><value>Preview volume</value></data>
+  <data name="MediaTrimPrecise" xml:space="preserve"><value>Cut accurately (may take longer)</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Without accurate cutting, the saved start and end may differ slightly. Preview volume does not change the exported file.</value></data>
+  <data name="MediaTrimSaveHint" xml:space="preserve"><value>Only the highlighted section is kept. Confirming creates a new file through the trim action; your original stays unchanged.</value></data>
+  <data name="MediaTrimApply" xml:space="preserve"><value>Trim selection</value></data>
+  <data name="MediaTrimBack" xml:space="preserve"><value>Back to time settings</value></data>
+  <data name="MediaTrimSelection" xml:space="preserve"><value>Selection: {0} – {1} · Length: {2}</value></data>
+  <data name="MediaTrimPreviewFailed" xml:space="preserve"><value>Windows cannot preview this file. Go back to the time settings to use the available conversion engine.</value></data>
+  <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>The time settings did not fit this file. The full range is selected; please choose the section again.</value></data>
+  <data name="MediaTrimReady" xml:space="preserve"><value>Ready to save the highlighted section as a new file.</value></data>
+  <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Go back to the time settings to review the additional confirmation.</value></data>
 </root>

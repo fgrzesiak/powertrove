@@ -44,6 +44,23 @@ internal sealed class PackMessageValidation
                 {
                     Text(confirmation.Prompt); Text(confirmation.ParameterName, 256); Text(confirmation.Token);
                 }
+                if (m.ParameterChoices is { } sets)
+                {
+                    Count(sets, 32);
+                    var parameters = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (var set in sets)
+                    {
+                        Require(set is not null); Text(set.ParameterName, 256); Require(parameters.Add(set.ParameterName));
+                        Text(set.ContextKey, 128); Text(set.Description, optional: true);
+                        Count(set.Choices, ActionParameterChoiceSet.MaximumChoices);
+                        var choices = new HashSet<string>(StringComparer.Ordinal);
+                        foreach (var choice in set.Choices)
+                        {
+                            Require(choice is not null); Text(choice.Value, ActionParameterChoiceSet.MaximumChoiceLength);
+                            Text(choice.Title, ActionParameterChoiceSet.MaximumChoiceLength); Require(choices.Add(choice.Value));
+                        }
+                    }
+                }
                 break;
             case ProgressMessage m:
                 Id(m.RequestId); Require(double.IsFinite(m.Fraction) && m.Fraction >= 0 && m.Fraction <= 1);

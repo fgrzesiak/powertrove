@@ -364,4 +364,27 @@
   <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>Creates a side-by-side comparison with a diff image highlighting changed pixels.</value></data>
   <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>The images have different dimensions. The second image will be scaled to match the first.</value></data>
   <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % changed pixels</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>Convert SVG to PNG</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>Renders supported static SVG graphics as new transparent PNG images, fitted within your chosen resolution.</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Maximum output width (pixels)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Maximum output height (pixels)</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>SVG files</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>The SVG renderer is unavailable.</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>The SVG is invalid, exceeds limits or contains unsupported content. Use static shapes, text and gradients with a viewBox or pixel dimensions; external resources and active content are rejected.</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>Preserves aspect ratio and transparency. Supports static shapes, text and gradients only. Scripts, stylesheets, animation, embedded images, use references and external resources are rejected. Input limit: 1 MiB and 5,000 elements; output limit: 40 million pixels.</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>The SVG input could not be read.</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>The static SVG could not be rendered.</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>Vectorize PNG to SVG</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>Traces quantized PNG color regions into closed SVG polygon paths for logos and simple illustrations.</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>Color mode</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>Color</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>Black and white</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>Detail level</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>Low (up to 256 px, 8 colors)</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>Medium (up to 512 px, 16 colors)</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>High (up to 1024 px, 32 colors)</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>Black/white brightness threshold</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>PNG images</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>Creates real polygon paths, not an embedded bitmap. Best for flat logos and simple illustrations; photos, gradients, fine text and smooth curves lose detail. Color mode quantizes colors and alpha; black/white mode thresholds brightness and alpha. Processing uses a 256/512/1024 px working grid while retaining original display size. Source limit: 16 million pixels; complexity: 250,000 boundary edges; SVG: 5 MiB. Transparent-only or overly complex inputs fail.</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>The PNG could not be vectorized: no visible shapes, unsupported dimensions or excessive contour complexity. Try lower detail or a simpler logo.</value></data>
 </root>

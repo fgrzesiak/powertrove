@@ -243,6 +243,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private void ShowGenericActivation()
     {
+        if (m_window?.TryActivateVisualEditor() == true) return;
         if (m_window is null || m_window.ViewModel.IsExecuting || Actions is null || SearchEngine is null || SettingsService is null) return;
         _invocationCoordinator?.Dismiss();
         var now = DateTimeOffset.UtcNow;
@@ -261,6 +262,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private bool ShowExplicitSelection(ExplicitSelectionMessage selection, ContextSnapshot snapshot)
     {
+        if (m_window?.TryActivateVisualEditor() == true) return false;
         if (m_window is null || m_window.ViewModel.IsExecuting) return false;
         if (selection.ActionId is null)
         {
@@ -289,7 +291,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         {
             _trayIcon = new PowerTrove.Platform.Windows.Shell.TrayIcon(
                 _iconHandle, UiText.TrayTooltip, UiText.TrayOpen, UiText.TraySettings, UiText.TrayExit);
-            _trayIcon.OpenRequested += (_, _) => _ = _invocationCoordinator?.InvokeAsync();
+            _trayIcon.OpenRequested += (_, _) => RequestPaletteOrEditor();
             _trayIcon.SettingsRequested += (_, _) => OpenSettings();
             _trayIcon.ExitRequested += (_, _) => ExitApplication();
         }
@@ -378,7 +380,12 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private void OnHotkeyTriggered(object? sender, EventArgs e)
     {
-        // Fire and forget, capturing context and preparing UI
+        RequestPaletteOrEditor();
+    }
+
+    private void RequestPaletteOrEditor()
+    {
+        if (m_window?.TryActivateVisualEditor() == true) return;
         _ = _invocationCoordinator?.InvokeAsync();
     }
 

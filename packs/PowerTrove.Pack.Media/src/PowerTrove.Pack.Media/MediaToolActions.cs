@@ -3,7 +3,7 @@ using System.Globalization;
 namespace PowerTrove.Pack.Media;
 
 public sealed record MediaToolOptions(string Start, string End, bool Precise, string Quality, bool KeepAudio,
-    int Duration, int Fps, int Width, string Mode, string At, string EverySeconds, string Format, string Angle, bool MetadataOnly);
+    int Duration, int Fps, int Width, string Mode, string At, string EverySeconds, string Format, string Angle, bool MetadataOnly, int TargetSizeMb = 0);
 
 public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
 {
@@ -23,7 +23,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
         Parameters: _kind switch
         {
             "trim" => [Text("Start", "0"), Text("End", ""), Bool("Precise", false)],
-            "compress" => [Choice("Quality", "medium", "high", "medium", "small"), Bool("KeepAudio", true)],
+            "compress" => [Choice("Quality", "medium", "high", "medium", "small"), Bool("KeepAudio", true), ActionParameterDefinition.Integer("TargetSizeMb", SR.GetString("MediaTargetSize"), 0, 0, 16384, SR.GetString("MediaTargetSizeHelp"))],
             "to-gif" => [Text("Start", "0"), ActionParameterDefinition.Integer("Duration", SR.GetString("MediaParamDuration"), 5, 1, 30), ActionParameterDefinition.Integer("Fps", SR.GetString("MediaParamFps"), 12, 5, 30), ActionParameterDefinition.Integer("Width", SR.GetString("MediaParamWidth"), 480, 100, 1000)],
             "extract-frames" => [Choice("Mode", "single", "single", "interval"), Text("At", "0").VisibleWhen("Mode", "single"), Text("EverySeconds", "1").VisibleWhen("Mode", "interval"), Choice("Format", "jpg", "jpg", "png")],
             "rotate" => [Choice("Angle", "90", "90", "180", "270"), Bool("MetadataOnly", false)], _ => []
@@ -33,7 +33,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
     protected override string? UnavailableReason => NeedsInspection && !_inspector.IsAvailable ? SR.GetString("MediaInspectUnavailable") : !_engine.CanProduce(Operation, Target, Input.Extensions!) ? SR.GetString(_kind is "normalize" or "rotate" ? "Media_RequiresFFmpeg" : "MediaNoEngine") : null;
     protected override MediaToolOptions ReadOptions(ActionParameterValues v) => new(_kind is "trim" or "to-gif" ? v.GetText("Start") : "0", _kind == "trim" ? v.GetText("End") : "", _kind == "trim" && v.GetBoolean("Precise"), _kind == "compress" ? v.GetChoice("Quality") : "medium", _kind != "compress" || v.GetBoolean("KeepAudio"),
         _kind == "to-gif" ? v.GetInt32("Duration") : 5, _kind == "to-gif" ? v.GetInt32("Fps") : 12, _kind == "to-gif" ? v.GetInt32("Width") : 480,
-        _kind == "extract-frames" ? v.GetChoice("Mode") : "single", _kind == "extract-frames" ? v.GetText("At") : "0", _kind == "extract-frames" ? v.GetText("EverySeconds") : "1", _kind == "extract-frames" ? v.GetChoice("Format") : "jpg", _kind == "rotate" ? v.GetChoice("Angle") : "90", _kind == "rotate" && v.GetBoolean("MetadataOnly"));
+        _kind == "extract-frames" ? v.GetChoice("Mode") : "single", _kind == "extract-frames" ? v.GetText("At") : "0", _kind == "extract-frames" ? v.GetText("EverySeconds") : "1", _kind == "extract-frames" ? v.GetChoice("Format") : "jpg", _kind == "rotate" ? v.GetChoice("Angle") : "90", _kind == "rotate" && v.GetBoolean("MetadataOnly"), _kind == "compress" ? v.GetInt32("TargetSizeMb") : 0);
     protected override string? ValidateOptions(MediaToolOptions o)
     {
         if (!MediaTime.TryParse(o.Start, out var start) || o.End.Length > 0 && (!MediaTime.TryParse(o.End, out var end) || end <= start)) return SR.GetString("MediaInvalidRange");
@@ -56,11 +56,16 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
         var options = ReadOptions(ActionParameterValues.From(p, Descriptor.Parameters));
         if (_kind == "rotate" && options.MetadataOnly && ((FileSelection)c.Content).Files.Where(Input.Accepts).Any(f => f.Extension.ToLowerInvariant() is not (".mp4" or ".mov" or ".m4v")))
             return preview with { IsBlocked = true, PreviewText = SR.GetString("MediaMetadataContainer") };
-        if (_kind != "to-gif") return preview;
+        if (_kind is not ("to-gif" or "trim") && !(_kind == "compress" && options.TargetSizeMb > 0)) return preview;
         try
         {
+            int minRate = int.MaxValue, maxRate = 0;
             foreach (var file in ((FileSelection)c.Content).Files.Where(Input.Accepts))
-            { var info = await MediaMessages.InspectAsync(_inspector, file.Path!, ct).ConfigureAwait(false); ValidateDetails(info, options); }
+            {
+                var info = await MediaMessages.InspectAsync(_inspector, file.Path!, ct).ConfigureAwait(false); ValidateDetails(info, options);
+                if (_kind == "compress") { int rate = TargetRate(info, options); minRate = Math.Min(minRate, rate); maxRate = Math.Max(maxRate, rate); }
+            }
+            if (_kind == "compress") return preview with { PreviewText = string.Format(SR.GetString("MediaTargetPreview"), options.TargetSizeMb, minRate / 1000, maxRate / 1000) };
             return preview;
         }
         catch (Exception ex) when (ex is FileProcessingException or ArgumentException or IOException)
@@ -71,6 +76,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
         MediaTime.TryParse(o.Start, out var start);
         if (_kind == "trim" && (start >= info.Duration || o.End.Length > 0 && MediaTime.TryParse(o.End, out var end) && end > info.Duration)) throw MediaMessages.Failure("MediaRangeBeyondDuration");
         if ((_kind is "compress" or "to-gif" or "extract-frames") && !info.HasVideo) throw MediaMessages.Failure("MediaNoVideo");
+        if (_kind == "compress" && o.TargetSizeMb > 0) _ = TargetRate(info, o);
         if (_kind == "extract-frames" && o.Mode == "single" && MediaTime.TryParse(o.At, out var at) && at >= info.Duration)
             throw MediaMessages.Failure("MediaRangeBeyondDuration");
         if (_kind == "to-gif")
@@ -79,6 +85,15 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
             MediaPlanning.GifTimes(start, TimeSpan.FromSeconds(o.Duration), o.Fps, info.Duration);
             MediaPlanning.GifSize(info.Width ?? 0, info.Height ?? 0, o.Width);
         }
+    }
+    private static int TargetRate(MediaDetails info, MediaToolOptions options)
+    {
+        try
+        {
+            var size = MediaPlanning.CompressionSize(info.Width ?? 0, info.Height ?? 0, options.Quality);
+            return MediaPlanning.TargetVideoBitrate(info.Duration, options.TargetSizeMb * 1000000L, options.KeepAudio && info.HasAudio, size.Bitrate);
+        }
+        catch (ArgumentOutOfRangeException) { throw MediaMessages.Failure("MediaTargetImpossible"); }
     }
     protected override bool ReportSizeChange => _kind == "compress";
     protected override async Task ProcessAsync(FileWorkItem item, MediaToolOptions o, FileOutputWriter output, CancellationToken ct)
@@ -93,6 +108,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
             ["Duration"] = o.Duration.ToString(CultureInfo.InvariantCulture), ["Fps"] = o.Fps.ToString(CultureInfo.InvariantCulture), ["Width"] = o.Width.ToString(CultureInfo.InvariantCulture),
             ["Mode"] = o.Mode, ["At"] = o.At, ["EverySeconds"] = o.EverySeconds, ["Format"] = o.Format, ["Angle"] = o.Angle, ["MetadataOnly"] = o.MetadataOnly.ToString(), ["Stem"] = item.BaseName
         };
+        values["TargetSizeMb"] = o.TargetSizeMb.ToString(CultureInfo.InvariantCulture);
         var request = new MediaRequest(Operation, _kind == "rotate" && o.MetadataOnly ? MediaTargets.SameAsSource : Target, item.File.Extension.ToLowerInvariant(), Options: values, InputDetails: info is null ? null : [info]);
         if (_kind == "extract-frames")
             await output.WriteDirectoryAsync(item.Directory, Stem(item.BaseName), (folder, token) => MediaMessages.RunAsync(() => _engine.ProcessAsync(item.Path, folder, request, token), token), ct).ConfigureAwait(false);
@@ -100,6 +116,7 @@ public sealed class MediaToolAction : PerFileAction<MediaToolOptions>
             await output.WriteFileFromPathAsync(item.Directory, Stem(item.BaseName), Extension(item.File, o), async (path, token) =>
             {
                 await MediaMessages.RunAsync(() => _engine.ProcessAsync(item.Path, path, request, token), token).ConfigureAwait(false);
+                if (_kind == "compress" && o.TargetSizeMb > 0 && Services.FileSystem.GetFileLength(path) > o.TargetSizeMb * 1000000L) throw MediaMessages.Failure("MediaTargetExceeded");
                 if (_kind == "compress" && Services.FileSystem.GetFileLength(path) >= Services.FileSystem.GetFileLength(item.Path)) throw new FileSkippedException();
             }, ct).ConfigureAwait(false);
     }

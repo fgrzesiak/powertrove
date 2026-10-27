@@ -11,7 +11,7 @@ public static class SelectionFamilies
         return extension.ToLowerInvariant() switch
         {
             ".pdf" => "pdf",
-            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" or ".webp" or ".tif" or ".tiff" or ".avif" or ".heic" or ".heif" => "image",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" or ".webp" or ".tif" or ".tiff" or ".avif" or ".heic" or ".heif" or ".svg" => "image",
             ".mp3" or ".wav" or ".aac" or ".ogg" or ".flac" or ".m4a" or ".wma" => "audio",
             ".mp4" or ".avi" or ".mkv" or ".mov" or ".wmv" or ".webm" or ".m4v" => "video",
             ".srt" or ".vtt" or ".ass" or ".ssa" => "subtitle",

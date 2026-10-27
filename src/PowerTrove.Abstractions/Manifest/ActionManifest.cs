@@ -99,5 +99,6 @@ public sealed record ManifestParameter(
     [property: JsonPropertyName("description")] string? Description = null,
     [property: JsonPropertyName("required")] bool Required = false,
     [property: JsonPropertyName("choices")] IReadOnlyList<string>? Choices = null,
-    [property: JsonPropertyName("default")] string? Default = null
+    [property: JsonPropertyName("default")] string? Default = null,
+    [property: JsonPropertyName("editor")] string? Editor = null
 );

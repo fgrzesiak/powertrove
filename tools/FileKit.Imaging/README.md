@@ -33,3 +33,18 @@ License: not yet selected by the owner.
 
 
 `RasterOperations.PixelateRegions` handles several regions with one output allocation, preserves the source and validates the entire plan first. It permits at most 1024 regions and limits summed region work to eight 60 MP rasters. It is used by local face pixelation; detection and UI warnings stay outside FileKit.
+
+`SvgRasterSource` validates a deliberately limited static SVG subset before a caller
+can pass it to a renderer. It supports shapes, text and local gradients, rejects
+DTDs, processing instructions, active content, stylesheets, images, use references,
+foreign namespaces and external resources, and fits the output to a requested
+bounding box while preserving aspect ratio. Limits: 1 MiB input, 5,000 elements,
+64 levels, 10,000 pixels per output side and 40 million output pixels. It rewrites
+root pixel dimensions after validation and requires a viewBox or pixel dimensions.
+It is not a general-purpose SVG browser and does not render by itself.
+
+`RasterVectorizer` traces palette-quantized raster regions into closed SVG polygon
+paths with even-odd holes. It reuses `PaletteQuantizer` without dithering, supports
+color/black-white and three bounded working resolutions, and embeds no raster.
+It is intended for flat artwork; gradients, photos and curves are approximated.
+Source, boundary-edge and output limits fail explicitly.

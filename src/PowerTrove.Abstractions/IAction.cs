@@ -43,7 +43,18 @@ public sealed record ActionPreview(
     IReadOnlyList<string> Warnings,
     bool IsBlocked = false,
     IReadOnlyList<RenamePreviewRow>? RenameRows = null,
-    ActionConfirmation? Confirmation = null);
+    ActionConfirmation? Confirmation = null,
+    IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null);
+
+/// <summary>Input-derived labels for an options dialog only. Never log or persist the discovered list.</summary>
+public sealed record ActionParameterChoiceSet(string ParameterName, string ContextKey,
+    IReadOnlyList<ActionParameterChoice> Choices, string? Description = null)
+{
+    public const int MaximumChoices = 256;
+    public const int MaximumChoiceLength = 256;
+    public const int MaximumSelectionLength = 4096;
+    public override string ToString() => "ActionParameterChoiceSet { Payload = redacted }";
+}
 
 /// <summary>Sensitive names: render only inside the options dialog; never persist or log.</summary>
 public sealed record RenamePreviewRow(string OldName, string NewName);

@@ -9,6 +9,7 @@ using PowerTrove.Pack.Media;
 using PowerTrove.Pack.Office;
 using PowerTrove.Pack.Tables;
 using PowerTrove.Pack.Data;
+using PowerTrove.Pack.EInvoice;
 
 namespace PowerTrove.Desktop;
 
@@ -32,5 +33,6 @@ public static partial class BuiltInActionPacks
         factories.Insert(4, new MediaPackFactory());
         factories.Insert(5, new TablesPackFactory());
         factories.Insert(6, new DataPackFactory());
+        factories.Insert(7, new EInvoicePackFactory());
     }
 }

@@ -6,6 +6,29 @@ public sealed class MediaToolActionTests : IDisposable
     public void Dispose() => _dir.Dispose();
     private static FileActionServices Services() => FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier());
     [Fact]
+    public async Task TargetCompressionBudgetsDurationAndRefusesOversizedOutputBeforePublication()
+    {
+        string source = _dir.Write("source.mp4", new byte[3000000]); var engine = new Engine { OutputBytes = 2000001 };
+        var action = new MediaToolAction("compress", new([engine]), new Inspector(), Services()); var snapshot = Snapshots.ForPaths(source);
+        var options = Snapshots.Parameters(("TargetSizeMb", "2"));
+        var preview = await action.PreviewAsync(snapshot, options, default); Assert.False(preview.IsBlocked); Assert.Contains("122", preview.PreviewText);
+        var rejected = await action.ExecuteAsync(snapshot, options, null, default);
+        Assert.False(rejected.IsSuccess); Assert.Empty(rejected.OutputPaths); Assert.Empty(_dir.NewFiles(source));
+        engine.OutputBytes = 1500000;
+        var accepted = await action.ExecuteAsync(snapshot, options, null, default);
+        Assert.True(accepted.IsSuccess, accepted.Message); Assert.Equal(1500000, new FileInfo(Assert.Single(accepted.OutputPaths)).Length);
+        Assert.Equal("2", engine.LastRequest!.Options!["TargetSizeMb"]); Assert.Equal(3000000, new FileInfo(source).Length);
+    }
+    [Fact]
+    public async Task ImpossibleTargetBlocksPreviewBeforeAnyEncoding()
+    {
+        string source = _dir.Write("source.mp4", new byte[100]); var engine = new Engine();
+        var action = new MediaToolAction("compress", new([engine]), new Inspector(), Services());
+        Assert.True((await action.PreviewAsync(Snapshots.ForPaths(source), Snapshots.Parameters(("TargetSizeMb", "1")), default)).IsBlocked);
+        Assert.Null(engine.LastRequest);
+        Assert.False((await action.PreviewAsync(Snapshots.ForPaths(source), Snapshots.Parameters(("TargetSizeMb", "1"), ("KeepAudio", "false")), default)).IsBlocked);
+    }
+    [Fact]
     public async Task TrimPassesOptionsAndRejectsInvalidAndOutOfDurationRanges()
     {
         string source = _dir.Write("private.wav", new byte[100]); var engine = new Engine(); var action = new MediaToolAction("trim", new([engine]), new Inspector(), Services()); var snapshot = Snapshots.ForPaths(source);

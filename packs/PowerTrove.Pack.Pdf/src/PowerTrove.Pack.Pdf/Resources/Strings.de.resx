@@ -479,4 +479,52 @@
   <data name="FlattenPdf_Counts" xml:space="preserve"><value>Annotationen mit Darstellung: {0}; ohne unterstützte Darstellung: {1}; beibehaltene Links: {2}.</value></data>
   <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>Annotationen ohne gültige Darstellung werden entfernt; sichtbare Inhalte können verloren gehen.</value></data>
   <data name="FlattenPdf_Nothing" xml:space="preserve"><value>Es gibt keine zu fixierenden Annotationen.</value></data>
+  <data name="HtmlTitle" xml:space="preserve"><value>HTML in PDF umwandeln</value></data>
+  <data name="HtmlDescription" xml:space="preserve"><value>Druckt eigenständiges lokales HTML mit Inline-CSS und eingebetteten Bildern in neue PDF-Dateien.</value></data>
+  <data name="HtmlPaper" xml:space="preserve"><value>Papierformat</value></data>
+  <data name="HtmlPaperA4" xml:space="preserve"><value>A4</value></data>
+  <data name="HtmlPaperLetter" xml:space="preserve"><value>Letter</value></data>
+  <data name="HtmlLandscape" xml:space="preserve"><value>Querformat</value></data>
+  <data name="HtmlMargin" xml:space="preserve"><value>Seitenränder (Millimeter)</value></data>
+  <data name="HtmlFiles" xml:space="preserve"><value>HTML-Dateien</value></data>
+  <data name="HtmlUnavailable" xml:space="preserve"><value>Der HTML-Druck benötigt einen lokal installierten Microsoft-Edge-Browser.</value></data>
+  <data name="HtmlLimits" xml:space="preserve"><value>Unterstützt wird nur eigenständiges UTF-8-HTML bis 5 MiB. Inline-CSS und als Daten eingebettete Bilder/Schriften können gerendert werden. Netzwerkzugriffe, Skripte, Frames, Objekte und lokale Dateiressourcen werden blockiert. Externe Stylesheets und relative Bilder werden nicht geladen. Jede Datei wird in einem neuen, speicherbegrenzten Browser-Prozessbaum mit 60 Sekunden Zeitgrenze verarbeitet.</value></data>
+  <data name="HtmlInvalid" xml:space="preserve"><value>HTML muss passiver, nicht leerer UTF-8-Text bis 5 MiB sein. Aktive Elemente, automatische Weiterleitungen, Formulare und fremde eingebettete Inhalte werden nicht unterstützt.</value></data>
+  <data name="HtmlReadError" xml:space="preserve"><value>Die HTML-Datei konnte nicht gelesen werden.</value></data>
+  <data name="HtmlRenderFailed" xml:space="preserve"><value>Der lokale HTML-Druck ist fehlgeschlagen, hat seine Grenzen überschritten oder eine nicht unterstützte Navigation versucht. Verwende eigenständiges HTML mit Inline-CSS und eingebetteten Datenbildern. Keine Quelldatei wurde geändert.</value></data>
+  <data name="HtmlCleanupFailed" xml:space="preserve"><value>Temporäre Browserdaten konnten nicht entfernt werden. Prüfe den Zugriff auf den temporären Ordner und versuche es erneut.</value></data>
+  <data name="EpubTitle" xml:space="preserve"><value>EPUB in PDF umwandeln</value></data>
+  <data name="EpubDescription" xml:space="preserve"><value>Setzt lokale EPUB-Kapitel, unterstützte Bilder und Formatierungen in neue PDF-Dateien um.</value></data>
+  <data name="EpubFiles" xml:space="preserve"><value>EPUB-Bücher</value></data>
+  <data name="EpubLimits" xml:space="preserve"><value>Unterstützt passive EPUB 2/3 mit fließendem Layout, UTF-8-XHTML, internen CSS-Dateien und PNG/JPEG/GIF/WebP-Bildern. Feste Layouts, verschlüsselte/verschleierte Ressourcen, Skripte, SVG, Medien und externe Ressourcen werden nicht unterstützt. Grenzen: 25 MiB Archiv, 50 MiB entpackte Daten, 500 Kapitel und 5 MiB aufbereitetes HTML. Kapitel beginnen auf neuen Seiten; gedruckte Links werden entfernt. Das Layout kann vom E-Reader abweichen.</value></data>
+  <data name="EpubProtected" xml:space="preserve"><value>Verschlüsselte oder verschleierte EPUB-Ressourcen werden nicht unterstützt. Verwende einen ungeschützten Export, den du umwandeln darfst.</value></data>
+  <data name="EpubTooLarge" xml:space="preserve"><value>Das EPUB überschreitet die Grenzen für Archiv, Ressourcen, Kapitel oder aufbereitetes Dokument.</value></data>
+  <data name="EpubUnsupported" xml:space="preserve"><value>Dieses EPUB verwendet nicht unterstützte Inhalte oder Ressourcenverweise. Verwende fließendes UTF-8-XHTML mit internen Formatierungen und unterstützten Rasterbildern; Skripte, feste Layouts, SVG und externe Ressourcen werden nicht unterstützt.</value></data>
+  <data name="EpubInvalid" xml:space="preserve"><value>Das EPUB-Archiv, seine Metadaten, die Lesereihenfolge oder eine benötigte Ressource ist ungültig oder fehlt.</value></data>
+  <data name="EpubRenderFailed" xml:space="preserve"><value>Der lokale EPUB-Druck ist fehlgeschlagen oder hat seine Grenzen überschritten. Keine Quelldatei wurde geändert.</value></data>
+  <data name="EmlTitle" xml:space="preserve"><value>EML in PDF umwandeln</value></data>
+  <data name="EmlDescription" xml:space="preserve"><value>Erstellt lokale PDF-Ansichten von E-Mail-Kopfzeilen und statischen Nachrichtentexten mit optionalem separatem Anhangexport.</value></data>
+  <data name="EmlFiles" xml:space="preserve"><value>EML-Nachrichten</value></data>
+  <data name="EmlExportAttachments" xml:space="preserve"><value>Anhänge mit der PDF in einen neuen Ordner exportieren</value></data>
+  <data name="EmlFrom" xml:space="preserve"><value>Von</value></data>
+  <data name="EmlTo" xml:space="preserve"><value>An</value></data>
+  <data name="EmlCc" xml:space="preserve"><value>Cc</value></data>
+  <data name="EmlSubject" xml:space="preserve"><value>Betreff</value></data>
+  <data name="EmlDate" xml:space="preserve"><value>Datum</value></data>
+  <data name="EmlAttachments" xml:space="preserve"><value>Anhänge</value></data>
+  <data name="EmlPrintNotice" xml:space="preserve"><value>Statische E-Mail-Ansicht. Aktive Inhalte, externe Ressourcen und Links werden ausgelassen. Anhänge sind nicht eingebettet. Digitale Signaturen und Echtheit wurden nicht geprüft.</value></data>
+  <data name="EmlLimits" xml:space="preserve"><value>Nur lokale EML bis 25 MiB und 100 Anhänge. HTML wird auf passive Inhalte reduziert; externe Ressourcen, aktive Elemente und Links werden entfernt. Klartext und unterstützte CID-Rasterbilder bleiben erhalten. Verschlüsselte Nachrichten, MSG und TNEF-Nachrichtentexte werden nicht unterstützt. Der Anhangexport erstellt einen neuen Ordner mit message.pdf und nummerierten Anhangdateien; nichts wird automatisch geöffnet. Die aufbereitete Nachricht ist auf 5 MiB begrenzt.</value></data>
+  <data name="EmlInvalid" xml:space="preserve"><value>Die EML-Nachricht ist fehlerhaft, verschlüsselt, nicht unterstützt oder überschreitet Grenzen. Absender, Datum und ein Text- oder HTML-Inhalt sind erforderlich. Prüfe MIME-Struktur, Anhänge und eingebettete Bilder.</value></data>
+  <data name="EmlReadError" xml:space="preserve"><value>Die EML-Eingabe konnte nicht gelesen werden.</value></data>
+  <data name="EmlRenderFailed" xml:space="preserve"><value>Der lokale E-Mail-Druck ist fehlgeschlagen oder hat seine Grenzen überschritten. Keine Quelldatei wurde geändert.</value></data>
+  <data name="PdfExcelTitle" xml:space="preserve"><value>PDF-Tabellen nach Excel extrahieren</value></data>
+  <data name="PdfExcelDescription" xml:space="preserve"><value>Erkennt unterstützte rechteckige Texttabellen und exportiert pro Tabelle ein Blatt in eine neue Excel-Arbeitsmappe.</value></data>
+  <data name="PdfExcelInfer" xml:space="preserve"><value>Auch ausgerichtete Tabellen ohne Rahmen erkennen (mindestens 3 Spalten und 3 Zeilen)</value></data>
+  <data name="PdfExcelUnavailable" xml:space="preserve"><value>Die PDF-Tabellenextraktion ist in dieser Konfiguration nicht verfügbar.</value></data>
+  <data name="PdfExcelLimits" xml:space="preserve"><value>Unterstützt horizontalen Text in vollständigen rechteckigen Rastern sowie ausgerichtete Tabellen ohne Rahmen ab 3 Spalten und 3 Zeilen. Verbundene Zellen, gedrehter Text, gescannte Tabellen und unklare Strukturen werden nicht unterstützt. Jede Tabelle/Seite erhält ein eigenes Blatt; Fortsetzungen werden nicht zusammengeführt. Zellen bleiben Text; Formeln und Zahlen-/Datumsformate werden nicht geraten. Grenzen: 25 MiB, 200 Seiten, 128 Tabellen und eine Million Ausgabezellen. Vergleiche die Arbeitsmappe mit der PDF-Quelle.</value></data>
+  <data name="PdfExcelPreview" xml:space="preserve"><value>Erkannte unterstützte Tabellen: {0}. Inhalte werden nicht angezeigt.</value></data>
+  <data name="PdfExcelSheet" xml:space="preserve"><value>Seite {0} Tabelle {1}</value></data>
+  <data name="PdfExcelInvalid" xml:space="preserve"><value>Es konnte keine unterstützte Tabelle extrahiert werden oder die PDF ist mehrdeutig, fehlerhaft, verschlüsselt oder überschreitet Grenzen. Verwende vollständige rechteckige Raster oder klar ausgerichtete Tabellen mit mindestens 3 Spalten und 3 Zeilen. Gescannte Seiten benötigen OCR; diese Aktion führt keine OCR aus.</value></data>
+  <data name="PdfExcelReadError" xml:space="preserve"><value>Die PDF-Eingabe konnte nicht gelesen werden.</value></data>
+  <data name="PdfExcelWriteError" xml:space="preserve"><value>Die extrahierten Tabellen konnten nicht nach Excel geschrieben werden. Keine Quelldatei wurde geändert.</value></data>
 </root>

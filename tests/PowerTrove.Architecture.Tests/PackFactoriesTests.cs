@@ -4,6 +4,7 @@ using PowerTrove.Abstractions.Manifest;
 using PowerTrove.Abstractions.Packs;
 using PowerTrove.Abstractions.Testing;
 using PowerTrove.Pack.Data;
+using PowerTrove.Pack.EInvoice;
 using PowerTrove.Pack.Files;
 using PowerTrove.Pack.Images;
 using PowerTrove.Pack.Media;
@@ -18,7 +19,7 @@ public sealed class PackFactoriesTests
     internal static IPackFactory[] Factories() => new IPackFactory[]
     {
         new FilesPackFactory(), new ImagesPackFactory(), new PdfPackFactory(), new OfficePackFactory(),
-        new MediaPackFactory(), new TablesPackFactory(), new DataPackFactory()
+        new MediaPackFactory(), new TablesPackFactory(), new DataPackFactory(), new EInvoicePackFactory()
     };
     internal static PackHostServices Host() => new(new Version(0, 1, 0), FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier()));
 
@@ -55,11 +56,11 @@ public sealed class PackFactoriesTests
         var image = new CompositeImageEngine(Array.Empty<IImageEngine>());
         var media = new CompositeMediaEngine(Array.Empty<IMediaEngine>());
         host.Add(image).Add(media);
-        // Keep this explicit graph as the snapshot of the construction path before CB-155.
+        // Keep explicit constructor/factory parity, including newly registered packs.
         IActionPack[] before =
         {
             new FilesPack(host.Files), new ImagesPack(image, host.Files), new PdfPack(host.Files), new OfficePack(host.Files),
-            new MediaPack(media, host.Files), new TablesPack(host.Files.Planner, host.Files.FileSystem, host.Files), new DataPack(host.Files)
+            new MediaPack(media, host.Files), new TablesPack(host.Files.Planner, host.Files.FileSystem, host.Files), new DataPack(host.Files), new EInvoicePack(host.Files)
         };
         var after = Factories().Select(f => f.Create(host)).ToArray();
         Assert.Equal(before.Select(p => p.Info), after.Select(p => p.Info));

@@ -12,7 +12,7 @@ public sealed class DataActionsTests : IDisposable
     [Fact]
     public void PackRegistersEveryImplementedDataAction()
     {
-        string[] suffixes = { "merge-text", "to-utf8", "line-endings", "csv-to-json", "csv-to-markdown", "csv-to-sql", "merge-csv", "json-format", "json-minify", "xlsx-to-csv", "xlsx-to-json", "csv-to-xlsx", "json-validate", "json-to-csv" };
+        string[] suffixes = { "merge-text", "to-utf8", "line-endings", "csv-to-json", "csv-to-markdown", "csv-to-sql", "merge-csv", "json-format", "json-minify", "xlsx-to-csv", "xlsx-to-json", "csv-to-xlsx", "json-validate", "json-to-csv", "json-to-xlsx", "vcf-to-csv", "csv-to-vcf", "vcf-to-xlsx", "xlsx-to-vcf", "merge-vcf" };
         Assert.Equal(suffixes.Select(s => "powertrove.data." + s), new DataPack(Services()).Actions.Select(a => a.Descriptor.Id));
     }
     [Theory]

@@ -136,4 +136,21 @@ Audiokanäle: {6}</value></data>
 <data name="MediaChoice1080p" xml:space="preserve"><value>1080p Querformat</value></data>
 <data name="MediaChoice720p" xml:space="preserve"><value>720p Querformat</value></data>
 <data name="MediaChoicesquare" xml:space="preserve"><value>Quadratisch (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>SRT in VTT umwandeln</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>VTT in SRT umwandeln</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Untertitel zeitlich verschieben</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>Erstellt UTF-8-WebVTT-Kopien von SRT-Untertiteln und erhält Zeitangaben und Zeilenumbrüche.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Erstellt UTF-8-SRT-Kopien unterstützter WebVTT-Untertitel, ohne nicht unterstützte Formatierung stillschweigend zu verlieren.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Verschiebt alle SRT- oder VTT-Untertitel um einen positiven oder negativen Zeitversatz und erstellt eine neue Datei.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Versatz in Millisekunden</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1.000 ms = 1 Sekunde. Negative Werte verschieben Untertitel nach vorne. Ein Versatz vor Zeit null wird abgewiesen; es werden keine Untertitel entfernt.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Untertiteldateien</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>{0} Untertitel werden verarbeitet.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>Die Untertitel sind ungültig, überschreiten die Grenzen, enthalten nicht unterstützte Metadaten oder Formatierung oder würden vor Zeit null verschoben. Verwende UTF-8-SRT oder WebVTT mit Zeitangaben innerhalb von sieben Tagen.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>Die Untertiteldatei konnte nicht gelesen werden.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Maximale Größe pro Video (MB; 0 = Vorgabe)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1.000.000 Bytes. Null verwendet nur die Qualitätsvorgabe. Ein positiver Wert berechnet die Videobitrate aus der Dauer, reserviert Platz für Audio und Container und prüft die tatsächliche Ausgabegröße.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Höchstens {0} MB pro Video. Geplante Videobitrate: {1}–{2} kbit/s. Erhaltenes Audio verwendet bis zu 128 kbit/s. Die fertige Dateigröße wird vor dem Speichern geprüft.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>Die gewünschte Größe ist für diese Dauer und die erhaltene Audiospur zu klein oder Videoabmessungen/Dauer werden nicht unterstützt. Erhöhe die Größe oder entferne Audio.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>Der Encoder konnte die gewünschte maximale Größe nicht einhalten. Es wurde keine Ausgabe gespeichert. Erhöhe die Grenze, wähle eine kleinere Qualitätsvorgabe oder entferne Audio.</value></data>
 </root>

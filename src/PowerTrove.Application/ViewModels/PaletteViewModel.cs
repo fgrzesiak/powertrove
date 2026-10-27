@@ -642,7 +642,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
             FailureCount = receipt.Failures.Count;
             OnPropertyChanged(nameof(CanOpenSingleOutput));
 
-            if (receipt.Message != null)
+            if (!string.IsNullOrWhiteSpace(receipt.Message))
             {
                 ExecutionResultMessage = receipt.Message;
             }

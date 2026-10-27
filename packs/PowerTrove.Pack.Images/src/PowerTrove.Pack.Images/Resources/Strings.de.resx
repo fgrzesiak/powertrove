@@ -364,4 +364,27 @@
   <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>Erstellt einen direkten Vergleich mit einem Differenzbild, das geänderte Pixel hervorhebt.</value></data>
   <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>Die Bilder haben unterschiedliche Abmessungen. Das zweite Bild wird an das erste angepasst.</value></data>
   <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % geänderte Pixel</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>SVG in PNG umwandeln</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>Rendert unterstützte statische SVG-Grafiken als neue transparente PNG-Bilder innerhalb der gewählten Auflösung.</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Maximale Ausgabebreite (Pixel)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Maximale Ausgabehöhe (Pixel)</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>SVG-Dateien</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>Der SVG-Renderer ist nicht verfügbar.</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>Die SVG-Datei ist ungültig, überschreitet Grenzen oder enthält nicht unterstützte Inhalte. Verwende statische Formen, Text und Verläufe mit viewBox oder Pixelmaßen; externe Ressourcen und aktive Inhalte werden abgewiesen.</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>Erhält Seitenverhältnis und Transparenz. Unterstützt nur statische Formen, Text und Verläufe. Skripte, Stylesheets, Animation, eingebettete Bilder, use-Verweise und externe Ressourcen werden abgewiesen. Eingabegrenze: 1 MiB und 5.000 Elemente; Ausgabegrenze: 40 Millionen Pixel.</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>Die SVG-Datei konnte nicht gelesen werden.</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>Die statische SVG-Grafik konnte nicht gerendert werden.</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>PNG in SVG vektorisieren</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>Zeichnet quantisierte PNG-Farbflächen als geschlossene SVG-Polygonpfade für Logos und einfache Illustrationen nach.</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>Farbmodus</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>Farbe</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>Schwarz-Weiß</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>Detailstufe</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>Niedrig (bis 256 px, 8 Farben)</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>Mittel (bis 512 px, 16 Farben)</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>Hoch (bis 1024 px, 32 Farben)</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>Helligkeitsschwelle für Schwarz-Weiß</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>PNG-Bilder</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>Erzeugt echte Polygonpfade und keine eingebettete Rastergrafik. Geeignet für flächige Logos und einfache Illustrationen; Fotos, Verläufe, feine Schrift und glatte Kurven verlieren Details. Der Farbmodus quantisiert Farben und Alpha; Schwarz-Weiß verwendet Helligkeits- und Alpha-Schwellen. Verarbeitet wird auf einem Raster mit 256/512/1024 px bei erhaltener Anzeigegröße. Quellgrenze: 16 Millionen Pixel; Komplexität: 250.000 Konturkanten; SVG: 5 MiB. Rein transparente oder zu komplexe Eingaben werden abgewiesen.</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>Das PNG konnte nicht vektorisiert werden: keine sichtbaren Formen, nicht unterstützte Abmessungen oder zu komplexe Konturen. Versuche weniger Details oder ein einfacheres Logo.</value></data>
 </root>

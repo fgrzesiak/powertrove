@@ -152,4 +152,35 @@
   <data name="IsolationUnavailable" xml:space="preserve"><value>Isolierte Dateiwerkzeuge sind nicht verfügbar. Pack-Dateien prüfen und neu starten.</value></data>
   <data name="SettingsNotices" xml:space="preserve"><value>Lizenzen und Hinweise zu Drittanbietern anzeigen</value></data>
   <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>Die Hinweisdateien konnten nicht geöffnet werden. Prüfe die installierten Programmdateien.</value></data>
+  <data name="OptionsSelectAll" xml:space="preserve"><value>Alle übernehmen</value></data>
+  <data name="OptionsSelectNone" xml:space="preserve"><value>Auswahl aufheben</value></data>
+  <data name="OptionsSelectionAdjusted" xml:space="preserve"><value>Die verfügbaren Felder haben sich geändert. Bitte prüfen Sie Ihre Auswahl.</value></data>
+  <data name="OptionsSelectionTooLarge" xml:space="preserve"><value>Bitte wählen Sie für diesen Export weniger Felder aus.</value></data>
+  <data name="OptionsMoveUp" xml:space="preserve"><value>Nach oben</value></data>
+  <data name="OptionsMoveDown" xml:space="preserve"><value>Nach unten</value></data>
+  <data name="MediaTrimTitle" xml:space="preserve"><value>Audio/Video zuschneiden</value></data>
+  <data name="MediaTrimOpenVisual" xml:space="preserve"><value>Visuell zuschneiden …</value></data>
+  <data name="MediaTrimAudioPreview" xml:space="preserve"><value>Audio-Vorschau</value></data>
+  <data name="MediaTrimLoading" xml:space="preserve"><value>Lokale Vorschau wird geöffnet …</value></data>
+  <data name="MediaTrimPosition" xml:space="preserve"><value>Wiedergabeposition</value></data>
+  <data name="MediaTrimPositionValue" xml:space="preserve"><value>Position: {0}</value></data>
+  <data name="MediaTrimDuration" xml:space="preserve"><value>Laufzeit der Datei: {0}</value></data>
+  <data name="MediaTrimStart" xml:space="preserve"><value>Anfang der Auswahl</value></data>
+  <data name="MediaTrimEnd" xml:space="preserve"><value>Ende der Auswahl</value></data>
+  <data name="MediaTrimSeconds" xml:space="preserve"><value>Sekunden</value></data>
+  <data name="MediaTrimPlay" xml:space="preserve"><value>Auswahl abspielen</value></data>
+  <data name="MediaTrimPause" xml:space="preserve"><value>Pause</value></data>
+  <data name="MediaTrimSetStart" xml:space="preserve"><value>Anfang hier setzen</value></data>
+  <data name="MediaTrimSetEnd" xml:space="preserve"><value>Ende hier setzen</value></data>
+  <data name="MediaTrimVolume" xml:space="preserve"><value>Lautstärke der Vorschau</value></data>
+  <data name="MediaTrimPrecise" xml:space="preserve"><value>Genau zuschneiden (kann länger dauern)</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Ohne genauen Schnitt können Anfang und Ende der Ausgabedatei leicht abweichen. Die Lautstärke der Vorschau verändert die Ausgabedatei nicht.</value></data>
+  <data name="MediaTrimSaveHint" xml:space="preserve"><value>Nur der markierte Abschnitt bleibt erhalten. Nach dem Bestätigen erstellt die Zuschneide-Aktion eine neue Datei; das Original bleibt unverändert.</value></data>
+  <data name="MediaTrimApply" xml:space="preserve"><value>Auswahl zuschneiden</value></data>
+  <data name="MediaTrimBack" xml:space="preserve"><value>Zurück zu den Zeitangaben</value></data>
+  <data name="MediaTrimSelection" xml:space="preserve"><value>Auswahl: {0} – {1} · Länge: {2}</value></data>
+  <data name="MediaTrimPreviewFailed" xml:space="preserve"><value>Windows kann diese Datei nicht in der Vorschau wiedergeben. Kehren Sie zu den Zeitangaben zurück, um die verfügbare Konvertierung zu verwenden.</value></data>
+  <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>Die Zeitangaben passten nicht zu dieser Datei. Die gesamte Laufzeit ist ausgewählt; bitte wählen Sie den Abschnitt erneut.</value></data>
+  <data name="MediaTrimReady" xml:space="preserve"><value>Bereit, den markierten Abschnitt als neue Datei zu speichern.</value></data>
+  <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Kehren Sie zu den Zeitangaben zurück, um die zusätzliche Bestätigung zu prüfen.</value></data>
 </root>

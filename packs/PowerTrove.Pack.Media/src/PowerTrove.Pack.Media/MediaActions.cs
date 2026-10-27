@@ -158,7 +158,8 @@ public sealed class MediaPack : IActionPack
             new ReplaceAudioAction(engine, services),
             new EmbedSubtitlesAction(engine, services),
             new SlideshowVideoAction(engine, services),
-            new StillImageVideoAction(engine, services)
+            new StillImageVideoAction(engine, services),
+            new SubtitleAction(services, "srt-to-vtt"), new SubtitleAction(services, "vtt-to-srt"), new SubtitleAction(services, "shift")
         };
     }
 

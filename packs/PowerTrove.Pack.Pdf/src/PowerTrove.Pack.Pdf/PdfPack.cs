@@ -3,7 +3,7 @@ namespace PowerTrove.Pack.Pdf;
 /// <summary>PDF page tools built on the self-contained FileKit.Pdf library.</summary>
 public sealed class PdfPack : IActionPack
 {
-    public PdfPack(FileActionServices services, IPdfPageRenderer? renderer = null, IImageToJpegConverter? imageConverter = null, IPdfImageRecompressor? recompressor = null, PowerTrove.Abstractions.Ocr.ITextRecognizer? textRecognizer = null, PowerTrove.Abstractions.Office.IOfficeConverter? officeConverter = null)
+    public PdfPack(FileActionServices services, IPdfPageRenderer? renderer = null, IImageToJpegConverter? imageConverter = null, IPdfImageRecompressor? recompressor = null, PowerTrove.Abstractions.Ocr.ITextRecognizer? textRecognizer = null, PowerTrove.Abstractions.Office.IOfficeConverter? officeConverter = null, FileKit.Html.ILocalHtmlPdfPrinter? htmlRenderer = null, FileKit.Html.IEpubDocumentBuilder? epubBuilder = null, FileKit.Html.IEmailPrintReader? emailReader = null, FileKit.Tabular.IPositionedDocumentReader? positionedReader = null)
     {
         ArgumentNullException.ThrowIfNull(services);
         Actions = new IAction[]
@@ -39,7 +39,7 @@ public sealed class PdfPack : IActionPack
             new BookletPdfAction(services),
             new CompressPdfAction(services, recompressor),
             new OcrPdfAction(services, renderer, textRecognizer),
-            new RepairPdfAction(services)
+            new RepairPdfAction(services), new HtmlToPdfAction(services, htmlRenderer), new EpubToPdfAction(services, htmlRenderer, epubBuilder), new EmlToPdfAction(services, htmlRenderer, emailReader), new PdfToExcelAction(services, positionedReader)
         };
     }
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve"><value>E-Rechnungswerkzeuge</value></data>
+  <data name="ViewTitle" xml:space="preserve"><value>XRechnung ansehen</value></data>
+  <data name="PdfTitle" xml:space="preserve"><value>XRechnung in PDF umwandeln</value></data>
+  <data name="CsvTitle" xml:space="preserve"><value>XRechnungspositionen als CSV exportieren</value></data>
+  <data name="ExcelTitle" xml:space="preserve"><value>XRechnung nach Excel exportieren</value></data>
+  <data name="ExtractTitle" xml:space="preserve"><value>Factur-X-/ZUGFeRD-Rechnungs-XML extrahieren</value></data>
+  <data name="EmbeddedTitle" xml:space="preserve"><value>Eingebettete Rechnungsdaten ansehen</value></data>
+  <data name="Description" xml:space="preserve"><value>Übernimmt unterstützte UBL-/CII-Rechnungsfelder in neue lokale Ansichten und Exporte, ohne die Originalrechnung zu verändern oder zu validieren.</value></data>
+  <data name="EmbeddedDescription" xml:space="preserve"><value>Liest eine unterstützte eingebettete Rechnungs-XML aus einer lokalen PDF, ohne Anhangpfade zu entpacken oder PDF/A-Konformität zu prüfen.</value></data>
+  <data name="Visualization" xml:space="preserve"><value>Rechnungsvisualisierung</value></data>
+  <data name="Notice" xml:space="preserve"><value>Nur Ansicht/Export ausgewählter Quellfelder. Dies ist nicht die elektronische Originalrechnung. XML-Verarbeitung prüft weder XRechnung, EN16931, PDF/A, Signaturen noch Geschäftsregeln. Summen werden ohne Neuberechnung übernommen; ausgelassene Felder und Anhänge verbleiben im Original. Bewahre und prüfe die Originalrechnung.</value></data>
+  <data name="Limits" xml:space="preserve"><value>Unterstützt einen begrenzten Teil von UBL Invoice/CreditNote und CII 100 mit Positionen. XML: 5 MiB, Tiefe 64, 100.000 Elemente und 10.000 Positionen; einzelne Texte: 32.767 Zeichen. PDF-Container: 25 MiB und 200 Seiten; genau eine benannte factur-x.xml, zugferd-invoice.xml oder xrechnung.xml ist erforderlich. Verschlüsselte Container, mehrdeutige Felder, gemischte Betragswährungen und nicht unterstützte Dezimalpräzision werden abgewiesen. Formelähnlicher CSV-Text erhält ein Apostroph; verwende XLSX für wörtliche Kennungen.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Unterstützte Rechnungsdaten können lokal übernommen werden. Rechnungsinhalte werden nicht angezeigt; es wurde keine Normvalidierung durchgeführt.</value></data>
+  <data name="Invalid" xml:space="preserve"><value>Die Rechnung ist fehlerhaft, mehrdeutig, nicht unterstützt oder überschreitet Grenzen; alternativ ist die lokale Ausgabe fehlgeschlagen. Verwende unterstützte UBL-/CII-XML mit Positionen oder eine unverschlüsselte unterstützte eingebettete Rechnung. Es liegt kein Konformitätsergebnis vor.</value></data>
+  <data name="ReadError" xml:space="preserve"><value>Die Rechnungseingabe konnte nicht gelesen werden.</value></data>
+  <data name="CleanupError" xml:space="preserve"><value>Temporäre Browserdaten konnten nicht entfernt werden. Prüfe den Zugriff auf den temporären Ordner und versuche es erneut.</value></data>
+  <data name="PrinterUnavailable" xml:space="preserve"><value>Die PDF-Ansicht benötigt den lokalen Dokumentdrucker und einen installierten Microsoft Edge.</value></data>
+  <data name="XmlFiles" xml:space="preserve"><value>Rechnungs-XML-Dateien</value></data>
+  <data name="PdfFiles" xml:space="preserve"><value>PDF-Rechnungscontainer</value></data>
+  <data name="Paper" xml:space="preserve"><value>Papierformat</value></data>
+  <data name="A4" xml:space="preserve"><value>A4</value></data>
+  <data name="Letter" xml:space="preserve"><value>Letter</value></data>
+  <data name="Margin" xml:space="preserve"><value>Ränder (Millimeter)</value></data>
+  <data name="Invoice" xml:space="preserve"><value>Rechnung</value></data>
+  <data name="InvoiceId" xml:space="preserve"><value>Rechnungsnummer</value></data>
+  <data name="IssueDate" xml:space="preserve"><value>Rechnungsdatum</value></data>
+  <data name="Syntax" xml:space="preserve"><value>Syntax</value></data>
+  <data name="Profile" xml:space="preserve"><value>Angegebenes Profil</value></data>
+  <data name="TypeCode" xml:space="preserve"><value>Typcode</value></data>
+  <data name="Currency" xml:space="preserve"><value>Währung</value></data>
+  <data name="BuyerReference" xml:space="preserve"><value>Käuferreferenz</value></data>
+  <data name="Seller" xml:space="preserve"><value>Verkäufer</value></data>
+  <data name="SellerAddress" xml:space="preserve"><value>Verkäuferanschrift</value></data>
+  <data name="SellerTaxId" xml:space="preserve"><value>Steuerkennungen des Verkäufers</value></data>
+  <data name="SellerRegistration" xml:space="preserve"><value>Verkäuferregistrierung</value></data>
+  <data name="SellerEmail" xml:space="preserve"><value>E-Mail des Verkäufers</value></data>
+  <data name="Buyer" xml:space="preserve"><value>Käufer</value></data>
+  <data name="BuyerAddress" xml:space="preserve"><value>Käuferanschrift</value></data>
+  <data name="BuyerTaxId" xml:space="preserve"><value>Steuerkennungen des Käufers</value></data>
+  <data name="BuyerRegistration" xml:space="preserve"><value>Käuferregistrierung</value></data>
+  <data name="BuyerEmail" xml:space="preserve"><value>E-Mail des Käufers</value></data>
+  <data name="Lines" xml:space="preserve"><value>Positionen</value></data>
+  <data name="LineId" xml:space="preserve"><value>Positionsnummer</value></data>
+  <data name="DescriptionColumn" xml:space="preserve"><value>Beschreibung</value></data>
+  <data name="Quantity" xml:space="preserve"><value>Menge</value></data>
+  <data name="Unit" xml:space="preserve"><value>Einheitencode</value></data>
+  <data name="UnitPrice" xml:space="preserve"><value>Einzelpreis</value></data>
+  <data name="PriceBase" xml:space="preserve"><value>Preisbasismenge</value></data>
+  <data name="LineNet" xml:space="preserve"><value>Positionsnettobetrag</value></data>
+  <data name="TaxCategory" xml:space="preserve"><value>Steuerkategorie</value></data>
+  <data name="TaxRate" xml:space="preserve"><value>Steuersatz (%)</value></data>
+  <data name="Taxable" xml:space="preserve"><value>Steuerpflichtiger Betrag</value></data>
+  <data name="Taxes" xml:space="preserve"><value>Steueraufteilung</value></data>
+  <data name="Tax" xml:space="preserve"><value>Steuerbetrag</value></data>
+  <data name="Exemption" xml:space="preserve"><value>Befreiungsgrund</value></data>
+  <data name="Allowances" xml:space="preserve"><value>Nachlasssumme</value></data>
+  <data name="Charges" xml:space="preserve"><value>Zuschlagssumme</value></data>
+  <data name="Net" xml:space="preserve"><value>Nettobetrag</value></data>
+  <data name="Gross" xml:space="preserve"><value>Bruttobetrag</value></data>
+  <data name="Prepaid" xml:space="preserve"><value>Vorauszahlung</value></data>
+  <data name="Rounding" xml:space="preserve"><value>Rundungsbetrag</value></data>
+  <data name="Payable" xml:space="preserve"><value>Zahlbetrag</value></data>
+  <data name="Notes" xml:space="preserve"><value>Hinweise</value></data>
+  <data name="Payments" xml:space="preserve"><value>Zahlungsinformationen</value></data>
+  <data name="PaymentCode" xml:space="preserve"><value>Zahlungsmittelcode</value></data>
+  <data name="Account" xml:space="preserve"><value>Zahlungskonto</value></data>
+  <data name="Reference" xml:space="preserve"><value>Zahlungsreferenz</value></data>
+  <data name="Terms" xml:space="preserve"><value>Zahlungsbedingungen</value></data>
+  <data name="Field" xml:space="preserve"><value>Feld</value></data>
+  <data name="Value" xml:space="preserve"><value>Wert</value></data>
+  <data name="ViewDescription" xml:space="preserve"><value>Erstellt eine neue eigenständige HTML-Ansicht unterstützter Rechnungsparteien, Positionen, Steuern und Quellsummen.</value></data>
+  <data name="PdfDescription" xml:space="preserve"><value>Erstellt über den lokal begrenzten Dokumentdrucker eine neue PDF-Ansicht unterstützter Rechnungsfelder.</value></data>
+  <data name="CsvDescription" xml:space="preserve"><value>Exportiert Rechnungspositionen mit Rechnungskennung und Quellsummen in eine neue UTF-8-CSV-Datei.</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Exportiert unterstützte Rechnungskopfdaten, Positionen, Steueraufteilung und Zahlungen in vier neue Excel-Blätter.</value></data>
+  <data name="ExtractDescription" xml:space="preserve"><value>Extrahiert eine erkannte eingebettete Rechnungs-XML als neue Datei und erhält deren decodierte Bytes sowie die Original-PDF.</value></data>
+</root>

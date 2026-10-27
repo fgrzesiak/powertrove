@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using PowerTrove.Application.ViewModels;
@@ -14,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Globalization;
 using PowerTrove.Application.Packs;
+using PowerTrove.Application.Media;
 
 namespace PowerTrove.Desktop;
 
@@ -219,6 +221,7 @@ public partial class MainWindow : Window
     private void MainWindow_Closed(object sender, WindowEventArgs args)
     {
         _packInstallCancellation?.Cancel();
+        _activeVisualEditor?.Close();
         if (App.Current is App app)
         {
             app.DisposeHotkeyService();
@@ -248,6 +251,33 @@ public partial class MainWindow : Window
         {
             UpdateSelection();
         }
+
+        var notice = e.PropertyName switch
+        {
+            nameof(PaletteViewModel.HotkeyWarningMessage) => HotkeyNoticeText,
+            nameof(PaletteViewModel.CatalogWarningMessage) => CatalogNoticeText,
+            nameof(PaletteViewModel.ContextNotice) => ContextNoticeText,
+            nameof(PaletteViewModel.HasExecutionResult) or nameof(PaletteViewModel.ExecutionResultMessage)
+                when ViewModel.HasExecutionResult => ExecutionResultText,
+            _ => null
+        };
+        if (notice is not null)
+            AnnounceNotice(notice);
+    }
+
+    private void AnnounceNotice(TextBlock notice)
+    {
+        var message = notice.Text;
+        if (string.IsNullOrWhiteSpace(message)) return;
+        // Let bindings/layout settle before announcing; ignore cleared or superseded messages.
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            if (AllowClose || !AppWindow.IsVisible || !notice.IsLoaded || notice.Text != message
+                || (notice == ExecutionResultText && !ViewModel.HasExecutionResult)) return;
+            var peer = FrameworkElementAutomationPeer.FromElement(notice)
+                ?? FrameworkElementAutomationPeer.CreatePeerForElement(notice);
+            peer?.RaiseAutomationEvent(AutomationEvents.LiveRegionChanged);
+        });
     }
 
     private bool _updatingProxyList;
@@ -352,6 +382,7 @@ public partial class MainWindow : Window
 
     public void ShowPalette()
     {
+        if (TryActivateVisualEditor()) return;
         _focusSearchPending = !ViewModel.IsExecuting && !ViewModel.HasExecutionResult;
         if (_focusSearchPending && !_dialogOpen) InvalidatePendingEnter();
         _scrollToStartPending = _focusSearchPending;
@@ -421,6 +452,16 @@ public partial class MainWindow : Window
     private bool _focusSearchPending = true;
     private bool _isWindowActive;
     private bool _dialogOpen;
+    private MediaTrimWindow? _activeVisualEditor;
+
+    /// <summary>Resurface the current editor without reopening the palette or recapturing a target.</summary>
+    public bool TryActivateVisualEditor()
+    {
+        if (_activeVisualEditor is not { } editor) return false;
+        editor.Activate();
+        ForegroundActivator.BringToFront(editor);
+        return true;
+    }
     private CancellationTokenSource? _packInstallCancellation;
     private bool _activatedSinceShown;
     private readonly PaletteEnterController _enterController = new();
@@ -686,12 +727,50 @@ public partial class MainWindow : Window
             _dialogOpen = true;
             try
             {
-                options = await ActionOptionsDialog.ShowAsync(
-                    this,
-                    descriptor,
-                    prefs,
-                    (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
-                    result.InstallState != PackInstallState.NotInstalled && VisualPageActions.Contains(descriptor.Id) ? OpenPageOrganizer : null);
+                IReadOnlyDictionary<string, string>? draft = null;
+                while (true)
+                {
+                    options = await ActionOptionsDialog.ShowAsync(
+                        this,
+                        descriptor,
+                        prefs,
+                        (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
+                        result.InstallState != PackInstallState.NotInstalled && VisualPageActions.Contains(descriptor.Id) ? OpenPageOrganizer : null,
+                        allowMediaEditor: descriptor.Id == "powertrove.media.trim" && MediaTrimRange.CanEdit(expectedSnapshot),
+                        initialValues: draft);
+                    if (options is null || !options.EditMediaVisually) break;
+                    if (!ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale ||
+                        !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
+                    { ViewModel.ShowPackNotice(UiText.PackSelectAgain); options = null; break; }
+                    var editor = new MediaTrimWindow(expectedSnapshot, options.Parameters,
+                        (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
+                        () => ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) && !expectedSnapshot.IsStale &&
+                            ReferenceEquals(ViewModel.SelectedAction?.Action, result.Action) &&
+                            ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action));
+                    app?.ApplyWindowIcon(editor);
+                    DictionaryParameters? chosen = null;
+                    bool completed = false;
+                    _activeVisualEditor = editor;
+                    // DismissPalette clears the invocation; a visual handoff must retain it.
+                    HidePalette();
+                    try
+                    {
+                        chosen = await editor.ShowSelectionAsync();
+                        completed = true;
+                    }
+                    finally
+                    {
+                        _activeVisualEditor = null;
+                        if (!AllowClose && (!completed || chosen is not null || editor.ReturnToOptions)) ShowPalette();
+                    }
+                    if (AllowClose) { options = null; break; }
+                    if (chosen is not null) { options = options with { Parameters = chosen, EditMediaVisually = false }; break; }
+                    if (!editor.ReturnToOptions)
+                    {
+                        app?.DismissPalette(); options = null; break;
+                    }
+                    draft = editor.DraftParameters.Values;
+                }
             }
             finally
             {
@@ -699,7 +778,7 @@ public partial class MainWindow : Window
             }
             if (options == null)
             {
-                SearchBox.Focus(FocusState.Programmatic);
+                if (!AllowClose && AppWindow.IsVisible) SearchBox.Focus(FocusState.Programmatic);
                 return;
             }
 
@@ -712,7 +791,7 @@ public partial class MainWindow : Window
         }
 
         if (expectedSnapshot is null || !AppWindow.IsVisible || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale
-            || !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
+            || !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action) || !ReferenceEquals(ViewModel.SelectedAction?.Action, result.Action))
         { ViewModel.ShowPackNotice(UiText.PackSelectAgain); return; }
         await ViewModel.ExecuteSelectedActionAsync(parameters);
 

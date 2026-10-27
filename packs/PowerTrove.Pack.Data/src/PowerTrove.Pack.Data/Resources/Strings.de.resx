@@ -171,4 +171,28 @@
   <data name="all" xml:space="preserve"><value>Alle Tabellenblätter</value></data>
   <data name="CachedFormulas" xml:space="preserve"><value>Gespeicherte Formelergebnisse werden verwendet. Formeln werden nicht neu berechnet.</value></data>
   <data name="InvalidWorkbook" xml:space="preserve"><value>Die Arbeitsmappe ist ungültig oder überschreitet die unterstützten Grenzen.</value></data>
+  <data name="json-to-xlsx" xml:space="preserve"><value>JSON in Excel umwandeln</value></data>
+  <data name="JsonExcelDescription" xml:space="preserve"><value>Exportiert Arrays von JSON-Objekten als neue XLSX-Arbeitsmappen mit typisierten Zellen und optional verschachtelten Spalten.</value></data>
+  <data name="JsonExcelFlatten" xml:space="preserve"><value>Unterfelder als eigene Spalten übernehmen</value></data>
+  <data name="JsonExcelColumns" xml:space="preserve"><value>Spalten</value></data>
+  <data name="JsonExcelColumnsHelp" xml:space="preserve"><value>Wählen Sie die gewünschten Spalten aus. Mit den Pfeilen ändern Sie die Reihenfolge.</value></data>
+  <data name="JsonExcelInvalidColumns" xml:space="preserve"><value>Wählen Sie mindestens eine verfügbare Spalte aus oder übernehmen Sie alle Spalten.</value></data>
+  <data name="JsonExcelInvalid" xml:space="preserve"><value>JSON muss ein nicht leeres Array von Objekten mit gültigen, eindeutigen Spalten innerhalb der Arbeitsmappengrenzen sein. Prüfe die gewählten Spaltennamen und verschachtelten Objekte.</value></data>
+  <data name="JsonExcelTypes" xml:space="preserve"><value>Die Originaldateien bleiben erhalten. Lange Zahlen und Kennungen bleiben Text, damit keine Stellen verloren gehen.</value></data>
+  <data name="vcf-to-csv" xml:space="preserve"><value>Kontakte in CSV umwandeln</value></data>
+  <data name="csv-to-vcf" xml:space="preserve"><value>CSV in vCard umwandeln</value></data>
+  <data name="vcf-to-xlsx" xml:space="preserve"><value>Kontakte in Excel umwandeln</value></data>
+  <data name="xlsx-to-vcf" xml:space="preserve"><value>Excel in vCard umwandeln</value></data>
+  <data name="merge-vcf" xml:space="preserve"><value>Kontaktdateien zusammenführen</value></data>
+  <data name="MergeContactsDescription" xml:space="preserve"><value>Führt UTF-8-vCard-Dateien der Versionen 3.0/4.0 in einer neuen Kontaktdatei zusammen, ohne doppelte Kontakte zu entfernen.</value></data>
+  <data name="ContactPreview" xml:space="preserve"><value>Zu verarbeitende Kontakte: {0}</value></data>
+  <data name="ContactInvalid" xml:space="preserve"><value>Die Kontakte sind ungültig, überschreiten Grenzen oder verwenden nicht unterstützte Codierung oder Spalten. Verwende UTF-8-vCard 3.0/4.0 oder eine Kontakttabelle mit unterstützten Überschriften und Textwerten; unbekannte gefüllte Importspalten werden abgewiesen.</value></data>
+  <data name="ContactLimits" xml:space="preserve"><value>Tabellen enthalten übliche Namens-, Organisations-, Titel-, Notiz-, Telefon-, E-Mail- und Adressfelder, keine Fotos oder sämtliche Herstellerfelder. Verwende beim Excel-Import ein Blatt mit Textzellen. vCard 2.1, Quoted-Printable und eingebettete Binärcodierungen werden nicht unterstützt. Originale bleiben erhalten.</value></data>
+  <data name="ContactDesc_vcf-to-csv" xml:space="preserve"><value>Exportiert übliche vCard-Kontaktfelder als neue CSV-Tabellen, einschließlich mehrerer Telefonnummern und E-Mail-Adressen.</value></data>
+  <data name="ContactDesc_vcf-to-xlsx" xml:space="preserve"><value>Exportiert übliche vCard-Kontaktfelder als neue XLSX-Arbeitsmappen mit Textzellen; Excel muss nicht installiert sein.</value></data>
+  <data name="ContactDesc_csv-to-vcf" xml:space="preserve"><value>Wandelt UTF-8-CSV- oder TSV-Kontakttabellen mit unterstützten Überschriften in neue vCard-Dateien der Version 3.0 um.</value></data>
+  <data name="ContactDesc_xlsx-to-vcf" xml:space="preserve"><value>Wandelt XLSX-Kontakttabellen mit einem Blatt und Textwerten in neue vCard-Dateien der Version 3.0 um, ohne Excel zu starten.</value></data>
+  <data name="JsonExcelCommonColumns" xml:space="preserve"><value>Die Liste zeigt gemeinsame Spalten aller ausgewählten Dateien. Mit „Alle übernehmen“ behält jede Datei ihre eigenen Spalten.</value></data>
+  <data name="JsonExcelNoCommonColumns" xml:space="preserve"><value>Diese Dateien haben keine gemeinsamen Spalten. Mit „Alle übernehmen“ exportieren Sie jede Datei mit ihren eigenen Spalten.</value></data>
+  <data name="JsonExcelColumnsTooLarge" xml:space="preserve"><value>Diese Spaltenliste ist zu umfangreich für die Auswahl. Mit „Alle übernehmen“ können Sie die Dateien exportieren.</value></data>
 </root>

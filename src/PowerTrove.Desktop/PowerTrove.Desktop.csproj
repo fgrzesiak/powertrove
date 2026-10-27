@@ -71,4 +71,5 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.EInvoice\composition\PowerTrove.Pack.EInvoice.Composition\PowerTrove.Pack.EInvoice.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" /></ItemGroup>
 </Project>
