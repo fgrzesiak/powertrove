@@ -52,6 +52,8 @@ public sealed partial class FFmpegMediaEngine
             else if (r.Operation == MediaOperation.CompressVideo)
             {
                 var info = Details(r); var size = MediaPlanning.CompressionSize(info.Width ?? 0, info.Height ?? 0, Option(r, "Quality", "medium"));
+                int targetMb = Int(r, "TargetSizeMb", 0);
+                if (targetMb > 0) size = size with { Bitrate = MediaPlanning.TargetVideoBitrate(info.Duration, targetMb * 1000000L, Flag(r, "KeepAudio", true) && info.HasAudio, size.Bitrate) };
                 args.AddRange(["-map", "0:V:0", "-vf", $"scale={size.Width}:{size.Height}", "-c:v", "libx264", "-preset", "fast", "-pix_fmt", "yuv420p", "-b:v", size.Bitrate.ToString(CultureInfo.InvariantCulture), "-maxrate", size.Bitrate.ToString(CultureInfo.InvariantCulture), "-bufsize", (size.Bitrate * 2).ToString(CultureInfo.InvariantCulture)]);
                 args.AddRange(Flag(r, "KeepAudio", true) ? ["-map", "0:a:0?", "-c:a", "aac", "-b:a", "128k"] : ["-an"]);
             }

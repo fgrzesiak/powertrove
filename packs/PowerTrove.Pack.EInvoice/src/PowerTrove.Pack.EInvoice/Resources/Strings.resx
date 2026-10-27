@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve"><value>E-Invoice Tools</value></data>
+  <data name="ViewTitle" xml:space="preserve"><value>View XRechnung</value></data>
+  <data name="PdfTitle" xml:space="preserve"><value>Convert XRechnung to PDF</value></data>
+  <data name="CsvTitle" xml:space="preserve"><value>Export XRechnung Lines to CSV</value></data>
+  <data name="ExcelTitle" xml:space="preserve"><value>Export XRechnung to Excel</value></data>
+  <data name="ExtractTitle" xml:space="preserve"><value>Extract Factur-X / ZUGFeRD Invoice XML</value></data>
+  <data name="EmbeddedTitle" xml:space="preserve"><value>View Embedded Invoice Data</value></data>
+  <data name="Description" xml:space="preserve"><value>Projects supported UBL/CII invoice fields into new local views and exports without changing or validating the original invoice.</value></data>
+  <data name="EmbeddedDescription" xml:space="preserve"><value>Reads one supported embedded invoice XML from a local PDF without extracting attachment paths or validating PDF/A conformance.</value></data>
+  <data name="Visualization" xml:space="preserve"><value>Invoice visualization</value></data>
+  <data name="Notice" xml:space="preserve"><value>Visualization/export of selected source fields only. This is not the original electronic invoice. XML parsing does not validate XRechnung, EN16931, PDF/A, signatures or business rules. Totals are copied without recalculation; omitted fields and attachments remain in the original. Preserve and check the original invoice.</value></data>
+  <data name="Limits" xml:space="preserve"><value>Supports a bounded UBL Invoice/CreditNote and CII 100 subset with line items. XML: 5 MiB, depth 64, 100,000 elements and 10,000 lines; individual text: 32,767 characters. PDF containers: 25 MiB and 200 pages; exactly one named factur-x.xml, zugferd-invoice.xml or xrechnung.xml is required. Encrypted containers, ambiguous fields, mixed amount currencies and unsupported decimal precision are refused. CSV formula-like text is prefixed with an apostrophe; use XLSX for literal identifiers.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Supported invoice data can be projected locally. No invoice contents are displayed; no standards validation was performed.</value></data>
+  <data name="Invalid" xml:space="preserve"><value>The invoice is malformed, ambiguous, unsupported or exceeds its limits, or local output rendering failed. Use supported UBL/CII XML with line items or one unencrypted supported embedded invoice. No conformance result is available.</value></data>
+  <data name="ReadError" xml:space="preserve"><value>The invoice input could not be read.</value></data>
+  <data name="CleanupError" xml:space="preserve"><value>Temporary browser data could not be removed. Check temporary-folder access and retry.</value></data>
+  <data name="PrinterUnavailable" xml:space="preserve"><value>PDF visualization requires the local document printer and an installed Microsoft Edge browser.</value></data>
+  <data name="XmlFiles" xml:space="preserve"><value>Invoice XML files</value></data>
+  <data name="PdfFiles" xml:space="preserve"><value>PDF invoice containers</value></data>
+  <data name="Paper" xml:space="preserve"><value>Paper size</value></data>
+  <data name="A4" xml:space="preserve"><value>A4</value></data>
+  <data name="Letter" xml:space="preserve"><value>Letter</value></data>
+  <data name="Margin" xml:space="preserve"><value>Margins (millimeters)</value></data>
+  <data name="Invoice" xml:space="preserve"><value>Invoice</value></data>
+  <data name="InvoiceId" xml:space="preserve"><value>Invoice ID</value></data>
+  <data name="IssueDate" xml:space="preserve"><value>Issue date</value></data>
+  <data name="Syntax" xml:space="preserve"><value>Syntax</value></data>
+  <data name="Profile" xml:space="preserve"><value>Declared profile</value></data>
+  <data name="TypeCode" xml:space="preserve"><value>Type code</value></data>
+  <data name="Currency" xml:space="preserve"><value>Currency</value></data>
+  <data name="BuyerReference" xml:space="preserve"><value>Buyer reference</value></data>
+  <data name="Seller" xml:space="preserve"><value>Seller</value></data>
+  <data name="SellerAddress" xml:space="preserve"><value>Seller address</value></data>
+  <data name="SellerTaxId" xml:space="preserve"><value>Seller tax IDs</value></data>
+  <data name="SellerRegistration" xml:space="preserve"><value>Seller registration</value></data>
+  <data name="SellerEmail" xml:space="preserve"><value>Seller email</value></data>
+  <data name="Buyer" xml:space="preserve"><value>Buyer</value></data>
+  <data name="BuyerAddress" xml:space="preserve"><value>Buyer address</value></data>
+  <data name="BuyerTaxId" xml:space="preserve"><value>Buyer tax IDs</value></data>
+  <data name="BuyerRegistration" xml:space="preserve"><value>Buyer registration</value></data>
+  <data name="BuyerEmail" xml:space="preserve"><value>Buyer email</value></data>
+  <data name="Lines" xml:space="preserve"><value>Line items</value></data>
+  <data name="LineId" xml:space="preserve"><value>Line ID</value></data>
+  <data name="DescriptionColumn" xml:space="preserve"><value>Description</value></data>
+  <data name="Quantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="Unit" xml:space="preserve"><value>Unit code</value></data>
+  <data name="UnitPrice" xml:space="preserve"><value>Unit price</value></data>
+  <data name="PriceBase" xml:space="preserve"><value>Price base quantity</value></data>
+  <data name="LineNet" xml:space="preserve"><value>Line net amount</value></data>
+  <data name="TaxCategory" xml:space="preserve"><value>Tax category</value></data>
+  <data name="TaxRate" xml:space="preserve"><value>Tax rate (%)</value></data>
+  <data name="Taxable" xml:space="preserve"><value>Taxable amount</value></data>
+  <data name="Taxes" xml:space="preserve"><value>Tax breakdown</value></data>
+  <data name="Tax" xml:space="preserve"><value>Tax amount</value></data>
+  <data name="Exemption" xml:space="preserve"><value>Exemption reason</value></data>
+  <data name="Allowances" xml:space="preserve"><value>Allowance total</value></data>
+  <data name="Charges" xml:space="preserve"><value>Charge total</value></data>
+  <data name="Net" xml:space="preserve"><value>Net amount</value></data>
+  <data name="Gross" xml:space="preserve"><value>Gross amount</value></data>
+  <data name="Prepaid" xml:space="preserve"><value>Prepaid amount</value></data>
+  <data name="Rounding" xml:space="preserve"><value>Rounding amount</value></data>
+  <data name="Payable" xml:space="preserve"><value>Payable amount</value></data>
+  <data name="Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="Payments" xml:space="preserve"><value>Payment details</value></data>
+  <data name="PaymentCode" xml:space="preserve"><value>Payment means code</value></data>
+  <data name="Account" xml:space="preserve"><value>Payment account</value></data>
+  <data name="Reference" xml:space="preserve"><value>Payment reference</value></data>
+  <data name="Terms" xml:space="preserve"><value>Payment terms</value></data>
+  <data name="Field" xml:space="preserve"><value>Field</value></data>
+  <data name="Value" xml:space="preserve"><value>Value</value></data>
+  <data name="ViewDescription" xml:space="preserve"><value>Creates a new self-contained HTML view of supported invoice parties, lines, taxes and source totals.</value></data>
+  <data name="PdfDescription" xml:space="preserve"><value>Creates a new PDF visualization of supported invoice fields through the local contained document printer.</value></data>
+  <data name="CsvDescription" xml:space="preserve"><value>Exports invoice line items with invoice identity and source totals into a new UTF-8 CSV file.</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Exports supported invoice headers, lines, tax breakdown and payments into four new Excel worksheets.</value></data>
+  <data name="ExtractDescription" xml:space="preserve"><value>Extracts one recognized embedded invoice XML as a new file, preserving its decoded bytes and the original PDF.</value></data>
+</root>

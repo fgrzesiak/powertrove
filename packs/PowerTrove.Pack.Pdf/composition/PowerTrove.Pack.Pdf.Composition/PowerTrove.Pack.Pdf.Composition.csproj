@@ -6,9 +6,12 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\adapters\PowerTrove.Pack.Pdf.Html\PowerTrove.Pack.Pdf.Html.csproj" />
     <ProjectReference Include="..\..\src\PowerTrove.Pack.Pdf\PowerTrove.Pack.Pdf.csproj" />
     <ProjectReference Include="..\..\adapters\PowerTrove.Pack.Pdf.Windows\PowerTrove.Pack.Pdf.Windows.csproj" />
     <Using Include="PowerTrove.Abstractions" />
     <Using Include="PowerTrove.Abstractions.Files" />
   </ItemGroup>
+  <ItemGroup><ProjectReference Include="../../adapters/PowerTrove.Pack.Pdf.Mail/PowerTrove.Pack.Pdf.Mail.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../adapters/PowerTrove.Pack.Pdf.Layout/PowerTrove.Pack.Pdf.Layout.csproj" /></ItemGroup>
 </Project>

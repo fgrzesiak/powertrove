@@ -13,7 +13,9 @@ public sealed class DataPack : IActionPack
             new DataFileAction(services, "csv-to-json"), new DataFileAction(services, "csv-to-markdown"), new DataFileAction(services, "csv-to-sql"),
             new MergeCsvAction(services), new DataFileAction(services, "json-format"), new DataFileAction(services, "json-minify"),
             new ExcelAction(services, "xlsx-to-csv"), new ExcelAction(services, "xlsx-to-json"), new ExcelAction(services, "csv-to-xlsx"),
-            new JsonValidateAction(services), new DataFileAction(services, "json-to-csv")
+            new JsonValidateAction(services), new DataFileAction(services, "json-to-csv"), new JsonToExcelAction(services),
+            new ContactAction(services, "vcf-to-csv"), new ContactAction(services, "csv-to-vcf"),
+            new ContactAction(services, "vcf-to-xlsx"), new ContactAction(services, "xlsx-to-vcf"), new MergeContactsAction(services)
         };
     }
     public ActionPackInfo Info => Describe();

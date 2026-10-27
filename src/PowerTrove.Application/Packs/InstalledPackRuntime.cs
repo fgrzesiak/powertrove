@@ -46,5 +46,6 @@ public sealed class InstalledPackRuntime(PackInstaller installer, PackHostSuperv
         "password" => ActionParameterKind.Password, "file" => ActionParameterKind.FilePath, "color" => ActionParameterKind.Color,
         _ => ActionParameterKind.Text
     }, parameter.Title ?? parameter.Name, parameter.Description, parameter.Type == "password" ? null : parameter.Default,
-        Choices: parameter.Choices?.Select(c => new ActionParameterChoice(c, c)).ToArray());
+        Choices: parameter.Choices?.Select(c => new ActionParameterChoice(c, c)).ToArray(),
+        Editor: parameter.Editor == "multiSelect" ? ActionParameterEditor.MultiSelect : ActionParameterEditor.Default);
 }

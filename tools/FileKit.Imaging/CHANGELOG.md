@@ -20,3 +20,6 @@ All notable changes to FileKit.Imaging are documented here. The format follows [
 - Initial release, developed inside the PowerTrove repository (see its ADR 0007).
 
 
+
+- Add bounded palette/monochrome polygon tracing into real SVG paths, with
+  detail controls, transparent holes, cancellation and complexity limits.

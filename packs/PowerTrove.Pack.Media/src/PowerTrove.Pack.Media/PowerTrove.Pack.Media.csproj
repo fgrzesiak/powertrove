@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Text\src\FileKit.Text\FileKit.Text.csproj" />
   </ItemGroup>
 
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Media.Composition" /></ItemGroup>

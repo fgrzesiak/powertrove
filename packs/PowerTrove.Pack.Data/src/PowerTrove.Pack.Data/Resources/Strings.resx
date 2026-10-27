@@ -171,4 +171,28 @@
   <data name="all" xml:space="preserve"><value>All worksheets</value></data>
   <data name="CachedFormulas" xml:space="preserve"><value>Saved formula results are used. Formulas are not recalculated.</value></data>
   <data name="InvalidWorkbook" xml:space="preserve"><value>The workbook is invalid or exceeds the supported limits.</value></data>
+  <data name="json-to-xlsx" xml:space="preserve"><value>Convert JSON to Excel</value></data>
+  <data name="JsonExcelDescription" xml:space="preserve"><value>Exports arrays of JSON objects as new XLSX workbooks with typed cells and optional nested columns.</value></data>
+  <data name="JsonExcelFlatten" xml:space="preserve"><value>Put nested fields in separate columns</value></data>
+  <data name="JsonExcelColumns" xml:space="preserve"><value>Columns</value></data>
+  <data name="JsonExcelColumnsHelp" xml:space="preserve"><value>Tick the columns to include. Use the arrows to change their order.</value></data>
+  <data name="JsonExcelInvalidColumns" xml:space="preserve"><value>Select at least one available column, or choose all columns.</value></data>
+  <data name="JsonExcelInvalid" xml:space="preserve"><value>The JSON must be a nonempty array of objects with valid, unambiguous columns within the workbook limits. Check the selected column names and nested objects.</value></data>
+  <data name="JsonExcelTypes" xml:space="preserve"><value>Original files are kept. Long numbers and identifiers stay text so no digits are lost.</value></data>
+  <data name="vcf-to-csv" xml:space="preserve"><value>Convert contacts to CSV</value></data>
+  <data name="csv-to-vcf" xml:space="preserve"><value>Convert CSV to vCard</value></data>
+  <data name="vcf-to-xlsx" xml:space="preserve"><value>Convert contacts to Excel</value></data>
+  <data name="xlsx-to-vcf" xml:space="preserve"><value>Convert Excel to vCard</value></data>
+  <data name="merge-vcf" xml:space="preserve"><value>Merge contact files</value></data>
+  <data name="MergeContactsDescription" xml:space="preserve"><value>Combines UTF-8 vCard 3.0/4.0 files into a new contact file without removing duplicate contacts.</value></data>
+  <data name="ContactPreview" xml:space="preserve"><value>Contacts to process: {0}</value></data>
+  <data name="ContactInvalid" xml:space="preserve"><value>The contacts are invalid, exceed limits or use unsupported encoding or columns. Use UTF-8 vCard 3.0/4.0 or a contact table with supported headers and text values; unknown nonempty import columns are rejected.</value></data>
+  <data name="ContactLimits" xml:space="preserve"><value>Tables contain common name, organization, title, notes, phone, email and address fields, not photos or every vendor field. Use one worksheet with text cells when importing Excel. vCard 2.1, quoted-printable and embedded binary encodings are unsupported. Originals are kept.</value></data>
+  <data name="ContactDesc_vcf-to-csv" xml:space="preserve"><value>Exports common vCard contact fields to new CSV tables, including repeated phone numbers and email addresses.</value></data>
+  <data name="ContactDesc_vcf-to-xlsx" xml:space="preserve"><value>Exports common vCard contact fields to new XLSX workbooks with text cells; Excel does not need to be installed.</value></data>
+  <data name="ContactDesc_csv-to-vcf" xml:space="preserve"><value>Converts UTF-8 CSV or TSV contact tables with supported headers into new vCard 3.0 files.</value></data>
+  <data name="ContactDesc_xlsx-to-vcf" xml:space="preserve"><value>Converts single-sheet XLSX contact tables with text values into new vCard 3.0 files without running Excel.</value></data>
+  <data name="JsonExcelCommonColumns" xml:space="preserve"><value>The list shows columns shared by all selected files. All columns keeps each file’s own columns.</value></data>
+  <data name="JsonExcelNoCommonColumns" xml:space="preserve"><value>These files have no shared columns. Choose all columns to export each file with its own columns.</value></data>
+  <data name="JsonExcelColumnsTooLarge" xml:space="preserve"><value>This column list is too large to display. Choose all columns to export the files.</value></data>
 </root>

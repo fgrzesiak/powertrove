@@ -48,4 +48,5 @@
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\composition\PowerTrove.Pack.Media.Composition\PowerTrove.Pack.Media.Composition.csproj" /></ItemGroup>
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" /></ItemGroup>
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../packs/PowerTrove.Pack.EInvoice/composition/PowerTrove.Pack.EInvoice.Composition/PowerTrove.Pack.EInvoice.Composition.csproj" /></ItemGroup>
 </Project>

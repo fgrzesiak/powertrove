@@ -1,4 +1,5 @@
 using PowerTrove.Pack.Pdf.Windows;
+using PowerTrove.Pack.Pdf.Html;
 using PowerTrove.Abstractions.Ocr;
 using PowerTrove.Abstractions.Office;
 using PowerTrove.Abstractions.Packs;
@@ -17,6 +18,10 @@ public sealed class PdfPackFactory : IPackFactory
     {
         ArgumentNullException.ThrowIfNull(host);
         return new PdfPack(host.Files, host.GetService<IPdfPageRenderer>() ?? (OperatingSystem.IsWindows() ? new WindowsPdfRenderer() : null), host.GetService<IImageToJpegConverter>() ?? (OperatingSystem.IsWindows() ? new WicImageToJpegConverter() : null),
-            host.GetService<IPdfImageRecompressor>() ?? (OperatingSystem.IsWindows() ? new WicPdfImageRecompressor() : null), _textRecognizer ?? host.GetService<ITextRecognizer>(), host.GetService<IOfficeConverter>());
+            host.GetService<IPdfImageRecompressor>() ?? (OperatingSystem.IsWindows() ? new WicPdfImageRecompressor() : null), _textRecognizer ?? host.GetService<ITextRecognizer>(), host.GetService<IOfficeConverter>(),
+            host.GetService<FileKit.Html.ILocalHtmlPdfPrinter>() ?? host.GetService<IHtmlPdfRenderer>() ?? (OperatingSystem.IsWindows() ? new WindowsHtmlPdfRenderer(new SafeHtmlMarkupValidator()) : null),
+            host.GetService<FileKit.Html.IEpubDocumentBuilder>() ?? new EpubDocumentBuilder(),
+            host.GetService<FileKit.Html.IEmailPrintReader>() ?? new PowerTrove.Pack.Pdf.Mail.EmlPrintReader(),
+            host.GetService<FileKit.Tabular.IPositionedDocumentReader>() ?? new PowerTrove.Pack.Pdf.Layout.PdfPositionedReader());
     }
 }

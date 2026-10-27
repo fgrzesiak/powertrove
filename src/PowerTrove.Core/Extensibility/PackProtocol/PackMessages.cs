@@ -52,14 +52,15 @@ public sealed record PreviewResultMessage(
     [property: JsonRequired] IReadOnlyList<string> Warnings,
     [property: JsonRequired] bool IsBlocked,
     IReadOnlyList<RenamePreviewRow>? RenameRows = null,
-    ActionConfirmation? Confirmation = null) : PackMessage
+    ActionConfirmation? Confirmation = null,
+    IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null) : PackMessage
 {
     public override string Type => "previewResult";
     public static PreviewResultMessage FromPreview(Guid requestId, ActionPreview preview) => new(requestId,
         preview.RequiresConfirmation, preview.PreviewText, preview.ExpectedOutputs, preview.Warnings,
-        preview.IsBlocked, preview.RenameRows, preview.Confirmation);
+        preview.IsBlocked, preview.RenameRows, preview.Confirmation, preview.ParameterChoices);
     public ActionPreview ToPreview() => new(RequiresConfirmation, PreviewText, ExpectedOutputs, Warnings,
-        IsBlocked, RenameRows, Confirmation);
+        IsBlocked, RenameRows, Confirmation, ParameterChoices);
 }
 
 public sealed record ProgressMessage(

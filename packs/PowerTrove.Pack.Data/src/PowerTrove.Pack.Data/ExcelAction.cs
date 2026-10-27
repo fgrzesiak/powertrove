@@ -83,7 +83,7 @@ public sealed class ExcelAction : PerFileAction<string>
         catch (X.XlsxException ex) { throw new FileProcessingException(SR.Get("InvalidWorkbook"), ex); }
         catch (T.TabularException ex) { throw DataSupport.TabularError(ex); }
     }
-    private static X.Cell ToXlsx(T.Cell c) => c switch
+    internal static X.Cell ToXlsx(T.Cell c) => c switch
     {
         T.TextCell t => new X.TextCell(t.Value), T.NumberCell n => new X.NumberCell(n.Value), T.BooleanCell b => new X.BooleanCell(b.Value),
         T.DateCell d => new X.DateCell(d.Value), T.ErrorCell e => new X.ErrorCell(e.Code), _ => new X.EmptyCell()

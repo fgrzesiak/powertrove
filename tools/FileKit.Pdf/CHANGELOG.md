@@ -63,3 +63,9 @@ All notable changes to FileKit.Pdf are documented here. The format follows [Keep
 ### Added
 
 - Initial release, developed inside the PowerTrove repository (see its ADR 0007).
+
+- Expose bounded structural stream decoding for host adapters, including predictor
+  row budget validation and cancellation checks.
+
+- Add bounded in-memory associated/name-tree embedded-file reading with cycle
+  detection and no attachment-name filesystem extraction.

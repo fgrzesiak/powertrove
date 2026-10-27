@@ -49,8 +49,30 @@ public sealed class PackProtocolTests
     public void PreviewConversion_PreservesEveryPreviewField()
     {
         var preview = new ActionPreview(true, "Summary", new[] { "Output" }, new[] { "Warning" }, true,
-            new[] { new RenamePreviewRow("old", "new") }, new ActionConfirmation("Prompt", "confirm", "token"));
+            new[] { new RenamePreviewRow("old", "new") }, new ActionConfirmation("Prompt", "confirm", "token"),
+            new[] { new ActionParameterChoiceSet("Columns", "flat", new[] { new ActionParameterChoice("customer.name", "Name") }) });
         Assert.Equal(preview, PreviewResultMessage.FromPreview(Id, preview).ToPreview());
+        var decoded = Assert.IsType<PreviewResultMessage>(PackMessageSerializer.DeserializeLine(PackMessageSerializer.SerializeLine(PreviewResultMessage.FromPreview(Id, preview))));
+        Assert.Equal("customer.name", Assert.Single(Assert.Single(decoded.ToPreview().ParameterChoices!).Choices).Value);
+        Assert.Null(ReadPreviewWithoutChoices().ParameterChoices);
+    }
+
+    private static ActionPreview ReadPreviewWithoutChoices() => Assert.IsType<PreviewResultMessage>(Read(
+        "{\"type\":\"previewResult\",\"requestId\":\"6ce62269-3512-4bc4-9344-b56558e20f21\",\"requiresConfirmation\":false,\"expectedOutputs\":[],\"warnings\":[],\"isBlocked\":false}")).ToPreview();
+
+    [Fact]
+    public void DynamicChoicesRejectDuplicateOrOversizedPayloadsWithoutLoggingNames()
+    {
+        var choice = new ActionParameterChoice("synthetic-field", "Synthetic field");
+        var set = new ActionParameterChoiceSet("Columns", "flat", new[] { choice });
+        Assert.DoesNotContain("synthetic", set.ToString());
+        var message = PreviewResultMessage.FromPreview(Id, new ActionPreview(false, "Summary", [], [], ParameterChoices: new[] { set }));
+        foreach (var invalid in new[] {
+            set with { Choices = new[] { choice, choice } },
+            set with { Choices = new[] { choice with { Value = new string('x', ActionParameterChoiceSet.MaximumChoiceLength + 1) } } },
+            set with { Choices = Enumerable.Range(0, ActionParameterChoiceSet.MaximumChoices + 1).Select(i => choice with { Value = i.ToString() }).ToArray() }
+        }) Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(message with { ParameterChoices = new[] { invalid } }));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(message with { ParameterChoices = new[] { set, set } }));
     }
 
     [Fact]

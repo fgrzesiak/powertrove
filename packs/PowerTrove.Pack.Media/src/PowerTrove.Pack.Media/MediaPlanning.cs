@@ -4,24 +4,8 @@ namespace PowerTrove.Pack.Media;
 
 public static class MediaTime
 {
-    public static bool TryParse(string? text, out TimeSpan value)
-    {
-        value = default;
-        if (string.IsNullOrWhiteSpace(text) || text.Length > 40) return false;
-        var fields = text.Trim().Split(':');
-        if (fields.Length is < 1 or > 3 || fields.Any(string.IsNullOrEmpty)) return false;
-        if (!decimal.TryParse(fields[^1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal seconds) || seconds < 0 || fields.Length > 1 && seconds >= 60) return false;
-        decimal total = seconds;
-        for (int i = fields.Length - 2, multiplier = 60; i >= 0; i--, multiplier *= 60)
-        {
-            if (!int.TryParse(fields[i], NumberStyles.None, CultureInfo.InvariantCulture, out int n) || n < 0 || (i > 0 && n >= 60)) return false;
-            total += (decimal)n * multiplier;
-        }
-        if (total > 7 * 24 * 3600) return false;
-        value = TimeSpan.FromTicks(decimal.ToInt64(decimal.Round(total * TimeSpan.TicksPerSecond, 0, MidpointRounding.AwayFromZero)));
-        return true;
-    }
-    public static string Seconds(TimeSpan time) => time.TotalSeconds.ToString("0.#######", CultureInfo.InvariantCulture);
+    public static bool TryParse(string? text, out TimeSpan value) => FileKit.Text.MediaTimeText.TryParse(text, out value);
+    public static string Seconds(TimeSpan time) => FileKit.Text.MediaTimeText.Seconds(time);
     public static string Stamp(TimeSpan time) => ((long)time.TotalMinutes).ToString("00", CultureInfo.InvariantCulture) + "m" + time.Seconds.ToString("00", CultureInfo.InvariantCulture) + "s" +
         (time.Milliseconds == 0 ? "" : time.Milliseconds.ToString("000", CultureInfo.InvariantCulture) + "ms");
 }
@@ -29,6 +13,16 @@ public static class MediaTime
 public sealed record VideoSize(int Width, int Height, int Bitrate);
 public static class MediaPlanning
 {
+    /// <summary>Decimal MB budget, 6% reserved for container/encoder overhead and 128 kbps
+    /// for retained audio. The published output must still pass a final byte-size check.</summary>
+    public static int TargetVideoBitrate(TimeSpan duration, long maxBytes, bool keepAudio, int qualityBitrate)
+    {
+        if (duration <= TimeSpan.Zero || duration > TimeSpan.FromDays(7) || maxBytes is < 1 or > 16384000000 || qualityBitrate < 100000)
+            throw new ArgumentOutOfRangeException(nameof(maxBytes));
+        double budget = maxBytes * 8d * .94 / duration.TotalSeconds - (keepAudio ? 128000 : 0);
+        if (!double.IsFinite(budget) || budget < 100000) throw new ArgumentOutOfRangeException(nameof(maxBytes));
+        return (int)Math.Min(qualityBitrate, Math.Floor(budget));
+    }
     public static VideoSize CompressionSize(int width, int height, string quality)
     {
         if (width is < 2 or > 32768 || height is < 2 or > 32768 || (long)width * height > 80000000) throw new ArgumentOutOfRangeException(nameof(width));

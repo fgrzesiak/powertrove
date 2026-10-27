@@ -7,7 +7,7 @@ public sealed class ImagesPack : IActionPack
 {
     public ImagesPack(CompositeImageEngine engine, FileActionServices services, IEnumerable<ImageExportProfile>? presets = null, ImageLimits? limits = null, IImageRasterCodec? rasterCodec = null,
         IImageLosslessTransformer? losslessTransformer = null, IImageWatermarker? watermarker = null, IAnimatedGifEncoder? gifEncoder = null,
-        ITextRecognizer? textRecognizer = null, IFaceDetector? faceDetector = null)
+        ITextRecognizer? textRecognizer = null, IFaceDetector? faceDetector = null, ISvgRenderer? svgRenderer = null)
     {
         ArgumentNullException.ThrowIfNull(engine);
         ArgumentNullException.ThrowIfNull(services);
@@ -31,6 +31,8 @@ public sealed class ImagesPack : IActionPack
         actions.Add(new BlurFacesAction(services, rasterCodec, faceDetector));
         actions.Add(new CompareImagesAction(services, rasterCodec!));
         actions.Add(new RemoveLocationAction(engine, services));
+        actions.Add(new SvgToPngAction(services, svgRenderer));
+        actions.Add(new PngToSvgAction(services, rasterCodec));
         // Keep saved presets last for hosts which enumerate or display them in registration order.
         actions.AddRange((presets ?? Array.Empty<ImageExportProfile>()).Select(profile => (IAction)new ImageExportAction(profile, engine, services, limits)));
         Actions = actions;

@@ -129,7 +129,8 @@ public static class ActionPackManifest
                     if (parameter is null) throw new JsonException("Missing action parameter.");
                     RequireText(parameter.Name);
                     if (parameter.Type is not ("string" or "boolean" or "number" or "choice" or "password" or "file" or "color") ||
-                        parameter.Type == "password" && parameter.Default is not null)
+                        parameter.Type == "password" && parameter.Default is not null ||
+                        parameter.Editor is not (null or "multiSelect") || parameter.Editor == "multiSelect" && parameter.Type != "string")
                         throw new JsonException("Invalid action parameter metadata.");
                 }
             }
@@ -210,5 +211,6 @@ public static class ActionPackManifest
         p.Description,
         Required: false,
         Choices: p.Choices?.Select(c => c.Value).ToList(),
-        Default: p.Kind == ActionParameterKind.Password ? null : p.DefaultValue);
+        Default: p.Kind == ActionParameterKind.Password ? null : p.DefaultValue,
+        Editor: p.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null);
 }

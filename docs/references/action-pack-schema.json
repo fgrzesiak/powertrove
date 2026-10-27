@@ -210,6 +210,13 @@
         "default": {
           "type": "string",
           "description": "Never emitted for password parameters."
+        },
+        "editor": {
+          "type": "string",
+          "enum": [
+            "multiSelect"
+          ],
+          "description": "Optional host editor for a string parameter. Preview supplies bounded choices; stored values retain their string representation."
         }
       },
       "required": [

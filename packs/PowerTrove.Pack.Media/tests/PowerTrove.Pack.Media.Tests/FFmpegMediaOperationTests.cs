@@ -7,6 +7,18 @@ public sealed class FFmpegMediaOperationTests : IDisposable
     private static MediaDetails Info(bool video = true, string? signature = null) => new(TimeSpan.FromSeconds(2), video ? 640 : null, video ? 360 : null, 30, video ? "h264" : null, "aac", 1000000, 2, 48000, true, signature);
     private static MediaRequest Request(MediaOperation op, string target, string extension, params (string Key, string Value)[] values) => new(op, target, extension, Options: values.ToDictionary(v => v.Key, v => v.Value), InputDetails: [Info()]);
     [Fact]
+    public async Task CompressionUsesTheDurationBudgetForVideoRateAndRetainsAudioReservation()
+    {
+        var fake = new Recording(); var request = Request(MediaOperation.CompressVideo, MediaTargets.Mp4, ".mp4", ("TargetSizeMb", "2"), ("KeepAudio", "true"));
+        request = request with { InputDetails = [Info() with { Duration = TimeSpan.FromSeconds(60) }] };
+        await new FFmpegMediaEngine(fake).ProcessAsync(_dir.Write("source.mp4", "x"), _dir.File("compressed.mp4"), request, default);
+        var args = Assert.Single(fake.Calls);
+        Assert.Equal("122666", args[args.IndexOf("-b:v") + 1]);
+        Assert.Equal("122666", args[args.IndexOf("-maxrate") + 1]);
+        Assert.Equal("128k", args[args.IndexOf("-b:a") + 1]);
+        Assert.Contains("-protocol_whitelist", args); Assert.Contains("-n", args);
+    }
+    [Fact]
     public async Task TrimBuildsFastAndPreciseArgumentVectors()
     {
         var fake = new Recording(); var engine = new FFmpegMediaEngine(fake); string source = _dir.Write("source.wav", "x"), dest = _dir.File("out.wav");

@@ -25,6 +25,7 @@ public static partial class BuiltInActionPacks
         var services = FileActionServices.CreatePhysical(new FileSignatureVerifier());
         var host = new PackHostServices(typeof(BuiltInActionPacks).Assembly.GetName().Version ?? new Version(0, 1, 0), services)
             .Add<ITextRecognizer>(new WindowsTextRecognizer());
+        host.Add<FileKit.Html.ILocalHtmlPdfPrinter>(new PowerTrove.Pack.Pdf.Windows.WindowsHtmlPdfRenderer(new PowerTrove.Pack.Pdf.Html.SafeHtmlMarkupValidator()));
         if (renamer is not null) host.Add<IFileRenameService>(renamer);
         var factories = new List<IPackFactory>
         {

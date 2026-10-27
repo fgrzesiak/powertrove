@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Html\src\FileKit.Html\FileKit.Html.csproj" />
     <Using Include="PowerTrove.Abstractions" />
     <Using Include="PowerTrove.Abstractions.Files" />
   </ItemGroup>
@@ -24,4 +25,5 @@
   </ItemGroup>
 
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Pdf.Composition" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../../../tools/FileKit.Tabular/src/FileKit.Tabular/FileKit.Tabular.csproj" /><ProjectReference Include="../../../../tools/FileKit.Xlsx/src/FileKit.Xlsx/FileKit.Xlsx.csproj" /></ItemGroup>
 </Project>

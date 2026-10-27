@@ -16,7 +16,7 @@ public sealed class DesktopDistributionProfileTests
             var match = Assert.Single(refs.Where(x => ((string?)x.Attribute("Include"))?.Contains("PowerTrove.Pack." + name + @"\composition\") == true));
             Assert.Null(match.Attribute("Condition"));
         }
-        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data" })
+        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
         {
             var match = Assert.Single(refs.Where(x => ((string?)x.Attribute("Include"))?.Contains("PowerTrove.Pack." + name + @"\composition\") == true));
             Assert.Equal("'$(PowerTroveProfile)' == 'Full'", (string?)match.Attribute("Condition"));
@@ -33,7 +33,7 @@ public sealed class DesktopDistributionProfileTests
     {
         string root = PackFactoriesTests.FindRoot();
         string common = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.cs"));
-        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data" })
+        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
             Assert.DoesNotContain("PowerTrove.Pack." + name, common, StringComparison.Ordinal);
         Assert.Contains("new FilesPackFactory()", common);
         Assert.Contains("new PdfPackFactory(", common);

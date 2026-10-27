@@ -18,6 +18,9 @@ public enum ActionParameterKind
 
 public sealed record ActionParameterChoice(string Value, string Title);
 
+/// <summary>Host editor hint; the stored/wire value retains its existing parameter type.</summary>
+public enum ActionParameterEditor { Default, MultiSelect }
+
 /// <summary>
 /// Declarative description of one user-adjustable action option. The host renders
 /// a generic options dialog from these definitions; the same shape is used by the
@@ -37,7 +40,8 @@ public sealed record ActionParameterDefinition(
     IReadOnlyList<string>? FileTypes = null,
     bool? MustExist = null,
     string? VisibleWhenParameter = null,
-    string? VisibleWhenValue = null)
+    string? VisibleWhenValue = null,
+    ActionParameterEditor Editor = ActionParameterEditor.Default)
 {
     public static ActionParameterDefinition Integer(string name, string title, int defaultValue, int minimum, int maximum, string? description = null) =>
         new(name, ActionParameterKind.Integer, title, description,
@@ -55,6 +59,10 @@ public sealed record ActionParameterDefinition(
 
     public static ActionParameterDefinition Text(string name, string title, string defaultValue, string? description = null, string? placeholder = null) =>
         new(name, ActionParameterKind.Text, title, description, defaultValue, Placeholder: placeholder);
+
+    /// <summary>Choices arrive with the preview. Empty text means all; an array means an explicit selection.</summary>
+    public static ActionParameterDefinition MultiSelect(string name, string title, string? description = null) =>
+        Text(name, title, string.Empty, description) with { Editor = ActionParameterEditor.MultiSelect };
 
     public static ActionParameterDefinition Password(string name, string title, string? description = null) =>
         new(name, ActionParameterKind.Password, title, description);

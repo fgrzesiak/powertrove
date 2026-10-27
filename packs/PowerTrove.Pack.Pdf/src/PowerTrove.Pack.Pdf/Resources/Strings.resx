@@ -480,4 +480,52 @@
   <data name="FlattenPdf_Counts" xml:space="preserve"><value>Annotations with appearances: {0}; without supported appearances: {1}; kept links: {2}.</value></data>
   <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>Annotations without usable appearances will be removed and their visual content may be lost.</value></data>
   <data name="FlattenPdf_Nothing" xml:space="preserve"><value>There are no annotations to flatten.</value></data>
+  <data name="HtmlTitle" xml:space="preserve"><value>Convert HTML to PDF</value></data>
+  <data name="HtmlDescription" xml:space="preserve"><value>Prints self-contained local HTML with inline CSS and embedded images to new PDF files.</value></data>
+  <data name="HtmlPaper" xml:space="preserve"><value>Paper size</value></data>
+  <data name="HtmlPaperA4" xml:space="preserve"><value>A4</value></data>
+  <data name="HtmlPaperLetter" xml:space="preserve"><value>Letter</value></data>
+  <data name="HtmlLandscape" xml:space="preserve"><value>Landscape orientation</value></data>
+  <data name="HtmlMargin" xml:space="preserve"><value>Margins (millimeters)</value></data>
+  <data name="HtmlFiles" xml:space="preserve"><value>HTML files</value></data>
+  <data name="HtmlUnavailable" xml:space="preserve"><value>HTML printing requires a locally installed Microsoft Edge browser.</value></data>
+  <data name="HtmlLimits" xml:space="preserve"><value>Only self-contained UTF-8 HTML up to 5 MiB is supported. Inline CSS and data-embedded images/fonts can render. Network requests, scripts, frames, objects and local file resources are blocked. External stylesheets and relative images are not loaded. Each file has a fresh, memory-limited browser process tree with a 60-second timeout.</value></data>
+  <data name="HtmlInvalid" xml:space="preserve"><value>HTML must be passive, nonempty UTF-8 text up to 5 MiB. Active elements, automatic refresh, forms and inline foreign content are unsupported.</value></data>
+  <data name="HtmlReadError" xml:space="preserve"><value>The HTML input could not be read.</value></data>
+  <data name="HtmlRenderFailed" xml:space="preserve"><value>The local HTML print failed, exceeded its limits or attempted unsupported navigation. Use self-contained HTML with inline CSS and embedded data images. No source file was changed.</value></data>
+  <data name="HtmlCleanupFailed" xml:space="preserve"><value>Temporary browser data could not be removed. Check temporary-folder access and retry.</value></data>
+  <data name="EpubTitle" xml:space="preserve"><value>Convert EPUB to PDF</value></data>
+  <data name="EpubDescription" xml:space="preserve"><value>Reflows local EPUB chapters, supported images and styles into new PDF files.</value></data>
+  <data name="EpubFiles" xml:space="preserve"><value>EPUB books</value></data>
+  <data name="EpubLimits" xml:space="preserve"><value>Supports passive, reflowable EPUB 2/3 with UTF-8 XHTML, internal CSS and PNG/JPEG/GIF/WebP images. Fixed layouts, encrypted/obfuscated resources, scripts, SVG, media and external resources are unsupported. Limits: 25 MiB archive, 50 MiB expanded, 500 chapters and 5 MiB prepared HTML. Chapters start on new pages; printed links are removed. Layout may differ from an e-reader.</value></data>
+  <data name="EpubProtected" xml:space="preserve"><value>Encrypted or obfuscated EPUB resources are unsupported. Use an unprotected export you are permitted to convert.</value></data>
+  <data name="EpubTooLarge" xml:space="preserve"><value>The EPUB exceeds the archive, resource, chapter or prepared-document limits.</value></data>
+  <data name="EpubUnsupported" xml:space="preserve"><value>This EPUB uses unsupported content or resource references. Use reflowable UTF-8 XHTML with internal styles and supported raster images; scripts, fixed layouts, SVG and external resources are unsupported.</value></data>
+  <data name="EpubInvalid" xml:space="preserve"><value>The EPUB archive, metadata, reading order or a required resource is invalid or missing.</value></data>
+  <data name="EpubRenderFailed" xml:space="preserve"><value>Local EPUB printing failed or exceeded its limits. No source file was changed.</value></data>
+  <data name="EmlTitle" xml:space="preserve"><value>Convert EML to PDF</value></data>
+  <data name="EmlDescription" xml:space="preserve"><value>Creates local PDF visualizations of email headers and static message bodies, with optional separate attachment export.</value></data>
+  <data name="EmlFiles" xml:space="preserve"><value>EML messages</value></data>
+  <data name="EmlExportAttachments" xml:space="preserve"><value>Export attachments into a new folder with the PDF</value></data>
+  <data name="EmlFrom" xml:space="preserve"><value>From</value></data>
+  <data name="EmlTo" xml:space="preserve"><value>To</value></data>
+  <data name="EmlCc" xml:space="preserve"><value>Cc</value></data>
+  <data name="EmlSubject" xml:space="preserve"><value>Subject</value></data>
+  <data name="EmlDate" xml:space="preserve"><value>Date</value></data>
+  <data name="EmlAttachments" xml:space="preserve"><value>Attachments</value></data>
+  <data name="EmlPrintNotice" xml:space="preserve"><value>Static email visualization. Active content, external resources and links are omitted. Attachments are not embedded. Digital signatures and authenticity have not been validated.</value></data>
+  <data name="EmlLimits" xml:space="preserve"><value>Local EML only, up to 25 MiB and 100 attachments. HTML is reduced to passive content; external resources, active elements and links are removed. Plain text and supported CID raster images are retained. Encrypted messages, MSG and TNEF bodies are unsupported. Attachment export creates one new folder with message.pdf and numbered attachment files; nothing is opened automatically. The prepared message is limited to 5 MiB.</value></data>
+  <data name="EmlInvalid" xml:space="preserve"><value>The EML message is malformed, encrypted, unsupported or exceeds its limits. Sender, date and a text or HTML body are required. Check MIME structure, attachments and embedded images.</value></data>
+  <data name="EmlReadError" xml:space="preserve"><value>The EML input could not be read.</value></data>
+  <data name="EmlRenderFailed" xml:space="preserve"><value>Local email printing failed or exceeded its limits. No source file was changed.</value></data>
+  <data name="PdfExcelTitle" xml:space="preserve"><value>Extract PDF Tables to Excel</value></data>
+  <data name="PdfExcelDescription" xml:space="preserve"><value>Detects supported rectangular text tables and exports one worksheet per table into a new Excel workbook.</value></data>
+  <data name="PdfExcelInfer" xml:space="preserve"><value>Also detect aligned unruled tables (at least 3 columns and 3 rows)</value></data>
+  <data name="PdfExcelUnavailable" xml:space="preserve"><value>PDF table extraction is unavailable in this configuration.</value></data>
+  <data name="PdfExcelLimits" xml:space="preserve"><value>Supports horizontal text in complete rectangular grids, plus aligned unruled tables with at least 3 columns and 3 rows. Merged cells, rotated text, scanned tables and unclear structures are unsupported. Each table/page is a separate sheet; continuations are not merged. Cells remain text; formulas and numeric/date types are not inferred. Limits: 25 MiB, 200 pages, 128 tables and one million output cells. Review the workbook against the source PDF.</value></data>
+  <data name="PdfExcelPreview" xml:space="preserve"><value>Supported tables detected: {0}. Content is not displayed.</value></data>
+  <data name="PdfExcelSheet" xml:space="preserve"><value>Page {0} Table {1}</value></data>
+  <data name="PdfExcelInvalid" xml:space="preserve"><value>No supported table could be extracted, or the PDF is ambiguous, malformed, encrypted or exceeds its limits. Use complete rectangular grids or clearly aligned tables with at least 3 columns and 3 rows. Scanned pages require OCR, which this action does not perform.</value></data>
+  <data name="PdfExcelReadError" xml:space="preserve"><value>The PDF input could not be read.</value></data>
+  <data name="PdfExcelWriteError" xml:space="preserve"><value>The extracted tables could not be written to Excel. No source file was changed.</value></data>
 </root>

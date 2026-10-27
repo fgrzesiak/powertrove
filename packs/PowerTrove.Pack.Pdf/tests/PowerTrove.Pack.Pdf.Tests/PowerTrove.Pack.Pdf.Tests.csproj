@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\adapters\PowerTrove.Pack.Pdf.Html\PowerTrove.Pack.Pdf.Html.csproj" />
     <PackageReference Include="coverlet.collector" Version="6.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -31,4 +32,9 @@
     <ProjectReference Include="..\..\..\..\src\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Html/testing/TestEpubFactory.cs" Link="TestEpubFactory.cs" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../adapters/PowerTrove.Pack.Pdf.Mail/PowerTrove.Pack.Pdf.Mail.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Html/testing/TestEmlFactory.cs" Link="TestEmlFactory.cs" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../adapters/PowerTrove.Pack.Pdf.Layout/PowerTrove.Pack.Pdf.Layout.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../../tools/FileKit.Pdf/testing/TestTablePdfFactory.cs" Link="TestTablePdfFactory.cs" /><Compile Include="../../../../tools/FileKit.Pdf/tests/FileKit.Pdf.Tests/TestPdfFactory.cs" Link="TestPdfFactory.cs" /></ItemGroup>
 </Project>
