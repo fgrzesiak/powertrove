@@ -169,7 +169,7 @@ export async function releasePacks(options, dependencies = {}) {
           ...(options.desktopVersion ? ['-p:Version=' + options.desktopVersion] : [])]);
         worker = path.join(root, 'src/PowerTrove.PackHost/bin/Release/net10.0-windows10.0.19041.0/PowerTrove.PackHost.exe');
       }
-      await command('powershell.exe', ['-NoProfile', '-File', path.join(root, 'scripts/smoke-packs.ps1'),
+      await command('pwsh', ['-NoProfile', '-File', path.join(root, 'scripts/smoke-packs.ps1'),
         '-AssetDirectory', path.join(output, 'github-assets'), '-WorkerExecutable', worker, '-CatalogSha256', sha(checked.bytes)],
       { logOutput: true });
       const assets = [];
