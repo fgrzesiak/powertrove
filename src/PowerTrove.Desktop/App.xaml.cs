@@ -135,6 +135,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         }
         Actions = actionRegistry;
         PackRuntime = new PowerTrove.Application.Packs.InstalledPackRuntime(PackInstaller, PackHosts, actionRegistry, installedPacks, catalog.Catalog);
+        PackRuntime.RolledBack += _ => m_window?.DispatcherQueue.TryEnqueue(() => m_window.ViewModel.CatalogWarningMessage = UiText.PackRolledBack);
         try { await PackRuntime.ReloadAsync(); }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
         { m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed; }

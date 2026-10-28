@@ -1,26 +1,21 @@
-# PowerTrove 0.3.0 Alpha 1
+# PowerTrove 0.3.1 Alpha 1
 
-A small core app with tool packs you choose, remove and update independently.
-
-## Added
-
-- Choose which tools to install during setup; PowerTrove downloads the selected packs at its first start.
-- Remove any tool pack in Settings and install it again later.
-- Table Export (Excel selections to CSV, JSON, Markdown or SQL) and E-Invoice Tools are available as downloadable packs.
-- Image conversions can limit the maximum width and height.
+Setup now installs your tools before it finishes, and tool pack updates recover on their own.
 
 ## Changed
 
-- The installer and ZIP contain only the PowerTrove core; tool packs are signed downloads. The download is about half the size of 0.2.0.
-- Updating from 0.2 keeps your tools: PowerTrove downloads the previously included packs once in the background and retries at the next start if it is offline.
-- Saved image presets use the installed Image Tools pack.
-- Tool packs can receive updates without a new app release.
+- Setup downloads and verifies the selected tools before it finishes. Tools it cannot download yet, for example while offline, are installed at PowerTrove's next start.
+- If an updated tool pack cannot start, PowerTrove restores its previous version and shows a notice.
+
+## Fixed
+
+- Setup and PowerTrove no longer interfere when both change tool packs at the same time.
+- GitHub release notes no longer repeat the release title.
 
 ## Known limitations
 
 - Experimental unsigned desktop alpha; Windows may display a publisher warning.
 - A new installation needs an internet connection once to download tools. Offline, install a pack from a .cbpack file in Settings.
-- Setup does not download or verify the selected packs itself; PowerTrove does this at its first start.
 - Very large Excel selections can exceed the transfer limit of a downloaded pack; select a smaller range.
 - Compressing some stitched video clips can extend the video timeline; verify output duration and audio synchronization.
 - Hosted checks cannot exercise optional HEIF codecs or physical audio playback when those capabilities are unavailable; verify these on a supported Windows desktop.

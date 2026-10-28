@@ -129,6 +129,25 @@ public sealed class PackChannelClientTests
     }
 
     [Fact]
+    public async Task SetupInstallsOfferedSelectedPacks_AndKeepsWhatIsNotAvailableForTheNextStart()
+    {
+        using var fixture = new Fixture();
+        var remaining = await new SetupPackInstallation(fixture.Client).InstallAsync(["powertrove.fixture", "powertrove.notoffered"], default);
+        Assert.Equal(["powertrove.notoffered"], remaining);
+        Assert.Equal("0.1.0", Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+        fixture.AssertCleanDownloads();
+    }
+
+    [Fact]
+    public async Task OfflineSetupInstallsNothingAndKeepsTheWholeSelection()
+    {
+        using var fixture = new Fixture();
+        fixture.Handler.Respond = (_, _) => throw new HttpRequestException("Synthetic offline fixture.");
+        Assert.Equal(["powertrove.fixture"], await new SetupPackInstallation(fixture.Client).InstallAsync(["powertrove.fixture"], default));
+        Assert.Empty(await fixture.Installer.GetInstalledAsync());
+    }
+
+    [Fact]
     public async Task OfflineHasNoRetriesAndKeepsInstalledDiscoveryUsable()
     {
         using var fixture = new Fixture();

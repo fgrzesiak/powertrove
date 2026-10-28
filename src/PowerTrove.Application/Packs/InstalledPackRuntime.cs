@@ -6,12 +6,43 @@ using PowerTrove.Core.Catalog;
 namespace PowerTrove.Application.Packs;
 
 /// <summary>Registers verified installed metadata as remote actions without loading pack assemblies in Desktop.</summary>
-public sealed class InstalledPackRuntime(PackInstaller installer, PackHostSupervisor supervisor,
-    ActionRegistry registry, IReadOnlyList<IActionPack> builtIns, IActionCatalog catalog)
+public sealed class InstalledPackRuntime
 {
+    /// <summary>Consecutive start failures before a never-confirmed version is replaced by its predecessor.</summary>
+    public const int RollbackAfterStartFailures = 2;
+    private readonly PackInstaller installer;
+    private readonly PackHostSupervisor supervisor;
+    private readonly ActionRegistry registry;
+    private readonly IReadOnlyList<IActionPack> builtIns;
     private readonly HashSet<string> _registered = new(StringComparer.Ordinal);
     private readonly SemaphoreSlim _gate = new(1, 1);
-    public IActionCatalog Catalog { get; set; } = catalog;
+    public IActionCatalog Catalog { get; set; }
+    /// <summary>Raised with the pack ID after a failed new version was replaced by its previous version.</summary>
+    public event Action<string>? RolledBack;
+
+    public InstalledPackRuntime(PackInstaller installer, PackHostSupervisor supervisor,
+        ActionRegistry registry, IReadOnlyList<IActionPack> builtIns, IActionCatalog catalog)
+    {
+        this.installer = installer; this.supervisor = supervisor; this.registry = registry; this.builtIns = builtIns; Catalog = catalog;
+        supervisor.StartFailed += (group, failures) =>
+        {
+            if (failures >= RollbackAfterStartFailures && group.Packs is [var pack]) _ = RollBackAsync(pack.Id, pack.Version);
+        };
+    }
+
+    /// <summary>Restores the previous version of a pack whose new version never started, then re-registers its actions.</summary>
+    public async Task<bool> RollBackAsync(string id, string version, CancellationToken token = default)
+    {
+        try
+        {
+            if (!await installer.RollBackAsync(id, version, token).ConfigureAwait(false)) return false;
+            await ReloadAsync(token).ConfigureAwait(false);
+            RolledBack?.Invoke(id);
+            return true;
+        }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or OperationCanceledException
+            or System.Text.Json.JsonException or ArgumentException) { return false; }
+    }
     public async Task ReloadAsync(CancellationToken token = default)
     {
         await _gate.WaitAsync(token).ConfigureAwait(false);
