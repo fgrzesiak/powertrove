@@ -33,6 +33,7 @@
 
   <!-- Exercise the actual managed Full composition without loading the WinUI executable. -->
   <ItemGroup>
+    <Compile Include="..\PowerTrove.Platform.Windows.Tests\Media\RequiresMediaCapabilities.cs" Link="Media\RequiresMediaCapabilities.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInActionPacks.cs" Link="Desktop\BuiltInActionPacks.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInActionPacks.Full.cs" Link="Desktop\BuiltInActionPacks.Full.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInContextProviders.cs" Link="Desktop\BuiltInContextProviders.cs" />

@@ -24,6 +24,7 @@
       "Experimental unsigned desktop alpha; Windows may display a publisher warning.",
       "The standard installer still includes its built-in pack profile; selecting only downloaded packs in Setup remains separate work.",
       "Compressing some stitched video clips can extend the video timeline; verify output duration and audio synchronization.",
+      "Hosted checks cannot exercise optional HEIF codecs or physical audio playback when those capabilities are unavailable; verify these on a supported Windows desktop.",
       "Downloadable table-selection packs and complete manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof."
     ]
   },
@@ -32,7 +33,7 @@
     "desktopSigning": "unsigned-alpha",
     "signPacks": true
   },
-  "manifestSha256": "f1c141ee202e6bb11b1da39e0f2e5d0c23a8b35b67ebe71a1543105148e8eb2d",
+  "manifestSha256": "93b98317d30c423728643d8b9d82735e3b8ad354fec882cb00e6df065be29490",
   "automation": {
     "driver": "contextbar-manifest",
     "mode": "autonomous-alpha"

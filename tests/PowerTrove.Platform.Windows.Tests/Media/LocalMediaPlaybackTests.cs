@@ -5,6 +5,7 @@ using Windows.Media.Editing;
 using Windows.Media.MediaProperties;
 using Windows.Media.Transcoding;
 using Windows.Storage;
+using PowerTrove.Testing.Windows;
 
 namespace PowerTrove.Platform.Windows.Tests.Media;
 
@@ -13,7 +14,7 @@ public sealed class LocalMediaPlaybackTests : IDisposable
     private readonly TempDirectory _directory = new();
     public void Dispose() => _directory.Dispose();
 
-    [Theory]
+    [RequiresAudioRenderTheory]
     [InlineData(false)][InlineData(true)]
     public async Task GeneratedLocalAudioAndVideoOpenSeekPlayAndReleaseTheOriginal(bool video)
     {

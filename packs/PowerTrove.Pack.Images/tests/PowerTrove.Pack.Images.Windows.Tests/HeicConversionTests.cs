@@ -4,6 +4,7 @@ using PowerTrove.Infrastructure.Files;
 using PowerTrove.Pack.Images.Windows;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
+using PowerTrove.Testing.Windows;
 
 namespace PowerTrove.Pack.Images.Windows.Tests;
 
@@ -12,12 +13,13 @@ public sealed class HeicConversionTests : IDisposable
     private readonly TempDirectory _directory = new();
     public void Dispose() => _directory.Dispose();
 
-    [Fact]
+    [RequiresHeifEncoderFact]
     public async Task InstalledHeifCodec_ConvertsGeneratedHeicThroughRealDesktopFactory()
     {
         // HEIF is an optional Windows extension. The bundled Windows Magick build cannot encode it.
         var codec = BitmapEncoder.GetEncoderInformationEnumerator().FirstOrDefault(info => info.FileExtensions.Contains(".heic"));
-        if (codec is null || !new WindowsImagingEngine().CanDecode(FileFormats.Heic)) return;
+        Assert.NotNull(codec);
+        Assert.True(new WindowsImagingEngine().CanDecode(FileFormats.Heic));
         using var stream = new InMemoryRandomAccessStream();
         var encoder = await BitmapEncoder.CreateAsync(codec.CodecId, stream);
         var pixels = new byte[32 * 24 * 4];

@@ -23,6 +23,7 @@ In-app updates, contextual official pack downloads and coordinated desktop/pack 
 - Experimental unsigned desktop alpha; Windows may display a publisher warning.
 - The standard installer still includes its built-in pack profile; selecting only downloaded packs in Setup remains separate work.
 - Compressing some stitched video clips can extend the video timeline; verify output duration and audio synchronization.
+- Hosted checks cannot exercise optional HEIF codecs or physical audio playback when those capabilities are unavailable; verify these on a supported Windows desktop.
 - Downloadable table-selection packs and complete manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof.
 
 ## Publication status
