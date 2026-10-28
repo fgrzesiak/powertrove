@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using PowerTrove.Abstractions.Packs;
 using PowerTrove.Abstractions.Office;
-using PowerTrove.Application.Configuration;
 using PowerTrove.Infrastructure.Files;
 using PowerTrove.Pack.Images;
 using PowerTrove.Pack.Media;
@@ -18,13 +17,9 @@ public static partial class BuiltInActionPacks
 {
     static partial void AddOptionalPackFactories(
         List<IPackFactory> factories,
-        PackHostServices host,
-        IReadOnlyList<SavedImageExportPreset>? imagePresets)
+        PackHostServices host)
     {
-        var presets = (imagePresets ?? new List<SavedImageExportPreset>())
-            .Select(p => ImagesPack.FromPreset(p.Id, p.Title, p.Description, p.Format,
-                p.Quality, p.MaxWidth, p.MaxHeight, p.StripMetadata)).ToArray();
-        host.Add(new ImagesPackOptions(presets));
+        // Saved presets are host actions (ImagePresetAction), so the pack gets none in any profile.
         host.Add<IOfficeInputValidator>(new OfficeInputValidator());
         host.Add<IOfficeConverter>(OfficePackFactory.CreateConverter(host.GetService<IOfficeInputValidator>()!));
         // Preserve existing Full registration order.

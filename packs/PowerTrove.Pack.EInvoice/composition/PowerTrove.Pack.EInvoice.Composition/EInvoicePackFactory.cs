@@ -9,6 +9,8 @@ public sealed class EInvoicePackFactory : IPackFactory
     public PowerTrove.Abstractions.ActionPackInfo Info => EInvoicePack.Describe();
     public PowerTrove.Abstractions.IActionPack Create(IPackHostServices host)
     {
-        ArgumentNullException.ThrowIfNull(host); return new EInvoicePack(host.Files, host.GetService<ILocalHtmlPdfPrinter>());
+        ArgumentNullException.ThrowIfNull(host);
+        // A pack worker host offers no HTML printer; the pack then brings its own.
+        return new EInvoicePack(host.Files, host.GetService<ILocalHtmlPdfPrinter>() ?? (OperatingSystem.IsWindows() ? new PowerTrove.Pack.EInvoice.Html.InvoiceHtmlPdfPrinter() : null));
     }
 }

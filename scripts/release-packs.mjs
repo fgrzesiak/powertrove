@@ -130,10 +130,15 @@ export async function releasePacks(options, dependencies = {}) {
         if (frozen.sourceRevision !== revision || identity(frozen) !== identity(versionPlan))
           throw new Error('Desktop pack plan is stale or differs from current sources/dependencies. Rebuild the desktop candidate.');
       }
-      if (options.desktopVersion && versionPlan.packs.some(p => compareVersions(p.minimumHostVersion, options.desktopVersion) > 0))
+      const newerHost = p => options.desktopVersion && compareVersions(p.minimumHostVersion, options.desktopVersion) > 0;
+      if (!options.deferNewerHost && versionPlan.packs.some(newerHost))
         throw new Error('A selected pack requires a newer host than this desktop release.');
+      // A pack-only release cannot ship a pack that the published host cannot run; the next desktop release publishes it.
+      for (const deferred of versionPlan.packs.filter(newerHost))
+        progress(`Deferring ${deferred.id} until a desktop release provides host ${deferred.minimumHostVersion}.`);
+      const eligible = versionPlan.packs.filter(p => !newerHost(p));
       const oldEntries = previous ? catalog(previous, publicKey).parsed.packs : [];
-      const toBuild = versionPlan.packs.filter(p => !oldEntries.some(e => e.manifest.id === p.id && e.manifest.version === p.version && e.manifest.releaseFingerprint === p.fingerprint));
+      const toBuild = eligible.filter(p => !oldEntries.some(e => e.manifest.id === p.id && e.manifest.version === p.version && e.manifest.releaseFingerprint === p.fingerprint));
       const published = path.join(output, 'published'); fs.mkdirSync(published);
       for (const selected of toBuild) {
         const pack = selected.assemblyName.slice('PowerTrove.Pack.'.length);
@@ -155,7 +160,7 @@ export async function releasePacks(options, dependencies = {}) {
       await tool(['pack-github-assets', '--pack-root', toBuild.length ? path.join(bundles, 'packs') : previous, '--output-dir', path.join(output, 'github-assets'),
         '--key-file', keyFile, ...(previous && toBuild.length ? ['--previous-pack-root', previous] : [])]);
       const checked = catalog(path.join(output, 'github-assets'), publicKey);
-      for (const required of versionPlan.packs)
+      for (const required of eligible)
         if (!checked.parsed.packs.some(p => p.manifest.id === required.id && p.manifest.version === required.version && p.manifest.releaseFingerprint === required.fingerprint))
           throw new Error('A required desktop pack is missing from the signed candidate.');
       progress('Checking the real Windows worker handshake for each signed pack.');
@@ -223,7 +228,8 @@ export async function releasePacks(options, dependencies = {}) {
     }
     const unchanged = plan.changedPackIds?.length === 0 && remoteCatalogHash === sha(checked.bytes);
     const notes = path.join(output, 'pack-release-notes.md');
-    fs.writeFileSync(notes, 'Experimental official PowerTrove file packs for Windows x64.\n\nOptional signed pack downloads; this release is not the desktop installer. Requires a pack-enabled PowerTrove application.\n\nIndividual downloads include supplier notices. Clean-machine and interactive application acceptance remain separate from automated build and signature verification.\n');
+    fs.writeFileSync(notes, 'Experimental official PowerTrove file packs for Windows x64.\n\nOptional signed pack downloads; this release is not the desktop installer. Requires a pack-enabled PowerTrove application.\n\nIndividual downloads include supplier notices. Clean-machine and interactive application acceptance remain separate from automated build and signature verification.\n' +
+      (options.releaseNotes ? '\n' + options.releaseNotes.trim() + '\n' : ''));
     if (!unchanged && !current.release) {
       await command('gh', ['release', 'create', tag, '--repo', repository, '--target', plan.target,
         '--title', 'Official PowerTrove packs', '--notes-file', notes, '--prerelease', '--draft', '--latest=false']);
@@ -233,7 +239,8 @@ export async function releasePacks(options, dependencies = {}) {
       for (const asset of plan.assets.filter(a => bundleName.test(a.name)))
         if (!current.assets.some(a => a.name === asset.name)) await command('gh', ['release', 'upload', tag, path.join(assetRoot, asset.name), '--repo', repository]);
       await command('gh', ['release', 'upload', tag, path.join(assetRoot, 'catalog.json'), path.join(assetRoot, 'catalog.json.sig'), '--repo', repository, '--clobber']);
-      await command('gh', ['release', 'edit', tag, '--repo', repository, '--draft=false', '--prerelease', '--latest=false']);
+      await command('gh', ['release', 'edit', tag, '--repo', repository, '--draft=false', '--prerelease', '--latest=false',
+        ...(options.releaseNotes ? ['--notes-file', notes] : [])]);
     } else progress('Required pack versions already exist; verifying their public downloads.');
     const publicCatalog = await publicBytes('catalog.json', 4 * 1024 ** 2, dependencies.fetch ?? fetch, signal);
     const publicSignature = await publicBytes('catalog.json.sig', 128, dependencies.fetch ?? fetch, signal);

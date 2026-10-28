@@ -8,6 +8,9 @@ public static class PackProtocolLimits
     public const int MaximumPacks = 64;
     public const int MaximumParameters = 1000;
     public const int MaximumTextLength = 4096;
+    /// <summary>Matches the Excel capture bound; the 4 MiB line limit usually applies first.</summary>
+    public const int MaximumTableCells = 1_000_000;
+    public const int MaximumCellTextLength = 32767;
 }
 
 public enum PackProtocolError { MalformedJson, LineTooLarge, InvalidMessage, UnsupportedSelection, SessionClosed }

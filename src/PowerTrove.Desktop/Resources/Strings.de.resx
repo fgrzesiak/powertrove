@@ -142,6 +142,7 @@
   <data name="PacksBundled" xml:space="preserve"><value>In der Anwendung enthalten</value></data>
   <data name="PackDownloadConsent" xml:space="preserve"><value>Möchten Sie {0} ({1}) von {2} herunterladen und installieren?</value></data>
   <data name="PackRemoveConsent" xml:space="preserve"><value>Möchten Sie {0} entfernen? Seine heruntergeladenen Versionen werden gelöscht. Enthaltene Werkzeuge bleiben verfügbar.</value></data>
+  <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>Möchten Sie {0} entfernen? Seine Aktionen stehen erst nach einer erneuten Installation wieder zur Verfügung. Ihre Dateien und Einstellungen bleiben unverändert.</value></data>
   <data name="PackInstallAndRun" xml:space="preserve"><value>Installieren und fortfahren</value></data>
   <data name="PackSelectAgain" xml:space="preserve"><value>Wählen Sie die Dateien erneut aus.</value></data>
   <data name="PackNeedsInstall" xml:space="preserve"><value>{0} ist nicht installiert</value></data>

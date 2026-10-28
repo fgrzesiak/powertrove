@@ -71,13 +71,14 @@ public sealed class WorkerSession
         Guid id = execute?.RequestId ?? preview!.RequestId;
         string actionId = execute?.ActionId ?? preview!.ActionId;
         var selection = execute?.Selection ?? preview!.Selection;
+        var table = execute is null ? preview!.Table : execute.Table;
         var expires = execute?.ExpiresAt ?? preview!.ExpiresAt;
         var values = execute?.Parameters ?? preview!.Parameters;
         using var heartbeatLifetime = CancellationTokenSource.CreateLinkedTokenSource(token, sessionToken);
         Task? heartbeat = null;
         try
         {
-            if (expires <= _clock.GetUtcNow() || expires > _clock.GetUtcNow().AddMinutes(5) || selection.Files.Count == 0)
+            if (expires <= _clock.GetUtcNow() || expires > _clock.GetUtcNow().AddMinutes(5) || (selection.Files.Count == 0) == (table is null))
                 throw new InvalidDataException();
             string staging;
             if (execute is not null)
@@ -96,7 +97,7 @@ public sealed class WorkerSession
             var action = actions.SingleOrDefault(a => a.Descriptor.Id == actionId);
             if (action is null)
             { await writer.WriteAsync(new ErrorMessage("unknownAction", Resources.Strings.UnknownAction, id), sessionToken).ConfigureAwait(false); return; }
-            var snapshot = Snapshot(selection, expires);
+            var snapshot = table is null ? Snapshot(selection, expires) : Snapshot(table, expires);
             var parameters = new DictionaryParameters(values);
             if (execute is null)
             {
@@ -153,6 +154,12 @@ public sealed class WorkerSession
         var now = _clock.GetUtcNow();
         return new ContextSnapshot(Guid.NewGuid(), new SourceWindowIdentity(IntPtr.Zero, 0, null, now), ContextStatus.Available,
             new FileSelection(files), now, expires, "pack-worker", null);
+    }
+    private ContextSnapshot Snapshot(TableSelectionPayload table, DateTimeOffset expires)
+    {
+        var now = _clock.GetUtcNow();
+        return new ContextSnapshot(Guid.NewGuid(), new SourceWindowIdentity(IntPtr.Zero, 0, null, now), ContextStatus.Available,
+            table.ToTableData(), now, expires, "pack-worker", null);
     }
     private sealed class SelectionVerifier(StagingOutputFileSystem files, IFileTypeVerifier verifier) : IFileTypeVerifier
     {

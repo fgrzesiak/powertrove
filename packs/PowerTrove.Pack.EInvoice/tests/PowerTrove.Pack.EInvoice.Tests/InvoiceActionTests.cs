@@ -54,6 +54,22 @@ public sealed class InvoiceActionTests : IDisposable
         using var page = pdf.GetPage(0); Assert.InRange(page.Size.Width, 814, 818);
     }
     [Fact]
+    public async Task FactoryWithoutAHostPrinterPrintsThroughThePacksOwnPrinterLikeAWorker()
+    {
+        string input = _directory.Write("worker-invoice.xml", TestInvoiceFactory.Ubl());
+        var host = new PackHostServices(new Version(0, 2, 0), FileActionServices.CreatePhysical(new FileSignatureVerifier()));
+        var action = new EInvoicePackFactory().Create(host).Actions.Single(a => a.Descriptor.Id == "powertrove.einvoice.to-pdf");
+        var result = await action.ExecuteAsync(Snapshots.ForPaths(input), Snapshots.Parameters(("Paper", "a4")), null, default); Assert.True(result.IsSuccess, result.Message);
+        var pdf = await PdfDocument.LoadFromFileAsync(await StorageFile.GetFileFromPathAsync(Assert.Single(result.OutputPaths))); Assert.True(pdf.PageCount > 0);
+    }
+    [Theory]
+    [InlineData("<html><body><script>x()</script></body></html>")]
+    [InlineData("<html><body><p onclick='x()'>a</p></body></html>")]
+    [InlineData("<html><head><meta http-equiv='refresh' content='0;url=https://example.invalid'></head><body></body></html>")]
+    [InlineData("<html><head><link rel='stylesheet' href='https://example.invalid/a.css'></head><body></body></html>")]
+    public void PacksOwnPrinterRejectsActiveOrNavigatingMarkup(string html) =>
+        Assert.Throws<HtmlPrintException>(() => new PowerTrove.Pack.EInvoice.Html.PassiveHtmlMarkupValidator().ValidateAndNormalize(html));
+    [Fact]
     public async Task EmbeddedInvoiceExtractionAndViewingNeverUseAttachmentNamesAsFilesystemPaths()
     {
         byte[] xml = TestInvoiceFactory.Cii(); string input = _directory.Write("hybrid.pdf", Embedded(xml, "factur-x.xml"));

@@ -209,7 +209,7 @@ public partial class MainWindow : Window
     private void OpenPageOrganizer()
     {
         var app = App.Current as App;
-        var action = app?.Actions?.GetAction(PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId);
+        var action = app?.Actions?.GetAction(PowerTrove.Core.Activation.ActivationProtocol.OrganizePagesActionId);
         var snapshot = ViewModel.CurrentSnapshot;
         if (app == null || app.UpdateInstalling || action == null || snapshot == null)
             return;
@@ -722,7 +722,7 @@ public partial class MainWindow : Window
             }
             finally { _packInstallCancellation = null; _dialogOpen = false; if (AppWindow.IsVisible) SearchBox.Focus(FocusState.Programmatic); }
         }
-        if (result.Action is not CatalogAction && descriptor.Id == PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId)
+        if (result.Action is not CatalogAction && descriptor.Id == PowerTrove.Core.Activation.ActivationProtocol.OrganizePagesActionId)
         {
             OpenPageOrganizer();
             return;

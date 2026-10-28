@@ -7,14 +7,14 @@ namespace PowerTrove.Application.Packs;
 public sealed class PackOutputCommitter
 {
     public async Task<ActionReceipt> CommitAsync(string staging, FileSelectionPayload selection, ResultMessage result,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken, string? tableOutputDirectory = null)
     {
         var written = new List<string>();
         var failures = result.Receipt.Failures.ToList();
         try
         {
             // Validate the entire inventory before creating the first real output.
-            var entries = Validate(staging, selection, result.Outputs);
+            var entries = Validate(staging, selection, result.Outputs, tableOutputDirectory);
             var files = new PhysicalOutputFileSystem();
             var writer = new FileOutputWriter(files, new OutputPlanner(files));
             foreach (var entry in entries)
@@ -44,12 +44,15 @@ public sealed class PackOutputCommitter
         }
     }
 
-    private static IReadOnlyList<Entry> Validate(string staging, FileSelectionPayload selection, IReadOnlyList<StagedOutput> outputs)
+    private static IReadOnlyList<Entry> Validate(string staging, FileSelectionPayload selection, IReadOnlyList<StagedOutput> outputs,
+        string? tableOutputDirectory)
     {
         string root = Canonical(staging);
         RejectReparse(root);
         var allowed = selection.Files.Select(f => Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(Canonical(f.Path)))!)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        // A table request authorizes exactly the output directory the host chose for it.
+        if (tableOutputDirectory is not null) allowed.Add(Canonical(tableOutputDirectory));
         var entries = new List<Entry>();
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var output in outputs)

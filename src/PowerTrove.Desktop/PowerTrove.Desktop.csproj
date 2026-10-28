@@ -18,15 +18,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- Preserve our explicit single-instance entry point; suppress generated WinUI Program.Main. -->
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
-    <PowerTroveProfile Condition="'$(PowerTroveProfile)' == ''">Full</PowerTroveProfile>
+    <!-- Core: no compiled-in packs (release default). Base: Files and PDF. Full: every pack, for development and offline builds. -->
+    <PowerTroveProfile Condition="'$(PowerTroveProfile)' == ''">Core</PowerTroveProfile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+    <!-- Only the components the app uses: the metapackage would also ship the Windows AI, ML, Search and Widgets
+         runtimes (about 57 MB). Runtime keeps framework-dependent development builds working as before. -->
+    <PackageReference Include="Microsoft.WindowsAppSDK.Runtime" Version="2.5.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="2.3.9" />
+    <PackageReference Include="Microsoft.WindowsAppSDK.Foundation" Version="2.3.12" />
+    <PackageReference Include="Microsoft.WindowsAppSDK.DWrite" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="BuiltInActionPacks.Full.cs" Condition="'$(PowerTroveProfile)' == 'Base'" />
+    <Compile Remove="BuiltInActionPacks.Base.cs" Condition="'$(PowerTroveProfile)' == 'Core'" />
+    <Compile Remove="BuiltInActionPacks.Full.cs" Condition="'$(PowerTroveProfile)' != 'Full'" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +41,10 @@
     <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
     <ProjectReference Include="..\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
     <ProjectReference Include="..\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\composition\PowerTrove.Pack.Files.Composition\PowerTrove.Pack.Files.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\composition\PowerTrove.Pack.Files.Composition\PowerTrove.Pack.Files.Composition.csproj" Condition="'$(PowerTroveProfile)' != 'Core'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\composition\PowerTrove.Pack.Images.Composition\PowerTrove.Pack.Images.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\composition\PowerTrove.Pack.Media.Composition\PowerTrove.Pack.Media.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
-    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Pdf\composition\PowerTrove.Pack.Pdf.Composition\PowerTrove.Pack.Pdf.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Pdf\composition\PowerTrove.Pack.Pdf.Composition\PowerTrove.Pack.Pdf.Composition.csproj" Condition="'$(PowerTroveProfile)' != 'Core'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Office\composition\PowerTrove.Pack.Office.Composition\PowerTrove.Pack.Office.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
@@ -72,4 +79,7 @@
     </ItemGroup>
   </Target>
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.EInvoice\composition\PowerTrove.Pack.EInvoice.Composition\PowerTrove.Pack.EInvoice.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" /></ItemGroup>
+  <Target Name="ValidatePowerTroveProfile" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(PowerTroveProfile)' != 'Core' and '$(PowerTroveProfile)' != 'Base' and '$(PowerTroveProfile)' != 'Full'" Text="PowerTroveProfile must be Core, Base or Full." />
+  </Target>
 </Project>

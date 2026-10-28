@@ -36,4 +36,20 @@ public sealed class PackOutputCommitterTests
         Assert.Empty(receipt.OutputPaths);
         Assert.False(File.Exists(temp.File("copy.txt")));
     }
+    [Fact]
+    public async Task TableOutputsAreAcceptedOnlyInTheDirectoryTheHostChose()
+    {
+        using var temp = new TempDirectory();
+        string chosen = Directory.CreateDirectory(temp.File("exports")).FullName, other = Directory.CreateDirectory(temp.File("other")).FullName;
+        temp.Write("stage/export.csv", "a,b");
+        var empty = new FileSelectionPayload([]);
+        ResultMessage Result(string directory) => new(Guid.NewGuid(), new ActionReceipt(true, false, ["export.csv"], [], false),
+            [new StagedOutput("export.csv", directory, "Export.csv")]);
+        var refused = await new PackOutputCommitter().CommitAsync(temp.File("stage"), empty, Result(other), default, chosen);
+        Assert.False(refused.IsSuccess); Assert.Empty(Directory.EnumerateFileSystemEntries(other));
+        var withoutTable = await new PackOutputCommitter().CommitAsync(temp.File("stage"), empty, Result(chosen), default);
+        Assert.False(withoutTable.IsSuccess); Assert.Empty(Directory.EnumerateFileSystemEntries(chosen));
+        var accepted = await new PackOutputCommitter().CommitAsync(temp.File("stage"), empty, Result(chosen), default, chosen);
+        Assert.True(accepted.IsSuccess); Assert.Equal("a,b", File.ReadAllText(Path.Combine(chosen, "Export.csv")));
+    }
 }

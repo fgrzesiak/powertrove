@@ -50,17 +50,21 @@ public sealed class PackVersionSelectionTests
     public void WorkerCatalogSelectsSupportedFileRelease_WithoutRestrictingGenericDiscovery()
     {
         var files = Manifest("1.0.0", "1.0.0");
-        var table = Manifest("2.0.0", "1.0.0") with
+        var text = Manifest("2.0.0", "1.0.0") with
         {
-            Actions = [new ManifestAction("powertrove.image.first", "Generated table tool", ["table"], ChangesFiles: true)]
+            Actions = [new ManifestAction("powertrove.image.first", "Generated text tool", ["text"], ChangesFiles: true)]
         };
-        string json = Catalog(files, table);
+        string json = Catalog(files, text);
         var discovery = ActionCatalog.Read(json, [], new Version(1, 0, 0), "windows", "x64");
         Assert.Equal("2.0.0", Assert.Single(discovery.Entries).Pack.Version);
         var worker = ActionCatalog.Read(json, [], new Version(1, 0, 0), "windows", "x64", requireWorkerInput: true);
         Assert.Equal("1.0.0", Assert.Single(worker.Entries).Pack.Version);
-        var unsupported = ActionCatalog.Read(Catalog(table), [], new Version(1, 0, 0), "windows", "x64", requireWorkerInput: true);
+        var unsupported = ActionCatalog.Read(Catalog(text), [], new Version(1, 0, 0), "windows", "x64", requireWorkerInput: true);
         Assert.Equal(PackInstallState.Incompatible, Assert.Single(unsupported.Entries).State);
+        // Worker protocol v1 also carries table snapshots.
+        var table = text with { Actions = [new ManifestAction("powertrove.image.first", "Generated table tool", ["table"], ChangesFiles: true)] };
+        var tables = ActionCatalog.Read(Catalog(table), [], new Version(1, 0, 0), "windows", "x64", requireWorkerInput: true);
+        Assert.NotEqual(PackInstallState.Incompatible, Assert.Single(tables.Entries).State);
     }
 
     private static ActionManifest Manifest(string version, string minimum) => new("2.0", "powertrove.images", version, "Images", "PowerTrove", "1",

@@ -6,7 +6,7 @@ namespace PowerTrove.Architecture.Tests;
 public sealed class DesktopDistributionProfileTests
 {
     [Fact]
-    public void ProfileConditions_OnOptionalReferences_MatchCompileSelection()
+    public void ProfileConditions_OnPackReferences_MatchCompileSelection_AndCoreIsTheDefault()
     {
         string root = PackFactoriesTests.FindRoot();
         var doc = XDocument.Load(Path.Combine(root, "src/PowerTrove.Desktop/PowerTrove.Desktop.csproj"));
@@ -14,7 +14,7 @@ public sealed class DesktopDistributionProfileTests
         foreach (string name in new[] { "Files", "Pdf" })
         {
             var match = Assert.Single(refs.Where(x => ((string?)x.Attribute("Include"))?.Contains("PowerTrove.Pack." + name + @"\composition\") == true));
-            Assert.Null(match.Attribute("Condition"));
+            Assert.Equal("'$(PowerTroveProfile)' != 'Core'", (string?)match.Attribute("Condition"));
         }
         foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
         {
@@ -22,20 +22,27 @@ public sealed class DesktopDistributionProfileTests
             Assert.Equal("'$(PowerTroveProfile)' == 'Full'", (string?)match.Attribute("Condition"));
         }
         Assert.Contains(doc.Descendants("Compile"), e =>
-            (string?)e.Attribute("Remove") == "BuiltInActionPacks.Full.cs" &&
-            (string?)e.Attribute("Condition") == "'$(PowerTroveProfile)' == 'Base'");
+            (string?)e.Attribute("Remove") == "BuiltInActionPacks.Base.cs" && (string?)e.Attribute("Condition") == "'$(PowerTroveProfile)' == 'Core'");
+        Assert.Contains(doc.Descendants("Compile"), e =>
+            (string?)e.Attribute("Remove") == "BuiltInActionPacks.Full.cs" && (string?)e.Attribute("Condition") == "'$(PowerTroveProfile)' != 'Full'");
         Assert.Contains(doc.Descendants("PowerTroveProfile"), e =>
-            e.Value == "Full" && (string?)e.Attribute("Condition") == "'$(PowerTroveProfile)' == ''");
+            e.Value == "Core" && (string?)e.Attribute("Condition") == "'$(PowerTroveProfile)' == ''");
     }
 
     [Fact]
-    public void BaseSource_DoesNotLinkOptionalFactories()
+    public void CoreSource_LinksNoPack_AndBaseSourceLinksOnlyFilesAndPdf()
     {
         string root = PackFactoriesTests.FindRoot();
-        string common = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.cs"));
+        string core = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.cs"));
+        string @base = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.Base.cs"));
+        Assert.DoesNotContain("PowerTrove.Pack.", core, StringComparison.Ordinal);
         foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
-            Assert.DoesNotContain("PowerTrove.Pack." + name, common, StringComparison.Ordinal);
-        Assert.Contains("new FilesPackFactory()", common);
-        Assert.Contains("new PdfPackFactory(", common);
+            Assert.DoesNotContain("PowerTrove.Pack." + name, @base, StringComparison.Ordinal);
+        Assert.Contains("new FilesPackFactory()", @base);
+        Assert.Contains("new PdfPackFactory(", @base);
+        // Desktop windows and the app shell use only host contracts, never pack types.
+        foreach (string file in Directory.GetFiles(Path.Combine(root, "src/PowerTrove.Desktop"), "*.cs")
+            .Where(f => !Path.GetFileName(f).StartsWith("BuiltInActionPacks.", StringComparison.Ordinal) || Path.GetFileName(f) == "BuiltInActionPacks.cs"))
+            Assert.DoesNotContain("PowerTrove.Pack.", File.ReadAllText(file), StringComparison.Ordinal);
     }
 }

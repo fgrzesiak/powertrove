@@ -32,7 +32,7 @@ public class AppCompositionTests
     {
         var registry = new ActionRegistry();
         var workflowRunner = new PowerTrove.Core.Workflows.WorkflowRunner(registry);
-        foreach (var pack in BuiltInActionPacks.Create(null, workflowRunner))
+        foreach (var pack in BuiltInActionPacks.Create(workflowRunner))
         {
             foreach (var action in pack.Actions)
             {

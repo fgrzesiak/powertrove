@@ -243,6 +243,42 @@ public sealed class PackProtocolTests
         }
     }
 
+    [Fact]
+    public void TablePayload_RoundTripsEveryCellKind_WithoutContentInDiagnostics()
+    {
+        var date = new DateTime(2026, 10, 28, 9, 30, 0, DateTimeKind.Unspecified);
+        var cells = new CellValue[] { new EmptyCell(), new TextCell("private-cell-marker", "fmt"), new TextCell(""), new NumberCell(1.5, "1,5"),
+            new BooleanCell(true), new DateCell(date, "28.10.2026"), new ErrorCell("#N/A") };
+        var table = TableSelectionPayload.FromSnapshot(Snapshot(new TableData(new[] { cells }, "Excel", "A1:G1")), @"C:\exports");
+        var message = new ExecuteMessage(Id, "table", new FileSelectionPayload([]), Parameters, Expiry, @"C:\staging\x", table);
+        var read = Assert.IsType<ExecuteMessage>(Read(Encoding.UTF8.GetString(PackMessageSerializer.SerializeLine(message))));
+        var data = read.Table!.ToTableData();
+        Assert.Equal(cells, data.Rows.Single());
+        Assert.Equal(("Excel", "A1:G1"), (data.SourceApplication, data.SourceRange));
+        Assert.Equal(@"C:\exports", read.Table.OutputDirectory);
+        Assert.DoesNotContain("private", read.ToString() + read.Table + read.Table.Rows[0][1]);
+    }
+
+    [Fact]
+    public void TableRequests_RejectFileAccess_InconsistentCells_AndOversizedRanges()
+    {
+        var table = new TableSelectionPayload([[new ProtocolCell("text", Text: "a")]], @"C:\exports");
+        var file = new ProtocolFile(@"C:\inputs\a.csv", "a.csv", ".csv", false);
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(new PreviewMessage(Id, "t", new FileSelectionPayload([file]), Parameters, Expiry, table)));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(new PreviewMessage(Id, "t", new FileSelectionPayload([]), Parameters, Expiry)));
+        foreach (var cell in new[] { new ProtocolCell("number", Number: double.NaN), new ProtocolCell("text", Text: "a", Number: 1), new ProtocolCell("text"),
+            new ProtocolCell("formula", Text: "=1"), new ProtocolCell("empty", Text: "x") })
+            Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(new PreviewMessage(Id, "t", new FileSelectionPayload([]), Parameters, Expiry,
+                table with { Rows = [[cell]] })));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(new PreviewMessage(Id, "t", new FileSelectionPayload([]), Parameters, Expiry,
+            table with { OutputDirectory = "relative" })));
+        var huge = Enumerable.Range(0, 300_000).Select(_ => (IReadOnlyList<CellValue>)new CellValue[] { new TextCell("0123456789") }).ToArray();
+        var ex = Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(new PreviewMessage(Id, "t", new FileSelectionPayload([]), Parameters, Expiry,
+            TableSelectionPayload.FromSnapshot(Snapshot(new TableData(huge, null, null)), @"C:\exports"))));
+        Assert.Equal(PackProtocolError.LineTooLarge, ex.Code);
+        Assert.Throws<PackProtocolException>(() => TableSelectionPayload.FromSnapshot(Snapshot(new FileSelection([])), @"C:\exports"));
+    }
+
     private static PackMessage? Read(string json) => PackMessageSerializer.DeserializeLine(Encoding.UTF8.GetBytes(json));
     private static ContextSnapshot Snapshot(ContextContent content) => new(Id, new SourceWindowIdentity(0, 0, "test", Expiry, "private-window-marker"),
         ContextStatus.Available, content, Expiry.AddMinutes(-5), Expiry, "private-provider-marker", null);

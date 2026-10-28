@@ -22,7 +22,7 @@ public static class ThirdPartyNotices
     public static Task BuildAsync(string repository, string stage, CancellationToken token = default) =>
         BuildCoreAsync(repository, stage,
             [Path.Combine(repository, "src", "PowerTrove.Desktop", "obj", "project.assets.json"), Path.Combine(repository, "src", "PowerTrove.PackHost", "obj", "project.assets.json")],
-            [Path.Combine(stage, "PowerTrove.deps.json"), Path.Combine(stage, "packhost", "PowerTrove.PackHost.deps.json")], token);
+            [Path.Combine(stage, "PowerTrove.deps.json"), Path.Combine(stage, "PowerTrove.PackHost.deps.json")], token);
 
     public static Task BuildPackAsync(string repository, string stage, string compositionProject, CancellationToken token = default) =>
         BuildCoreAsync(repository, stage,

@@ -232,6 +232,8 @@
   <data name="PackWorkerStopped" xml:space="preserve"><value>The tool stopped unexpectedly. No files were changed.</value></data>
   <data name="PackOutputFailed" xml:space="preserve"><value>Some outputs could not be saved. Completed outputs are listed below.</value></data>
   <data name="PackInvalidSelection" xml:space="preserve"><value>Select the files again.</value></data>
+  <data name="PackImagePresetNeedsImages" xml:space="preserve"><value>Install the Image Tools pack to use this preset.</value></data>
+  <data name="PackTableTooLarge" xml:space="preserve"><value>This table selection is too large for a downloaded pack. Select a smaller range.</value></data>
   <data name="PackStateInstalled" xml:space="preserve"><value>Installed</value></data>
   <data name="PackStateNotInstalled" xml:space="preserve"><value>Not installed</value></data>
   <data name="PackStateUpdateAvailable" xml:space="preserve"><value>Update available</value></data>

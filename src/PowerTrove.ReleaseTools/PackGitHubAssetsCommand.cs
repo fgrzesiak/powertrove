@@ -82,9 +82,9 @@ public static class PackGitHubAssetsCommand
             string identity = manifest.Id + "@" + manifest.Version;
             long bytes = item.GetProperty("downloadBytes").GetInt64();
             if (!seen.Add(schema == "1" ? manifest.Id : identity) || manifest.SchemaVersion != "2.0" || manifest.Payload is null ||
-                manifest.ProtocolVersion != "1" || manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] != "files") ||
+                manifest.ProtocolVersion != "1" || manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] is not ("files" or "table")) ||
                 bytes is <= 0 or > 1024L * 1024 * 1024 + 1024 * 1024 || bytes > manifest.Payload.SizeBytes + 1024 * 1024)
-                throw new InvalidDataException("Only signed worker-v1 file bundles can be published.");
+                throw new InvalidDataException("Only signed worker-v1 file or table bundles can be published.");
             string path = Path.Combine(root, asset);
             if (!File.Exists(path)) path = Path.Combine(root, manifest.Id, manifest.Version + ".cbpack");
             RejectLinks(path);

@@ -1,30 +1,30 @@
-# PowerTrove 0.2.0 Alpha 1
+# PowerTrove 0.3.0 Alpha 1
 
-In-app updates, contextual official pack downloads and coordinated desktop/pack releases.
+A small core app with tool packs you choose, remove and update independently.
 
 ## Added
 
-- Check for desktop updates at startup and install a new version from the application.
-- Download relevant official file packs from contextual suggestions and use their actions without restarting.
-- Plan and publish independent pack versions together with a desktop release.
+- Choose which tools to install during setup; PowerTrove downloads the selected packs at its first start.
+- Remove any tool pack in Settings and install it again later.
+- Table Export (Excel selections to CSV, JSON, Markdown or SQL) and E-Invoice Tools are available as downloadable packs.
+- Image conversions can limit the maximum width and height.
 
 ## Changed
 
-- Verify signed pack catalogs and downloads, retain compatible older pack versions, and refresh open palettes after installation or removal.
-- Use a release manifest to supply public versions and complete release notes.
-
-## Fixed
-
-- Preserve installed action descriptors when newer remote pack metadata becomes available.
-- Wait for active worker requests before changing packs and prevent stale action references from restarting removed workers.
+- The installer and ZIP contain only the PowerTrove core; tool packs are signed downloads. The download is about half the size of 0.2.0.
+- Updating from 0.2 keeps your tools: PowerTrove downloads the previously included packs once in the background and retries at the next start if it is offline.
+- Saved image presets use the installed Image Tools pack.
+- Tool packs can receive updates without a new app release.
 
 ## Known limitations
 
 - Experimental unsigned desktop alpha; Windows may display a publisher warning.
-- The standard installer still includes its built-in pack profile; selecting only downloaded packs in Setup remains separate work.
+- A new installation needs an internet connection once to download tools. Offline, install a pack from a .cbpack file in Settings.
+- Setup does not download or verify the selected packs itself; PowerTrove does this at its first start.
+- Very large Excel selections can exceed the transfer limit of a downloaded pack; select a smaller range.
 - Compressing some stitched video clips can extend the video timeline; verify output duration and audio synchronization.
 - Hosted checks cannot exercise optional HEIF codecs or physical audio playback when those capabilities are unavailable; verify these on a supported Windows desktop.
-- Downloadable table-selection packs and complete manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof.
+- Manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof.
 
 ## Publication status
 

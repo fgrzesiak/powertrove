@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Add the Windows Edge launcher, which assigns the whole browser process tree to a
+  bounded kill-on-close job, so every pack printing HTML shares one implementation.
+
 - Add bounded UTF-8 HTML documents with a mandatory host markup validator.
 - Print through a host-contained local Chromium process with A4/Letter options,
   disabled script execution, restricted resources and bounded PDF streaming.

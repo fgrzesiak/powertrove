@@ -43,6 +43,20 @@
       "initialVersion": "0.1.0",
       "minimumHostVersion": "0.2.0",
       "project": "packs/PowerTrove.Pack.Office/composition/PowerTrove.Pack.Office.Composition/PowerTrove.Pack.Office.Composition.csproj"
+    },
+    {
+      "id": "powertrove.einvoice",
+      "assemblyName": "PowerTrove.Pack.EInvoice",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.EInvoice/composition/PowerTrove.Pack.EInvoice.Composition/PowerTrove.Pack.EInvoice.Composition.csproj"
+    },
+    {
+      "id": "powertrove.tables",
+      "assemblyName": "PowerTrove.Pack.Tables",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.3.0",
+      "project": "packs/PowerTrove.Pack.Tables/composition/PowerTrove.Pack.Tables.Composition/PowerTrove.Pack.Tables.Composition.csproj"
     }
   ],
   "toolchainRevision": "dotnet10-v1"

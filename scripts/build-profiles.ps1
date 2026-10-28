@@ -8,7 +8,7 @@ This command does not sign, install, upload or enable production downloads.
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet('Base','Full')][string]$Profile = 'Base',
+    [ValidateSet('Core','Base','Full')][string]$Profile = 'Core',
     [Parameter(Mandatory=$true)][string]$OutputDirectory
 )
 Set-StrictMode -Version Latest
@@ -24,20 +24,28 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Desktop publish failed.' }
 
     $hostProject = Join-Path $root 'src/PowerTrove.PackHost/PowerTrove.PackHost.csproj'
-    $hostOutput = Join-Path $output 'packhost'
-    & dotnet publish $hostProject -c Release -r win-x64 --self-contained true -o $hostOutput
-    if ($LASTEXITCODE -ne 0) { throw 'PackHost publish failed.' }
-    if (-not (Test-Path (Join-Path $hostOutput 'PowerTrove.PackHost.exe'))) {
-        throw 'Expected PackHost executable is missing.'
+    # The worker shares the app's self-contained runtime: publish it separately, then add only its own files.
+    $hostOutput = "$output.worker"
+    if (Test-Path $hostOutput) { throw 'Worker output directory already exists. Use a fresh directory.' }
+    try {
+        & dotnet publish $hostProject -c Release -r win-x64 --self-contained true -o $hostOutput
+        if ($LASTEXITCODE -ne 0) { throw 'PackHost publish failed.' }
+        foreach ($file in Get-ChildItem -LiteralPath $hostOutput -Recurse -File) {
+            $relative = [IO.Path]::GetRelativePath($hostOutput, $file.FullName)
+            $target = Join-Path $output $relative
+            if (Test-Path -LiteralPath $target) {
+                if ((Get-FileHash -LiteralPath $target).Hash -ne (Get-FileHash -LiteralPath $file.FullName).Hash) {
+                    throw "Worker and app publish different versions of $relative."
+                }
+                continue
+            }
+            New-Item -ItemType Directory -Force -Path (Split-Path $target) | Out-Null
+            Copy-Item -LiteralPath $file.FullName -Destination $target
+        }
     }
-
-    # Keep the original app-root launch path functional until the Desktop host
-    # prefers the isolated packhost directory (CB-167).
-    foreach ($name in @('PowerTrove.PackHost.exe', 'PowerTrove.PackHost.deps.json', 'PowerTrove.PackHost.runtimeconfig.json')) {
-        $source = Join-Path $hostOutput $name
-        $target = Join-Path $output $name
-        if (-not (Test-Path $source) -or (Test-Path $target)) { throw "Worker compatibility asset conflict: $name" }
-        Copy-Item -LiteralPath $source -Destination $target
+    finally { if (Test-Path $hostOutput) { Remove-Item -LiteralPath $hostOutput -Recurse -Force } }
+    if (-not (Test-Path (Join-Path $output 'PowerTrove.PackHost.exe'))) {
+        throw 'Expected PackHost executable is missing.'
     }
 
     if ($Profile -eq 'Base') {
