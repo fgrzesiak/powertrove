@@ -327,6 +327,52 @@ public class PackageCommandTests : IDisposable
         File.WriteAllText(Path.Combine(_repoRoot, "packaging", "windows", "QUICKSTART.md"), "Offline startup instructions");
     }
 
+    [Fact]
+    public async Task PublicPackConfigurationIsValidatedAndForwardedToBothPublishBuilds()
+    {
+        CreateDummyDesktopProject();
+        using var key = ECDsa.Create(ECCurve.NamedCurves.nistP256);
+        string pem = Path.Combine(_testBaseDir, "public.pem"), config = Path.Combine(_testBaseDir, "public-config.json");
+        await File.WriteAllTextAsync(pem, key.ExportSubjectPublicKeyInfoPem());
+        await PackDistributionCommand.ExecuteAsync(pem, "https://github.com/fgrzesiak/powertrove/releases/download/packs-v1/", config);
+        var runner = new FakeProcessRunner();
+        await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.0.0", runner, packDistributionFile: config);
+        Assert.Equal(2, runner.PublishArguments.Count);
+        Assert.All(runner.PublishArguments, arguments => Assert.Contains("-p:PowerTrovePackDistributionFile=\"" + config + "\"", arguments));
+        using var archive = ZipFile.OpenRead(Path.Combine(_outputDir, "PowerTrove-v1.0.0-win-x64.zip"));
+        Assert.DoesNotContain(archive.Entries, e => e.FullName.EndsWith(".pem") || e.FullName.EndsWith("public-config.json"));
+    }
+
+    [Fact]
+    public async Task FrozenPackVersionsReachDesktopAndWorker_AndAreBoundInsideTheZip()
+    {
+        CreateDummyDesktopProject();
+        string plan = CreatePackPlan(new string('c', 40));
+        var runner = new FakeProcessRunner { FakeRevision = new string('c', 40) };
+        await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "0.2.0", runner, packPlanFile: plan);
+        Assert.All(runner.PublishArguments, arguments => Assert.Contains("-p:PowerTrovePackVersionsFile=\"" + Path.Combine(Path.GetDirectoryName(plan)!, "pack-versions.props") + "\"", arguments));
+        string zip = Path.Combine(_outputDir, "PowerTrove-v0.2.0-win-x64.zip");
+        await PackPlanBinding.VerifyCandidateAsync(zip, plan);
+        await File.AppendAllTextAsync(plan, " ");
+        await Assert.ThrowsAsync<InvalidDataException>(() => PackPlanBinding.VerifyCandidateAsync(zip, plan));
+    }
+    [Fact]
+    public async Task WrongSourceRevisionStopsDesktopPackagingBeforePublish()
+    {
+        CreateDummyDesktopProject(); var runner = new FakeProcessRunner();
+        await Assert.ThrowsAsync<InvalidDataException>(() => PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "0.2.0", runner, packPlanFile: CreatePackPlan(new string('b', 40))));
+        Assert.Empty(runner.PublishArguments); Assert.Empty(Directory.GetFileSystemEntries(_outputDir));
+    }
+    private string CreatePackPlan(string revision)
+    {
+        string folder = Path.Combine(_testBaseDir, "plan"); Directory.CreateDirectory(folder);
+        var plan = new PackReleasePlan(1, revision, "10.0.100", "win-x64", null,
+            [new("powertrove.images", "PowerTrove.Pack.Images", "generated.csproj", "0.1.1", "0.1.0", new string('a', 64), true, "0.1.0")]);
+        string path = Path.Combine(folder, "pack-plan.json"); File.WriteAllText(path, JsonSerializer.Serialize(plan, PackReleasePlanner.Json));
+        File.WriteAllText(Path.Combine(folder, "pack-versions.props"), "<Project><ItemGroup><AssemblyMetadata Include=\"PowerTrove.PackVersion\" Value=\"0.1.1\" Condition=\"'$(MSBuildProjectName)' == 'PowerTrove.Pack.Images'\" /></ItemGroup></Project>");
+        return path;
+    }
+
     public void Dispose()
     {
         if (Directory.Exists(_testBaseDir))

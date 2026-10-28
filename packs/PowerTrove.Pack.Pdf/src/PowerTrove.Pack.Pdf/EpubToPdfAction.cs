@@ -4,7 +4,7 @@ namespace PowerTrove.Pack.Pdf;
 
 public sealed class EpubToPdfAction(FileActionServices services, ILocalHtmlPdfPrinter? renderer, IEpubDocumentBuilder? builder) : PerFileAction<HtmlPrintOptions>(services)
 {
-    public override ActionDescriptor Descriptor { get; } = new("powertrove.pdf.epub-to-pdf", SR.GetString("EpubTitle"), SR.GetString("EpubDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.pdf.epub-to-pdf", SR.GetString("EpubTitle"), SR.GetString("EpubDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["epub", "ebook", "book", "pdf", "convert"], true, true,
         Parameters: [ActionParameterDefinition.Choice("Paper", SR.GetString("HtmlPaper"), "a4", [new("a4", SR.GetString("HtmlPaperA4")), new("letter", SR.GetString("HtmlPaperLetter"))]),
             ActionParameterDefinition.Boolean("Landscape", SR.GetString("HtmlLandscape"), false), ActionParameterDefinition.Integer("MarginMm", SR.GetString("HtmlMargin"), 10, 0, 50)],

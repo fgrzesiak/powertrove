@@ -35,7 +35,7 @@ public sealed class PackChannelClientTests
     [Fact]
     public async Task MissingProductionChannelDoesNotSendEvenAnExplicitRequest()
     {
-        using var fixture = new Fixture(configuration: OwnerChannelConfiguration.Default);
+        using var fixture = new Fixture(configuration: new OwnerChannelConfiguration());
         Assert.Equal(PackChannelStatus.NotConfigured, (await fixture.Client.RefreshOnUserRequestAsync()).Status);
         Assert.Equal(PackChannelStatus.NotConfigured, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
         Assert.Empty(fixture.Handler.Requests);
@@ -199,6 +199,70 @@ public sealed class PackChannelClientTests
     [InlineData("https://owner.example/channel/#fragment")]
     [InlineData("https://owner.example/channel")]
     public void InvalidOwnerChannelsAreRejected(string value) => Assert.Throws<ArgumentException>(() => new OwnerChannelConfiguration(new Uri(value)));
+
+    [Fact]
+    public async Task GitHubFlatAssetsFollowOnlyBoundedTrustedRedirects_AndInstallVerifiedBytes()
+    {
+        using var fixture = new Fixture(configuration: new OwnerChannelConfiguration(new Uri(OwnerChannelConfiguration.GitHubPackChannel)));
+        var content = fixture.Handler.Respond;
+        fixture.Handler.Respond = (request, token) =>
+        {
+            if (request.RequestUri!.Host == "github.com")
+            {
+                var redirect = new HttpResponseMessage(HttpStatusCode.Found);
+                redirect.Headers.Location = new Uri("https://release-assets.githubusercontent.com/generated/" + request.RequestUri.Segments[^1] + "?signed=fixture");
+                return Task.FromResult(redirect);
+            }
+            return content(request, token);
+        };
+        Assert.Equal(PackChannelStatus.Installed, (await fixture.Client.InstallOnUserRequestAsync("powertrove.fixture")).Status);
+        Assert.Equal(6, fixture.Handler.Requests.Count);
+        Assert.Equal("/fgrzesiak/powertrove/releases/download/packs-v1/powertrove.fixture-0.1.0.cbpack", fixture.Handler.Requests[4].Uri.AbsolutePath);
+        Assert.All(fixture.Handler.Requests, request => Assert.DoesNotContain(request.Headers, h => h.Key is "Authorization" or "Cookie"));
+        fixture.AssertCleanDownloads();
+    }
+
+    [Theory]
+    [InlineData("http://release-assets.githubusercontent.com/file")]
+    [InlineData("https://release-assets.githubusercontent.com.evil.example/file")]
+    [InlineData("https://user@release-assets.githubusercontent.com/file")]
+    [InlineData("https://release-assets.githubusercontent.com:444/file")]
+    [InlineData("https://github.com/another/repo/releases/download/test/file")]
+    public async Task GitHubRejectsUntrustedRedirectBeforeSecondRequest(string location)
+    {
+        using var fixture = new Fixture(configuration: new OwnerChannelConfiguration(new Uri(OwnerChannelConfiguration.GitHubPackChannel)));
+        fixture.Handler.Respond = (_, _) =>
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Found);
+            response.Headers.Location = new Uri(location); return Task.FromResult(response);
+        };
+        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.RefreshOnUserRequestAsync()).Status);
+        Assert.Single(fixture.Handler.Requests);
+    }
+
+    [Fact]
+    public async Task GitHubRedirectLoopIsBounded()
+    {
+        using var fixture = new Fixture(configuration: new OwnerChannelConfiguration(new Uri(OwnerChannelConfiguration.GitHubPackChannel)));
+        fixture.Handler.Respond = (request, _) =>
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.Found);
+            response.Headers.Location = request.RequestUri; return Task.FromResult(response);
+        };
+        Assert.Equal(PackChannelStatus.InvalidData, (await fixture.Client.RefreshOnUserRequestAsync()).Status);
+        Assert.Equal(6, fixture.Handler.Requests.Count);
+    }
+
+    [Theory]
+    [InlineData("packs/../catalog.json")]
+    [InlineData("packs/powertrove.images/../../file.cbpack")]
+    [InlineData("packs/powertrove.images/1.0.0.cbpack?token=fixture")]
+    [InlineData("https://other.example/file")]
+    public void GitHubAssetMappingRejectsPathsOutsideOfficialLayout(string relative)
+    {
+        var config = new OwnerChannelConfiguration(new Uri(OwnerChannelConfiguration.GitHubPackChannel));
+        Assert.Throws<ArgumentException>(() => config.PackResource(relative));
+    }
 
     private sealed class CapturedProgress : IProgress<PackDownloadProgress>
     { public List<PackDownloadProgress> Values { get; } = []; public void Report(PackDownloadProgress value) => Values.Add(value); }

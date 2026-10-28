@@ -9,6 +9,11 @@ public interface IPackVisibilitySettings
     void SetShowNotInstalledActions(bool enabled);
 }
 
+public interface IUpdateCheckSettings
+{
+    void SetCheckForUpdatesOnStartup(bool enabled);
+}
+
 public interface ISettingsService
 {
     UserSettings Settings { get; }

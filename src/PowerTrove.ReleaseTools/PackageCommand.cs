@@ -9,14 +9,31 @@ namespace PowerTrove.ReleaseTools;
 
 public static class PackageCommand
 {
-    public static async Task ExecuteAsync(string repoRoot, string outputDir, string version, IProcessRunner processRunner, int? alphaSequence = null)
+    public static async Task ExecuteAsync(string repoRoot, string outputDir, string version, IProcessRunner processRunner, int? alphaSequence = null, string? packDistributionFile = null, string? packPlanFile = null)
     {
         if (version is null || version.Length > 64 ||
             !Regex.IsMatch(version, @"\A(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\z"))
             throw new ArgumentException("A safe three-part numeric release version is required.", nameof(version));
         if (alphaSequence is < 1 or > 999999)
             throw new ArgumentOutOfRangeException(nameof(alphaSequence), "Alpha sequence must be between 1 and 999999.");
+        if (packDistributionFile is not null)
+        {
+            packDistributionFile = Path.GetFullPath(packDistributionFile);
+            if (!File.Exists(packDistributionFile) || packDistributionFile.IndexOfAny(['"', ';', '%', '$', '\r', '\n']) >= 0)
+                throw new ArgumentException("A safe existing public pack distribution file is required.", nameof(packDistributionFile));
+            await PackDistributionCommand.ValidateFileAsync(packDistributionFile);
+        }
         string releaseVersion = alphaSequence is { } sequence ? $"{version}-alpha.{sequence}" : version;
+        PackReleasePlan? packPlan = null;
+        string? packVersionsFile = null;
+        if (packPlanFile is not null)
+        {
+            packPlanFile = Path.GetFullPath(packPlanFile);
+            if (packPlanFile.IndexOfAny(['"', ';', '%', '$', '\r', '\n']) >= 0) throw new ArgumentException("Unsafe pack plan path.");
+            packPlan = await PackPlanBinding.ReadAsync(packPlanFile);
+            if (packPlan.Packs.Any(p => Version.Parse(p.MinimumHostVersion) > Version.Parse(version))) throw new InvalidDataException("A planned pack requires a newer desktop.");
+            packVersionsFile = Path.Combine(Path.GetDirectoryName(packPlanFile)!, "pack-versions.props");
+        }
         repoRoot = Path.GetFullPath(repoRoot);
         outputDir = Path.GetFullPath(outputDir);
         RejectReparseAncestors(outputDir);
@@ -41,6 +58,7 @@ public static class PackageCommand
 
         // Check the exact source revision before touching the output directory.
         var gitRevision = await GetGitRevisionAsync(repoRoot, processRunner);
+        if (packPlan is not null && packPlan.SourceRevision != gitRevision) throw new InvalidDataException("Desktop source differs from the planned pack release.");
         RequireNotices(repoRoot);
         Directory.CreateDirectory(outputDir);
         Directory.CreateDirectory(stagingDir);
@@ -48,11 +66,17 @@ public static class PackageCommand
 
         // Step 2: Publish Desktop Project
         Console.WriteLine("Publishing Desktop project...");
-        await PublishProjectAsync(desktopProject, stagingDir, version, releaseVersion, gitRevision, processRunner);
+        await PublishProjectAsync(desktopProject, stagingDir, version, releaseVersion, gitRevision, processRunner, packDistributionFile, packVersionsFile);
         // The standalone worker is a runtime dependency of signed and built-in packs.
         string workerDirectory = Path.Combine(stagingDir, "packhost");
         Directory.CreateDirectory(workerDirectory);
-        await PublishProjectAsync(workerProject, workerDirectory, version, releaseVersion, gitRevision, processRunner);
+        await PublishProjectAsync(workerProject, workerDirectory, version, releaseVersion, gitRevision, processRunner, packDistributionFile, packVersionsFile);
+        if (packPlanFile is not null)
+        {
+            Directory.CreateDirectory(Path.Combine(stagingDir, "packs"));
+            File.Copy(packPlanFile, Path.Combine(stagingDir, "packs", "pack-plan.json"));
+            File.Copy(packVersionsFile!, Path.Combine(stagingDir, "packs", "pack-versions.props"));
+        }
         RejectReparseAncestors(stagingDir);
         if (!File.Exists(Path.Combine(workerDirectory, "PowerTrove.PackHost.exe")))
             throw new InvalidDataException("Published worker executable is missing.");
@@ -99,9 +123,11 @@ public static class PackageCommand
     }
 
     private static async Task PublishProjectAsync(string projectPath, string outputDir, string version, string releaseVersion,
-        string revision, IProcessRunner processRunner)
+        string revision, IProcessRunner processRunner, string? packDistributionFile, string? packVersionsFile)
     {
-        var result = await processRunner.RunAsync("dotnet", $"publish \"{projectPath}\" -c Release -r win-x64 --self-contained true -p:Version={version} -p:InformationalVersion={releaseVersion} -p:SourceRevisionId={revision} -p:PublishSingleFile=false -p:WindowsAppSDKSelfContained=true -o \"{outputDir}\"");
+        string packProperty = packDistributionFile is null ? string.Empty : " -p:PowerTrovePackDistributionFile=\"" + packDistributionFile + "\"";
+        if (packVersionsFile is not null) packProperty += " -p:PowerTrovePackVersionsFile=\"" + packVersionsFile + "\"";
+        var result = await processRunner.RunAsync("dotnet", $"publish \"{projectPath}\" -c Release -r win-x64 --self-contained true -p:Version={version} -p:InformationalVersion={releaseVersion} -p:SourceRevisionId={revision} -p:PublishSingleFile=false -p:WindowsAppSDKSelfContained=true -o \"{outputDir}\"{packProperty}");
 
         if (result.ExitCode != 0)
         {

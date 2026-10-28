@@ -20,7 +20,8 @@ public sealed record ActionManifest(
     [property: JsonPropertyName("platformConstraints")] PlatformConstraints? PlatformConstraints = null,
     [property: JsonPropertyName("minHostVersion")] string? MinHostVersion = null,
     [property: JsonPropertyName("payload")] ManifestPayload? Payload = null,
-    [property: JsonPropertyName("capabilities")] IReadOnlyList<string>? Capabilities = null
+    [property: JsonPropertyName("capabilities")] IReadOnlyList<string>? Capabilities = null,
+    [property: JsonPropertyName("releaseFingerprint")] string? ReleaseFingerprint = null
 );
 
 public sealed record PlatformConstraints(
@@ -100,5 +101,13 @@ public sealed record ManifestParameter(
     [property: JsonPropertyName("required")] bool Required = false,
     [property: JsonPropertyName("choices")] IReadOnlyList<string>? Choices = null,
     [property: JsonPropertyName("default")] string? Default = null,
-    [property: JsonPropertyName("editor")] string? Editor = null
+    [property: JsonPropertyName("editor")] string? Editor = null,
+    [property: JsonPropertyName("minimum")] int? Minimum = null,
+    [property: JsonPropertyName("maximum")] int? Maximum = null,
+    [property: JsonPropertyName("placeholder")] string? Placeholder = null,
+    [property: JsonPropertyName("fileTypes")] IReadOnlyList<string>? FileTypes = null,
+    [property: JsonPropertyName("mustExist")] bool? MustExist = null,
+    [property: JsonPropertyName("visibleWhenParameter")] string? VisibleWhenParameter = null,
+    [property: JsonPropertyName("visibleWhenValue")] string? VisibleWhenValue = null,
+    [property: JsonPropertyName("choiceTitles")] IReadOnlyDictionary<string, string>? ChoiceTitles = null
 );

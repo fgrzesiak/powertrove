@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "runtime": "win-x64",
+  "packs": [
+    {
+      "id": "powertrove.files",
+      "assemblyName": "PowerTrove.Pack.Files",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Files/composition/PowerTrove.Pack.Files.Composition/PowerTrove.Pack.Files.Composition.csproj"
+    },
+    {
+      "id": "powertrove.images",
+      "assemblyName": "PowerTrove.Pack.Images",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Images/composition/PowerTrove.Pack.Images.Composition/PowerTrove.Pack.Images.Composition.csproj"
+    },
+    {
+      "id": "powertrove.pdf",
+      "assemblyName": "PowerTrove.Pack.Pdf",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Pdf/composition/PowerTrove.Pack.Pdf.Composition/PowerTrove.Pack.Pdf.Composition.csproj"
+    },
+    {
+      "id": "powertrove.media",
+      "assemblyName": "PowerTrove.Pack.Media",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Media/composition/PowerTrove.Pack.Media.Composition/PowerTrove.Pack.Media.Composition.csproj"
+    },
+    {
+      "id": "powertrove.data",
+      "assemblyName": "PowerTrove.Pack.Data",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Data/composition/PowerTrove.Pack.Data.Composition/PowerTrove.Pack.Data.Composition.csproj"
+    },
+    {
+      "id": "powertrove.office",
+      "assemblyName": "PowerTrove.Pack.Office",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.2.0",
+      "project": "packs/PowerTrove.Pack.Office/composition/PowerTrove.Pack.Office.Composition/PowerTrove.Pack.Office.Composition.csproj"
+    }
+  ],
+  "toolchainRevision": "dotnet10-v1"
+}

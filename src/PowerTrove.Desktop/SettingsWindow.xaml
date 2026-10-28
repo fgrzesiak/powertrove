@@ -227,6 +227,8 @@
                                         <TextBlock Text="{x:Bind Name}" Style="{ThemeResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" />
                                         <TextBlock Text="{x:Bind StateText}" Style="{ThemeResource CaptionTextBlockStyle}" />
                                         <TextBlock Text="{x:Bind Details}" Style="{ThemeResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind CompatibilityText}" TextWrapping="Wrap" Style="{ThemeResource CaptionTextBlockStyle}"
+                                                   Visibility="{x:Bind local:Converters.ToVisibility(CompatibilityText)}" />
                                         <TextBlock Text="{x:Bind local:UiText.PacksBundled}" Style="{ThemeResource CaptionTextBlockStyle}"
                                                    Visibility="{x:Bind local:Converters.BoolToVisibility(IsBuiltIn)}" />
                                         <StackPanel Orientation="Horizontal" Spacing="8">
@@ -259,16 +261,22 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Read-only release discovery also works when preferences cannot be saved. -->
+                <!-- Release checks and explicit installer download. -->
                 <TextBlock Text="{x:Bind local:UiText.UpdatesHeading}" Style="{StaticResource SettingsSectionHeaderStyle}" />
                 <Border Style="{StaticResource SettingsCardStyle}">
                     <StackPanel Spacing="10">
+                        <ToggleSwitch x:Name="StartupUpdatesToggle" Header="{x:Bind local:UiText.UpdatesStartup}"
+                                      Toggled="StartupUpdatesToggle_Toggled" />
                         <TextBlock Text="{x:Bind Updates.InstalledVersionText}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
                         <TextBlock Text="{x:Bind local:UiText.UpdatesPrivacy}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
                         <StackPanel Orientation="Horizontal" Spacing="8">
                             <Button Content="{x:Bind local:UiText.UpdatesCheck}" Click="CheckForUpdates_Click"
                                     IsEnabled="{x:Bind Updates.CanCheck, Mode=OneWay}"
                                     AutomationProperties.Name="{x:Bind local:UiText.UpdatesCheck}" />
+                            <Button Content="{x:Bind local:UiText.UpdatesInstall}" Click="InstallUpdate_Click"
+                                    IsEnabled="{x:Bind Updates.CanInstall, Mode=OneWay}" AutomationProperties.AutomationId="SettingsInstallUpdate" />
+                            <Button Content="{x:Bind local:UiText.UpdatesCancel}" Click="CancelUpdate_Click"
+                                    IsEnabled="{x:Bind Updates.CanCancelInstall, Mode=OneWay}" />
                             <Button Content="{x:Bind local:UiText.UpdatesOpenPage}" Click="OpenReleasePage_Click"
                                     IsEnabled="{x:Bind Updates.CanOpen, Mode=OneWay}"
                                     AutomationProperties.Name="{x:Bind local:UiText.UpdatesOpenPage}" />

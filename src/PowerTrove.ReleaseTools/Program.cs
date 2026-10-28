@@ -14,34 +14,79 @@ public static class Program
 
         var alphaSequenceOption = new Option<int?>("--alpha-sequence", "Alpha sequence (1 to 999999); omit for a stable package.");
 
+        var distributionFileOption = new Option<string?>("--pack-distribution-file", "Prepared public owner channel/trust configuration to embed in Desktop and worker.");
+        var packPlanOption = new Option<string?>("--pack-plan-file", "Frozen pack release plan selected before desktop packaging.");
         var packageCommand = new Command("package", "Builds and packages PowerTrove into a self-contained ZIP.")
         {
             repoRootOption,
             outputDirOption,
             versionOption,
-            alphaSequenceOption
+            alphaSequenceOption,
+            distributionFileOption,
+            packPlanOption
         };
 
-        packageCommand.SetHandler(async (repoRoot, outputDir, version, alphaSequence) =>
+        packageCommand.SetHandler(async (repoRoot, outputDir, version, alphaSequence, distributionFile, plan) =>
         {
             var processRunner = new RealProcessRunner();
-            await PackageCommand.ExecuteAsync(repoRoot, outputDir, version, processRunner, alphaSequence);
-        }, repoRootOption, outputDirOption, versionOption, alphaSequenceOption);
+            await PackageCommand.ExecuteAsync(repoRoot, outputDir, version, processRunner, alphaSequence, distributionFile, plan);
+        }, repoRootOption, outputDirOption, versionOption, alphaSequenceOption, distributionFileOption, packPlanOption);
 
         rootCommand.AddCommand(packageCommand);
+
+        var previousCatalogOption = new Option<string?>("--previous-catalog-file", "Verified published catalog and adjacent .sig.");
+        var sdkVersionOption = new Option<string>("--sdk-version", "Actual .NET SDK version used for release planning.") { IsRequired = true };
+        var planCommand = new Command("pack-plan", "Plan independent versions from sources and transitive dependencies; no signing key required.")
+        { repoRootOption, outputDirOption, previousCatalogOption, sdkVersionOption };
+        planCommand.SetHandler(async (repo, output, previous, sdk) =>
+            await PackReleasePlanner.ExecuteAsync(repo, output, previous, sdk, new RealProcessRunner()),
+            repoRootOption, outputDirOption, previousCatalogOption, sdkVersionOption);
+        rootCommand.AddCommand(planCommand);
 
         var publishedRootOption = new Option<string>("--published-root", "Folder containing individually published pack compositions.") { IsRequired = true };
         var keyFileOption = new Option<string?>("--key-file", "External PEM P-256 signing private-key file (or POWERTROVE_PACK_SIGNING_KEY_FILE).");
         var dryRunOption = new Option<bool>("--dry-run", "Produce metadata without signatures or installable bundles.");
+        var minimumHostOption = new Option<string>("--min-host-version", () => "0.1.0", "Oldest host compatible with these pack binaries and required services.");
         var bundlesCommand = new Command("pack-bundles", "Produce signed first-party pack ZIPs and owner catalog.")
         {
-            publishedRootOption, outputDirOption, keyFileOption, dryRunOption
+            publishedRootOption, outputDirOption, keyFileOption, dryRunOption, minimumHostOption, packPlanOption
         };
-        bundlesCommand.SetHandler(async (publishedRoot, outputDir, keyFile, dryRun) =>
+        bundlesCommand.SetHandler(async (publishedRoot, outputDir, keyFile, dryRun, minimumHost, plan) =>
         {
-            await PackBundleBuilder.BuildAsync(publishedRoot, outputDir, keyFile, dryRun);
-        }, publishedRootOption, outputDirOption, keyFileOption, dryRunOption);
+            if (!Version.TryParse(minimumHost, out var minimum)) throw new ArgumentException("Invalid minimum host version.");
+            await PackBundleBuilder.BuildAsync(publishedRoot, outputDir, keyFile, dryRun, minimumHostVersion: minimum, releasePlanFile: plan);
+        }, publishedRootOption, outputDirOption, keyFileOption, dryRunOption, minimumHostOption, packPlanOption);
         rootCommand.AddCommand(bundlesCommand);
+
+        var packRootOption = new Option<string>("--pack-root", "Signed packs directory produced by pack-bundles.") { IsRequired = true };
+        var previousPackRootOption = new Option<string?>("--previous-pack-root", "Previous signed pack directory or GitHub asset export; retain supported older releases.");
+        var githubAssetsCommand = new Command("pack-github-assets", "Prepare flat GitHub release assets and a signed multi-version catalog; never uploads.")
+        { packRootOption, previousPackRootOption, outputDirOption, keyFileOption };
+        githubAssetsCommand.SetHandler(async (packs, previous, output, key) =>
+            await PackGitHubAssetsCommand.ExecuteAsync(packs, output, key, previous),
+            packRootOption, previousPackRootOption, outputDirOption, keyFileOption);
+        rootCommand.AddCommand(githubAssetsCommand);
+
+        var privateKeyOutput = new Option<string>("--private-key-file", "New private key path outside all repositories and web hosting.") { IsRequired = true };
+        var publicKeyOutput = new Option<string>("--public-key-file", "New public PEM key file.") { IsRequired = true };
+        var keyGenerationCommand = new Command("pack-keygen", "Explicitly generate an offline owner pack-signing key pair; never prints key contents.")
+        { privateKeyOutput, publicKeyOutput };
+        keyGenerationCommand.SetHandler(async (privatePath, publicPath) => await PackKeyCommand.GenerateAsync(privatePath, publicPath), privateKeyOutput, publicKeyOutput);
+        rootCommand.AddCommand(keyGenerationCommand);
+
+        var exportPublicKeyCommand = new Command("pack-export-public", "Export only the public P-256 verification key for local release preparation.")
+        { keyFileOption, publicKeyOutput };
+        exportPublicKeyCommand.SetHandler(async (key, output) => await PackKeyCommand.ExportPublicAsync(key!, output), keyFileOption, publicKeyOutput);
+        rootCommand.AddCommand(exportPublicKeyCommand);
+
+        var publicKeyOption = new Option<string>("--public-key-file", "Owner P-256 public PEM key; private keys are refused.") { IsRequired = true };
+        var channelOption = new Option<string>("--channel", "Official GitHub packs-v1 release directory or owner HTTPS pack directory.") { IsRequired = true };
+        var configFileOption = new Option<string>("--config-file", "New public distribution configuration file for release embedding.") { IsRequired = true };
+        var distributionCommand = new Command("pack-configuration", "Prepare the public trust/channel resource for a release build.")
+        { publicKeyOption, channelOption, configFileOption };
+        distributionCommand.SetHandler(async (key, channel, path) => await PackDistributionCommand.ExecuteAsync(key, channel, path),
+            publicKeyOption, channelOption, configFileOption);
+        rootCommand.AddCommand(distributionCommand);
 
         var noticesCommand = new Command("collect-notices", "Collect supplier legal texts for an existing published payload; does not grant redistribution clearance.")
         {
@@ -53,7 +98,19 @@ public static class Program
         }, repoRootOption, publishedRootOption);
         rootCommand.AddCommand(noticesCommand);
 
+        var compositionProjectOption = new Option<string>("--composition-project", "Exact published pack composition project.") { IsRequired = true };
+        var packNoticesCommand = new Command("collect-pack-notices", "Collect supplier texts for one published pack before signing.")
+        { repoRootOption, publishedRootOption, compositionProjectOption };
+        packNoticesCommand.SetHandler(async (repo, published, project) => await ThirdPartyNotices.BuildPackAsync(repo, published, project),
+            repoRootOption, publishedRootOption, compositionProjectOption);
+        rootCommand.AddCommand(packNoticesCommand);
+
         var candidateZip = new Option<string>("--zip", "Exact candidate ZIP path.") { IsRequired = true };
+        var verifyPlanCommand = new Command("verify-pack-plan", "Require the selected pack plan to match the exact desktop ZIP.")
+        { candidateZip, packPlanOption };
+        verifyPlanCommand.SetHandler(async (zip, plan) => await PackPlanBinding.VerifyCandidateAsync(zip,
+            plan ?? throw new ArgumentException("--pack-plan-file is required.")), candidateZip, packPlanOption);
+        rootCommand.AddCommand(verifyPlanCommand);
         var candidateEvidence = new Option<string>("--evidence", "Candidate-specific evidence JSON file.") { IsRequired = true };
         var reportDirectory = new Option<string>("--report-dir", "Directory for generated JSON and Markdown reports.") { IsRequired = true };
         var installerPath = new Option<string?>("--installer", "Matching installer EXE path.");

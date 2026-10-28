@@ -21,8 +21,6 @@ public sealed class VisualTrimParametersTests : IDisposable
     [InlineData(false)][InlineData(true)]
     public async Task VisualRangeExportsThroughTheRealFactoryAndPreservesAudioVideoAndSource(bool video)
     {
-        // Hosted GitHub runners (Windows Server) cannot open local media playback; this runs on real Windows desktops.
-        if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true") return;
         string wav = MediaFixtures.WriteSineWav(_directory.File("range.wav"), 4), input = wav;
         if (video)
         {

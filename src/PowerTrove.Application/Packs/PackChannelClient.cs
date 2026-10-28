@@ -28,8 +28,12 @@ public sealed class PackChannelClient : IDisposable
     private readonly Version _hostVersion;
     private readonly TimeProvider _clock;
     private readonly string _downloads;
+    private readonly string _cache;
     private IReadOnlyList<AvailablePack> _catalog = [];
     private bool _hasCatalog;
+    public bool HasCatalog => _hasCatalog;
+    public bool IsConfigured => _configuration.PackChannel is not null && _signatures.IsConfigured;
+    public string? CatalogJson { get; private set; }
     private int _busy;
     public IReadOnlyList<AvailablePack> CachedPacks => _catalog;
 
@@ -39,6 +43,7 @@ public sealed class PackChannelClient : IDisposable
     {
         _configuration = configuration; _installer = installer; _signatures = signatures ?? new(); _files = files ?? new PhysicalPackInstallFileSystem();
         _hostVersion = hostVersion; _clock = clock ?? TimeProvider.System;
+        _cache = Path.Combine(PackOutputCommitter.Canonical(userRoot), "pack-catalog.cache");
         _downloads = Path.Combine(PackOutputCommitter.Canonical(userRoot), "downloads");
         _client = new HttpClient(handler, disposeHandler: true) { Timeout = Timeout.InfiniteTimeSpan };
     }
@@ -49,7 +54,7 @@ public sealed class PackChannelClient : IDisposable
     public async Task<PackCatalogResult> RefreshOnUserRequestAsync(CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested();
-        if (_configuration.PackChannel is null) return new(PackChannelStatus.NotConfigured, []);
+        if (!IsConfigured) return new(PackChannelStatus.NotConfigured, []);
         if (Interlocked.CompareExchange(ref _busy, 1, 0) != 0) return new(PackChannelStatus.Busy, _catalog);
         try { return await FetchCatalogAsync(token).ConfigureAwait(false); }
         finally { Volatile.Write(ref _busy, 0); }
@@ -57,31 +62,15 @@ public sealed class PackChannelClient : IDisposable
 
     private async Task<PackCatalogResult> FetchCatalogAsync(CancellationToken token)
     {
-        _hasCatalog = false; _catalog = [];
+        // A failed refresh does not erase a previously verified compatible catalog.
         try
         {
             using var timeout = new CancellationTokenSource(RequestTimeout, _clock);
             using var linked = CancellationTokenSource.CreateLinkedTokenSource(token, timeout.Token);
             byte[] bytes = await GetBytesAsync(_configuration.PackResource("packs/catalog.json"), ActionCatalog.MaximumJsonBytes, linked.Token).ConfigureAwait(false);
             byte[] signature = await GetBytesAsync(_configuration.PackResource("packs/catalog.json.sig"), 128, linked.Token).ConfigureAwait(false);
-            if (!_signatures.Verify(bytes, signature)) throw new InvalidDataException();
-            string json = new UTF8Encoding(false, true).GetString(bytes);
-            // Reuse the strict catalog shape, duplicate/action-ID checks and existing limits.
-            _ = ActionCatalog.Read(json, [], _hostVersion, "windows");
-            using var document = JsonDocument.Parse(bytes, new JsonDocumentOptions { MaxDepth = 40 });
-            var packs = new List<AvailablePack>();
-            foreach (var item in document.RootElement.GetProperty("packs").EnumerateArray())
-            {
-                var manifest = PackBundleVerifier.ParseManifest(Encoding.UTF8.GetBytes(item.GetProperty("manifest").GetRawText()), _hostVersion, requireCompatible: false);
-                long download = item.GetProperty("downloadBytes").GetInt64();
-                if (download > checked(manifest.Payload!.SizeBytes + 1024 * 1024)) throw new InvalidDataException();
-                packs.Add(new AvailablePack(manifest, download, manifest.ProtocolVersion == "1" && Version.Parse(manifest.MinHostVersion!) <= _hostVersion
-                    && manifest.Actions.All(a => a.InputKinds.Count == 1 && a.InputKinds[0] == "files")
-                    && (manifest.PlatformConstraints?.Os is null || manifest.PlatformConstraints.Os.Contains("windows", StringComparer.OrdinalIgnoreCase))
-                    && (manifest.PlatformConstraints?.MinimumArchitecture is null || manifest.PlatformConstraints.MinimumArchitecture.Contains(
-                        System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture.ToString().ToLowerInvariant(), StringComparer.OrdinalIgnoreCase))));
-            }
-            _catalog = packs.AsReadOnly(); _hasCatalog = true;
+            ReadCatalog(bytes, signature);
+            await SaveCacheAsync(bytes, signature, linked.Token).ConfigureAwait(false);
             return new(PackChannelStatus.Ready, _catalog);
         }
         catch (OperationCanceledException) when (!token.IsCancellationRequested) { return new(PackChannelStatus.TimedOut, []); }
@@ -91,11 +80,73 @@ public sealed class PackChannelClient : IDisposable
         { return new(PackChannelStatus.InvalidData, []); }
     }
 
+    private void ReadCatalog(byte[] bytes, byte[] signature)
+    {
+        if (!_signatures.Verify(bytes, signature)) throw new InvalidDataException();
+        string json = new UTF8Encoding(false, true).GetString(bytes);
+        // Reuse the strict catalog shape, duplicate/action-ID checks and existing limits.
+        _ = ActionCatalog.Read(json, [], _hostVersion, "windows", requireWorkerInput: true);
+        using var document = JsonDocument.Parse(bytes, new JsonDocumentOptions { MaxDepth = 40 });
+        var packs = new List<AvailablePack>();
+        foreach (var item in document.RootElement.GetProperty("packs").EnumerateArray())
+        {
+            var manifest = PackBundleVerifier.ParseManifest(Encoding.UTF8.GetBytes(item.GetProperty("manifest").GetRawText()), _hostVersion, requireCompatible: false);
+            long download = item.GetProperty("downloadBytes").GetInt64();
+            if (download > checked(manifest.Payload!.SizeBytes + 1024 * 1024)) throw new InvalidDataException();
+            packs.Add(new AvailablePack(manifest, download, PackCompatibility.IsSupported(manifest, _hostVersion, "windows", requireWorkerInput: true)));
+        }
+        _catalog = packs.AsReadOnly(); CatalogJson = json; _hasCatalog = true;
+
+    }
+    /// <summary>Verified local metadata only. Never initiates a network request.</summary>
+    public async Task<PackChannelStatus> LoadCachedAsync(CancellationToken token = default)
+    {
+        token.ThrowIfCancellationRequested();
+        if (Interlocked.CompareExchange(ref _busy, 1, 0) != 0) return PackChannelStatus.Busy;
+        try
+        {
+            if (!_files.FileExists(_cache)) return PackChannelStatus.Unavailable;
+            await using var input = _files.OpenRead(_cache);
+            long cacheLength = input.Length;
+            if (cacheLength is < 6 or > ActionCatalog.MaximumJsonBytes + 132L) return PackChannelStatus.InvalidData;
+            byte[] header = new byte[4]; await input.ReadExactlyAsync(header, token).ConfigureAwait(false);
+            int length = System.Buffers.Binary.BinaryPrimitives.ReadInt32LittleEndian(header);
+            if (length <= 0 || length > ActionCatalog.MaximumJsonBytes || cacheLength - 4 - length is <= 0 or > 128) return PackChannelStatus.InvalidData;
+            byte[] bytes = new byte[length]; await input.ReadExactlyAsync(bytes, token).ConfigureAwait(false);
+            byte[] signature = new byte[(int)(cacheLength - input.Position)]; await input.ReadExactlyAsync(signature, token).ConfigureAwait(false);
+            if (await input.ReadAsync(new byte[1], token).ConfigureAwait(false) != 0) return PackChannelStatus.InvalidData;
+            ReadCatalog(bytes, signature);
+            return PackChannelStatus.Ready;
+        }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or JsonException or CatalogFormatException or ArgumentException or InvalidOperationException or KeyNotFoundException or FormatException or OverflowException)
+        { return PackChannelStatus.InvalidData; }
+        finally { Volatile.Write(ref _busy, 0); }
+    }
+    private async Task SaveCacheAsync(byte[] bytes, byte[] signature, CancellationToken token)
+    {
+        string temporary = _cache + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        try
+        {
+            _files.CreateDirectory(Path.GetDirectoryName(_cache)!);
+            await using (var output = _files.CreateNew(temporary))
+            {
+                byte[] header = new byte[4]; System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(header, bytes.Length);
+                await output.WriteAsync(header, token).ConfigureAwait(false);
+                await output.WriteAsync(bytes, token).ConfigureAwait(false);
+                await output.WriteAsync(signature, token).ConfigureAwait(false);
+                await output.FlushAsync(token).ConfigureAwait(false);
+            }
+            _files.ActivateFile(temporary, _cache);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
+        finally { try { _files.DeleteFile(temporary); } catch (IOException) { } catch (UnauthorizedAccessException) { } }
+    }
+
     public async Task<PackDownloadResult> InstallOnUserRequestAsync(string packId, IProgress<PackDownloadProgress>? progress = null,
         CancellationToken token = default, PackInstallOffer? approvedOffer = null)
     {
         token.ThrowIfCancellationRequested(); PackInstaller.ValidateId(packId);
-        if (_configuration.PackChannel is null) return new(PackChannelStatus.NotConfigured);
+        if (!IsConfigured) return new(PackChannelStatus.NotConfigured);
         if (Interlocked.CompareExchange(ref _busy, 1, 0) != 0) return new(PackChannelStatus.Busy);
         string? temporary = null;
         try
@@ -105,7 +156,7 @@ public sealed class PackChannelClient : IDisposable
                 var refreshed = await FetchCatalogAsync(token).ConfigureAwait(false);
                 if (refreshed.Status != PackChannelStatus.Ready) return new(refreshed.Status);
             }
-            var pack = _catalog.SingleOrDefault(p => p.Manifest.Id == packId);
+            var pack = SelectPack(packId);
             if (pack is null) return new(PackChannelStatus.InvalidData);
             if (!pack.IsCompatible) return new(PackChannelStatus.Incompatible);
             if (approvedOffer is not null && approvedOffer != Offer(pack)) return new(PackChannelStatus.InvalidData);
@@ -151,7 +202,7 @@ public sealed class PackChannelClient : IDisposable
     public async Task<PackOfferResult> PrepareOnUserRequestAsync(string packId, CancellationToken token = default)
     {
         token.ThrowIfCancellationRequested(); PackInstaller.ValidateId(packId);
-        if (_configuration.PackChannel is null) return new(PackChannelStatus.NotConfigured);
+        if (!IsConfigured) return new(PackChannelStatus.NotConfigured);
         if (Interlocked.CompareExchange(ref _busy, 1, 0) != 0) return new(PackChannelStatus.Busy);
         try
         {
@@ -160,12 +211,16 @@ public sealed class PackChannelClient : IDisposable
                 var result = await FetchCatalogAsync(token).ConfigureAwait(false);
                 if (result.Status != PackChannelStatus.Ready) return new(result.Status);
             }
-            var pack = _catalog.SingleOrDefault(p => p.Manifest.Id == packId);
+            var pack = SelectPack(packId);
             return pack is null ? new(PackChannelStatus.InvalidData) : !pack.IsCompatible ? new(PackChannelStatus.Incompatible)
                 : new(PackChannelStatus.Ready, Offer(pack));
         }
         finally { Volatile.Write(ref _busy, 0); }
     }
+    private AvailablePack? SelectPack(string id) => _catalog.Where(p => p.Manifest.Id == id)
+        .OrderByDescending(p => p.IsCompatible).ThenByDescending(p => Version.Parse(p.Manifest.Version)).FirstOrDefault();
+    public AvailablePack? GetLatestCompatible(string id) => _catalog.Where(p => p.Manifest.Id == id && p.IsCompatible)
+        .OrderByDescending(p => Version.Parse(p.Manifest.Version)).FirstOrDefault();
     private static PackInstallOffer Offer(AvailablePack pack) => new(pack.Manifest.Id, pack.Manifest.Version, pack.Manifest.DisplayName,
         pack.Manifest.Publisher, pack.DownloadBytes, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(pack.Manifest)))));
 
@@ -173,9 +228,22 @@ public sealed class PackChannelClient : IDisposable
     {
         using var timeout = new CancellationTokenSource(RequestTimeout, _clock);
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(token, timeout.Token);
-        using var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        request.Headers.UserAgent.ParseAdd("PowerTrove/1.0");
-        return await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, linked.Token).ConfigureAwait(false);
+        for (int redirects = 0; ; redirects++)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            request.Headers.UserAgent.ParseAdd("PowerTrove/1.0");
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, linked.Token).ConfigureAwait(false);
+            if (response.StatusCode is not (HttpStatusCode.MovedPermanently or HttpStatusCode.Found or
+                HttpStatusCode.SeeOther or HttpStatusCode.TemporaryRedirect or HttpStatusCode.PermanentRedirect)) return response;
+            try
+            {
+                if (redirects == 5 || response.Headers.Location is not { } location) throw new InvalidDataException();
+                var target = new Uri(uri, location);
+                if (!_configuration.AllowsPackRedirect(target)) throw new InvalidDataException();
+                uri = target;
+            }
+            finally { response.Dispose(); }
+        }
     }
     private async Task<byte[]> GetBytesAsync(Uri uri, int maximum, CancellationToken token)
     {

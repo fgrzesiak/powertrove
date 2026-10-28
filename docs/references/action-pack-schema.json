@@ -81,6 +81,11 @@
     },
     "payload": {
       "$ref": "#/$defs/payload"
+    },
+    "releaseFingerprint": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "Signed input fingerprint used for independent automatic pack release versions."
     }
   },
   "required": [
@@ -217,6 +222,41 @@
             "multiSelect"
           ],
           "description": "Optional host editor for a string parameter. Preview supplies bounded choices; stored values retain their string representation."
+        },
+        "minimum": {
+          "type": "integer",
+          "description": "Inclusive lower bound for numeric input."
+        },
+        "maximum": {
+          "type": "integer",
+          "description": "Inclusive upper bound for numeric input."
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "fileTypes": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "pattern": "^\\.[^\\\\/:*?\"<>|]+$"
+          }
+        },
+        "mustExist": {
+          "type": "boolean"
+        },
+        "visibleWhenParameter": {
+          "type": "string"
+        },
+        "visibleWhenValue": {
+          "type": "string"
+        },
+        "choiceTitles": {
+          "type": "object",
+          "maxProperties": 1000,
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "required": [

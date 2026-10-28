@@ -1,5 +1,40 @@
 {
-  "version": "0.1.0",
+  "schemaVersion": 1,
+  "enabled": true,
+  "version": "0.2.0",
   "channel": "alpha",
-  "sequence": 12
+  "sequence": 1,
+  "title": "PowerTrove 0.2.0 Alpha 1",
+  "notes": {
+    "summary": "In-app updates, contextual official pack downloads and coordinated desktop/pack releases.",
+    "added": [
+      "Check for desktop updates at startup and install a new version from the application.",
+      "Download relevant official file packs from contextual suggestions and use their actions without restarting.",
+      "Plan and publish independent pack versions together with a desktop release."
+    ],
+    "changed": [
+      "Verify signed pack catalogs and downloads, retain compatible older pack versions, and refresh open palettes after installation or removal.",
+      "Use a release manifest to supply public versions and complete release notes."
+    ],
+    "fixed": [
+      "Preserve installed action descriptors when newer remote pack metadata becomes available.",
+      "Wait for active worker requests before changing packs and prevent stale action references from restarting removed workers."
+    ],
+    "knownIssues": [
+      "Experimental unsigned desktop alpha; Windows may display a publisher warning.",
+      "The standard installer still includes its built-in pack profile; selecting only downloaded packs in Setup remains separate work.",
+      "Compressing some stitched video clips can extend the video timeline; verify output duration and audio synchronization.",
+      "Downloadable table-selection packs and complete manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof."
+    ]
+  },
+  "publication": {
+    "mode": "autonomous-alpha",
+    "desktopSigning": "unsigned-alpha",
+    "signPacks": true
+  },
+  "manifestSha256": "f1c141ee202e6bb11b1da39e0f2e5d0c23a8b35b67ebe71a1543105148e8eb2d",
+  "automation": {
+    "driver": "contextbar-manifest",
+    "mode": "autonomous-alpha"
+  }
 }

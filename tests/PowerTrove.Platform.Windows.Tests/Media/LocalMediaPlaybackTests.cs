@@ -17,8 +17,6 @@ public sealed class LocalMediaPlaybackTests : IDisposable
     [InlineData(false)][InlineData(true)]
     public async Task GeneratedLocalAudioAndVideoOpenSeekPlayAndReleaseTheOriginal(bool video)
     {
-        // Hosted GitHub runners (Windows Server) cannot open local media playback; this runs on real Windows desktops.
-        if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true") return;
         string wav = MediaFixtures.WriteSineWav(_directory.File("preview.wav"), 4);
         string input = wav;
         if (video)

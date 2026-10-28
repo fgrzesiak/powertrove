@@ -16,6 +16,8 @@ namespace PowerTrove.Application.ViewModels;
 
 public sealed class PaletteViewModel : INotifyPropertyChanged
 {
+    public ContextualPacksViewModel ContextPacks { get; } = new();
+    private bool _packRefreshPending;
     private string _searchText = string.Empty;
     private string _contextSummary = string.Empty;
     private string _hotkeyWarningMessage = string.Empty;
@@ -38,7 +40,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
     /// <summary>Explicit selection changes invalidate Enter requests waiting for search completion.</summary>
     public long SelectionRevision { get; private set; }
     private IReadOnlyList<ActionSearchResult> VisibleSearchResults => _settingsService?.Settings.ShowNotInstalledActions != false
-        ? _searchResults : _searchResults.Where(r => r.InstallState != PowerTrove.Core.Catalog.PackInstallState.NotInstalled).ToArray();
+        ? _searchResults : _searchResults.Where(r => r.Action is not PowerTrove.Core.Catalog.CatalogAction).ToArray();
     public int UnavailableActionCount => VisibleSearchResults.Count(r => !r.IsCompatible);
     public bool HasUnavailableActions => UnavailableActionCount > 0;
     public string ShowUnavailableLabel => string.Format(Strings.GetString(UnavailableActionCount == 1 ? "ShowUnavailable_One" : "ShowUnavailable_Other"), UnavailableActionCount);
@@ -350,6 +352,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 _isExecuting = value;
                 OnPropertyChanged(nameof(IsExecuting));
                 OnPropertyChanged(nameof(IsInputEnabled));
+                ContextPacks.SetInputEnabled(!_isExecuting);
             }
         }
     }
@@ -528,8 +531,9 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
     }
     public Task RefreshActionsAsync()
     {
-        if (IsExecuting) return Task.CompletedTask;
-        return SearchTask = UpdateFilteredActionsAsync();
+        SelectionRevision++;
+        if (IsExecuting) { _packRefreshPending = true; return Task.CompletedTask; }
+        return SearchTask = UpdateFilteredActionsAsync(preserveSelection: true);
     }
     public void ShowPackNotice(string message) => ContextNotice = message;
 
@@ -729,6 +733,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
             {
                 _executionCts = null;
                 IsExecuting = false;
+                if (_packRefreshPending) { _packRefreshPending = false; SearchTask = UpdateFilteredActionsAsync(preserveSelection: true); }
                 RefreshUndoAvailability();
                 ShowCancelConfirmation = false;
 
@@ -753,7 +758,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         }
     }
 
-    private async Task UpdateFilteredActionsAsync()
+    private async Task UpdateFilteredActionsAsync(bool preserveSelection = false)
     {
         if (_searchEngine == null || _currentSnapshot == null)
             return;
@@ -782,7 +787,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 return;
 
             _searchResults = results;
-            PublishResults(ActionGrouping.Create(VisibleSearchResults, !string.IsNullOrWhiteSpace(query), IncludeUnavailableActions));
+            PublishResults(ActionGrouping.Create(VisibleSearchResults, !string.IsNullOrWhiteSpace(query), IncludeUnavailableActions), preserveSelection);
         }
         catch (OperationCanceledException) when (current.IsCancellationRequested)
         {
@@ -820,6 +825,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         _groups = groups;
         _filteredActions = actions;
         _selectedAction = selected ?? actions.FirstOrDefault();
+        ContextPacks.SetResults(_currentSnapshot, VisibleSearchResults, _settingsService?.Settings.ShowNotInstalledActions != false);
         ResultsRevision++;
         OnPropertyChanged(nameof(ResultsRevision));
         OnPropertyChanged(nameof(Groups));

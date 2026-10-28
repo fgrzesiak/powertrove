@@ -6,7 +6,7 @@ public interface IHtmlPdfRenderer : ILocalHtmlPdfPrinter { }
 
 public sealed class HtmlToPdfAction(FileActionServices services, ILocalHtmlPdfPrinter? renderer) : PerFileAction<HtmlPrintOptions>(services)
 {
-    public override ActionDescriptor Descriptor { get; } = new("powertrove.pdf.html-to-pdf", SR.GetString("HtmlTitle"), SR.GetString("HtmlDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.pdf.html-to-pdf", SR.GetString("HtmlTitle"), SR.GetString("HtmlDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["html", "htm", "pdf", "print", "convert"], true, true,
         Parameters: [ActionParameterDefinition.Choice("Paper", SR.GetString("HtmlPaper"), "a4", [new("a4", SR.GetString("HtmlPaperA4")), new("letter", SR.GetString("HtmlPaperLetter"))]),
             ActionParameterDefinition.Boolean("Landscape", SR.GetString("HtmlLandscape"), false), ActionParameterDefinition.Integer("MarginMm", SR.GetString("HtmlMargin"), 10, 0, 50)],

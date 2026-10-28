@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Security.Cryptography;
@@ -32,8 +33,12 @@ public static class PackBundleBuilder
     ];
 
     public static async Task BuildAsync(string publishedRoot, string outputDirectory, string? keyFile,
-        bool dryRun, CancellationToken cancellationToken = default)
+        bool dryRun, CancellationToken cancellationToken = default, Version? minimumHostVersion = null, string? releasePlanFile = null)
     {
+        // The release operator declares the oldest supported host, independently of the pack version.
+        var hostVersion = minimumHostVersion ?? new Version(0, 1, 0);
+        var plan = releasePlanFile is null ? null : JsonSerializer.Deserialize<PackReleasePlan>(await File.ReadAllTextAsync(releasePlanFile, cancellationToken), PackReleasePlanner.Json)
+            ?? (releasePlanFile is null ? null : throw new InvalidDataException("Invalid pack release plan."));
         publishedRoot = Path.GetFullPath(publishedRoot);
         outputDirectory = Path.GetFullPath(outputDirectory);
         if (!Directory.Exists(publishedRoot)) throw new DirectoryNotFoundException("Published pack inputs are missing.");
@@ -46,6 +51,8 @@ public static class PackBundleBuilder
         Directory.CreateDirectory(outputDirectory);
         string staging = Path.Combine(outputDirectory, ".packs-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(staging);
+        var culture = CultureInfo.CurrentUICulture;
+        CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en");
         try
         {
             var published = new List<(ActionManifest Manifest, long DownloadBytes)>();
@@ -67,11 +74,20 @@ public static class PackBundleBuilder
                     || attributes[0].FactoryType.GetConstructor(Type.EmptyTypes) is null
                     || Activator.CreateInstance(attributes[0].FactoryType) is not IPackFactory factory)
                     throw new InvalidDataException("Published composition has no valid first-party factory.");
-                var services = new PackHostServices(new Version(0, 1, 0),
+                var services = new PackHostServices(hostVersion,
                     FileActionServices.CreatePhysical(new MetadataOnlyVerifier()));
                 var pack = factory.Create(services);
                 if (pack.Info != factory.Info) throw new InvalidDataException("Factory metadata is inconsistent.");
-                ActionManifest manifest = ActionPackManifest.Create(pack, minHostVersion: new Version(0, 1, 0), payload: payload);
+                ActionManifest manifest = ActionPackManifest.Create(pack, minHostVersion: hostVersion, payload: payload);
+                if (plan is not null)
+                {
+                    var selected = plan.Packs.SingleOrDefault(p => p.Id == manifest.Id) ?? throw new InvalidDataException("Pack is absent from release plan.");
+                    if (selected.Version != manifest.Version) throw new InvalidDataException("Compiled pack version differs from release plan.");
+                    manifest = manifest with { MinHostVersion = selected.MinimumHostVersion, ReleaseFingerprint = selected.Fingerprint };
+                }
+                // The maintained composition publisher targets win-x64; do not advertise
+                // ARM64 compatibility for the native binaries from that output.
+                manifest = manifest with { PlatformConstraints = new(["windows"], ["x64"]) };
                 _ = ActionPackManifest.ToJson(manifest);
                 if (!ids.Add(manifest.Id) || manifest.Actions.Any(a => !actionIds.Add(a.Id)))
                     throw new InvalidDataException("Duplicate pack or action identifier.");
@@ -115,11 +131,12 @@ public static class PackBundleBuilder
         }
         finally
         {
+            CultureInfo.CurrentUICulture = culture;
             if (Directory.Exists(staging)) Directory.Delete(staging, recursive: true);
         }
     }
 
-    private static ECDsa LoadSigner(string? path)
+    internal static ECDsa LoadSigner(string? path)
     {
         path = string.IsNullOrWhiteSpace(path) ? Environment.GetEnvironmentVariable("POWERTROVE_PACK_SIGNING_KEY_FILE") : path;
         if (string.IsNullOrWhiteSpace(path)) throw new InvalidOperationException("A private signing key file is required outside dry-run mode.");

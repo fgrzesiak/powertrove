@@ -23,7 +23,7 @@ public sealed class FilesPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("powertrove.files", SR.GetString("FilesPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.files", SR.GetString("FilesPack_Title"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(FilesPack).Assembly), "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }

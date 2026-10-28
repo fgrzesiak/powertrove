@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-2025
     timeout-minutes: 45
     steps:
-      - name: Require an owner-merged pull request for this commit
+      - name: Require a merged release pull request for this commit
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
@@ -40,7 +40,19 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
           fetch-depth: 1
+      - name: Select temporary candidate output
+        shell: pwsh
+        run: |
+          "POWERTROVE_ALPHA_OUTPUT=$(Join-Path $env:RUNNER_TEMP 'powertrove-alpha')" >> $env:GITHUB_ENV
+      - name: Select the release driver
+        id: driver
+        shell: pwsh
+        run: |
+          $release = Get-Content release.json -Raw | ConvertFrom-Json
+          $managed = $release.automation -and $release.automation.driver -ceq 'contextbar-manifest'
+          "managed=$($managed.ToString().ToLowerInvariant())" >> $env:GITHUB_OUTPUT
       - name: Refuse an already tagged release
+        if: steps.driver.outputs.managed != 'true'
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
@@ -58,38 +70,49 @@ jobs:
           $existing = @($response | ConvertFrom-Json | Where-Object { $_.ref -ceq "refs/tags/$tag" })
           if ($existing.Count) { throw 'Release tag already exists. Prepare a new alpha sequence.' }
       - name: Set up .NET 10
+        if: steps.driver.outputs.managed != 'true'
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
         with:
           dotnet-version: '10.0.x'
+      - name: Set up Node.js for signed pack planning
+        if: steps.driver.outputs.managed != 'true'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
       - name: Build Windows solution
+        if: steps.driver.outputs.managed != 'true'
         timeout-minutes: 15
         shell: pwsh
         run: ./scripts/build-alpha.ps1 -Phase Build
       - name: Test Windows solution
+        if: steps.driver.outputs.managed != 'true'
         timeout-minutes: 10
         shell: pwsh
         run: ./scripts/build-alpha.ps1 -Phase Test
       - name: Retain test diagnostics
-        if: always()
+        if: always() && steps.driver.outputs.managed != 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: alpha-tests-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            artifacts/test-results/**/*.trx
-            artifacts/test-results/**/*.xml
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/test-results/**/*.trx
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/test-results/**/*.xml
           if-no-files-found: warn
           retention-days: 7
       - name: Package Windows x64 candidate
+        if: steps.driver.outputs.managed != 'true'
         timeout-minutes: 15
         shell: pwsh
         run: ./scripts/build-alpha.ps1 -Phase Package
       - name: Check published application startup and icon
+        if: steps.driver.outputs.managed != 'true'
         timeout-minutes: 2
         shell: pwsh
         run: |
           $release = Get-Content release.json -Raw | ConvertFrom-Json
-          ./scripts/smoke-startup.ps1 -Executable "artifacts/alpha/PowerTrove-v$($release.version)-win-x64/PowerTrove.exe"
+          ./scripts/smoke-startup.ps1 -Executable "${{ env.POWERTROVE_ALPHA_OUTPUT }}/PowerTrove-v$($release.version)-win-x64/PowerTrove.exe"
       - name: Set up verified Inno Setup 6.7.3
+        if: steps.driver.outputs.managed != 'true'
         id: inno
         timeout-minutes: 5
         shell: pwsh
@@ -97,19 +120,23 @@ jobs:
           $iscc = & ./scripts/setup-inno.ps1
           "iscc=$iscc" >> $env:GITHUB_OUTPUT
       - name: Compile per-user installer
+        if: steps.driver.outputs.managed != 'true'
         timeout-minutes: 10
         shell: pwsh
         env:
           ISCC_PATH: ${{ steps.inno.outputs.iscc }}
         run: ./scripts/build-alpha.ps1 -Phase Installer -Iscc $env:ISCC_PATH
       - name: Retain exact candidate for acceptance
+        if: steps.driver.outputs.managed != 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: alpha-win-x64-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            artifacts/alpha/*.zip
-            artifacts/alpha/*-installer.exe
-            artifacts/alpha/SHA256SUMS
-            artifacts/alpha/candidate.json
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/*.zip
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/*-installer.exe
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/SHA256SUMS
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/candidate.json
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/packs/pack-plan.json
+            ${{ env.POWERTROVE_ALPHA_OUTPUT }}/packs/pack-versions.props
           if-no-files-found: error
           retention-days: 14

@@ -1,9 +1,8 @@
-# Architecture Examples
+# Architectural examples
 
-These files illustrate the proposed *data representation* only. They are not runnable plugins or stable public schemas.
+These files illustrate typed contracts; they are not loaded as production configuration.
 
-- [`context-snapshot.json`](context-snapshot.json): sample of a selection received from File Explorer.
-- [`future-plugin-manifest.json`](future-plugin-manifest.json): illustrative future community plugin metadata. **Do not load or execute it.**
+- [Context snapshot](context-snapshot.json): a synthetic selection snapshot.
+- [Future manifest](future-plugin-manifest.json): an architectural illustration, not a signed installable pack.
 
-The in-process core contract and the eventual externally versioned plugin protocol must remain distinct.
-
+Product tests generate their own fixtures in code. Use disposable copies for manual conversion checks. Third-party plugin execution is outside this alpha's supported scope.

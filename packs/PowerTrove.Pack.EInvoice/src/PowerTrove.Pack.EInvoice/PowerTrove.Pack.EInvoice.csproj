@@ -10,4 +10,6 @@
     <Using Include="PowerTrove.Abstractions" /><Using Include="PowerTrove.Abstractions.Files" />
     <InternalsVisibleTo Include="PowerTrove.Pack.EInvoice.Composition" />
   </ItemGroup>
+  <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
+  <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
 </Project>

@@ -6,8 +6,7 @@
   ],
   "retiredSlugs": [],
   "source": {
-    "repository": "https://github.com/fgrzesiak/powertrove",
-    "commit": "5d51d7aca7ed7d31533eaa44ed47600225cd49bc"
+    "repository": "https://github.com/fgrzesiak/powertrove"
   },
   "packs": [
     {

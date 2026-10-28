@@ -8,6 +8,48 @@ namespace PowerTrove.Application.Tests;
 
 public sealed class PackHostSupervisorTests
 {
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task ReinstallationRenewsBindings_WhileOldActionReferencesCannotStartWorkers(bool startBeforeRemoval)
+    {
+        await using var fixture = new Fixture("success");
+        var descriptor = new ActionDescriptor("powertrove.fixture.copy", "Generated copy", "Generated fixture",
+            System.Collections.Frozen.FrozenSet.ToFrozenSet(new[] { ContentKind.Files }), [], true, true);
+        var old = new RemoteAction(fixture.Host, fixture.Group, descriptor);
+        if (startBeforeRemoval)
+            Assert.False((await old.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+        await using (var lease = await fixture.Host.AcquireMutationAsync(fixture.Token))
+            await fixture.Host.StopPackAsync("powertrove.fixture", fixture.Token);
+        int previousStarts = fixture.Factory.Starts;
+        Assert.True((await old.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+        Assert.Equal(previousStarts, fixture.Factory.Starts);
+        var renewed = new RemoteAction(fixture.Host, fixture.Group, descriptor);
+        Assert.False((await renewed.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+        Assert.Equal(previousStarts + 1, fixture.Factory.Starts);
+        Assert.True((await old.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+    }
+
+    [Fact]
+    public async Task MaintenanceWaitsForActiveRequest_AndRetiresItsOldWorkerDefinition()
+    {
+        await using var fixture = new Fixture("cancel");
+        using var cancel = new CancellationTokenSource();
+        var started = new StartedProgress();
+        var execution = fixture.Execute(cancel.Token, started);
+        await started.Started.Task.WaitAsync(fixture.Token);
+        var maintenance = fixture.Host.AcquireMutationAsync(fixture.Token);
+        Assert.False(maintenance.IsCompleted);
+        Assert.False(fixture.Factory.Last!.WasKilled);
+        cancel.Cancel();
+        Assert.True((await execution.WaitAsync(fixture.Token)).IsCanceled);
+        await using (var lease = await maintenance.WaitAsync(fixture.Token))
+            await fixture.Host.StopPackAsync("powertrove.fixture", fixture.Token);
+        var stale = await fixture.Execute();
+        Assert.False(stale.IsSuccess); Assert.Equal(1, fixture.Factory.Starts);
+        fixture.AssertCleanStaging();
+    }
+
     [Fact]
     public async Task RealFixtureProcessCommitsWithCollisionReplanningAndReusesTheWorker()
     {

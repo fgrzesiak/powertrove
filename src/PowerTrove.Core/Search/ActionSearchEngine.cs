@@ -114,7 +114,7 @@ public class ActionSearchEngine : IActionSearchEngine
             if (action is CatalogAction && isCompatible) rank -= 150;
 
             return new ActionSearchResult(action, isCompatible, incompatibilityReason, rank, highlight, fit, availabilityReason, textMatchScore,
-                action is CatalogAction ? PackInstallState.NotInstalled : PackInstallState.Installed);
+                action is CatalogAction catalog ? catalog.InstallState : PackInstallState.Installed);
         });
 
         var taskResults = await Task.WhenAll(tasks).ConfigureAwait(false);
@@ -122,7 +122,7 @@ public class ActionSearchEngine : IActionSearchEngine
 
         // Best fit assignment logic
         var bestFitAction = results
-            .Where(r => r.InstallState != PackInstallState.NotInstalled && r.IsCompatible && r.Fit == PowerTrove.Abstractions.SelectionFit.Ideal && r.Highlight == ActionHighlight.None)
+            .Where(r => r.Action is not CatalogAction && r.IsCompatible && r.Fit == PowerTrove.Abstractions.SelectionFit.Ideal && r.Highlight == ActionHighlight.None)
             .OrderByDescending(r => string.IsNullOrWhiteSpace(query) ? 0 : r.TextMatchScore)
             .ThenByDescending(r => r.Rank)
             .ThenByDescending(r => string.IsNullOrWhiteSpace(query) ? BrowsePriority.For(r.Action.Descriptor, signature) : 0)

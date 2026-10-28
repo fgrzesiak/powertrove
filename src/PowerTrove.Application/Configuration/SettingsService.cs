@@ -8,7 +8,7 @@ using PowerTrove.Abstractions;
 
 namespace PowerTrove.Application.Configuration;
 
-public class SettingsService : ISettingsService, IPackVisibilitySettings
+public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings
 {
     private readonly string _settingsFilePath;
     private UserSettings _settings;
@@ -173,7 +173,8 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings
                 selectionUsage,
                 PowerTrove.Application.Localization.UiLanguages.Normalize(settings.UiLanguage),
                 settings.ShowNotInstalledActions,
-                settings.RunFileToolsInSeparateProcess
+                settings.RunFileToolsInSeparateProcess,
+                settings.CheckForUpdatesOnStartup
             );
         }
         catch (Exception ex)
@@ -342,6 +343,16 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings
         {
             if (IsReadOnly) return;
             _settings = _settings with { ShowNotInstalledActions = enabled };
+            Save();
+        }
+    }
+
+    public void SetCheckForUpdatesOnStartup(bool enabled)
+    {
+        lock (_lock)
+        {
+            if (IsReadOnly) return;
+            _settings = _settings with { CheckForUpdatesOnStartup = enabled };
             Save();
         }
     }

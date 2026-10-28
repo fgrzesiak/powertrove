@@ -5,10 +5,8 @@ using Microsoft.UI.Xaml.Input;
 using Windows.System;
 using PowerTrove.Application.Localization;
 using PowerTrove.Core.Input;
-using PowerTrove.Application.Updates;
 using PowerTrove.Platform.Windows.Shell;
 using PowerTrove.Application.ViewModels;
-using System.Reflection;
 
 namespace PowerTrove.Desktop;
 
@@ -22,19 +20,17 @@ public sealed partial class SettingsWindow : Window
     private bool _packsClosed;
     private bool _packDialogOpen;
     public ActionPacksViewModel? Packs { get; }
-    private readonly GitHubReleaseDiscovery? _ownedDiscovery;
+    public bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && Packs?.IsBusy != true;
+    private bool _loadingUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
 
     public SettingsWindow()
     {
-        string? version = typeof(App).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
-            ?? typeof(App).Assembly.GetName().Version?.ToString();
-        IReleaseDiscovery discovery = (App.Current as App)?.ReleaseDiscovery ?? (_ownedDiscovery = GitHubReleaseDiscovery.CreateDefault());
-        Updates = new ReleaseUpdatesViewModel(version, discovery, new PowerTrove.Platform.Windows.Shell.ReleasePageLauncher());
+        Updates = ((App)App.Current).Updates;
         if (App.Current is App { PackManagement: { } management, SettingsService: { } settings } owner)
             Packs = new ActionPacksViewModel(management, settings, owner.RefreshPackVisibility);
         this.InitializeComponent();
-        Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); Packs?.Dispose(); Updates.Dispose(); _ownedDiscovery?.Dispose(); };
+        Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); Packs?.Dispose(); };
         Title = UiText.SettingsWindowTitle;
         SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
         ExtendsContentIntoTitleBar = true;
@@ -46,6 +42,8 @@ public sealed partial class SettingsWindow : Window
 
         if (App.Current is App app && app.SettingsService != null)
         {
+            StartupUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForUpdatesOnStartup;
+            _loadingUpdatePreference = false;
             LoadLanguageChoices(app.SettingsService.Settings.UiLanguage);
             SeparateProcessToggle.IsOn = app.SettingsService.Settings.RunFileToolsInSeparateProcess;
             _loadingIsolation = false;
@@ -248,6 +246,7 @@ public sealed partial class SettingsWindow : Window
         {
             app.SettingsService.ResetToDefaults();
             Packs?.RefreshPreference();
+            StartupUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForUpdatesOnStartup;
 
             // Re-register default hotkey
             var config = new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
@@ -279,7 +278,7 @@ public sealed partial class SettingsWindow : Window
 
     private async System.Threading.Tasks.Task RefreshExplorerRegistrationAsync()
     {
-        if (_explorerBusy || _packsClosed) return;
+        if (Updates.IsInstalling || _explorerBusy || _packsClosed) return;
         _explorerBusy = true;
         ExplorerAddButton.IsEnabled = ExplorerRemoveButton.IsEnabled = false;
         try
@@ -300,7 +299,7 @@ public sealed partial class SettingsWindow : Window
 
     private async System.Threading.Tasks.Task ChangeExplorerRegistrationAsync(bool register)
     {
-        if (_explorerBusy || _packsClosed) return;
+        if (Updates.IsInstalling || _explorerBusy || _packsClosed) return;
         _explorerBusy = true;
         ExplorerAddButton.IsEnabled = ExplorerRemoveButton.IsEnabled = false;
         try
@@ -332,6 +331,14 @@ public sealed partial class SettingsWindow : Window
         this.Close();
     }
 
+    private void StartupUpdatesToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (!_loadingUpdatePreference && App.Current is App { SettingsService: PowerTrove.Application.Configuration.IUpdateCheckSettings settings })
+            settings.SetCheckForUpdatesOnStartup(StartupUpdatesToggle.IsOn);
+    }
+    private async void InstallUpdate_Click(object sender, RoutedEventArgs e) => await Updates.InstallAsync();
+    private void CancelUpdate_Click(object sender, RoutedEventArgs e) => Updates.CancelInstallation();
+
     private async void CheckForUpdates_Click(object sender, RoutedEventArgs e) => await Updates.CheckAsync();
     private async void ShowNotices_Click(object sender, RoutedEventArgs e)
     {
@@ -356,7 +363,7 @@ public sealed partial class SettingsWindow : Window
     private void CancelPackInstall_Click(object sender, RoutedEventArgs e) { _packInstallCancellation?.Cancel(); Packs?.Cancel(); }
     private async void InstallPackFromFile_Click(object sender, RoutedEventArgs e)
     {
-        if (_packInstallCancellation is not null || Packs?.CanOperate != true) return;
+        if (Updates.IsInstalling || _packInstallCancellation is not null || Packs?.CanOperate != true) return;
         using var cancel = new System.Threading.CancellationTokenSource();
         _packInstallCancellation = cancel;
         InstallFromFileButton.IsEnabled = false; CancelPackInstallButton.IsEnabled = true;
@@ -380,11 +387,11 @@ public sealed partial class SettingsWindow : Window
     }
 
     private async void Packs_Expanding(Microsoft.UI.Xaml.Controls.Expander sender, Microsoft.UI.Xaml.Controls.ExpanderExpandingEventArgs args)
-    { if (Packs is not null) await Packs.OpenAsync(); }
-    private async void RefreshPacks_Click(object sender, RoutedEventArgs e) { if (Packs is not null) await Packs.OpenAsync(); }
+    { if (!Updates.IsInstalling && Packs is not null) await Packs.OpenAsync(); }
+    private async void RefreshPacks_Click(object sender, RoutedEventArgs e) { if (!Updates.IsInstalling && Packs is not null) await Packs.OpenAsync(); }
     private async void InstallPack_Click(object sender, RoutedEventArgs e)
     {
-        if (_packDialogOpen || Packs?.CanOperate != true || sender is not FrameworkElement { Tag: string id }) return;
+        if (Updates.IsInstalling || _packDialogOpen || Packs?.CanOperate != true || sender is not FrameworkElement { Tag: string id }) return;
         var row = System.Linq.Enumerable.SingleOrDefault(Packs.Rows, row => row.Id == id);
         if (row?.CanDownload != true) return;
         _packDialogOpen = true;
@@ -401,7 +408,7 @@ public sealed partial class SettingsWindow : Window
     }
     private async void UninstallPack_Click(object sender, RoutedEventArgs e)
     {
-        if (_packDialogOpen || Packs?.CanOperate != true || sender is not FrameworkElement { Tag: string id }) return;
+        if (Updates.IsInstalling || _packDialogOpen || Packs?.CanOperate != true || sender is not FrameworkElement { Tag: string id }) return;
         var row = System.Linq.Enumerable.SingleOrDefault(Packs.Rows, row => row.Id == id);
         if (row?.CanUninstall != true) return;
         _packDialogOpen = true;

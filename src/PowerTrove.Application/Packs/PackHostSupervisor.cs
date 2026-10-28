@@ -11,6 +11,21 @@ public sealed class PackHostSupervisor : IAsyncDisposable
     private readonly TimeProvider _clock;
     private readonly PackOutputCommitter _committer;
     private readonly ConcurrentDictionary<string, Group> _groups = new(StringComparer.Ordinal);
+    private readonly ConcurrentDictionary<string, PackWorkerGroup> _bindings = new(StringComparer.Ordinal);
+
+    // Binding happens when actions are registered, including groups that have never started.
+    // A fresh registration after maintenance gets a new identity; old action references stay retired.
+    internal PackWorkerGroup BindGroup(PackWorkerGroup definition)
+    {
+        var bound = _bindings.AddOrUpdate(definition.Id, _ => definition, (_, current) =>
+            _groups.TryGetValue(current.Id, out var group) && group.Retired
+                ? definition with { Id = definition.Id + "#" + Guid.NewGuid().ToString("N") } : current);
+        var registered = _groups.GetOrAdd(bound.Id, _ => new Group(bound, _clock.GetUtcNow()));
+        if (!SameDefinition(registered.Definition, definition)) throw new InvalidOperationException("A registered pack payload cannot change without maintenance.");
+        return bound;
+    }
+    private readonly SemaphoreSlim _executionGate = new(1, 1);
+    private int _mutating;
     private readonly CancellationTokenSource _lifetime = new();
 
     public PackHostSupervisor(IPackWorkerProcessFactory factory, string userRoot, TimeProvider? clock = null,
@@ -47,6 +62,10 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         ObjectDisposedException.ThrowIf(_lifetime.IsCancellationRequested, this);
         if (snapshot.IsStale || snapshot.Status != ContextStatus.Available || snapshot.Content is not FileSelection)
             return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
+        using var executionLifetime = CancellationTokenSource.CreateLinkedTokenSource(token, _lifetime.Token);
+        await _executionGate.WaitAsync(executionLifetime.Token).ConfigureAwait(false);
+        await using var executionLease = new ExecutionLease(_executionGate);
+        if (snapshot.IsStale) return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
         var selection = FileSelectionPayload.FromSnapshot(snapshot);
         var values = parameters switch
         {
@@ -64,7 +83,7 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         group.ActiveRequest = active;
         try
         {
-            if (group.Stopping) return null;
+            if (group.Stopping || group.Retired) return null;
             token.ThrowIfCancellationRequested();
             await StartAsync(group, active.Token).ConfigureAwait(false);
             group.LastUsed = _clock.GetUtcNow();
@@ -133,7 +152,7 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         group.Process = await _factory.StartAsync(group.Definition, group.Work, startup.Token).ConfigureAwait(false);
         group.Writer = new PackMessageWriter(group.Process.Input);
         group.Reader = PackMessageStream.ReadAsync(group.Process.Output, _lifetime.Token).GetAsyncEnumerator(_lifetime.Token);
-        await WriteAsync(group, new HelloMessage(1, "0.1.0"), TimeSpan.FromSeconds(10), startup.Token).ConfigureAwait(false);
+        await WriteAsync(group, new HelloMessage(1, PackDistributionConfiguration.HostVersion.ToString()), TimeSpan.FromSeconds(10), startup.Token).ConfigureAwait(false);
         group.PendingRead = group.Reader.MoveNextAsync().AsTask();
         bool available = await group.PendingRead.WaitAsync(startup.Token).ConfigureAwait(false);
         group.PendingRead = null;
@@ -209,10 +228,28 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         // Keep the synchronization object: replacement definitions are allowed only through a new supervisor/group ID.
     }
 
+    /// <summary>Maintenance waits for active worker requests instead of canceling them. UI remains responsive.</summary>
+    public async Task<IAsyncDisposable> AcquireMutationAsync(CancellationToken token)
+    {
+        using var linked = CancellationTokenSource.CreateLinkedTokenSource(token, _lifetime.Token);
+        await _executionGate.WaitAsync(linked.Token).ConfigureAwait(false);
+        Interlocked.Exchange(ref _mutating, 1);
+        return new ExecutionLease(_executionGate, () => Interlocked.Exchange(ref _mutating, 0));
+    }
+    private sealed class ExecutionLease(SemaphoreSlim gate, Action? beforeRelease = null) : IAsyncDisposable
+    {
+        private int _disposed;
+        public ValueTask DisposeAsync()
+        { if (Interlocked.Exchange(ref _disposed, 1) == 0) { beforeRelease?.Invoke(); gate.Release(); } return ValueTask.CompletedTask; }
+    }
+
     public async Task StopPackAsync(string packId, CancellationToken token = default)
     {
         foreach (var group in _groups.Values.Where(g => g.Definition.Packs.Any(p => p.Id == packId)))
+        {
             await StopAsync(group.Definition.Id, token).ConfigureAwait(false);
+            if (Volatile.Read(ref _mutating) != 0) group.Retired = true;
+        }
     }
 
     private async Task StopCoreAsync(Group group)
@@ -330,6 +367,7 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         public Task<bool>? PendingRead;
         public Task? PendingWrite;
         public CancellationTokenSource? ActiveRequest;
+        public volatile bool Retired;
         public volatile bool Stopping;
     }
     // Internal host-only value, never passed to the wire serializer.

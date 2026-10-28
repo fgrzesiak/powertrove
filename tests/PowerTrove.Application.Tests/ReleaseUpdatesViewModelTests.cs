@@ -6,6 +6,84 @@ namespace PowerTrove.Application.Tests;
 
 public sealed class ReleaseUpdatesViewModelTests
 {
+    [Theory]
+    [InlineData(true, 1)]
+    [InlineData(false, 0)]
+    public async Task StartupCheck_IsOptionalAndRunsOnce_WithoutDownloading(bool enabled, int count)
+    {
+        var discovery = new Discovery(); var installer = new Installer();
+        using var vm = new ReleaseUpdatesViewModel("1.0.0", discovery, new Launcher(), installer);
+        await vm.CheckOnStartupAsync(enabled); await vm.CheckOnStartupAsync(enabled);
+        Assert.Equal(count, discovery.Count); Assert.Equal(0, installer.Count);
+        Assert.Equal(enabled, vm.ShowNotice);
+        vm.DismissNotice(); Assert.False(vm.ShowNotice); Assert.Empty(vm.NoticeMessage);
+        await vm.CheckAsync(); Assert.True(vm.ShowNotice);
+    }
+
+    [Fact]
+    public async Task InstallRequiresExplicitClickAndVerifiedAsset_AndNotifiesOnlyWhenStarted()
+    {
+        var discovery = InstallableDiscovery(); var installer = new Installer();
+        using var vm = new ReleaseUpdatesViewModel("1.0.0", discovery, new Launcher(), installer);
+        int started = 0; vm.InstallerStarted += (_, _) => started++;
+        await vm.InstallAsync(); Assert.Equal(0, installer.Count);
+        await vm.CheckOnStartupAsync(true); Assert.True(vm.CanInstall); Assert.Equal(0, installer.Count);
+        await vm.InstallAsync(); Assert.Equal(1, installer.Count); Assert.Equal(1, started);
+        installer.Result = ReleaseInstallStatus.InvalidData;
+        await vm.InstallAsync(); Assert.Equal(1, started); Assert.False(vm.IsBusy); Assert.True(vm.CanInstall);
+    }
+
+    [Fact]
+    public async Task ReleaseWithoutInstaller_StillOffersReleasePage()
+    {
+        using var vm = new ReleaseUpdatesViewModel("1.0.0", new Discovery(), new Launcher(), new Installer());
+        await vm.CheckAsync(); Assert.True(vm.CanOpen); Assert.False(vm.CanInstall);
+    }
+
+    [Fact]
+    public async Task PendingInstall_CanBeCanceled_AndCannotBeStartedTwice()
+    {
+        var pending = new TaskCompletionSource<ReleaseInstallStatus>();
+        var installer = new Installer { Pending = pending.Task };
+        using var vm = new ReleaseUpdatesViewModel("1.0.0", InstallableDiscovery(), new Launcher(), installer);
+        await vm.CheckAsync();
+        var install = vm.InstallAsync();
+        Assert.True(vm.IsInstalling); Assert.False(vm.CanInstall); Assert.False(vm.CanCheck); Assert.False(vm.CanOpen);
+        await vm.InstallAsync(); Assert.Equal(1, installer.Count);
+        vm.CancelInstallation(); Assert.True(installer.Token.IsCancellationRequested);
+        pending.SetCanceled(installer.Token); await install;
+        Assert.False(vm.IsInstalling); Assert.True(vm.CanInstall);
+    }
+
+    [Fact]
+    public async Task Shutdown_CancelsInstallAndIgnoresLateSuccess()
+    {
+        var pending = new TaskCompletionSource<ReleaseInstallStatus>(); var installer = new Installer { Pending = pending.Task };
+        var vm = new ReleaseUpdatesViewModel("1.0.0", InstallableDiscovery(), new Launcher(), installer);
+        await vm.CheckAsync(); int started = 0; vm.InstallerStarted += (_, _) => started++;
+        var install = vm.InstallAsync(); vm.Dispose();
+        Assert.True(installer.Token.IsCancellationRequested);
+        pending.SetResult(ReleaseInstallStatus.Started); await install;
+        Assert.Equal(0, started); Assert.False(vm.CanInstall);
+    }
+
+    private static Discovery InstallableDiscovery()
+    {
+        var discovery = new Discovery(); var candidate = discovery.Result.Candidate!;
+        discovery.Result = discovery.Result with { Candidate = candidate with { Installer = new(
+            new Uri("https://github.com/" + ReleaseSource.Repository + "/releases/download/v2.0.0/PowerTrove-v2.0.0-win-x64-installer.exe"), 10, new string('a', 64)) } };
+        return discovery;
+    }
+
+    private sealed class Installer : IReleaseInstaller
+    {
+        public int Count; public CancellationToken Token;
+        public ReleaseInstallStatus Result = ReleaseInstallStatus.Started;
+        public Task<ReleaseInstallStatus>? Pending;
+        public Task<ReleaseInstallStatus> InstallAsync(ReleaseCandidate candidate, IProgress<int>? progress = null, CancellationToken token = default)
+        { Count++; Token = token; return Pending ?? Task.FromResult(Result); }
+    }
+
     [Fact]
     public async Task ConstructionDoesNotCheck_AndCheckingNeverOpensBrowser_UntilSeparateClick()
     {

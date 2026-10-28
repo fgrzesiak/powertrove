@@ -14,8 +14,6 @@ public sealed class EmlPdfRendererTests : IDisposable
     [InlineData(true)]
     public async Task DefaultFactoryPrintsActualPlainAndHtmlMailAndExportsRequestedAttachments(bool html)
     {
-        // Edge printing on hosted GitHub runners is unreliable; this runs on real Windows desktops.
-        if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true") return;
         byte[] source = html ? TestEmlFactory.Html(await Png()) : TestEmlFactory.Plain(); string input = _directory.Write("mail.eml", source);
         var pack = new PdfPackFactory().Create(new PackHostServices(new Version(0, 1, 0), FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier())));
         var action = pack.Actions.Single(a => a.Descriptor.Id == "powertrove.pdf.eml-to-pdf");

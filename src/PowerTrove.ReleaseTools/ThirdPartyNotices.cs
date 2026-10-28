@@ -19,7 +19,18 @@ public static class ThirdPartyNotices
         string DownloadUrl, string SourceFile, string Sha256);
     private sealed record SupplementalManifest(int SchemaVersion, IReadOnlyList<SupplementalLicense> Overrides);
 
-    public static async Task BuildAsync(string repository, string stage, CancellationToken token = default)
+    public static Task BuildAsync(string repository, string stage, CancellationToken token = default) =>
+        BuildCoreAsync(repository, stage,
+            [Path.Combine(repository, "src", "PowerTrove.Desktop", "obj", "project.assets.json"), Path.Combine(repository, "src", "PowerTrove.PackHost", "obj", "project.assets.json")],
+            [Path.Combine(stage, "PowerTrove.deps.json"), Path.Combine(stage, "packhost", "PowerTrove.PackHost.deps.json")], token);
+
+    public static Task BuildPackAsync(string repository, string stage, string compositionProject, CancellationToken token = default) =>
+        BuildCoreAsync(repository, stage,
+            [Path.Combine(Path.GetDirectoryName(Path.GetFullPath(compositionProject))!, "obj", "project.assets.json")],
+            [Path.Combine(stage, Path.GetFileNameWithoutExtension(compositionProject) + ".deps.json")], token);
+
+    private static async Task BuildCoreAsync(string repository, string stage, IReadOnlyList<string> assetFiles,
+        IReadOnlyList<string> dependencyFiles, CancellationToken token)
     {
         RequireRegularDirectory(stage);
         string destination = Path.Combine(stage, "licenses");
@@ -40,9 +51,8 @@ public static class ThirdPartyNotices
                 if (!supplemental.TryAdd(entry.Package + "/" + entry.Version, entry))
                     throw new InvalidDataException("Duplicate supplemental supplier license.");
         }
-        foreach (string project in new[] { "PowerTrove.Desktop", "PowerTrove.PackHost" })
+        foreach (string assets in assetFiles)
         {
-            string assets = Path.Combine(repository, "src", project, "obj", "project.assets.json");
             using var document = JsonDocument.Parse(await File.ReadAllTextAsync(assets, token));
             foreach (var root in document.RootElement.GetProperty("packageFolders").EnumerateObject()) roots.Add(root.Name);
             // SDK native assets can be copied by build targets rather than represented in .deps.json.
@@ -51,8 +61,7 @@ public static class ThirdPartyNotices
                     library.Value.GetProperty("type").GetString() == "package")
                     packages.TryAdd(library.Name, "SDK dependency; payload membership requires review");
         }
-        foreach (string file in new[] { Path.Combine(stage, "PowerTrove.deps.json"),
-            Path.Combine(stage, "packhost", "PowerTrove.PackHost.deps.json") })
+        foreach (string file in dependencyFiles)
         {
             using var document = JsonDocument.Parse(await File.ReadAllTextAsync(file, token));
             foreach (var library in document.RootElement.GetProperty("libraries").EnumerateObject())

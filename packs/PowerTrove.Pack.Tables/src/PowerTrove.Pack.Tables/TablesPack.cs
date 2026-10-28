@@ -19,7 +19,7 @@ public sealed class TablesPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("powertrove.tables", SR.GetString("TablesPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.tables", SR.GetString("TablesPack_Title"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(TablesPack).Assembly), "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }

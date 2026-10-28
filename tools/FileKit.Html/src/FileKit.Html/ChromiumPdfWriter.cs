@@ -69,8 +69,7 @@ public sealed class ChromiumPdfWriter(IHtmlBrowserLauncher launcher)
         { throw new HtmlPrintException("The local HTML renderer failed.", ex); }
         finally
         {
-            // Browser child processes can hold profile files for several seconds after the job closes on a busy machine.
-            for (int attempt = 0; attempt < 100; attempt++)
+            for (int attempt = 0; attempt < 20; attempt++)
             {
                 try { if (Directory.Exists(profile)) Directory.Delete(profile, true); break; }
                 catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { await Task.Delay(100, CancellationToken.None).ConfigureAwait(false); }

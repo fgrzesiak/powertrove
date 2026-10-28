@@ -19,6 +19,6 @@ public sealed class DataPack : IActionPack
         };
     }
     public ActionPackInfo Info => Describe();
-    internal static ActionPackInfo Describe() => new("powertrove.data", SR.Get("Pack"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.data", SR.Get("Pack"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(DataPack).Assembly), "PowerTrove");
     public IReadOnlyList<IAction> Actions { get; }
 }

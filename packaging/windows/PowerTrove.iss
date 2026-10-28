@@ -37,9 +37,21 @@ Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Name: "{autoprograms}\PowerTrove"; Filename: "{app}\PowerTrove.exe"; WorkingDir: "{app}"
 
 [Run]
-Filename: "{app}\PowerTrove.exe"; Description: "Launch PowerTrove"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\PowerTrove.exe"; Description: "Launch PowerTrove"; Flags: nowait postinstall skipifsilent unchecked; Check: not IsInAppUpdate
+Filename: "{app}\PowerTrove.exe"; Flags: nowait; Check: IsInAppUpdate
 
 [Code]
+// Only the explicit in-app update handoff relaunches automatically. Normal installs retain opt-in launch.
+function IsInAppUpdate(): Boolean;
+var
+  I: Integer;
+begin
+  Result := False;
+  for I := 1 to ParamCount do
+    if CompareText(ParamStr(I), '/POWERTROVEUPDATE') = 0 then
+      Result := True;
+end;
+
 // Guard version downgrade in the user's existing installation; never reset settings.
 function InstalledVersion(): String;
 begin

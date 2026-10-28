@@ -8,7 +8,7 @@ namespace PowerTrove.Pack.Pdf;
 
 public sealed class PdfToExcelAction(FileActionServices services, IPositionedDocumentReader? reader) : PerFileAction<bool>(services)
 {
-    public override ActionDescriptor Descriptor { get; } = new("powertrove.pdf.to-xlsx", SR.GetString("PdfExcelTitle"), SR.GetString("PdfExcelDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.pdf.to-xlsx", SR.GetString("PdfExcelTitle"), SR.GetString("PdfExcelDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["pdf", "excel", "xlsx", "table", "extract"], true, true,
         Parameters: [ActionParameterDefinition.Boolean("InferUnruled", SR.GetString("PdfExcelInfer"), true)], Selection: SelectionRequirements.Any("pdf"));
     protected override FileInputFilter Input => PdfSupport.PdfInput;

@@ -4,7 +4,7 @@ namespace PowerTrove.Core.Catalog;
 
 public enum PackInstallState { Installed, NotInstalled, UpdateAvailable, Incompatible }
 
-public sealed record CatalogEntry(ManifestAction Action, ActionPackInfo Pack, PackInstallState State, long DownloadBytes);
+public sealed record CatalogEntry(ManifestAction Action, ActionPackInfo Pack, PackInstallState State, long DownloadBytes, string? ManifestFingerprint = null);
 
 public interface IActionCatalog
 {

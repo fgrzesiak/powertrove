@@ -11,6 +11,7 @@ The Tables composition is intentionally excluded: worker protocol v1 rejects tab
 param(
     [string]$OutputDirectory = (Join-Path $PSScriptRoot '../artifacts/pack-channel'),
     [string]$SigningKeyPath = $env:POWERTROVE_PACK_SIGNING_KEY_FILE,
+    [version]$MinimumHostVersion = '0.1.0',
     [switch]$DryRun,
     [string[]]$Packs = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office')
 )
@@ -39,7 +40,8 @@ try {
     }
     $generator = Join-Path $root 'src/PowerTrove.ReleaseTools/PowerTrove.ReleaseTools.csproj'
     $arguments = @('run', '--project', $generator, '--', 'pack-bundles',
-        '--published-root', $publishRoot, '--output-dir', $output)
+        '--published-root', $publishRoot, '--output-dir', $output,
+        '--min-host-version', $MinimumHostVersion.ToString())
     if ($DryRun) { $arguments += '--dry-run' }
     else { $arguments += @('--key-file', $SigningKeyPath) }
     & dotnet @arguments

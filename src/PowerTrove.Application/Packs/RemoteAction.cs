@@ -8,6 +8,7 @@ public sealed class RemoteAction : IAction, IFileActionMetadata
 {
     private readonly PackHostSupervisor _supervisor;
     private readonly PackWorkerGroup _group;
+    private readonly PackWorkerGroup _definition;
     private readonly FrozenSet<string>? _extensions;
     private readonly Func<CancellationToken, Task>? _confirmStarted;
     public ActionDescriptor Descriptor { get; }
@@ -17,10 +18,11 @@ public sealed class RemoteAction : IAction, IFileActionMetadata
     {
         if (!descriptor.Accepts.SetEquals(new[] { ContentKind.Files }))
             throw new ArgumentException("Worker actions must consume file selections.", nameof(descriptor));
-        _supervisor = supervisor; _group = group; Descriptor = descriptor;
+        _supervisor = supervisor; _definition = group; _group = supervisor.BindGroup(group); Descriptor = descriptor;
         _extensions = extensions?.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         _confirmStarted = confirmStarted;
     }
+    internal RemoteAction Rebind() => new(_supervisor, _definition, Descriptor, _extensions, _confirmStarted);
     public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();

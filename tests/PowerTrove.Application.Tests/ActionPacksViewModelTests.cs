@@ -19,7 +19,8 @@ public sealed class ActionPacksViewModelTests
     {
         using var temp = new TempDirectory();
         var installer = new PackInstaller(temp.File("user"), new Version(0, 1, 0), (_, _) => Task.CompletedTask);
-        using var channel = PackChannelClient.CreateDefault(installer, temp.File("user"), new Version(0, 1, 0));
+        using var channel = new PackChannelClient(new PowerTrove.Application.Updates.OwnerChannelConfiguration(),
+            new HttpClientHandler(), installer, temp.File("user"), new Version(0, 1, 0));
         var factory = new NoWorkerFactory();
         await using var supervisor = new PackHostSupervisor(factory, temp.File("user"));
         IActionPack[] builtIns = [new GeneratedPack()];

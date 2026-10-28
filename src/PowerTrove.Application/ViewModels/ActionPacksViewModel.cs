@@ -23,6 +23,10 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
         ? string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackVersionUpdate"), Item.InstalledVersion, Item.AvailableVersion)
         : string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackVersion"), Item.InstalledVersion ?? Item.AvailableVersion),
         SizeText, string.Format(CultureInfo.CurrentCulture, Strings.GetString(Item.ActionCount == 1 ? "PackActionCountOne" : "PackActionCountOther"), Item.ActionCount));
+    public string CompatibilityText => Item.RequiredHostVersion is null ? string.Empty :
+        Item.LatestVersion is { } newest && newest != Item.AvailableVersion
+            ? string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackNewerHostRequired"), newest, Item.RequiredHostVersion, Item.AvailableVersion)
+            : string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackHostRequired"), Item.RequiredHostVersion);
     public string AutomationName => string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackRowAutomationName"), Name, StateText, Details);
     public string PrimaryText => Strings.GetString(Item.State == PackInstallState.UpdateAvailable ? "PackUpdate" : "PackInstall");
     public string PrimaryAutomationName => string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackActionAutomationName"), PrimaryText, Name);
@@ -44,6 +48,9 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
 public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
 {
     private readonly IPackManagementService _service;
+    private readonly IPackManagementNotifications? _notifications;
+    private readonly SynchronizationContext? _context = SynchronizationContext.Current;
+    private long _localRevision;
     private readonly ISettingsService _settings;
     private readonly Action _visibilityChanged;
     private readonly CancellationTokenSource _lifetime = new();
@@ -53,8 +60,8 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
     public IReadOnlyList<ActionPackRow> Rows { get; private set; } = [];
     public string StatusMessage { get; private set; } = Strings.GetString("PacksNotOpened");
     public string ProgressText { get; private set; } = string.Empty;
-    public bool CanOperate => !_closed && !_busy;
-    public bool IsBusy => _busy;
+    public bool CanOperate => !_closed && !IsBusy;
+    public bool IsBusy => _busy || _notifications?.Activity is not null;
     public bool CanChangeVisibility => CanOperate && !_settings.IsReadOnly && _settings is IPackVisibilitySettings;
     public bool HasNoPacks => Rows.Count == 0;
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -73,7 +80,36 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
         }
     }
     public ActionPacksViewModel(IPackManagementService service, ISettingsService settings, Action? visibilityChanged = null)
-    { _service = service; _settings = settings; _visibilityChanged = visibilityChanged ?? (() => { }); _showMissing = settings.Settings.ShowNotInstalledActions; }
+    {
+        _service = service; _settings = settings; _visibilityChanged = visibilityChanged ?? (() => { }); _showMissing = settings.Settings.ShowNotInstalledActions;
+        _notifications = service as IPackManagementNotifications;
+        if (_notifications is not null) { _notifications.Changed += PacksChanged; _notifications.ActivityChanged += PackActivityChanged; }
+    }
+    private void PacksChanged(object? sender, EventArgs e) => Dispatch(() => { _ = RefreshLocalAsync(); });
+    private void PackActivityChanged(object? sender, EventArgs e) => Dispatch(() =>
+    {
+        if (_notifications?.Activity is { CompletedBytes: > 0 } progress)
+            ProgressText = string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackProgressBytes"), progress.CompletedBytes);
+        foreach (var row in Rows) row.SetBusy(IsBusy);
+        Publish();
+    });
+    private async Task RefreshLocalAsync()
+    {
+        long revision = Interlocked.Increment(ref _localRevision);
+        try
+        {
+            var snapshot = await _service.GetLocalAsync(_lifetime.Token);
+            if (!_closed && revision == Interlocked.Read(ref _localRevision)) { SetRows(snapshot.Packs); Publish(); }
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception) { if (!_closed) { StatusMessage = Strings.GetString("PacksOperationFailed"); Publish(); } }
+    }
+    private void Dispatch(Action callback)
+    {
+        if (_closed) return;
+        if (_context is null || ReferenceEquals(SynchronizationContext.Current, _context)) callback();
+        else _context.Post(_ => { if (!_closed) callback(); }, null);
+    }
 
     public Task OpenAsync(CancellationToken token = default) => RunAsync(async ct =>
     {
@@ -108,7 +144,7 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
         if (Rows.SingleOrDefault(r => r.Id == id)?.CanUninstall != true) return Task.CompletedTask;
         return RunAsync(ct => _service.UninstallAsync(id, ct), "PacksRemoving", token);
     }
-    public void Cancel() => _active?.Cancel();
+    public void Cancel() { _active?.Cancel(); _notifications?.Cancel(); }
     public void RefreshPreference()
     {
         if (_closed) return;
@@ -142,13 +178,14 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
     private void SetRows(IReadOnlyList<PackListItem> rows) => Rows = rows.Select(item => new ActionPackRow(item)).ToArray();
     private void Publish()
     {
-        foreach (var row in Rows) row.SetBusy(_busy);
+        foreach (var row in Rows) row.SetBusy(IsBusy);
         foreach (string property in new[] { nameof(Rows), nameof(StatusMessage), nameof(ProgressText), nameof(IsBusy), nameof(CanOperate),
             nameof(CanChangeVisibility), nameof(HasNoPacks), nameof(ShowNotInstalledActions) }) PropertyChanged?.Invoke(this, new(property));
     }
     public void Dispose()
     {
         if (_closed) return;
-        _closed = true; _lifetime.Cancel(); _lifetime.Dispose();
+        _closed = true;
+        if (_notifications is not null) { _notifications.Changed -= PacksChanged; _notifications.ActivityChanged -= PackActivityChanged; } _lifetime.Cancel(); _lifetime.Dispose();
     }
 }
