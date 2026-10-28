@@ -26,8 +26,11 @@ foreach ($entry in $catalog.packs) {
     $manifest = $entry.manifest
     if ($manifest.id -cnotmatch '^[a-z0-9]+([.-][a-z0-9]+)*$' -or
         $manifest.version -cnotmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'Unsafe pack identity.' }
-    $unpack = Join-Path $env:TEMP ('PowerTrove-PackSmoke-' + [guid]::NewGuid().ToString('N'))
-    $work = Join-Path (Join-Path $env:LOCALAPPDATA 'PowerTrove/workers') ([guid]::NewGuid().ToString('N'))
+    # The worker rejects noncanonical paths. $env:TEMP can be an 8.3 short path on hosted runners,
+    # which .NET expands, so derive both directories from the long known-folder path.
+    $localAppData = [Environment]::GetFolderPath('LocalApplicationData')
+    $unpack = Join-Path (Join-Path $localAppData 'Temp') ('PowerTrove-PackSmoke-' + [guid]::NewGuid().ToString('N'))
+    $work = Join-Path (Join-Path $localAppData 'PowerTrove\workers') ([guid]::NewGuid().ToString('N'))
     $process = $null
     try {
         Write-Output ('Checking worker startup: ' + $manifest.id + '@' + $manifest.version)
