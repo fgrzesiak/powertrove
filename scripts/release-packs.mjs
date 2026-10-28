@@ -79,7 +79,7 @@ export async function releasePacks(options, dependencies = {}) {
   if ((dependencies.platform ?? process.platform) !== 'win32') throw new Error('Pack publication requires Windows.');
   outside(root, output); outside(root, keyFile); safeAncestors(output); safeAncestors(keyFile);
   const signal = options.signal;
-  const command = (file, args) => (dependencies.run ?? run)(file, args, { cwd: root, signal });
+  const command = (file, args, commandOptions = {}) => (dependencies.run ?? run)(file, args, { ...commandOptions, cwd: root, signal });
   const progress = dependencies.progress ?? (message => console.log(message));
   const revision = (await command('git', ['rev-parse', 'HEAD'])).trim();
   if (!/^[a-f0-9]{40}$/.test(revision) || (await command('git', ['status', '--porcelain'])).trim())
@@ -159,12 +159,19 @@ export async function releasePacks(options, dependencies = {}) {
         if (!checked.parsed.packs.some(p => p.manifest.id === required.id && p.manifest.version === required.version && p.manifest.releaseFingerprint === required.fingerprint))
           throw new Error('A required desktop pack is missing from the signed candidate.');
       progress('Checking the real Windows worker handshake for each signed pack.');
-      const workerProject = path.join(root, 'src/PowerTrove.PackHost/PowerTrove.PackHost.csproj');
-      await command('dotnet', ['build', workerProject, '-c', 'Release', '--nologo',
-        ...(options.desktopVersion ? ['-p:Version=' + options.desktopVersion] : [])]);
-      const worker = path.join(root, 'src/PowerTrove.PackHost/bin/Release/net10.0-windows10.0.19041.0/PowerTrove.PackHost.exe');
+      let worker = options.workerExecutable ? path.resolve(options.workerExecutable) : undefined;
+      if (worker) {
+        safeAncestors(worker);
+        if (!fs.statSync(worker).isFile()) throw new Error('The packaged worker executable is missing.');
+      } else {
+        const workerProject = path.join(root, 'src/PowerTrove.PackHost/PowerTrove.PackHost.csproj');
+        await command('dotnet', ['build', workerProject, '-c', 'Release', '--nologo',
+          ...(options.desktopVersion ? ['-p:Version=' + options.desktopVersion] : [])]);
+        worker = path.join(root, 'src/PowerTrove.PackHost/bin/Release/net10.0-windows10.0.19041.0/PowerTrove.PackHost.exe');
+      }
       await command('powershell.exe', ['-NoProfile', '-File', path.join(root, 'scripts/smoke-packs.ps1'),
-        '-AssetDirectory', path.join(output, 'github-assets'), '-WorkerExecutable', worker, '-CatalogSha256', sha(checked.bytes)]);
+        '-AssetDirectory', path.join(output, 'github-assets'), '-WorkerExecutable', worker, '-CatalogSha256', sha(checked.bytes)],
+      { logOutput: true });
       const assets = [];
       for (const name of checked.expected) assets.push({ name, sha256: await hashFile(path.join(output, 'github-assets', name)) });
       const target = (await command('gh', ['api', `repos/${repository}/commits/main`, '--jq', '.sha'])).trim();
