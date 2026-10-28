@@ -23,15 +23,18 @@ public static class Program
         Process? parent = null;
         Task? parentWatch = null;
         string? ownedWork = null;
+        string startupStage = "arguments";
         try
         {
             var options = ParseArguments(args);
             if (options is null) return 2;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(options.Language);
+            startupStage = "parent";
             parent = Process.GetProcessById(options.ParentPid);
             using var current = Process.GetCurrentProcess();
             if (parent.HasExited || parent.Id == current.Id || parent.SessionId != current.SessionId) return 2;
             parentWatch = WatchParentAsync(parent, lifetime);
+            startupStage = "workRoot";
             string userRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PowerTrove");
             string workRoot = Path.Combine(userRoot, "workers");
             Directory.CreateDirectory(workRoot);
@@ -43,6 +46,7 @@ public static class Program
             ownedWork = candidateWork;
             Directory.CreateDirectory(ownedWork);
             var version = typeof(Program).Assembly.GetName().Version ?? new Version(0, 1, 0);
+            startupStage = "loadPack";
             foreach (string directory in options.PackDirectories)
             {
                 string root = StagingOutputFileSystem.Canonical(directory);
@@ -58,6 +62,7 @@ public static class Program
             }
             if (loaded.Select(p => p.Manifest.Id).Distinct(StringComparer.Ordinal).Count() != loaded.Count) return 2;
             if (options.ManifestHashes.Count != 0 && options.ManifestHashes.Count != loaded.Count) return 2;
+            startupStage = "session";
             string staging = Path.Combine(userRoot, "staging");
             Directory.CreateDirectory(staging);
             var verifier = new FileSignatureVerifier();
@@ -71,7 +76,15 @@ public static class Program
             return 0;
         }
         catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { return 0; }
-        catch (Exception) { return 3; }
+        catch (Exception error)
+        {
+            if (Environment.GetEnvironmentVariable("POWERTROVE_WORKER_STARTUP_DIAGNOSTICS") == "1")
+            {
+                using var diagnostic = new StreamWriter(Console.OpenStandardError());
+                diagnostic.WriteLine(WorkerStartupDiagnostics.Describe(startupStage, error));
+            }
+            return 3;
+        }
         finally
         {
             lifetime.Cancel();
