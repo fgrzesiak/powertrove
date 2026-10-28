@@ -10,7 +10,8 @@ namespace PowerTrove.Platform.Windows.Shell;
 public static class AppIcon
 {
     private const string BodyPath = "M36 16 L69 16 C94 16 108 32 108 55 C108 76 93 88 71 88 L60 88 L60 103 C60 109 57 112 51 112 L35 112 C29 112 26 109 26 103 L26 87 C26 83 28 81 31 79 L50 68 C54 66 54 63 50 61 L29 48 C27 47 26 45 26 42 L26 29 C26 20 29 16 36 16 Z M58 32 L86 49 C90 51 90 54 86 57 L58 75 C54 77 51 75 51 71 L51 36 C51 32 54 30 58 32 Z";
-    private const string AccentPath = "M29 53 L48 64 C50 65 50 67 48 68 L29 79 C27 80 26 79 26 77 L26 55 C26 53 27 52 29 53 Z";
+    // Align the accent's horizontal axis with the opening at y=64.5.
+    private const string AccentPath = "M29 51.5 L48 62.5 C50 63.5 50 65.5 48 66.5 L29 77.5 C27 78.5 26 77.5 26 75.5 L26 53.5 C26 51.5 27 50.5 29 51.5 Z";
     private static readonly List<List<(double X, double Y)>> Body = Flatten(BodyPath);
     private static readonly List<List<(double X, double Y)>> Accent = Flatten(AccentPath);
 

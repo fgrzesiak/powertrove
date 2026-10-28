@@ -28,6 +28,9 @@ public sealed class PackHostSupervisor : IAsyncDisposable
     private int _mutating;
     private readonly CancellationTokenSource _lifetime = new();
 
+    /// <summary>A worker group failed to start or complete its handshake; the count is consecutive start failures.</summary>
+    public event Action<PackWorkerGroup, int>? StartFailed;
+
     public PackHostSupervisor(IPackWorkerProcessFactory factory, string userRoot, TimeProvider? clock = null,
         PackOutputCommitter? committer = null)
     {
@@ -105,7 +108,14 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         {
             if (group.Stopping || group.Retired) return null;
             token.ThrowIfCancellationRequested();
-            await StartAsync(group, active.Token).ConfigureAwait(false);
+            try { await StartAsync(group, active.Token).ConfigureAwait(false); group.StartFailures = 0; }
+            catch (Exception) when (!token.IsCancellationRequested && !_lifetime.IsCancellationRequested)
+            {
+                // Reported off this request so a listener can stop or replace this group without waiting on it.
+                int failures = ++group.StartFailures; var failed = group.Definition;
+                _ = Task.Run(() => StartFailed?.Invoke(failed, failures));
+                throw;
+            }
             group.LastUsed = _clock.GetUtcNow();
             Guid requestId = Guid.NewGuid();
             PackMessage request;
@@ -381,7 +391,7 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         public PackMessageWriter? Writer;
         public IAsyncEnumerator<PackMessage>? Reader;
         public string? Work;
-        public int Failures;
+        public int Failures, StartFailures;
         public DateTimeOffset LastUsed = now, NextStart;
         public Task? IdleMonitor;
         public Task<bool>? PendingRead;

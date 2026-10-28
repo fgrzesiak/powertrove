@@ -40,6 +40,7 @@ public static class UiText
     public static string PackDownloadConsent(string name, string size, string publisher) => Format(Get("PackDownloadConsent"), name, size, publisher);
     public static string PackRemoveConsent(string name) => Format(Get("PackRemoveConsent"), name);
     public static string PackRemoveConsentNoBundled(string name) => Format(Get("PackRemoveConsentNoBundled"), name);
+    public static string PackRolledBack => Get(nameof(PackRolledBack));
     public static string PacksLocalDescription => Get(nameof(PacksLocalDescription));
     public static string PacksInstallFromFile => Get(nameof(PacksInstallFromFile));
     public static string PacksInstalling => Get(nameof(PacksInstalling));

@@ -9,6 +9,7 @@ public static class Program
     [STAThread]
     public static int Main(string[] args)
     {
+        if (args is [SetupPackCommand.Argument]) return SetupPackCommand.Run();
         var message = ActivationProtocol.ParseArguments(args);
         if (message is null) return 2;
         using var elector = new WindowsHostElector();

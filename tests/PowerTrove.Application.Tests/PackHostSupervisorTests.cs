@@ -179,6 +179,27 @@ public sealed class PackHostSupervisorTests
         Assert.False((await files.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
     }
 
+    [Fact]
+    public async Task FailedHandshakesAreReportedAsConsecutiveStartFailures_AndASuccessResetsTheCount()
+    {
+        await using var fixture = new Fixture("success");
+        var reports = new System.Collections.Concurrent.ConcurrentQueue<(string Version, int Failures)>();
+        fixture.Host.StartFailed += (group, failures) => reports.Enqueue((group.Packs[0].Version, failures));
+        // The worker answers as 0.1.0, so a group expecting a new 0.2.0 fails its handshake like a broken update.
+        var broken = new PackWorkerGroup("fixture-new", fixture.Group.PackDirectories, [new("powertrove.fixture", "0.2.0")]);
+        for (int i = 0; i < 2; i++)
+            Assert.True((await fixture.Host.PreviewAsync(broken, "powertrove.fixture.copy", fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+        await WaitUntil(() => reports.Count == 2, fixture.Token);
+        Assert.Equal([("0.2.0", 1), ("0.2.0", 2)], reports.OrderBy(r => r.Failures).ToArray());
+        Assert.False((await fixture.Host.PreviewAsync(fixture.Group, "powertrove.fixture.copy", fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+        Assert.Equal(2, reports.Count);
+    }
+
+    private static async Task WaitUntil(Func<bool> condition, CancellationToken token)
+    {
+        while (!condition()) await Task.Delay(20, token);
+    }
+
     private sealed class StartedProgress : IProgress<ActionProgress>
     {
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);

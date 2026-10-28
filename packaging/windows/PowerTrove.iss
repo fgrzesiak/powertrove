@@ -74,8 +74,8 @@ end;
 procedure InitializeWizard();
 begin
   PackPage := CreateInputOptionPage(wpWelcome, 'Choose your tools', 'Which tools should PowerTrove download?',
-    'PowerTrove installs only its core here. At its first start it downloads the selected tools from the official, signed channel ' +
-    'and verifies each one. You can add or remove tools in Settings at any time.', False, False);
+    'PowerTrove installs only its core. Setup then downloads the selected tools from the official, signed channel and verifies each one. ' +
+    'If that is not possible now, for example offline, PowerTrove installs them at its first start. You can add or remove tools in Settings at any time.', False, False);
   PackPage.Add('File Tools: rename, zip, compare and sort files');
   PackPage.Add('PDF Tools: merge, split, convert and organize PDFs');
   PackPage.Add('Image Tools: convert, resize and compress images');
@@ -95,10 +95,11 @@ begin
   Result := (PackPage <> nil) and (PageID = PackPage.ID) and not FreshInstall;
 end;
 
-// The app installs these at its first start through its verified package manager, then deletes this file.
+// The app's headless setup command installs these through its verified package manager and removes this file.
+// Anything it cannot install now stays listed, and the app installs it at its next start.
 procedure CurStepChanged(CurStep: TSetupStep);
 var
-  I: Integer;
+  I, ResultCode: Integer;
   Selection: String;
 begin
   if (CurStep <> ssPostInstall) or not FreshInstall then Exit;
@@ -109,8 +110,17 @@ begin
       if Selection <> '' then Selection := Selection + ',';
       Selection := Selection + '"' + PackId(I) + '"';
     end;
-  if Selection <> '' then
-    SaveStringToFile(ExpandConstant('{app}\setup-packs.json'), '{"packs":[' + Selection + ']}', False);
+  if Selection = '' then Exit;
+  SaveStringToFile(ExpandConstant('{app}\setup-packs.json'), '{"packs":[' + Selection + ']}', False);
+  WizardForm.StatusLabel.Caption := 'Downloading and verifying the selected tools...';
+  WizardForm.ProgressGauge.Style := npbstMarquee;
+  try
+    if not Exec(ExpandConstant('{app}\PowerTrove.exe'), '--install-setup-packs', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode)
+      or (ResultCode <> 0) then
+      SuppressibleMsgBox('Some tools could not be downloaded now. PowerTrove installs them at its next start.', mbInformation, MB_OK, IDOK);
+  finally
+    WizardForm.ProgressGauge.Style := npbstNormal;
+  end;
 end;
 
 // Only the explicit in-app update handoff relaunches automatically. Normal installs retain opt-in launch.

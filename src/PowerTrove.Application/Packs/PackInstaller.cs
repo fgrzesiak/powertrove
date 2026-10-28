@@ -22,6 +22,7 @@ public sealed class PackInstaller
     private readonly string _root;
     private readonly Func<string, CancellationToken, Task> _stopWorkers;
     private readonly SemaphoreSlim _gate = new(1, 1);
+    private readonly string _storeLock;
 
     public PackInstaller(string userRoot, Version hostVersion, Func<string, CancellationToken, Task> stopWorkers,
         IPackInstallFileSystem? files = null, PackSignatureVerifier? signatures = null)
@@ -29,6 +30,24 @@ public sealed class PackInstaller
         _files = files ?? new PhysicalPackInstallFileSystem(); _signatures = signatures ?? new PackSignatureVerifier();
         _hostVersion = hostVersion; _bundles = new(_signatures, hostVersion); _stopWorkers = stopWorkers;
         _root = Path.Combine(PackOutputCommitter.Canonical(userRoot), "packs"); _files.CheckSafePath(_root);
+        _storeLock = Path.Combine(_root, ".store.lock");
+    }
+
+    /// <summary>
+    /// Setup's maintenance run and the app are separate processes, so an exclusive handle serializes every store
+    /// change across them. Windows releases it when its process ends, even after a crash.
+    /// </summary>
+    private async Task<IDisposable> LockStoreAsync(CancellationToken token)
+    {
+        _files.CreateDirectory(_root);
+        _files.CheckSafePath(_storeLock);
+        while (true)
+        {
+            token.ThrowIfCancellationRequested();
+            try { return new FileStream(_storeLock, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, 1); }
+            catch (IOException ex) when (ex.HResult == unchecked((int)0x80070020)) // Sharing violation: another process changes packs.
+            { await Task.Delay(200, token).ConfigureAwait(false); }
+        }
     }
 
     public async Task<InstalledPack> InstallAsync(string bundlePath, CancellationToken token = default, ActionManifest? expectedManifest = null)
@@ -38,6 +57,7 @@ public sealed class PackInstaller
         bool activated = false;
         try
         {
+            using var store = await LockStoreAsync(token).ConfigureAwait(false);
             await using var input = _files.OpenRead(PackOutputCommitter.Canonical(bundlePath));
             using var bundle = await _bundles.OpenAsync(input, token).ConfigureAwait(false);
             if (expectedManifest is not null && ActionPackManifest.ToJson(expectedManifest) != ActionPackManifest.ToJson(bundle.Manifest))
@@ -108,6 +128,7 @@ public sealed class PackInstaller
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
+            using var store = await LockStoreAsync(token).ConfigureAwait(false);
             string root = PackRoot(id);
             var active = await ReadActivationAsync(root, token).ConfigureAwait(false);
             if (active is null || active.Version != version) return;
@@ -130,9 +151,39 @@ public sealed class PackInstaller
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
+            using var store = await LockStoreAsync(token).ConfigureAwait(false);
             await _stopWorkers(id, token).ConfigureAwait(false);
             token.ThrowIfCancellationRequested();
             _files.DeleteDirectory(root);
+        }
+        finally { _gate.Release(); }
+    }
+
+    /// <summary>
+    /// Restores the retained previous version when a newly activated version has never started successfully.
+    /// Only a signature-verified previous version is restored; returns whether anything changed.
+    /// </summary>
+    public async Task<bool> RollBackAsync(string id, string failedVersion, CancellationToken token = default)
+    {
+        ValidateVersion(failedVersion);
+        string root = PackRoot(id);
+        await _gate.WaitAsync(token).ConfigureAwait(false);
+        try
+        {
+            using var store = await LockStoreAsync(token).ConfigureAwait(false);
+            var active = await ReadActivationAsync(root, token).ConfigureAwait(false);
+            if (active is null || active.Version != failedVersion || active.Confirmed || active.PreviousVersion is not { } previous) return false;
+            string previousRoot = Path.Combine(root, previous);
+            byte[] manifest = await ReadAsync(Path.Combine(previousRoot, "manifest.json"), ActionPackManifest.MaximumJsonBytes, token).ConfigureAwait(false);
+            byte[] signature = await ReadAsync(Path.Combine(previousRoot, "manifest.sig"), 128, token).ConfigureAwait(false);
+            var parsed = PackBundleVerifier.ParseManifest(manifest, _hostVersion);
+            if (!_signatures.Verify(manifest, signature) || parsed.Id != id || parsed.Version != previous) return false;
+            await _stopWorkers(id, token).ConfigureAwait(false);
+            token.ThrowIfCancellationRequested();
+            // The previous version ran before, so it is confirmed again; the failed version is removed.
+            await ActivateAsync(root, new PackActivation(previous, Convert.ToHexString(SHA256.HashData(manifest)), null, Confirmed: true), token).ConfigureAwait(false);
+            _files.DeleteDirectory(Path.Combine(root, failedVersion));
+            return true;
         }
         finally { _gate.Release(); }
     }

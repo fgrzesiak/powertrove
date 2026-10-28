@@ -36,6 +36,58 @@ public sealed class PackInstallerTests
     }
 
     [Fact]
+    public async Task ANeverStartedVersionRollsBackToTheVerifiedPreviousVersion_AConfirmedOneNeverDoes()
+    {
+        using var fixture = new Fixture();
+        var first = await fixture.Installer.InstallAsync(fixture.Bundle("0.1.0"));
+        Assert.False(await fixture.Installer.RollBackAsync("powertrove.fixture", "0.1.0")); // Nothing to return to.
+        await fixture.Installer.ConfirmStartedAsync("powertrove.fixture", "0.1.0");
+        var second = await fixture.Installer.InstallAsync(fixture.Bundle("0.2.0"));
+        Assert.False(await fixture.Installer.RollBackAsync("powertrove.fixture", "0.3.0")); // Not the active version.
+        fixture.StopCompleted = false;
+        Assert.True(await fixture.Installer.RollBackAsync("powertrove.fixture", "0.2.0"));
+        Assert.True(fixture.StopCompleted);
+        Assert.Equal("0.1.0", Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+        Assert.True(Directory.Exists(first.Directory)); Assert.False(Directory.Exists(second.Directory));
+        using (var active = JsonDocument.Parse(File.ReadAllBytes(fixture.ActivePath)))
+            Assert.True(active.RootElement.GetProperty("Confirmed").GetBoolean());
+        // The failed version can be installed again later, and a confirmed version is never rolled back.
+        await fixture.Installer.InstallAsync(fixture.Bundle("0.2.0"));
+        await fixture.Installer.ConfirmStartedAsync("powertrove.fixture", "0.2.0");
+        Assert.False(await fixture.Installer.RollBackAsync("powertrove.fixture", "0.2.0"));
+        fixture.AssertNoTemporaryFiles();
+    }
+
+    [Fact]
+    public async Task ATamperedPreviousVersionIsNeverRestored()
+    {
+        using var fixture = new Fixture();
+        var first = await fixture.Installer.InstallAsync(fixture.Bundle("0.1.0"));
+        await fixture.Installer.InstallAsync(fixture.Bundle("0.2.0"));
+        File.WriteAllText(Path.Combine(first.Directory, "manifest.json"), File.ReadAllText(Path.Combine(first.Directory, "manifest.json")).Replace("Fixture tools", "Changed tools"));
+        Assert.False(await fixture.Installer.RollBackAsync("powertrove.fixture", "0.2.0"));
+        Assert.Equal("0.2.0", Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+    }
+
+    [Fact]
+    public async Task StoreChangesWaitWhileAnotherProcessHoldsTheStoreLock()
+    {
+        using var fixture = new Fixture();
+        await fixture.Installer.InstallAsync(fixture.Bundle("0.1.0"));
+        Task removal;
+        // Another process (Setup's maintenance run) holds the exclusive store handle.
+        using (new FileStream(fixture.Temp.File("user/packs/.store.lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+        {
+            removal = fixture.Installer.UninstallAsync("powertrove.fixture");
+            await Task.Delay(600);
+            Assert.False(removal.IsCompleted);
+            Assert.True(File.Exists(fixture.ActivePath));
+        }
+        await removal.WaitAsync(TimeSpan.FromSeconds(10));
+        Assert.Empty(await fixture.Installer.GetInstalledAsync());
+    }
+
+    [Fact]
     public async Task FailedAtomicActivationPreservesTheExactOldPointerAndRemovesTheNewVersion()
     {
         using var fixture = new Fixture();

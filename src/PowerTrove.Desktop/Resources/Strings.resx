@@ -143,6 +143,7 @@
   <data name="PackDownloadConsent" xml:space="preserve"><value>Download {0} ({1}) from {2} and install it?</value></data>
   <data name="PackRemoveConsent" xml:space="preserve"><value>Remove {0}? Its downloaded versions will be deleted. Bundled tools remain available.</value></data>
   <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>Remove {0}? Its actions are unavailable until you install the pack again. Your files and settings stay unchanged.</value></data>
+  <data name="PackRolledBack" xml:space="preserve"><value>A pack update could not start. PowerTrove restored the previous version.</value></data>
   <data name="PackInstallAndRun" xml:space="preserve"><value>Install and continue</value></data>
   <data name="PackSelectAgain" xml:space="preserve"><value>Select the files again.</value></data>
   <data name="PackNeedsInstall" xml:space="preserve"><value>{0} is not installed</value></data>

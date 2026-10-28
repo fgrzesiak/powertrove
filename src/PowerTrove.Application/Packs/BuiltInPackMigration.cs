@@ -30,29 +30,39 @@ public sealed class BuiltInPackMigration(IPackManagementService packs, IPackMigr
     }
 
     /// <summary>
-    /// Reads and removes the selection Setup wrote next to the app. Only well-formed official pack IDs are accepted;
+    /// Reads the selection Setup wrote next to the app. Only well-formed official pack IDs are accepted;
     /// anything else is ignored, and the packs are still verified like any explicit installation.
     /// </summary>
+    public static IReadOnlyList<string> ReadSetupSelection(string file)
+    {
+        var info = new FileInfo(file);
+        if (!info.Exists || (info.Attributes & FileAttributes.ReparsePoint) != 0 || info.Length > 4096) return [];
+        try
+        {
+            using var document = System.Text.Json.JsonDocument.Parse(File.ReadAllBytes(file));
+            if (document.RootElement.ValueKind != System.Text.Json.JsonValueKind.Object ||
+                !document.RootElement.TryGetProperty("packs", out var packs) || packs.ValueKind != System.Text.Json.JsonValueKind.Array) return [];
+            return packs.EnumerateArray().Where(p => p.ValueKind == System.Text.Json.JsonValueKind.String).Select(p => p.GetString()!)
+                .Where(id => FormerlyBuiltIn.Contains(id, StringComparer.Ordinal)).Distinct(StringComparer.Ordinal).ToArray();
+        }
+        catch (System.Text.Json.JsonException) { return []; }
+    }
+
+    /// <summary>Records what is still to install for the next start, or removes the selection when nothing remains.</summary>
+    public static void WriteSetupSelection(string file, IReadOnlyCollection<string> remaining)
+    {
+        if (remaining.Count == 0) { File.Delete(file); return; }
+        File.WriteAllText(file, System.Text.Json.JsonSerializer.Serialize(new { packs = remaining }));
+    }
+
+    /// <summary>Reads and removes the selection; the app then installs it like takeover packs.</summary>
     public static IReadOnlyList<string> TakeSetupSelection(string file)
     {
         try
         {
-            var info = new FileInfo(file);
-            if (!info.Exists || (info.Attributes & FileAttributes.ReparsePoint) != 0) return [];
-            IReadOnlyList<string> ids = [];
-            if (info.Length <= 4096)
-            {
-                try
-                {
-                    using var document = System.Text.Json.JsonDocument.Parse(File.ReadAllBytes(file));
-                    if (document.RootElement.ValueKind == System.Text.Json.JsonValueKind.Object &&
-                        document.RootElement.TryGetProperty("packs", out var packs) && packs.ValueKind == System.Text.Json.JsonValueKind.Array)
-                        ids = packs.EnumerateArray().Where(p => p.ValueKind == System.Text.Json.JsonValueKind.String).Select(p => p.GetString()!)
-                            .Where(id => FormerlyBuiltIn.Contains(id, StringComparer.Ordinal)).Distinct(StringComparer.Ordinal).ToArray();
-                }
-                catch (System.Text.Json.JsonException) { }
-            }
-            File.Delete(file);
+            if ((new FileInfo(file) is { Exists: true } info) && (info.Attributes & FileAttributes.ReparsePoint) != 0) return [];
+            var ids = ReadSetupSelection(file);
+            if (File.Exists(file)) File.Delete(file);
             return ids;
         }
         // An undeletable selection would be applied again; a later start retries instead.
