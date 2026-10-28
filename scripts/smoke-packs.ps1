@@ -30,6 +30,7 @@ foreach ($entry in $catalog.packs) {
     $work = Join-Path (Join-Path $env:LOCALAPPDATA 'PowerTrove/workers') ([guid]::NewGuid().ToString('N'))
     $process = $null
     try {
+        Write-Output ('Checking worker startup: ' + $manifest.id + '@' + $manifest.version)
         [IO.Compression.ZipFile]::ExtractToDirectory((Join-Path $assetRoot ($manifest.id + '-' + $manifest.version + '.cbpack')), $unpack)
         $digest = (Get-FileHash -LiteralPath (Join-Path $unpack 'manifest.json') -Algorithm SHA256).Hash
         $start = New-Object Diagnostics.ProcessStartInfo
@@ -46,8 +47,12 @@ foreach ($entry in $catalog.packs) {
         $hello = @{ type='hello'; protocolVersion=1; hostVersion=$hostVersion } | ConvertTo-Json -Compress
         $process.StandardInput.WriteLine($hello)
         $line = $process.StandardOutput.ReadLineAsync()
-        if (-not $line.Wait(20000) -or -not $line.Result) { throw 'Signed pack worker did not become ready.' }
-        $ready = $line.Result | ConvertFrom-Json
+        if (-not $line.Wait(20000) -or -not $line.Result) {
+            $status = if ($process.HasExited) { 'exit code ' + $process.ExitCode } else { 'startup timeout' }
+            throw ('Signed pack worker did not become ready: ' + $status + '.')
+        }
+        try { $ready = $line.Result | ConvertFrom-Json }
+        catch { throw 'Signed pack worker returned a malformed handshake.' }
         if ($ready.type -cne 'ready' -or @($ready.packs).Count -ne 1 -or
             $ready.packs[0].id -cne $manifest.id -or $ready.packs[0].version -cne $manifest.version) {
             throw 'Signed pack worker identity mismatch.'
