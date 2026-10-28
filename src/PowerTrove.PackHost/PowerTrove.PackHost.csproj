@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="PowerTrove.PackHost.Tests" />
     <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
     <ProjectReference Include="..\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
     <ProjectReference Include="..\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />

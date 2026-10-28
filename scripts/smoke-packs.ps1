@@ -42,13 +42,36 @@ foreach ($entry in $catalog.packs) {
         $start.RedirectStandardInput = $true
         $start.RedirectStandardOutput = $true
         $start.RedirectStandardError = $true
-        $process = [Diagnostics.Process]::Start($start)
+        $start.EnvironmentVariables['POWERTROVE_WORKER_STARTUP_DIAGNOSTICS'] = '1'
+        # The protocol is raw UTF-8 lines. A UTF-8 console code page (hosted runners) otherwise
+        # makes the redirected stdin writer emit a BOM before the hello message.
+        $stdinEncoding = New-Object Text.UTF8Encoding($false)
+        if ($start.PSObject.Properties['StandardInputEncoding']) {
+            $start.StandardInputEncoding = $stdinEncoding
+            $process = [Diagnostics.Process]::Start($start)
+        }
+        else {
+            # Windows PowerShell 5.1 takes the stdin encoding from the console.
+            $consoleEncoding = [Console]::InputEncoding
+            try {
+                [Console]::InputEncoding = $stdinEncoding
+                $process = [Diagnostics.Process]::Start($start)
+            }
+            finally { [Console]::InputEncoding = $consoleEncoding }
+        }
         $stderr = $process.StandardError.ReadToEndAsync()
         $hello = @{ type='hello'; protocolVersion=1; hostVersion=$hostVersion } | ConvertTo-Json -Compress
         $process.StandardInput.WriteLine($hello)
         $line = $process.StandardOutput.ReadLineAsync()
         if (-not $line.Wait(20000) -or -not $line.Result) {
             $status = if ($process.HasExited) { 'exit code ' + $process.ExitCode } else { 'startup timeout' }
+            if ($process.HasExited -and $stderr.Wait(1000)) {
+                foreach ($diagnostic in @($stderr.Result -split '\r?\n')) {
+                    if ($diagnostic -cmatch '^Worker startup: stage=[A-Za-z]+; category=[A-Za-z]+; reason=[A-Za-z]+; hresult=0x[0-9A-F]{8}$') {
+                        Write-Output $diagnostic
+                    }
+                }
+            }
             throw ('Signed pack worker did not become ready: ' + $status + '.')
         }
         try { $ready = $line.Result | ConvertFrom-Json }
