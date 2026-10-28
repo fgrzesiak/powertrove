@@ -109,7 +109,7 @@
   <data name="RenameOldName" xml:space="preserve"><value>Current name</value></data>
   <data name="RenameNewName" xml:space="preserve"><value>New name</value></data>
   <data name="UpdatesHeading" xml:space="preserve"><value>Updates</value></data>
-  <data name="UpdatesPrivacy" xml:space="preserve"><value>Only this button requests release information from GitHub. GitHub receives ordinary connection metadata, such as your IP address and HTTP headers. No selected files or content are sent. Opening the release page requires a separate click; PowerTrove does not download or install updates.</value></data>
+  <data name="UpdatesPrivacy" xml:space="preserve"><value>PowerTrove checks GitHub for new versions at startup. You can turn this off above. GitHub receives ordinary connection metadata, never selected content. Update now downloads the installer, verifies its SHA-256 digest and closes PowerTrove for the update, then restarts it. For ZIP builds, the current folder becomes a registered installation. Windows security prompts remain enabled.</value></data>
   <data name="UpdatesCheck" xml:space="preserve"><value>Check for updates</value></data>
   <data name="UpdatesOpenPage" xml:space="preserve"><value>Open release page</value></data>
 <data name="RecipePackTitle" xml:space="preserve"><value>Recipes</value></data>
@@ -183,4 +183,9 @@
   <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>The time settings did not fit this file. The full range is selected; please choose the section again.</value></data>
   <data name="MediaTrimReady" xml:space="preserve"><value>Ready to save the highlighted section as a new file.</value></data>
   <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Go back to the time settings to review the additional confirmation.</value></data>
+  <data name="UpdatesInstall" xml:space="preserve"><value>Update now</value></data>
+  <data name="UpdatesLater" xml:space="preserve"><value>Later</value></data>
+  <data name="UpdatesCancel" xml:space="preserve"><value>Cancel download</value></data>
+  <data name="UpdatesStartup" xml:space="preserve"><value>Check for updates at startup</value></data>
+  <data name="ContextPackDismiss" xml:space="preserve"><value>Dismiss</value></data>
 </root>

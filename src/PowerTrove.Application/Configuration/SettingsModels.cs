@@ -42,7 +42,8 @@ public sealed record UserSettings(
     Dictionary<string, Dictionary<string, SelectionUsageEntry>>? SelectionUsage = null,
     string? UiLanguage = null,
     bool ShowNotInstalledActions = true,
-    bool RunFileToolsInSeparateProcess = false)
+    bool RunFileToolsInSeparateProcess = false,
+    bool CheckForUpdatesOnStartup = true)
 {
     public const int CurrentVersion = 3;
 

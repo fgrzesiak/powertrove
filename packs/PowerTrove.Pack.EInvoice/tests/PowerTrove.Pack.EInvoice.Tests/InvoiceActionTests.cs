@@ -46,8 +46,6 @@ public sealed class InvoiceActionTests : IDisposable
     [InlineData(true)]
     public async Task FactoryWithRealHostPrinterCreatesAnActualPdfVisualization(bool cii)
     {
-        // Edge printing on hosted GitHub runners is unreliable; this runs on real Windows desktops.
-        if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true") return;
         string input = _directory.Write("invoice.xml", cii ? TestInvoiceFactory.Cii() : TestInvoiceFactory.Ubl());
         var host = new PackHostServices(new Version(0, 1, 0), FileActionServices.CreatePhysical(new FileSignatureVerifier())).Add<ILocalHtmlPdfPrinter>(new WindowsHtmlPdfRenderer(new SafeHtmlMarkupValidator()));
         var action = new EInvoicePackFactory().Create(host).Actions.Single(a => a.Descriptor.Id == "powertrove.einvoice.to-pdf");

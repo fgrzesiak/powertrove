@@ -11,6 +11,8 @@
     <Nullable>enable</Nullable>
     <RootNamespace>PowerTrove.Abstractions</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Compatible SDK releases retain their binding identity across desktop versions. -->
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <NoWarn>CS1591;CS1573</NoWarn>
   </PropertyGroup>
 

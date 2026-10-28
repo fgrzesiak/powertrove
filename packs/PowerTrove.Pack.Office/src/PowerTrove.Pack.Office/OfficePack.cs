@@ -17,7 +17,7 @@ public sealed class OfficePack : IActionPack
     }
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("powertrove.office", SR.Get("PackTitle"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.office", SR.Get("PackTitle"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(OfficePack).Assembly), "PowerTrove");
     public IReadOnlyList<IAction> Actions { get; }
 }
 

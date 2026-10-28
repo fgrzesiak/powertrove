@@ -15,6 +15,11 @@ public static class UiText
     public static string RecipeImagesForEmailDescription => Get(nameof(RecipeImagesForEmailDescription));
     public static string RecipeMixedForEmailTitle => Get(nameof(RecipeMixedForEmailTitle));
     public static string RecipeMixedForEmailDescription => Get(nameof(RecipeMixedForEmailDescription));
+    public static string UpdatesInstall => Get(nameof(UpdatesInstall));
+    public static string UpdatesLater => Get(nameof(UpdatesLater));
+    public static string UpdatesCancel => Get(nameof(UpdatesCancel));
+    public static string UpdatesStartup => Get(nameof(UpdatesStartup));
+    public static string ContextPackDismiss => Get(nameof(ContextPackDismiss));
     public static string UpdatesHeading => Get(nameof(UpdatesHeading));
     public static string UpdatesPrivacy => Get(nameof(UpdatesPrivacy));
     public static string UpdatesCheck => Get(nameof(UpdatesCheck));

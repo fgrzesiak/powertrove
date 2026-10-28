@@ -99,6 +99,8 @@ public static class ActionPackManifest
     private static void Validate(ActionManifest manifest)
     {
         if (manifest.SchemaVersion is not ("1.0" or "2.0")) throw new JsonException("Unsupported manifest schema version.");
+        if (manifest.ReleaseFingerprint is { } fingerprint && (fingerprint.Length != 64 || fingerprint.Any(c => !Uri.IsHexDigit(c))))
+            throw new JsonException("Invalid release input fingerprint.");
         RequireText(manifest.Id); RequireText(manifest.Version); RequireText(manifest.DisplayName); RequireText(manifest.Publisher); RequireText(manifest.ProtocolVersion);
         if (manifest.Actions is null || manifest.Actions.Count > 10000) throw new JsonException("Invalid manifest actions.");
         if (manifest.SchemaVersion == "2.0")
@@ -128,6 +130,8 @@ public static class ActionPackManifest
                 {
                     if (parameter is null) throw new JsonException("Missing action parameter.");
                     RequireText(parameter.Name);
+                    if (parameter.Minimum > parameter.Maximum || parameter.FileTypes?.Count > 1000 || parameter.ChoiceTitles?.Count > 1000)
+                        throw new JsonException("Invalid parameter constraints.");
                     if (parameter.Type is not ("string" or "boolean" or "number" or "choice" or "password" or "file" or "color") ||
                         parameter.Type == "password" && parameter.Default is not null ||
                         parameter.Editor is not (null or "multiSelect") || parameter.Editor == "multiSelect" && parameter.Type != "string")
@@ -212,5 +216,8 @@ public static class ActionPackManifest
         Required: false,
         Choices: p.Choices?.Select(c => c.Value).ToList(),
         Default: p.Kind == ActionParameterKind.Password ? null : p.DefaultValue,
-        Editor: p.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null);
+        Editor: p.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null,
+        Minimum: p.Minimum, Maximum: p.Maximum, Placeholder: p.Placeholder, FileTypes: p.FileTypes,
+        MustExist: p.MustExist, VisibleWhenParameter: p.VisibleWhenParameter, VisibleWhenValue: p.VisibleWhenValue,
+        ChoiceTitles: p.Choices?.ToDictionary(c => c.Value, c => c.Title, StringComparer.Ordinal));
 }

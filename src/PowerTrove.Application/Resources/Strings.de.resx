@@ -148,7 +148,7 @@
   <data name="UpdatesInstalledVersion" xml:space="preserve"><value>Installierte Version: {0}</value></data>
   <data name="UpdatesNotChecked" xml:space="preserve"><value>Es wurde noch nicht nach Updates gesucht.</value></data>
   <data name="UpdatesChecking" xml:space="preserve"><value>GitHub-Releases werden geprüft …</value></data>
-  <data name="UpdatesAvailable" xml:space="preserve"><value>Version {0} ist verfügbar. Öffnen Sie die Release-Seite, um sie zu prüfen.</value></data>
+  <data name="UpdatesAvailable" xml:space="preserve"><value>Version {0} ist verfügbar.</value></data>
   <data name="UpdatesUpToDate" xml:space="preserve"><value>Es wurde keine neuere passende Version gefunden.</value></data>
   <data name="UpdatesNoReleases" xml:space="preserve"><value>Es sind noch keine veröffentlichten Releases verfügbar.</value></data>
   <data name="UpdatesOffline" xml:space="preserve"><value>GitHub konnte nicht erreicht werden. Lokale Aktionen sind weiterhin verfügbar.</value></data>
@@ -156,7 +156,7 @@
   <data name="UpdatesRateLimited" xml:space="preserve"><value>GitHub hat die Anfragen begrenzt. Versuchen Sie es später erneut.</value></data>
   <data name="UpdatesInvalidData" xml:space="preserve"><value>Die Release-Informationen konnten nicht geprüft werden. Versuchen Sie es später erneut.</value></data>
   <data name="UpdatesUnavailable" xml:space="preserve"><value>Der Release-Kanal ist nicht verfügbar. Lokale Aktionen sind weiterhin verfügbar.</value></data>
-  <data name="UpdatesCanceled" xml:space="preserve"><value>Die Update-Prüfung wurde abgebrochen.</value></data>
+  <data name="UpdatesCanceled" xml:space="preserve"><value>Der Update-Vorgang wurde abgebrochen.</value></data>
   <data name="UpdatesOpenFailed" xml:space="preserve"><value>Die Release-Seite konnte nicht geöffnet werden. Versuchen Sie es erneut.</value></data>
   <data name="PackWorkerStopped" xml:space="preserve"><value>Das Werkzeug wurde unerwartet beendet. Es wurden keine Dateien geändert.</value></data>
   <data name="PackOutputFailed" xml:space="preserve"><value>Einige Ausgaben konnten nicht gespeichert werden. Fertige Ausgaben werden unten aufgeführt.</value></data>
@@ -193,4 +193,22 @@
   <data name="PackSizeKilobytes" xml:space="preserve"><value>{0:N1} KB</value></data>
   <data name="PackSizeBytes" xml:space="preserve"><value>{0:N0} Bytes</value></data>
   <data name="PackVersionUpdate" xml:space="preserve"><value>Version {0} → {1}</value></data>
+  <data name="UpdatesDownloading" xml:space="preserve"><value>Update wird heruntergeladen und geprüft …</value></data>
+  <data name="UpdatesDownloadProgress" xml:space="preserve"><value>Update wird heruntergeladen: {0}%</value></data>
+  <data name="UpdatesInstallerStarted" xml:space="preserve"><value>Der Installer wurde gestartet. PowerTrove wird geschlossen und nach dem Update neu gestartet.</value></data>
+  <data name="UpdatesIntegrityFailed" xml:space="preserve"><value>Das Update konnte nicht geprüft werden. Es wurde nichts installiert. Versuchen Sie es später erneut.</value></data>
+  <data name="UpdatesDownloadTimedOut" xml:space="preserve"><value>Die Zeit für den Update-Download ist abgelaufen. Es wurde nichts installiert.</value></data>
+  <data name="UpdatesFinishWork" xml:space="preserve"><value>Beenden Sie laufende Aktionen und schließen Sie Bearbeitungsfenster oder Dialoge vor dem Update.</value></data>
+  <data name="UpdatesInstallFailed" xml:space="preserve"><value>Das Update konnte nicht gestartet werden. Es wurde nichts installiert. Versuchen Sie es erneut.</value></data>
+  <data name="UpdatesManualDownload" xml:space="preserve"><value>Version {0} ist verfügbar. Für dieses Release fehlt ein geprüfter Installer für das direkte Update. Öffnen Sie die Release-Seite.</value></data>
+  <data name="ContextPackOfficial" xml:space="preserve"><value>Offizielles Pack: {0}</value></data>
+  <data name="ContextPackActions" xml:space="preserve"><value>{0} zusätzliche Aktionen passen zu dieser Auswahl.</value></data>
+  <data name="ContextPackDownload" xml:space="preserve"><value>{0} herunterladen ({1})</value></data>
+  <data name="ContextPackUpdate" xml:space="preserve"><value>{0} aktualisieren ({1})</value></data>
+  <data name="ContextPackOfferChanged" xml:space="preserve"><value>Das verfügbare Paket hat sich geändert. Prüfen Sie die neue Größe und klicken Sie erneut zum Herunterladen.</value></data>
+  <data name="ContextPackProgress" xml:space="preserve"><value>Pack wird heruntergeladen: {0:0}%</value></data>
+  <data name="ContextPackReady" xml:space="preserve"><value>Pack installiert. Die Aktionen sind ohne Neustart von PowerTrove verfügbar.</value></data>
+  <data name="PackHostRequired" xml:space="preserve"><value>Benötigt PowerTrove {0} oder neuer. Bereits installierte Aktionen bleiben verfügbar.</value></data>
+  <data name="ContextPackIncompatible" xml:space="preserve"><value>Passende App-Version erforderlich</value></data>
+  <data name="PackNewerHostRequired" xml:space="preserve"><value>Pack-Version {0} benötigt PowerTrove {1}. Version {2} ist mit Ihrer Installation kompatibel.</value></data>
 </root>

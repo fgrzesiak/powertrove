@@ -12,4 +12,6 @@
     <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Office.Composition" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
+  <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
 </Project>

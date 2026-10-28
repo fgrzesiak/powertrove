@@ -150,7 +150,7 @@ public sealed class ActionCatalogTests
     [InlineData("[]")]
     [InlineData("{\"schemaVersion\":\"1\",\"packs\":null}")]
     [InlineData("{\"schemaVersion\":\"1\",\"schemaVersion\":\"1\",\"packs\":[]}")]
-    [InlineData("{\"schemaVersion\":\"2\",\"packs\":[]}")]
+    [InlineData("{\"schemaVersion\":\"3\",\"packs\":[]}")]
     public void MalformedCatalogs_UseContentFreeTypedErrors(string json)
     {
         var ex = Assert.Throws<CatalogFormatException>(() => ActionCatalog.Read(json, Array.Empty<ActionPackInfo>(), new Version(0, 1, 0)));

@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Buffers.Binary;
 using PowerTrove.Abstractions.Manifest;
+using PowerTrove.Core.Catalog;
 
 namespace PowerTrove.Application.Packs;
 
@@ -92,8 +93,7 @@ public sealed class PackBundleVerifier(PackSignatureVerifier signatures, Version
             || payload.SizeBytes > MaximumPayloadBytes || !payload.EntryAssembly.StartsWith("payload/", StringComparison.Ordinal)
             || payload.Files.Any(f => !f.Path.StartsWith("payload/", StringComparison.Ordinal))
             || !Version.TryParse(manifest.MinHostVersion, out var minimum)
-            || requireCompatible && (minimum > hostVersion || manifest.ProtocolVersion != "1"
-                || manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] != "files"))) throw new InvalidDataException();
+            || requireCompatible && !PackCompatibility.IsSupported(manifest, hostVersion, "windows", requireWorkerInput: true)) throw new InvalidDataException();
         PackInstaller.ValidateId(manifest.Id); PackInstaller.ValidateVersion(manifest.Version);
         foreach (var action in manifest.Actions)
         {

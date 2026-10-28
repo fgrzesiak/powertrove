@@ -8,8 +8,20 @@ using PowerTrove.Core.Catalog;
 
 namespace PowerTrove.Core;
 
-public class ActionRegistry : IActionRegistry
+public class ActionRegistry : IActionRegistry, IActionRegistryChanges
 {
+    public event EventHandler? Changed;
+    public long Revision => Interlocked.Read(ref _revision);
+    private void PublishChange()
+    {
+        Interlocked.Increment(ref _revision);
+        if (Changed is not { } handlers) return;
+        foreach (EventHandler handler in handlers.GetInvocationList())
+            try { handler(this, EventArgs.Empty); }
+            catch (Exception) { /* Registry state is already committed; isolate UI observers. */ }
+    }
+    private long _revision;
+
     private readonly ConcurrentDictionary<string, IAction> _actions = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _registrationGate = new();
     private readonly Dictionary<string, string> _packOwners = new(StringComparer.OrdinalIgnoreCase);
@@ -36,6 +48,7 @@ public class ActionRegistry : IActionRegistry
             foreach (string id in previous) { _actions.TryRemove(id, out _); _packOwners.Remove(id); }
             foreach (var action in actions) { _actions[action.Descriptor.Id] = action; _packOwners[action.Descriptor.Id] = packId; }
         }
+        PublishChange();
     }
 
     public void Register(IAction action)
@@ -49,6 +62,7 @@ public class ActionRegistry : IActionRegistry
             _actions[action.Descriptor.Id] = action;
             _packOwners.Remove(action.Descriptor.Id);
         }
+        PublishChange();
     }
 
     /// <summary>Adds missing packs atomically; an invalid catalog never replaces installed actions.</summary>
@@ -65,6 +79,24 @@ public class ActionRegistry : IActionRegistry
                     throw new InvalidOperationException("Catalog and installed action IDs must be unique.");
             foreach (var action in actions) _actions[action.Descriptor.Id] = action;
         }
+        PublishChange();
+    }
+
+    /// <summary>Refreshes discovery without replacing any installed action or advertising a newer descriptor as installed.</summary>
+    public void ReplaceCatalog(IActionCatalog catalog)
+    {
+        var actions = catalog.Entries.Where(e => e.State is PackInstallState.NotInstalled or PackInstallState.UpdateAvailable or PackInstallState.Incompatible)
+            .Select(e => new CatalogAction(e)).ToArray();
+        if (actions.Select(a => a.Descriptor.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() != actions.Length)
+            throw new InvalidOperationException("Duplicate discovery action.");
+        lock (_registrationGate)
+        {
+            foreach (var id in _actions.Where(p => p.Value is CatalogAction).Select(p => p.Key).ToArray())
+            { _actions.TryRemove(id, out _); _packOwners.Remove(id); }
+            foreach (var action in actions)
+                if (!_actions.ContainsKey(action.Descriptor.Id)) _actions[action.Descriptor.Id] = action;
+        }
+        PublishChange();
     }
 
     public IAction? GetAction(string id)

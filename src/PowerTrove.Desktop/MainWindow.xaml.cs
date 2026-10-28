@@ -46,7 +46,7 @@ public class ActionSearchResultProxy
     public ActionSearchResult Original => _result;
 
     /// <summary>Segoe Fluent Icons glyph for the action's family.</summary>
-    public string IconGlyph => _result.InstallState == PackInstallState.NotInstalled ? "\uE896" : IconFor(_result.Action.Descriptor.Id);
+    public string IconGlyph => _result.Action is CatalogAction ? "\uE896" : IconFor(_result.Action.Descriptor.Id);
 
     /// <summary>
     /// Why the action cannot run, shown under it. Hidden when the whole selection is unavailable:
@@ -133,6 +133,21 @@ public partial class MainWindow : Window
 
     private readonly DispatcherTimer _undoTimer = new() { Interval = TimeSpan.FromSeconds(1) };
 
+    public ReleaseUpdatesViewModel Updates => ((App)App.Current).Updates;
+    private async void DownloadContextPack_Click(object sender, RoutedEventArgs e)
+    {
+        if (((App)App.Current).UpdateInstalling || ViewModel.IsExecuting || sender is not FrameworkElement { Tag: PackSuggestion suggestion }) return;
+        await ViewModel.ContextPacks.InstallAsync(suggestion);
+    }
+    private void DismissContextPack_Click(object sender, RoutedEventArgs e)
+    { if (sender is FrameworkElement { Tag: string id }) ViewModel.ContextPacks.Dismiss(id); }
+    private void CancelContextPack_Click(object sender, RoutedEventArgs e) => ViewModel.ContextPacks.Cancel();
+    private bool _undoInProgress;
+    public bool CanCloseForUpdate => !ViewModel.ContextPacks.IsBusy && !_undoInProgress && !ViewModel.IsExecuting && !_dialogOpen && !_enterController.IsPending && _activeVisualEditor is null;
+    private async void InstallUpdate_Click(object sender, RoutedEventArgs e) => await Updates.InstallAsync();
+    private void DismissUpdate_Click(object sender, RoutedEventArgs e) => Updates.DismissNotice();
+    private void CancelUpdate_Click(object sender, RoutedEventArgs e) => Updates.CancelInstallation();
+
     public MainWindow()
     {
         ViewModel = new PaletteViewModel();
@@ -196,10 +211,11 @@ public partial class MainWindow : Window
         var app = App.Current as App;
         var action = app?.Actions?.GetAction(PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId);
         var snapshot = ViewModel.CurrentSnapshot;
-        if (app == null || action == null || snapshot == null)
+        if (app == null || app.UpdateInstalling || action == null || snapshot == null)
             return;
         app.DismissPalette();
         var organizer = new PageOrganizerWindow(action, snapshot);
+        app.TrackEditor(organizer);
         app.ApplyWindowIcon(organizer);
         organizer.Activate();
     }
@@ -221,6 +237,7 @@ public partial class MainWindow : Window
     private void MainWindow_Closed(object sender, WindowEventArgs args)
     {
         _packInstallCancellation?.Cancel();
+        ViewModel.ContextPacks.Dispose();
         _activeVisualEditor?.Close();
         if (App.Current is App app)
         {
@@ -442,7 +459,13 @@ public partial class MainWindow : Window
         await ViewModel.OpenSingleOutputAsync();
     }
 
-    private async void UndoResult_Click(object sender, RoutedEventArgs e) => await ViewModel.UndoResultAsync();
+    private async void UndoResult_Click(object sender, RoutedEventArgs e)
+    {
+        if (((App)App.Current).UpdateInstalling || _undoInProgress) return;
+        _undoInProgress = true;
+        try { await ViewModel.UndoResultAsync(); }
+        finally { _undoInProgress = false; }
+    }
 
     private void Done_Click(object sender, RoutedEventArgs e)
     {
@@ -573,6 +596,8 @@ public partial class MainWindow : Window
 
         bool actionInput = IsWithin(e.OriginalSource as DependencyObject, SearchBox) || IsWithin(e.OriginalSource as DependencyObject, ActionList);
 
+        if (Updates.IsInstalling && actionInput) { e.Handled = true; return; }
+
         if (ViewModel.HasExecutionResult)
         {
             if (e.Key == Windows.System.VirtualKey.Enter && actionInput)
@@ -648,7 +673,7 @@ public partial class MainWindow : Window
 
     private async void ActionList_ItemClick(object sender, ItemClickEventArgs e)
     {
-        if (e.ClickedItem is ActionSearchResultProxy proxy && !ViewModel.IsExecuting && !_dialogOpen && !_enterController.IsPending)
+        if (!((App)App.Current).UpdateInstalling && e.ClickedItem is ActionSearchResultProxy proxy && !ViewModel.IsExecuting && !_dialogOpen && !_enterController.IsPending)
         {
             if (proxy.IsCompatible)
             {
@@ -659,7 +684,7 @@ public partial class MainWindow : Window
 
     private async System.Threading.Tasks.Task ExecuteActionAsync(ActionSearchResult result)
     {
-        if (ViewModel.IsExecuting || _dialogOpen)
+        if (((App)App.Current).UpdateInstalling || ViewModel.IsExecuting || _dialogOpen)
             return;
 
         var app = App.Current as App;
@@ -697,7 +722,7 @@ public partial class MainWindow : Window
             }
             finally { _packInstallCancellation = null; _dialogOpen = false; if (AppWindow.IsVisible) SearchBox.Focus(FocusState.Programmatic); }
         }
-        if (result.InstallState != PackInstallState.NotInstalled && descriptor.Id == PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId)
+        if (result.Action is not CatalogAction && descriptor.Id == PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId)
         {
             OpenPageOrganizer();
             return;

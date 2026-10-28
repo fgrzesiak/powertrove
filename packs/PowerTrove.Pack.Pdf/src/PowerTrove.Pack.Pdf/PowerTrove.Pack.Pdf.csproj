@@ -26,4 +26,6 @@
 
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Pdf.Composition" /></ItemGroup>
   <ItemGroup><ProjectReference Include="../../../../tools/FileKit.Tabular/src/FileKit.Tabular/FileKit.Tabular.csproj" /><ProjectReference Include="../../../../tools/FileKit.Xlsx/src/FileKit.Xlsx/FileKit.Xlsx.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
+  <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
 </Project>

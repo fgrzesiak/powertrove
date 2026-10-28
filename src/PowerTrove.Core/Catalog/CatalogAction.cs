@@ -7,6 +7,8 @@ namespace PowerTrove.Core.Catalog;
 /// <summary>A metadata-only search entry. It has no engine, installer or file access.</summary>
 public sealed class CatalogAction : IAction, IFileActionMetadata
 {
+    public PackInstallState InstallState { get; }
+    public string? ManifestFingerprint { get; }
     public string PackId { get; }
     public string PackName => _packName;
     public string PackVersion { get; }
@@ -24,9 +26,10 @@ public sealed class CatalogAction : IAction, IFileActionMetadata
     public CatalogAction(CatalogEntry entry)
     {
         ArgumentNullException.ThrowIfNull(entry);
-        if (entry.State != PackInstallState.NotInstalled || entry.DownloadBytes < 0)
+        if (entry.State is not (PackInstallState.NotInstalled or PackInstallState.UpdateAvailable or PackInstallState.Incompatible) || entry.DownloadBytes < 0)
             throw new ArgumentException("Catalog actions require an uninstalled pack.", nameof(entry));
         var action = entry.Action;
+        InstallState = entry.State; ManifestFingerprint = entry.ManifestFingerprint;
         PackId = entry.Pack.Id;
         PackVersion = entry.Pack.Version;
         Publisher = entry.Pack.Publisher;
@@ -56,18 +59,25 @@ public sealed class CatalogAction : IAction, IFileActionMetadata
     public ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
+        var selection = MatchSelection(context);
+        return new(!selection.IsAvailable ? selection : InstallState == PackInstallState.Incompatible
+            ? new ActionAvailability(false, Strings.CatalogSelectionUnsupported) : new ActionAvailability(true, DownloadReason));
+    }
+
+    /// <summary>Local metadata matching for a truthful disabled compatibility hint. Never authorizes execution.</summary>
+    public ActionAvailability MatchSelection(ContextSnapshot context)
+    {
         var check = ActionContextCompatibility.Check(context, Descriptor);
-        if (!check.IsAvailable) return new(check);
+        if (!check.IsAvailable) return check;
         if (context.Content is FileSelection files)
         {
             var eligible = files.Files.Where(f => _extensions is null || !f.IsDirectory && _extensions.Contains(f.Extension)).ToArray();
             if (eligible.Length == 0 || Descriptor.Selection is { AllowOtherItems: false } && eligible.Length != files.Files.Count)
-                return new(new ActionAvailability(false, Strings.CatalogSelectionUnsupported));
-            var filtered = context with { Content = new FileSelection(eligible) };
-            if (Descriptor.Selection is { } selection && SelectionRequirements.Evaluate(selection, filtered) == SelectionFit.None)
-                return new(new ActionAvailability(false, Strings.CatalogSelectionUnsupported));
+                return new(false, Strings.CatalogSelectionUnsupported);
+            if (Descriptor.Selection is { } selection && SelectionRequirements.Evaluate(selection, context with { Content = new FileSelection(eligible) }) == SelectionFit.None)
+                return new(false, Strings.CatalogSelectionUnsupported);
         }
-        return new(new ActionAvailability(true, DownloadReason));
+        return new(true);
     }
 
     public ValueTask<ActionPreview> PreviewAsync(ContextSnapshot context, ActionParameters parameters, CancellationToken cancellationToken)

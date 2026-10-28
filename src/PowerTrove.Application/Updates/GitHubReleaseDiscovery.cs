@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace PowerTrove.Application.Updates;
 
-/// <summary>Explicit checks only. No request in construction, no credentials, retry loop or asset access.</summary>
+/// <summary>Bounded checks. No request in construction, credentials, retry loop or asset download.</summary>
 public sealed class GitHubReleaseDiscovery : IReleaseDiscovery, IDisposable
 {
     public const int MaximumResponseBytes = 2 * 1024 * 1024;
@@ -91,7 +91,7 @@ public sealed class GitHubReleaseDiscovery : IReleaseDiscovery, IDisposable
                         !ReleaseSource.TryValidatePage(uri, out var canonical) || canonical!.AbsoluteUri != ReleaseSource.ForTag(tag!).AbsoluteUri)
                         return new(ReleaseCheckStatus.InvalidData);
                     if (version!.CompareTo(installedVersion) > 0 && (best is null || version.CompareTo(best.Version) > 0))
-                        best = new(version!, canonical!);
+                        best = new(version!, canonical!, ReadInstaller(release, canonical!, version));
                 }
                 bool more = HasNextPage(response);
                 if (!more) return best is not null ? new(ReleaseCheckStatus.Available, best)
@@ -105,9 +105,33 @@ public sealed class GitHubReleaseDiscovery : IReleaseDiscovery, IDisposable
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested) { return new(ReleaseCheckStatus.TimedOut); }
         catch (HttpRequestException) { return new(ReleaseCheckStatus.Offline); }
         catch (IOException) { return new(ReleaseCheckStatus.Offline); }
-        catch (Exception ex) when (ex is JsonException or InvalidOperationException or KeyNotFoundException or FormatException)
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException or KeyNotFoundException or FormatException or ArgumentException)
         { return new(ReleaseCheckStatus.InvalidData); }
         finally { Volatile.Write(ref _checking, 0); }
+    }
+
+    private static ReleaseInstallerAsset? ReadInstaller(JsonElement release, Uri page, ReleaseVersion version)
+    {
+        if (!release.TryGetProperty("assets", out var assets)) return null;
+        if (assets.ValueKind != JsonValueKind.Array || assets.GetArrayLength() > 100) throw new JsonException();
+        string name = GitHubReleaseInstaller.InstallerName(version);
+        ReleaseInstallerAsset? result = null;
+        bool found = false;
+        foreach (var asset in assets.EnumerateArray())
+        {
+            CheckDuplicateProperties(asset);
+            if (asset.GetProperty("name").GetString() != name) continue;
+            if (found) throw new JsonException();
+            found = true;
+            string? digest = asset.TryGetProperty("digest", out var digestValue) && digestValue.ValueKind == JsonValueKind.String
+                ? digestValue.GetString() : null;
+            if (digest is null || !digest.StartsWith("sha256:", StringComparison.Ordinal)) continue;
+            var download = new Uri(asset.GetProperty("browser_download_url").GetString()!, UriKind.Absolute);
+            var candidate = new ReleaseInstallerAsset(download, asset.GetProperty("size").GetInt64(), digest[7..]);
+            if (!GitHubReleaseInstaller.IsValidAsset(new(version, page, candidate))) throw new JsonException();
+            if (asset.GetProperty("state").GetString() == "uploaded") result = candidate;
+        }
+        return result;
     }
 
     private DateTimeOffset RetryTime(HttpResponseMessage response)

@@ -22,6 +22,9 @@ using System.Linq;
 public partial class App : global::Microsoft.UI.Xaml.Application
 {
     private GitHubReleaseDiscovery? _releaseDiscovery;
+    private GitHubReleaseInstaller? _releaseInstaller;
+    public ReleaseUpdatesViewModel Updates { get; private set; } = null!;
+    public bool UpdateInstalling => Updates?.IsInstalling == true;
     public IReleaseDiscovery ReleaseDiscovery => _releaseDiscovery ??= GitHubReleaseDiscovery.CreateDefault();
     private MainWindow? m_window;
     private IHotkeyService? _hotkeyService;
@@ -33,6 +36,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private readonly ActivationMessage? _startupMessage;
     private readonly CancellationTokenSource _activationLifetime = new();
     private Task? _activationListener;
+    private PackRegistryBinding? _packRegistryBinding;
+    private readonly HashSet<Window> _editors = new();
 
     public ISettingsService? SettingsService { get; private set; }
     public IActionSearchEngine? SearchEngine { get; private set; }
@@ -75,9 +80,20 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             new PowerTrove.Platform.Windows.Packs.WindowsPackWorkerProcessFactory(workerExecutable),
             Path.Combine(appDataPath, "PowerTrove"));
         PackInstaller = new PowerTrove.Application.Packs.PackInstaller(Path.Combine(appDataPath, "PowerTrove"),
-            new Version(0, 1, 0), PackHosts.StopPackAsync);
-        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, Path.Combine(appDataPath, "PowerTrove"), new Version(0, 1, 0));
+            PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion, PackHosts.StopPackAsync);
+        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, Path.Combine(appDataPath, "PowerTrove"), PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
 
+        _releaseInstaller = GitHubReleaseInstaller.CreateDefault(
+            new PowerTrove.Platform.Windows.Shell.ReleaseInstallerLauncher(),
+            Path.Combine(appDataPath, "PowerTrove", "updates"), () => m_window?.CanCloseForUpdate == true && _settingsWindow?.CanCloseForUpdate != false && _editors.Count == 0);
+        _ = Task.Run(_releaseInstaller.CleanupStaleDownloads);
+        string? version = typeof(App).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+            .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion
+            ?? typeof(App).Assembly.GetName().Version?.ToString();
+        Updates = new ReleaseUpdatesViewModel(version, ReleaseDiscovery,
+            new PowerTrove.Platform.Windows.Shell.ReleasePageLauncher(), _releaseInstaller);
+        Updates.InstallerStarted += (_, _) => ExitApplication();
+        await PackChannel.LoadCachedAsync(_activationLifetime.Token);
         m_window = new MainWindow();
 
         var foregroundCapture = new WindowsForegroundCapture();
@@ -107,7 +123,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         }
         actionRegistry.Register(new PowerTrove.Application.Commands.OpenSettingsAction(() => OpenSettings()));
         var catalog = await ActionCatalogFile.LoadAsync(Path.Combine(AppContext.BaseDirectory, "catalog.json"),
-            installedPacks.Select(p => p.Info), new Version(0, 1, 0));
+            installedPacks.Select(p => p.Info), PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
         m_window.ViewModel.CatalogWarningMessage = isolationUnavailable ? UiText.IsolationUnavailable : catalog.Warning;
         try
         {
@@ -122,7 +138,11 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         try { await PackRuntime.ReloadAsync(); }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
         { m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed; }
-        PackManagement = new PowerTrove.Application.Packs.PackManagementService(PackInstaller, PackChannel, PackRuntime, installedPacks, catalog.Catalog);
+        var packManagement = new PowerTrove.Application.Packs.PackManagementService(PackInstaller, PackChannel, PackRuntime, installedPacks, catalog.Catalog);
+        try { await packManagement.InitializeAsync(_activationLifetime.Token); }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or System.Text.Json.JsonException or InvalidOperationException)
+        { m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed; }
+        PackManagement = new PowerTrove.Application.Packs.CoordinatedPackManagement(packManagement, PackHosts.AcquireMutationAsync);
 
         var aliasesPath = Path.Combine(AppContext.BaseDirectory, "aliases.json");
         var aliases = ActionAliasLoader.LoadAliases(aliasesPath);
@@ -197,12 +217,16 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         m_window.ViewModel.OutputRevealer = outputRevealer;
         m_window.ViewModel.ClipboardWriter = new DispatchingClipboardWriter(
             new PowerTrove.Platform.Windows.ClipboardWriter(), m_window.DispatcherQueue);
+        m_window.ViewModel.ContextPacks.Configure(PackManagement!);
+        _packRegistryBinding = new PackRegistryBinding(actionRegistry, m_window.ViewModel,
+            callback => m_window?.DispatcherQueue.TryEnqueue(() => callback()) == true);
         m_window.ViewModel.SettingsService = SettingsService;
         m_window.ViewModel.Initialize(emptySnapshot, actionRegistry, SearchEngine, SettingsService);
 
         CreateIconAndTray();
         if (_hostElector is not null)
             _activationListener = _hostElector.StartListeningAsync(ReceiveActivationAsync, _activationLifetime.Token);
+        _ = Updates.CheckOnStartupAsync(SettingsService.Settings.CheckForUpdatesOnStartup, _activationLifetime.Token);
         if (_startupMessage is ExplicitSelectionMessage selection)
         {
             // Invalid explicit commands must not silently capture another window or open a generic palette.
@@ -215,7 +239,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private Task<bool> ReceiveActivationAsync(ActivationMessage message, CancellationToken token)
     {
-        if (token.IsCancellationRequested || m_window is null) return Task.FromResult(false);
+        if (UpdateInstalling || token.IsCancellationRequested || m_window is null) return Task.FromResult(false);
         ContextSnapshot? snapshot = null;
         if (message is ExplicitSelectionMessage selection)
         {
@@ -243,6 +267,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private void ShowGenericActivation()
     {
+        if (UpdateInstalling) return;
         if (m_window?.TryActivateVisualEditor() == true) return;
         if (m_window is null || m_window.ViewModel.IsExecuting || Actions is null || SearchEngine is null || SettingsService is null) return;
         _invocationCoordinator?.Dismiss();
@@ -262,7 +287,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private bool ShowExplicitSelection(ExplicitSelectionMessage selection, ContextSnapshot snapshot)
     {
-        if (m_window?.TryActivateVisualEditor() == true) return false;
+        if (UpdateInstalling || m_window?.TryActivateVisualEditor() == true) return false;
         if (m_window is null || m_window.ViewModel.IsExecuting) return false;
         if (selection.ActionId is null)
         {
@@ -276,6 +301,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         var action = Actions?.GetAction(PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId);
         if (action is null || action is PowerTrove.Core.Catalog.CatalogAction) return false;
         var organizer = new PageOrganizerWindow(action, snapshot);
+        TrackEditor(organizer);
         ApplyWindowIcon(organizer);
         organizer.Activate();
         return true;
@@ -306,6 +332,9 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     public async void ExitApplication()
     {
         _activationLifetime.Cancel();
+        _packRegistryBinding?.Dispose();
+        Updates?.Dispose();
+        _releaseInstaller?.Dispose();
         _settingsWindow?.Close();
         if (m_window is { } window)
         {
@@ -315,6 +344,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         DisposeHotkeyService();
         _releaseDiscovery?.Dispose();
         _releaseDiscovery = null;
+        (PackManagement as IDisposable)?.Dispose();
         PackChannel?.Dispose();
         PackChannel = null;
         if (PackHosts is { } hosts)
@@ -359,6 +389,13 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         return false;
     }
 
+    /// <summary>Keep open editors safe from update shutdown.</summary>
+    public void TrackEditor(Window window)
+    {
+        _editors.Add(window);
+        window.Closed += (_, _) => _editors.Remove(window);
+    }
+
     /// <summary>Gives a secondary window the PowerTrove icon.</summary>
     public void ApplyWindowIcon(Window window)
     {
@@ -385,6 +422,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private void RequestPaletteOrEditor()
     {
+        if (UpdateInstalling) return;
         if (m_window?.TryActivateVisualEditor() == true) return;
         _ = _invocationCoordinator?.InvokeAsync();
     }

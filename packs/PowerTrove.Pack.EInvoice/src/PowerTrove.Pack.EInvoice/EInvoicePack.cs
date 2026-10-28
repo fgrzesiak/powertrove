@@ -9,6 +9,6 @@ public sealed class EInvoicePack : IActionPack
         Actions = new IAction[] { new InvoiceAction(services, "html", false, printer), new InvoiceAction(services, "pdf", false, printer), new InvoiceAction(services, "csv", false, printer), new InvoiceAction(services, "xlsx", false, printer), new InvoiceAction(services, "xml", true, printer), new InvoiceAction(services, "html", true, printer) };
     }
     public ActionPackInfo Info => Describe();
-    internal static ActionPackInfo Describe() => new("powertrove.einvoice", SR.Get("Pack"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.einvoice", SR.Get("Pack"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(EInvoicePack).Assembly), "PowerTrove");
     public IReadOnlyList<IAction> Actions { get; }
 }

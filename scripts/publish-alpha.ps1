@@ -4,7 +4,8 @@ param(
     [Parameter(Mandatory)][string]$CandidateDirectory,
     [Parameter(Mandatory)][string]$Evidence,
     [Parameter(Mandatory)][string]$Installer,
-    [switch]$AllowUnsignedAlpha
+    [switch]$AllowUnsignedAlpha,
+    [switch]$Publish
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -36,6 +37,14 @@ try {
         $gate.UnsignedAlpha -ne [bool]$AllowUnsignedAlpha) {
         throw 'Candidate identity does not match the public release gate.'
     }
+    $packDirectory = Join-Path $candidate 'packs'
+    $packPlan = Join-Path $packDirectory 'pack-plan.json'
+    if (-not (Test-Path -LiteralPath $packPlan) -or
+        (Get-FileHash -LiteralPath $packPlan -Algorithm SHA256).Hash.ToLowerInvariant() -cne $identity.packPlanSha256) {
+        throw 'The frozen desktop pack plan is missing or changed.'
+    }
+    & dotnet run --project src/PowerTrove.ReleaseTools -- verify-pack-plan --zip $zip --pack-plan-file $packPlan
+    if ($LASTEXITCODE -ne 0) { throw 'Pack versions differ from the accepted desktop candidate. Nothing was published.' }
     $notes = Join-Path $candidate 'release-notes.md'
     if (-not (Test-Path -LiteralPath $notes) -or (Get-Item -LiteralPath $notes).Length -eq 0) {
         throw 'Write candidate-specific release-notes.md with supported workflows and known limitations first.'
@@ -46,10 +55,19 @@ try {
         "> **Unsigned experimental alpha.** Publisher identity is not verified by a code-signing certificate.`n`n$originalNotes" |
             Set-Content -LiteralPath $notes -Encoding utf8NoBOM
     }
+    # Only the owner machine signs; the candidate workflow never receives this key.
+    & node (Join-Path $root 'scripts/release-packs.mjs') --publish --plan-dir $packDirectory --desktop-version $identity.version `
+        --output-dir (Join-Path $candidate ('pack-publication-' + [guid]::NewGuid().ToString('N')))
+    if ($LASTEXITCODE -ne 0) { throw 'Required pack publication or public-download verification failed. Desktop release stopped.' }
     & gh release create $identity.tag $zip (Join-Path $candidate 'SHA256SUMS') $installerPath `
         --repo 'fgrzesiak/powertrove' --target $identity.revision --title "PowerTrove $($identity.tag)" `
         --notes-file $notes --prerelease --draft
     if ($LASTEXITCODE -ne 0) { throw 'Draft creation failed. Inspect GitHub before retrying; no release is published automatically.' }
-    Write-Host 'Draft created. Review its assets and notes in GitHub, then publish it manually.'
+    if ($Publish) {
+        & gh release edit $identity.tag --repo 'fgrzesiak/powertrove' --draft=false --prerelease --latest=false
+        if ($LASTEXITCODE -ne 0) { throw 'Packs are published; the desktop draft still needs publication or a retry.' }
+        Write-Host 'Required packs and desktop release published and verified.'
+    }
+    else { Write-Host 'Required packs verified and published. Desktop draft is ready for owner review.' }
 }
 finally { Pop-Location }

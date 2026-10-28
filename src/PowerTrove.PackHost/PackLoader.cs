@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using PowerTrove.Abstractions.Manifest;
 using PowerTrove.Abstractions.Packs;
+using PowerTrove.Core.Catalog;
 
 namespace PowerTrove.PackHost;
 
@@ -39,7 +40,7 @@ public sealed class LoadedPack : IDisposable
             manifest = ActionPackManifest.Read(new UTF8Encoding(false, true).GetString(bytes));
         }
         if (manifest.SchemaVersion != "2.0" || manifest.ProtocolVersion != "1" || manifest.Payload is not { } payload || payload.SizeBytes > 1024L * 1024 * 1024
-            || !Version.TryParse(manifest.MinHostVersion, out var minimum) || minimum > hostVersion)
+            || !PackCompatibility.IsSupported(manifest, hostVersion, "windows", requireWorkerInput: true))
             throw new InvalidDataException("Pack payload or host version is unsupported.");
         workRoot = StagingOutputFileSystem.Canonical(workRoot);
         StagingOutputFileSystem.RejectReparseAncestors(workRoot);

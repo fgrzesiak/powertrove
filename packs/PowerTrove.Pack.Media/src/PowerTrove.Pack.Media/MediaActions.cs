@@ -165,7 +165,7 @@ public sealed class MediaPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("powertrove.media", SR.GetString("MediaPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.media", SR.GetString("MediaPack_Title"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(MediaPack).Assembly), "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 }

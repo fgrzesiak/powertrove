@@ -8,6 +8,37 @@ namespace PowerTrove.Application.Tests;
 public sealed class GitHubReleaseDiscoveryTests
 {
     [Theory]
+    [InlineData("valid", ReleaseCheckStatus.Available, true)]
+    [InlineData("missing-digest", ReleaseCheckStatus.Available, false)]
+    [InlineData("no-installer", ReleaseCheckStatus.Available, false)]
+    [InlineData("bad-url", ReleaseCheckStatus.InvalidData, false)]
+    [InlineData("bad-size", ReleaseCheckStatus.InvalidData, false)]
+    [InlineData("bad-digest", ReleaseCheckStatus.InvalidData, false)]
+    [InlineData("duplicate", ReleaseCheckStatus.InvalidData, false)]
+    public async Task InstallerMetadata_MustMatchReleaseAndHaveBoundedSizeAndDigest(string scenario, ReleaseCheckStatus expected, bool installable)
+    {
+        var asset = new Dictionary<string, object?>
+        {
+            ["name"] = scenario == "no-installer" ? "other.exe" : "PowerTrove-v2.0.0-win-x64-installer.exe",
+            ["state"] = "uploaded", ["size"] = scenario == "bad-size" ? GitHubReleaseInstaller.MaximumInstallerBytes + 1 : 42,
+            ["digest"] = scenario == "bad-digest" ? "sha256:broken" : "sha256:" + new string('a', 64),
+            ["browser_download_url"] = scenario == "bad-url" ? "https://evil.test/setup.exe" :
+                "https://github.com/" + ReleaseSource.Repository + "/releases/download/v2.0.0-alpha.2/PowerTrove-v2.0.0-win-x64-installer.exe"
+        };
+        if (scenario == "missing-digest") asset.Remove("digest");
+        var handler = new Handler((_, _) => Task.FromResult(Json(new[] { new
+        {
+            tag_name = "v2.0.0-alpha.2", draft = false, prerelease = true,
+            html_url = ReleaseSource.ForTag("v2.0.0-alpha.2").AbsoluteUri,
+            assets = scenario == "duplicate" ? new[] { asset, asset } : new[] { asset }
+        } })));
+        using var service = new GitHubReleaseDiscovery(handler);
+        var result = await service.CheckAsync(Version("1.0.0-alpha.1"));
+        Assert.Equal(expected, result.Status); Assert.Equal(installable, result.Candidate?.Installer is not null);
+        Assert.Equal(1, handler.Count);
+    }
+
+    [Theory]
     [InlineData("1.0.0", "v1.10.0")]
     [InlineData("1.0.0-beta.1", "v3.0.0")]
     public async Task ExplicitCheck_SelectsHighestEligibleVersion_WithoutOpeningOrDownloadingAssets(string installed, string expected)

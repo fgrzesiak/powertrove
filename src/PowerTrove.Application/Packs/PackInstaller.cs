@@ -18,6 +18,7 @@ public sealed class PackInstaller
     private readonly PackSignatureVerifier _signatures;
     private readonly PackBundleVerifier _bundles;
     private readonly Version _hostVersion;
+    public Version HostVersion => _hostVersion;
     private readonly string _root;
     private readonly Func<string, CancellationToken, Task> _stopWorkers;
     private readonly SemaphoreSlim _gate = new(1, 1);
@@ -93,7 +94,7 @@ public sealed class PackInstaller
                     var parsed = PackBundleVerifier.ParseManifest(manifest, _hostVersion);
                     if (parsed.Id == id && parsed.Version == active.Version) result.Add(new InstalledPack(parsed, versionRoot, active.ManifestSha256));
                 }
-                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException or ArgumentException or System.Text.DecoderFallbackException)
+                catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or JsonException or ArgumentException or System.Text.DecoderFallbackException)
                 { /* Corrupt/untrusted local installations are never exposed as executable actions. */ }
             }
             return result;

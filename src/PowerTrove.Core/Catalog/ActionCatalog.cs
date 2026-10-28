@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using PowerTrove.Abstractions.Manifest;
@@ -19,7 +20,7 @@ public sealed class ActionCatalog : IActionCatalog
     // Installation state is derived from the host, never trusted from JSON.
     // Explicit platform arguments make compatibility checks testable on every OS.
     public static IActionCatalog Read(string json, IEnumerable<ActionPackInfo> installedPacks, Version hostVersion,
-        string? os = null, string? architecture = null)
+        string? os = null, string? architecture = null, bool requireWorkerInput = false)
     {
         ArgumentNullException.ThrowIfNull(json);
         ArgumentNullException.ThrowIfNull(installedPacks);
@@ -33,38 +34,56 @@ public sealed class ActionCatalog : IActionCatalog
             using var document = JsonDocument.Parse(json, new JsonDocumentOptions { MaxDepth = 40 });
             var root = document.RootElement;
             CheckObject(root, "schemaVersion", "packs");
-            if (root.GetProperty("schemaVersion").GetString() != "1") throw new CatalogFormatException();
+            string? schema = root.GetProperty("schemaVersion").GetString();
+            if (schema is not ("1" or "2")) throw new CatalogFormatException();
             var packs = root.GetProperty("packs");
-            if (packs.ValueKind != JsonValueKind.Array || packs.GetArrayLength() > MaximumPacks) throw new CatalogFormatException();
+            if (packs.ValueKind != JsonValueKind.Array || packs.GetArrayLength() > (schema == "1" ? MaximumPacks : MaximumPacks * 16)) throw new CatalogFormatException();
             var entries = new List<CatalogEntry>();
             var packIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var actionIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var releases = new List<(ActionManifest Manifest, long Bytes)>();
+            var versions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var item in packs.EnumerateArray())
             {
                 CheckObject(item, "manifest", "downloadBytes");
                 long bytes = item.GetProperty("downloadBytes").GetInt64();
                 if (bytes < 0) throw new CatalogFormatException();
                 var manifest = ActionPackManifest.Read(item.GetProperty("manifest").GetRawText());
-                if (!packIds.Add(manifest.Id)) throw new CatalogFormatException();
+                if (!packIds.Add(manifest.Id) && schema == "1" || packIds.Count > MaximumPacks ||
+                    !versions.Add(manifest.Id + "@" + manifest.Version)) throw new CatalogFormatException();
                 // Catalog v1 requires the static v2 metadata. Legacy manifests lack
                 // extension/selection information and cannot advertise reliable static fits.
                 if (manifest.SchemaVersion != "2.0") throw new CatalogFormatException();
+                if (!Version.TryParse(manifest.Version, out _)) throw new CatalogFormatException();
+                releases.Add((manifest, bytes));
+            }
+            var ownership = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var release in releases)
+                foreach (var action in release.Manifest.Actions)
+                {
+                    if (ownership.TryGetValue(action.Id, out var owner) && owner != release.Manifest.Id) throw new CatalogFormatException();
+                    ownership[action.Id] = release.Manifest.Id;
+                }
+            foreach (var group in releases.GroupBy(r => r.Manifest.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                if (group.Count() > 16) throw new CatalogFormatException();
+                var selected = group.OrderByDescending(r => PackCompatibility.IsSupported(r.Manifest, hostVersion, os, architecture, requireWorkerInput))
+                    .ThenByDescending(r => Version.Parse(r.Manifest.Version)).First();
+                var manifest = selected.Manifest;
+                long bytes = selected.Bytes;
                 var info = new ActionPackInfo(manifest.Id, manifest.DisplayName, manifest.Version, manifest.Publisher);
                 if (!Version.TryParse(info.Version, out var version)) throw new CatalogFormatException();
                 PackInstallState state;
-                if (installed.TryGetValue(info.Id, out var local))
+                if (!PackCompatibility.IsSupported(manifest, hostVersion, os, architecture, requireWorkerInput)) state = PackInstallState.Incompatible;
+                else if (installed.TryGetValue(info.Id, out var local))
                     state = Version.TryParse(local.Version, out var localVersion) && version > localVersion
                         ? PackInstallState.UpdateAvailable : PackInstallState.Installed;
                 else
-                    state = manifest.ProtocolVersion == ActionPackManifest.ProtocolVersion &&
-                        Version.Parse(manifest.MinHostVersion!) <= hostVersion &&
-                        Supports(manifest.PlatformConstraints?.Os, os) &&
-                        Supports(manifest.PlatformConstraints?.MinimumArchitecture, architecture)
-                        ? PackInstallState.NotInstalled : PackInstallState.Incompatible;
+                    state = PackInstallState.NotInstalled;
                 foreach (var action in manifest.Actions)
                 {
                     if (!actionIds.Add(action.Id) || entries.Count == MaximumActions) throw new CatalogFormatException();
-                    entries.Add(new CatalogEntry(action, info, state, bytes));
+                    entries.Add(new CatalogEntry(action, info, state, bytes, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest))))));
                 }
             }
             return new ActionCatalog(entries.AsReadOnly());
@@ -74,9 +93,6 @@ public sealed class ActionCatalog : IActionCatalog
             throw new CatalogFormatException();
         }
     }
-
-    private static bool Supports(IReadOnlyList<string>? allowed, string value) =>
-        allowed is null || allowed.Contains(value, StringComparer.OrdinalIgnoreCase);
 
     private static void CheckObject(JsonElement element, params string[] properties)
     {

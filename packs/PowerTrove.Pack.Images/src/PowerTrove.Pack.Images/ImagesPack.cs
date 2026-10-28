@@ -40,7 +40,7 @@ public sealed class ImagesPack : IActionPack
 
     public ActionPackInfo Info { get; } = Describe();
 
-    internal static ActionPackInfo Describe() => new("powertrove.images", SR.GetString("ImagesPack_Title"), "0.1.0", "PowerTrove");
+    internal static ActionPackInfo Describe() => new("powertrove.images", SR.GetString("ImagesPack_Title"), PowerTrove.Packs.PackReleaseVersion.Read(typeof(ImagesPack).Assembly), "PowerTrove");
 
     public IReadOnlyList<IAction> Actions { get; }
 

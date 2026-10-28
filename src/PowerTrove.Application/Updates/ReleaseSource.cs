@@ -28,7 +28,19 @@ public static class ReleaseSource
 }
 
 public enum ReleaseCheckStatus { Available, UpToDate, NoReleases, Offline, TimedOut, RateLimited, InvalidData, Unavailable, Busy }
-public sealed record ReleaseCandidate(ReleaseVersion Version, Uri Page);
+public sealed record ReleaseCandidate(ReleaseVersion Version, Uri Page, ReleaseInstallerAsset? Installer = null);
+public sealed record ReleaseInstallerAsset(Uri Download, long Size, string Sha256);
+
+public enum ReleaseInstallStatus { Started, InvalidData, Offline, TimedOut, Failed, Busy }
+public interface IReleaseInstaller
+{
+    Task<ReleaseInstallStatus> InstallAsync(ReleaseCandidate candidate, IProgress<int>? progress = null,
+        CancellationToken cancellationToken = default);
+}
+public interface IReleaseInstallerLauncher
+{
+    Task<bool> StartAsync(string installerPath, CancellationToken cancellationToken = default);
+}
 public sealed record ReleaseCheckResult(ReleaseCheckStatus Status, ReleaseCandidate? Candidate = null);
 
 public interface IReleaseDiscovery

@@ -109,7 +109,7 @@
   <data name="RenameOldName" xml:space="preserve"><value>Aktueller Name</value></data>
   <data name="RenameNewName" xml:space="preserve"><value>Neuer Name</value></data>
   <data name="UpdatesHeading" xml:space="preserve"><value>Aktualisierungen</value></data>
-  <data name="UpdatesPrivacy" xml:space="preserve"><value>Nur über diese Schaltfläche werden Release-Informationen von GitHub abgerufen. GitHub erhält übliche Verbindungsdaten wie Ihre IP-Adresse und HTTP-Header. Ausgewählte Dateien oder Inhalte werden nicht gesendet. Die Release-Seite öffnet sich erst nach einem weiteren Klick. PowerTrove lädt keine Updates herunter und installiert sie nicht.</value></data>
+  <data name="UpdatesPrivacy" xml:space="preserve"><value>PowerTrove prüft beim Start GitHub auf neue Versionen. Dies lässt sich oben ausschalten. GitHub erhält übliche Verbindungsdaten, keine ausgewählten Inhalte. „Jetzt aktualisieren“ lädt den Installer herunter, prüft seine SHA-256-Prüfsumme und schließt PowerTrove für das Update. Danach startet die App neu. Bei ZIP-Versionen wird der aktuelle Ordner als Installation registriert. Windows-Sicherheitsabfragen bleiben aktiv.</value></data>
   <data name="UpdatesCheck" xml:space="preserve"><value>Nach Updates suchen</value></data>
   <data name="UpdatesOpenPage" xml:space="preserve"><value>Release-Seite öffnen</value></data>
 <data name="RecipePackTitle" xml:space="preserve"><value>Rezepte</value></data>
@@ -183,4 +183,9 @@
   <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>Die Zeitangaben passten nicht zu dieser Datei. Die gesamte Laufzeit ist ausgewählt; bitte wählen Sie den Abschnitt erneut.</value></data>
   <data name="MediaTrimReady" xml:space="preserve"><value>Bereit, den markierten Abschnitt als neue Datei zu speichern.</value></data>
   <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Kehren Sie zu den Zeitangaben zurück, um die zusätzliche Bestätigung zu prüfen.</value></data>
+  <data name="UpdatesInstall" xml:space="preserve"><value>Jetzt aktualisieren</value></data>
+  <data name="UpdatesLater" xml:space="preserve"><value>Später</value></data>
+  <data name="UpdatesCancel" xml:space="preserve"><value>Download abbrechen</value></data>
+  <data name="UpdatesStartup" xml:space="preserve"><value>Beim Start nach Updates suchen</value></data>
+  <data name="ContextPackDismiss" xml:space="preserve"><value>Ausblenden</value></data>
 </root>

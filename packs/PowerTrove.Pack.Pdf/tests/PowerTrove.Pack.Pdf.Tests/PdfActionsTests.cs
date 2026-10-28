@@ -851,18 +851,18 @@ public class PdfPackLocalizationTests
             System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             var services = new FileActionServices(null!, null!, new PowerTrove.Infrastructure.Files.FileSignatureVerifier());
             var enPack = new PdfPack(services, null, null);
-            var enActions = enPack.Actions.ToList();
+            var enActions = enPack.Actions.Select(a => a.Descriptor).ToList();
 
             System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
             var dePack = new PdfPack(services, null, null);
-            var deActions = dePack.Actions.ToList();
+            var deActions = dePack.Actions.Select(a => a.Descriptor).ToList();
 
             Assert.Equal(enActions.Count, deActions.Count);
 
             for (int i = 0; i < enActions.Count; i++)
             {
-                var enDesc = enActions[i].Descriptor;
-                var deDesc = deActions[i].Descriptor;
+                var enDesc = enActions[i];
+                var deDesc = deActions[i];
 
                 if (!allowedNames.Contains(enDesc.Title))
                     Assert.NotEqual(enDesc.Title, deDesc.Title);

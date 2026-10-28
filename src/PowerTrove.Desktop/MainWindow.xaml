@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PowerTrove.Desktop"
+    xmlns:vm="using:PowerTrove.Application.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -94,6 +95,21 @@
         <!-- Divider and notices -->
         <StackPanel Grid.Row="1">
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
+                    Visibility="{Binding Text, ElementName=UpdateNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
+                <StackPanel Spacing="8">
+                    <TextBlock x:Name="UpdateNoticeText" Text="{x:Bind Updates.NoticeMessage, Mode=OneWay}"
+                               TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="{x:Bind local:UiText.UpdatesInstall}" Click="InstallUpdate_Click"
+                                IsEnabled="{x:Bind Updates.CanInstall, Mode=OneWay}" AutomationProperties.AutomationId="InstallUpdate" />
+                        <Button Content="{x:Bind local:UiText.UpdatesLater}" Click="DismissUpdate_Click"
+                                IsEnabled="{x:Bind Updates.CanCheck, Mode=OneWay}" />
+                        <Button Content="{x:Bind local:UiText.UpdatesCancel}" Click="CancelUpdate_Click"
+                                IsEnabled="{x:Bind Updates.CanCancelInstall, Mode=OneWay}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
             <!-- Presence follows the rendered text, including whitespace-only messages. -->
             <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
                     Visibility="{Binding Text, ElementName=HotkeyNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
@@ -140,6 +156,36 @@
                                Text="{x:Bind ViewModel.ContextNotice, Mode=OneWay}" />
                 </Grid>
             </Border>
+            <StackPanel Margin="12,8,12,0" Spacing="6">
+                <ScrollViewer MaxHeight="176" VerticalScrollBarVisibility="Auto"
+                              Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.ContextPacks.HasSuggestions), Mode=OneWay}">
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.ContextPacks.Suggestions, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PackSuggestion">
+                                <Border Style="{StaticResource NoticeCardStyle}" Margin="0,0,0,6">
+                                    <StackPanel Spacing="6">
+                                        <TextBlock Text="{x:Bind Title}" TextWrapping="WrapWholeWords" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                                        <TextBlock Text="{x:Bind Description}" TextWrapping="WrapWholeWords" Style="{ThemeResource CaptionTextBlockStyle}" />
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <Button Content="{x:Bind DownloadText}" Tag="{x:Bind}" Click="DownloadContextPack_Click"
+                                                    IsEnabled="{x:Bind CanDownload, Mode=OneWay}" AutomationProperties.Name="{x:Bind DownloadText}" />
+                                            <Button Content="{x:Bind local:UiText.ContextPackDismiss}" Tag="{x:Bind Id}" Click="DismissContextPack_Click" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+                <StackPanel Orientation="Horizontal" Spacing="8"
+                            Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.ContextPacks.IsBusy), Mode=OneWay}">
+                    <ProgressRing IsActive="{x:Bind ViewModel.ContextPacks.IsBusy, Mode=OneWay}" Width="20" Height="20" />
+                    <Button Content="{x:Bind local:UiText.CommonCancel}" Click="CancelContextPack_Click"
+                            IsEnabled="{x:Bind ViewModel.ContextPacks.CanCancel, Mode=OneWay}" />
+                </StackPanel>
+                <TextBlock Text="{x:Bind ViewModel.ContextPacks.StatusMessage, Mode=OneWay}" TextWrapping="WrapWholeWords"
+                           AutomationProperties.LiveSetting="Polite" Style="{ThemeResource CaptionTextBlockStyle}" />
+            </StackPanel>
             <ToggleButton IsChecked="{x:Bind ViewModel.IncludeUnavailableActions, Mode=TwoWay}"
                           Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasUnavailableActions), Mode=OneWay}"
                           IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"

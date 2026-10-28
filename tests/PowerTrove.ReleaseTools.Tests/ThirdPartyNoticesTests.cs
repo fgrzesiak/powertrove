@@ -54,6 +54,21 @@ public sealed class ThirdPartyNoticesTests : IDisposable
     }
 
     [Fact]
+    public async Task PackCollectionUsesItsOwnCompositionAssetsAndDependencyManifest()
+    {
+        Fixture();
+        string project = Path.Combine(Repository, "packs", "Fixture.Composition", "Fixture.Composition.csproj");
+        string obj = Path.Combine(Path.GetDirectoryName(project)!, "obj"); Directory.CreateDirectory(obj);
+        File.Copy(Path.Combine(Repository, "src", "PowerTrove.Desktop", "obj", "project.assets.json"), Path.Combine(obj, "project.assets.json"));
+        File.Move(Path.Combine(Stage, "PowerTrove.deps.json"), Path.Combine(Stage, "Fixture.Composition.deps.json"));
+        Directory.Delete(Path.Combine(Repository, "src"), true);
+        Directory.Delete(Path.Combine(Stage, "packhost"), true);
+        await ThirdPartyNotices.BuildPackAsync(Repository, Stage, project);
+        Assert.Equal(File.ReadAllBytes(Path.Combine(Package, "LICENSE.txt")),
+            File.ReadAllBytes(Path.Combine(Stage, "licenses", "supplier.fixture", "1.2.3", "LICENSE.txt")));
+    }
+
+    [Fact]
     public async Task SupplierApacheText_DoesNotInheritProjectCopyright()
     {
         Fixture();

@@ -6,7 +6,7 @@ namespace PowerTrove.Pack.Pdf;
 public sealed record EmailPdfOptions(HtmlPrintOptions Print, bool ExportAttachments);
 public sealed class EmlToPdfAction(FileActionServices services, ILocalHtmlPdfPrinter? renderer, IEmailPrintReader? reader) : PerFileAction<EmailPdfOptions>(services)
 {
-    public override ActionDescriptor Descriptor { get; } = new("powertrove.pdf.eml-to-pdf", SR.GetString("EmlTitle"), SR.GetString("EmlDescription"),
+    public override ActionDescriptor Descriptor => new("powertrove.pdf.eml-to-pdf", SR.GetString("EmlTitle"), SR.GetString("EmlDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["eml", "email", "mail", "pdf", "convert"], true, true,
         Parameters: [ActionParameterDefinition.Choice("Paper", SR.GetString("HtmlPaper"), "a4", [new("a4", SR.GetString("HtmlPaperA4")), new("letter", SR.GetString("HtmlPaperLetter"))]),
             ActionParameterDefinition.Boolean("Landscape", SR.GetString("HtmlLandscape"), false), ActionParameterDefinition.Integer("MarginMm", SR.GetString("HtmlMargin"), 10, 0, 50),

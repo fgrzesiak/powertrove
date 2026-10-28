@@ -25,4 +25,6 @@
   </ItemGroup>
 
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Files.Composition" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
+  <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
 </Project>
