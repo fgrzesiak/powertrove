@@ -50,22 +50,22 @@ public sealed class ImagesPack : IActionPack
             "powertrove.image.convert-webp", SR.GetString("ImagesPack_Title_ConvertWebP"),
             SR.GetString("ImagesPack_Desc_ConvertWebP"),
             new[] { "image", "convert", "webp" },
-            ImageTarget.WebP, QualityDefault: 80, ExposeQuality: true, ExposeStripMetadata: true),
+            ImageTarget.WebP, QualityDefault: 80, ExposeQuality: true, ExposeStripMetadata: true, ExposeOptionalSize: true),
         new ImageExportProfile(
             "powertrove.image.convert-avif", SR.GetString("ImagesPack_Title_ConvertAvif"),
             SR.GetString("ImagesPack_Desc_ConvertAvif"),
             new[] { "image", "convert", "avif" },
-            ImageTarget.Avif, QualityDefault: 60, ExposeQuality: true, ExposeStripMetadata: true),
+            ImageTarget.Avif, QualityDefault: 60, ExposeQuality: true, ExposeStripMetadata: true, ExposeOptionalSize: true),
         new ImageExportProfile(
             "powertrove.image.convert-jpeg", SR.GetString("ImagesPack_Title_ConvertJpeg"),
             SR.GetString("ImagesPack_Desc_ConvertJpeg"),
             new[] { "image", "convert", "jpeg", "jpg", "heic", "iphone" },
-            ImageTarget.Jpeg, QualityDefault: 88, ExposeQuality: true, ExposeStripMetadata: true),
+            ImageTarget.Jpeg, QualityDefault: 88, ExposeQuality: true, ExposeStripMetadata: true, ExposeOptionalSize: true),
         new ImageExportProfile(
             "powertrove.image.convert-png", SR.GetString("ImagesPack_Title_ConvertPng"),
             SR.GetString("ImagesPack_Desc_ConvertPng"),
             new[] { "image", "convert", "png", "lossless" },
-            ImageTarget.Png, ExposeStripMetadata: true),
+            ImageTarget.Png, ExposeStripMetadata: true, ExposeOptionalSize: true),
         new ImageExportProfile(
             "powertrove.image.resize", SR.GetString("ImagesPack_Title_Resize"),
             SR.GetString("ImagesPack_Desc_Resize"),

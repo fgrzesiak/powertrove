@@ -67,10 +67,17 @@ public static class PackageCommand
         // Step 2: Publish Desktop Project
         Console.WriteLine("Publishing Desktop project...");
         await PublishProjectAsync(desktopProject, stagingDir, version, releaseVersion, gitRevision, processRunner, packDistributionFile, packVersionsFile);
-        // The standalone worker is a runtime dependency of signed and built-in packs.
-        string workerDirectory = Path.Combine(stagingDir, "packhost");
+        // The worker runs every pack. It shares the app's self-contained runtime, so publish it separately
+        // and add only its own files next to the app.
+        string workerDirectory = Path.Combine(outputDir, $"PowerTrove-v{version}-worker");
+        if (Directory.Exists(workerDirectory) || File.Exists(workerDirectory)) throw new IOException("Release output already exists. Use a fresh directory.");
         Directory.CreateDirectory(workerDirectory);
-        await PublishProjectAsync(workerProject, workerDirectory, version, releaseVersion, gitRevision, processRunner, packDistributionFile, packVersionsFile);
+        try
+        {
+            await PublishProjectAsync(workerProject, workerDirectory, version, releaseVersion, gitRevision, processRunner, packDistributionFile, packVersionsFile);
+            MergeSharedRuntime(workerDirectory, stagingDir);
+        }
+        finally { Directory.Delete(workerDirectory, recursive: true); }
         if (packPlanFile is not null)
         {
             Directory.CreateDirectory(Path.Combine(stagingDir, "packs"));
@@ -78,7 +85,7 @@ public static class PackageCommand
             File.Copy(packVersionsFile!, Path.Combine(stagingDir, "packs", "pack-versions.props"));
         }
         RejectReparseAncestors(stagingDir);
-        if (!File.Exists(Path.Combine(workerDirectory, "PowerTrove.PackHost.exe")))
+        if (!File.Exists(Path.Combine(stagingDir, "PowerTrove.PackHost.exe")))
             throw new InvalidDataException("Published worker executable is missing.");
 
         // Step 3: Copy root notices
@@ -120,6 +127,34 @@ public static class PackageCommand
         if (result.ExitCode != 0 || sha.Length != 40 || !sha.All(Uri.IsHexDigit))
             throw new InvalidDataException("Unable to verify an exact 40-character Git revision.");
         return sha;
+    }
+
+    /// <summary>
+    /// Adds the worker's own files to the app directory. Every file both publish outputs contain must be byte-identical:
+    /// a differing runtime or dependency would otherwise silently replace the app's copy.
+    /// </summary>
+    internal static void MergeSharedRuntime(string workerDirectory, string appDirectory)
+    {
+        RejectReparseAncestors(workerDirectory);
+        foreach (string source in Directory.EnumerateFiles(workerDirectory, "*", SearchOption.AllDirectories))
+        {
+            string relative = Path.GetRelativePath(workerDirectory, source);
+            string target = Path.Combine(appDirectory, relative);
+            if ((File.GetAttributes(source) & FileAttributes.ReparsePoint) != 0) throw new InvalidDataException("Worker output contains a link.");
+            if (File.Exists(target))
+            {
+                if (!FilesEqual(source, target)) throw new InvalidDataException($"Worker and app publish different versions of {relative}.");
+                continue;
+            }
+            Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+            File.Copy(source, target);
+        }
+    }
+    private static bool FilesEqual(string left, string right)
+    {
+        if (new FileInfo(left).Length != new FileInfo(right).Length) return false;
+        using var a = File.OpenRead(left); using var b = File.OpenRead(right);
+        return SHA256.HashData(a).AsSpan().SequenceEqual(SHA256.HashData(b));
     }
 
     private static async Task PublishProjectAsync(string projectPath, string outputDir, string version, string releaseVersion,

@@ -6,7 +6,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using PowerTrove.Abstractions;
-using PowerTrove.Pack.Pdf;
+using PowerTrove.Abstractions.Files;
+using PowerTrove.Application.Commands;
 using PowerTrove.Platform.Windows.Pdf;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
@@ -57,7 +58,7 @@ public sealed class PageTile : INotifyPropertyChanged
     public int Rotation
     {
         get => _rotation;
-        set { _rotation = PageArrangement.Normalize(value); Changed(nameof(Rotation)); Changed(nameof(AccessibleName)); }
+        set { _rotation = OrganizePagesParameter.NormalizeRotation(value); Changed(nameof(Rotation)); Changed(nameof(AccessibleName)); }
     }
 
     public ImageSource? Thumbnail
@@ -74,7 +75,6 @@ public sealed class PageTile : INotifyPropertyChanged
         set { _tileSize = value; Changed(nameof(TileSize)); }
     }
 
-    public ArrangedPage ToArranged() => new(Source, Page, Rotation);
 
     public static string SourceLetter(int index) => index < 26 ? ((char)('A' + index)).ToString() : (index + 1).ToString();
 
@@ -107,7 +107,7 @@ public sealed partial class PageOrganizerWindow : Window
         var files = snapshot.Content is FileSelection selection
             ? selection.Files.Where(f => !f.IsDirectory && string.Equals(f.Extension, ".pdf", StringComparison.OrdinalIgnoreCase))
             : Enumerable.Empty<SelectedFile>();
-        _sources = OrganizePagesPdfAction.SourceOrder(files);
+        _sources = NaturalFileNameComparer.Sort(files);
 
         InitializeComponent();
         Title = UiText.OrganizerTitle;
@@ -291,7 +291,7 @@ public sealed partial class PageOrganizerWindow : Window
     private async void Save_Click(object sender, RoutedEventArgs e)
     {
         if (Pages.Count == 0) return;
-        string arrangement = PageArrangement.Format(Pages.Select(p => p.ToArranged()));
+        string arrangement = OrganizePagesParameter.Format(Pages.Select(p => (p.Source, p.Page, p.Rotation)));
         var parameters = new DictionaryParameters(new Dictionary<string, string> { ["Pages"] = arrangement });
         // The organizer may stay open longer than a palette snapshot lives; the action re-validates
         // every file at execution anyway.

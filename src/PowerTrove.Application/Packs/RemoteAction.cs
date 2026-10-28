@@ -16,8 +16,8 @@ public sealed class RemoteAction : IAction, IFileActionMetadata
     public RemoteAction(PackHostSupervisor supervisor, PackWorkerGroup group, ActionDescriptor descriptor,
         IReadOnlyCollection<string>? extensions = null, Func<CancellationToken, Task>? confirmStarted = null)
     {
-        if (!descriptor.Accepts.SetEquals(new[] { ContentKind.Files }))
-            throw new ArgumentException("Worker actions must consume file selections.", nameof(descriptor));
+        if (!descriptor.Accepts.SetEquals(new[] { ContentKind.Files }) && !descriptor.Accepts.SetEquals(new[] { ContentKind.Table }))
+            throw new ArgumentException("Worker actions must consume file selections or table snapshots.", nameof(descriptor));
         _supervisor = supervisor; _definition = group; _group = supervisor.BindGroup(group); Descriptor = descriptor;
         _extensions = extensions?.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         _confirmStarted = confirmStarted;
@@ -28,6 +28,9 @@ public sealed class RemoteAction : IAction, IFileActionMetadata
         cancellationToken.ThrowIfCancellationRequested();
         var compatible = ActionContextCompatibility.Check(context, Descriptor);
         if (!compatible.IsAvailable) return new(compatible);
+        // The pack itself judges table contents; the host only requires a non-empty captured range.
+        if (Descriptor.Accepts.Contains(ContentKind.Table))
+            return new(context.Content is TableData { Rows.Count: > 0 } ? new ActionAvailability(true) : new ActionAvailability(false, PackStrings.InvalidSelection));
         if (context.Content is not FileSelection files) return new(new ActionAvailability(false, PackStrings.InvalidSelection));
         var eligible = files.Files.Where(f => _extensions is null || !f.IsDirectory && _extensions.Contains(f.Extension)).ToArray();
         if (eligible.Length == 0 || Descriptor.Selection is { AllowOtherItems: false } && eligible.Length != files.Files.Count

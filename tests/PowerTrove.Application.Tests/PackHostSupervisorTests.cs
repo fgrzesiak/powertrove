@@ -159,6 +159,26 @@ public sealed class PackHostSupervisorTests
         fixture.AssertCleanStaging();
     }
 
+    [Fact]
+    public async Task TableActionsMatchOnlyCapturedRanges_AndOversizedTablesNeverStartAWorker()
+    {
+        await using var fixture = new Fixture("success");
+        var descriptor = new ActionDescriptor("powertrove.table.export-csv", "Generated export", "Generated fixture",
+            System.Collections.Frozen.FrozenSet.ToFrozenSet(new[] { ContentKind.Table }), [], true, true);
+        var action = new RemoteAction(fixture.Host, fixture.Group, descriptor);
+        ContextSnapshot Table(int rows) => fixture.Snapshot with { Content = new TableData(Enumerable.Range(0, rows)
+            .Select(_ => (IReadOnlyList<CellValue>)new CellValue[] { new TextCell("0123456789") }).ToArray(), "Excel", null) };
+        Assert.True((await action.MatchAsync(Table(1), fixture.Token)).IsAvailable);
+        Assert.False((await action.MatchAsync(Table(0), fixture.Token)).IsAvailable);
+        Assert.False((await action.MatchAsync(fixture.Snapshot, fixture.Token)).IsAvailable);
+        var preview = await action.PreviewAsync(Table(300_000), new EmptyParameters(), fixture.Token);
+        Assert.True(preview.IsBlocked);
+        Assert.Equal(0, fixture.Factory.Starts);
+        var files = new RemoteAction(fixture.Host, fixture.Group, new ActionDescriptor("powertrove.fixture.copy", "Generated copy", "Generated fixture",
+            System.Collections.Frozen.FrozenSet.ToFrozenSet(new[] { ContentKind.Files }), [], true, true));
+        Assert.False((await files.PreviewAsync(fixture.Snapshot, new EmptyParameters(), fixture.Token)).IsBlocked);
+    }
+
     private sealed class StartedProgress : IProgress<ActionProgress>
     {
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);

@@ -27,7 +27,8 @@ public sealed record ImageExportProfile(
     bool ExposeSize = false,
     bool ExposeMaxDimension = false,
     bool StripMetadataDefault = true,
-    bool ExposeStripMetadata = false);
+    bool ExposeStripMetadata = false,
+    bool ExposeOptionalSize = false);
 
 public sealed record ImageExportOptions(int Quality, int? MaxWidth, int? MaxHeight, bool AllowUpscale, bool StripMetadata);
 
@@ -104,6 +105,13 @@ public sealed class ImageExportAction : PerFileAction<ImageExportOptions>
         {
             maxWidth = values.GetInt32("MaxWidth");
             maxHeight = values.GetInt32("MaxHeight");
+        }
+        else if (_profile.ExposeOptionalSize)
+        {
+            // 0 keeps that dimension; saved presets use these to combine a format with a size limit.
+            int width = values.GetInt32("MaxWidth"), height = values.GetInt32("MaxHeight");
+            maxWidth = width > 0 ? width : null;
+            maxHeight = height > 0 ? height : null;
         }
         else if (_profile.ExposeMaxDimension)
         {
@@ -247,6 +255,11 @@ public sealed class ImageExportAction : PerFileAction<ImageExportOptions>
             list.Add(ActionParameterDefinition.Integer("MaxWidth", SR.GetString("ImageExportAction_Param_MaxWidth_Title"), profile.MaxWidthDefault ?? 1920, 1, 30000));
             list.Add(ActionParameterDefinition.Integer("MaxHeight", SR.GetString("ImageExportAction_Param_MaxHeight_Title"), profile.MaxHeightDefault ?? 1920, 1, 30000));
             list.Add(ActionParameterDefinition.Boolean("AllowUpscale", SR.GetString("ImageExportAction_Param_AllowUpscale_Title"), false));
+        }
+        if (profile.ExposeOptionalSize)
+        {
+            list.Add(ActionParameterDefinition.Integer("MaxWidth", SR.GetString("ImageExportAction_Param_MaxWidth_Title"), 0, 0, 30000, SR.GetString("ImageExportAction_Param_OptionalSize_Desc")));
+            list.Add(ActionParameterDefinition.Integer("MaxHeight", SR.GetString("ImageExportAction_Param_MaxHeight_Title"), 0, 0, 30000, SR.GetString("ImageExportAction_Param_OptionalSize_Desc")));
         }
         if (profile.ExposeMaxDimension)
             list.Add(ActionParameterDefinition.Integer("MaxDimension", SR.GetString("ImageExportAction_Param_MaxDimension_Title"), profile.MaxWidthDefault ?? 2560, 0, 30000));

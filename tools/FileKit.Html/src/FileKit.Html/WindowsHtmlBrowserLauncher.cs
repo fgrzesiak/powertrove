@@ -2,10 +2,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using FileKit.Html;
 using Microsoft.Win32.SafeHandles;
 
-namespace PowerTrove.Pack.Pdf.Windows;
+namespace FileKit.Html;
 
 /// <summary>Launches installed Edge suspended, assigns its whole process tree to a
 /// bounded kill-on-close job, then resumes it. Never disables Chromium's sandbox.</summary>

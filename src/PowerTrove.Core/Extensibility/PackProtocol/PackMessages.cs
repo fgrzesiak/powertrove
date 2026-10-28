@@ -27,18 +27,21 @@ public sealed record PreviewMessage(
     [property: JsonRequired] string ActionId,
     [property: JsonRequired] FileSelectionPayload Selection,
     [property: JsonRequired] IReadOnlyDictionary<string, string> Parameters,
-    [property: JsonRequired] DateTimeOffset ExpiresAt) : PackMessage
+    [property: JsonRequired] DateTimeOffset ExpiresAt,
+    TableSelectionPayload? Table = null) : PackMessage
 {
     public override string Type => "preview";
 }
 
+/// <summary>A request carries either a non-empty file selection or a table with an empty file selection.</summary>
 public sealed record ExecuteMessage(
     [property: JsonRequired] Guid RequestId,
     [property: JsonRequired] string ActionId,
     [property: JsonRequired] FileSelectionPayload Selection,
     [property: JsonRequired] IReadOnlyDictionary<string, string> Parameters,
     [property: JsonRequired] DateTimeOffset ExpiresAt,
-    [property: JsonRequired] string StagingDirectory) : PackMessage
+    [property: JsonRequired] string StagingDirectory,
+    TableSelectionPayload? Table = null) : PackMessage
 {
     public override string Type => "execute";
 }
@@ -127,6 +130,68 @@ public sealed record FileSelectionPayload([property: JsonRequired] IReadOnlyList
         return payload;
     }
     public override string ToString() => $"FileSelectionPayload {{ Count = {Files?.Count ?? 0} }}";
+}
+
+/// <summary>
+/// Captured table cells (for example an Excel range). Contents are user data: never log, interpolate or
+/// persist them. Workers may write outputs only below <see cref="OutputDirectory"/>, which the host chose.
+/// </summary>
+public sealed record TableSelectionPayload(
+    [property: JsonRequired] IReadOnlyList<IReadOnlyList<ProtocolCell>> Rows,
+    [property: JsonRequired] string OutputDirectory,
+    string? SourceApplication = null,
+    string? SourceRange = null)
+{
+    public static TableSelectionPayload FromSnapshot(ContextSnapshot snapshot, string outputDirectory)
+    {
+        ArgumentNullException.ThrowIfNull(snapshot);
+        if (snapshot.Status != ContextStatus.Available || snapshot.Content is not TableData table)
+            throw new PackProtocolException(PackProtocolError.UnsupportedSelection);
+        if (table.Rows is null || table.Rows.Count > PackProtocolLimits.MaximumTableCells || table.Rows.Any(row => row is null))
+            throw new PackProtocolException(PackProtocolError.InvalidMessage);
+        if (table.Rows.Sum(row => (long)row.Count) > PackProtocolLimits.MaximumTableCells)
+            throw new PackProtocolException(PackProtocolError.LineTooLarge);
+        var payload = new TableSelectionPayload(Array.AsReadOnly(table.Rows.Select(row =>
+            (IReadOnlyList<ProtocolCell>)Array.AsReadOnly(row.Select(ProtocolCell.From).ToArray())).ToArray()),
+            outputDirectory, table.SourceApplication, table.SourceRange);
+        PackMessageValidation.ValidateTable(payload);
+        return payload;
+    }
+    public TableData ToTableData() => new(Array.AsReadOnly(Rows.Select(row =>
+        (IReadOnlyList<CellValue>)Array.AsReadOnly(row.Select(cell => cell.ToCellValue()).ToArray())).ToArray()), SourceApplication, SourceRange);
+    public override string ToString() => $"TableSelectionPayload {{ Rows = {Rows?.Count ?? 0} }}";
+}
+
+/// <summary>One typed cell; short member names keep large ranges within the line limit.</summary>
+public sealed record ProtocolCell(
+    [property: JsonRequired, JsonPropertyName("k")] string Kind,
+    [property: JsonPropertyName("s")] string? Text = null,
+    [property: JsonPropertyName("n")] double? Number = null,
+    [property: JsonPropertyName("b")] bool? Boolean = null,
+    [property: JsonPropertyName("d")] DateTime? Date = null,
+    [property: JsonPropertyName("f")] string? Formatted = null)
+{
+    public static ProtocolCell From(CellValue cell) => cell switch
+    {
+        EmptyCell => new("empty"),
+        TextCell t => new("text", Text: t.Value, Formatted: t.FormattedValue),
+        NumberCell n => new("number", Number: n.Value, Formatted: n.FormattedValue),
+        BooleanCell b => new("boolean", Boolean: b.Value, Formatted: b.FormattedValue),
+        DateCell d => new("date", Date: d.Value, Formatted: d.FormattedValue),
+        ErrorCell e => new("error", Text: e.Code, Formatted: e.FormattedValue),
+        _ => throw new PackProtocolException(PackProtocolError.InvalidMessage)
+    };
+    public CellValue ToCellValue() => Kind switch
+    {
+        "empty" => new EmptyCell(),
+        "text" => new TextCell(Text!, Formatted),
+        "number" => new NumberCell(Number!.Value, Formatted),
+        "boolean" => new BooleanCell(Boolean!.Value, Formatted),
+        "date" => new DateCell(Date!.Value, Formatted),
+        "error" => new ErrorCell(Text!, Formatted),
+        _ => throw new PackProtocolException(PackProtocolError.InvalidMessage)
+    };
+    public override string ToString() => "ProtocolCell { Payload = redacted }";
 }
 
 public sealed record ProtocolFile(

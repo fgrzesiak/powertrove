@@ -10,4 +10,6 @@ internal static class PackStrings
     public static string Stopped => Get("PackWorkerStopped");
     public static string OutputFailed => Get("PackOutputFailed");
     public static string InvalidSelection => Get("PackInvalidSelection");
+    public static string ImagePresetNeedsImages => Get("PackImagePresetNeedsImages");
+    public static string TableTooLarge => Get("PackTableTooLarge");
 }

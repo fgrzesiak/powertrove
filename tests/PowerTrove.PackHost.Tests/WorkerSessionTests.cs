@@ -102,6 +102,30 @@ public sealed class WorkerSessionTests
         Assert.False(File.Exists(host.OutputPath));
     }
 
+    [Fact]
+    public async Task RealTablesPackPreviewsAndExportsATableIntoTheHostChosenDirectory()
+    {
+        await using var host = new Harness(factories: [new PowerTrove.Pack.Tables.TablesPackFactory()]);
+        await host.Send(new HelloMessage(1, "0.3.0"));
+        Assert.Contains(host.Receive<ReadyMessage>().Result.Packs, p => p.Id == "powertrove.tables");
+        string exports = host.CreateFolder("exports");
+        var table = TableSelectionPayload.FromSnapshot(new ContextSnapshot(Guid.NewGuid(), new SourceWindowIdentity(0, 0, "test", DateTimeOffset.UtcNow),
+            ContextStatus.Available, new TableData([[new TextCell("Name"), new TextCell("Count")], [new TextCell("a;b"), new NumberCell(2)]], "Excel", "A1:B2"),
+            DateTimeOffset.UtcNow, host.Expires, "test", null), exports);
+        var parameters = new Dictionary<string, string> { ["OutputDirectory"] = exports, ["Delimiter"] = ";" };
+        await host.Send(new PreviewMessage(Guid.NewGuid(), "powertrove.table.export-csv", new FileSelectionPayload([]), parameters, host.Expires, table));
+        var preview = await host.Receive<PreviewResultMessage>();
+        Assert.False(preview.IsBlocked);
+        var execute = host.Execute("powertrove.table.export-csv") with { Selection = new FileSelectionPayload([]), Parameters = parameters, Table = table };
+        await host.Send(execute);
+        var result = await host.Receive<ResultMessage>();
+        Assert.True(result.Receipt.IsSuccess);
+        var output = Assert.Single(result.Outputs);
+        Assert.Equal(exports, output.IntendedDirectory);
+        Assert.Equal("Name;Count\r\n\"a;b\";2", File.ReadAllText(Path.Combine(execute.StagingDirectory, output.Path)).TrimEnd());
+        Assert.Empty(Directory.EnumerateFileSystemEntries(exports));
+    }
+
     private sealed class Harness : IAsyncDisposable
     {
         private readonly TempDirectory _temp = new();
@@ -118,18 +142,19 @@ public sealed class WorkerSessionTests
         public CancellationToken Token => _deadline.Token;
         public List<ProgressMessage> Progress { get; } = new();
         public Task Completion { get; }
-        public Harness(TimeProvider? clock = null, IReadOnlySet<string>? declaredIds = null)
+        public Harness(TimeProvider? clock = null, IReadOnlySet<string>? declaredIds = null, IPackFactory[]? factories = null)
         {
             _clock = clock ?? TimeProvider.System;
             InputPath = _temp.Write("source.txt", "original");
             Selection = FileSelectionPayload.FromSnapshot(Snapshots.ForPaths(InputPath));
             _staging = Directory.CreateDirectory(_temp.File("staging")).FullName;
-            var worker = new WorkerSession([new TinyPackFactory()], files => new PackHostServices(new Version(0, 1, 0), files),
+            var worker = new WorkerSession(factories ?? [new TinyPackFactory()], files => new PackHostServices(new Version(0, 1, 0), files),
                 new ExtensionOnlyTypeVerifier(), _staging, _clock, declaredIds);
             _writer = new PackMessageWriter(_input);
             _reader = PackMessageStream.ReadAsync(_output, Token).GetAsyncEnumerator(Token);
             Completion = worker.RunAsync(_input, _output, Token);
         }
+        public string CreateFolder(string name) => Directory.CreateDirectory(_temp.File(name)).FullName;
         public async Task StartAsync()
         {
             await Send(new HelloMessage(1, "0.1.0"));

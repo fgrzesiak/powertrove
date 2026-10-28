@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="..\PowerTrove.Platform.Windows.Tests\Media\RequiresMediaCapabilities.cs" Link="Media\RequiresMediaCapabilities.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInActionPacks.cs" Link="Desktop\BuiltInActionPacks.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInActionPacks.Base.cs" Link="Desktop\BuiltInActionPacks.Base.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInActionPacks.Full.cs" Link="Desktop\BuiltInActionPacks.Full.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInContextProviders.cs" Link="Desktop\BuiltInContextProviders.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />

@@ -4,7 +4,7 @@ Use Windows 11 x64 and download only an explicitly published release. Check its 
 
 ## Portable ZIP
 
-Extract the entire ZIP to a writable local directory, then start `PowerTrove.exe` inside it. Keep the app-local runtime files and `packhost` directory together. A correctly packaged self-contained release needs no development SDK or prerequisite download. Do not run the EXE directly inside the archive.
+Extract the entire ZIP to a writable local directory, then start `PowerTrove.exe` inside it. Keep all app-local files together; the pack worker `PowerTrove.PackHost.exe` shares the app runtime. A correctly packaged self-contained release needs no development SDK or prerequisite download. Do not run the EXE directly inside the archive.
 
 ## First action
 

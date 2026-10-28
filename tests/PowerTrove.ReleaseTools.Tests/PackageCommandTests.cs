@@ -25,6 +25,8 @@ public class PackageCommandTests : IDisposable
     private class FakeProcessRunner : IProcessRunner
     {
         public bool ShouldFailPublish { get; set; }
+        /// <summary>Runtime bytes the worker publish produces; the app publishes "shared runtime".</summary>
+        public string WorkerRuntime { get; set; } = "shared runtime";
         public bool IsGitDirty { get; set; }
         public string FakeRevision { get; set; } = new('a', 40);
         public Action<string>? OnPublish { get; set; }
@@ -62,12 +64,14 @@ public class PackageCommandTests : IDisposable
                 {
                     Directory.CreateDirectory(outputDir);
                     File.WriteAllText(Path.Combine(outputDir, "PowerTrove.PackHost.exe"), "dummy worker");
+                    File.WriteAllText(Path.Combine(outputDir, "System.Private.CoreLib.dll"), WorkerRuntime);
                 }
                 else
                 {
                     foreach (string name in new[] { "PowerTrove.exe", "PowerTrove.pri", "App.xbf", "MainWindow.xbf",
                         "SettingsWindow.xbf", "PageOrganizerWindow.xbf" })
                         File.WriteAllText(Path.Combine(outputDir, name), "synthetic runtime resource");
+                    File.WriteAllText(Path.Combine(outputDir, "System.Private.CoreLib.dll"), "shared runtime");
                     OnPublish?.Invoke(outputDir);
                 }
                 }
@@ -106,6 +110,17 @@ public class PackageCommandTests : IDisposable
         Assert.Throws<InvalidDataException>(() => PackageCommand.ValidateDesktopResources(_outputDir));
         File.Delete(Path.Combine(_outputDir, missing));
         Assert.Throws<InvalidDataException>(() => PackageCommand.ValidateDesktopResources(_outputDir));
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_SharesTheAppRuntimeWithTheWorker_AndRefusesDifferingRuntimeFiles()
+    {
+        CreateDummyDesktopProject();
+        await Assert.ThrowsAsync<InvalidDataException>(() =>
+            PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.0.0", new FakeProcessRunner { WorkerRuntime = "different runtime" }));
+        Assert.False(File.Exists(Path.Combine(_outputDir, "PowerTrove-v1.0.0-win-x64.zip")));
+        Assert.False(Directory.Exists(Path.Combine(_outputDir, "PowerTrove-v1.0.0-worker")));
+        Assert.Equal("shared runtime", File.ReadAllText(Path.Combine(_outputDir, "PowerTrove-v1.0.0-win-x64", "System.Private.CoreLib.dll")));
     }
 
     [Fact]
@@ -201,10 +216,13 @@ public class PackageCommandTests : IDisposable
         // Assert components array exists
         var components = manifest.GetProperty("Components");
         Assert.Equal(JsonValueKind.Array, components.ValueKind);
-        Assert.Equal(3, components.GetArrayLength()); // Desktop EXE/DLL and isolated worker EXE
+        // Desktop EXE/DLL, the worker EXE next to them, and one copy of the runtime both share.
+        Assert.Equal(4, components.GetArrayLength());
+        Assert.Single(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "System.Private.CoreLib.dll");
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.dll" && c.GetProperty("Sha256").GetString()?.Length == 64);
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.PackHost.exe");
-        Assert.NotNull(archive.GetEntry("packhost/PowerTrove.PackHost.exe"));
+        Assert.NotNull(archive.GetEntry("PowerTrove.PackHost.exe"));
+        Assert.DoesNotContain(archive.Entries, e => e.FullName.StartsWith("packhost/", StringComparison.Ordinal));
 
         Assert.NotNull(archive.GetEntry("LICENSE"));
         Assert.NotNull(archive.GetEntry("NOTICE"));

@@ -1,4 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
-  <ItemGroup><ProjectReference Include="../../src/PowerTrove.Pack.EInvoice/PowerTrove.Pack.EInvoice.csproj" /></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/PowerTrove.Pack.EInvoice/PowerTrove.Pack.EInvoice.csproj" />
+    <ProjectReference Include="../../adapters/PowerTrove.Pack.EInvoice.Html/PowerTrove.Pack.EInvoice.Html.csproj" />
+  </ItemGroup>
 </Project>

@@ -56,23 +56,43 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         { return new(false, true, Array.Empty<string>(), Array.Empty<ActionFailure>(), false); }
     }
 
+    /// <summary>Table actions write to the user's desktop unless an absolute OutputDirectory parameter is supplied.</summary>
+    private static string TableOutputDirectory(IReadOnlyDictionary<string, string> values) =>
+        values.TryGetValue("OutputDirectory", out var directory) && !string.IsNullOrWhiteSpace(directory) && Path.IsPathFullyQualified(directory)
+            ? Path.GetFullPath(directory) : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
     private async Task<PackMessage?> RequestAsync(PackWorkerGroup definition, string actionId, ContextSnapshot snapshot,
         ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken token, bool execute)
     {
         ObjectDisposedException.ThrowIf(_lifetime.IsCancellationRequested, this);
-        if (snapshot.IsStale || snapshot.Status != ContextStatus.Available || snapshot.Content is not FileSelection)
+        if (snapshot.IsStale || snapshot.Status != ContextStatus.Available || snapshot.Content is not (FileSelection or TableData))
             return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
         using var executionLifetime = CancellationTokenSource.CreateLinkedTokenSource(token, _lifetime.Token);
         await _executionGate.WaitAsync(executionLifetime.Token).ConfigureAwait(false);
         await using var executionLease = new ExecutionLease(_executionGate);
         if (snapshot.IsStale) return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
-        var selection = FileSelectionPayload.FromSnapshot(snapshot);
         var values = parameters switch
         {
             DictionaryParameters dictionary => dictionary.Values,
             EmptyParameters => new Dictionary<string, string>(),
             _ => throw new ArgumentException("Remote actions require declarative parameters.", nameof(parameters))
         };
+        TableSelectionPayload? table = null;
+        FileSelectionPayload selection;
+        if (snapshot.Content is TableData)
+        {
+            try
+            {
+                table = TableSelectionPayload.FromSnapshot(snapshot, TableOutputDirectory(values));
+                // Refuse an oversized table before starting or burdening a worker.
+                // The margin covers the execute request's staging path.
+                if (PackMessageSerializer.SerializeLine(new PreviewMessage(Guid.NewGuid(), actionId, new FileSelectionPayload([]), values, snapshot.ExpiresAt, table)).Length
+                    > PackProtocolLimits.MaximumLineBytes - 8192) throw new PackProtocolException(PackProtocolError.LineTooLarge);
+            }
+            catch (PackProtocolException) { return new ErrorMessage("invalidRequest", PackStrings.TableTooLarge); }
+            selection = new FileSelectionPayload([]);
+        }
+        else selection = FileSelectionPayload.FromSnapshot(snapshot);
         ValidateGroup(definition);
         var group = _groups.GetOrAdd(definition.Id, _ => new Group(definition, _clock.GetUtcNow()));
         if (!SameDefinition(group.Definition, definition)) throw new InvalidOperationException("Stop the previous pack group before replacing its payload.");
@@ -93,16 +113,16 @@ public sealed class PackHostSupervisor : IAsyncDisposable
             {
                 staging = Path.Combine(_stagingRoot, Guid.NewGuid().ToString("N"));
                 PackOutputCommitter.RejectReparse(staging); Directory.CreateDirectory(staging);
-                request = new ExecuteMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, staging);
+                request = new ExecuteMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, staging, table);
             }
-            else request = new PreviewMessage(requestId, actionId, selection, values, snapshot.ExpiresAt);
+            else request = new PreviewMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, table);
             await WriteAsync(group, request, TimeSpan.FromSeconds(10), _lifetime.Token).ConfigureAwait(false);
             PackMessage response = await ResponseAsync(group, requestId, execute, progress, active.Token).ConfigureAwait(false);
             if (response is ResultMessage result)
             {
                 // Already completed staged outputs may be retained after cooperative cancellation.
                 if (token.IsCancellationRequested) result = result with { Receipt = result.Receipt with { IsCanceled = true, IsSuccess = false } };
-                var receipt = await _committer.CommitAsync(staging!, selection, result, _lifetime.Token).ConfigureAwait(false);
+                var receipt = await _committer.CommitAsync(staging!, selection, result, _lifetime.Token, table?.OutputDirectory).ConfigureAwait(false);
                 try { await CleanStagingAsync(group, staging!).ConfigureAwait(false); }
                 catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
                 {

@@ -14,6 +14,17 @@ public interface IUpdateCheckSettings
     void SetCheckForUpdatesOnStartup(bool enabled);
 }
 
+/// <summary>Takes over the packs an earlier version compiled in, once, after updating to a Core-only version.</summary>
+public interface IPackMigrationSettings
+{
+    /// <summary>True when settings existed before this start, so this is not a fresh installation.</summary>
+    bool HadExistingSettings { get; }
+    bool PackMigrationChecked { get; }
+    IReadOnlyList<string> PendingPackMigration { get; }
+    /// <summary>Records the packs still to take over and marks the migration as checked.</summary>
+    void SetPackMigration(IReadOnlyList<string> pending);
+}
+
 public interface ISettingsService
 {
     UserSettings Settings { get; }

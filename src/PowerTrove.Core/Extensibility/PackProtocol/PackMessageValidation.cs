@@ -9,6 +9,7 @@ internal sealed class PackMessageValidation
     private static readonly Encoding StrictUtf8 = new UTF8Encoding(false, true);
 
     public static void Validate(PackMessage message) => new PackMessageValidation().Message(message);
+    public static void ValidateTable(TableSelectionPayload table) => new PackMessageValidation().Table(table);
     public static void ValidateSelection(FileSelectionPayload selection) => new PackMessageValidation().Selection(selection);
 
     private void Message(PackMessage message)
@@ -26,9 +27,9 @@ internal sealed class PackMessageValidation
                 }
                 break;
             case PreviewMessage m:
-                Request(m.RequestId, m.ActionId, m.Selection, m.Parameters, m.ExpiresAt); break;
+                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.Parameters, m.ExpiresAt); break;
             case ExecuteMessage m:
-                Request(m.RequestId, m.ActionId, m.Selection, m.Parameters, m.ExpiresAt); AbsolutePath(m.StagingDirectory); break;
+                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.Parameters, m.ExpiresAt); AbsolutePath(m.StagingDirectory); break;
             case PreviewResultMessage m:
                 Id(m.RequestId); Text(m.PreviewText, optional: true);
                 Texts(m.ExpectedOutputs); Texts(m.Warnings);
@@ -81,10 +82,16 @@ internal sealed class PackMessageValidation
         }
     }
 
-    private void Request(Guid id, string actionId, FileSelectionPayload selection,
+    private void Request(Guid id, string actionId, FileSelectionPayload selection, TableSelectionPayload? table,
         IReadOnlyDictionary<string, string> parameters, DateTimeOffset expiresAt)
     {
-        Id(id); Text(actionId, 256); Require(expiresAt != default); Selection(selection);
+        Id(id); Text(actionId, 256); Require(expiresAt != default);
+        if (table is null) Selection(selection);
+        else
+        {
+            // A table request never also authorizes file access.
+            Require(selection?.Files is { Count: 0 }); Table(table);
+        }
         Count(parameters, PackProtocolLimits.MaximumParameters);
         foreach (var parameter in parameters)
         {
@@ -104,6 +111,36 @@ internal sealed class PackMessageValidation
             Require(file.Extension.Length == 0 || file.Extension.StartsWith('.') &&
                 !file.Extension.Any(c => c < ' ' || ":/\\<>\"|?*".Contains(c)));
             Require(!file.SizeBytes.HasValue || file.SizeBytes.Value >= 0);
+        }
+    }
+
+    private void Table(TableSelectionPayload table)
+    {
+        Require(table is not null);
+        Count(table.Rows, PackProtocolLimits.MaximumTableCells);
+        AbsolutePath(table.OutputDirectory);
+        Text(table.SourceApplication, 256, optional: true); Text(table.SourceRange, 256, optional: true);
+        long cells = 0;
+        foreach (var row in table.Rows)
+        {
+            Require(row is not null);
+            cells += row.Count;
+            Require(cells <= PackProtocolLimits.MaximumTableCells);
+            foreach (var cell in row)
+            {
+                Require(cell is not null);
+                Text(cell.Formatted, PackProtocolLimits.MaximumCellTextLength, optional: true, allowEmpty: true);
+                Require(cell.Kind switch
+                {
+                    "empty" => cell.Text is null && cell.Number is null && cell.Boolean is null && cell.Date is null,
+                    "text" or "error" => cell.Text is not null && cell.Number is null && cell.Boolean is null && cell.Date is null,
+                    "number" => cell.Number is { } n && double.IsFinite(n) && cell.Text is null && cell.Boolean is null && cell.Date is null,
+                    "boolean" => cell.Boolean is not null && cell.Text is null && cell.Number is null && cell.Date is null,
+                    "date" => cell.Date is not null && cell.Text is null && cell.Number is null && cell.Boolean is null,
+                    _ => false
+                });
+                Text(cell.Text, cell.Kind == "error" ? 64 : PackProtocolLimits.MaximumCellTextLength, optional: true, allowEmpty: cell.Kind == "text");
+            }
         }
     }
 

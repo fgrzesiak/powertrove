@@ -73,9 +73,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         SettingsService = new SettingsService(settingsFilePath);
         StartupUiLanguage = SettingsService.Settings.UiLanguage;
         UiLanguages.Apply(UiLanguages.Resolve(StartupUiLanguage, System.Globalization.CultureInfo.CurrentUICulture));
-        string workerExecutable = Path.Combine(AppContext.BaseDirectory, "packhost", "PowerTrove.PackHost.exe");
-        if (!File.Exists(workerExecutable))
-            workerExecutable = Path.Combine(AppContext.BaseDirectory, "PowerTrove.PackHost.exe");
+        // The worker shares the app directory and runtime. Never prefer a packhost folder left by an older layout.
+        string workerExecutable = Path.Combine(AppContext.BaseDirectory, "PowerTrove.PackHost.exe");
         PackHosts = new PowerTrove.Application.Packs.PackHostSupervisor(
             new PowerTrove.Platform.Windows.Packs.WindowsPackWorkerProcessFactory(workerExecutable),
             Path.Combine(appDataPath, "PowerTrove"));
@@ -106,14 +105,12 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         var undoService = new PowerTrove.Core.UndoService(new PowerTrove.Abstractions.Files.PhysicalOutputFileSystem());
         m_window.ViewModel.UndoService = undoService;
-        var installedPacks = BuiltInActionPacks.Create(SettingsService.Settings.ImageExportPresets, workflowRunner, undoService).ToArray();
+        var installedPacks = BuiltInActionPacks.Create(workflowRunner, undoService).ToArray();
         bool isolationUnavailable = false;
         if (SettingsService.Settings.RunFileToolsInSeparateProcess)
         {
-            var presetIds = (SettingsService.Settings.ImageExportPresets ?? [])
-                .Select(p => p.Id).ToHashSet(StringComparer.Ordinal);
             var isolation = await PowerTrove.Application.Packs.BuiltInPackIsolation.RouteAsync(
-                installedPacks, PackHosts, AppContext.BaseDirectory, presetIds);
+                installedPacks, PackHosts, AppContext.BaseDirectory);
             installedPacks = isolation.Packs.ToArray();
             isolationUnavailable = !isolation.Ready;
         }
@@ -121,6 +118,9 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         {
             actionRegistry.RegisterPack(pack.Info.Id, pack.Actions);
         }
+        // Saved image presets run the installed Images pack's conversion, wherever that pack runs.
+        actionRegistry.RegisterPack("powertrove.image-presets", (SettingsService.Settings.ImageExportPresets ?? [])
+            .Select(p => (IAction)new PowerTrove.Application.Packs.ImagePresetAction(p, actionRegistry.GetAction)).ToArray());
         actionRegistry.Register(new PowerTrove.Application.Commands.OpenSettingsAction(() => OpenSettings()));
         var catalog = await ActionCatalogFile.LoadAsync(Path.Combine(AppContext.BaseDirectory, "catalog.json"),
             installedPacks.Select(p => p.Info), PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
@@ -227,6 +227,10 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         if (_hostElector is not null)
             _activationListener = _hostElector.StartListeningAsync(ReceiveActivationAsync, _activationLifetime.Token);
         _ = Updates.CheckOnStartupAsync(SettingsService.Settings.CheckForUpdatesOnStartup, _activationLifetime.Token);
+        var packMigration = new PowerTrove.Application.Packs.BuiltInPackMigration(PackManagement!, (PowerTrove.Application.Configuration.IPackMigrationSettings)SettingsService);
+        var setupSelection = PowerTrove.Application.Packs.BuiltInPackMigration.TakeSetupSelection(Path.Combine(AppContext.BaseDirectory, "setup-packs.json"));
+        if (packMigration.Prepare(installedPacks.Select(p => p.Info.Id).ToHashSet(StringComparer.Ordinal), setupSelection))
+            _ = RunPackMigrationAsync(packMigration);
         if (_startupMessage is ExplicitSelectionMessage selection)
         {
             // Invalid explicit commands must not silently capture another window or open a generic palette.
@@ -251,7 +255,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         else if (message is not ActivatePaletteMessage) return Task.FromResult(false);
 
         if (message is ExplicitSelectionMessage { ActionId: not null } &&
-            (Actions?.GetAction(PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId) is null or PowerTrove.Core.Catalog.CatalogAction))
+            (Actions?.GetAction(ActivationProtocol.OrganizePagesActionId) is null or PowerTrove.Core.Catalog.CatalogAction))
             return Task.FromResult(false);
         var window = m_window;
         bool queued = window.DispatcherQueue.TryEnqueue(() =>
@@ -279,6 +283,14 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         m_window.ShowPalette();
     }
 
+    /// <summary>Takes over formerly compiled-in packs in the background; what fails stays pending for the next start.</summary>
+    private async Task RunPackMigrationAsync(PowerTrove.Application.Packs.BuiltInPackMigration migration)
+    {
+        try { await migration.RunAsync(_activationLifetime.Token); }
+        catch (Exception ex) when (ex is OperationCanceledException or IOException or InvalidDataException or UnauthorizedAccessException
+            or System.Net.Http.HttpRequestException or System.Text.Json.JsonException or InvalidOperationException) { }
+    }
+
     private bool TryShowExplicitSelection(ExplicitSelectionMessage selection)
     {
         var snapshot = new ExplicitSelectionValidator().CreateSnapshot(selection);
@@ -298,7 +310,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             return true;
         }
         if (selection.ActionId != ActivationProtocol.OrganizePagesActionId) return false;
-        var action = Actions?.GetAction(PowerTrove.Pack.Pdf.OrganizePagesPdfAction.ActionId);
+        var action = Actions?.GetAction(ActivationProtocol.OrganizePagesActionId);
         if (action is null || action is PowerTrove.Core.Catalog.CatalogAction) return false;
         var organizer = new PageOrganizerWindow(action, snapshot);
         TrackEditor(organizer);

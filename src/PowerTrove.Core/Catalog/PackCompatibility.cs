@@ -15,7 +15,7 @@ public static class PackCompatibility
             Supports(manifest.PlatformConstraints?.Os, os) && Supports(manifest.PlatformConstraints?.MinimumArchitecture, architecture) &&
             // No unspecified SDK host service is assumed to exist.
             (manifest.Capabilities is null || manifest.Capabilities.All(c => c is "ocr" or "office.input")) &&
-            (!requireWorkerInput || manifest.Actions.All(a => a.InputKinds.Count == 1 && a.InputKinds[0] == "files"));
+            (!requireWorkerInput || manifest.Actions.All(a => a.InputKinds.Count == 1 && a.InputKinds[0] is "files" or "table"));
     }
     private static bool Supports(IReadOnlyList<string>? allowed, string value) =>
         allowed is null || allowed.Contains(value, StringComparer.OrdinalIgnoreCase);

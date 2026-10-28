@@ -387,4 +387,7 @@
   <data name="VectorFiles" xml:space="preserve"><value>PNG-Bilder</value></data>
   <data name="VectorLimits" xml:space="preserve"><value>Erzeugt echte Polygonpfade und keine eingebettete Rastergrafik. Geeignet für flächige Logos und einfache Illustrationen; Fotos, Verläufe, feine Schrift und glatte Kurven verlieren Details. Der Farbmodus quantisiert Farben und Alpha; Schwarz-Weiß verwendet Helligkeits- und Alpha-Schwellen. Verarbeitet wird auf einem Raster mit 256/512/1024 px bei erhaltener Anzeigegröße. Quellgrenze: 16 Millionen Pixel; Komplexität: 250.000 Konturkanten; SVG: 5 MiB. Rein transparente oder zu komplexe Eingaben werden abgewiesen.</value></data>
   <data name="VectorFailed" xml:space="preserve"><value>Das PNG konnte nicht vektorisiert werden: keine sichtbaren Formen, nicht unterstützte Abmessungen oder zu komplexe Konturen. Versuche weniger Details oder ein einfacheres Logo.</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0 behält die Originalgröße.</value>
+  </data>
 </root>

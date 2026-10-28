@@ -30,9 +30,9 @@ public sealed class ThirdPartyNoticesTests : IDisposable
                 packageFolders = new Dictionary<string, object> { [Path.Combine(_root, "packages")] = new { } },
                 libraries = new { }
             }));
-            string output = project == "PowerTrove.Desktop" ? Stage : Path.Combine(Stage, "packhost");
-            Directory.CreateDirectory(output);
-            File.WriteAllText(Path.Combine(output, project == "PowerTrove.Desktop" ? "PowerTrove.deps.json" : "PowerTrove.PackHost.deps.json"),
+            // The worker shares the app directory and runtime.
+            Directory.CreateDirectory(Stage);
+            File.WriteAllText(Path.Combine(Stage, project == "PowerTrove.Desktop" ? "PowerTrove.deps.json" : "PowerTrove.PackHost.deps.json"),
                 JsonSerializer.Serialize(new { libraries = new Dictionary<string, object> { ["Supplier.Fixture/1.2.3"] = new { type = "package" } } }));
         }
     }
@@ -62,7 +62,7 @@ public sealed class ThirdPartyNoticesTests : IDisposable
         File.Copy(Path.Combine(Repository, "src", "PowerTrove.Desktop", "obj", "project.assets.json"), Path.Combine(obj, "project.assets.json"));
         File.Move(Path.Combine(Stage, "PowerTrove.deps.json"), Path.Combine(Stage, "Fixture.Composition.deps.json"));
         Directory.Delete(Path.Combine(Repository, "src"), true);
-        Directory.Delete(Path.Combine(Stage, "packhost"), true);
+        File.Delete(Path.Combine(Stage, "PowerTrove.PackHost.deps.json"));
         await ThirdPartyNotices.BuildPackAsync(Repository, Stage, project);
         Assert.Equal(File.ReadAllBytes(Path.Combine(Package, "LICENSE.txt")),
             File.ReadAllBytes(Path.Combine(Stage, "licenses", "supplier.fixture", "1.2.3", "LICENSE.txt")));

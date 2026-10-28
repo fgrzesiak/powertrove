@@ -414,7 +414,7 @@ public sealed partial class SettingsWindow : Window
         _packDialogOpen = true;
         try
         {
-            var dialog = new ContentDialog { Title = row.Name, Content = UiText.PackRemoveConsent(row.Name), PrimaryButtonText = UiText.PacksUninstall,
+            var dialog = new ContentDialog { Title = row.Name, Content = row.IsBuiltIn ? UiText.PackRemoveConsent(row.Name) : UiText.PackRemoveConsentNoBundled(row.Name), PrimaryButtonText = UiText.PacksUninstall,
                 CloseButtonText = UiText.CommonCancel, DefaultButton = ContentDialogButton.Close, XamlRoot = Content.XamlRoot };
             if (await dialog.ShowAsync() == ContentDialogResult.Primary && !_packsClosed) await Packs.UninstallAsync(id);
         }

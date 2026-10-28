@@ -12,6 +12,7 @@
     <Project Path="src/PowerTrove.Infrastructure/PowerTrove.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/packs/">
+    <Project Path="packs/PowerTrove.Pack.EInvoice/adapters/PowerTrove.Pack.EInvoice.Html/PowerTrove.Pack.EInvoice.Html.csproj" />
     <Project Path="packs/PowerTrove.Pack.EInvoice/src/PowerTrove.Pack.EInvoice/PowerTrove.Pack.EInvoice.csproj" />
     <Project Path="packs/PowerTrove.Pack.EInvoice/tests/PowerTrove.Pack.EInvoice.Tests/PowerTrove.Pack.EInvoice.Tests.csproj" />
     <Project Path="packs/PowerTrove.Pack.Office/src/PowerTrove.Pack.Office/PowerTrove.Pack.Office.csproj" />

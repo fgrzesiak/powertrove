@@ -91,9 +91,9 @@ public static class PackBundleBuilder
                 _ = ActionPackManifest.ToJson(manifest);
                 if (!ids.Add(manifest.Id) || manifest.Actions.Any(a => !actionIds.Add(a.Id)))
                     throw new InvalidDataException("Duplicate pack or action identifier.");
-                // Worker protocol v1 carries file selections only. Signing a non-file pack
-                // would make an apparently installable bundle that the installer refuses.
-                if (manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] != "files"))
+                // Worker protocol v1 carries file selections or table snapshots. Signing another
+                // kind would make an apparently installable bundle that the installer refuses.
+                if (manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] is not ("files" or "table")))
                     throw new InvalidDataException("A composition uses selection kinds unsupported by worker protocol v1.");
 
                 byte[] manifestBytes = Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest));

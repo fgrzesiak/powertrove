@@ -387,4 +387,7 @@
   <data name="VectorFiles" xml:space="preserve"><value>PNG images</value></data>
   <data name="VectorLimits" xml:space="preserve"><value>Creates real polygon paths, not an embedded bitmap. Best for flat logos and simple illustrations; photos, gradients, fine text and smooth curves lose detail. Color mode quantizes colors and alpha; black/white mode thresholds brightness and alpha. Processing uses a 256/512/1024 px working grid while retaining original display size. Source limit: 16 million pixels; complexity: 250,000 boundary edges; SVG: 5 MiB. Transparent-only or overly complex inputs fail.</value></data>
   <data name="VectorFailed" xml:space="preserve"><value>The PNG could not be vectorized: no visible shapes, unsupported dimensions or excessive contour complexity. Try lower detail or a simpler logo.</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0 keeps the original size.</value>
+  </data>
 </root>

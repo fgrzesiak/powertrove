@@ -43,7 +43,9 @@ public sealed record UserSettings(
     string? UiLanguage = null,
     bool ShowNotInstalledActions = true,
     bool RunFileToolsInSeparateProcess = false,
-    bool CheckForUpdatesOnStartup = true)
+    bool CheckForUpdatesOnStartup = true,
+    bool PackMigrationChecked = false,
+    IReadOnlyList<string>? PendingPackMigration = null)
 {
     public const int CurrentVersion = 3;
 

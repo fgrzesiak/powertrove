@@ -8,7 +8,7 @@ using PowerTrove.Abstractions;
 
 namespace PowerTrove.Application.Configuration;
 
-public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings
+public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings, IPackMigrationSettings
 {
     private readonly string _settingsFilePath;
     private UserSettings _settings;
@@ -30,6 +30,7 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
     public SettingsService(string settingsFilePath)
     {
         _settingsFilePath = settingsFilePath ?? throw new ArgumentNullException(nameof(settingsFilePath));
+        HadExistingSettings = File.Exists(_settingsFilePath);
         _settings = LoadSettings(out bool needsSave);
         if (needsSave)
         {
@@ -174,7 +175,9 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
                 PowerTrove.Application.Localization.UiLanguages.Normalize(settings.UiLanguage),
                 settings.ShowNotInstalledActions,
                 settings.RunFileToolsInSeparateProcess,
-                settings.CheckForUpdatesOnStartup
+                settings.CheckForUpdatesOnStartup,
+                settings.PackMigrationChecked,
+                settings.PendingPackMigration?.Where(id => !string.IsNullOrWhiteSpace(id)).Distinct(StringComparer.Ordinal).ToArray()
             );
         }
         catch (Exception ex)
@@ -353,6 +356,20 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
         {
             if (IsReadOnly) return;
             _settings = _settings with { CheckForUpdatesOnStartup = enabled };
+            Save();
+        }
+    }
+
+    public bool HadExistingSettings { get; }
+    public bool PackMigrationChecked => Settings.PackMigrationChecked;
+    public IReadOnlyList<string> PendingPackMigration => Settings.PendingPackMigration ?? [];
+    public void SetPackMigration(IReadOnlyList<string> pending)
+    {
+        ArgumentNullException.ThrowIfNull(pending);
+        lock (_lock)
+        {
+            if (IsReadOnly) return;
+            _settings = _settings with { PackMigrationChecked = true, PendingPackMigration = pending.Distinct(StringComparer.Ordinal).ToArray() };
             Save();
         }
     }

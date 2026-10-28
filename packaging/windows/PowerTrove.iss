@@ -30,6 +30,15 @@ ChangesAssociations=no
 ChangesEnvironment=no
 WizardStyle=modern
 
+[InstallDelete]
+; Core-only releases compile in no pack. Remove only the pack files earlier PowerTrove versions installed here;
+; downloaded packs live in the per-user pack store and are never touched.
+Type: files; Name: "{app}\PowerTrove.Pack.*.dll"
+Type: files; Name: "{app}\PowerTrove.Pack.*.pdb"
+Type: filesandordirs; Name: "{app}\pack-manifests"
+; The worker now shares the app directory; remove the separate copy earlier versions installed.
+Type: filesandordirs; Name: "{app}\packhost"
+
 [Files]
 Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
@@ -41,6 +50,69 @@ Filename: "{app}\PowerTrove.exe"; Description: "Launch PowerTrove"; Flags: nowai
 Filename: "{app}\PowerTrove.exe"; Flags: nowait; Check: IsInAppUpdate
 
 [Code]
+var
+  PackPage: TInputOptionWizardPage;
+  FreshInstall: Boolean;
+
+// Official pack IDs in the order of the selection page. Keep in sync with pack-releases.json.
+function PackId(Index: Integer): String;
+begin
+  case Index of
+    0: Result := 'powertrove.files';
+    1: Result := 'powertrove.pdf';
+    2: Result := 'powertrove.images';
+    3: Result := 'powertrove.media';
+    4: Result := 'powertrove.office';
+    5: Result := 'powertrove.data';
+    6: Result := 'powertrove.tables';
+    7: Result := 'powertrove.einvoice';
+  else
+    Result := '';
+  end;
+end;
+
+procedure InitializeWizard();
+begin
+  PackPage := CreateInputOptionPage(wpWelcome, 'Choose your tools', 'Which tools should PowerTrove download?',
+    'PowerTrove installs only its core here. At its first start it downloads the selected tools from the official, signed channel ' +
+    'and verifies each one. You can add or remove tools in Settings at any time.', False, False);
+  PackPage.Add('File Tools: rename, zip, compare and sort files');
+  PackPage.Add('PDF Tools: merge, split, convert and organize PDFs');
+  PackPage.Add('Image Tools: convert, resize and compress images');
+  PackPage.Add('Audio and Video Tools: convert, trim and compress audio and video');
+  PackPage.Add('Office tools: convert Office documents to PDF and PDFs to Word');
+  PackPage.Add('Data tools: convert CSV, JSON, Excel and contact files');
+  PackPage.Add('Table Export: export Excel selections as CSV, JSON, Markdown or SQL');
+  PackPage.Add('E-Invoice Tools: view and convert XRechnung and ZUGFeRD invoices');
+  PackPage.Values[0] := True;
+  PackPage.Values[1] := True;
+  PackPage.Values[2] := True;
+end;
+
+// Updates keep their packs: the app takes over formerly compiled-in packs, and Settings manages the rest.
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := (PackPage <> nil) and (PageID = PackPage.ID) and not FreshInstall;
+end;
+
+// The app installs these at its first start through its verified package manager, then deletes this file.
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  I: Integer;
+  Selection: String;
+begin
+  if (CurStep <> ssPostInstall) or not FreshInstall then Exit;
+  Selection := '';
+  for I := 0 to 7 do
+    if PackPage.Values[I] then
+    begin
+      if Selection <> '' then Selection := Selection + ',';
+      Selection := Selection + '"' + PackId(I) + '"';
+    end;
+  if Selection <> '' then
+    SaveStringToFile(ExpandConstant('{app}\setup-packs.json'), '{"packs":[' + Selection + ']}', False);
+end;
+
 // Only the explicit in-app update handoff relaunches automatically. Normal installs retain opt-in launch.
 function IsInAppUpdate(): Boolean;
 var
@@ -124,7 +196,8 @@ var
 begin
   Result := True;
   Existing := InstalledVersion();
-  if Existing = '' then Exit;
+  FreshInstall := Existing = '';
+  if FreshInstall then Exit;
   Comparison := CompareNumericVersions(Existing, '{#AppVersion}');
   if Comparison > 0 then
   begin

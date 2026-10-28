@@ -161,6 +161,8 @@
   <data name="PackWorkerStopped" xml:space="preserve"><value>Das Werkzeug wurde unerwartet beendet. Es wurden keine Dateien geändert.</value></data>
   <data name="PackOutputFailed" xml:space="preserve"><value>Einige Ausgaben konnten nicht gespeichert werden. Fertige Ausgaben werden unten aufgeführt.</value></data>
   <data name="PackInvalidSelection" xml:space="preserve"><value>Wählen Sie die Dateien erneut aus.</value></data>
+  <data name="PackImagePresetNeedsImages" xml:space="preserve"><value>Installieren Sie das Pack „Bild-Werkzeuge“, um diese Voreinstellung zu verwenden.</value></data>
+  <data name="PackTableTooLarge" xml:space="preserve"><value>Diese Tabellenauswahl ist für ein heruntergeladenes Pack zu groß. Wählen Sie einen kleineren Bereich.</value></data>
   <data name="PackStateInstalled" xml:space="preserve"><value>Installiert</value></data>
   <data name="PackStateNotInstalled" xml:space="preserve"><value>Nicht installiert</value></data>
   <data name="PackStateUpdateAvailable" xml:space="preserve"><value>Aktualisierung verfügbar</value></data>
