@@ -162,7 +162,7 @@ public static class PackageCommand
     {
         string packProperty = packDistributionFile is null ? string.Empty : " -p:PowerTrovePackDistributionFile=\"" + packDistributionFile + "\"";
         if (packVersionsFile is not null) packProperty += " -p:PowerTrovePackVersionsFile=\"" + packVersionsFile + "\"";
-        var result = await processRunner.RunAsync("dotnet", $"publish \"{projectPath}\" -c Release -r win-x64 --self-contained true -p:Version={version} -p:InformationalVersion={releaseVersion} -p:SourceRevisionId={revision} -p:PublishSingleFile=false -p:WindowsAppSDKSelfContained=true -o \"{outputDir}\"{packProperty}");
+        var result = await processRunner.RunAsync("dotnet", $"publish \"{projectPath}\" -c Release -r win-x64 --self-contained true -m:1 -nr:false -p:Version={version} -p:InformationalVersion={releaseVersion} -p:SourceRevisionId={revision} -p:PublishSingleFile=false -p:WindowsAppSDKSelfContained=true -o \"{outputDir}\"{packProperty}");
 
         if (result.ExitCode != 0)
         {

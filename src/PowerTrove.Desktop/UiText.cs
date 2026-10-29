@@ -10,6 +10,11 @@ namespace PowerTrove.Desktop;
 /// </summary>
 public static class UiText
 {
+    public static string StoreExplorerDescription => Get(nameof(StoreExplorerDescription));
+    public static string StoreUpdatesDescription => Get(nameof(StoreUpdatesDescription));
+    public static string StoreUpdatesOpen => Get(nameof(StoreUpdatesOpen));
+    public static string StoreUpdatesOpenFailed => Get(nameof(StoreUpdatesOpenFailed));
+    public static string FirstRunChoosePacks => Get(nameof(FirstRunChoosePacks));
     public static string ImageEditor(string key) => Get("ImageEditor_" + key);
     public static string RecipePackTitle => Get(nameof(RecipePackTitle));
     public static string RecipeImagesForEmailTitle => Get(nameof(RecipeImagesForEmailTitle));

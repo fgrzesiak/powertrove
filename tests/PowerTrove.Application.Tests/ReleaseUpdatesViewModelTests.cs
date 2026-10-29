@@ -7,6 +7,28 @@ namespace PowerTrove.Application.Tests;
 public sealed class ReleaseUpdatesViewModelTests
 {
     [Theory]
+    [InlineData("1.0.0")]
+    [InlineData("0.3.2-alpha.1")]
+    [InlineData(null)]
+    public async Task StoreManagedUpdates_NeverContactGitHubOrStartAnInstaller(string? version)
+    {
+        var discovery = InstallableDiscovery();
+        var installer = new Installer();
+        using var vm = new ReleaseUpdatesViewModel(version, discovery, new Launcher(), installer, storeManaged: true);
+        await vm.CheckOnStartupAsync(true);
+        await vm.CheckAsync();
+        await vm.InstallAsync();
+        await vm.OpenReleasePageAsync();
+        Assert.Equal(0, discovery.Count);
+        Assert.Equal(0, installer.Count);
+        Assert.False(vm.CanCheck);
+        Assert.False(vm.CanInstall);
+        Assert.False(vm.CanOpen);
+        Assert.False(vm.ShowNotice);
+        Assert.Equal(PowerTrove.Application.Resources.Strings.GetString("UpdatesStoreManaged"), vm.StatusMessage);
+    }
+
+    [Theory]
     [InlineData(true, 1)]
     [InlineData(false, 0)]
     public async Task StartupCheck_IsOptionalAndRunsOnce_WithoutDownloading(bool enabled, int count)

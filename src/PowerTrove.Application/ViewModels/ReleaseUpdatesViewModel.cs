@@ -7,7 +7,8 @@ namespace PowerTrove.Application.ViewModels;
 
 public sealed class ReleaseUpdatesViewModel : INotifyPropertyChanged, IDisposable
 {
-    private readonly IReleaseDiscovery _discovery;
+    private readonly IReleaseDiscovery? _discovery;
+    private readonly bool _storeManaged;
     private readonly IReleasePageLauncher _launcher;
     private readonly IReleaseInstaller? _installer;
     private CancellationTokenSource? _installation;
@@ -21,8 +22,8 @@ public sealed class ReleaseUpdatesViewModel : INotifyPropertyChanged, IDisposabl
     public string InstalledVersionText { get; }
     public string StatusMessage { get; private set; }
     public bool IsBusy => _busy;
-    public bool CanCheck => !_closed && !_busy && _installed is not null;
-    public bool CanInstall => !_closed && !_busy && _candidate?.Installer is not null && _installer is not null && GitHubReleaseInstaller.IsValidAsset(_candidate);
+    public bool CanCheck => !_storeManaged && !_closed && !_busy && _installed is not null;
+    public bool CanInstall => !_storeManaged && !_closed && !_busy && _candidate?.Installer is not null && _installer is not null && GitHubReleaseInstaller.IsValidAsset(_candidate);
     public bool IsInstalling => _installation is not null;
     public bool CanCancelInstall => IsInstalling && DownloadPercent < 100;
     public bool ShowNotice => !_closed && !_noticeDismissed && _candidate is not null;
@@ -30,13 +31,15 @@ public sealed class ReleaseUpdatesViewModel : INotifyPropertyChanged, IDisposabl
     public int DownloadPercent { get; private set; }
     public bool CanOpen => !_closed && !_busy && _candidate is not null;
 
-    public ReleaseUpdatesViewModel(string? installedVersion, IReleaseDiscovery discovery, IReleasePageLauncher launcher, IReleaseInstaller? installer = null)
+    public ReleaseUpdatesViewModel(string? installedVersion, IReleaseDiscovery? discovery, IReleasePageLauncher launcher, IReleaseInstaller? installer = null, bool storeManaged = false)
     {
+        if (!storeManaged) ArgumentNullException.ThrowIfNull(discovery);
+        _storeManaged = storeManaged;
         _discovery = discovery; _launcher = launcher; _installer = installer;
         ReleaseVersion.TryParse(installedVersion, out _installed);
         InstalledVersionText = _installed is null ? Text("UpdatesVersionUnknown") :
             string.Format(CultureInfo.CurrentCulture, Text("UpdatesInstalledVersion"), _installed.Display);
-        StatusMessage = Text(_installed is null ? "UpdatesVersionUnknown" : "UpdatesNotChecked");
+        StatusMessage = Text(storeManaged ? "UpdatesStoreManaged" : _installed is null ? "UpdatesVersionUnknown" : "UpdatesNotChecked");
     }
 
     public async Task CheckOnStartupAsync(bool enabled, CancellationToken cancellationToken = default)
@@ -57,7 +60,7 @@ public sealed class ReleaseUpdatesViewModel : INotifyPropertyChanged, IDisposabl
         _busy = true; _candidate = null; _noticeDismissed = false; StatusMessage = Text("UpdatesChecking"); Publish();
         try
         {
-            var result = await _discovery.CheckAsync(_installed, linked.Token);
+            var result = await _discovery!.CheckAsync(_installed, linked.Token);
             if (_closed) return;
             if (result.Status == ReleaseCheckStatus.Available)
             {

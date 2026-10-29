@@ -9,11 +9,14 @@ public static class Program
     [STAThread]
     public static int Main(string[] args)
     {
+        var distribution = PowerTrove.Platform.Windows.Deployment.WindowsAppDistribution.Current;
+        if (!distribution.AllowsSetupMaintenance && args.Length > 0 &&
+            args[0] is SetupPackCommand.Argument or SetupShellCommand.Argument) return 2;
         if (args is [SetupPackCommand.Argument]) return SetupPackCommand.Run();
         if (args is [SetupShellCommand.Argument, var operation, var language]) return SetupShellCommand.Run(operation, language);
         var message = ActivationProtocol.ParseArguments(args);
         if (message is null) return 2;
-        using var elector = new WindowsHostElector();
+        using var elector = new WindowsHostElector(distribution.InstanceKey);
         HostStartupResult result;
         using (var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(12)))
         {

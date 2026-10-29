@@ -455,6 +455,7 @@
                 <TextBlock Text="{x:Bind local:UiText.FirstRunContext}" TextWrapping="WrapWholeWords" />
                 <TextBlock Text="{x:Bind local:UiText.FirstRunOutputs}" TextWrapping="WrapWholeWords" />
                 <TextBlock Text="{x:Bind local:UiText.FirstRunPrivacy}" TextWrapping="WrapWholeWords" />
+                <Button Content="{x:Bind local:UiText.FirstRunChoosePacks}" Click="ChooseFirstRunPacks_Click" HorizontalAlignment="Center" />
                 <Button x:Name="FirstRunGetStartedButton" Content="{x:Bind local:UiText.FirstRunGetStarted}" Click="DismissFirstRun_Click" HorizontalAlignment="Center" Style="{ThemeResource AccentButtonStyle}" Margin="0,12,0,0" AutomationProperties.Name="{x:Bind local:UiText.FirstRunGetStartedAutomationName}" />
             </StackPanel>
         </Grid>

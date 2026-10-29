@@ -1,27 +1,14 @@
-# PowerTrove 0.3.2 Alpha 1
+# PowerTrove 0.3.2 Alpha 2
 
-Edit images with visual previews, resize with one slider and move between tools in a single window.
+Choose tool packs directly from the welcome screen and find separately installable tools more clearly in Settings.
 
 ## Added
 
-- A visual image canvas supports resizing, rotation, positioning, alignment and undo/redo, saving edits as a new PNG.
-- Single-image resizing offers a percentage slider, linked dimensions and optional high-quality enlargement that works offline.
-- Visual previews are available for image watermarks, collages, stitching, cropping, borders, grayscale, PNG optimization, icons, face pixelation and vector conversions.
-- Color options include a color editor and a picker for colors from the preview or anywhere on screen.
+- Open tool-pack selection directly from the welcome screen.
 
 ## Changed
 
-- The palette, Settings and tool editors share one window, with immediate view changes and a back button.
-- Search prioritizes matching action titles and file types. The unavailable-actions filter is now in the search header.
-- Image transformations offer an output-format choice. HEIC output uses Windows when the required codec is installed; otherwise a preview notice explains the fallback format.
-- Setup offers tool-pack selection and Windows integration options.
-
-## Fixed
-
-- Image editor previews stay visible while settings update, and saving uses the action and selection that opened the editor.
-- Dragging image corners keeps proportions continuous, and zoom stays stable until Fit view is selected.
-- Editors open within the invoking monitor's work area.
-- Typing no longer rebuilds the action list when the results have not changed.
+- Pack management now focuses on separately installable tools. Built-in email preparation recipes remain available through action search.
 
 ## Known limitations
 
@@ -32,6 +19,7 @@ Edit images with visual previews, resize with one slider and move between tools 
 - Hosted checks cannot exercise optional HEIF codecs or physical audio playback when those capabilities are unavailable; verify these on a supported Windows desktop.
 - The complete installed-pack image-editor workflow and mixed-DPI behavior still require manual desktop verification. Complex SVGs can exceed the visual preview limits; use the numeric conversion options instead.
 - Manual Explorer/Excel, accessibility and clean-install acceptance are not included in this release proof.
+- Microsoft Store distribution is not available in this alpha.
 
 ## Publication status
 

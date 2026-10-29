@@ -22,7 +22,7 @@
   <data name="FirstRunShortcut" xml:space="preserve"><value>Press your shortcut (Alt+Space by default) at any time.</value></data>
   <data name="FirstRunContext" xml:space="preserve"><value>PowerTrove detects your current context (files, Excel and more) offline. If the current application is not supported, you see general actions.</value></data>
   <data name="FirstRunOutputs" xml:space="preserve"><value>Your files are safe: actions create new files instead of overwriting the originals.</value></data>
-  <data name="FirstRunPrivacy" xml:space="preserve"><value>Privacy first: everything runs offline. No cloud account is required.</value></data>
+  <data name="FirstRunPrivacy" xml:space="preserve"><value>File processing stays on your PC. Installing tool packs needs a download; installed tools work offline. No cloud account is required.</value></data>
   <data name="FirstRunGetStarted" xml:space="preserve"><value>Get started</value></data>
   <data name="FirstRunGetStartedAutomationName" xml:space="preserve"><value>Get started with PowerTrove</value></data>
   <data name="HotkeyConflict" xml:space="preserve"><value>The shortcut is already used by another application.</value></data>
@@ -279,4 +279,11 @@
   <data name="ImageEditor_ResizeSave" xml:space="preserve"><value>Resize</value></data>
   <data name="ImageEditor_ResizeOutput" xml:space="preserve"><value>{0} × {1} px</value></data>
   <data name="ImageEditor_ResizePercent" xml:space="preserve"><value>{0}%</value></data>
+  <data name="StoreExplorerDescription" xml:space="preserve"><value>Use the global shortcut to open PowerTrove for your selection. The Explorer context menu is not available in this Store version.</value></data>
+  <data name="StoreUpdatesDescription" xml:space="preserve"><value>App updates are delivered by Microsoft Store. Official tool packs are installed and updated separately in Packs, with your permission.</value></data>
+  <data name="StoreUpdatesOpen" xml:space="preserve"><value>Open Microsoft Store updates</value></data>
+  <data name="StoreUpdatesOpenFailed" xml:space="preserve"><value>Microsoft Store could not be opened. Open it from the Start menu to check for app updates.</value></data>
+  <data name="FirstRunChoosePacks" xml:space="preserve"><value>Choose tool packs</value></data>
+  <data name="StorePublisherDisplayName" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StorePackageDescription" xml:space="preserve"><value>Local file tools from your selection, with optional downloadable official packs.</value></data>
 </root>

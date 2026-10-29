@@ -213,4 +213,5 @@
   <data name="PackHostRequired" xml:space="preserve"><value>Benötigt PowerTrove {0} oder neuer. Bereits installierte Aktionen bleiben verfügbar.</value></data>
   <data name="ContextPackIncompatible" xml:space="preserve"><value>Passende App-Version erforderlich</value></data>
   <data name="PackNewerHostRequired" xml:space="preserve"><value>Pack-Version {0} benötigt PowerTrove {1}. Version {2} ist mit Ihrer Installation kompatibel.</value></data>
+  <data name="UpdatesStoreManaged" xml:space="preserve"><value>App-Updates werden über den Microsoft Store verwaltet.</value></data>
 </root>
