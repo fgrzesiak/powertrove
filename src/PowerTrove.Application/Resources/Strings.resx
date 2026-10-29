@@ -285,4 +285,6 @@
   <data name="ContextPackIncompatible" xml:space="preserve"><value>Compatible app required</value></data>
   <data name="PackNewerHostRequired" xml:space="preserve"><value>Pack version {0} requires PowerTrove {1}. Version {2} is compatible with your installation.</value></data>
   <data name="UpdatesStoreManaged" xml:space="preserve"><value>App updates are managed by Microsoft Store.</value></data>
+  <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>An update is available for an installed tool pack.</value></data>
+  <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>Updates are available for {0} installed tool packs.</value></data>
 </root>

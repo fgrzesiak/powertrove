@@ -138,7 +138,7 @@
   <data name="PacksInstalled" xml:space="preserve"><value>The pack is installed. Its actions are available when you next open the palette.</value></data>
   <data name="PacksCanceled" xml:space="preserve"><value>Pack installation canceled.</value></data>
   <data name="PacksInstallFailed" xml:space="preserve"><value>The pack could not be verified or activated. Existing tools remain available.</value></data>
-  <data name="PacksPrivacy" xml:space="preserve"><value>Opening this section checks the owner catalog. Downloads start after you confirm an installation.</value></data>
+  <data name="PacksPrivacy" xml:space="preserve"><value>Automatic checks for installed packs run at startup and every six hours. PowerTrove fetches the signed GitHub catalog without sending your installed-pack list or selected content. You can turn these checks off below. Opening this section also checks for updates. Downloads and installation require your confirmation.</value></data>
   <data name="PacksShowMissing" xml:space="preserve"><value>Show actions of packs that are not installed</value></data>
   <data name="PacksRefresh" xml:space="preserve"><value>Refresh catalog</value></data>
   <data name="PacksUninstall" xml:space="preserve"><value>Remove</value></data>
@@ -286,4 +286,6 @@
   <data name="FirstRunChoosePacks" xml:space="preserve"><value>Choose tool packs</value></data>
   <data name="StorePublisherDisplayName" xml:space="preserve"><value>PowerTrove</value></data>
   <data name="StorePackageDescription" xml:space="preserve"><value>Local file tools from your selection, with optional downloadable official packs.</value></data>
+  <data name="PackUpdatesReview" xml:space="preserve"><value>View pack updates</value></data>
+  <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Automatically check installed packs for updates</value></data>
 </root>

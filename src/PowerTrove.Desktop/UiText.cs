@@ -15,6 +15,8 @@ public static class UiText
     public static string StoreUpdatesOpen => Get(nameof(StoreUpdatesOpen));
     public static string StoreUpdatesOpenFailed => Get(nameof(StoreUpdatesOpenFailed));
     public static string FirstRunChoosePacks => Get(nameof(FirstRunChoosePacks));
+    public static string PackUpdatesReview => Get(nameof(PackUpdatesReview));
+    public static string PackUpdatesAutomatic => Get(nameof(PackUpdatesAutomatic));
     public static string ImageEditor(string key) => Get("ImageEditor_" + key);
     public static string RecipePackTitle => Get(nameof(RecipePackTitle));
     public static string RecipeImagesForEmailTitle => Get(nameof(RecipeImagesForEmailTitle));

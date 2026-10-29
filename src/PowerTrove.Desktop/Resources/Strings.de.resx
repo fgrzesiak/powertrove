@@ -138,7 +138,7 @@
   <data name="PacksInstalled" xml:space="preserve"><value>Das Paket ist installiert. Seine Aktionen sind beim nächsten Öffnen der Palette verfügbar.</value></data>
   <data name="PacksCanceled" xml:space="preserve"><value>Die Paketinstallation wurde abgebrochen.</value></data>
   <data name="PacksInstallFailed" xml:space="preserve"><value>Das Paket konnte nicht geprüft oder aktiviert werden. Vorhandene Werkzeuge bleiben verfügbar.</value></data>
-  <data name="PacksPrivacy" xml:space="preserve"><value>Beim Öffnen dieses Bereichs wird der Katalog des Herausgebers geprüft. Downloads starten, nachdem Sie eine Installation bestätigt haben.</value></data>
+  <data name="PacksPrivacy" xml:space="preserve"><value>Installierte Pakete werden beim Start und alle sechs Stunden automatisch auf Updates geprüft. PowerTrove ruft den signierten GitHub-Katalog ab, ohne Ihre Paketliste oder ausgewählte Inhalte zu übertragen. Sie können diese Prüfungen unten abschalten. Beim Öffnen dieses Bereichs wird ebenfalls nach Updates gesucht. Download und Installation erfordern Ihre Bestätigung.</value></data>
   <data name="PacksShowMissing" xml:space="preserve"><value>Aktionen nicht installierter Pakete anzeigen</value></data>
   <data name="PacksRefresh" xml:space="preserve"><value>Katalog aktualisieren</value></data>
   <data name="PacksUninstall" xml:space="preserve"><value>Entfernen</value></data>
@@ -286,4 +286,6 @@
   <data name="FirstRunChoosePacks" xml:space="preserve"><value>Werkzeug-Packs auswählen</value></data>
   <data name="StorePublisherDisplayName" xml:space="preserve"><value>PowerTrove</value></data>
   <data name="StorePackageDescription" xml:space="preserve"><value>Lokale Dateiwerkzeuge für deine Auswahl mit optional herunterladbaren offiziellen Packs.</value></data>
+  <data name="PackUpdatesReview" xml:space="preserve"><value>Paket-Updates ansehen</value></data>
+  <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Installierte Pakete automatisch auf Updates prüfen</value></data>
 </root>

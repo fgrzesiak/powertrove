@@ -128,6 +128,19 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
+            <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
+                    AutomationProperties.AutomationId="PackUpdateNotice"
+                    Visibility="{Binding Text, ElementName=PackUpdateNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
+                <StackPanel Spacing="8">
+                    <TextBlock x:Name="PackUpdateNoticeText" Text="{x:Bind PackUpdates.NoticeMessage, Mode=OneWay}"
+                               TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="{x:Bind local:UiText.PackUpdatesReview}" Click="ReviewPackUpdates_Click"
+                                AutomationProperties.AutomationId="ReviewPackUpdates" />
+                        <Button Content="{x:Bind local:UiText.UpdatesLater}" Click="DismissPackUpdates_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
             <!-- Presence follows the rendered text, including whitespace-only messages. -->
             <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
                     Visibility="{Binding Text, ElementName=HotkeyNoticeText, Converter={StaticResource StringToVisibilityConverter}}">

@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Windows.System;
 using PowerTrove.Application.Localization;
+using PowerTrove.Application.Configuration;
 using PowerTrove.Core.Input;
 using PowerTrove.Platform.Windows.Shell;
 using PowerTrove.Application.ViewModels;
@@ -26,6 +27,7 @@ public sealed partial class SettingsWindow : HostedView
     protected internal override Control? InitialFocus => LanguageComboBox;
     public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && Packs?.IsBusy != true;
     private bool _loadingUpdatePreference = true;
+    private bool _loadingPackUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
 
     private bool IsPackaged => ((App)App.Current).Distribution.IsPackaged;
@@ -56,6 +58,9 @@ public sealed partial class SettingsWindow : HostedView
         {
             StartupUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForUpdatesOnStartup;
             _loadingUpdatePreference = false;
+            AutomaticPackUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForPackUpdatesAutomatically;
+            AutomaticPackUpdatesToggle.IsEnabled = !app.SettingsService.IsReadOnly;
+            _loadingPackUpdatePreference = false;
             LoadLanguageChoices(app.SettingsService.Settings.UiLanguage);
             SeparateProcessToggle.IsOn = app.SettingsService.Settings.RunFileToolsInSeparateProcess;
             _loadingIsolation = false;
@@ -270,6 +275,8 @@ public sealed partial class SettingsWindow : HostedView
             app.SettingsService.ResetToDefaults();
             Packs?.RefreshPreference();
             StartupUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForUpdatesOnStartup;
+            AutomaticPackUpdatesToggle.IsOn = app.SettingsService.Settings.CheckForPackUpdatesAutomatically;
+            app.PackUpdates.SetEnabled(app.SettingsService.Settings.CheckForPackUpdatesAutomatically);
 
             // Re-register default hotkey
             var config = new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
@@ -360,6 +367,15 @@ public sealed partial class SettingsWindow : HostedView
     {
         if (!_loadingUpdatePreference && App.Current is App { SettingsService: PowerTrove.Application.Configuration.IUpdateCheckSettings settings })
             settings.SetCheckForUpdatesOnStartup(StartupUpdatesToggle.IsOn);
+    }
+
+    private void AutomaticPackUpdatesToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (!_loadingPackUpdatePreference && App.Current is App { SettingsService: IPackUpdateCheckSettings settings } app)
+        {
+            settings.SetCheckForPackUpdatesAutomatically(AutomaticPackUpdatesToggle.IsOn);
+            app.PackUpdates.SetEnabled(AutomaticPackUpdatesToggle.IsOn);
+        }
     }
     private async void InstallUpdate_Click(object sender, RoutedEventArgs e) => await Updates.InstallAsync();
     private void CancelUpdate_Click(object sender, RoutedEventArgs e) => Updates.CancelInstallation();

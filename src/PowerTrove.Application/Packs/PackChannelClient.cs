@@ -16,7 +16,7 @@ public sealed record PackDownloadResult(PackChannelStatus Status, InstalledPack?
 public sealed record PackInstallOffer(string Id, string Version, string Name, string Publisher, long DownloadBytes, string ManifestFingerprint);
 public sealed record PackOfferResult(PackChannelStatus Status, PackInstallOffer? Offer = null);
 
-/// <summary>Explicit user requests only; construction and cached metadata access perform no IO.</summary>
+/// <summary>Anonymous signed-catalog checks; downloads and installation require explicit user requests.</summary>
 public sealed class PackChannelClient : IDisposable
 {
     public static readonly TimeSpan RequestTimeout = TimeSpan.FromSeconds(10);
@@ -51,7 +51,12 @@ public sealed class PackChannelClient : IDisposable
         new(OwnerChannelConfiguration.Default, new HttpClientHandler { AllowAutoRedirect = false, UseCookies = false,
             UseDefaultCredentials = false, Credentials = null, DefaultProxyCredentials = null, MaxResponseHeadersLength = 16 }, installer, userRoot, hostVersion);
 
-    public async Task<PackCatalogResult> RefreshOnUserRequestAsync(CancellationToken token = default)
+    public Task<PackCatalogResult> RefreshOnUserRequestAsync(CancellationToken token = default) => RefreshAsync(token);
+
+    /// <summary>Metadata only. Sends no installed-pack list and never downloads pack payloads.</summary>
+    public Task<PackCatalogResult> RefreshAutomaticallyAsync(CancellationToken token = default) => RefreshAsync(token);
+
+    private async Task<PackCatalogResult> RefreshAsync(CancellationToken token)
     {
         token.ThrowIfCancellationRequested();
         if (!IsConfigured) return new(PackChannelStatus.NotConfigured, []);

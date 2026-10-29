@@ -134,6 +134,9 @@ public partial class MainWindow : Window
     private readonly DispatcherTimer _undoTimer = new() { Interval = TimeSpan.FromSeconds(1) };
 
     public ReleaseUpdatesViewModel Updates => ((App)App.Current).Updates;
+    public PackUpdatesViewModel PackUpdates => ((App)App.Current).PackUpdates;
+    private void ReviewPackUpdates_Click(object sender, RoutedEventArgs e) => ((App)App.Current).OpenSettings(selectPacks: true);
+    private void DismissPackUpdates_Click(object sender, RoutedEventArgs e) => PackUpdates.DismissNotice();
     private async void DownloadContextPack_Click(object sender, RoutedEventArgs e)
     {
         if (((App)App.Current).UpdateInstalling || ViewModel.IsExecuting || sender is not FrameworkElement { Tag: PackSuggestion suggestion }) return;

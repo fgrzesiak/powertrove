@@ -24,6 +24,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private GitHubReleaseDiscovery? _releaseDiscovery;
     private GitHubReleaseInstaller? _releaseInstaller;
     public ReleaseUpdatesViewModel Updates { get; private set; } = null!;
+    public PackUpdatesViewModel PackUpdates { get; } = new();
+    private Task? _packUpdateMonitoring;
     public bool UpdateInstalling => Updates?.IsInstalling == true;
     public PowerTrove.Application.Configuration.DesktopDistribution Distribution =>
         PowerTrove.Platform.Windows.Deployment.WindowsAppDistribution.Current;
@@ -153,6 +155,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or System.Text.Json.JsonException or InvalidOperationException)
         { m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed; }
         PackManagement = new PowerTrove.Application.Packs.CoordinatedPackManagement(packManagement, PackHosts.AcquireMutationAsync);
+        PackUpdates.Configure(PackManagement, SettingsService.Settings.CheckForPackUpdatesAutomatically);
 
         var aliasesPath = Path.Combine(AppContext.BaseDirectory, "aliases.json");
         var aliases = ActionAliasLoader.LoadAliases(aliasesPath);
@@ -237,6 +240,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         if (_hostElector is not null)
             _activationListener = _hostElector.StartListeningAsync(ReceiveActivationAsync, _activationLifetime.Token);
         _ = Updates.CheckOnStartupAsync(SettingsService.Settings.CheckForUpdatesOnStartup, _activationLifetime.Token);
+        _packUpdateMonitoring = PackUpdates.RunAsync(_activationLifetime.Token);
         if (Distribution.AllowsSetupMaintenance)
         {
             var packMigration = new PowerTrove.Application.Packs.BuiltInPackMigration(PackManagement!, (PowerTrove.Application.Configuration.IPackMigrationSettings)SettingsService);
@@ -356,6 +360,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     public async void ExitApplication()
     {
         _activationLifetime.Cancel();
+        PackUpdates.Dispose();
+        if (_packUpdateMonitoring is not null) await _packUpdateMonitoring;
         _packRegistryBinding?.Dispose();
         Updates?.Dispose();
         _releaseInstaller?.Dispose();

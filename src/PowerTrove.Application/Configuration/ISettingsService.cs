@@ -14,6 +14,11 @@ public interface IUpdateCheckSettings
     void SetCheckForUpdatesOnStartup(bool enabled);
 }
 
+public interface IPackUpdateCheckSettings
+{
+    void SetCheckForPackUpdatesAutomatically(bool enabled);
+}
+
 /// <summary>Takes over the packs an earlier version compiled in, once, after updating to a Core-only version.</summary>
 public interface IPackMigrationSettings
 {
