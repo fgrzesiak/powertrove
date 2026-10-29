@@ -49,7 +49,8 @@ public sealed class CatalogAction : IAction, IFileActionMetadata
                 "none" => ContentKind.None, "files" => ContentKind.Files, "table" => ContentKind.Table,
                 "text" => ContentKind.Text, _ => throw new ArgumentException("Invalid catalog input kind.", nameof(entry))
             }).ToFrozenSet(),
-            new[] { entry.Pack.DisplayName }, RequiresPreview: true, ChangesFiles: action.ChangesFiles ?? true,
+            entry.EnglishTitle is { } english && english != action.Title ? new[] { entry.Pack.DisplayName, english } : new[] { entry.Pack.DisplayName },
+            RequiresPreview: true, ChangesFiles: action.ChangesFiles ?? true,
             RequiredCapabilities: action.RequiredCapabilities?.ToFrozenSet(StringComparer.Ordinal),
             Selection: selection, CanRememberParameters: false);
         // Parameter fields are deliberately absent: until installed, the only operation

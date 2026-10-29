@@ -139,6 +139,7 @@ public static class ActionPackManifest
                 }
             }
         }
+        ManifestLocalization.Validate(manifest);
     }
 
     private static void ValidateSelection(ManifestSelection selection)

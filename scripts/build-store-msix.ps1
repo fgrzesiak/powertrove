@@ -83,12 +83,14 @@ try {
     finally { $source.Dispose(); $icon.Dispose() }
 
     $config = Join-Path $output 'priconfig.xml'
-    # Index only our new resources. Scanning the full self-contained payload would
-    # re-import the supplier PRI files and produce conflicting WinUI resource keys.
+    # PowerTrove.pri already merges the app and every referenced WinUI/runtime PRI.
+    # Packaged MRT loads resources.pri, so merge that complete index with metadata.
+    # Do not also scan supplier PRIs: that imports their resources twice.
     $resourceRoot = Join-Path $output 'package-resources'
     [IO.Directory]::CreateDirectory($resourceRoot) | Out-Null
     Copy-Item -LiteralPath (Join-Path $payload 'Strings') -Destination $resourceRoot -Recurse
     Copy-Item -LiteralPath $assets -Destination $resourceRoot -Recurse
+    Copy-Item -LiteralPath (Join-Path $payload 'PowerTrove.pri') -Destination $resourceRoot
     function Invoke-StoreSdk([string]$Tool, [string[]]$Arguments, [string]$LogName) {
         $log = Join-Path $output $LogName
         & (Join-Path $SdkDirectory $Tool) @Arguments *> $log
@@ -104,6 +106,10 @@ try {
     $resourceDump = Join-Path $output 'package-resource-dump.xml'
     Invoke-StoreSdk 'makepri.exe' @('dump', '/if', (Join-Path $payload 'resources.pri'), '/of', $resourceDump) 'makepri-dump.log'
     [xml]$compiledResources = Get-Content -LiteralPath $resourceDump -Raw
+    $appDump = Join-Path $output 'app-resource-dump.xml'
+    Invoke-StoreSdk 'makepri.exe' @('dump', '/if', (Join-Path $payload 'PowerTrove.pri'), '/of', $appDump) 'makepri-app-dump.log'
+    . (Join-Path $PSScriptRoot 'assert-msix-resources.ps1')
+    Assert-MsixResources -SourceDump $appDump -PackageDump $resourceDump -Identity $Identity
     foreach ($key in @('AppDisplayName', 'AppPublisherName', 'AppDescription')) {
         $candidates = @($compiledResources.SelectNodes("//NamedResource[@name='$key']/Candidate"))
         if ($candidates.Count -ne 2 -or

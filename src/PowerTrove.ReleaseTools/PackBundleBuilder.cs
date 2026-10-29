@@ -79,6 +79,13 @@ public static class PackBundleBuilder
                 var pack = factory.Create(services);
                 if (pack.Info != factory.Info) throw new InvalidDataException("Factory metadata is inconsistent.");
                 ActionManifest manifest = ActionPackManifest.Create(pack, minHostVersion: hostVersion, payload: payload);
+                try
+                {
+                    CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("de");
+                    var translated = ActionPackManifest.Create(factory.Create(services), minHostVersion: hostVersion, payload: payload);
+                    manifest = ManifestLocalization.WithTranslation(manifest, "de", translated);
+                }
+                finally { CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en"); }
                 if (plan is not null)
                 {
                     var selected = plan.Packs.SingleOrDefault(p => p.Id == manifest.Id) ?? throw new InvalidDataException("Pack is absent from release plan.");

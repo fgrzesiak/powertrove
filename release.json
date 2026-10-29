@@ -3,17 +3,16 @@
   "enabled": true,
   "version": "0.3.2",
   "channel": "alpha",
-  "sequence": 2,
-  "title": "PowerTrove 0.3.2 Alpha 2",
+  "sequence": 3,
+  "title": "PowerTrove 0.3.2 Alpha 3",
   "notes": {
-    "summary": "Choose tool packs directly from the welcome screen and find separately installable tools more clearly in Settings.",
-    "added": [
-      "Open tool-pack selection directly from the welcome screen."
+    "summary": "Updated tool packs now follow your display language for commands and options. This update also corrects startup of the separately provided MSIX test package.",
+    "added": [],
+    "changed": [],
+    "fixed": [
+      "German display language now applies to command names, descriptions, pack names and options in updated tool packs. Restart PowerTrove after changing the language.",
+      "Corrected missing interface resources that prevented the MSIX test package from opening its first window."
     ],
-    "changed": [
-      "Pack management now focuses on separately installable tools. Built-in email preparation recipes remain available through action search."
-    ],
-    "fixed": [],
     "knownIssues": [
       "Experimental unsigned desktop alpha; Windows may display a publisher warning.",
       "A new installation needs an internet connection once to download tools. Offline, install a pack from a .cbpack file in Settings.",
@@ -30,7 +29,7 @@
     "desktopSigning": "unsigned-alpha",
     "signPacks": true
   },
-  "manifestSha256": "d6d135a1deb15b7f3b5dcace8da6f1385d331919e8355daf8c4a0f14f578efda",
+  "manifestSha256": "59bd7d62769c44f307a3950b2bfffea9d4d70f92c5b45c2ebc9ca23a5025c447",
   "automation": {
     "driver": "contextbar-manifest",
     "mode": "autonomous-alpha"

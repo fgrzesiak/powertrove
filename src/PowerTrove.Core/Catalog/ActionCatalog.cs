@@ -71,7 +71,10 @@ public sealed class ActionCatalog : IActionCatalog
                     .ThenByDescending(r => Version.Parse(r.Manifest.Version)).First();
                 var manifest = selected.Manifest;
                 long bytes = selected.Bytes;
-                var info = new ActionPackInfo(manifest.Id, manifest.DisplayName, manifest.Version, manifest.Publisher);
+                string fingerprint = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest))));
+                var presentation = ManifestLocalization.ForCulture(manifest);
+                var englishTitles = manifest.Actions.ToDictionary(a => a.Id, a => a.Title, StringComparer.Ordinal);
+                var info = new ActionPackInfo(manifest.Id, presentation.DisplayName, manifest.Version, manifest.Publisher);
                 if (!Version.TryParse(info.Version, out var version)) throw new CatalogFormatException();
                 PackInstallState state;
                 if (!PackCompatibility.IsSupported(manifest, hostVersion, os, architecture, requireWorkerInput)) state = PackInstallState.Incompatible;
@@ -80,10 +83,11 @@ public sealed class ActionCatalog : IActionCatalog
                         ? PackInstallState.UpdateAvailable : PackInstallState.Installed;
                 else
                     state = PackInstallState.NotInstalled;
-                foreach (var action in manifest.Actions)
+                foreach (var action in presentation.Actions)
                 {
                     if (!actionIds.Add(action.Id) || entries.Count == MaximumActions) throw new CatalogFormatException();
-                    entries.Add(new CatalogEntry(action, info, state, bytes, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest))))));
+                    entries.Add(new CatalogEntry(action, info, state, bytes, fingerprint)
+                    { EnglishTitle = englishTitles[action.Id] });
                 }
             }
             return new ActionCatalog(entries.AsReadOnly());

@@ -33,6 +33,13 @@
       "type": "string",
       "description": "The version of the IPC or execution protocol this pack targets."
     },
+    "localizations": {
+      "type": "object",
+      "maxProperties": 16,
+      "description": "Optional pack-owned presentation translations keyed by culture. English base fields remain the execution and compatibility contract.",
+      "propertyNames": { "minLength": 2, "maxLength": 35 },
+      "additionalProperties": { "$ref": "#/$defs/presentation" }
+    },
     "permissions": {
       "type": "array",
       "description": "A list of required execution privileges. No undocumented privileges are permitted.",
@@ -99,6 +106,45 @@
   ],
   "additionalProperties": false,
   "$defs": {
+    "localizedText": { "type": "string", "maxLength": 4096 },
+    "presentation": {
+      "type": "object",
+      "required": ["displayName", "actions"],
+      "additionalProperties": false,
+      "properties": {
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 4096 },
+        "actions": {
+          "type": "object", "maxProperties": 10000,
+          "description": "Keys must name existing action IDs; no execution fields are permitted.",
+          "additionalProperties": { "$ref": "#/$defs/actionPresentation" }
+        }
+      }
+    },
+    "actionPresentation": {
+      "type": "object", "required": ["title"], "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "maxLength": 4096 },
+        "description": { "$ref": "#/$defs/localizedText" },
+        "parameters": {
+          "type": "object", "maxProperties": 1000,
+          "description": "Keys must name existing parameters.",
+          "additionalProperties": { "$ref": "#/$defs/parameterPresentation" }
+        }
+      }
+    },
+    "parameterPresentation": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "title": { "$ref": "#/$defs/localizedText" },
+        "description": { "$ref": "#/$defs/localizedText" },
+        "placeholder": { "$ref": "#/$defs/localizedText" },
+        "choiceTitles": {
+          "type": "object", "maxProperties": 1000,
+          "description": "Keys must be existing choice values; values are labels only.",
+          "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 4096 }
+        }
+      }
+    },
     "action": {
       "type": "object",
       "properties": {

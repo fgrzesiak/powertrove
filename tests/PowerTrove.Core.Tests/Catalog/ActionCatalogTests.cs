@@ -8,6 +8,31 @@ namespace PowerTrove.Core.Tests.Catalog;
 
 public sealed class ActionCatalogTests
 {
+    [Fact]
+    public async Task LocalizedDiscoveryKeepsCanonicalFingerprintAndEnglishSearchTerms()
+    {
+        var entry = Entry();
+        var manifest = new ActionManifest("2.0", entry.Pack.Id, "1.0.0", "PDF Tools", "Tests", "1", [entry.Action], MinHostVersion: "0.1.0", Capabilities: []);
+        manifest = ManifestLocalization.WithTranslation(manifest, "de", manifest with { DisplayName = "PDF-Werkzeuge",
+            Actions = [entry.Action with { Title = "Dokument bearbeiten", Description = "PDF-Dateien bearbeiten" }] });
+        string json = JsonSerializer.Serialize(new { schemaVersion = "1", packs = new[] { new { manifest, downloadBytes = 10 } } });
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            var english = Assert.Single(ActionCatalog.Read(json, [], new Version(1, 0, 0)).Entries);
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("de-AT");
+            var german = ActionCatalog.Read(json, [], new Version(1, 0, 0));
+            var localized = Assert.Single(german.Entries);
+            Assert.Equal("Dokument bearbeiten", localized.Action.Title); Assert.Equal("PDF-Werkzeuge", localized.Pack.DisplayName);
+            Assert.Equal(english.ManifestFingerprint, localized.ManifestFingerprint);
+            var registry = new ActionRegistry(); registry.RegisterCatalog(german);
+            var results = await new ActionSearchEngine(registry).SearchAsync("PDF Tool", Snapshot(".pdf"));
+            Assert.Equal("Dokument bearbeiten", Assert.Single(results).Action.Descriptor.Title);
+        }
+        finally { CultureInfo.CurrentUICulture = previous; }
+    }
+
     internal static CatalogEntry Entry(string id = "powertrove.pdf.catalog", IReadOnlyList<string>? extensions = null) => new(
         new ManifestAction(id, "PDF Tool", new[] { "files" }, "Process PDF files.",
             Selection: ManifestSelection.FromRequirements(SelectionRequirements.Any("pdf")),
