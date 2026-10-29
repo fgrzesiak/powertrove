@@ -2222,8 +2222,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose light or strong pixelation, then check every resulting image. Detection can miss faces.",
-              "de": "Wähle leichte oder starke Verpixelung und kontrolliere danach jedes Ergebnisbild. Die Erkennung kann Gesichter übersehen."
+              "en": "Choose light or strong pixelation, then check every resulting image. Detection can miss faces. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle leichte oder starke Verpixelung und kontrolliere danach jedes Ergebnisbild. Die Erkennung kann Gesichter übersehen. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Uses local face detection to create copies with detected faces pixelated; missed faces still need manual review. Source files stay unchanged.",
@@ -2276,8 +2276,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose the grid layout and whether images are cropped or padded to fit.",
-              "de": "Wähle das Raster und ob Bilder zum Einpassen beschnitten oder mit Rand ergänzt werden."
+              "en": "Choose the grid layout and whether images are cropped or padded to fit. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle das Raster und ob Bilder zum Einpassen beschnitten oder mit Rand ergänzt werden. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Arranges several images in one new grid image, useful for a compact visual overview. Source files stay unchanged.",
@@ -2786,8 +2786,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose a ratio such as 1:1 or 16:9 and an anchor to decide which area is kept.",
-              "de": "Wähle etwa 1:1 oder 16:9 und einen Ankerpunkt, der den erhaltenen Bereich bestimmt."
+              "en": "Choose a ratio such as 1:1 or 16:9 and an anchor to decide which area is kept. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle etwa 1:1 oder 16:9 und einen Ankerpunkt, der den erhaltenen Bereich bestimmt. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Crops image copies to a chosen aspect ratio, removing image edges instead of stretching the subject. Source files stay unchanged.",
@@ -2944,8 +2944,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Review the operation and the metadata-removal warning.",
-              "de": "Prüfe die Verarbeitung und den Hinweis zur Entfernung von Metadaten."
+              "en": "Review the operation and the metadata-removal warning. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Prüfe die Verarbeitung und den Hinweis zur Entfernung von Metadaten. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Creates grayscale copies by removing color while keeping the image format. Source files stay unchanged.",
@@ -3052,8 +3052,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Select PNG files, choose 16–256 colors and whether to use dithering to soften color transitions.",
-              "de": "Wähle PNG-Dateien, 16–256 Farben und ob Dithering Farbübergänge abmildern soll."
+              "en": "Select PNG files, choose 16–256 colors and whether to use dithering to soften color transitions. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle PNG-Dateien, 16–256 Farben und ob Dithering Farbübergänge abmildern soll. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Creates PNG copies with a reduced color palette to save space; some color detail may change. Source files stay unchanged.",
@@ -3106,8 +3106,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose square padding or a border, then set the background color or supported transparency.",
-              "de": "Wähle quadratische Ergänzung oder Rand und dann Hintergrundfarbe oder unterstützte Transparenz."
+              "en": "Choose square padding or a border, then set the background color or supported transparency. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle quadratische Ergänzung oder Rand und dann Hintergrundfarbe oder unterstützte Transparenz. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Adds a border or expands the canvas to a square without cropping away image content. Source files stay unchanged.",
@@ -3274,12 +3274,12 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Set maximum width and height and choose whether smaller images may be enlarged.",
-              "de": "Lege maximale Breite und Höhe fest und wähle, ob kleinere Bilder vergrößert werden dürfen."
+              "en": "For one local raster image, opens a compact preview with one percentage slider and output dimensions. Size and quality starts collapsed and contains linked exact dimensions and an optional enlargement-quality setting. More than 100% explicitly permits enlargement. Quality enhancement uses local Lanczos scaling with mild sharpening and cannot reconstruct missing details. Batches retain numeric bounding-box options. Visual output limits: 30,000 pixels per side and 60 million pixels.",
+              "de": "Bei einem lokalen Rasterbild öffnet sich eine kompakte Vorschau mit einem Prozentregler und den Ausgabemaßen. Maße und Qualität ist zunächst zugeklappt und enthält gekoppelte exakte Maße sowie eine optionale Qualitätsverbesserung. Mehr als 100 % erlaubt ausdrücklich eine Vergrößerung. Die Qualitätsverbesserung verwendet lokale Lanczos-Skalierung mit leichtem Nachschärfen und kann fehlende Details nicht rekonstruieren. Stapel behalten die Zahlenoptionen für den Begrenzungsrahmen. Visuelle Ausgabegrenzen: 30.000 Pixel je Seite und 60 Millionen Pixel."
             },
             "output": {
-              "en": "Creates copies within a maximum width and height while keeping each image's proportions. Source files stay unchanged.",
-              "de": "Erstellt Kopien innerhalb einer maximalen Breite und Höhe und erhält dabei die Proportionen jedes Bildes. Quelldateien bleiben unverändert."
+              "en": "Creates proportionally resized copies with collision-safe .resized naming and the action's existing format rules, including compatible-format fallback for HEIC/GIF. Source files stay unchanged. The visual view retains the action's metadata settings; Options exposes its full numeric settings with the current dimensions and quality selection.",
+              "de": "Erstellt proportional skalierte Kopien mit kollisionssicherer .resized-Benennung und den bisherigen Formatregeln der Aktion, einschließlich eines kompatiblen Ersatzformats für HEIC/GIF. Quelldateien bleiben unverändert. Die visuelle Ansicht erhält die Metadaten-Einstellungen der Aktion; Optionen zeigt alle Zahlenoptionen mit den aktuellen Maßen und der Qualitätsauswahl."
             },
             "example": {
               "en": "Limit photos to a maximum width for a website.",
@@ -3326,12 +3326,12 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Review the fixed 180-degree rotation.",
-              "de": "Prüfe die feste Drehung um 180 Grad."
+              "en": "For one local raster image, opens the installed canvas editor directly with drag handles, rotation, fit and alignment. Batches retain numeric options. Review the fixed 180-degree rotation.",
+              "de": "Bei einem lokalen Rasterbild öffnet sich direkt der installierte Leinwandeditor mit Ziehgriffen, Drehung, Einpassen und Ausrichtung. Stapel behalten die Zahlenoptionen. Prüfe die feste Drehung um 180 Grad."
             },
             "output": {
-              "en": "Creates image copies rotated half a turn so upside-down content becomes upright. Source files stay unchanged.",
-              "de": "Erstellt um eine halbe Drehung gedrehte Bildkopien, damit kopfstehender Inhalt aufrecht erscheint. Quelldateien bleiben unverändert."
+              "en": "Creates image copies rotated half a turn so upside-down content becomes upright. Source files stay unchanged. The canvas path saves a separate (edited).png and removes metadata. Options returns to this action’s original numeric workflow and format behavior.",
+              "de": "Erstellt um eine halbe Drehung gedrehte Bildkopien, damit kopfstehender Inhalt aufrecht erscheint. Quelldateien bleiben unverändert. Der Leinwandeditor speichert ein separates (edited).png und entfernt Metadaten. Optionen führt zur ursprünglichen Zahlenansicht und zum Formatverhalten dieser Aktion zurück."
             },
             "example": {
               "en": "Correct an upside-down scan.",
@@ -3378,12 +3378,12 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Review the fixed left rotation.",
-              "de": "Prüfe die feste Drehung nach links."
+              "en": "For one local raster image, opens the installed canvas editor directly with drag handles, rotation, fit and alignment. Batches retain numeric options. Review the fixed left rotation.",
+              "de": "Bei einem lokalen Rasterbild öffnet sich direkt der installierte Leinwandeditor mit Ziehgriffen, Drehung, Einpassen und Ausrichtung. Stapel behalten die Zahlenoptionen. Prüfe die feste Drehung nach links."
             },
             "output": {
-              "en": "Creates image copies rotated 90 degrees counterclockwise. Source files stay unchanged.",
-              "de": "Erstellt um 90 Grad gegen den Uhrzeigersinn gedrehte Bildkopien. Quelldateien bleiben unverändert."
+              "en": "Creates image copies rotated 90 degrees counterclockwise. Source files stay unchanged. The canvas path saves a separate (edited).png and removes metadata. Options returns to this action’s original numeric workflow and format behavior.",
+              "de": "Erstellt um 90 Grad gegen den Uhrzeigersinn gedrehte Bildkopien. Quelldateien bleiben unverändert. Der Leinwandeditor speichert ein separates (edited).png und entfernt Metadaten. Optionen führt zur ursprünglichen Zahlenansicht und zum Formatverhalten dieser Aktion zurück."
             },
             "example": {
               "en": "Correct a photo that needs a quarter turn to the left.",
@@ -3430,12 +3430,12 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Review the fixed right rotation.",
-              "de": "Prüfe die feste Drehung nach rechts."
+              "en": "For one local raster image, opens the installed canvas editor directly with drag handles, rotation, fit and alignment. Batches retain numeric options. Review the fixed right rotation.",
+              "de": "Bei einem lokalen Rasterbild öffnet sich direkt der installierte Leinwandeditor mit Ziehgriffen, Drehung, Einpassen und Ausrichtung. Stapel behalten die Zahlenoptionen. Prüfe die feste Drehung nach rechts."
             },
             "output": {
-              "en": "Creates image copies rotated 90 degrees clockwise. Source files stay unchanged.",
-              "de": "Erstellt um 90 Grad im Uhrzeigersinn gedrehte Bildkopien. Quelldateien bleiben unverändert."
+              "en": "Creates image copies rotated 90 degrees clockwise. Source files stay unchanged. The canvas path saves a separate (edited).png and removes metadata. Options returns to this action’s original numeric workflow and format behavior.",
+              "de": "Erstellt um 90 Grad im Uhrzeigersinn gedrehte Bildkopien. Quelldateien bleiben unverändert. Der Leinwandeditor speichert ein separates (edited).png und entfernt Metadaten. Optionen führt zur ursprünglichen Zahlenansicht und zum Formatverhalten dieser Aktion zurück."
             },
             "example": {
               "en": "Correct a scan that needs a quarter turn to the right.",
@@ -3484,8 +3484,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose the direction and review the image order and size settings.",
-              "de": "Wähle die Richtung und prüfe Bildreihenfolge sowie Größeneinstellungen."
+              "en": "Choose the direction and review the image order and size settings. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle die Richtung und prüfe Bildreihenfolge sowie Größeneinstellungen. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Joins images horizontally or vertically into one new image, scaling them to a common side length. Source files stay unchanged.",
@@ -3644,8 +3644,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose the favicon or Windows size preset.",
-              "de": "Wähle die Größenvorgabe für Favicons oder Windows-Symbole."
+              "en": "Choose the favicon or Windows size preset. The normal conversion options offer an optional visual preview with a reduced rendered image. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle die Größenvorgabe für Favicons oder Windows-Symbole. Die normalen Umwandlungsoptionen bieten optional eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Creates an ICO file with image sizes intended for favicons or Windows icons. Source files stay unchanged.",
@@ -3748,8 +3748,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Choose the watermark image and review its placement, size and opacity.",
-              "de": "Wähle das Wasserzeichenbild und prüfe Platzierung, Größe und Deckkraft."
+              "en": "Choose the watermark image and review its placement, size and opacity. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Wähle das Wasserzeichenbild und prüfe Platzierung, Größe und Deckkraft. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Creates copies with a chosen watermark image overlaid, useful for branding or attribution. Source files stay unchanged.",
@@ -3800,8 +3800,8 @@
               "de": "Wähle unterstützte lokale Bilddateien im Explorer aus. Verfügbare Formate hängen von der installierten Bildverarbeitung ab."
             },
             "configure": {
-              "en": "Enter the watermark text and review placement and appearance settings.",
-              "de": "Gib den Wasserzeichentext ein und prüfe Platzierung und Darstellung."
+              "en": "Enter the watermark text and review placement and appearance settings. Opens a visual options window with a reduced rendered preview. Adjust the controls, then run the original action or return to numeric options. Per-file batches preview the first naturally ordered image; grids and stitched images preview the complete layout. Previewing creates no files.",
+              "de": "Gib den Wasserzeichentext ein und prüfe Platzierung und Darstellung. Öffnet eine visuelle Ansicht mit verkleinerter berechneter Vorschau. Passe die Einstellungen an und führe die ursprüngliche Aktion aus oder kehre zu den Zahlenoptionen zurück. Bei Einzeldatei-Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern und zusammengefügten Bildern das gesamte Layout. Die Vorschau erzeugt keine Dateien."
             },
             "output": {
               "en": "Creates copies with visible text watermarks without altering the original images. Source files stay unchanged.",
@@ -3856,12 +3856,12 @@
               "de": "Wähle lokale SVG-Dateien mit statischen Formen, Text oder Verläufen aus. Eine viewBox oder Breite/Höhe in Pixeln ist erforderlich."
             },
             "configure": {
-              "en": "Choose maximum output width and height (default 1,024 × 1,024). Aspect ratio is preserved. Limits: 1 MiB input, 5,000 elements, 64 levels, 10,000 pixels per side and 40 million output pixels. DTDs, scripting, stylesheets, animation, embedded images, use references, foreign namespaces and external resources are rejected before rendering.",
-              "de": "Wähle maximale Ausgabebreite und -höhe (Standard 1.024 × 1.024). Das Seitenverhältnis bleibt erhalten. Grenzen: 1 MiB Eingabe, 5.000 Elemente, 64 Ebenen, 10.000 Pixel pro Seite und 40 Millionen Ausgabepixel. DTDs, Skripte, Stylesheets, Animation, eingebettete Bilder, use-Verweise, fremde Namensräume und externe Ressourcen werden vor dem Rendern abgewiesen."
+              "en": "Choose output width, height and exact canvas in the normal conversion options, then run. A single local SVG also offers an optional visual-editor link with resize handles, rotation, fit and alignment. Converter defaults are 1,024 × 1,024 bounds. Multiple SVGs retain numeric batch options. Limits: 1 MiB input, 5,000 elements, 64 levels, 10,000 pixels per side and 40 million output pixels. DTDs, scripting, stylesheets, animation, embedded images, use references, foreign namespaces and external resources are rejected before rendering.",
+              "de": "Wähle Ausgabebreite, Höhe und exakte Leinwand in den normalen Umwandlungsoptionen und führe die Aktion aus. Bei einer lokalen SVG ist der visuelle Editor mit Ziehgriffen, Drehung, Einpassen und Ausrichtung optional verlinkt. Standard sind Grenzen von 1.024 × 1.024. Mehrere SVGs behalten die Zahlenoptionen zur Stapelumwandlung. Grenzen: 1 MiB Eingabe, 5.000 Elemente, 64 Ebenen, 10.000 Pixel pro Seite und 40 Millionen Ausgabepixel. DTDs, Skripte, Stylesheets, Animation, eingebettete Bilder, use-Verweise, fremde Namensräume und externe Ressourcen werden vor dem Rendern abgewiesen."
             },
             "output": {
-              "en": "One new PNG per SVG using the existing Magick.NET adapter. Transparency is retained. Unsupported SVG features fail explicitly; originals and existing output files are preserved.",
-              "de": "Pro SVG entsteht eine neue PNG-Datei über den bestehenden Magick.NET-Adapter. Transparenz bleibt erhalten. Nicht unterstützte SVG-Funktionen führen zu einem Fehler; Originale und bestehende Ausgaben bleiben erhalten."
+              "en": "The canvas editor saves a new (edited).png copy. Numeric batch conversion creates one PNG per SVG using the original naming. Transparency is retained. Unsupported SVG features fail explicitly; originals and existing output files are preserved.",
+              "de": "Der Leinwandeditor speichert eine neue Kopie mit dem Zusatz (edited).png. Die Zahlenoptionen zur Stapelumwandlung erzeugen pro SVG ein PNG mit der bisherigen Benennung. Transparenz bleibt erhalten. Nicht unterstützte SVG-Funktionen führen zu einem Fehler; Originale und bestehende Ausgaben bleiben erhalten."
             },
             "example": {
               "en": "Render a static 2:1 SVG logo within 200 × 200 pixels to get a 200 × 100 transparent PNG for a slide or document. No external images or fonts are fetched.",
@@ -3914,8 +3914,8 @@
               "de": "Wähle lokale PNG-Bilder mit Logos, Symbolen oder einfachen flächigen Illustrationen aus. Der vorhandene Windows-PNG-Codec decodiert die Pixel lokal; ein Vektorisierungsdienst oder zusätzliches Programm ist nicht erforderlich. Animationen bleiben nicht erhalten."
             },
             "configure": {
-              "en": "Choose color or black/white and a detail level. Low uses up to 256 px and 8 colors, medium 512 px and 16 colors, high 1024 px and 32 colors. Black/white adds a 0–255 brightness threshold. Limits: 16 million source pixels, 250,000 boundary edges and 5 MiB SVG output. Higher detail can exceed the complexity limit on photos or noisy art.",
-              "de": "Wähle Farbe oder Schwarz-Weiß und eine Detailstufe. Niedrig verwendet bis 256 px und 8 Farben, mittel 512 px und 16 Farben, hoch 1024 px und 32 Farben. Schwarz-Weiß ergänzt eine Helligkeitsschwelle von 0–255. Grenzen: 16 Millionen Quellpixel, 250.000 Konturkanten und 5 MiB SVG-Ausgabe. Hohe Details können bei Fotos oder verrauschten Bildern die Komplexitätsgrenze überschreiten."
+              "en": "Choose color or black/white and a detail level. The optional visual preview renders the generated SVG paths and updates with these settings. Low uses up to 256 px and 8 colors, medium 512 px and 16 colors, high 1024 px and 32 colors. Black/white adds a 0–255 brightness threshold. Limits: 16 million source pixels, 250,000 boundary edges and 5 MiB SVG output. Complex art can exceed tracing or preview limits; the preview renderer accepts at most 1 MiB of SVG, while normal export retains its existing limits.",
+              "de": "Wähle Farbe oder Schwarz-Weiß und eine Detailstufe. Die optionale visuelle Vorschau rendert die erzeugten SVG-Pfade und aktualisiert sich mit diesen Einstellungen. Niedrig verwendet bis 256 px und 8 Farben, mittel 512 px und 16 Farben, hoch 1024 px und 32 Farben. Schwarz-Weiß ergänzt eine Helligkeitsschwelle von 0–255. Grenzen: 16 Millionen Quellpixel, 250.000 Konturkanten und 5 MiB SVG-Ausgabe. Komplexe Bilder können Vektorisierungs- oder Vorschaugrenzen überschreiten; der Vorschau-Renderer akzeptiert höchstens 1 MiB SVG, während der normale Export seine bisherigen Grenzen behält."
             },
             "output": {
               "en": "Creates a new SVG of closed polygon paths, preserving holes and separate regions. No bitmap is embedded. Original display dimensions remain while the working grid bounds detail. Colors and alpha are quantized; black/white thresholds alpha. Photos, gradients, smooth curves and small text are approximated and can look worse than the PNG. Original and existing files are preserved.",
@@ -3924,6 +3924,66 @@
             "example": {
               "en": "Trace a flat logo with a transparent center into editable color paths. Use black/white with a brightness threshold for a monochrome mark. Inspect the SVG at the intended display size before using it in print or a design editor; the tracer produces polygons rather than fitted Bézier curves.",
               "de": "Zeichne ein flächiges Logo mit transparenter Mitte als bearbeitbare Farbpfade nach. Verwende Schwarz-Weiß mit Helligkeitsschwelle für ein einfarbiges Zeichen. Prüfe die SVG in der vorgesehenen Anzeigegröße, bevor du sie druckst oder in einem Grafikeditor nutzt; der Tracer erzeugt Polygone statt angepasster Bézierkurven."
+            }
+          }
+        },
+        {
+          "id": "powertrove.image.edit",
+          "slug": "edit-image-visually",
+          "title": {
+            "en": "Edit Image Visually",
+            "de": "Bild visuell bearbeiten"
+          },
+          "description": {
+            "en": "Resize, rotate and position one image on a transparent canvas, then save a new PNG.",
+            "de": "Ein Bild auf transparenter Leinwand skalieren, drehen und ausrichten, dann als neues PNG speichern."
+          },
+          "searchTerms": {
+            "en": [
+              "image",
+              "edit",
+              "canvas",
+              "resize",
+              "rotate",
+              "align",
+              "visual"
+            ],
+            "de": [
+              "bild",
+              "bearbeiten",
+              "leinwand",
+              "skalieren",
+              "drehen",
+              "ausrichten",
+              "visuell"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "image"
+          ],
+          "minItems": 1,
+          "maxItems": 1,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select one locally available raster image or a supported static SVG. Image Tools must be installed. Animation uses its first frame; SVG scripts, embedded images and external resources are rejected.",
+              "de": "Wähle ein lokal verfügbares Rasterbild oder eine unterstützte statische SVG. Das Bild-Tools-Pack muss installiert sein. Animationen verwenden das erste Einzelbild; SVG-Skripte, eingebettete Bilder und externe Ressourcen werden abgewiesen."
+            },
+            "configure": {
+              "en": "Drag the image, resize its edge or corner handles, and turn the rotation handle. Keep aspect ratio is on by default. Switch to canvas handles to change the output size. Numeric dimensions, rotation, alignment, fit, undo and redo are also available.",
+              "de": "Verschiebe das Bild, ziehe an Kanten- oder Eckgriffen und nutze den Drehgriff. Das Seitenverhältnis bleibt standardmäßig erhalten. Wechsle zu Leinwandgriffen für die Ausgabegröße. Zahlenwerte, Drehung, Ausrichtung, Einpassen, Rückgängig und Wiederholen sind ebenfalls verfügbar."
+            },
+            "output": {
+              "en": "Creates a new PNG with the exact canvas dimensions and transparent padding. Content outside the canvas is cropped with a visible warning. Metadata is removed. Source files and existing outputs are preserved. The reduced preview is not the export resolution. Limits: 10000 pixels per output side and 40 million output pixels.",
+              "de": "Erstellt ein neues PNG mit exakten Leinwandmaßen und transparentem Rand. Inhalte außerhalb der Leinwand werden mit sichtbarer Warnung abgeschnitten. Metadaten werden entfernt. Quelldateien und vorhandene Ausgaben bleiben erhalten. Die verkleinerte Vorschau bestimmt nicht die Exportauflösung. Grenzen: 10000 Pixel pro Ausgabeseite und 40 Millionen Ausgabepixel."
+            },
+            "example": {
+              "en": "Place a square logo on a 1280 by 640 canvas, use Fit image and center alignment, then save a transparent PNG without stretching the logo.",
+              "de": "Platziere ein quadratisches Logo auf einer Leinwand mit 1280 mal 640 Pixeln, passe das Bild ein und richte es mittig aus. Speichere anschließend ein transparentes PNG, ohne das Logo zu verzerren."
             }
           }
         }

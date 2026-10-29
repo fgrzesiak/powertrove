@@ -31,8 +31,15 @@ public static class InstallerBuildCommand
         if (File.Exists(installer) || Directory.Exists(installer))
             throw new IOException("Installer output already exists. Use a fresh candidate directory.");
         // No launch, elevation, registration or network operation is performed by this command.
-        string args = "/Q /DAppVersion=" + version + " /DPayloadDir=\"" + stage + "\" /O\"" + artifacts + "\" \"" + script + "\"";
-        var compiled = await runner.RunAsync(iscc, args, root);
+        string messages = Path.Combine(artifacts, "installer-messages-" + Guid.NewGuid().ToString("N") + ".isl");
+        (int ExitCode, string StandardOutput, string StandardError) compiled;
+        try
+        {
+            InstallerMessages.Write(root, messages);
+            string args = "/Q /DAppVersion=" + version + " /DPayloadDir=\"" + stage + "\" /DInstallerMessagesFile=\"" + messages + "\" /O\"" + artifacts + "\" \"" + script + "\"";
+            compiled = await runner.RunAsync(iscc, args, root);
+        }
+        finally { if (File.Exists(messages)) File.Delete(messages); }
         if (compiled.ExitCode != 0) throw new InvalidOperationException("Installer compilation failed (inspect local ISCC output).");
         if (!File.Exists(installer) || new FileInfo(installer).Length == 0)
             throw new InvalidDataException("Installer compiler did not produce the expected artifact.");

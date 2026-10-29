@@ -1,4 +1,4 @@
-<Window
+<local:HostedView
     x:Class="PowerTrove.Desktop.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -298,4 +298,4 @@
             </StackPanel>
         </Border>
     </Grid>
-</Window>
+</local:HostedView>

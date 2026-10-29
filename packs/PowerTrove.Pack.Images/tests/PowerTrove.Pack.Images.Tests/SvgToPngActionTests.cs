@@ -27,6 +27,55 @@ public sealed class SvgToPngActionTests : IDisposable
         }
         Assert.Equal(svg, File.ReadAllText(first));
     }
+    [Theory]
+    [InlineData("none")]
+    [InlineData("xMinYMin slice")]
+    public async Task ExactCanvasCentersSquareArtworkWithoutStretchingOrCropping(string sourceAlignment)
+    {
+        // Source alignment must not stretch or crop the artwork in exact-canvas mode.
+        string svg = $"<svg xmlns='http://www.w3.org/2000/svg' viewBox='10 20 100 100' preserveAspectRatio='{sourceAlignment}'><rect x='10' y='20' width='100' height='100' fill='red'/></svg>";
+        string path = _directory.Write("square.svg", svg);
+        var options = Snapshots.Parameters(("Width", "1280"), ("Height", "640"), ("ExactCanvas", "true"));
+        var action = Action();
+        var context = Snapshots.ForPaths(path);
+        var preview = await action.PreviewAsync(context, options, default);
+        Assert.False(preview.IsBlocked);
+        Assert.Contains("1280", preview.PreviewText);
+        Assert.Contains("640", preview.PreviewText);
+        var receipt = await action.ExecuteAsync(context, options, null, default);
+        Assert.True(receipt.IsSuccess, receipt.Message);
+        using var image = new MagickImage(Assert.Single(receipt.OutputPaths));
+        Assert.Equal((1280u, 640u), (image.Width, image.Height));
+        Assert.True(image.HasAlpha);
+        using var pixels = image.GetPixels();
+        Assert.Equal(0, pixels.GetPixel(319, 320).ToColor()!.A);
+        Assert.Equal(0, pixels.GetPixel(960, 320).ToColor()!.A);
+        Assert.True(pixels.GetPixel(321, 320).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(958, 320).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(640, 0).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(640, 639).ToColor()!.A > 0);
+        Assert.Equal(svg, File.ReadAllText(path));
+    }
+
+    [Fact]
+    public async Task ExactPortraitCanvasCentersWideArtworkWithTransparentTopAndBottom()
+    {
+        const string svg = "<svg xmlns='http://www.w3.org/2000/svg' width='200px' height='100px'><rect width='200' height='100' fill='blue'/></svg>";
+        string path = _directory.Write("wide.svg", svg);
+        var options = Snapshots.Parameters(("Width", "200"), ("Height", "400"), ("ExactCanvas", "true"));
+        var receipt = await Action().ExecuteAsync(Snapshots.ForPaths(path), options, null, default);
+        Assert.True(receipt.IsSuccess, receipt.Message);
+        using var image = new MagickImage(Assert.Single(receipt.OutputPaths));
+        Assert.Equal((200u, 400u), (image.Width, image.Height));
+        using var pixels = image.GetPixels();
+        Assert.Equal(0, pixels.GetPixel(100, 149).ToColor()!.A);
+        Assert.Equal(0, pixels.GetPixel(100, 250).ToColor()!.A);
+        Assert.True(pixels.GetPixel(100, 151).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(100, 248).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(0, 200).ToColor()!.A > 0);
+        Assert.True(pixels.GetPixel(199, 200).ToColor()!.A > 0);
+    }
+
     [Fact]
     public async Task ActiveSvgBlocksPreviewAndCreatesNoOutput()
     {

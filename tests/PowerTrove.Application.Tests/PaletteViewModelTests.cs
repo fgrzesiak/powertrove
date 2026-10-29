@@ -205,9 +205,10 @@ public class PaletteViewModelTests
         vm.SearchText = "image";
         await vm.SearchTask;
 
-        // A new query selects its strongest result instead of retaining an old, lower row.
+        // A new query selects its strongest result instead of retaining an old, lower row: the title that
+        // contains the query word, ahead of actions that only list it as a keyword.
         Assert.Same(vm.FilteredActions[0], vm.SelectedAction);
-        Assert.Equal("Convert to AVIF", vm.SelectedAction!.Action.Descriptor.Title);
+        Assert.Equal("Remove Image Metadata", vm.SelectedAction!.Action.Descriptor.Title);
     }
 
     [Fact]

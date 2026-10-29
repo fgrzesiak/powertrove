@@ -25,6 +25,14 @@ License: not yet selected by the owner.
 
 ## Raster and output APIs
 
+`ImageCanvasLayout` describes an exact transparent canvas, image-layer dimensions,
+center-relative offsets and an integer rotation angle. `ImageCanvasRenderer.Render`
+uses one inverse affine transform with alpha-correct bilinear sampling, clips at
+the canvas boundary and supports cancellation. Canvas and layer limits are 10,000
+pixels per side and 40 million pixels. `ImageCanvasEditorState` provides platform-free
+drag/rotation math, aspect locking, fitting, alignment and bounded geometry-only
+undo/redo. It has no window, file-system or PowerTrove dependency.
+
 `RasterImage` stores straight-alpha BGRA bytes. `RasterOperations` supplies crop, rotations, flips, padding, source-over composition, Rec.709 grayscale, pixelation and alpha-correct bilinear resize. Each raster is checked before allocating and is limited to 60 million pixels and 30000 px per side. Long pixel operations accept cancellation tokens.
 
 `PaletteQuantizer` uses deterministic RGBA median cut with a bounded histogram (at most 65536 buckets after reduction) and optional Floyd–Steinberg diffusion. Inputs with no more colors than the requested palette retain exact colors. `PngEncoder` writes 8-bit indexed (PLTE/tRNS), RGB and RGBA PNG, selecting row filters by minimum signed-byte sum and streaming zlib output through 64 KiB IDAT chunks. `IcoWriter` packages up to seven validated PNG entries, each at most 256 px.
@@ -38,7 +46,10 @@ License: not yet selected by the owner.
 can pass it to a renderer. It supports shapes, text and local gradients, rejects
 DTDs, processing instructions, active content, stylesheets, images, use references,
 foreign namespaces and external resources, and fits the output to a requested
-bounding box while preserving aspect ratio. Limits: 1 MiB input, 5,000 elements,
+bounding box while preserving aspect ratio. The `exactCanvas` overloads keep the
+requested output dimensions and center the complete viewBox with proportional
+scaling and transparent padding, overriding source stretch/crop alignment.
+Limits: 1 MiB input, 5,000 elements,
 64 levels, 10,000 pixels per output side and 40 million output pixels. It rewrites
 root pixel dimensions after validation and requires a viewBox or pixel dimensions.
 It is not a general-purpose SVG browser and does not render by itself.

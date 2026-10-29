@@ -19,6 +19,8 @@ public sealed class InstallerBuildCommandTests : IDisposable
         await InstallerBuildCommand.ExecuteAsync(_root, artifacts, "1.0.0", compiler, runner);
         string[] lines = File.ReadAllLines(Path.Combine(artifacts, "SHA256SUMS"));
         Assert.Equal(2, lines.Length);
+        Assert.Contains("/DInstallerMessagesFile=", runner.Arguments);
+        Assert.Empty(Directory.GetFiles(artifacts, "installer-messages-*.isl"));
         foreach (string file in new[] { zip, installer })
         {
             string hash = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(file))).ToLowerInvariant();
@@ -57,6 +59,10 @@ public sealed class InstallerBuildCommandTests : IDisposable
     {
         Directory.CreateDirectory(Path.Combine(_root, "packaging", "windows"));
         File.WriteAllText(Path.Combine(_root, "packaging", "windows", "PowerTrove.iss"), "test script");
+        string resources = Path.Combine(_root, "src", "PowerTrove.Desktop", "Resources");
+        Directory.CreateDirectory(resources);
+        File.WriteAllText(Path.Combine(resources, "Strings.resx"), "<root><data name='Installer_Test'><value>Install tools</value></data></root>");
+        File.WriteAllText(Path.Combine(resources, "Strings.de.resx"), "<root><data name='Installer_Test'><value>Tools installieren</value></data></root>");
         string compiler = Path.Combine(_root, "ISCC.exe");
         File.WriteAllText(compiler, "test compiler");
         return compiler;
@@ -134,12 +140,14 @@ public sealed class InstallerBuildCommandTests : IDisposable
     private sealed class Fake : IProcessRunner
     {
         public bool WasInvoked;
+        public string Arguments = string.Empty;
         public Action? OnRun;
         public int ExitCode;
         public Task<(int ExitCode, string StandardOutput, string StandardError)> RunAsync(
             string filename, string args, string? workingDirectory = null)
         {
             WasInvoked = true;
+            Arguments = args;
             OnRun?.Invoke();
             return Task.FromResult((ExitCode, "", ""));
         }

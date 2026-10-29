@@ -14,6 +14,7 @@ public sealed class InstalledPackRuntime
     private readonly PackHostSupervisor supervisor;
     private readonly ActionRegistry registry;
     private readonly IReadOnlyList<IActionPack> builtIns;
+    private readonly bool preferBuiltIns;
     private readonly HashSet<string> _registered = new(StringComparer.Ordinal);
     private readonly SemaphoreSlim _gate = new(1, 1);
     public IActionCatalog Catalog { get; set; }
@@ -21,9 +22,10 @@ public sealed class InstalledPackRuntime
     public event Action<string>? RolledBack;
 
     public InstalledPackRuntime(PackInstaller installer, PackHostSupervisor supervisor,
-        ActionRegistry registry, IReadOnlyList<IActionPack> builtIns, IActionCatalog catalog)
+        ActionRegistry registry, IReadOnlyList<IActionPack> builtIns, IActionCatalog catalog, bool preferBuiltIns = false)
     {
         this.installer = installer; this.supervisor = supervisor; this.registry = registry; this.builtIns = builtIns; Catalog = catalog;
+        this.preferBuiltIns = preferBuiltIns;
         supervisor.StartFailed += (group, failures) =>
         {
             if (failures >= RollbackAfterStartFailures && group.Packs is [var pack]) _ = RollBackAsync(pack.Id, pack.Version);
@@ -48,7 +50,8 @@ public sealed class InstalledPackRuntime
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
-            var packs = await installer.GetInstalledAsync(token).ConfigureAwait(false);
+            var packs = (await installer.GetInstalledAsync(token).ConfigureAwait(false))
+                .Where(p => !preferBuiltIns || !builtIns.Any(b => b.Info.Id == p.Manifest.Id)).ToArray();
             // App-owned isolated groups may contain several packs. Renew all their bindings
             // after maintenance before applying any managed overrides.
             foreach (var builtIn in builtIns)

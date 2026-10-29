@@ -5,7 +5,7 @@ using FileKit.Imaging.Vector;
 
 namespace PowerTrove.Pack.Images;
 
-public sealed class PngToSvgAction(FileActionServices services, IImageRasterCodec? codec) : PerFileAction<VectorOptions>(services)
+public sealed class PngToSvgAction(FileActionServices services, IImageRasterCodec? codec, ISvgRenderer? renderer = null) : PerFileAction<VectorOptions>(services)
 {
     public override ActionDescriptor Descriptor => new("powertrove.image.png-to-svg", SR.GetString("VectorTitle"), SR.GetString("VectorDescription"),
         new HashSet<ContentKind> { ContentKind.Files }, ["png", "svg", "vector", "trace", "logo", "convert"], true, true,
@@ -24,9 +24,22 @@ public sealed class PngToSvgAction(FileActionServices services, IImageRasterCode
         try
         {
             foreach (var file in ((FileSelection)context.Content).Files.Where(Input.Accepts)) await RasterSupport.ProbeAsync(Services, file, ct, RasterVectorizer.MaxSourcePixels).ConfigureAwait(false);
+            if (ImagePreviewRequest.IsRequested(parameters) && renderer is not null)
+            {
+                var file = OrderInputs(((FileSelection)context.Content).Files.Where(Input.Accepts))[0];
+                var decoded = await ImagePreviews.DecodeAsync(Services, codec!, file, ct).ConfigureAwait(false);
+                var options = ReadOptions(ActionParameterValues.From(parameters, Descriptor.Parameters));
+                var vector = await Task.Run(() => RasterVectorizer.Trace(RasterSupport.Pixels(decoded), options, ct), ct).ConfigureAwait(false);
+                var safe = await Task.Run(() => SvgRasterSource.Prepare(Encoding.UTF8.GetBytes(vector.Svg), 512, 512, ct), ct).ConfigureAwait(false);
+                using var png = new MemoryStream(); await renderer.RenderAsync(safe, png, ct).ConfigureAwait(false); png.Position = 0;
+                var rendered = await codec!.DecodeAsync(png, FileFormats.Png, 512 * 512, ct).ConfigureAwait(false);
+                return preview with { ImagePreview = await Task.Run(() => ImagePreviews.Frame(RasterSupport.Pixels(rendered), ct, decoded.Width, decoded.Height), ct).ConfigureAwait(false) };
+            }
             return preview;
         }
         catch (FileProcessingException ex) { return preview with { IsBlocked = true, PreviewText = ex.Message }; }
+        catch (Exception ex) when (ex is RasterException or SvgInputException or IOException or UnauthorizedAccessException)
+        { return preview with { IsBlocked = true, PreviewText = SR.GetString("VectorFailed") }; }
     }
     protected override async Task ProcessAsync(FileWorkItem item, VectorOptions options, FileOutputWriter output, CancellationToken ct)
     {

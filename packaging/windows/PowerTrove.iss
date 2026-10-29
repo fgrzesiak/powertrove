@@ -4,6 +4,15 @@
 #ifndef PayloadDir
   #error PayloadDir is required
 #endif
+#ifndef InstallerMessagesFile
+  #error InstallerMessagesFile is required (generated from Resources/Strings*.resx)
+#endif
+
+#include InstallerMessagesFile
+
+[Languages]
+Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
 
 [Setup]
 AppId=PowerTrove
@@ -29,6 +38,7 @@ RestartApplications=no
 ChangesAssociations=no
 ChangesEnvironment=no
 WizardStyle=modern
+UsePreviousTasks=yes
 
 [InstallDelete]
 ; Core-only releases compile in no pack. Remove only the pack files earlier PowerTrove versions installed here;
@@ -42,11 +52,15 @@ Type: filesandordirs; Name: "{app}\packhost"
 [Files]
 Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+[Tasks]
+Name: "startmenu"; Description: "{cm:Installer_StartMenu}"; GroupDescription: "{cm:Installer_WindowsIntegration}"
+Name: "explorermenu"; Description: "{cm:Installer_ExplorerMenu}"; GroupDescription: "{cm:Installer_WindowsIntegration}"; Flags: unchecked
+
 [Icons]
-Name: "{autoprograms}\PowerTrove"; Filename: "{app}\PowerTrove.exe"; WorkingDir: "{app}"
+Name: "{autoprograms}\PowerTrove"; Filename: "{app}\PowerTrove.exe"; WorkingDir: "{app}"; Tasks: startmenu
 
 [Run]
-Filename: "{app}\PowerTrove.exe"; Description: "Launch PowerTrove"; Flags: nowait postinstall skipifsilent unchecked; Check: not IsInAppUpdate
+Filename: "{app}\PowerTrove.exe"; Description: "{cm:Installer_Launch}"; Flags: nowait postinstall skipifsilent unchecked; Check: not IsInAppUpdate
 Filename: "{app}\PowerTrove.exe"; Flags: nowait; Check: IsInAppUpdate
 
 [Code]
@@ -71,28 +85,44 @@ begin
   end;
 end;
 
-procedure InitializeWizard();
+// Only the explicit in-app update handoff relaunches automatically and skips new selections.
+function IsInAppUpdate(): Boolean;
+var
+  I: Integer;
 begin
-  PackPage := CreateInputOptionPage(wpWelcome, 'Choose your tools', 'Which tools should PowerTrove download?',
-    'PowerTrove installs only its core. Setup then downloads the selected tools from the official, signed channel and verifies each one. ' +
-    'If that is not possible now, for example offline, PowerTrove installs them at its first start. You can add or remove tools in Settings at any time.', False, False);
-  PackPage.Add('File Tools: rename, zip, compare and sort files');
-  PackPage.Add('PDF Tools: merge, split, convert and organize PDFs');
-  PackPage.Add('Image Tools: convert, resize and compress images');
-  PackPage.Add('Audio and Video Tools: convert, trim and compress audio and video');
-  PackPage.Add('Office tools: convert Office documents to PDF and PDFs to Word');
-  PackPage.Add('Data tools: convert CSV, JSON, Excel and contact files');
-  PackPage.Add('Table Export: export Excel selections as CSV, JSON, Markdown or SQL');
-  PackPage.Add('E-Invoice Tools: view and convert XRechnung and ZUGFeRD invoices');
-  PackPage.Values[0] := True;
-  PackPage.Values[1] := True;
-  PackPage.Values[2] := True;
+  Result := False;
+  for I := 1 to ParamCount do
+    if CompareText(ParamStr(I), '/POWERTROVEUPDATE') = 0 then
+      Result := True;
 end;
 
-// Updates keep their packs: the app takes over formerly compiled-in packs, and Settings manages the rest.
+procedure InitializeWizard();
+var
+  I: Integer;
+  Description: String;
+begin
+  if FreshInstall then Description := CustomMessage('Installer_ToolsDescriptionFresh')
+  else Description := CustomMessage('Installer_ToolsDescriptionExisting');
+  PackPage := CreateInputOptionPage(wpWelcome, CustomMessage('Installer_ToolsTitle'),
+    CustomMessage('Installer_ToolsSubtitle'), Description, False, False);
+  PackPage.Add(CustomMessage('Installer_Files'));
+  PackPage.Add(CustomMessage('Installer_Pdf'));
+  PackPage.Add(CustomMessage('Installer_Images'));
+  PackPage.Add(CustomMessage('Installer_Media'));
+  PackPage.Add(CustomMessage('Installer_Office'));
+  PackPage.Add(CustomMessage('Installer_Data'));
+  PackPage.Add(CustomMessage('Installer_Tables'));
+  PackPage.Add(CustomMessage('Installer_Invoice'));
+  for I := 0 to 7 do
+    PackPage.Values[I] := (FreshInstall and (I < 3)) or
+      FileExists(ExpandConstant('{localappdata}\PowerTrove\packs\' + PackId(I) + '\active.json'));
+end;
+
+// Manual reinstalls can add tools. Automatic/silent updates retain existing selections without prompting.
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
-  Result := (PackPage <> nil) and (PageID = PackPage.ID) and not FreshInstall;
+  Result := ((PackPage <> nil) and (PageID = PackPage.ID) and (IsInAppUpdate or WizardSilent)) or
+    ((PageID = wpSelectTasks) and IsInAppUpdate);
 end;
 
 // The app's headless setup command installs these through its verified package manager and removes this file.
@@ -102,7 +132,12 @@ var
   I, ResultCode: Integer;
   Selection: String;
 begin
-  if (CurStep <> ssPostInstall) or not FreshInstall then Exit;
+  if (CurStep <> ssPostInstall) or IsInAppUpdate then Exit;
+  if WizardIsTaskSelected('explorermenu') then
+    if not Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-explorer-menu install ' + ActiveLanguage,
+      ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode) or (ResultCode <> 0) then
+      SuppressibleMsgBox(CustomMessage('Installer_ExplorerFailed'), mbInformation, MB_OK, IDOK);
+  if not FreshInstall and WizardSilent then Exit;
   Selection := '';
   for I := 0 to 7 do
     if PackPage.Values[I] then
@@ -111,27 +146,30 @@ begin
       Selection := Selection + '"' + PackId(I) + '"';
     end;
   if Selection = '' then Exit;
-  SaveStringToFile(ExpandConstant('{app}\setup-packs.json'), '{"packs":[' + Selection + ']}', False);
-  WizardForm.StatusLabel.Caption := 'Downloading and verifying the selected tools...';
+  if not SaveStringToFile(ExpandConstant('{app}\setup-packs.json'), '{"packs":[' + Selection + ']}', False) then
+  begin
+    SuppressibleMsgBox(CustomMessage('Installer_SelectionFailed'), mbInformation, MB_OK, IDOK);
+    Exit;
+  end;
+  WizardForm.StatusLabel.Caption := CustomMessage('Installer_Downloading');
   WizardForm.ProgressGauge.Style := npbstMarquee;
   try
     if not Exec(ExpandConstant('{app}\PowerTrove.exe'), '--install-setup-packs', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode)
       or (ResultCode <> 0) then
-      SuppressibleMsgBox('Some tools could not be downloaded now. PowerTrove installs them at its next start.', mbInformation, MB_OK, IDOK);
+      SuppressibleMsgBox(CustomMessage('Installer_DownloadDeferred'), mbInformation, MB_OK, IDOK);
   finally
     WizardForm.ProgressGauge.Style := npbstNormal;
   end;
 end;
 
-// Only the explicit in-app update handoff relaunches automatically. Normal installs retain opt-in launch.
-function IsInAppUpdate(): Boolean;
+// The same ownership checks as Settings preserve registrations belonging to another app copy.
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
-  I: Integer;
+  ResultCode: Integer;
 begin
-  Result := False;
-  for I := 1 to ParamCount do
-    if CompareText(ParamStr(I), '/POWERTROVEUPDATE') = 0 then
-      Result := True;
+  if CurUninstallStep = usUninstall then
+    Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-explorer-menu remove ' + ActiveLanguage,
+      ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
 end;
 
 // Guard version downgrade in the user's existing installation; never reset settings.
@@ -211,7 +249,7 @@ begin
   Comparison := CompareNumericVersions(Existing, '{#AppVersion}');
   if Comparison > 0 then
   begin
-    MsgBox('A newer version of PowerTrove is installed, or the installed version cannot be verified. Downgrade is refused.',
+    MsgBox(CustomMessage('Installer_DowngradeRefused'),
       mbError, MB_OK);
     Result := False;
   end;

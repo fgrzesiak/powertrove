@@ -86,7 +86,7 @@ public sealed class PageTile : INotifyPropertyChanged
 /// reorder, rotates and removes pages, then saves a new PDF through
 /// <see cref="OrganizePagesPdfAction"/> (never overwriting the originals).
 /// </summary>
-public sealed partial class PageOrganizerWindow : Window
+public sealed partial class PageOrganizerWindow : HostedView
 {
     private const int MaxPages = 2000;
 
@@ -112,11 +112,9 @@ public sealed partial class PageOrganizerWindow : Window
         InitializeComponent();
         Title = UiText.OrganizerTitle;
         TitleText.Text = UiText.OrganizerTitle;
-        SystemBackdrop = new MicaBackdrop();
-        ExtendsContentIntoTitleBar = true;
-        SetTitleBar(AppTitleBar);
+        TitleBar = AppTitleBar;
         TitleBarIcon.Source = AppIconImage.Create(32);
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(1100, 780));
+        PreferredSize = new(1100, 780);
         Pages.CollectionChanged += (_, _) => UpdateCount();
         Closed += (_, _) => Cleanup();
         _ = LoadAsync();

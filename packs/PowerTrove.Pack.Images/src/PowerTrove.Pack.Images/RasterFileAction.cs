@@ -6,7 +6,7 @@ namespace PowerTrove.Pack.Images;
 
 public enum RasterOperation { Crop, Pad, Grayscale, OptimizePng, Icon, ConvertOther }
 public sealed record RasterOptions(string Mode = "", string Anchor = "center", double? Ratio = null, int Border = 0,
-    BgraColor Color = default, bool Transparent = false, int Colors = 256, bool Dither = true);
+    BgraColor Color = default, bool Transparent = false, int Colors = 256, bool Dither = true, string Output = RasterSupport.SameFormat);
 
 /// <summary>Per-file raster transformations share the SDK's transactional output lifecycle.</summary>
 public sealed class RasterFileAction : PerFileAction<RasterOptions>
@@ -22,13 +22,13 @@ public sealed class RasterFileAction : PerFileAction<RasterOptions>
             RasterOperation.Crop => RasterSupport.Descriptor("crop-aspect", "Crop", new[] {
                 RasterSupport.Choice("Ratio", "1:1", "1:1", "4:3", "3:2", "16:9", "9:16", "4:5", "custom"),
                 ActionParameterDefinition.Text("CustomRatio", SR.GetString("Raster_CustomRatio"), "1:1").VisibleWhen("Ratio", "custom"),
-                RasterSupport.Choice("Anchor", "center", "center", "top", "bottom", "left", "right") }),
+                RasterSupport.Choice("Anchor", "center", "center", "top", "bottom", "left", "right"), RasterSupport.OutputFormatParameter() }),
             RasterOperation.Pad => RasterSupport.Descriptor("pad", "Pad", new[] {
                 RasterSupport.Choice("Mode", "square", "square", "border"),
                 ActionParameterDefinition.Integer("BorderPx", SR.GetString("Raster_BorderPx"), 20, 1, 2000).VisibleWhen("Mode", "border"),
                 ActionParameterDefinition.Color("Color", SR.GetString("Raster_Color"), "#FFFFFF"),
-                ActionParameterDefinition.Boolean("Transparent", SR.GetString("Raster_Transparent"), false) }),
-            RasterOperation.Grayscale => RasterSupport.Descriptor("grayscale", "Grayscale"),
+                ActionParameterDefinition.Boolean("Transparent", SR.GetString("Raster_Transparent"), false), RasterSupport.OutputFormatParameter() }),
+            RasterOperation.Grayscale => RasterSupport.Descriptor("grayscale", "Grayscale", new[] { RasterSupport.OutputFormatParameter() }),
             RasterOperation.OptimizePng => RasterSupport.Descriptor("optimize-png", "OptimizePng", new[] {
                 ActionParameterDefinition.Integer("Colors", SR.GetString("Raster_Colors"), 256, 16, 256),
                 ActionParameterDefinition.Boolean("Dither", SR.GetString("Raster_Dither"), true) }),
@@ -40,7 +40,11 @@ public sealed class RasterFileAction : PerFileAction<RasterOptions>
     protected override FileInputFilter Input => _operation == RasterOperation.OptimizePng ? new(SR.GetString("Image_Files"), new[] { ".png" }, new[] { FileFormats.Png }) : RasterSupport.Filter;
     protected override string? UnavailableReason => _codec is null ? SR.GetString("Raster_NoCodec") : null;
     protected override bool ReportSizeChange => _operation == RasterOperation.OptimizePng;
-    protected override RasterOptions ReadOptions(ActionParameterValues v) => _operation switch
+    protected override RasterOptions ReadOptions(ActionParameterValues v) => ReadOperationOptions(v) with
+    {
+        Output = _operation is RasterOperation.Crop or RasterOperation.Pad or RasterOperation.Grayscale ? v.GetChoice("OutputFormat") : RasterSupport.SameFormat
+    };
+    private RasterOptions ReadOperationOptions(ActionParameterValues v) => _operation switch
     {
         RasterOperation.Crop => new(Ratio: RasterSupport.Ratio(v.GetChoice("Ratio") == "custom" ? v.GetText("CustomRatio") : v.GetChoice("Ratio")), Anchor: v.GetChoice("Anchor")),
         RasterOperation.Pad => new(v.GetChoice("Mode"), Border: v.GetInt32("BorderPx"), Color: RasterSupport.Color(v.GetColor("Color")), Transparent: v.GetBoolean("Transparent")),
@@ -57,9 +61,17 @@ public sealed class RasterFileAction : PerFileAction<RasterOptions>
             yield return SR.GetString("ImageExportAction_Warn_Animation");
         if (_operation == RasterOperation.Pad && o.Transparent && inputs.Any(f => RasterSupport.Format(f) is not (FileFormats.Png or FileFormats.WebP)))
             yield return SR.GetString("Raster_TransparencyIgnored");
+        if (_operation is not (RasterOperation.Icon or RasterOperation.ConvertOther))
+            foreach (string warning in RasterSupport.OutputFormatWarnings(inputs, o.Output, CanWrite, KeepsTransparency(o))) yield return warning;
     }
+    private bool CanWrite(string format) => _codec?.CanEncode(format) == true;
+    private bool KeepsTransparency(RasterOptions o) => _operation == RasterOperation.Pad && o.Transparent;
     private string Suffix => _operation switch { RasterOperation.Crop => " (cropped)", RasterOperation.Pad => " (padded)", RasterOperation.Grayscale => " (grayscale)", RasterOperation.OptimizePng => " (optimized)", _ => "" };
-    private string Target(SelectedFile f, RasterOptions o) => _operation switch { RasterOperation.Icon => FileFormats.Ico, RasterOperation.ConvertOther => o.Mode, _ => RasterSupport.Format(f) };
+    private string Target(SelectedFile f, RasterOptions o) => _operation switch
+    {
+        RasterOperation.Icon => FileFormats.Ico, RasterOperation.ConvertOther => o.Mode,
+        _ => RasterSupport.OutputFormat(RasterSupport.Format(f), o.Output, CanWrite, KeepsTransparency(o)),
+    };
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile f, RasterOptions o)
     {
         string target = Target(f, o);
@@ -82,6 +94,35 @@ public sealed class RasterFileAction : PerFileAction<RasterOptions>
             {
                 var info = await RasterSupport.ProbeAsync(Services, f, ct, _operation == RasterOperation.ConvertOther && o.Mode != "ico" ? ImageLimits.Default.MaxPixels : RasterImage.MaxPixels).ConfigureAwait(false);
                 if (_operation == RasterOperation.Pad) { var (w, h) = PadSize(info.DisplaySize.Width, info.DisplaySize.Height, o); RasterImage.ByteLength(w, h); }
+            }
+            if (ImagePreviewRequest.IsRequested(parameters) && _operation != RasterOperation.ConvertOther)
+            {
+                var file = OrderInputs(((FileSelection)context.Content).Files.Where(Input.Accepts))[0];
+                var decoded = await ImagePreviews.DecodeAsync(Services, _codec!, file, ct).ConfigureAwait(false);
+                var frame = await Task.Run(() =>
+                {
+                    var pixels = RasterSupport.Pixels(decoded);
+                    if (_operation == RasterOperation.Crop) pixels = RasterOperations.Crop(pixels, AspectCrop.Calculate(pixels.Width, pixels.Height, o.Ratio!.Value, o.Anchor), ct);
+                    if (_operation == RasterOperation.Pad)
+                    {
+                        var (w, h) = PadSize(pixels.Width, pixels.Height, o);
+                        bool transparent = o.Transparent && (Target(file, o) is FileFormats.Png or FileFormats.WebP);
+                        var color = transparent ? o.Color with { A = 0 } : o.Transparent ? new BgraColor(255, 255, 255) : o.Color;
+                        pixels = RasterOperations.Pad(pixels, w, h, (w - pixels.Width) / 2, (h - pixels.Height) / 2, color, ct);
+                    }
+                    if (_operation == RasterOperation.Grayscale) pixels = RasterOperations.Grayscale(pixels, ct);
+                    if (_operation == RasterOperation.OptimizePng)
+                        pixels = ImagePreviews.Expand(PaletteQuantizer.Quantize(pixels, o.Colors, o.Dither, ct), ct);
+                    if (_operation == RasterOperation.Icon)
+                    {
+                        int size = o.Mode == "windows" ? 256 : 48;
+                        double scale = (double)size / Math.Max(pixels.Width, pixels.Height);
+                        var resized = RasterOperations.ResizeBilinear(pixels, Math.Max(1, (int)Math.Round(pixels.Width * scale)), Math.Max(1, (int)Math.Round(pixels.Height * scale)), ct);
+                        pixels = RasterOperations.Pad(resized, size, size, (size - resized.Width) / 2, (size - resized.Height) / 2, new(0, 0, 0, 0), ct);
+                    }
+                    return ImagePreviews.Frame(pixels, ct);
+                }, ct).ConfigureAwait(false);
+                preview = preview with { ImagePreview = frame };
             }
             return preview;
         }

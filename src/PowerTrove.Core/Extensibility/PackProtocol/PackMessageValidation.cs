@@ -33,6 +33,11 @@ internal sealed class PackMessageValidation
             case PreviewResultMessage m:
                 Id(m.RequestId); Text(m.PreviewText, optional: true);
                 Texts(m.ExpectedOutputs); Texts(m.Warnings);
+                if (m.ImagePreview is { } image)
+                {
+                    Text(image.PngBase64, ImagePreviewData.MaximumEncodedLength);
+                    Require(image.TryDecodePng(out _));
+                }
                 if (m.RenameRows is not null)
                 {
                     Count(m.RenameRows, PackProtocolLimits.MaximumFiles);

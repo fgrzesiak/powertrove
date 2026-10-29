@@ -30,7 +30,30 @@ public sealed class WindowsImagingEngine : IImageEngine
         _ => false
     };
 
-    public bool CanEncode(string targetFormat) => targetFormat is FileFormats.Jpeg or FileFormats.Png or FileFormats.Bmp or FileFormats.Tiff or FileFormats.Gif;
+    public bool CanEncode(string targetFormat) => targetFormat is FileFormats.Jpeg or FileFormats.Png or FileFormats.Bmp or FileFormats.Tiff or FileFormats.Gif
+        || targetFormat == FileFormats.Heic && HeifEncoding.Value;
+
+    /// <summary>
+    /// Whether Windows can write HEIC: its HEIF encoder needs the optional HEVC Video Extensions. Probed once by
+    /// encoding a tiny image, since the encoder is listed even when the HEVC codec is missing.
+    /// </summary>
+    internal static readonly Lazy<bool> HeifEncoding = new(() => Task.Run(ProbeHeifEncodingAsync).GetAwaiter().GetResult());
+
+    private static async Task<bool> ProbeHeifEncodingAsync()
+    {
+        try
+        {
+            using var output = new InMemoryRandomAccessStream();
+            var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.HeifEncoderId, output);
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, 16, 16, 96, 96, new byte[16 * 16 * 4]);
+            await encoder.FlushAsync();
+            return output.Size > 0;
+        }
+        catch (Exception ex) when (ex is not OutOfMemoryException)
+        {
+            return false;
+        }
+    }
 
     public async Task TransformAsync(Stream source, Stream destination, ImageTransformRequest request, CancellationToken cancellationToken)
     {
@@ -74,7 +97,7 @@ public sealed class WindowsImagingEngine : IImageEngine
 
             using var output = new InMemoryRandomAccessStream();
             var properties = new BitmapPropertySet();
-            if (request.TargetFormat == FileFormats.Jpeg)
+            if (request.TargetFormat is FileFormats.Jpeg or FileFormats.Heic)
             {
                 float quality = request.Quality is > 0 and <= 100 ? request.Quality / 100f : 0.9f;
                 properties.Add("ImageQuality", new BitmapTypedValue(quality, global::Windows.Foundation.PropertyType.Single));
@@ -139,6 +162,7 @@ public sealed class WindowsImagingEngine : IImageEngine
         FileFormats.Bmp => BitmapEncoder.BmpEncoderId,
         FileFormats.Tiff => BitmapEncoder.TiffEncoderId,
         FileFormats.Gif => BitmapEncoder.GifEncoderId,
+        FileFormats.Heic => BitmapEncoder.HeifEncoderId,
         _ => throw new FileProcessingException(PowerTrove.Pack.Images.Windows.Resources.Strings.ImageUnsupportedFormat)
     };
 

@@ -15,6 +15,50 @@ internal static class RasterSupport
 {
     public static FileInputFilter Filter => new(SR.GetString("Image_Files"), ImageExportAction.SupportedInputExtensions, ImageExportAction.InputFormats);
     public static string Format(SelectedFile file) => ImageExportAction.FormatFromExtension(file.Extension) ?? throw new FileProcessingException(SR.GetString("ImageExportAction_Err_UnknownFormat"));
+
+    /// <summary>
+    /// Output format for an action that keeps the source format: the source when it can be written here, otherwise
+    /// JPEG for photo formats (HEIC, AVIF) and PNG for the rest or when transparency must survive. HEIC, for
+    /// example, can be read everywhere but written only with Windows' optional HEVC extension.
+    /// </summary>
+    public static string KeepFormat(string source, Func<string, bool> canEncode, bool transparency = false) =>
+        canEncode(source) ? source
+        : !transparency && source is FileFormats.Heic or FileFormats.Avif or FileFormats.Jpeg ? FileFormats.Jpeg : FileFormats.Png;
+
+    /// <summary>A preview note when a source format cannot be written and results use another format.</summary>
+    public static IEnumerable<string> KeepFormatWarnings(IEnumerable<SelectedFile> files, Func<string, bool> canEncode, bool transparency = false) =>
+        OutputFormatWarnings(files, SameFormat, canEncode, transparency);
+
+    /// <summary>The choice value that keeps each file's own format.</summary>
+    public const string SameFormat = "same";
+
+    /// <summary>"Output format" option: the source format by default, or one of the formats PowerTrove can write.</summary>
+    public static ActionParameterDefinition OutputFormatParameter() =>
+        Choice("OutputFormat", SameFormat, SameFormat, FileFormats.Png, FileFormats.Jpeg, FileFormats.WebP, FileFormats.Avif, FileFormats.Heic);
+
+    /// <summary>The format actually written for <paramref name="source"/> when <paramref name="chosen"/> was selected.</summary>
+    public static string OutputFormat(string source, string? chosen, Func<string, bool> canEncode, bool transparency = false) =>
+        string.IsNullOrEmpty(chosen) || chosen == SameFormat ? KeepFormat(source, canEncode, transparency) : KeepFormat(chosen, canEncode, transparency);
+
+    /// <summary>
+    /// Preview notes for requested formats that cannot be written here. For HEIC they link to the HEVC extension
+    /// that lets Windows write it, and point to the "Output format" option.
+    /// </summary>
+    public static IEnumerable<string> OutputFormatWarnings(IEnumerable<SelectedFile> files, string? chosen, Func<string, bool> canEncode, bool transparency = false)
+    {
+        var requested = string.IsNullOrEmpty(chosen) || chosen == SameFormat
+            ? files.Select(f => ImageExportAction.FormatFromExtension(f.Extension)).OfType<string>().Distinct()
+            : new[] { chosen };
+        foreach (var format in requested)
+        {
+            string target = KeepFormat(format, canEncode, transparency);
+            if (target == format) continue;
+            string text = string.Format(System.Globalization.CultureInfo.CurrentCulture, SR.GetString("Raster_SavedAsOtherFormat"),
+                format.ToUpperInvariant(), target.ToUpperInvariant());
+            if (format == FileFormats.Heic) text += " " + SR.GetString("Raster_HeicNeedsExtension");
+            yield return text;
+        }
+    }
     public static ActionParameterDefinition Choice(string key, string defaultValue, params string[] choices) =>
         ActionParameterDefinition.Choice(key, SR.GetString("Raster_" + key), defaultValue,
             choices.Select(value => new ActionParameterChoice(value, SR.GetString("Raster_Choice_" + value.Replace(':', '_')))).ToArray());

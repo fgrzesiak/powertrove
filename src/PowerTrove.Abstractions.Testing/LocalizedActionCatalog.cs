@@ -22,6 +22,8 @@ public static class LocalizedActionCatalog
         ["JPEG"] = "JPEG format name.",
         ["PNG"] = "PNG format name.",
         ["WebP"] = "WebP format name.",
+        ["AVIF"] = "AVIF format name.",
+        ["HEIC"] = "HEIC format name.",
         ["Format"] = "The noun is spelled identically in English and German.",
         ["Video"] = "The noun is spelled identically in English and German.",
         ["SHA-256"] = "Standard cryptographic algorithm identifier, never translated.",

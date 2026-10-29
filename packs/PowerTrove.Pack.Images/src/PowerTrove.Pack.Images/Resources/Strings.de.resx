@@ -184,6 +184,12 @@
   <data name="Raster_InvalidRatio" xml:space="preserve"><value>Gib ein positives Seitenverhältnis als B:H ein.</value></data>
   <data name="Raster_ProcessCount" xml:space="preserve"><value>Erstellt bearbeitete Kopien von {0} Bild(ern).</value></data>
   <data name="Raster_MetadataRemoved" xml:space="preserve"><value>Metadaten werden entfernt. Originale bleiben unverändert.</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>Ausgabeformat</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>Mit den [HEVC-Videoerweiterungen aus dem Microsoft Store](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7) kann Windows HEIC speichern. Unter „Ausgabeformat“ kannst du auch ein anderes Format wählen.</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} kann hier nicht gespeichert werden, deshalb werden diese Ergebnisse als {1} gespeichert.</value></data>
   <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>Transparente Ränder sind nur für PNG und WebP verfügbar; andere Formate verwenden Weiß.</value></data>
   <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>Die PNG-Datei ist bereits kleiner als das optimierte Ergebnis.</value></data>
   <data name="Raster_AlreadySmall" xml:space="preserve"><value>Das Bild liegt bereits unter der Zielgröße.</value></data>
@@ -366,8 +372,11 @@
   <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % geänderte Pixel</value></data>
   <data name="SvgTitle" xml:space="preserve"><value>SVG in PNG umwandeln</value></data>
   <data name="SvgDescription" xml:space="preserve"><value>Rendert unterstützte statische SVG-Grafiken als neue transparente PNG-Bilder innerhalb der gewählten Auflösung.</value></data>
-  <data name="SvgWidth" xml:space="preserve"><value>Maximale Ausgabebreite (Pixel)</value></data>
-  <data name="SvgHeight" xml:space="preserve"><value>Maximale Ausgabehöhe (Pixel)</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Zielbreite (Pixel)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Zielhöhe (Pixel)</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>Exakte Bildfläche verwenden</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>Erstellt ein PNG mit exakt der Zielbreite und Zielhöhe. Zentriert die Grafik mit transparentem Rand, ohne Verzerren oder Beschneiden. Wenn ausgeschaltet, sind Breite und Höhe Maximalmaße.</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>Erstellt PNG-Bilder mit exakt {0} × {1} Pixeln, proportional skalierter Grafik in der Mitte und transparentem Rand.</value></data>
   <data name="SvgFiles" xml:space="preserve"><value>SVG-Dateien</value></data>
   <data name="SvgUnavailable" xml:space="preserve"><value>Der SVG-Renderer ist nicht verfügbar.</value></data>
   <data name="SvgInvalid" xml:space="preserve"><value>Die SVG-Datei ist ungültig, überschreitet Grenzen oder enthält nicht unterstützte Inhalte. Verwende statische Formen, Text und Verläufe mit viewBox oder Pixelmaßen; externe Ressourcen und aktive Inhalte werden abgewiesen.</value></data>
@@ -390,4 +399,25 @@
   <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
     <value>0 behält die Originalgröße.</value>
   </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>Bild visuell bearbeiten</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>Ein Bild auf transparenter Leinwand skalieren, drehen und ausrichten, dann als neues PNG speichern.</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>Leinwandbreite (Pixel)</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>Leinwandhöhe (Pixel)</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>Bildbreite (Pixel)</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>Bildhöhe (Pixel)</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>Horizontaler Versatz zur Leinwandmitte (Pixel)</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>Vertikaler Versatz zur Leinwandmitte (Pixel)</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>Drehung im Uhrzeigersinn (Grad)</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0 verwendet die Quellgröße oder passt das Bild proportional in die Leinwand ein.</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>Leinwand oder Bild überschreitet die unterstützte Größe: 10.000 Pixel je Seite und 40 Millionen Pixel.</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>Das Bild konnte nicht geladen werden oder sein Layout überschreitet die unterstützten Grenzen.</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>Erstellt ein neues PNG mit {0} × {1} Pixeln und diesem Bildlayout.</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>Transparenz und Quelldateien bleiben erhalten; Metadaten werden entfernt. Animierte Bilder verwenden das erste Einzelbild. Die Ausgabe ist ein gerastertes PNG.</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>Bildteile außerhalb der Leinwand werden abgeschnitten. Mit Bild einpassen oder Leinwand an Bild anpassen bleibt das ganze Bild erhalten.</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>Skalierungsverfahren</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>Standardskalierung</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>Hohe Qualität (Lanczos)</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>Lokale Lanczos-Skalierung mit leichter Schärfung beim Vergrößern. Kann Kanten klarer darstellen, aber keine fehlenden Details rekonstruieren.</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>Das hochwertige Skalierungsverfahren ist in diesem Host nicht verfügbar.</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>Die Skalierungsvorschau konnte nicht erstellt werden. Prüfe Bild und Ausgabegröße oder nutze die normalen Optionen.</value></data>
 </root>

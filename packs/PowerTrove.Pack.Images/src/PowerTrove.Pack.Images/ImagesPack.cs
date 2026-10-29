@@ -12,7 +12,7 @@ public sealed class ImagesPack : IActionPack
         ArgumentNullException.ThrowIfNull(engine);
         ArgumentNullException.ThrowIfNull(services);
         var actions = BuiltInProfiles
-            .Select(profile => (IAction)new ImageExportAction(profile, engine, services, limits))
+            .Select(profile => (IAction)new ImageExportAction(profile, engine, services, limits, rasterCodec))
             .ToList();
         actions.AddRange(Enum.GetValues<RasterOperation>().Select(operation => (IAction)new RasterFileAction(operation, services, rasterCodec, engine)));
         actions.Add(new TargetSizeAction(engine, services));
@@ -24,15 +24,16 @@ public sealed class ImagesPack : IActionPack
             ("rotate-180", OrthogonalTransform.Rotate180, false), ("flip-horizontal", OrthogonalTransform.FlipHorizontal, false),
             ("flip-vertical", OrthogonalTransform.FlipVertical, false), ("auto-rotate", OrthogonalTransform.Identity, true)
         }.Select(x => (IAction)new RotationAction(x.Id, x.Transform, x.Auto, services, rasterCodec, losslessTransformer)));
-        actions.Add(new WatermarkAction(false, services, watermarker));
-        actions.Add(new WatermarkAction(true, services, watermarker));
+        actions.Add(new WatermarkAction(false, services, watermarker, rasterCodec));
+        actions.Add(new WatermarkAction(true, services, watermarker, rasterCodec));
         actions.Add(new AnimatedGifAction(services, rasterCodec, gifEncoder));
         actions.Add(new ImageOcrAction(services, rasterCodec, textRecognizer));
         actions.Add(new BlurFacesAction(services, rasterCodec, faceDetector));
         actions.Add(new CompareImagesAction(services, rasterCodec!));
         actions.Add(new RemoveLocationAction(engine, services));
         actions.Add(new SvgToPngAction(services, svgRenderer));
-        actions.Add(new PngToSvgAction(services, rasterCodec));
+        actions.Add(new ImageCanvasAction(services, rasterCodec, svgRenderer));
+        actions.Add(new PngToSvgAction(services, rasterCodec, svgRenderer));
         // Keep saved presets last for hosts which enumerate or display them in registration order.
         actions.AddRange((presets ?? Array.Empty<ImageExportProfile>()).Select(profile => (IAction)new ImageExportAction(profile, engine, services, limits)));
         Actions = actions;

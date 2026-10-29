@@ -24,6 +24,10 @@
     <!-- Compile the real managed host recipe factory without referencing the WinUI executable. -->
     <Compile Include="..\..\src\PowerTrove.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\UiText.cs" Link="Desktop\UiText.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\SetupShellCommand.cs" Link="Desktop\SetupShellCommand.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\ImageEditorInput.cs" Link="Desktop\ImageEditorInput.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\ImageEffectsInput.cs" Link="Desktop\ImageEffectsInput.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\ImageResizeDimensions.cs" Link="Desktop\ImageResizeDimensions.cs" />
     <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.resx" Link="Resources\DesktopStrings.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.resources" />
     <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.de.resx" Link="Resources\DesktopStrings.de.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.de.resources" />
   </ItemGroup>
@@ -32,6 +36,7 @@
     <ProjectReference Include="..\..\src\PowerTrove.Abstractions.Testing\PowerTrove.Abstractions.Testing.csproj" />
     <ProjectReference Include="..\..\src\PowerTrove.Core\PowerTrove.Core.csproj" />
     <ProjectReference Include="..\..\src\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\src\PowerTrove.Pack.Files\PowerTrove.Pack.Files.csproj" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\src\PowerTrove.Pack.Images\PowerTrove.Pack.Images.csproj" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\src\PowerTrove.Pack.Media\PowerTrove.Pack.Media.csproj" />

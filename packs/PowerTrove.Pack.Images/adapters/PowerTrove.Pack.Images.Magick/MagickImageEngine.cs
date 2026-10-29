@@ -35,6 +35,7 @@ public sealed class MagickImageEngine : IImageEngine
 
     public bool CanPreserveMetadata => true;
     public bool CanRemoveGpsOnly => true;
+    public bool SupportsHighQualityResize => true;
 
     public bool CanDecode(string sourceFormat) => Decodable.Contains(sourceFormat) && IsSupported(sourceFormat, write: false);
 
@@ -86,7 +87,13 @@ public sealed class MagickImageEngine : IImageEngine
                     double ratio = Math.Min((double)maxWidth / image.Width, (double)maxHeight / image.Height);
                     if (ratio < 1.0 || (request.AllowUpscale && ratio > 1.0))
                     {
+                        if (request.HighQualityResize) image.FilterType = FilterType.Lanczos;
                         image.Resize((uint)Math.Max(1, Math.Round(image.Width * ratio)), (uint)Math.Max(1, Math.Round(image.Height * ratio)));
+                        if (request.HighQualityResize && ratio > 1.0)
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                            image.UnsharpMask(0, .5, .5, .02, Channels.RGB);
+                        }
                     }
                 }
 

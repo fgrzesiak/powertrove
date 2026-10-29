@@ -570,16 +570,18 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
     /// <summary>
     /// Asks the selected action for a preview with the given options. Never throws for
     /// action failures: a broken preview is reported as blocked without raw details.
+    /// An explicit expected action binds modal editors independently of the palette highlight.
     /// </summary>
     public async Task<ActionPreview?> PreviewSelectedActionAsync(ActionParameters parameters, CancellationToken cancellationToken = default,
         ContextSnapshot? expectedSnapshot = null, IAction? expectedAction = null)
     {
-        if (_selectedAction == null || _currentSnapshot == null || _actionRegistry == null)
+        if ((_selectedAction == null && expectedAction is null) || _currentSnapshot == null || _actionRegistry == null)
             return null;
         if (expectedSnapshot is not null && (!ReferenceEquals(expectedSnapshot, _currentSnapshot) || expectedSnapshot.IsStale))
             return new ActionPreview(false, Strings.GetString("PackInvalidSelection"), [], [], IsBlocked: true);
 
-        var action = _actionRegistry.GetAction(_selectedAction.Action.Descriptor.Id);
+        // A modal editor owns its explicit action; background search may change the palette highlight.
+        var action = _actionRegistry.GetAction((expectedAction ?? _selectedAction!.Action).Descriptor.Id);
         if (action == null) return null;
         if (expectedAction is not null && !ReferenceEquals(expectedAction, action))
             return new ActionPreview(false, Strings.GetString("PackInvalidSelection"), [], [], IsBlocked: true);

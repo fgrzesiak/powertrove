@@ -6,6 +6,19 @@ public sealed class SvgRasterSourceTests
 {
     private static SvgRasterSource Prepare(string body, int width = 200, int height = 100) => SvgRasterSource.Prepare(Encoding.UTF8.GetBytes(body), width, height);
     [Fact]
+    public void ExactCanvasRetainsViewBoxAndUsesCenteredProportionalAlignment()
+    {
+        byte[] bytes = Encoding.UTF8.GetBytes("<svg xmlns='http://www.w3.org/2000/svg' viewBox='10 20 40 40' preserveAspectRatio='none'><rect x='10' y='20' width='40' height='40'/></svg>");
+        var source = SvgRasterSource.Prepare(bytes, 1280, 640, exactCanvas: true);
+        Assert.Equal((1280, 640), (source.Width, source.Height));
+        var root = System.Xml.Linq.XDocument.Parse(source.Xml).Root!;
+        Assert.Equal("10 20 40 40", (string?)root.Attribute("viewBox"));
+        Assert.Equal("xMidYMid meet", (string?)root.Attribute("preserveAspectRatio"));
+        Assert.Throws<SvgInputException>(() => SvgRasterSource.Prepare(bytes, 10000, 10000, exactCanvas: true));
+        Assert.Throws<OperationCanceledException>(() => SvgRasterSource.Prepare(bytes, 1280, 640, true, new(true)));
+    }
+
+    [Fact]
     public void StaticShapesAndLocalGradientsFitWithinResolutionAndKeepAspectRatio()
     {
         var svg = Prepare("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><defs><linearGradient id='g'><stop offset='0' stop-color='red'/><stop offset='1' stop-color='blue'/></linearGradient></defs><rect x='2' y='2' width='30' height='30' fill='url(#g)'/></svg>");

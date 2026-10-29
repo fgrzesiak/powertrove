@@ -10,7 +10,7 @@ using PowerTrove.Application.ViewModels;
 
 namespace PowerTrove.Desktop;
 
-public sealed partial class SettingsWindow : Window
+public sealed partial class SettingsWindow : HostedView
 {
     private bool _loadingLanguage;
     private bool _loadingIsolation = true;
@@ -20,7 +20,11 @@ public sealed partial class SettingsWindow : Window
     private bool _packsClosed;
     private bool _packDialogOpen;
     public ActionPacksViewModel? Packs { get; }
-    public bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && Packs?.IsBusy != true;
+    // Settings hold no edits of their own; only running pack or Explorer work keeps them on screen.
+    public override bool KeepsWindow => !CanCloseForUpdate;
+    // Start on the first setting, never on a footer button that Enter would trigger.
+    protected internal override Control? InitialFocus => LanguageComboBox;
+    public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && Packs?.IsBusy != true;
     private bool _loadingUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
 
@@ -32,12 +36,10 @@ public sealed partial class SettingsWindow : Window
         this.InitializeComponent();
         Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); Packs?.Dispose(); };
         Title = UiText.SettingsWindowTitle;
-        SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
-        ExtendsContentIntoTitleBar = true;
-        SetTitleBar(AppTitleBar);
+        TitleBar = AppTitleBar;
         TitleBarIcon.Source = AppIconImage.Create(32);
         AboutIcon.Source = AppIconImage.Create(64);
-        AppWindow.Resize(new Windows.Graphics.SizeInt32(820, 760));
+        PreferredSize = new(820, 760);
         _ = RefreshExplorerRegistrationAsync();
 
         if (App.Current is App app && app.SettingsService != null)
