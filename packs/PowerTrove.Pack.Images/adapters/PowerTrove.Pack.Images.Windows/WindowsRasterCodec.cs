@@ -88,12 +88,12 @@ public sealed class WindowsRasterCodec : IImageRasterCodec
             }
             using var output = new InMemoryRandomAccessStream();
             var properties = new BitmapPropertySet();
-            if (targetFormat == FileFormats.Jpeg) properties.Add("ImageQuality", new BitmapTypedValue(Math.Clamp(quality, 1, 100) / 100f, global::Windows.Foundation.PropertyType.Single));
+            if (targetFormat is FileFormats.Jpeg or FileFormats.Heic) properties.Add("ImageQuality", new BitmapTypedValue(Math.Clamp(quality, 1, 100) / 100f, global::Windows.Foundation.PropertyType.Single));
             var id = targetFormat switch
             {
                 FileFormats.Jpeg => BitmapEncoder.JpegEncoderId, FileFormats.Png => BitmapEncoder.PngEncoderId,
                 FileFormats.Bmp => BitmapEncoder.BmpEncoderId, FileFormats.Tiff => BitmapEncoder.TiffEncoderId,
-                FileFormats.Gif => BitmapEncoder.GifEncoderId, _ => throw new InvalidDataException()
+                FileFormats.Gif => BitmapEncoder.GifEncoderId, FileFormats.Heic => BitmapEncoder.HeifEncoderId, _ => throw new InvalidDataException()
             };
             var encoder = await BitmapEncoder.CreateAsync(id, output, properties).AsTask(ct).ConfigureAwait(false);
             try

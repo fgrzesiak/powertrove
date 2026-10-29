@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/fgrzesiak/powertrove/releases"><img src="https://img.shields.io/github/v/release/fgrzesiak/powertrove?include_prereleases&label=release" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/platform-Windows%2011%20x64-0078D4" alt="Windows 11 x64">
-  <img src="https://img.shields.io/badge/actions-145-2ea44f" alt="145 actions">
+  <img src="https://img.shields.io/badge/actions-146-2ea44f" alt="146 actions">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0 license"></a>
 </p>
 
@@ -45,12 +45,12 @@ Review the preview  →  Run  →  A new PDF; source files unchanged
 
 ## Tool packs
 
-PowerTrove's 145 actions come in eight packs. Every action has its own page on the [website](https://powertrove.net/en/tools).
+PowerTrove's 146 actions come in eight packs. Every action has its own page on the [website](https://powertrove.net/en/tools).
 
 | Pack | Actions | Highlights |
 | --- | ---: | --- |
 | **PDF Tools** | 36 | [Merge PDFs](https://powertrove.net/en/tools/merge-pdfs) · [Compress PDF](https://powertrove.net/en/tools/compress-pdf) · [Organize pages](https://powertrove.net/en/tools/pdf-organize-pages) · [Make PDF searchable (OCR)](https://powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create PDF from images](https://powertrove.net/en/tools/create-pdf-from-images) |
-| **Image Tools** | 32 | [Convert to WebP](https://powertrove.net/en/tools/convert-to-webp) · [Resize images](https://powertrove.net/en/tools/resize-images) · [Compress to file size](https://powertrove.net/en/tools/compress-to-file-size) · [Remove metadata](https://powertrove.net/en/tools/remove-image-metadata) · [Copy text from image (OCR)](https://powertrove.net/en/tools/copy-text-from-image-ocr) |
+| **Image Tools** | 33 | [Edit image visually](https://powertrove.net/en/tools/edit-image-visually) · [Resize images](https://powertrove.net/en/tools/resize-images) · [Compress to file size](https://powertrove.net/en/tools/compress-to-file-size) · [Remove metadata](https://powertrove.net/en/tools/remove-image-metadata) · [Copy text from image (OCR)](https://powertrove.net/en/tools/copy-text-from-image-ocr) |
 | **Audio and Video Tools** | 23 | [Trim audio or video](https://powertrove.net/en/tools/trim-audio-or-video) · [Compress video](https://powertrove.net/en/tools/compress-video) · [Extract audio](https://powertrove.net/en/tools/extract-audio-from-video) · [Convert to MP3](https://powertrove.net/en/tools/convert-to-mp3) · [Video to GIF](https://powertrove.net/en/tools/convert-video-to-gif) |
 | **Data tools** | 20 | [CSV to JSON](https://powertrove.net/en/tools/convert-csv-to-json) · [Excel to CSV](https://powertrove.net/en/tools/convert-excel-file-to-csv) · [Merge CSV files](https://powertrove.net/en/tools/merge-csv-files) · [Format JSON](https://powertrove.net/en/tools/format-json) · [Convert to UTF-8](https://powertrove.net/en/tools/convert-to-utf-8) |
 | **File Tools** | 19 | [Rename files](https://powertrove.net/en/tools/rename-files) · [Compress to ZIP](https://powertrove.net/en/tools/compress-to-zip) · [Find duplicate files](https://powertrove.net/en/tools/find-duplicate-files) · [Create checksum file](https://powertrove.net/en/tools/create-checksum-file) · [Folder size report](https://powertrove.net/en/tools/create-folder-size-report) |

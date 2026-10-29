@@ -12,10 +12,13 @@ public sealed class SvgInputException(string message) : Exception(message);
 /// resources, stylesheets, scripting, animation, embedded images or recursive references.</summary>
 public sealed partial class SvgRasterSource
 {
-    private SvgRasterSource(string xml, int width, int height) { Xml = xml; Width = width; Height = height; }
+    private SvgRasterSource(string xml, int width, int height, double viewBoxWidth, double viewBoxHeight)
+    { Xml = xml; Width = width; Height = height; ViewBoxWidth = viewBoxWidth; ViewBoxHeight = viewBoxHeight; }
     public string Xml { get; }
     public int Width { get; }
     public int Height { get; }
+    public double ViewBoxWidth { get; }
+    public double ViewBoxHeight { get; }
     private const int MaxBytes = 1024 * 1024;
     private static readonly HashSet<string> Elements = new(StringComparer.Ordinal)
     { "svg", "g", "defs", "path", "rect", "circle", "ellipse", "line", "polyline", "polygon", "text", "tspan", "linearGradient", "radialGradient", "stop", "title", "desc" };
@@ -23,7 +26,10 @@ public sealed partial class SvgRasterSource
     { "fill", "fill-opacity", "fill-rule", "stroke", "stroke-width", "stroke-opacity", "stroke-linecap", "stroke-linejoin", "stroke-miterlimit", "stroke-dasharray", "stroke-dashoffset", "opacity", "display", "visibility", "font-family", "font-size", "font-style", "font-weight", "text-anchor", "dominant-baseline", "stop-color", "stop-opacity" };
     private static readonly HashSet<string> Attributes = new(StringComparer.Ordinal)
     { "id", "viewBox", "width", "height", "version", "preserveAspectRatio", "transform", "d", "points", "x", "y", "x1", "y1", "x2", "y2", "cx", "cy", "r", "rx", "ry", "dx", "dy", "rotate", "textLength", "lengthAdjust", "gradientUnits", "gradientTransform", "spreadMethod", "offset", "fx", "fy", "fr", "style" };
-    public static async Task<SvgRasterSource> ReadAsync(Stream input, int maxWidth, int maxHeight, CancellationToken ct = default)
+    public static Task<SvgRasterSource> ReadAsync(Stream input, int maxWidth, int maxHeight, CancellationToken ct = default) =>
+        ReadAsync(input, maxWidth, maxHeight, false, ct);
+
+    public static async Task<SvgRasterSource> ReadAsync(Stream input, int maxWidth, int maxHeight, bool exactCanvas, CancellationToken ct = default)
     {
         using var memory = new MemoryStream(); var buffer = new byte[8192]; int count;
         while ((count = await input.ReadAsync(buffer, ct).ConfigureAwait(false)) > 0)
@@ -32,9 +38,12 @@ public sealed partial class SvgRasterSource
             await memory.WriteAsync(buffer.AsMemory(0, count), ct).ConfigureAwait(false);
         }
         byte[] bytes = memory.ToArray();
-        return await Task.Run(() => Prepare(bytes, maxWidth, maxHeight, ct), ct).ConfigureAwait(false);
+        return await Task.Run(() => Prepare(bytes, maxWidth, maxHeight, exactCanvas, ct), ct).ConfigureAwait(false);
     }
-    public static SvgRasterSource Prepare(byte[] bytes, int maxWidth, int maxHeight, CancellationToken ct = default)
+    public static SvgRasterSource Prepare(byte[] bytes, int maxWidth, int maxHeight, CancellationToken ct = default) =>
+        Prepare(bytes, maxWidth, maxHeight, false, ct);
+
+    public static SvgRasterSource Prepare(byte[] bytes, int maxWidth, int maxHeight, bool exactCanvas, CancellationToken ct = default)
     {
         if (bytes.Length is < 1 or > MaxBytes || maxWidth is < 1 or > 10000 || maxHeight is < 1 or > 10000 || (long)maxWidth * maxHeight > 40000000)
             throw new SvgInputException("SVG size limit exceeded.");
@@ -84,10 +93,14 @@ public sealed partial class SvgRasterSource
             }
             if (width < 1e-6 || height < 1e-6) throw new SvgInputException("Invalid SVG dimensions.");
             double scale = Math.Min(maxWidth / width, maxHeight / height);
-            int outputWidth = Math.Max(1, (int)Math.Round(width * scale)), outputHeight = Math.Max(1, (int)Math.Round(height * scale));
+            int outputWidth = exactCanvas ? maxWidth : Math.Max(1, (int)Math.Round(width * scale));
+            int outputHeight = exactCanvas ? maxHeight : Math.Max(1, (int)Math.Round(height * scale));
+            // Keep the viewBox and fit the complete artwork into a centered viewport.
+            // Override source "none"/"slice" alignment so this mode never stretches or crops.
+            if (exactCanvas) root.SetAttributeValue("preserveAspectRatio", "xMidYMid meet");
             root.SetAttributeValue("width", outputWidth.ToString(CultureInfo.InvariantCulture));
             root.SetAttributeValue("height", outputHeight.ToString(CultureInfo.InvariantCulture));
-            return new(document.ToString(SaveOptions.DisableFormatting), outputWidth, outputHeight);
+            return new(document.ToString(SaveOptions.DisableFormatting), outputWidth, outputHeight, width, height);
         }
         catch (XmlException) { throw new SvgInputException("Invalid or unsafe SVG XML."); }
     }

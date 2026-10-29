@@ -184,6 +184,12 @@
   <data name="Raster_InvalidRatio" xml:space="preserve"><value>Enter a positive aspect ratio as W:H.</value></data>
   <data name="Raster_ProcessCount" xml:space="preserve"><value>Will create transformed copies of {0} image(s).</value></data>
   <data name="Raster_MetadataRemoved" xml:space="preserve"><value>Metadata is removed. Originals stay unchanged.</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>Output format</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>With the [HEVC Video Extensions from the Microsoft Store](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7), Windows can save HEIC. You can also choose another format under “Output format”.</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} cannot be saved here, so these results are saved as {1}.</value></data>
   <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>Transparent padding is available for PNG and WebP only; other formats use white.</value></data>
   <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>The PNG is already smaller than the optimized result.</value></data>
   <data name="Raster_AlreadySmall" xml:space="preserve"><value>The image is already below the target size.</value></data>
@@ -366,8 +372,11 @@
   <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % changed pixels</value></data>
   <data name="SvgTitle" xml:space="preserve"><value>Convert SVG to PNG</value></data>
   <data name="SvgDescription" xml:space="preserve"><value>Renders supported static SVG graphics as new transparent PNG images, fitted within your chosen resolution.</value></data>
-  <data name="SvgWidth" xml:space="preserve"><value>Maximum output width (pixels)</value></data>
-  <data name="SvgHeight" xml:space="preserve"><value>Maximum output height (pixels)</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Target width (pixels)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Target height (pixels)</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>Use exact canvas size</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>Creates a PNG at exactly the target width and height. Centers the artwork with transparent padding, without stretching or cropping. When off, width and height are maximum bounds.</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>Will create PNG images at exactly {0} × {1} pixels, with centered, proportional artwork and transparent padding.</value></data>
   <data name="SvgFiles" xml:space="preserve"><value>SVG files</value></data>
   <data name="SvgUnavailable" xml:space="preserve"><value>The SVG renderer is unavailable.</value></data>
   <data name="SvgInvalid" xml:space="preserve"><value>The SVG is invalid, exceeds limits or contains unsupported content. Use static shapes, text and gradients with a viewBox or pixel dimensions; external resources and active content are rejected.</value></data>
@@ -390,4 +399,25 @@
   <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
     <value>0 keeps the original size.</value>
   </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>Edit Image Visually</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>Resize, rotate and position one image on a transparent canvas, then save a new PNG.</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>Canvas width (pixels)</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>Canvas height (pixels)</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>Image width (pixels)</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>Image height (pixels)</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>Horizontal offset from canvas center (pixels)</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>Vertical offset from canvas center (pixels)</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>Clockwise rotation (degrees)</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0 uses the source size or fits the image proportionally within the canvas.</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>The canvas or image exceeds the supported size: 10,000 pixels per side and 40 million pixels.</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>The image could not be loaded or its layout exceeds the supported limits.</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>Will create a new {0} × {1} pixel PNG with this image layout.</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>Preserves transparency and source files; removes metadata. Animated images use their first frame. This is a raster PNG export.</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>Image content outside the canvas will be cropped. Use Fit image or Canvas to image to retain the complete image.</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>Scaling method</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>Standard scaling</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>High quality (Lanczos)</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>Local Lanczos resampling with mild sharpening when enlarging. Can improve edge clarity; cannot reconstruct missing details.</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>The high-quality scaling method is unavailable in this host.</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>The resize preview could not be created. Check the image and output dimensions, or use the normal options.</value></data>
 </root>

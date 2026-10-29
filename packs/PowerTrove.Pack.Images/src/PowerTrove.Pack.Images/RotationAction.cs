@@ -23,14 +23,17 @@ public sealed class RotationAction : PerFileAction<bool>
         if (f.Any(x => RasterSupport.Format(x) == FileFormats.Jpeg)) yield return ExtraImageSupport.Text("JpegMetadataKept");
         if (f.Any(x => RasterSupport.Format(x) != FileFormats.Jpeg)) yield return SR.GetString("Raster_MetadataRemoved");
         foreach (string warning in ExtraImageSupport.AnimationWarning(f)) yield return warning;
+        if (_codec is not null)
+            foreach (string warning in RasterSupport.KeepFormatWarnings(f.Where(x => RasterSupport.Format(x) != FileFormats.Jpeg), _codec.CanEncode)) yield return warning;
     }
     private string Suffix => _operation is OrthogonalTransform.FlipHorizontal or OrthogonalTransform.FlipVertical ? " (flipped)" : " (rotated)";
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile f, bool o)
     {
         string format = RasterSupport.Format(f);
-        if (format == FileFormats.Jpeg ? _jpeg is null : _codec is null || !_codec.CanDecode(format) || !_codec.CanEncode(format))
+        if (format == FileFormats.Jpeg ? _jpeg is null : _codec is null || !_codec.CanDecode(format))
             throw new FileProcessingException(ExtraImageSupport.Text("RotationUnavailable"));
-        yield return new(Path.GetFileNameWithoutExtension(f.Name) + Suffix, ImageExportAction.ExtensionFor(format));
+        string target = format == FileFormats.Jpeg ? format : RasterSupport.KeepFormat(format, _codec!.CanEncode);
+        yield return new(Path.GetFileNameWithoutExtension(f.Name) + Suffix, ImageExportAction.ExtensionFor(target));
     }
     protected override async Task ProcessAsync(FileWorkItem item, bool options, FileOutputWriter output, CancellationToken ct)
     {
@@ -49,11 +52,13 @@ public sealed class RotationAction : PerFileAction<bool>
         }
         else
         {
-            if (_codec is null || !_codec.CanEncode(format)) throw new FileProcessingException(SR.GetString("Raster_NoCodec"));
+            if (_codec is null) throw new FileProcessingException(SR.GetString("Raster_NoCodec"));
+            string target = RasterSupport.KeepFormat(format, _codec.CanEncode);
+            if (!_codec.CanEncode(target)) throw new FileProcessingException(SR.GetString("Raster_NoCodec"));
             var decoded = await RasterSupport.DecodeAsync(Services, _codec, item, ct).ConfigureAwait(false);
             var raster = await Task.Run(() => ImageTransforms.Apply(RasterSupport.Pixels(decoded), _operation, ct), ct).ConfigureAwait(false);
-            await output.WriteFileAsync(item.Directory, item.BaseName + Suffix, ImageExportAction.ExtensionFor(format),
-                async (stream, token) => await _codec.EncodeAsync(RasterSupport.Map(raster, decoded), stream, format, 90, token).ConfigureAwait(false), ct).ConfigureAwait(false);
+            await output.WriteFileAsync(item.Directory, item.BaseName + Suffix, ImageExportAction.ExtensionFor(target),
+                async (stream, token) => await _codec.EncodeAsync(RasterSupport.Map(raster, decoded), stream, target, 90, token).ConfigureAwait(false), ct).ConfigureAwait(false);
         }
     }
 }

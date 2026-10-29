@@ -44,8 +44,9 @@ public sealed class MagickImageWatermarker(string preferredFont = "Segoe UI") : 
                 var (x, y) = Placement((int)image.Width, (int)image.Height, (int)mark.Width, (int)mark.Height, margin, request.Position);
                 Composite(x, y);
             }
-            image.Format = Format(request.SourceFormat);
-            if (request.SourceFormat == FileFormats.Jpeg)
+            string target = request.TargetFormat ?? request.SourceFormat;
+            image.Format = Format(target);
+            if (target == FileFormats.Jpeg)
             {
                 image.BackgroundColor = MagickColors.White; image.Alpha(AlphaOption.Remove); image.Quality = quality > 0 ? quality : 90;
             }

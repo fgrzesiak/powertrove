@@ -58,12 +58,13 @@ public sealed record PreviewResultMessage(
     ActionConfirmation? Confirmation = null,
     IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null) : PackMessage
 {
+    public ImagePreviewData? ImagePreview { get; init; }
     public override string Type => "previewResult";
     public static PreviewResultMessage FromPreview(Guid requestId, ActionPreview preview) => new(requestId,
         preview.RequiresConfirmation, preview.PreviewText, preview.ExpectedOutputs, preview.Warnings,
-        preview.IsBlocked, preview.RenameRows, preview.Confirmation, preview.ParameterChoices);
+        preview.IsBlocked, preview.RenameRows, preview.Confirmation, preview.ParameterChoices) { ImagePreview = preview.ImagePreview };
     public ActionPreview ToPreview() => new(RequiresConfirmation, PreviewText, ExpectedOutputs, Warnings,
-        IsBlocked, RenameRows, Confirmation, ParameterChoices);
+        IsBlocked, RenameRows, Confirmation, ParameterChoices) { ImagePreview = ImagePreview };
 }
 
 public sealed record ProgressMessage(

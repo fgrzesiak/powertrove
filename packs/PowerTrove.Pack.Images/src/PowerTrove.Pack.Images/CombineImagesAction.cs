@@ -48,10 +48,35 @@ public sealed class CombineImagesAction : CombineFilesAction<CombineImageOptions
                 var info = await RasterSupport.ProbeAsync(Services, f, ct).ConfigureAwait(false); var (w, h) = info.DisplaySize; sizes.Add(new(w, h));
                 alpha |= await HasAlphaAsync(f, ct).ConfigureAwait(false);
             }
-            _ = Layout(sizes, ReadOptions(ActionParameterValues.From(parameters, Descriptor.Parameters)));
+            var options = ReadOptions(ActionParameterValues.From(parameters, Descriptor.Parameters));
+            var layout = Layout(sizes, options);
             string extension = alpha ? ".png" : ".jpg";
             var plan = Services.Planner.PlanFile(Path.GetDirectoryName(files[0].Path!)!, Path.GetFileNameWithoutExtension(files[0].Name) + " (combined)", extension);
-            return preview with { ExpectedOutputs = new[] { plan.TargetPath }, Warnings = preview.Warnings.Concat(new[] { SR.GetString("Raster_CombineExtension") }).ToArray() };
+            ImagePreviewData? frame = null;
+            if (ImagePreviewRequest.IsRequested(parameters))
+            {
+                double scale = Math.Min(1, 512.0 / Math.Max(layout.Width, layout.Height));
+                var layers = new List<(RasterImage Image, int X, int Y)>();
+                for (int i = 0; i < files.Count; i++)
+                {
+                    ct.ThrowIfCancellationRequested();
+                    var decoded = await ImagePreviews.DecodeAsync(Services, _codec!, files[i], ct).ConfigureAwait(false);
+                    if (decoded.Width != sizes[i].Width || decoded.Height != sizes[i].Height) throw new FileProcessingException(RasterMessages.DecodeFailed);
+                    var placement = layout.Images[i];
+                    var pixels = await Task.Run(() =>
+                    {
+                        var original = RasterSupport.Pixels(decoded);
+                        if (placement.Crop is RasterRect crop) original = RasterOperations.Crop(original, crop, ct);
+                        return RasterOperations.ResizeBilinear(original, Math.Max(1, (int)Math.Round(placement.Width * scale)),
+                            Math.Max(1, (int)Math.Round(placement.Height * scale)), ct);
+                    }, ct).ConfigureAwait(false);
+                    layers.Add((pixels, (int)Math.Round(placement.X * scale), (int)Math.Round(placement.Y * scale)));
+                }
+                frame = await Task.Run(() => ImagePreviews.Frame(RasterOperations.Compose(layers,
+                    Math.Max(1, (int)Math.Round(layout.Width * scale)), Math.Max(1, (int)Math.Round(layout.Height * scale)),
+                    options.Background, ct), ct, layout.Width, layout.Height), ct).ConfigureAwait(false);
+            }
+            return preview with { ExpectedOutputs = new[] { plan.TargetPath }, Warnings = preview.Warnings.Concat(new[] { SR.GetString("Raster_CombineExtension") }).ToArray(), ImagePreview = frame };
         }
         catch (Exception ex) when (ex is RasterException or FileProcessingException or IOException or UnauthorizedAccessException)
         { return preview with { IsBlocked = true, RequiresConfirmation = false, PreviewText = ex is FileProcessingException ? ex.Message : ex is RasterException ? SR.GetString("Raster_TooManyPixels") : RasterMessages.DecodeFailed }; }

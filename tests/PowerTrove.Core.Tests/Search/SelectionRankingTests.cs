@@ -51,6 +51,25 @@ public class SelectionRankingTests
         Assert.True(top.Rank > second.Rank, $"Top rank {top.Rank} should be greater than second rank {second.Rank}");
     }
 
+    [Fact]
+    public async Task SearchAsync_WithQuery_TitleAndFileTypeBeatKeywordsGenericActionsAndHistory()
+    {
+        var registry = new ActionRegistry();
+        registry.Register(new MockAction("files.zip", "Als ZIP komprimieren", SelectionRequirements.Any()));
+        registry.Register(new MockAction("image.target-size", "Auf Dateigröße komprimieren", SelectionRequirements.Any("image")));
+        registry.Register(new MockAction("image.compress", "Bilder komprimieren", SelectionRequirements.Any("image")));
+        registry.Register(new MockAction("image.resize", "Bilder skalieren", SelectionRequirements.Any("image")));
+        var aliases = new Dictionary<string, IReadOnlyList<string>> { ["image.resize"] = new[] { "komprimieren" } };
+        // The keyword-only match was used last for this selection; while searching, that must not win.
+        var signals = new MockActionUsageSignals { LastUsedActionId = "image.resize", SelectionScoreValue = 100 };
+        var engine = new ActionSearchEngine(registry, signals, aliases);
+
+        var results = await engine.SearchAsync("komprimieren", CreateSnapshot("photo.heic"));
+
+        Assert.Equal(new[] { "image.compress", "image.target-size", "files.zip", "image.resize" },
+            results.Select(r => r.Action.Descriptor.Id).ToArray());
+    }
+
     private class MockAction : IAction
     {
         public ActionDescriptor Descriptor { get; private set; }

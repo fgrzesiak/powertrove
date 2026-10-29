@@ -10,6 +10,7 @@ public static class Program
     public static int Main(string[] args)
     {
         if (args is [SetupPackCommand.Argument]) return SetupPackCommand.Run();
+        if (args is [SetupShellCommand.Argument, var operation, var language]) return SetupShellCommand.Run(operation, language);
         var message = ActivationProtocol.ParseArguments(args);
         if (message is null) return 2;
         using var elector = new WindowsHostElector();

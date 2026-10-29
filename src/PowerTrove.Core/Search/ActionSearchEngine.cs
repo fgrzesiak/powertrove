@@ -121,9 +121,12 @@ public class ActionSearchEngine : IActionSearchEngine
         var results = taskResults.Where(r => r != null).Select(r => r!).ToList();
 
         // Best fit assignment logic
+        bool searching = !string.IsNullOrWhiteSpace(query);
         var bestFitAction = results
             .Where(r => r.Action is not CatalogAction && r.IsCompatible && r.Fit == PowerTrove.Abstractions.SelectionFit.Ideal && r.Highlight == ActionHighlight.None)
-            .OrderByDescending(r => string.IsNullOrWhiteSpace(query) ? 0 : r.TextMatchScore)
+            .OrderByDescending(r => searching ? r.TextMatchScore : 0)
+            .ThenByDescending(r => searching && IsTypeSpecific(r))
+            .ThenByDescending(r => searching ? TitleCoverage(query, r.Action.Descriptor.Title) : 0)
             .ThenByDescending(r => r.Rank)
             .ThenByDescending(r => string.IsNullOrWhiteSpace(query) ? BrowsePriority.For(r.Action.Descriptor, signature) : 0)
             .ThenBy(r => r.Action.Descriptor.Title)
@@ -136,12 +139,15 @@ public class ActionSearchEngine : IActionSearchEngine
             results[index] = bestFitAction with { Highlight = ActionHighlight.BestFit };
         }
 
-        // Compatibility is a hard boundary. While typing, text tiers precede context/history;
-        // otherwise local usage and fit lead, with common tasks breaking equal-rank ties.
-        bool hasQuery = !string.IsNullOrWhiteSpace(query);
+        // Compatibility is a hard boundary. While typing, text tiers lead; within a tier, actions made for the
+        // selected file type beat generic file actions, and titles the query covers more fully come first,
+        // before context and history. Without a query, local usage and fit lead, with common tasks breaking ties.
+        bool hasQuery = searching;
         var sorted = results
             .OrderByDescending(r => r.IsCompatible)
             .ThenByDescending(r => hasQuery ? r.TextMatchScore : 0)
+            .ThenByDescending(r => hasQuery && IsTypeSpecific(r))
+            .ThenByDescending(r => hasQuery ? TitleCoverage(query, r.Action.Descriptor.Title) : 0)
             .ThenByDescending(r => r.Rank)
             .ThenByDescending(r => hasQuery ? 0 : BrowsePriority.For(r.Action.Descriptor, signature))
             .ThenBy(r => r.Action.Descriptor.Title)
@@ -152,6 +158,29 @@ public class ActionSearchEngine : IActionSearchEngine
         PowerTrove.Core.Diagnostics.InvocationMetrics.SearchLatency.Record(elapsedMs);
 
         return sorted;
+    }
+
+    /// <summary>An action that fits the selection through specific file families (images, PDFs), not any file.</summary>
+    private static bool IsTypeSpecific(ActionSearchResult result) =>
+        result.Fit != PowerTrove.Abstractions.SelectionFit.None && result.Action.Descriptor.Selection is { Families.Count: > 0 };
+
+    /// <summary>The share of the title's words that the query matches: "Compress Images" before "Compress to File Size".</summary>
+    private static double TitleCoverage(string query, string title)
+    {
+        var titleWords = title.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (titleWords.Length == 0) return 0;
+        var queryWords = query.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int matched = titleWords.Count(t => queryWords.Any(q => FuzzyMatcher.CalculateScore(q, t) >= 90));
+        return (double)matched / titleWords.Length;
+    }
+
+    // Keywords and aliases are hidden synonyms; the same word in the visible title counts a little more.
+    private const int KeywordPenalty = 5;
+
+    private static int KeywordScore(string query, string term)
+    {
+        int score = FuzzyMatcher.CalculateScore(query, term);
+        return score == 0 ? 0 : Math.Max(1, score - KeywordPenalty);
     }
 
     private int CalculateRank(IAction action, string query, bool isCompatible, ContextSnapshot context, string signatureKey, string? lastUsedId, out PowerTrove.Abstractions.SelectionFit fit, out ActionHighlight highlight, out int textMatchScore)
@@ -252,7 +281,7 @@ public class ActionSearchEngine : IActionSearchEngine
         {
             foreach (var term in action.Descriptor.SearchTerms)
             {
-                matchScore = Math.Max(matchScore, FuzzyMatcher.CalculateScore(query, term));
+                matchScore = Math.Max(matchScore, KeywordScore(query, term));
             }
         }
 
@@ -270,7 +299,7 @@ public class ActionSearchEngine : IActionSearchEngine
             {
                 foreach (var alias in aliases)
                 {
-                    matchScore = Math.Max(matchScore, FuzzyMatcher.CalculateScore(query, alias));
+                    matchScore = Math.Max(matchScore, KeywordScore(query, alias));
                 }
             }
         }

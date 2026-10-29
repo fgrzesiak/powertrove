@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,13 +10,13 @@ using Microsoft.UI.Xaml.Media;
 
 namespace PowerTrove.Desktop;
 
-public sealed record ActionOptionsResult(DictionaryParameters Parameters, bool Remember, bool EditMediaVisually = false);
+public sealed record ActionOptionsResult(DictionaryParameters Parameters, bool Remember, bool EditMediaVisually = false, bool EditImageVisually = false, bool EditEffectsVisually = false);
 
 /// <summary>
-/// Generic options and confirmation dialog generated from an action's declared
-/// <see cref="ActionParameterDefinition"/>s. Shows the live preview (counts and
-/// warnings only; rename names are confined to this dialog) and disables "Run" while the action
-/// reports a blocked preview.
+/// Generic options and confirmation page generated from an action's declared
+/// <see cref="ActionParameterDefinition"/>s, shown in the main window in place of the palette.
+/// Shows the live preview (counts and warnings only; rename names are confined to this page) and
+/// disables "Run" while the action reports a blocked preview.
 /// </summary>
 public static class ActionOptionsDialog
 {
@@ -27,7 +27,9 @@ public static class ActionOptionsDialog
         Func<ActionParameters, CancellationToken, Task<ActionPreview?>> preview,
         Action? openVisualEditor = null,
         bool allowMediaEditor = false,
-        IReadOnlyDictionary<string, string>? initialValues = null)
+        IReadOnlyDictionary<string, string>? initialValues = null,
+        bool allowImageEditor = false,
+        bool allowEffectsEditor = false)
     {
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
@@ -53,9 +55,9 @@ public static class ActionOptionsDialog
         ActionConfirmation? confirmation = null;
         bool validPreview = false;
         var panel = new StackPanel { MinWidth = 360 };
-        bool openVisual = false;
-        ContentDialog? dialogRef = null;
-        if (openVisualEditor != null || allowMediaEditor)
+        bool openVisual = false, ran = false;
+        ActionOptionsView? view = null;
+        if (openVisualEditor != null || allowMediaEditor || allowImageEditor || allowEffectsEditor)
         {
             // Second, visual way to do the same: pages as thumbnails instead of typed numbers.
             var visual = new HyperlinkButton
@@ -64,11 +66,11 @@ public static class ActionOptionsDialog
                 {
                     Orientation = Orientation.Horizontal,
                     Spacing = 8,
-                    Children = { new FontIcon { Glyph = "\uE8A9", FontSize = 14 }, new TextBlock { Text = allowMediaEditor ? UiText.MediaTrimOpenVisual : UiText.OrganizerOpenVisual } }
+                    Children = { new FontIcon { Glyph = "\uE8A9", FontSize = 14 }, new TextBlock { Text = allowEffectsEditor ? UiText.ImageEditor("EffectsOpen") : allowImageEditor ? UiText.ImageEditor("Open") : allowMediaEditor ? UiText.MediaTrimOpenVisual : UiText.OrganizerOpenVisual } }
                 },
                 Margin = new Thickness(-10, 0, 0, 8)
             };
-            visual.Click += (_, _) => { openVisual = true; dialogRef?.Hide(); };
+            visual.Click += (_, _) => { openVisual = true; view?.Close(); };
             panel.Children.Add(visual);
         }
         var selectionEditors = new Dictionary<string, MultiSelectParameterEditor>(StringComparer.OrdinalIgnoreCase);
@@ -87,17 +89,10 @@ public static class ActionOptionsDialog
         panel.Children.Add(consent);
         if (descriptor.CanRememberParameters && descriptor.Parameters is { Count: > 0 }) panel.Children.Add(remember);
 
-        var dialog = new ContentDialog
-        {
-            XamlRoot = window.Content.XamlRoot,
-            Title = descriptor.Title,
-            Content = new ScrollViewer { Content = panel, MaxHeight = 480 },
-            PrimaryButtonText = UiText.OptionsRun,
-            CloseButtonText = UiText.CommonCancel,
-            DefaultButton = ContentDialogButton.Primary,
-            IsPrimaryButtonEnabled = false
-        };
-        dialogRef = dialog;
+        var run = new Button { Content = UiText.OptionsRun, IsEnabled = false };
+        if (Microsoft.UI.Xaml.Application.Current.Resources.TryGetValue("AccentButtonStyle", out var accent) && accent is Style accentStyle)
+            run.Style = accentStyle;
+        view = new ActionOptionsView(descriptor.Title, panel, run, () => { ran = true; view?.Close(); });
 
         CancellationTokenSource? refresh = null;
         async Task RefreshAsync()
@@ -109,7 +104,7 @@ public static class ActionOptionsDialog
             renameTable.Children.Clear();
             var cts = refresh = new CancellationTokenSource();
             previewText.Text = UiText.OptionsChecking;
-            dialog.IsPrimaryButtonEnabled = false;
+            run.IsEnabled = false;
             if (selectionEditors.Values.Any(editor => !editor.IsWithinLimit))
             {
                 previewText.Text = UiText.OptionsSelectionTooLarge;
@@ -139,7 +134,7 @@ public static class ActionOptionsDialog
                     var n => " " + UiText.Format(UiText.OptionsManyOutputs, n)
                 };
                 previewText.Text = (result.PreviewText ?? string.Empty) + (result.IsBlocked ? string.Empty : outputs);
-                warningsText.Text = string.Join(Environment.NewLine, result.Warnings);
+                LinkText.Set(warningsText, string.Join(Environment.NewLine, result.Warnings));
                 if (result.RenameRows is { Count: > 0 } rows && descriptor.Id == "powertrove.files.rename")
                 {
                     Grid Row(string oldName, string newName)
@@ -158,7 +153,7 @@ public static class ActionOptionsDialog
                 consent.Content = confirmation?.Prompt;
                 consent.Visibility = confirmation is null ? Visibility.Collapsed : Visibility.Visible;
                 validPreview = !result.IsBlocked;
-                dialog.IsPrimaryButtonEnabled = validPreview && confirmation is null;
+                run.IsEnabled = validPreview && confirmation is null;
             }
             catch (OperationCanceledException) { }
             catch (Exception)
@@ -168,13 +163,13 @@ public static class ActionOptionsDialog
                     previewText.Text = UiText.OptionsSelectionGone;
                     warningsText.Text = string.Empty;
                     renameTable.Children.Clear();
-                    dialog.IsPrimaryButtonEnabled = false;
+                    run.IsEnabled = false;
                 }
             }
         }
 
-        consent.Checked += (_, _) => dialog.IsPrimaryButtonEnabled = validPreview;
-        consent.Unchecked += (_, _) => dialog.IsPrimaryButtonEnabled = validPreview && confirmation is null;
+        consent.Checked += (_, _) => run.IsEnabled = validPreview;
+        consent.Unchecked += (_, _) => run.IsEnabled = validPreview && confirmation is null;
 
         void UpdateVisibility()
         {
@@ -207,19 +202,26 @@ public static class ActionOptionsDialog
 
         UpdateVisibility();
         _ = RefreshAsync();
-        var outcome = await dialog.ShowAsync();
+        var closed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        view.Closed += (_, _) => closed.TrySetResult();
+        ((MainWindow)window).ShowView(view);
+        await closed.Task;
         refresh?.Cancel();
         renameTable.Children.Clear();
 
         if (openVisual)
         {
+            if (allowEffectsEditor)
+                return new ActionOptionsResult(new DictionaryParameters(values), false, EditEffectsVisually: true);
+            if (allowImageEditor)
+                return new ActionOptionsResult(new DictionaryParameters(values), false, EditImageVisually: true);
             if (allowMediaEditor)
                 return new ActionOptionsResult(new DictionaryParameters(values), descriptor.CanRememberParameters && remember.IsChecked == true, true);
             openVisualEditor!();
             return null;
         }
 
-        if (outcome != ContentDialogResult.Primary)
+        if (!ran)
         {
             values.Clear();
             return null;
@@ -233,7 +235,123 @@ public static class ActionOptionsDialog
         return new ActionOptionsResult(new DictionaryParameters(values), descriptor.CanRememberParameters && remember.IsChecked == true);
     }
 
-    private static FrameworkElement CreateEditor(ActionParameterDefinition parameter, Dictionary<string, string> values, Window window)
+    private static readonly string[] PresetColors =
+        ["#FFFFFF", "#000000", "#7F7F7F", "#D13438", "#F7630C", "#FFB900", "#107C10", "#0078D4", "#5C2D91", "#E3008C"];
+
+    /// <summary>
+    /// A color option: a compact dropdown (swatch and hex value) that opens a color field with hue slider, preset
+    /// colors and a hex field, and an eyedropper next to it that picks any pixel on screen, including the preview.
+    /// </summary>
+    private static FrameworkElement ColorEditor(ActionParameterDefinition parameter, Dictionary<string, string> values,
+        Window window, out Action<Action> subscribe)
+    {
+        Action? notify = null;
+        static Windows.UI.Color? Parse(string? text)
+        {
+            string h = (text ?? string.Empty).Trim().TrimStart('#');
+            if (h.Length == 3) h = string.Concat(h.Select(c => new string(c, 2)));
+            return h.Length == 6 && uint.TryParse(h, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var rgb)
+                ? Windows.UI.Color.FromArgb(255, (byte)(rgb >> 16), (byte)(rgb >> 8), (byte)rgb)
+                : null;
+        }
+        static string Hex(Windows.UI.Color c) => $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+        static Brush Theme(string key) => (Brush)Microsoft.UI.Xaml.Application.Current.Resources[key];
+
+        var current = Parse(values.TryGetValue(parameter.Name, out var v) ? v : null)
+            ?? Parse(parameter.DefaultValue) ?? Microsoft.UI.Colors.White;
+
+        var swatch = new Border { Width = 18, Height = 18, CornerRadius = new CornerRadius(4), BorderThickness = new Thickness(1),
+            BorderBrush = Theme("ControlStrokeColorDefaultBrush"), Background = new SolidColorBrush(current) };
+        var hexLabel = new TextBlock { Text = Hex(current), VerticalAlignment = VerticalAlignment.Center };
+        var label = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        label.Children.Add(swatch);
+        label.Children.Add(hexLabel);
+
+        var spectrum = new ColorPicker
+        {
+            ColorSpectrumShape = ColorSpectrumShape.Box, IsMoreButtonVisible = false, IsColorSliderVisible = true,
+            IsColorChannelTextInputVisible = false, IsHexInputVisible = false, IsColorPreviewVisible = false,
+            IsAlphaEnabled = false, IsAlphaSliderVisible = false, IsAlphaTextInputVisible = false, Color = current,
+        };
+        var hexBox = new TextBox { Text = Hex(current), Width = 120, MaxLength = 7, Header = UiText.ColorHex, HorizontalAlignment = HorizontalAlignment.Left };
+        var presets = new VariableSizedWrapGrid { Orientation = Orientation.Horizontal, MaximumRowsOrColumns = 10, ItemWidth = 30, ItemHeight = 30 };
+        bool syncing = false;
+
+        void Apply(Windows.UI.Color color, object? source)
+        {
+            if (syncing) return;
+            syncing = true;
+            try
+            {
+                current = color;
+                swatch.Background = new SolidColorBrush(color);
+                hexLabel.Text = Hex(color);
+                if (!ReferenceEquals(source, hexBox)) hexBox.Text = Hex(color);
+                if (!ReferenceEquals(source, spectrum)) spectrum.Color = color;
+                values[parameter.Name] = Hex(color);
+            }
+            finally { syncing = false; }
+            notify?.Invoke();
+        }
+
+        foreach (var preset in PresetColors)
+        {
+            var color = Parse(preset)!.Value;
+            var chip = new Button
+            {
+                Width = 24, Height = 24, Padding = new Thickness(0), CornerRadius = new CornerRadius(12),
+                Background = new SolidColorBrush(color), BorderBrush = Theme("ControlStrokeColorDefaultBrush"), BorderThickness = new Thickness(1),
+            };
+            chip.Resources["ButtonBackgroundPointerOver"] = new SolidColorBrush(color);
+            chip.Resources["ButtonBackgroundPressed"] = new SolidColorBrush(color);
+            Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(chip, preset);
+            chip.Click += (_, _) => Apply(color, chip);
+            presets.Children.Add(chip);
+        }
+        spectrum.ColorChanged += (_, args) => Apply(args.NewColor, spectrum);
+        hexBox.TextChanged += (_, _) => { if (Parse(hexBox.Text) is { } typed) Apply(typed, hexBox); };
+        hexBox.LostFocus += (_, _) => hexBox.Text = Hex(current);
+
+        var panel = new StackPanel { Spacing = 12, Width = 300 };
+        panel.Children.Add(spectrum);
+        panel.Children.Add(presets);
+        panel.Children.Add(hexBox);
+        var presenter = new Style(typeof(FlyoutPresenter));
+        presenter.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(16)));
+        presenter.Setters.Add(new Setter(Control.CornerRadiusProperty, new CornerRadius(8)));
+        var dropdown = new DropDownButton
+        {
+            Content = label,
+            Flyout = new Flyout { Content = panel, FlyoutPresenterStyle = presenter, Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedLeft },
+        };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(dropdown, parameter.Title);
+
+        // Picks any pixel on screen; PowerTrove stays visible, so its preview can be picked from too.
+        var pick = new Button { Content = new FontIcon { Glyph = "\uEF3C", FontSize = 14 }, Padding = new Thickness(9, 6, 9, 6) };
+        ToolTipService.SetToolTip(pick, UiText.ColorPickFromScreen);
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(pick, UiText.ColorPickFromScreen);
+        pick.Click += async (_, _) =>
+        {
+            pick.IsEnabled = false;
+            try
+            {
+                if (await MainWindow.PickScreenColorAsync(window) is { } picked)
+                    Apply(Windows.UI.Color.FromArgb(255, picked.R, picked.G, picked.B), pick);
+            }
+            finally { pick.IsEnabled = true; }
+        };
+
+        var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
+        row.Children.Add(dropdown);
+        row.Children.Add(pick);
+        var root = new StackPanel { Margin = new Thickness(0, 8, 0, 8), Spacing = 4 };
+        root.Children.Add(new TextBlock { Text = parameter.Title });
+        root.Children.Add(row);
+        subscribe = changed => notify = changed;
+        return root;
+    }
+
+    internal static FrameworkElement CreateEditor(ActionParameterDefinition parameter, Dictionary<string, string> values, Window window)
     {
         FrameworkElement editor;
         Action<Action> subscribe;
@@ -310,81 +428,7 @@ public static class ActionOptionsDialog
             }
             case ActionParameterKind.Color:
             {
-                var panel = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    Margin = new Thickness(0, 8, 0, 8)
-                };
-
-                var label = new TextBlock
-                {
-                    Text = parameter.Title,
-                    Margin = new Thickness(0, 0, 0, 4)
-                };
-
-                string currentHex = values.TryGetValue(parameter.Name, out var v) && !string.IsNullOrWhiteSpace(v)
-                    ? v
-                    : (parameter.DefaultValue ?? "#FFFFFF");
-
-                var colorPicker = new ColorPicker
-                {
-                    ColorSpectrumShape = ColorSpectrumShape.Box,
-                    IsMoreButtonVisible = false,
-                    IsColorSliderVisible = true,
-                    IsColorChannelTextInputVisible = false,
-                    IsHexInputVisible = true,
-                    IsAlphaEnabled = false,
-                    IsAlphaSliderVisible = false,
-                    IsAlphaTextInputVisible = false
-                };
-
-                if (Microsoft.UI.Colors.Transparent.ToString() != currentHex)
-                {
-                    string h = currentHex.StartsWith("#") ? currentHex.Substring(1) : currentHex;
-                    if (h.Length == 6 &&
-                        byte.TryParse(h.Substring(0, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var r) &&
-                        byte.TryParse(h.Substring(2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var g) &&
-                        byte.TryParse(h.Substring(4, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var b))
-                    {
-                        colorPicker.Color = Windows.UI.Color.FromArgb(255, r, g, b);
-                    }
-                }
-
-                var flyout = new Flyout
-                {
-                    Content = colorPicker
-                };
-
-                var rect = new Microsoft.UI.Xaml.Shapes.Rectangle
-                {
-                    Width = 24,
-                    Height = 24,
-                    Fill = new SolidColorBrush(colorPicker.Color),
-                    Stroke = new SolidColorBrush(Microsoft.UI.Colors.Gray),
-                    StrokeThickness = 1
-                };
-
-                var button = new Button
-                {
-                    Content = rect,
-                    Flyout = flyout
-                };
-
-                panel.Children.Add(label);
-                panel.Children.Add(button);
-
-                subscribe = changed =>
-                {
-                    colorPicker.ColorChanged += (_, args) =>
-                    {
-                        var c = args.NewColor;
-                        rect.Fill = new SolidColorBrush(c);
-                        values[parameter.Name] = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
-                        changed();
-                    };
-                };
-
-                editor = panel;
+                editor = ColorEditor(parameter, values, window, out subscribe);
                 break;
             }
             case ActionParameterKind.Boolean:
@@ -482,4 +526,47 @@ public static class ActionOptionsDialog
         editor.Tag = new Tuple<Action<Action>, ActionParameterDefinition>(subscribe, parameter);
         return editor;
     }
+}
+
+/// <summary>The options page: the generated editors and preview, with "Cancel" and "Run" below them.</summary>
+internal sealed class ActionOptionsView : HostedView
+{
+    private readonly Button _run;
+    private readonly Action _onRun;
+
+    public ActionOptionsView(string title, UIElement editors, Button run, Action onRun)
+    {
+        _run = run; _onRun = onRun;
+        Title = title;
+        PreferredSize = new Windows.Foundation.Size(640, 600);
+        var root = new Grid { Background = new SolidColorBrush(Microsoft.UI.Colors.Transparent) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var heading = new TextBlock { Text = title, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(24, 4, 24, 12) };
+        if (Microsoft.UI.Xaml.Application.Current.Resources.TryGetValue("SubtitleTextBlockStyle", out var style) && style is Style subtitle)
+            heading.Style = subtitle;
+        root.Children.Add(heading);
+        var scroll = new ScrollViewer { Content = editors, Padding = new Thickness(24, 0, 24, 12), HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled };
+        Grid.SetRow(scroll, 1); root.Children.Add(scroll);
+        var footer = new Grid { Padding = new Thickness(24, 12, 24, 20), ColumnSpacing = 8 };
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var cancel = CreateCancelButton();
+        Grid.SetColumn(cancel, 1); footer.Children.Add(cancel);
+        run.Click += (_, _) => onRun();
+        Grid.SetColumn(run, 2); footer.Children.Add(run);
+        Grid.SetRow(footer, 2); root.Children.Add(footer);
+        // Like the former dialog: Enter runs (unless a control used it), Esc cancels.
+        root.KeyDown += (_, args) =>
+        {
+            if (args.Key == Windows.System.VirtualKey.Escape) { args.Handled = true; CancelToPalette(); }
+            else if (args.Key == Windows.System.VirtualKey.Enter && _run.IsEnabled) { args.Handled = true; _onRun(); }
+        };
+        Content = root;
+    }
+
+    /// <summary>An unfinished choice should not be replaced by a fresh palette; the shortcut brings it back.</summary>
+    public override bool KeepsWindow => true;
 }

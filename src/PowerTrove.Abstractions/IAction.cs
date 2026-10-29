@@ -44,7 +44,11 @@ public sealed record ActionPreview(
     bool IsBlocked = false,
     IReadOnlyList<RenamePreviewRow>? RenameRows = null,
     ActionConfirmation? Confirmation = null,
-    IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null);
+    IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null)
+{
+    // Non-positional to preserve the constructor used by already published packs.
+    public ImagePreviewData? ImagePreview { get; init; }
+}
 
 /// <summary>Input-derived labels for an options dialog only. Never log or persist the discovered list.</summary>
 public sealed record ActionParameterChoiceSet(string ParameterName, string ContextKey,

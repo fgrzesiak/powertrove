@@ -58,6 +58,9 @@
   <data name="CommonClear" xml:space="preserve"><value>Clear</value></data>
   <data name="CommonCancel" xml:space="preserve"><value>Cancel</value></data>
   <data name="CommonClose" xml:space="preserve"><value>Close</value></data>
+  <data name="CommonBack" xml:space="preserve"><value>Back</value></data>
+  <data name="ColorPickFromScreen" xml:space="preserve"><value>Pick a color from the screen or the preview</value></data>
+  <data name="ColorHex" xml:space="preserve"><value>Hex</value></data>
   <data name="OptionsRemember" xml:space="preserve"><value>Remember these options</value></data>
   <data name="OptionsRun" xml:space="preserve"><value>Run</value></data>
   <data name="OptionsChecking" xml:space="preserve"><value>Checking the selection…</value></data>
@@ -190,4 +193,90 @@
   <data name="UpdatesCancel" xml:space="preserve"><value>Cancel download</value></data>
   <data name="UpdatesStartup" xml:space="preserve"><value>Check for updates at startup</value></data>
   <data name="ContextPackDismiss" xml:space="preserve"><value>Dismiss</value></data>
+  <data name="Installer_ToolsTitle" xml:space="preserve"><value>Choose your tools</value></data>
+  <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>Which tools should PowerTrove install?</value></data>
+  <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Setup downloads the selected tools from the official signed channel and verifies them before finishing. If a download is unavailable, PowerTrove retries at its next start. You can manage tools in Settings at any time.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installed tools are preselected. Select additional tools to download and verify them before Setup finishes. Unchecking a tool does not remove it; use Settings to uninstall tools. Unavailable downloads are retried at the app's next start.</value></data>
+  <data name="Installer_Files" xml:space="preserve"><value>File Tools: rename, zip, compare and sort files</value></data>
+  <data name="Installer_Pdf" xml:space="preserve"><value>PDF Tools: merge, split, convert and organize PDFs</value></data>
+  <data name="Installer_Images" xml:space="preserve"><value>Image Tools: convert, resize and compress images</value></data>
+  <data name="Installer_Media" xml:space="preserve"><value>Audio and Video Tools: convert, trim and compress audio and video</value></data>
+  <data name="Installer_Office" xml:space="preserve"><value>Office Tools: convert Office documents to PDF and PDFs to Word</value></data>
+  <data name="Installer_Data" xml:space="preserve"><value>Data Tools: convert CSV, JSON, Excel and contact files</value></data>
+  <data name="Installer_Tables" xml:space="preserve"><value>Table Export: export Excel selections as CSV, JSON, Markdown or SQL</value></data>
+  <data name="Installer_Invoice" xml:space="preserve"><value>E-Invoice Tools: view and convert XRechnung and ZUGFeRD invoices</value></data>
+  <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Windows integration:</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Create a Start menu shortcut</value></data>
+  <data name="Installer_ExplorerMenu" xml:space="preserve"><value>Add Open in PowerTrove to File Explorer (Windows 11: Show more options)</value></data>
+  <data name="Installer_Launch" xml:space="preserve"><value>Launch PowerTrove</value></data>
+  <data name="Installer_Downloading" xml:space="preserve"><value>Downloading and verifying the selected tools...</value></data>
+  <data name="Installer_DownloadDeferred" xml:space="preserve"><value>Some tools could not be downloaded now. PowerTrove retries at its next start.</value></data>
+  <data name="Installer_SelectionFailed" xml:space="preserve"><value>The tool selection could not be saved. Install tools from PowerTrove Settings after Setup finishes.</value></data>
+  <data name="Installer_ExplorerFailed" xml:space="preserve"><value>The File Explorer entry could not be added. You can check and configure it in PowerTrove Settings.</value></data>
+  <data name="Installer_DowngradeRefused" xml:space="preserve"><value>A newer version of PowerTrove is installed, or the installed version cannot be verified. Downgrade is refused.</value></data>
+  <data name="ImageEditor_Title" xml:space="preserve"><value>Image editor</value></data>
+  <data name="ImageEditor_Open" xml:space="preserve"><value>Edit image visually…</value></data>
+  <data name="ImageEditor_Undo" xml:space="preserve"><value>Undo</value></data>
+  <data name="ImageEditor_Redo" xml:space="preserve"><value>Redo</value></data>
+  <data name="ImageEditor_RotateLeft" xml:space="preserve"><value>Rotate left 90°</value></data>
+  <data name="ImageEditor_RotateRight" xml:space="preserve"><value>Rotate right 90°</value></data>
+  <data name="ImageEditor_FitImage" xml:space="preserve"><value>Fit image</value></data>
+  <data name="ImageEditor_FitCanvas" xml:space="preserve"><value>Canvas to image</value></data>
+  <data name="ImageEditor_Reset" xml:space="preserve"><value>Reset</value></data>
+  <data name="ImageEditor_Preview" xml:space="preserve"><value>Image layout preview</value></data>
+  <data name="ImageEditor_Help" xml:space="preserve"><value>Drag the image to move it. Drag a handle to resize; use the rotation handle to turn it freely. A focused handle also accepts arrow keys.</value></data>
+  <data name="ImageEditor_CanvasMode" xml:space="preserve"><value>Resize canvas with handles</value></data>
+  <data name="ImageEditor_CanvasWidth" xml:space="preserve"><value>Canvas width (px)</value></data>
+  <data name="ImageEditor_CanvasHeight" xml:space="preserve"><value>Canvas height (px)</value></data>
+  <data name="ImageEditor_ImageWidth" xml:space="preserve"><value>Image width (px)</value></data>
+  <data name="ImageEditor_ImageHeight" xml:space="preserve"><value>Image height (px)</value></data>
+  <data name="ImageEditor_OffsetX" xml:space="preserve"><value>Horizontal offset (px)</value></data>
+  <data name="ImageEditor_OffsetY" xml:space="preserve"><value>Vertical offset (px)</value></data>
+  <data name="ImageEditor_Angle" xml:space="preserve"><value>Rotation (°)</value></data>
+  <data name="ImageEditor_LockAspect" xml:space="preserve"><value>Keep aspect ratio</value></data>
+  <data name="ImageEditor_Align" xml:space="preserve"><value>Align on canvas</value></data>
+  <data name="ImageEditor_AlignAt" xml:space="preserve"><value>Align: {0}</value></data>
+  <data name="ImageEditor_TopLeft" xml:space="preserve"><value>top left</value></data>
+  <data name="ImageEditor_Top" xml:space="preserve"><value>top</value></data>
+  <data name="ImageEditor_TopRight" xml:space="preserve"><value>top right</value></data>
+  <data name="ImageEditor_Left" xml:space="preserve"><value>left</value></data>
+  <data name="ImageEditor_Center" xml:space="preserve"><value>center</value></data>
+  <data name="ImageEditor_Right" xml:space="preserve"><value>right</value></data>
+  <data name="ImageEditor_BottomLeft" xml:space="preserve"><value>bottom left</value></data>
+  <data name="ImageEditor_Bottom" xml:space="preserve"><value>bottom</value></data>
+  <data name="ImageEditor_BottomRight" xml:space="preserve"><value>bottom right</value></data>
+  <data name="ImageEditor_Rotate" xml:space="preserve"><value>rotation</value></data>
+  <data name="ImageEditor_Handle" xml:space="preserve"><value>{0} handle: drag or use arrow keys</value></data>
+  <data name="ImageEditor_SaveHint" xml:space="preserve"><value>Save creates a new PNG; originals stay unchanged. The checkerboard represents transparency. Preview is reduced; export uses full resolution. Metadata is removed; animation uses its first frame.</value></data>
+  <data name="ImageEditor_Loading" xml:space="preserve"><value>Loading image preview…</value></data>
+  <data name="ImageEditor_Back" xml:space="preserve"><value>Options</value></data>
+  <data name="ImageEditor_Save" xml:space="preserve"><value>Save new PNG</value></data>
+  <data name="ImageEditor_LoadFailed" xml:space="preserve"><value>The image preview could not be loaded. Check the selection and installed Image Tools pack.</value></data>
+  <data name="ImageEditor_Ready" xml:space="preserve"><value>Drag to adjust the layout, then save a new PNG.</value></data>
+  <data name="ImageEditor_Clipped" xml:space="preserve"><value>Image content outside the canvas will be cropped. Use Fit image or Canvas to image to keep it all.</value></data>
+  <data name="ImageEditor_Invalid" xml:space="preserve"><value>That size exceeds the limits: 10,000 pixels per side and 40 million pixels. The previous layout was retained.</value></data>
+  <data name="ImageEditor_Summary" xml:space="preserve"><value>Canvas: {0} × {1} px. Image: {2} × {3} px. Rotation: {4}°.</value></data>
+  <data name="ImageEditor_EffectsOpen" xml:space="preserve"><value>Adjust with visual preview…</value></data>
+  <data name="ImageEditor_EffectsHint" xml:space="preserve"><value>Adjust the options to update the preview. Previews are reduced and approximate; export uses the original resolution. For batches, the first naturally ordered image is shown; grids show the complete layout.</value></data>
+  <data name="ImageEditor_EffectsPreview" xml:space="preserve"><value>Rendered output preview</value></data>
+  <data name="ImageEditor_EffectsUnavailable" xml:space="preserve"><value>A visual preview is unavailable. Check the options or return to Options. No files have been written.</value></data>
+  <data name="ImageEditor_EffectsDimensions" xml:space="preserve"><value>Output canvas: {0} × {1} px. Checkerboard: transparency.</value></data>
+  <data name="ImageEditor_EffectsUpdating" xml:space="preserve"><value>Updating preview…</value></data>
+  <data name="ImageEditor_Modifiers" xml:space="preserve"><value>Shift: proportional image/canvas resize, axis-locked movement, 15° rotation steps. Shift + arrow keys: 10 px steps (rotation: 15°).</value></data>
+  <data name="ImageEditor_FitView" xml:space="preserve"><value>Fit view</value></data>
+  <data name="ImageEditor_ResizeHint" xml:space="preserve"><value>Adjust width or height to resize the whole image proportionally. Larger dimensions enlarge the image. The reduced preview shows the selected output size.</value></data>
+  <data name="ImageEditor_ResizeWidth" xml:space="preserve"><value>Width (px)</value></data>
+  <data name="ImageEditor_ResizeHeight" xml:space="preserve"><value>Height (px)</value></data>
+  <data name="ImageEditor_ResizeHalf" xml:space="preserve"><value>½×</value></data>
+  <data name="ImageEditor_ResizeOriginal" xml:space="preserve"><value>1×</value></data>
+  <data name="ImageEditor_ResizeDouble" xml:space="preserve"><value>2×</value></data>
+  <data name="ImageEditor_ResizeQuadruple" xml:space="preserve"><value>4×</value></data>
+  <data name="ImageEditor_ResizeInvalid" xml:space="preserve"><value>That size exceeds the visual preview limits: 30,000 pixels per side and 60 million pixels. The previous size was retained.</value></data>
+  <data name="ImageEditor_ResizeDimensions" xml:space="preserve"><value>Output: {0} × {1} px · Original: {2} × {3} px</value></data>
+  <data name="ImageEditor_ResizeScale" xml:space="preserve"><value>Image size</value></data>
+  <data name="ImageEditor_ResizeDetails" xml:space="preserve"><value>Size and quality</value></data>
+  <data name="ImageEditor_ResizeImprove" xml:space="preserve"><value>Improve enlargement quality</value></data>
+  <data name="ImageEditor_ResizeSave" xml:space="preserve"><value>Resize</value></data>
+  <data name="ImageEditor_ResizeOutput" xml:space="preserve"><value>{0} × {1} px</value></data>
+  <data name="ImageEditor_ResizePercent" xml:space="preserve"><value>{0}%</value></data>
 </root>

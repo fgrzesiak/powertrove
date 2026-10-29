@@ -8,6 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <!-- One window for everything: the palette, or a hosted view (settings, options, editors) in its place. -->
+    <Grid x:Name="ShellRoot" Background="Transparent">
     <!-- Launcher layout: search header, notices, grouped results, result bar, key legend. -->
     <Grid x:Name="PaletteRoot"
           Background="Transparent"
@@ -42,6 +44,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <FontIcon Glyph="&#xE721;" FontSize="18" VerticalAlignment="Center"
                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -66,7 +69,22 @@
                     <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
                 </TextBox.Resources>
             </TextBox>
-            <Border Grid.Column="2"
+            <!-- Filter for unavailable actions: in the header, so the list starts right below it. -->
+            <ToggleButton IsChecked="{x:Bind ViewModel.IncludeUnavailableActions, Mode=TwoWay}"
+                          Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasUnavailableActions), Mode=OneWay}"
+                          IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
+                          Grid.Column="2" VerticalAlignment="Center" Padding="8,4"
+                          Background="Transparent" BorderThickness="0"
+                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                          ToolTipService.ToolTip="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}"
+                          AutomationProperties.Name="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE71C;" FontSize="12" />
+                    <TextBlock Text="{x:Bind local:UiText.FormatUnavailableFilter(ViewModel.UnavailableActionCount), Mode=OneWay}"
+                               Style="{ThemeResource CaptionTextBlockStyle}" />
+                </StackPanel>
+            </ToggleButton>
+            <Border Grid.Column="3"
                     VerticalAlignment="Center"
                     CornerRadius="12"
                     Padding="10,3,10,4"
@@ -79,7 +97,7 @@
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                            TextTrimming="CharacterEllipsis" />
             </Border>
-            <Button Grid.Column="3"
+            <Button Grid.Column="4"
                     x:Name="SettingsButton"
                     Click="SettingsButton_Click"
                     VerticalAlignment="Center"
@@ -186,20 +204,6 @@
                 <TextBlock Text="{x:Bind ViewModel.ContextPacks.StatusMessage, Mode=OneWay}" TextWrapping="WrapWholeWords"
                            AutomationProperties.LiveSetting="Polite" Style="{ThemeResource CaptionTextBlockStyle}" />
             </StackPanel>
-            <ToggleButton IsChecked="{x:Bind ViewModel.IncludeUnavailableActions, Mode=TwoWay}"
-                          Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.HasUnavailableActions), Mode=OneWay}"
-                          IsEnabled="{x:Bind ViewModel.IsInputEnabled, Mode=OneWay}"
-                          HorizontalAlignment="Right" Margin="12,2,12,0" Padding="8,4"
-                          Background="Transparent" BorderThickness="0"
-                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                          ToolTipService.ToolTip="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}"
-                          AutomationProperties.Name="{x:Bind ViewModel.ShowUnavailableLabel, Mode=OneWay}">
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                    <FontIcon Glyph="&#xE71C;" FontSize="12" />
-                    <TextBlock Text="{x:Bind local:UiText.FormatUnavailableFilter(ViewModel.UnavailableActionCount), Mode=OneWay}"
-                               Style="{ThemeResource CaptionTextBlockStyle}" />
-                </StackPanel>
-            </ToggleButton>
         </StackPanel>
 
         <Grid Grid.Row="2">
@@ -454,5 +458,7 @@
                 <Button x:Name="FirstRunGetStartedButton" Content="{x:Bind local:UiText.FirstRunGetStarted}" Click="DismissFirstRun_Click" HorizontalAlignment="Center" Style="{ThemeResource AccentButtonStyle}" Margin="0,12,0,0" AutomationProperties.Name="{x:Bind local:UiText.FirstRunGetStartedAutomationName}" />
             </StackPanel>
         </Grid>
+    </Grid>
+    <Grid x:Name="HostedViewHost" Visibility="Collapsed" />
     </Grid>
 </Window>

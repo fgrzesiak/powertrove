@@ -20,4 +20,17 @@ Core use works offline without an account. The optional Check for updates button
 
 ## Installer and removal
 
+The interactive installer lets you select tool packs, including when rerunning
+Setup over an existing installation. It downloads and verifies newly selected
+packs before finishing; offline failures remain queued for the next app start.
+Existing verified packs are retained without downloading them again. Deselecting
+an installed pack does not remove it; use Settings for removal.
+
+Select **Create a Start menu shortcut** and optionally **Add Open in PowerTrove to
+File Explorer** on the Windows integration page. On Windows 11, the single-file
+Explorer command appears under **Show more options**. A conflicting registration
+belonging to another copy is preserved. Uninstall removes only this copy's owned
+entry. Setup supports English and German; automatic in-app updates skip the
+selection pages and keep existing choices.
+
 Use only the installer published for the same release. It installs per user without requiring elevation; startup at sign-in is not enabled implicitly. Close the application before updating. Use Windows Installed apps to uninstall an installed copy. For portable use, exit the application before removing its extracted directory; local preferences are stored separately. Never delete source or output files as part of troubleshooting.

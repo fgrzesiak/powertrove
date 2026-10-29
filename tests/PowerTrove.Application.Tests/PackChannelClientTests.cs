@@ -139,6 +139,21 @@ public sealed class PackChannelClientTests
     }
 
     [Fact]
+    public async Task SetupKeepsVerifiedInstalledPacksWithoutNetworkRequestsEvenWhenOffline()
+    {
+        using var fixture = new Fixture();
+        Assert.Empty(await new SetupPackInstallation(fixture.Client).InstallAsync(["powertrove.fixture"], default));
+        var installed = Assert.Single(await fixture.Installer.GetInstalledAsync());
+        int requests = fixture.Handler.Requests.Count;
+        fixture.Handler.Respond = (_, _) => throw new HttpRequestException("Synthetic offline fixture.");
+        var setup = new SetupPackInstallation(fixture.Client, new HashSet<string>([installed.Manifest.Id], StringComparer.Ordinal));
+        Assert.Empty(await setup.InstallAsync(["powertrove.fixture"], default));
+        Assert.Equal(requests, fixture.Handler.Requests.Count);
+        Assert.Equal(["powertrove.missing"], await setup.InstallAsync(["powertrove.fixture", "powertrove.missing"], default));
+        Assert.Equal(installed.Manifest.Version, Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+    }
+
+    [Fact]
     public async Task OfflineSetupInstallsNothingAndKeepsTheWholeSelection()
     {
         using var fixture = new Fixture();

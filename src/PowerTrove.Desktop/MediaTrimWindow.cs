@@ -17,8 +17,12 @@ using PowerTrove.Platform.Windows.Media;
 namespace PowerTrove.Desktop;
 
 /// <summary>Read-only playback and range selection; the host exports through the existing action.</summary>
-public sealed class MediaTrimWindow : Window
+public sealed class MediaTrimWindow : HostedView, IVisualActionEditor
 {
+    HostedView IVisualActionEditor.HostView => this;
+    // The back arrow leads to the action's options, like the "Options" button.
+    public override bool CanGoBack => true;
+    public override void GoBack() { ReturnToOptions = true; Close(); }
     private readonly ContextSnapshot _snapshot;
     private readonly DictionaryParameters _initial;
     private readonly Func<ActionParameters, CancellationToken, Task<ActionPreview?>> _validate;
@@ -58,14 +62,14 @@ public sealed class MediaTrimWindow : Window
         Func<ActionParameters, CancellationToken, Task<ActionPreview?>> validate, Func<bool> stillCurrent)
     {
         _snapshot = snapshot; _initial = initial; _validate = validate; _stillCurrent = stillCurrent;
-        Title = UiText.MediaTrimTitle; SystemBackdrop = new MicaBackdrop();
+        Title = UiText.MediaTrimTitle;
         var root = new Grid { Background = new SolidColorBrush(Colors.Transparent) };
         root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(48) });
         root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var title = new Grid { Padding = new Thickness(20, 0, 140, 0) };
         title.Children.Add(new TextBlock { Text = UiText.MediaTrimTitle, VerticalAlignment = VerticalAlignment.Center });
-        root.Children.Add(title); ExtendsContentIntoTitleBar = true; SetTitleBar(title);
+        root.Children.Add(title); TitleBar = title;
         var body = new StackPanel { Spacing = 8, Margin = new Thickness(20, 12, 20, 12) };
         var surface = new Grid { Background = new SolidColorBrush(Colors.Black), CornerRadius = new CornerRadius(8), MinHeight = 180 };
         surface.Children.Add(_player); surface.Children.Add(_audio); body.Children.Add(surface);
@@ -100,12 +104,14 @@ public sealed class MediaTrimWindow : Window
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         footer.Children.Add(_status);
+        var cancel = CreateCancelButton(); Grid.SetColumn(cancel, 1); footer.Children.Add(cancel);
         var back = new Button { Content = UiText.MediaTrimBack }; back.Click += (_, _) => { ReturnToOptions = true; Close(); };
-        Grid.SetColumn(back, 1); footer.Children.Add(back); Grid.SetColumn(_apply, 2); footer.Children.Add(_apply);
+        Grid.SetColumn(back, 2); footer.Children.Add(back); Grid.SetColumn(_apply, 3); footer.Children.Add(_apply);
         Grid.SetRow(footer, 2); root.Children.Add(footer);
         Content = root; root.KeyDown += (_, args) => { if (args.Key == global::Windows.System.VirtualKey.Escape) { args.Handled = true; Close(); } };
-        AppWindow.Resize(new global::Windows.Graphics.SizeInt32(940, 820));
+        PreferredSize = new(940, 820);
         AutomationProperties.SetName(_seek, UiText.MediaTrimPosition);
         AutomationProperties.SetName(_start, UiText.MediaTrimStart); AutomationProperties.SetName(_end, UiText.MediaTrimEnd);
         _start.ValueChanged += (_, args) => EditRange(true, args.NewValue);
@@ -155,7 +161,7 @@ public sealed class MediaTrimWindow : Window
 
     public Task<DictionaryParameters?> ShowSelectionAsync()
     {
-        Activate(); _ = LoadAsync(); return _completion.Task;
+        _ = LoadAsync(); return _completion.Task;
     }
     private async Task LoadAsync()
     {

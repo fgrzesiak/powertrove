@@ -11,11 +11,17 @@ away, recent Application event log errors are shown.
 .EXAMPLE
 scripts\run-desktop.ps1
 scripts\run-desktop.ps1 -Configuration Release
+scripts\run-desktop.ps1 -Profile Core -UseInstalledPacks
 scripts\run-desktop.ps1 -NoBuild -Wait
 #>
 param(
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Debug',
+    # Local builds include current pack sources; Core exercises downloaded packs.
+    [ValidateSet('Core', 'Base', 'Full')]
+    [string]$Profile = 'Full',
+    # Exercise downloaded pack overrides instead of preferring local pack sources.
+    [switch]$UseInstalledPacks,
     # Start the last build without building again.
     [switch]$NoBuild,
     # Keep the terminal attached until the app exits and return its exit code.
@@ -25,6 +31,11 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-Location (Split-Path -Parent $PSScriptRoot)
 $project = 'src\PowerTrove.Desktop\PowerTrove.Desktop.csproj'
+$worker = 'src\PowerTrove.PackHost\PowerTrove.PackHost.csproj'
+
+if (Get-Process -Name PowerTrove -ErrorAction SilentlyContinue) {
+    throw 'PowerTrove is already running. Exit it from the system tray before starting a local build.'
+}
 
 if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
     throw '.NET SDK not found. Install the .NET 10 SDK: https://dotnet.microsoft.com/download'
@@ -50,16 +61,32 @@ if ($sdk) {
 }
 
 if (-not $NoBuild) {
-    dotnet build $project -c $Configuration --nologo -v minimal
+    dotnet build $project -c $Configuration -p:PowerTroveProfile=$Profile --nologo -v minimal
     if ($LASTEXITCODE -ne 0) { throw "Build failed (exit code $LASTEXITCODE)." }
 }
 
-$exe = Get-ChildItem "src\PowerTrove.Desktop\bin\$Configuration" -Recurse -Filter 'PowerTrove.exe' -ErrorAction SilentlyContinue |
-    Sort-Object LastWriteTime -Descending | Select-Object -First 1
+$targetPath = dotnet msbuild $project -nologo -p:Configuration=$Configuration -p:PowerTroveProfile=$Profile -getProperty:TargetPath
+if ($LASTEXITCODE -ne 0) { throw 'Could not resolve the desktop output path.' }
+$exe = Get-Item ([IO.Path]::ChangeExtension($targetPath.Trim(), '.exe')) -ErrorAction SilentlyContinue
 if (-not $exe) { throw "PowerTrove.exe not found for $Configuration. Run without -NoBuild." }
 
+if (-not $NoBuild) {
+    # The app always starts downloaded packs through the worker next to its EXE.
+    # Build with the same configuration and put the worker and its dependencies there.
+    dotnet build $worker -c $Configuration --nologo -v minimal -o $exe.DirectoryName
+    if ($LASTEXITCODE -ne 0) { throw "Worker build failed (exit code $LASTEXITCODE)." }
+}
+if (-not (Test-Path (Join-Path $exe.DirectoryName 'PowerTrove.PackHost.exe'))) {
+    throw 'PowerTrove.PackHost.exe is missing. Run again without -NoBuild.'
+}
+
 $started = Get-Date
-$process = Start-Process -FilePath $exe.FullName -WorkingDirectory $exe.DirectoryName -PassThru
+$startInfo = [Diagnostics.ProcessStartInfo]::new($exe.FullName)
+$startInfo.WorkingDirectory = $exe.DirectoryName
+$startInfo.UseShellExecute = $false
+$startInfo.CreateNoWindow = $true
+$startInfo.Environment['POWERTROVE_PREFER_BUILTIN_PACKS'] = if ($UseInstalledPacks -or $Profile -eq 'Core') { '0' } else { '1' }
+$process = [Diagnostics.Process]::Start($startInfo)
 Write-Host "Started PowerTrove (PID $($process.Id)): $($exe.FullName)"
 
 Start-Sleep -Seconds 3

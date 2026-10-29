@@ -143,7 +143,7 @@ public partial class MainWindow : Window
     { if (sender is FrameworkElement { Tag: string id }) ViewModel.ContextPacks.Dismiss(id); }
     private void CancelContextPack_Click(object sender, RoutedEventArgs e) => ViewModel.ContextPacks.Cancel();
     private bool _undoInProgress;
-    public bool CanCloseForUpdate => !ViewModel.ContextPacks.IsBusy && !_undoInProgress && !ViewModel.IsExecuting && !_dialogOpen && !_enterController.IsPending && _activeVisualEditor is null;
+    public bool CanCloseForUpdate => !ViewModel.ContextPacks.IsBusy && !_undoInProgress && !ViewModel.IsExecuting && !_dialogOpen && !_enterController.IsPending && _hostedView?.CanCloseForUpdate != false;
     private async void InstallUpdate_Click(object sender, RoutedEventArgs e) => await Updates.InstallAsync();
     private void DismissUpdate_Click(object sender, RoutedEventArgs e) => Updates.DismissNotice();
     private void CancelUpdate_Click(object sender, RoutedEventArgs e) => Updates.CancelInstallation();
@@ -192,9 +192,11 @@ public partial class MainWindow : Window
             if (AllowClose)
                 return;
             args.Cancel = true;
-            (App.Current as App)?.DismissPalette();
+            if (_hostedView is { } view) view.Close();
+            else (App.Current as App)?.DismissPalette();
         };
         SetTitleBar(DragRegion);
+        ShellRoot.AddHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(Shell_PreviewKeyDown), false);
         BrandIcon.Source = AppIconImage.Create(32);
         FirstRunIcon.Source = AppIconImage.Create(96);
     }
@@ -213,11 +215,8 @@ public partial class MainWindow : Window
         var snapshot = ViewModel.CurrentSnapshot;
         if (app == null || app.UpdateInstalling || action == null || snapshot == null)
             return;
-        app.DismissPalette();
-        var organizer = new PageOrganizerWindow(action, snapshot);
-        app.TrackEditor(organizer);
-        app.ApplyWindowIcon(organizer);
-        organizer.Activate();
+        // The invocation stays alive so the organizer's back arrow can return to this palette.
+        ShowView(new PageOrganizerWindow(action, snapshot));
     }
 
     /// <summary>Set by the app when exiting; otherwise closing the window only hides it.</summary>
@@ -228,17 +227,14 @@ public partial class MainWindow : Window
     private void OpenSettingsFromPalette()
     {
         if (App.Current is App app)
-        {
-            app.DismissPalette();
             app.OpenSettings();
-        }
     }
 
     private void MainWindow_Closed(object sender, WindowEventArgs args)
     {
         _packInstallCancellation?.Cancel();
         ViewModel.ContextPacks.Dispose();
-        _activeVisualEditor?.Close();
+        if (_hostedView is { } view) EndView(view);
         if (App.Current is App app)
         {
             app.DisposeHotkeyService();
@@ -289,7 +285,7 @@ public partial class MainWindow : Window
         // Let bindings/layout settle before announcing; ignore cleared or superseded messages.
         DispatcherQueue.TryEnqueue(() =>
         {
-            if (AllowClose || !AppWindow.IsVisible || !notice.IsLoaded || notice.Text != message
+            if (AllowClose || !IsPaletteVisible || !notice.IsLoaded || notice.Text != message
                 || (notice == ExecutionResultText && !ViewModel.HasExecutionResult)) return;
             var peer = FrameworkElementAutomationPeer.FromElement(notice)
                 ?? FrameworkElementAutomationPeer.CreatePeerForElement(notice);
@@ -302,19 +298,34 @@ public partial class MainWindow : Window
     private long _listRevision;
     private bool _listPositionQueued;
 
+    // What the list currently shows; an unchanged result keeps its rows instead of rebuilding them.
+    private string? _shownListSignature;
+
     private void UpdateProxyList()
     {
         _listRevision++;
+        // In a single-domain view, repeating "Images ·" on every section adds no information.
+        // Mixed-domain groups retain their prefixes; full names remain available to Narrator.
+        var domains = ViewModel.Groups.Select(g => g.Title.Split(" · ", StringSplitOptions.None))
+            .Where(parts => parts.Length > 1).Select(parts => parts[0]).Distinct(StringComparer.Ordinal).ToArray();
+        // Typing often leaves the results exactly as they are. Rebuilding would replay the list's entrance
+        // animation on every key and flicker, so only the selection follows then.
+        string signature = string.Join("\u001e", ViewModel.Groups.Select(g => g.Title + "\u001f" + string.Join("\u001f", g.Items.Select(item =>
+            string.Join("|", item.Action.Descriptor.Id, item.Action.Descriptor.Title, item.Action.Descriptor.Description, item.IsCompatible,
+                item.IncompatibilityReason, item.AvailabilityReason, item.InstallState, ViewModel.GetBadgeText(item))))))
+            + "\u001d" + domains.Length + ViewModel.IsContextAvailable;
+        if (signature == _shownListSignature)
+        {
+            UpdateSelection();
+            return;
+        }
+        _shownListSignature = signature;
         _updatingProxyList = true;
         try
         {
             ActionList.SelectedItem = null;
             FilteredActionsProxy.Clear();
             GroupedActionsProxy.Clear();
-            // In a single-domain view, repeating "Images ·" on every section adds no information.
-            // Mixed-domain groups retain their prefixes; full names remain available to Narrator.
-            var domains = ViewModel.Groups.Select(g => g.Title.Split(" · ", StringSplitOptions.None))
-                .Where(parts => parts.Length > 1).Select(parts => parts[0]).Distinct(StringComparer.Ordinal).ToArray();
             foreach (var group in ViewModel.Groups)
             {
                 var proxies = group.Items.Select(item => new ActionSearchResultProxy(item, ViewModel.GetBadgeText(item), ViewModel.IsContextAvailable)).ToArray();
@@ -348,7 +359,7 @@ public partial class MainWindow : Window
         {
             _listPositionQueued = false;
             if (revision != _listRevision) { QueueListPosition(); return; }
-            if (!AppWindow.IsVisible || !ActionList.IsLoaded) return;
+            if (!IsPaletteVisible || !ActionList.IsLoaded) return;
             ActionList.UpdateLayout();
             if (_scrollToStartPending)
             {
@@ -394,16 +405,32 @@ public partial class MainWindow : Window
         var rect = PowerTrove.Platform.Windows.Displays.PlacementCalculator.CalculateLauncherPlacement(700, 500, workArea);
         // Every fresh invocation has a predictable position on its captured source monitor.
         // Do not treat programmatic moves/DPI changes as a user-dragged position.
-        AppWindow.MoveAndResize(rect);
+        _paletteBounds = rect;
+        // A shown view switches to the palette in ShowPalette, around its own center.
+        if (_hostedView is null && _endingView is null) AppWindow.MoveAndResize(rect);
     }
 
     public void ShowPalette()
     {
-        if (TryActivateVisualEditor()) return;
+        if (TryResurfaceHostedView()) return;
         _focusSearchPending = !ViewModel.IsExecuting && !ViewModel.HasExecutionResult;
         if (_focusSearchPending && !_dialogOpen) InvalidatePendingEnter();
         _scrollToStartPending = _focusSearchPending;
-        AppWindow.Show(activateWindow: true);
+        bool viewOnScreen = (_hostedView ?? _endingView) is not null && AppWindow.IsVisible && !IsMinimized;
+        _paletteShown = true;
+        if (viewOnScreen)
+        {
+            SwitchToPalette();
+        }
+        else
+        {
+            if (!AppWindow.IsVisible || IsMinimized || (_hostedView ?? _endingView) is not null)
+            {
+                AppWindow.Hide();
+                ResetToPalette();
+            }
+            ShowWhenRendered();
+        }
         Activate();
         // Activate() alone is often refused by the foreground lock; take the keyboard explicitly.
         ForegroundActivator.BringToFront(this);
@@ -412,12 +439,22 @@ public partial class MainWindow : Window
         var refocus = DispatcherQueue.CreateTimer();
         refocus.Interval = TimeSpan.FromMilliseconds(150);
         refocus.IsRepeating = false;
-        refocus.Tick += (_, _) => { if (AppWindow.IsVisible && !_dialogOpen && FocusManager.GetFocusedElement(Content.XamlRoot) is not TextBox) { _focusSearchPending = !ViewModel.IsExecuting && !ViewModel.HasExecutionResult; QueueSearchFocus(); } };
+        refocus.Tick += (_, _) => { if (IsPaletteVisible && !_dialogOpen && FocusManager.GetFocusedElement(Content.XamlRoot) is not TextBox) { _focusSearchPending = !ViewModel.IsExecuting && !ViewModel.HasExecutionResult; QueueSearchFocus(); } };
         refocus.Start();
         QueueListPosition();
     }
 
     public void HidePalette()
+    {
+        LeavePalette();
+        // A hosted view has taken over the window; only the palette's state ends here.
+        if (_hostedView is not null) return;
+        if (AllowClose) { AppWindow.Hide(); return; }
+        HideShell();
+    }
+
+    /// <summary>Ends the palette's interaction state when it hides or a view replaces it.</summary>
+    private void LeavePalette()
     {
         _packInstallCancellation?.Cancel();
         InvalidatePendingEnter();
@@ -425,8 +462,13 @@ public partial class MainWindow : Window
         _isWindowActive = false;
         _activatedSinceShown = false;
         _listRevision++;
-        AppWindow.Hide();
+        _paletteShown = false;
     }
+
+    private bool _paletteShown;
+
+    /// <summary>The palette is on screen; false while a view replaces it.</summary>
+    private bool IsPaletteVisible => _paletteShown && AppWindow.IsVisible;
 
     private void OpenFolder_Click(object sender, RoutedEventArgs e)
     {
@@ -475,16 +517,6 @@ public partial class MainWindow : Window
     private bool _focusSearchPending = true;
     private bool _isWindowActive;
     private bool _dialogOpen;
-    private MediaTrimWindow? _activeVisualEditor;
-
-    /// <summary>Resurface the current editor without reopening the palette or recapturing a target.</summary>
-    public bool TryActivateVisualEditor()
-    {
-        if (_activeVisualEditor is not { } editor) return false;
-        editor.Activate();
-        ForegroundActivator.BringToFront(editor);
-        return true;
-    }
     private CancellationTokenSource? _packInstallCancellation;
     private bool _activatedSinceShown;
     private readonly PaletteEnterController _enterController = new();
@@ -498,7 +530,7 @@ public partial class MainWindow : Window
     {
         DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () =>
         {
-            if (!_focusSearchPending || !_isWindowActive || !AppWindow.IsVisible || _dialogOpen) return;
+            if (!_focusSearchPending || !_isWindowActive || !IsPaletteVisible || _dialogOpen) return;
             if (ViewModel.ShowFirstRun)
             {
                 if (FirstRunGetStartedButton.IsLoaded && FirstRunGetStartedButton.Focus(FocusState.Keyboard))
@@ -527,7 +559,7 @@ public partial class MainWindow : Window
         _isWindowActive = args.WindowActivationState != WindowActivationState.Deactivated;
         if (!_isWindowActive)
         {
-            if (_activatedSinceShown && AppWindow.IsVisible && !_dialogOpen && !ViewModel.IsExecuting
+            if (_activatedSinceShown && IsPaletteVisible && !_dialogOpen && !ViewModel.IsExecuting
                 && !ViewModel.ShowCancelConfirmation && App.Current is App app)
                 app.DismissPalette();
             return;
@@ -551,12 +583,14 @@ public partial class MainWindow : Window
 
     private async void RetrySearch_Click(object sender, RoutedEventArgs e)
     {
-        if (await _enterController.RetryAsync(ViewModel, () => AppWindow.IsVisible && !_dialogOpen))
+        if (await _enterController.RetryAsync(ViewModel, () => IsPaletteVisible && !_dialogOpen))
             SearchBox.Focus(FocusState.Keyboard);
     }
 
     private async void PaletteRoot_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
     {
+        // Keys typed after a view replaced the palette must not act on it anymore.
+        if (!IsPaletteVisible) { e.Handled = true; return; }
         if (_dialogOpen) return;
 
         // Handle Escape before TextBox/ListView can consume their KeyDown.
@@ -655,7 +689,7 @@ public partial class MainWindow : Window
         {
             e.Handled = true;
             var outcome = await _enterController.HandleEnterAsync(ViewModel, ExecuteActionAsync,
-                () => AppWindow.IsVisible && !_dialogOpen);
+                () => IsPaletteVisible && !_dialogOpen);
             if (outcome == PaletteEnterOutcome.Retried)
                 SearchBox.Focus(FocusState.Keyboard);
         }
@@ -704,7 +738,7 @@ public partial class MainWindow : Window
             {
                 using var controller = new PackOnDemandController(app.PackManagement, app.Actions);
                 var resolved = await controller.ResolveAsync(missing, expectedSnapshot, ConfirmPackInstallAsync,
-                    () => AppWindow.IsVisible && ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot),
+                    () => IsPaletteVisible && ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot),
                     (offer, token) => InstallPackWithProgressAsync(app.PackManagement, offer, token), cancel.Token);
                 if (resolved.Outcome != PackOnDemandOutcome.Ready || resolved.Action is null)
                 {
@@ -714,13 +748,13 @@ public partial class MainWindow : Window
                     return;
                 }
                 await ViewModel.RefreshActionsAsync();
-                if (!ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale || !AppWindow.IsVisible)
+                if (!ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale || !IsPaletteVisible)
                 { ViewModel.ShowPackNotice(UiText.PackSelectAgain); return; }
                 result = result with { Action = resolved.Action, InstallState = PackInstallState.Installed,
                     IsCompatible = true, IncompatibilityReason = null, AvailabilityReason = null };
                 descriptor = result.Action.Descriptor;
             }
-            finally { _packInstallCancellation = null; _dialogOpen = false; if (AppWindow.IsVisible) SearchBox.Focus(FocusState.Programmatic); }
+            finally { _packInstallCancellation = null; _dialogOpen = false; if (IsPaletteVisible) SearchBox.Focus(FocusState.Programmatic); }
         }
         if (result.Action is not CatalogAction && descriptor.Id == PowerTrove.Core.Activation.ActivationProtocol.OrganizePagesActionId)
         {
@@ -729,7 +763,7 @@ public partial class MainWindow : Window
         }
 
         ViewModel.SelectedAction = result;
-        if (expectedSnapshot is null || !AppWindow.IsVisible || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale
+        if (expectedSnapshot is null || !IsPaletteVisible || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale
             || !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
         { ViewModel.ShowPackNotice(UiText.PackSelectAgain); return; }
         if (result.InstallState != PackInstallState.NotInstalled)
@@ -753,31 +787,61 @@ public partial class MainWindow : Window
             try
             {
                 IReadOnlyDictionary<string, string>? draft = null;
+                var sourceResult = result;
+                var sourceDescriptor = descriptor;
+                var sourcePreferences = prefs;
+                IReadOnlyDictionary<string, string>? sourceDraft = null;
+                bool imageFirst = result.Action is not CatalogAction && ImageEditorInput.OpensDirectly(descriptor.Id, expectedSnapshot) &&
+                    app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } directImageAction && directImageAction is not CatalogAction;
+                bool effectsFirst = result.Action is not CatalogAction && ImageEffectsInput.OpensDirectly(descriptor.Id, expectedSnapshot);
                 while (true)
                 {
-                    options = await ActionOptionsDialog.ShowAsync(
+                    options = effectsFirst ? new ActionOptionsResult(new DictionaryParameters(prefs ?? new Dictionary<string, string>()), false, EditEffectsVisually: true)
+                        : imageFirst ? new ActionOptionsResult(ImageEditorInput.InitialParameters(descriptor, prefs), false, EditImageVisually: true)
+                        : await ActionOptionsDialog.ShowAsync(
                         this,
                         descriptor,
                         prefs,
                         (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
                         result.InstallState != PackInstallState.NotInstalled && VisualPageActions.Contains(descriptor.Id) ? OpenPageOrganizer : null,
                         allowMediaEditor: descriptor.Id == "powertrove.media.trim" && MediaTrimRange.CanEdit(expectedSnapshot),
-                        initialValues: draft);
-                    if (options is null || !options.EditMediaVisually) break;
+                        initialValues: draft,
+                        allowImageEditor: ImageEditorInput.CanOffer(descriptor.Id, expectedSnapshot) && app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } availableImageAction && availableImageAction is not CatalogAction,
+                        allowEffectsEditor: ImageEffectsInput.CanOffer(descriptor.Id, expectedSnapshot));
+                    imageFirst = effectsFirst = false;
+                    if (options is null || !options.EditMediaVisually && !options.EditImageVisually && !options.EditEffectsVisually) break;
                     if (!ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale ||
                         !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
-                    { ViewModel.ShowPackNotice(UiText.PackSelectAgain); options = null; break; }
-                    var editor = new MediaTrimWindow(expectedSnapshot, options.Parameters,
+                    { ViewModel.ShowPackNotice(UiText.PackSelectAgain); options = null; ShowPalette(); break; }
+                    string imageOrigin = descriptor.Id;
+                    if (options.EditImageVisually && descriptor.Id != ImageEditorInput.ActionId)
+                    {
+                        sourceDraft = new Dictionary<string, string>(options.Parameters.Values);
+                        var imageAction = app?.Actions?.GetAction(ImageEditorInput.ActionId);
+                        if (imageAction is null or CatalogAction || !(await imageAction.MatchAsync(expectedSnapshot, CancellationToken.None)).IsAvailable)
+                        { ViewModel.ShowPackNotice(UiText.PackSelectAgain); options = null; ShowPalette(); break; }
+                        result = result with { Action = imageAction, IsCompatible = true, IncompatibilityReason = null, AvailabilityReason = null };
+                        descriptor = imageAction.Descriptor; ViewModel.SelectedAction = result; prefs = null;
+                    }
+                    IVisualActionEditor editor = options.EditEffectsVisually
+                        ? new ImageEffectsWindow(expectedSnapshot, descriptor, options.Parameters,
+                            (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
+                            () => ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) && !expectedSnapshot.IsStale &&
+                                ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
+                        : options.EditImageVisually
+                        ? new ImageCanvasWindow(expectedSnapshot, options.Parameters, imageOrigin,
+                            (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
+                            () => ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) && !expectedSnapshot.IsStale &&
+                                ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
+                        : new MediaTrimWindow(expectedSnapshot, options.Parameters,
                         (p, ct) => ViewModel.PreviewSelectedActionAsync(p, ct, expectedSnapshot, result.Action),
                         () => ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) && !expectedSnapshot.IsStale &&
-                            ReferenceEquals(ViewModel.SelectedAction?.Action, result.Action) &&
                             ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action));
-                    app?.ApplyWindowIcon(editor);
                     DictionaryParameters? chosen = null;
                     bool completed = false;
-                    _activeVisualEditor = editor;
                     // DismissPalette clears the invocation; a visual handoff must retain it.
-                    HidePalette();
+                    ShowView(editor.HostView);
+                    // "Options" goes straight to the options page; only a result or a failure returns to the palette.
                     try
                     {
                         chosen = await editor.ShowSelectionAsync();
@@ -785,16 +849,30 @@ public partial class MainWindow : Window
                     }
                     finally
                     {
-                        _activeVisualEditor = null;
-                        if (!AllowClose && (!completed || chosen is not null || editor.ReturnToOptions)) ShowPalette();
+                        // A failed editor must not keep the window; it leaves like a closed one.
+                        if (!completed) DetachView(editor.HostView);
+                        if (!AllowClose && (!completed || chosen is not null)) ShowPalette();
                     }
                     if (AllowClose) { options = null; break; }
-                    if (chosen is not null) { options = options with { Parameters = chosen, EditMediaVisually = false }; break; }
+                    if (chosen is not null)
+                    {
+                        // Restore the editor's bound action before executing, even if hidden search results changed.
+                        ViewModel.SelectedAction = result;
+                        options = options with { Parameters = chosen, EditMediaVisually = false, EditImageVisually = false, EditEffectsVisually = false }; break;
+                    }
                     if (!editor.ReturnToOptions)
                     {
-                        app?.DismissPalette(); options = null; break;
+                        // "Cancel" returns to the palette (the window does that); closing the window ends the invocation.
+                        if (!editor.HostView.ReturnToPalette) app?.DismissPalette();
+                        options = null; break;
                     }
-                    draft = editor.DraftParameters.Values;
+                    if (options.EditImageVisually && sourceDraft is not null)
+                    {
+                        // The original action retains its format/metadata behavior and its own option schema.
+                        result = sourceResult; descriptor = sourceDescriptor; prefs = sourcePreferences;
+                        ViewModel.SelectedAction = result; draft = sourceDraft;
+                    }
+                    else draft = editor.DraftParameters.Values;
                 }
             }
             finally
@@ -803,7 +881,7 @@ public partial class MainWindow : Window
             }
             if (options == null)
             {
-                if (!AllowClose && AppWindow.IsVisible) SearchBox.Focus(FocusState.Programmatic);
+                if (!AllowClose && IsPaletteVisible) SearchBox.Focus(FocusState.Programmatic);
                 return;
             }
 
@@ -815,7 +893,9 @@ public partial class MainWindow : Window
             }
         }
 
-        if (expectedSnapshot is null || !AppWindow.IsVisible || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale
+        // "Run" on the options page: the window switches back to the palette, which shows progress and the result.
+        if (!AllowClose && _hostedView is null && _endingView is not null) ShowPalette();
+        if (expectedSnapshot is null || !IsPaletteVisible || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale
             || !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action) || !ReferenceEquals(ViewModel.SelectedAction?.Action, result.Action))
         { ViewModel.ShowPackNotice(UiText.PackSelectAgain); return; }
         await ViewModel.ExecuteSelectedActionAsync(parameters);

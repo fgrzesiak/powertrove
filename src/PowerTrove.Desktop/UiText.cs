@@ -10,6 +10,7 @@ namespace PowerTrove.Desktop;
 /// </summary>
 public static class UiText
 {
+    public static string ImageEditor(string key) => Get("ImageEditor_" + key);
     public static string RecipePackTitle => Get(nameof(RecipePackTitle));
     public static string RecipeImagesForEmailTitle => Get(nameof(RecipeImagesForEmailTitle));
     public static string RecipeImagesForEmailDescription => Get(nameof(RecipeImagesForEmailDescription));
@@ -123,6 +124,9 @@ public static class UiText
     public static string CommonClear => Get(nameof(CommonClear));
     public static string CommonCancel => Get(nameof(CommonCancel));
     public static string CommonClose => Get(nameof(CommonClose));
+    public static string CommonBack => Get(nameof(CommonBack));
+    public static string ColorPickFromScreen => Get(nameof(ColorPickFromScreen));
+    public static string ColorHex => Get(nameof(ColorHex));
     public static string MediaTrimNeedsConfirmation => Get(nameof(MediaTrimNeedsConfirmation));
     public static string MediaTrimTitle => Get(nameof(MediaTrimTitle));
     public static string MediaTrimOpenVisual => Get(nameof(MediaTrimOpenVisual));

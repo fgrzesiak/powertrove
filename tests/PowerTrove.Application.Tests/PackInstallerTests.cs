@@ -207,6 +207,42 @@ public sealed class PackInstallerTests
         Assert.Empty(await fixture.Installer.GetInstalledAsync());
     }
 
+    [Theory]
+    [InlineData(false, true)]
+    [InlineData(true, true)]
+    [InlineData(true, false)]
+    public async Task DevelopmentPreferenceKeepsLocalActionsWithoutRemovingInstalledPacks(bool preferBuiltIns, bool samePack)
+    {
+        using var fixture = new Fixture();
+        await fixture.Installer.InstallAsync(fixture.Bundle("0.1.0"));
+        byte[] activation = File.ReadAllBytes(fixture.ActivePath);
+        var action = new PowerTrove.Application.Commands.OpenSettingsAction(() => { });
+        var pack = new LocalPack(new ActionPackInfo(samePack ? "powertrove.fixture" : "powertrove.other", "Local tools", "0.1.0", "PowerTrove tests"), [action]);
+        var factory = new RejectProcessFactory();
+        await using var supervisor = new PackHostSupervisor(factory, fixture.Temp.File("user"));
+        var registry = new ActionRegistry();
+        var runtime = new InstalledPackRuntime(fixture.Installer, supervisor, registry, [pack], new EmptyCatalog(), preferBuiltIns);
+        for (int reload = 0; reload < 2; reload++)
+        {
+            await runtime.ReloadAsync();
+            if (preferBuiltIns && samePack)
+            {
+                Assert.Same(action, registry.GetAction(action.Descriptor.Id));
+                Assert.Null(registry.GetAction("powertrove.fixture.copy"));
+            }
+            else
+            {
+                Assert.IsType<RemoteAction>(registry.GetAction("powertrove.fixture.copy"));
+                if (!samePack) Assert.Same(action, registry.GetAction(action.Descriptor.Id));
+            }
+        }
+        Assert.Equal(0, factory.Starts);
+        Assert.Single(await fixture.Installer.GetInstalledAsync());
+        Assert.Equal(activation, File.ReadAllBytes(fixture.ActivePath));
+    }
+
+    private sealed record LocalPack(ActionPackInfo Info, IReadOnlyList<IAction> Actions) : IActionPack;
+
     private sealed class EmptyCatalog : IActionCatalog
     { public IReadOnlyList<CatalogEntry> Entries => []; }
     private sealed class RejectProcessFactory : IPackWorkerProcessFactory

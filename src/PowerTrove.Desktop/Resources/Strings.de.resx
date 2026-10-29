@@ -58,6 +58,9 @@
   <data name="CommonClear" xml:space="preserve"><value>Löschen</value></data>
   <data name="CommonCancel" xml:space="preserve"><value>Abbrechen</value></data>
   <data name="CommonClose" xml:space="preserve"><value>Schließen</value></data>
+  <data name="CommonBack" xml:space="preserve"><value>Zurück</value></data>
+  <data name="ColorPickFromScreen" xml:space="preserve"><value>Farbe vom Bildschirm oder aus der Vorschau aufnehmen</value></data>
+  <data name="ColorHex" xml:space="preserve"><value>Hex</value></data>
   <data name="OptionsRemember" xml:space="preserve"><value>Diese Optionen merken</value></data>
   <data name="OptionsRun" xml:space="preserve"><value>Ausführen</value></data>
   <data name="OptionsChecking" xml:space="preserve"><value>Auswahl wird geprüft …</value></data>
@@ -190,4 +193,90 @@
   <data name="UpdatesCancel" xml:space="preserve"><value>Download abbrechen</value></data>
   <data name="UpdatesStartup" xml:space="preserve"><value>Beim Start nach Updates suchen</value></data>
   <data name="ContextPackDismiss" xml:space="preserve"><value>Ausblenden</value></data>
+  <data name="Installer_ToolsTitle" xml:space="preserve"><value>Tools auswählen</value></data>
+  <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>Welche Tools soll PowerTrove installieren?</value></data>
+  <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Setup lädt die ausgewählten Tools aus dem offiziellen signierten Kanal herunter und überprüft sie vor dem Abschluss. Ist ein Download nicht verfügbar, versucht PowerTrove es beim nächsten Start erneut. Tools lassen sich jederzeit in den Einstellungen verwalten.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installierte Tools sind vorausgewählt. Wähle zusätzliche Tools zum Herunterladen und Überprüfen aus. Abwählen entfernt keine Tools; nutze dafür die Einstellungen. Nicht verfügbare Downloads werden beim nächsten App-Start erneut versucht.</value></data>
+  <data name="Installer_Files" xml:space="preserve"><value>Datei-Tools: Dateien umbenennen, komprimieren, vergleichen und sortieren</value></data>
+  <data name="Installer_Pdf" xml:space="preserve"><value>PDF-Tools: PDFs zusammenführen, aufteilen, umwandeln und ordnen</value></data>
+  <data name="Installer_Images" xml:space="preserve"><value>Bild-Tools: Bilder umwandeln, skalieren und komprimieren</value></data>
+  <data name="Installer_Media" xml:space="preserve"><value>Audio- und Video-Tools: Medien umwandeln, schneiden und komprimieren</value></data>
+  <data name="Installer_Office" xml:space="preserve"><value>Office-Tools: Office-Dokumente in PDF und PDFs in Word umwandeln</value></data>
+  <data name="Installer_Data" xml:space="preserve"><value>Daten-Tools: CSV, JSON, Excel und Kontaktdateien umwandeln</value></data>
+  <data name="Installer_Tables" xml:space="preserve"><value>Tabellenexport: Excel-Auswahl als CSV, JSON, Markdown oder SQL exportieren</value></data>
+  <data name="Installer_Invoice" xml:space="preserve"><value>E-Rechnungs-Tools: XRechnung und ZUGFeRD anzeigen und umwandeln</value></data>
+  <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Windows-Integration:</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Verknüpfung im Startmenü erstellen</value></data>
+  <data name="Installer_ExplorerMenu" xml:space="preserve"><value>In PowerTrove öffnen zum Datei-Explorer hinzufügen (Windows 11: Weitere Optionen anzeigen)</value></data>
+  <data name="Installer_Launch" xml:space="preserve"><value>PowerTrove starten</value></data>
+  <data name="Installer_Downloading" xml:space="preserve"><value>Ausgewählte Tools werden heruntergeladen und überprüft...</value></data>
+  <data name="Installer_DownloadDeferred" xml:space="preserve"><value>Einige Tools konnten jetzt nicht heruntergeladen werden. PowerTrove versucht es beim nächsten Start erneut.</value></data>
+  <data name="Installer_SelectionFailed" xml:space="preserve"><value>Die Tool-Auswahl konnte nicht gespeichert werden. Installiere Tools nach dem Setup in den PowerTrove-Einstellungen.</value></data>
+  <data name="Installer_ExplorerFailed" xml:space="preserve"><value>Der Datei-Explorer-Eintrag konnte nicht hinzugefügt werden. Du kannst ihn in den PowerTrove-Einstellungen prüfen und einrichten.</value></data>
+  <data name="Installer_DowngradeRefused" xml:space="preserve"><value>Eine neuere Version von PowerTrove ist installiert oder die installierte Version kann nicht überprüft werden. Ein Downgrade wird abgelehnt.</value></data>
+  <data name="ImageEditor_Title" xml:space="preserve"><value>Bildeditor</value></data>
+  <data name="ImageEditor_Open" xml:space="preserve"><value>Bild visuell bearbeiten…</value></data>
+  <data name="ImageEditor_Undo" xml:space="preserve"><value>Rückgängig</value></data>
+  <data name="ImageEditor_Redo" xml:space="preserve"><value>Wiederholen</value></data>
+  <data name="ImageEditor_RotateLeft" xml:space="preserve"><value>90° nach links</value></data>
+  <data name="ImageEditor_RotateRight" xml:space="preserve"><value>90° nach rechts</value></data>
+  <data name="ImageEditor_FitImage" xml:space="preserve"><value>Bild einpassen</value></data>
+  <data name="ImageEditor_FitCanvas" xml:space="preserve"><value>Leinwand an Bild anpassen</value></data>
+  <data name="ImageEditor_Reset" xml:space="preserve"><value>Zurücksetzen</value></data>
+  <data name="ImageEditor_Preview" xml:space="preserve"><value>Vorschau des Bildlayouts</value></data>
+  <data name="ImageEditor_Help" xml:space="preserve"><value>Ziehe das Bild zum Verschieben. Ziehe einen Griff zum Skalieren oder den Drehgriff zum freien Drehen. Ein fokussierter Griff lässt sich auch mit den Pfeiltasten bewegen.</value></data>
+  <data name="ImageEditor_CanvasMode" xml:space="preserve"><value>Leinwand mit Griffen skalieren</value></data>
+  <data name="ImageEditor_CanvasWidth" xml:space="preserve"><value>Leinwandbreite (px)</value></data>
+  <data name="ImageEditor_CanvasHeight" xml:space="preserve"><value>Leinwandhöhe (px)</value></data>
+  <data name="ImageEditor_ImageWidth" xml:space="preserve"><value>Bildbreite (px)</value></data>
+  <data name="ImageEditor_ImageHeight" xml:space="preserve"><value>Bildhöhe (px)</value></data>
+  <data name="ImageEditor_OffsetX" xml:space="preserve"><value>Horizontaler Versatz (px)</value></data>
+  <data name="ImageEditor_OffsetY" xml:space="preserve"><value>Vertikaler Versatz (px)</value></data>
+  <data name="ImageEditor_Angle" xml:space="preserve"><value>Drehung (°)</value></data>
+  <data name="ImageEditor_LockAspect" xml:space="preserve"><value>Seitenverhältnis beibehalten</value></data>
+  <data name="ImageEditor_Align" xml:space="preserve"><value>Auf der Leinwand ausrichten</value></data>
+  <data name="ImageEditor_AlignAt" xml:space="preserve"><value>Ausrichten: {0}</value></data>
+  <data name="ImageEditor_TopLeft" xml:space="preserve"><value>oben links</value></data>
+  <data name="ImageEditor_Top" xml:space="preserve"><value>oben</value></data>
+  <data name="ImageEditor_TopRight" xml:space="preserve"><value>oben rechts</value></data>
+  <data name="ImageEditor_Left" xml:space="preserve"><value>links</value></data>
+  <data name="ImageEditor_Center" xml:space="preserve"><value>Mitte</value></data>
+  <data name="ImageEditor_Right" xml:space="preserve"><value>rechts</value></data>
+  <data name="ImageEditor_BottomLeft" xml:space="preserve"><value>unten links</value></data>
+  <data name="ImageEditor_Bottom" xml:space="preserve"><value>unten</value></data>
+  <data name="ImageEditor_BottomRight" xml:space="preserve"><value>unten rechts</value></data>
+  <data name="ImageEditor_Rotate" xml:space="preserve"><value>Drehung</value></data>
+  <data name="ImageEditor_Handle" xml:space="preserve"><value>Griff {0}: ziehen oder Pfeiltasten verwenden</value></data>
+  <data name="ImageEditor_SaveHint" xml:space="preserve"><value>Speichert ein neues PNG; Originale bleiben unverändert. Das Schachbrett steht für Transparenz. Die Vorschau ist verkleinert; der Export nutzt volle Auflösung. Metadaten werden entfernt, Animationen verwenden das erste Einzelbild.</value></data>
+  <data name="ImageEditor_Loading" xml:space="preserve"><value>Bildvorschau wird geladen…</value></data>
+  <data name="ImageEditor_Back" xml:space="preserve"><value>Optionen</value></data>
+  <data name="ImageEditor_Save" xml:space="preserve"><value>Neues PNG speichern</value></data>
+  <data name="ImageEditor_LoadFailed" xml:space="preserve"><value>Die Bildvorschau konnte nicht geladen werden. Prüfe die Auswahl und das installierte Bild-Tools-Pack.</value></data>
+  <data name="ImageEditor_Ready" xml:space="preserve"><value>Ziehe zum Anpassen des Layouts und speichere anschließend ein neues PNG.</value></data>
+  <data name="ImageEditor_Clipped" xml:space="preserve"><value>Bildteile außerhalb der Leinwand werden abgeschnitten. Mit Bild einpassen oder Leinwand an Bild anpassen bleibt alles erhalten.</value></data>
+  <data name="ImageEditor_Invalid" xml:space="preserve"><value>Diese Größe überschreitet die Grenzen: 10.000 Pixel je Seite und 40 Millionen Pixel. Das vorherige Layout bleibt erhalten.</value></data>
+  <data name="ImageEditor_Summary" xml:space="preserve"><value>Leinwand: {0} × {1} px. Bild: {2} × {3} px. Drehung: {4}°.</value></data>
+  <data name="ImageEditor_EffectsOpen" xml:space="preserve"><value>Mit visueller Vorschau anpassen…</value></data>
+  <data name="ImageEditor_EffectsHint" xml:space="preserve"><value>Ändere die Optionen, um die Vorschau zu aktualisieren. Vorschauen sind verkleinert und angenähert; der Export nutzt die Originalauflösung. Bei Stapeln wird das erste natürlich sortierte Bild gezeigt, bei Gittern das gesamte Layout.</value></data>
+  <data name="ImageEditor_EffectsPreview" xml:space="preserve"><value>Berechnete Ausgabevorschau</value></data>
+  <data name="ImageEditor_EffectsUnavailable" xml:space="preserve"><value>Eine visuelle Vorschau ist nicht verfügbar. Prüfe die Einstellungen oder kehre zu den Optionen zurück. Es wurden keine Dateien geschrieben.</value></data>
+  <data name="ImageEditor_EffectsDimensions" xml:space="preserve"><value>Ausgabe-Leinwand: {0} × {1} px. Schachbrett: Transparenz.</value></data>
+  <data name="ImageEditor_EffectsUpdating" xml:space="preserve"><value>Vorschau wird aktualisiert…</value></data>
+  <data name="ImageEditor_Modifiers" xml:space="preserve"><value>Shift: Bild und Leinwand proportional skalieren, auf einer Achse verschieben, in 15°-Schritten drehen. Shift + Pfeiltasten: 10-Pixel-Schritte (Drehung: 15°).</value></data>
+  <data name="ImageEditor_FitView" xml:space="preserve"><value>Ansicht einpassen</value></data>
+  <data name="ImageEditor_ResizeHint" xml:space="preserve"><value>Passe Breite oder Höhe an, um das ganze Bild proportional zu skalieren. Größere Maße vergrößern das Bild. Die verkleinerte Vorschau zeigt die gewählte Ausgabegröße.</value></data>
+  <data name="ImageEditor_ResizeWidth" xml:space="preserve"><value>Breite (px)</value></data>
+  <data name="ImageEditor_ResizeHeight" xml:space="preserve"><value>Höhe (px)</value></data>
+  <data name="ImageEditor_ResizeHalf" xml:space="preserve"><value>½×</value></data>
+  <data name="ImageEditor_ResizeOriginal" xml:space="preserve"><value>1×</value></data>
+  <data name="ImageEditor_ResizeDouble" xml:space="preserve"><value>2×</value></data>
+  <data name="ImageEditor_ResizeQuadruple" xml:space="preserve"><value>4×</value></data>
+  <data name="ImageEditor_ResizeInvalid" xml:space="preserve"><value>Diese Größe überschreitet die Vorschaugrenzen: 30.000 Pixel je Seite und 60 Millionen Pixel. Die vorherige Größe bleibt erhalten.</value></data>
+  <data name="ImageEditor_ResizeDimensions" xml:space="preserve"><value>Ausgabe: {0} × {1} px · Original: {2} × {3} px</value></data>
+  <data name="ImageEditor_ResizeScale" xml:space="preserve"><value>Bildgröße</value></data>
+  <data name="ImageEditor_ResizeDetails" xml:space="preserve"><value>Maße und Qualität</value></data>
+  <data name="ImageEditor_ResizeImprove" xml:space="preserve"><value>Qualität beim Vergrößern verbessern</value></data>
+  <data name="ImageEditor_ResizeSave" xml:space="preserve"><value>Skalieren</value></data>
+  <data name="ImageEditor_ResizeOutput" xml:space="preserve"><value>{0} × {1} Pixel</value></data>
+  <data name="ImageEditor_ResizePercent" xml:space="preserve"><value>{0} %</value></data>
 </root>

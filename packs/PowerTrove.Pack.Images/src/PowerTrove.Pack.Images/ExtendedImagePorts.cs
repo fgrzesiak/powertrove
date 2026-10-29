@@ -10,7 +10,7 @@ public interface IImageLosslessTransformer
 }
 
 public sealed record ImageWatermarkRequest(string SourceFormat, string? Text, string Position, int Opacity,
-    int FontSizePercent, string Color, int WidthPercent, string? WatermarkFormat = null);
+    int FontSizePercent, string Color, int WidthPercent, string? WatermarkFormat = null, string? TargetFormat = null);
 public interface IImageWatermarker
 {
     Task ApplyAsync(Stream source, Stream? watermark, Stream destination, ImageWatermarkRequest request, CancellationToken ct);

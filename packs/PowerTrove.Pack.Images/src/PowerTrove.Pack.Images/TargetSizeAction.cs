@@ -41,8 +41,9 @@ public sealed class TargetSizeAction(CompositeImageEngine engine, FileActionServ
         yield return SR.GetString("Raster_MetadataRemoved");
         if (f.Any(x => RasterSupport.Format(x) is FileFormats.Gif or FileFormats.WebP)) yield return SR.GetString("ImageExportAction_Warn_Animation");
         if (o.Format == "jpeg") yield return SR.GetString("ImageExportAction_Warn_Transparency");
+        if (o.Format == "same") foreach (string warning in RasterSupport.KeepFormatWarnings(f, engine.CanEncode)) yield return warning;
     }
-    private static string Target(SelectedFile f, TargetSizeOptions o) => o.Format == "same" ? RasterSupport.Format(f) : o.Format;
+    private string Target(SelectedFile f, TargetSizeOptions o) => o.Format == "same" ? RasterSupport.KeepFormat(RasterSupport.Format(f), engine.CanEncode) : o.Format;
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile f, TargetSizeOptions o)
     {
         string target = Target(f, o);

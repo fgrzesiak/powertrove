@@ -15,7 +15,10 @@ public sealed record ImageTransformRequest(
     int? MaxHeight,
     bool AllowUpscale,
     bool StripMetadata,
-    bool RemoveGpsOnly = false);
+    bool RemoveGpsOnly = false)
+{
+    public bool HighQualityResize { get; init; }
+}
 
 /// <summary>
 /// Port for image codecs. Implementations: Windows Imaging Component (OS-provided)
@@ -33,6 +36,7 @@ public interface IImageEngine
     /// <summary>Whether the engine can keep metadata when <see cref="ImageTransformRequest.StripMetadata"/> is false.</summary>
     bool CanPreserveMetadata { get; }
     bool CanRemoveGpsOnly => false;
+    bool SupportsHighQualityResize => false;
 
     Task TransformAsync(Stream source, Stream destination, ImageTransformRequest request, CancellationToken cancellationToken);
 }
@@ -55,10 +59,12 @@ public sealed class CompositeImageEngine : IImageEngine
 
     public bool CanPreserveMetadata => _engines.Any(e => e.CanPreserveMetadata);
     public bool CanRemoveGpsOnly => _engines.Any(e => e.CanRemoveGpsOnly);
+    public bool SupportsHighQualityResize => _engines.Any(e => e.SupportsHighQualityResize);
 
     public IImageEngine? Select(ImageTransformRequest request) =>
         _engines.FirstOrDefault(e => e.CanDecode(request.SourceFormat) && e.CanEncode(request.TargetFormat) && (request.StripMetadata || e.CanPreserveMetadata)
-            && (!request.RemoveGpsOnly || !request.StripMetadata && e.CanRemoveGpsOnly));
+            && (!request.RemoveGpsOnly || !request.StripMetadata && e.CanRemoveGpsOnly)
+            && (!request.HighQualityResize || e.SupportsHighQualityResize));
 
     public Task TransformAsync(Stream source, Stream destination, ImageTransformRequest request, CancellationToken cancellationToken)
     {

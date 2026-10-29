@@ -27,17 +27,17 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     public bool UpdateInstalling => Updates?.IsInstalling == true;
     public IReleaseDiscovery ReleaseDiscovery => _releaseDiscovery ??= GitHubReleaseDiscovery.CreateDefault();
     private MainWindow? m_window;
+    /// <summary>The single PowerTrove window that hosts the palette and every view.</summary>
+    internal MainWindow? Shell => m_window;
     private IHotkeyService? _hotkeyService;
     private InvocationCoordinator? _invocationCoordinator;
     private PowerTrove.Platform.Windows.Shell.TrayIcon? _trayIcon;
     private IntPtr _iconHandle;
-    private SettingsWindow? _settingsWindow;
     private readonly IHostElector? _hostElector;
     private readonly ActivationMessage? _startupMessage;
     private readonly CancellationTokenSource _activationLifetime = new();
     private Task? _activationListener;
     private PackRegistryBinding? _packRegistryBinding;
-    private readonly HashSet<Window> _editors = new();
 
     public ISettingsService? SettingsService { get; private set; }
     public IActionSearchEngine? SearchEngine { get; private set; }
@@ -84,7 +84,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         _releaseInstaller = GitHubReleaseInstaller.CreateDefault(
             new PowerTrove.Platform.Windows.Shell.ReleaseInstallerLauncher(),
-            Path.Combine(appDataPath, "PowerTrove", "updates"), () => m_window?.CanCloseForUpdate == true && _settingsWindow?.CanCloseForUpdate != false && _editors.Count == 0);
+            Path.Combine(appDataPath, "PowerTrove", "updates"), () => m_window?.CanCloseForUpdate == true);
         _ = Task.Run(_releaseInstaller.CleanupStaleDownloads);
         string? version = typeof(App).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
             .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion
@@ -134,7 +134,9 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed;
         }
         Actions = actionRegistry;
-        PackRuntime = new PowerTrove.Application.Packs.InstalledPackRuntime(PackInstaller, PackHosts, actionRegistry, installedPacks, catalog.Catalog);
+        // The source launcher can explicitly prefer locally compiled packs for development.
+        bool preferBuiltIns = Environment.GetEnvironmentVariable("POWERTROVE_PREFER_BUILTIN_PACKS") == "1";
+        PackRuntime = new PowerTrove.Application.Packs.InstalledPackRuntime(PackInstaller, PackHosts, actionRegistry, installedPacks, catalog.Catalog, preferBuiltIns);
         PackRuntime.RolledBack += _ => m_window?.DispatcherQueue.TryEnqueue(() => m_window.ViewModel.CatalogWarningMessage = UiText.PackRolledBack);
         try { await PackRuntime.ReloadAsync(); }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
@@ -273,7 +275,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private void ShowGenericActivation()
     {
         if (UpdateInstalling) return;
-        if (m_window?.TryActivateVisualEditor() == true) return;
+        if (m_window?.TryResurfaceHostedView() == true) return;
         if (m_window is null || m_window.ViewModel.IsExecuting || Actions is null || SearchEngine is null || SettingsService is null) return;
         _invocationCoordinator?.Dismiss();
         var now = DateTimeOffset.UtcNow;
@@ -300,7 +302,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private bool ShowExplicitSelection(ExplicitSelectionMessage selection, ContextSnapshot snapshot)
     {
-        if (UpdateInstalling || m_window?.TryActivateVisualEditor() == true) return false;
+        if (UpdateInstalling || m_window?.TryResurfaceHostedView() == true) return false;
         if (m_window is null || m_window.ViewModel.IsExecuting) return false;
         if (selection.ActionId is null)
         {
@@ -313,10 +315,9 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         if (selection.ActionId != ActivationProtocol.OrganizePagesActionId) return false;
         var action = Actions?.GetAction(ActivationProtocol.OrganizePagesActionId);
         if (action is null || action is PowerTrove.Core.Catalog.CatalogAction) return false;
-        var organizer = new PageOrganizerWindow(action, snapshot);
-        TrackEditor(organizer);
-        ApplyWindowIcon(organizer);
-        organizer.Activate();
+        m_window.ShowView(new PageOrganizerWindow(action, snapshot), snapshot.Source.WindowHandle, canReturnToPalette: false);
+        // The organizer replaces a palette that may be open; end that invocation.
+        DismissPalette();
         return true;
     }
 
@@ -348,7 +349,6 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         _packRegistryBinding?.Dispose();
         Updates?.Dispose();
         _releaseInstaller?.Dispose();
-        _settingsWindow?.Close();
         if (m_window is { } window)
         {
             window.AllowClose = true;
@@ -402,30 +402,14 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         return false;
     }
 
-    /// <summary>Keep open editors safe from update shutdown.</summary>
-    public void TrackEditor(Window window)
-    {
-        _editors.Add(window);
-        window.Closed += (_, _) => _editors.Remove(window);
-    }
-
-    /// <summary>Gives a secondary window the PowerTrove icon.</summary>
-    public void ApplyWindowIcon(Window window)
-    {
-        if (_iconHandle != IntPtr.Zero)
-            window.AppWindow.SetIcon(Microsoft.UI.Win32Interop.GetIconIdFromIcon(_iconHandle));
-    }
-
     public void OpenSettings()
     {
-        if (_settingsWindow == null)
-        {
-            _settingsWindow = new SettingsWindow();
-            _settingsWindow.Closed += (_, _) => _settingsWindow = null;
-            if (_iconHandle != IntPtr.Zero)
-                _settingsWindow.AppWindow.SetIcon(Microsoft.UI.Win32Interop.GetIconIdFromIcon(_iconHandle));
-        }
-        _settingsWindow.Activate();
+        if (m_window is null) return;
+        // An editor with unsaved work keeps the window; open settings already just come to the front.
+        if (m_window.TryResurfaceHostedView()) return;
+        if (m_window.HostedView is SettingsWindow) { m_window.BringHostedViewToFront(); return; }
+        // The invocation stays alive so the back arrow can return to the palette; hiding ends it.
+        m_window.ShowView(new SettingsWindow());
     }
 
     private void OnHotkeyTriggered(object? sender, EventArgs e)
@@ -436,7 +420,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private void RequestPaletteOrEditor()
     {
         if (UpdateInstalling) return;
-        if (m_window?.TryActivateVisualEditor() == true) return;
+        if (m_window?.TryResurfaceHostedView() == true) return;
         _ = _invocationCoordinator?.InvokeAsync();
     }
 
