@@ -21,7 +21,8 @@
   <a href="https://powertrove.net/en/download"><b>Download</b></a> ·
   <a href="https://powertrove.net/en/tools"><b>All tools</b></a> ·
   <a href="https://powertrove.net/en/docs"><b>Docs</b></a> ·
-  <a href="https://github.com/fgrzesiak/powertrove/issues"><b>Feedback</b></a>
+  <a href="https://github.com/fgrzesiak/powertrove/issues"><b>Feedback</b></a> ·
+  <a href="https://github.com/sponsors/fgrzesiak"><b>Sponsor</b></a>
 </p>
 
 ---
