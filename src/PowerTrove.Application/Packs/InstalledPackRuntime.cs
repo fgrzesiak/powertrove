@@ -67,7 +67,10 @@ public sealed class InstalledPackRuntime
             foreach (var pack in packs)
             {
                 var group = new PackWorkerGroup(pack.WorkerGroupId, [pack.Directory], [new(pack.Manifest.Id, pack.Manifest.Version)], [pack.ManifestSha256]);
-                var actions = pack.Manifest.Actions.Select(a => (IAction)new RemoteAction(supervisor, group, Describe(a, pack.Manifest.DisplayName),
+                var presentation = ManifestLocalization.ForCulture(pack.Manifest);
+                var englishTitles = pack.Manifest.Actions.ToDictionary(a => a.Id, a => a.Title, StringComparer.Ordinal);
+                var actions = presentation.Actions.Select(a => (IAction)new RemoteAction(supervisor, group,
+                    Describe(a, presentation.DisplayName, englishTitles[a.Id]),
                     a.Extensions, ct => installer.ConfirmStartedAsync(pack.Manifest.Id, pack.Manifest.Version, ct))).ToArray();
                 registry.RegisterPack(pack.Manifest.Id, actions);
                 _registered.Add(pack.Manifest.Id);
@@ -76,8 +79,9 @@ public sealed class InstalledPackRuntime
         }
         finally { _gate.Release(); }
     }
-    private static ActionDescriptor Describe(ManifestAction action, string packName) => new(action.Id, action.Title,
-        action.Description ?? string.Empty, action.InputKinds.Select(k => k switch { "files" => ContentKind.Files, "table" => ContentKind.Table, "text" => ContentKind.Text, _ => ContentKind.None }).ToFrozenSet(), [packName],
+    private static ActionDescriptor Describe(ManifestAction action, string packName, string englishTitle) => new(action.Id, action.Title,
+        action.Description ?? string.Empty, action.InputKinds.Select(k => k switch { "files" => ContentKind.Files, "table" => ContentKind.Table, "text" => ContentKind.Text, _ => ContentKind.None }).ToFrozenSet(),
+        englishTitle == action.Title ? [packName] : [packName, englishTitle],
         action.RequiresPreview ?? true, action.ChangesFiles ?? true, action.RequiredCapabilities?.ToFrozenSet(StringComparer.Ordinal),
         Parameters: action.Parameters?.Select(Parameter).ToArray(), Selection: action.Selection?.ToRequirements(), CanRememberParameters: false);
     private static ActionParameterDefinition Parameter(ManifestParameter parameter) => new(parameter.Name, parameter.Type switch

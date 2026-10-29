@@ -22,7 +22,12 @@ public sealed record ActionManifest(
     [property: JsonPropertyName("payload")] ManifestPayload? Payload = null,
     [property: JsonPropertyName("capabilities")] IReadOnlyList<string>? Capabilities = null,
     [property: JsonPropertyName("releaseFingerprint")] string? ReleaseFingerprint = null
-);
+)
+{
+    // Additive presentation metadata keeps the existing constructor/binding contract intact.
+    [JsonPropertyName("localizations")]
+    public IReadOnlyDictionary<string, ManifestPresentation>? Localizations { get; init; }
+}
 
 public sealed record PlatformConstraints(
     [property: JsonPropertyName("os")] IReadOnlyList<string>? Os = null,

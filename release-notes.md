@@ -1,14 +1,11 @@
-# PowerTrove 0.3.2 Alpha 2
+# PowerTrove 0.3.2 Alpha 3
 
-Choose tool packs directly from the welcome screen and find separately installable tools more clearly in Settings.
+Updated tool packs now follow your display language for commands and options. This update also corrects startup of the separately provided MSIX test package.
 
-## Added
+## Fixed
 
-- Open tool-pack selection directly from the welcome screen.
-
-## Changed
-
-- Pack management now focuses on separately installable tools. Built-in email preparation recipes remain available through action search.
+- German display language now applies to command names, descriptions, pack names and options in updated tool packs. Restart PowerTrove after changing the language.
+- Corrected missing interface resources that prevented the MSIX test package from opening its first window.
 
 ## Known limitations
 

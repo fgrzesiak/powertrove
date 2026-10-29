@@ -15,6 +15,40 @@ namespace PowerTrove.Application.Tests;
 public sealed class PackManagementIntegrationTests
 {
     [Fact]
+    public async Task SignedPackUpdateLocalizesDiscoveryAndInstalledParameters_WithoutChangingHostOrFingerprint()
+    {
+        var previous = System.Globalization.CultureInfo.CurrentUICulture;
+        try
+        {
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("de-AT");
+            await using var f = new Fixture(localized: true);
+            string old = f.Temp.File("old.cbpack"); File.WriteAllBytes(old, f.Bundles["1.0.0"]);
+            await f.Service.InstallFileAsync(old, default);
+            Assert.Equal("Bildwerkzeug 1.0.0", f.Registry.GetAction("powertrove.image.first")!.Descriptor.Title);
+            var page = await f.Service.OpenOnUserRequestAsync(default);
+            Assert.Equal("Bilder", Assert.Single(page.Packs).Name);
+            Assert.Equal("Bildwerkzeug 1.1.0", f.Registry.GetAction("powertrove.image.new")!.Descriptor.Title);
+            var germanOffer = (await f.Service.PrepareAsync("powertrove.images", default)).Offer!;
+            Assert.Equal("Bilder", germanOffer.Name);
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en");
+            var englishOffer = (await f.Service.PrepareAsync("powertrove.images", default)).Offer!;
+            Assert.Equal(englishOffer.ManifestFingerprint, germanOffer.ManifestFingerprint);
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("de");
+            Assert.Equal(PackChannelStatus.Installed, await f.Service.InstallAsync(germanOffer, null, default));
+            var action = f.Registry.GetAction("powertrove.image.first")!;
+            Assert.Equal("Bildwerkzeug 1.1.0", action.Descriptor.Title);
+            var parameter = Assert.Single(action.Descriptor.Parameters!);
+            Assert.Equal("Zielformat", parameter.Title); Assert.Equal("format", parameter.Name); Assert.Equal("png", parameter.DefaultValue);
+            Assert.Equal("PNG-Bild", Assert.Single(parameter.Choices!).Title);
+            Assert.Equal(new Version(1, 0, 0), f.Installer.HostVersion); Assert.Equal(0, f.WorkerStarts);
+            using var offline = f.NewOfflineClient();
+            Assert.Equal(PackChannelStatus.Ready, await offline.LoadCachedAsync());
+            Assert.Equal("New remote title", offline.GetLatestCompatible("powertrove.images")!.Manifest.Actions[0].Title);
+        }
+        finally { System.Globalization.CultureInfo.CurrentUICulture = previous; }
+    }
+
+    [Fact]
     public async Task ActualSignedChannelInstallsCompatibleVersion_AndRefreshesDiscoveryAfterInstallAndUninstall()
     {
         await using var f = new Fixture();
@@ -80,10 +114,16 @@ public sealed class PackManagementIntegrationTests
         public PackChannelClient Channel { get; }
         public PackManagementService Service { get; }
         public int Requests, WorkerStarts;
-        public Fixture()
+        public Fixture(bool localized = false)
         {
             _signatures = new([Convert.ToBase64String(_key.ExportSubjectPublicKeyInfo())]);
-            var manifests = new[] { Manifest("1.0.0", "1.0.0", false), Manifest("1.1.0", "1.0.0", true), Manifest("2.0.0", "2.0.0", true) };
+            var manifests = new[] { Manifest("1.0.0", "1.0.0", false), Manifest("1.1.0", "1.0.0", true), Manifest("2.0.0", "2.0.0", true) }
+                .Select(m => !localized ? m : ManifestLocalization.WithTranslation(m, "de", m with
+                {
+                    DisplayName = "Bilder", Actions = m.Actions.Select(a => a with { Title = "Bildwerkzeug " + m.Version,
+                        Parameters = a.Parameters?.Select(p => p with { Title = "Zielformat",
+                            ChoiceTitles = new Dictionary<string, string> { ["png"] = "PNG-Bild" } }).ToArray() }).ToArray()
+                })).ToArray();
             foreach (var manifest in manifests) Bundles.Add(manifest.Version, Bundle(manifest));
             byte[] catalog = JsonSerializer.SerializeToUtf8Bytes(new
             { schemaVersion = "2", packs = manifests.Select(m => new { manifest = m, downloadBytes = Bundles[m.Version].Length }).ToArray() });
@@ -107,6 +147,7 @@ public sealed class PackManagementIntegrationTests
         {
             byte[] payload = "generated registration fixture, not executable"u8.ToArray();
             ManifestAction Action(string id, string title) => new(id, title, ["files"], Extensions: [".png"],
+                Parameters: [new("format", "choice", "Target format", Choices: ["png"], Default: "png", ChoiceTitles: new Dictionary<string, string> { ["png"] = "PNG image" })],
                 Selection: ManifestSelection.FromRequirements(SelectionRequirements.Any("image")), ChangesFiles: true);
             return new("2.0", "powertrove.images", version, "Images", "PowerTrove tests", "1",
                 added ? [Action("powertrove.image.first", "New remote title"), Action("powertrove.image.new", "New image tool")]

@@ -40,6 +40,18 @@ public sealed class PackReleasePlannerTests : IDisposable
         Assert.All(next.Packs, p => { Assert.False(p.Changed); Assert.Equal("0.1.0", p.Version); });
     }
     [Fact]
+    public async Task TranslationOnlyChangeReleasesOnlyItsPack_WithNoDesktopInput()
+    {
+        Write("packs/Images/Resources/Strings.de.resx", "<root><!-- initial generated translation --></root>");
+        string previous = Catalog(await Plan());
+        Write("packs/Images/Resources/Strings.de.resx", "<root><!-- changed generated translation --></root>");
+        var next = await Plan(previous);
+        Assert.True(next.Packs.Single(p => p.Id == "powertrove.images").Changed);
+        Assert.False(next.Packs.Single(p => p.Id == "powertrove.files").Changed);
+        Assert.All(next.Packs, p => Assert.Equal("0.1.0", p.MinimumHostVersion));
+    }
+
+    [Fact]
     public async Task ReferencedEngineChangeReleasesOnlyDependentPack_AndSdkChangeReleasesBoth()
     {
         string previous = Catalog(await Plan());

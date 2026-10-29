@@ -1,4 +1,5 @@
 using PowerTrove.Core.Catalog;
+using PowerTrove.Abstractions.Manifest;
 
 namespace PowerTrove.Application.Packs;
 
@@ -92,7 +93,8 @@ public sealed class PackManagementService(PackInstaller installer, PackChannelCl
             available.TryGetValue(id, out var remote); localCatalog.TryGetValue(id, out var catalog);
             var metadata = remote?.Manifest ?? local?.Manifest;
             var info = bundled?.Info ?? catalog?.FirstOrDefault()?.Pack;
-            string name = local?.Manifest.DisplayName ?? bundled?.Info.DisplayName ?? metadata?.DisplayName ?? info!.DisplayName;
+            string name = local is not null ? ManifestLocalization.ForCulture(local.Manifest).DisplayName
+                : bundled?.Info.DisplayName ?? (metadata is null ? info!.DisplayName : ManifestLocalization.ForCulture(metadata).DisplayName);
             string publisher = metadata?.Publisher ?? info!.Publisher;
             string? version = local?.Manifest.Version ?? bundled?.Info.Version;
             string latest = remote?.Manifest.Version ?? local?.Manifest.Version ?? info!.Version;

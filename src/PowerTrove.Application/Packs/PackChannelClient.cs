@@ -221,7 +221,7 @@ public sealed class PackChannelClient : IDisposable
         .OrderByDescending(p => p.IsCompatible).ThenByDescending(p => Version.Parse(p.Manifest.Version)).FirstOrDefault();
     public AvailablePack? GetLatestCompatible(string id) => _catalog.Where(p => p.Manifest.Id == id && p.IsCompatible)
         .OrderByDescending(p => Version.Parse(p.Manifest.Version)).FirstOrDefault();
-    private static PackInstallOffer Offer(AvailablePack pack) => new(pack.Manifest.Id, pack.Manifest.Version, pack.Manifest.DisplayName,
+    private static PackInstallOffer Offer(AvailablePack pack) => new(pack.Manifest.Id, pack.Manifest.Version, ManifestLocalization.ForCulture(pack.Manifest).DisplayName,
         pack.Manifest.Publisher, pack.DownloadBytes, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(pack.Manifest)))));
 
     private async Task<HttpResponseMessage> SendAsync(Uri uri, CancellationToken token)
