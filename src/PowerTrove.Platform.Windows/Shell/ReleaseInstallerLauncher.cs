@@ -9,6 +9,7 @@ public sealed class ReleaseInstallerLauncher : IReleaseInstallerLauncher
         => Task.Run(() =>
     {
         cancellationToken.ThrowIfCancellationRequested();
+        if (!Deployment.WindowsAppDistribution.Current.AllowsInstallerUpdates) return false;
         // Preserve download origin and normal Windows shell/SmartScreen checks, including unsigned alpha warnings.
         File.WriteAllText(installerPath + ":Zone.Identifier", "[ZoneTransfer]\r\nZoneId=3\r\nHostUrl=https://github.com/" +
             ReleaseSource.Repository + "\r\n");

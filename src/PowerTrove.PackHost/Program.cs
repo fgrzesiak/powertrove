@@ -35,7 +35,7 @@ public static class Program
             if (parent.HasExited || parent.Id == current.Id || parent.SessionId != current.SessionId) return 2;
             parentWatch = WatchParentAsync(parent, lifetime);
             startupStage = "workRoot";
-            string userRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PowerTrove");
+            string userRoot = PowerTrove.Platform.Windows.Deployment.WindowsAppDistribution.Current.UserRoot;
             string workRoot = Path.Combine(userRoot, "workers");
             Directory.CreateDirectory(workRoot);
             string candidateWork = options.WorkRoot is null ? Path.Combine(workRoot, Guid.NewGuid().ToString("N"))

@@ -25,7 +25,11 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private GitHubReleaseInstaller? _releaseInstaller;
     public ReleaseUpdatesViewModel Updates { get; private set; } = null!;
     public bool UpdateInstalling => Updates?.IsInstalling == true;
-    public IReleaseDiscovery ReleaseDiscovery => _releaseDiscovery ??= GitHubReleaseDiscovery.CreateDefault();
+    public PowerTrove.Application.Configuration.DesktopDistribution Distribution =>
+        PowerTrove.Platform.Windows.Deployment.WindowsAppDistribution.Current;
+    public IReleaseDiscovery ReleaseDiscovery => Distribution.AllowsInstallerUpdates
+        ? _releaseDiscovery ??= GitHubReleaseDiscovery.CreateDefault()
+        : throw new InvalidOperationException("Packaged host updates are managed by Windows.");
     private MainWindow? m_window;
     /// <summary>The single PowerTrove window that hosts the palette and every view.</summary>
     internal MainWindow? Shell => m_window;
@@ -68,8 +72,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
         // Settings first: the UI language must be applied before any window or pack reads resources.
-        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        string settingsFilePath = Path.Combine(appDataPath, "PowerTrove", "settings.json");
+        string userRoot = Distribution.UserRoot;
+        string settingsFilePath = Path.Combine(userRoot, "settings.json");
         SettingsService = new SettingsService(settingsFilePath);
         StartupUiLanguage = SettingsService.Settings.UiLanguage;
         UiLanguages.Apply(UiLanguages.Resolve(StartupUiLanguage, System.Globalization.CultureInfo.CurrentUICulture));
@@ -77,20 +81,23 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         string workerExecutable = Path.Combine(AppContext.BaseDirectory, "PowerTrove.PackHost.exe");
         PackHosts = new PowerTrove.Application.Packs.PackHostSupervisor(
             new PowerTrove.Platform.Windows.Packs.WindowsPackWorkerProcessFactory(workerExecutable),
-            Path.Combine(appDataPath, "PowerTrove"));
-        PackInstaller = new PowerTrove.Application.Packs.PackInstaller(Path.Combine(appDataPath, "PowerTrove"),
+            userRoot);
+        PackInstaller = new PowerTrove.Application.Packs.PackInstaller(userRoot,
             PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion, PackHosts.StopPackAsync);
-        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, Path.Combine(appDataPath, "PowerTrove"), PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
+        PackChannel = PowerTrove.Application.Packs.PackChannelClient.CreateDefault(PackInstaller, userRoot, PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
 
-        _releaseInstaller = GitHubReleaseInstaller.CreateDefault(
-            new PowerTrove.Platform.Windows.Shell.ReleaseInstallerLauncher(),
-            Path.Combine(appDataPath, "PowerTrove", "updates"), () => m_window?.CanCloseForUpdate == true);
-        _ = Task.Run(_releaseInstaller.CleanupStaleDownloads);
+        if (Distribution.AllowsInstallerUpdates)
+        {
+            _releaseInstaller = GitHubReleaseInstaller.CreateDefault(
+                new PowerTrove.Platform.Windows.Shell.ReleaseInstallerLauncher(),
+                Path.Combine(userRoot, "updates"), () => m_window?.CanCloseForUpdate == true);
+            _ = Task.Run(_releaseInstaller.CleanupStaleDownloads);
+        }
         string? version = typeof(App).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
             .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion
             ?? typeof(App).Assembly.GetName().Version?.ToString();
-        Updates = new ReleaseUpdatesViewModel(version, ReleaseDiscovery,
-            new PowerTrove.Platform.Windows.Shell.ReleasePageLauncher(), _releaseInstaller);
+        Updates = new ReleaseUpdatesViewModel(version, Distribution.AllowsInstallerUpdates ? ReleaseDiscovery : null,
+            new PowerTrove.Platform.Windows.Shell.ReleasePageLauncher(), _releaseInstaller, storeManaged: Distribution.IsPackaged);
         Updates.InstallerStarted += (_, _) => ExitApplication();
         await PackChannel.LoadCachedAsync(_activationLifetime.Token);
         m_window = new MainWindow();
@@ -230,10 +237,13 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         if (_hostElector is not null)
             _activationListener = _hostElector.StartListeningAsync(ReceiveActivationAsync, _activationLifetime.Token);
         _ = Updates.CheckOnStartupAsync(SettingsService.Settings.CheckForUpdatesOnStartup, _activationLifetime.Token);
-        var packMigration = new PowerTrove.Application.Packs.BuiltInPackMigration(PackManagement!, (PowerTrove.Application.Configuration.IPackMigrationSettings)SettingsService);
-        var setupSelection = PowerTrove.Application.Packs.BuiltInPackMigration.TakeSetupSelection(Path.Combine(AppContext.BaseDirectory, "setup-packs.json"));
-        if (packMigration.Prepare(installedPacks.Select(p => p.Info.Id).ToHashSet(StringComparer.Ordinal), setupSelection))
-            _ = RunPackMigrationAsync(packMigration);
+        if (Distribution.AllowsSetupMaintenance)
+        {
+            var packMigration = new PowerTrove.Application.Packs.BuiltInPackMigration(PackManagement!, (PowerTrove.Application.Configuration.IPackMigrationSettings)SettingsService);
+            var setupSelection = PowerTrove.Application.Packs.BuiltInPackMigration.TakeSetupSelection(Path.Combine(AppContext.BaseDirectory, "setup-packs.json"));
+            if (packMigration.Prepare(installedPacks.Select(p => p.Info.Id).ToHashSet(StringComparer.Ordinal), setupSelection))
+                _ = RunPackMigrationAsync(packMigration);
+        }
         if (_startupMessage is ExplicitSelectionMessage selection)
         {
             // Invalid explicit commands must not silently capture another window or open a generic palette.
@@ -402,14 +412,14 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         return false;
     }
 
-    public void OpenSettings()
+    public void OpenSettings(bool selectPacks = false)
     {
         if (m_window is null) return;
         // An editor with unsaved work keeps the window; open settings already just come to the front.
         if (m_window.TryResurfaceHostedView()) return;
         if (m_window.HostedView is SettingsWindow) { m_window.BringHostedViewToFront(); return; }
         // The invocation stays alive so the back arrow can return to the palette; hiding ends it.
-        m_window.ShowView(new SettingsWindow());
+        m_window.ShowView(new SettingsWindow(selectPacks));
     }
 
     private void OnHotkeyTriggered(object? sender, EventArgs e)

@@ -34,6 +34,43 @@ public static class Program
 
         rootCommand.AddCommand(packageCommand);
 
+        var payloadOption = new Option<string>("--payload", "Verified self-contained Core payload directory.") { IsRequired = true };
+        var identityOption = new Option<string>("--identity", "Explicit test or Partner Center package identity.") { IsRequired = true };
+        var publisherOption = new Option<string>("--publisher", "Publisher distinguished name matching the signing identity.") { IsRequired = true };
+        var msixVersionOption = new Option<string>("--package-version", "Four-part Store version; positive major and revision zero.") { IsRequired = true };
+        var msixCommand = new Command("prepare-msix", "Prepare a Core payload's MSIX manifest and localized package resources; does not install or publish.")
+        { repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption };
+        msixCommand.SetHandler((repo, payload, identity, publisher, packageVersion) =>
+            MsixManifest.Prepare(repo, payload, identity, publisher, packageVersion),
+            repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption);
+        rootCommand.AddCommand(msixCommand);
+
+        var coreZipOption = new Option<string>("--core-zip", "Exact previously verified Core ZIP.") { IsRequired = true };
+        var coreHashOption = new Option<string>("--core-sha256", "Expected SHA-256 of the Core ZIP.") { IsRequired = true };
+        var sourceOption = new Option<string>("--source-revision", "Exact public source commit.") { IsRequired = true };
+        var releaseVersionOption = new Option<string>("--release-version", "Semantic host release version, including alpha sequence.") { IsRequired = true };
+        var inputEvidenceOption = new Option<string>("--input-evidence", "Input payload evidence JSON.") { IsRequired = true };
+        var extractMsix = new Command("extract-msix-payload", "Verify and extract an existing Core ZIP without rebuilding.")
+        { coreZipOption, coreHashOption, payloadOption, sourceOption, versionOption, releaseVersionOption, inputEvidenceOption };
+        extractMsix.SetHandler(async (zip, hash, payload, revision, version, releaseVersion, evidenceFile) =>
+        {
+            var evidence = await MsixPayload.ExtractAsync(zip, payload, hash, revision, version, releaseVersion);
+            await File.WriteAllTextAsync(evidenceFile, System.Text.Json.JsonSerializer.Serialize(evidence));
+        }, coreZipOption, coreHashOption, payloadOption, sourceOption, versionOption, releaseVersionOption, inputEvidenceOption);
+        rootCommand.AddCommand(extractMsix);
+        var msixFileOption = new Option<string>("--msix", "Unsigned final MSIX to verify.") { IsRequired = true };
+        var proofFileOption = new Option<string>("--proof-file", "Verified final payload inventory JSON.") { IsRequired = true };
+        var verifyMsix = new Command("verify-msix-payload", "Require unchanged Core files and exact final MSIX archive contents.")
+        { msixFileOption, payloadOption, inputEvidenceOption, proofFileOption };
+        verifyMsix.SetHandler(async (msix, payload, inputFile, proof) =>
+        {
+            var evidence = System.Text.Json.JsonSerializer.Deserialize<MsixPayload.InputEvidence>(await File.ReadAllTextAsync(inputFile))
+                ?? throw new InvalidDataException("Missing input payload evidence.");
+            var files = await MsixPayload.VerifyAsync(msix, payload, evidence);
+            await File.WriteAllTextAsync(proof, System.Text.Json.JsonSerializer.Serialize(files));
+        }, msixFileOption, payloadOption, inputEvidenceOption, proofFileOption);
+        rootCommand.AddCommand(verifyMsix);
+
         var previousCatalogOption = new Option<string?>("--previous-catalog-file", "Verified published catalog and adjacent .sig.");
         var sdkVersionOption = new Option<string>("--sdk-version", "Actual .NET SDK version used for release planning.") { IsRequired = true };
         var planCommand = new Command("pack-plan", "Plan independent versions from sources and transitive dependencies; no signing key required.")

@@ -35,6 +35,9 @@ public sealed class ActionPacksViewModelTests
         var missing = snapshot.Packs.Single(p => p.Id == "powertrove.optional");
         Assert.Equal(PackInstallState.NotInstalled, missing.State); Assert.False(missing.CanDownload);
         Assert.Equal(0, factory.Starts);
+        using var vm = new ActionPacksViewModel(service, new SettingsService(temp.File("settings.json")));
+        await vm.OpenAsync();
+        Assert.Contains(vm.Rows, row => row.Id == "powertrove.fixture");
     }
 
     [Fact]
@@ -48,6 +51,7 @@ public sealed class ActionPacksViewModelTests
         await vm.OpenAsync();
         Assert.Equal(1, service.Opens);
         Assert.Equal(4, vm.Rows.Count);
+        Assert.DoesNotContain(vm.Rows, row => row.Id == "powertrove.recipes");
         Assert.False(vm.Rows.Single(r => r.Id == "powertrove.installed").CanDownload);
         Assert.True(vm.Rows.Single(r => r.Id == "powertrove.missing").CanDownload);
         Assert.Equal("Update", vm.Rows.Single(r => r.Id == "powertrove.update").PrimaryText);
@@ -59,6 +63,7 @@ public sealed class ActionPacksViewModelTests
         await vm.InstallFileAsync(temp.File("generated.cbpack"));
         Assert.Equal(new[] { "install:powertrove.missing", "install:powertrove.update", "remove:powertrove.installed", "file" }, service.Commands);
         Assert.Equal(4, service.LocalLoads);
+        Assert.DoesNotContain(vm.Rows, row => row.Id == "powertrove.recipes");
         await vm.InstallAsync(new PackInstallOffer("powertrove.incompatible", "99.0.0", "Generated incompatible", "PowerTrove tests", 1000, "generated"));
         await vm.UninstallAsync("powertrove.missing");
         Assert.Equal(4, service.Commands.Count);
@@ -171,7 +176,8 @@ public sealed class ActionPacksViewModelTests
         [new("powertrove.installed", "Generated installed", "PowerTrove tests", "0.1.0", "0.1.0", 2097152, 2, PackInstallState.Installed, false, true, false),
          new("powertrove.missing", "Generated missing", "PowerTrove tests", null, "0.1.0", 1000, 1, PackInstallState.NotInstalled, true, false, false),
          new("powertrove.update", "Generated update", "PowerTrove tests", "0.1.0", "0.2.0", 1000, 1, PackInstallState.UpdateAvailable, true, true, false),
-         new("powertrove.incompatible", "Generated incompatible", "PowerTrove tests", null, "99.0.0", 1000, 1, PackInstallState.Incompatible, false, false, false)];
+         new("powertrove.incompatible", "Generated incompatible", "PowerTrove tests", null, "99.0.0", 1000, 1, PackInstallState.Incompatible, false, false, false),
+         new("powertrove.recipes", "Generated host recipes", "PowerTrove tests", "0.1.0", "0.1.0", 0, 2, PackInstallState.Installed, false, false, true)];
         public int Opens, LocalLoads, Canceled;
         public bool HoldOpen;
         public PackChannelStatus Status = PackChannelStatus.Ready;

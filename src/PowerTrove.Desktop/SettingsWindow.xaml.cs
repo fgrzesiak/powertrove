@@ -28,7 +28,10 @@ public sealed partial class SettingsWindow : HostedView
     private bool _loadingUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
 
-    public SettingsWindow()
+    private bool IsPackaged => ((App)App.Current).Distribution.IsPackaged;
+    public string ExplorerDescription => IsPackaged ? UiText.StoreExplorerDescription : UiText.ExplorerDescription;
+
+    public SettingsWindow(bool selectPacks = false)
     {
         Updates = ((App)App.Current).Updates;
         if (App.Current is App { PackManagement: { } management, SettingsService: { } settings } owner)
@@ -40,7 +43,14 @@ public sealed partial class SettingsWindow : HostedView
         TitleBarIcon.Source = AppIconImage.Create(32);
         AboutIcon.Source = AppIconImage.Create(64);
         PreferredSize = new(820, 760);
+        if (IsPackaged)
+        {
+            ExplorerAddButton.Visibility = ExplorerRemoveButton.Visibility = Visibility.Collapsed;
+            GitHubUpdatesCard.Visibility = Visibility.Collapsed;
+            StoreUpdatesCard.Visibility = Visibility.Visible;
+        }
         _ = RefreshExplorerRegistrationAsync();
+        if (selectPacks) PackSelectionExpander.IsExpanded = true;
 
         if (App.Current is App app && app.SettingsService != null)
         {
@@ -58,6 +68,17 @@ public sealed partial class SettingsWindow : HostedView
                 MainSettingsPanel.IsEnabled = false;
             }
         }
+    }
+
+    private async void OpenStoreUpdates_Click(object sender, RoutedEventArgs e)
+    {
+        if (!IsPackaged) return;
+        try
+        {
+            if (!await Launcher.LaunchUriAsync(new Uri("ms-windows-store://downloadsandupdates")))
+                StoreUpdatesStatus.Text = UiText.StoreUpdatesOpenFailed;
+        }
+        catch (Exception) { StoreUpdatesStatus.Text = UiText.StoreUpdatesOpenFailed; }
     }
 
     private void SeparateProcessToggle_Toggled(object sender, RoutedEventArgs e)
@@ -280,6 +301,7 @@ public sealed partial class SettingsWindow : HostedView
 
     private async System.Threading.Tasks.Task RefreshExplorerRegistrationAsync()
     {
+        if (IsPackaged) return;
         if (Updates.IsInstalling || _explorerBusy || _packsClosed) return;
         _explorerBusy = true;
         ExplorerAddButton.IsEnabled = ExplorerRemoveButton.IsEnabled = false;
@@ -301,6 +323,7 @@ public sealed partial class SettingsWindow : HostedView
 
     private async System.Threading.Tasks.Task ChangeExplorerRegistrationAsync(bool register)
     {
+        if (IsPackaged) return;
         if (Updates.IsInstalling || _explorerBusy || _packsClosed) return;
         _explorerBusy = true;
         ExplorerAddButton.IsEnabled = ExplorerRemoveButton.IsEnabled = false;

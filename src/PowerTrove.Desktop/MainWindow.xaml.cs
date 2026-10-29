@@ -546,6 +546,16 @@ public partial class MainWindow : Window
         });
     }
 
+    private void ChooseFirstRunPacks_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.DismissFirstRun();
+        if (App.Current is App app)
+        {
+            app.SettingsService?.MarkFirstRunSeen();
+            app.OpenSettings(selectPacks: true);
+        }
+    }
+
     private void DismissFirstRun_Click(object sender, RoutedEventArgs e)
     {
         ViewModel.DismissFirstRun();

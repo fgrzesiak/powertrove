@@ -175,7 +175,10 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
         catch (Exception) { if (!_closed) StatusMessage = Strings.GetString("PacksOperationFailed"); }
         finally { _active = null; _busy = false; if (!_closed) Publish(); }
     }
-    private void SetRows(IReadOnlyList<PackListItem> rows) => Rows = rows.Select(item => new ActionPackRow(item)).ToArray();
+    // Recipes are host-owned workflows, not a separately manageable tool pack.
+    private void SetRows(IReadOnlyList<PackListItem> rows) => Rows = rows
+        .Where(item => !item.IsBuiltIn || item.Id != "powertrove.recipes")
+        .Select(item => new ActionPackRow(item)).ToArray();
     private void Publish()
     {
         foreach (var row in Rows) row.SetBusy(IsBusy);

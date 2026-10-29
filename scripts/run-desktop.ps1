@@ -33,8 +33,11 @@ Set-Location (Split-Path -Parent $PSScriptRoot)
 $project = 'src\PowerTrove.Desktop\PowerTrove.Desktop.csproj'
 $worker = 'src\PowerTrove.PackHost\PowerTrove.PackHost.csproj'
 
-if (Get-Process -Name PowerTrove -ErrorAction SilentlyContinue) {
-    throw 'PowerTrove is already running. Exit it from the system tray before starting a local build.'
+$runningProcesses = @(Get-Process -Name PowerTrove -ErrorAction SilentlyContinue)
+foreach ($runningProcess in $runningProcesses) {
+    Write-Host "Stopping running PowerTrove instance (PID $($runningProcess.Id))."
+    Stop-Process -Id $runningProcess.Id -Force -ErrorAction Stop
+    Wait-Process -Id $runningProcess.Id -Timeout 10 -ErrorAction SilentlyContinue
 }
 
 if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
