@@ -199,6 +199,8 @@
                           HorizontalContentAlignment="Stretch" Margin="0,12,0,4" AutomationProperties.AutomationId="ActionPacksSection">
                     <StackPanel Spacing="12" Padding="12,0,12,12">
                         <TextBlock Text="{x:Bind local:UiText.PacksPrivacy}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
+                        <ToggleSwitch x:Name="AutomaticPackUpdatesToggle" Header="{x:Bind local:UiText.PackUpdatesAutomatic}"
+                                      Toggled="AutomaticPackUpdatesToggle_Toggled" AutomationProperties.AutomationId="AutomaticPackUpdatesToggle" />
                         <CheckBox Content="{x:Bind local:UiText.PacksShowMissing}" IsChecked="{x:Bind Packs.ShowNotInstalledActions, Mode=TwoWay}"
                                   IsEnabled="{x:Bind Packs.CanChangeVisibility, Mode=OneWay}" AutomationProperties.AutomationId="ShowMissingPackActions" />
                         <TextBlock Text="{x:Bind local:UiText.PacksLocalDescription}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />

@@ -15,6 +15,25 @@ namespace PowerTrove.Application.Tests;
 public sealed class PackManagementIntegrationTests
 {
     [Fact]
+    public async Task AutomaticCheckIsSignedMetadataOnly_WithNoRuntimeReloadOrWorkerMutation()
+    {
+        await using var f = new Fixture();
+        Assert.Empty((await ((IPackUpdateChecks)f.Service).CheckForUpdatesAsync(default)).Packs);
+        Assert.Equal(0, f.Requests);
+        string file = f.Temp.File("local.cbpack"); File.WriteAllBytes(file, f.Bundles["1.0.0"]);
+        await f.Service.InstallFileAsync(file, default);
+        long before = f.Registry.Revision;
+        using var coordinated = new CoordinatedPackManagement(f.Service,
+            _ => throw new InvalidOperationException("Automatic checks must not acquire a worker mutation lease."));
+        var result = await coordinated.CheckForUpdatesAsync(default);
+        Assert.Equal(PackChannelStatus.Ready, result.Status);
+        Assert.Equal(PackInstallState.UpdateAvailable, Assert.Single(result.Packs).State);
+        Assert.Equal(2, f.Requests); Assert.Equal(0, f.WorkerStarts); Assert.Equal(before, f.Registry.Revision);
+        Assert.Null(f.Registry.GetAction("powertrove.image.new"));
+        Assert.Equal("1.0.0", Assert.Single(await f.Installer.GetInstalledAsync()).Manifest.Version);
+    }
+
+    [Fact]
     public async Task SignedPackUpdateLocalizesDiscoveryAndInstalledParameters_WithoutChangingHostOrFingerprint()
     {
         var previous = System.Globalization.CultureInfo.CurrentUICulture;

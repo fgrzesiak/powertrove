@@ -12,7 +12,7 @@ public interface IPackManagementNotifications
 }
 
 /// <summary>One cancellable operation shared by every entry point. A view closing does not own other views' work.</summary>
-public sealed class CoordinatedPackManagement(IPackManagementService inner, Func<CancellationToken, Task<IAsyncDisposable>>? acquireMutation = null) : IPackManagementService, IPackManagementNotifications, IPackDownloadAvailability, IDisposable
+public sealed class CoordinatedPackManagement(IPackManagementService inner, Func<CancellationToken, Task<IAsyncDisposable>>? acquireMutation = null) : IPackManagementService, IPackManagementNotifications, IPackDownloadAvailability, IPackUpdateChecks, IDisposable
 {
     private readonly object _gate = new();
     private readonly CancellationTokenSource _lifetime = new();
@@ -27,6 +27,15 @@ public sealed class CoordinatedPackManagement(IPackManagementService inner, Func
     public PackOperation? Activity { get { lock (_gate) return _activity; } }
 
     public Task<PackPageSnapshot> GetLocalAsync(CancellationToken token) => Task.Run(() => inner.GetLocalAsync(token), token);
+    public async Task<PackPageSnapshot> CheckForUpdatesAsync(CancellationToken token)
+    {
+        if (inner is not IPackUpdateChecks checks) return new(PackChannelStatus.NotConfigured, []);
+        using var operation = Begin(null, token);
+        if (operation is null) return new(PackChannelStatus.Busy, []);
+        var result = await Task.Run(() => checks.CheckForUpdatesAsync(operation.Token), operation.Token).ConfigureAwait(false);
+        if (result.Status == PackChannelStatus.Ready) Notify(Changed);
+        return result;
+    }
     public async Task<PackPageSnapshot> OpenOnUserRequestAsync(CancellationToken token)
     {
         using var operation = Begin(null, token);

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://powertrove.net/en"><img src="https://powertrove.net/brand/powertrove.svg" alt="PowerTrove" width="96" height="96"></a>
+  <a href="https://www.powertrove.net/en"><img src="https://www.powertrove.net/brand/powertrove.svg" alt="PowerTrove" width="96" height="96"></a>
 </p>
 
 <h1 align="center">PowerTrove</h1>
@@ -17,10 +17,10 @@
 </p>
 
 <p align="center">
-  <a href="https://powertrove.net/en"><b>Website</b></a> ·
-  <a href="https://powertrove.net/en/download"><b>Download</b></a> ·
-  <a href="https://powertrove.net/en/tools"><b>All tools</b></a> ·
-  <a href="https://powertrove.net/en/docs"><b>Docs</b></a> ·
+  <a href="https://www.powertrove.net/en"><b>Website</b></a> ·
+  <a href="https://www.powertrove.net/en/download"><b>Download</b></a> ·
+  <a href="https://www.powertrove.net/en/tools"><b>All tools</b></a> ·
+  <a href="https://www.powertrove.net/en/docs"><b>Docs</b></a> ·
   <a href="https://github.com/fgrzesiak/powertrove/issues"><b>Feedback</b></a> ·
   <a href="https://github.com/sponsors/fgrzesiak"><b>Sponsor</b></a>
 </p>
@@ -46,24 +46,24 @@ Review the preview  →  Run  →  A new PDF; source files unchanged
 
 ## Tool packs
 
-PowerTrove's 146 actions come in eight packs. Every action has its own page on the [website](https://powertrove.net/en/tools).
+PowerTrove's 146 actions come in eight packs. Every action has its own page on the [website](https://www.powertrove.net/en/tools).
 
 | Pack | Actions | Highlights |
 | --- | ---: | --- |
-| **PDF Tools** | 36 | [Merge PDFs](https://powertrove.net/en/tools/merge-pdfs) · [Compress PDF](https://powertrove.net/en/tools/compress-pdf) · [Organize pages](https://powertrove.net/en/tools/pdf-organize-pages) · [Make PDF searchable (OCR)](https://powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create PDF from images](https://powertrove.net/en/tools/create-pdf-from-images) |
-| **Image Tools** | 33 | [Edit image visually](https://powertrove.net/en/tools/edit-image-visually) · [Resize images](https://powertrove.net/en/tools/resize-images) · [Compress to file size](https://powertrove.net/en/tools/compress-to-file-size) · [Remove metadata](https://powertrove.net/en/tools/remove-image-metadata) · [Copy text from image (OCR)](https://powertrove.net/en/tools/copy-text-from-image-ocr) |
-| **Audio and Video Tools** | 23 | [Trim audio or video](https://powertrove.net/en/tools/trim-audio-or-video) · [Compress video](https://powertrove.net/en/tools/compress-video) · [Extract audio](https://powertrove.net/en/tools/extract-audio-from-video) · [Convert to MP3](https://powertrove.net/en/tools/convert-to-mp3) · [Video to GIF](https://powertrove.net/en/tools/convert-video-to-gif) |
-| **Data tools** | 20 | [CSV to JSON](https://powertrove.net/en/tools/convert-csv-to-json) · [Excel to CSV](https://powertrove.net/en/tools/convert-excel-file-to-csv) · [Merge CSV files](https://powertrove.net/en/tools/merge-csv-files) · [Format JSON](https://powertrove.net/en/tools/format-json) · [Convert to UTF-8](https://powertrove.net/en/tools/convert-to-utf-8) |
-| **File Tools** | 19 | [Rename files](https://powertrove.net/en/tools/rename-files) · [Compress to ZIP](https://powertrove.net/en/tools/compress-to-zip) · [Find duplicate files](https://powertrove.net/en/tools/find-duplicate-files) · [Create checksum file](https://powertrove.net/en/tools/create-checksum-file) · [Folder size report](https://powertrove.net/en/tools/create-folder-size-report) |
-| **E-Invoice Tools** | 6 | [View XRechnung](https://powertrove.net/en/tools/view-xrechnung) · [XRechnung to PDF](https://powertrove.net/en/tools/xrechnung-to-pdf) · [XRechnung to Excel](https://powertrove.net/en/tools/xrechnung-to-excel) · [Extract Factur-X XML](https://powertrove.net/en/tools/extract-factur-x-xml) |
-| **Table Export** | 5 | Excel selection [to CSV](https://powertrove.net/en/tools/export-to-csv), [JSON](https://powertrove.net/en/tools/export-to-json), [Markdown](https://powertrove.net/en/tools/export-to-markdown) or [SQL](https://powertrove.net/en/tools/export-to-sql-insert) · [Combine into one workbook](https://powertrove.net/en/tools/combine-into-one-workbook) |
-| **Office tools** | 4 | [Word to PDF](https://powertrove.net/en/tools/convert-word-to-pdf) · [Excel to PDF](https://powertrove.net/en/tools/convert-excel-to-pdf) · [PowerPoint to PDF](https://powertrove.net/en/tools/convert-powerpoint-to-pdf) · [PDF to Word](https://powertrove.net/en/tools/convert-pdf-to-word) |
+| **PDF Tools** | 36 | [Merge PDFs](https://www.powertrove.net/en/tools/merge-pdfs) · [Compress PDF](https://www.powertrove.net/en/tools/compress-pdf) · [Organize pages](https://www.powertrove.net/en/tools/pdf-organize-pages) · [Make PDF searchable (OCR)](https://www.powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create PDF from images](https://www.powertrove.net/en/tools/create-pdf-from-images) |
+| **Image Tools** | 33 | [Edit image visually](https://www.powertrove.net/en/tools/edit-image-visually) · [Resize images](https://www.powertrove.net/en/tools/resize-images) · [Compress to file size](https://www.powertrove.net/en/tools/compress-to-file-size) · [Remove metadata](https://www.powertrove.net/en/tools/remove-image-metadata) · [Copy text from image (OCR)](https://www.powertrove.net/en/tools/copy-text-from-image-ocr) |
+| **Audio and Video Tools** | 23 | [Trim audio or video](https://www.powertrove.net/en/tools/trim-audio-or-video) · [Compress video](https://www.powertrove.net/en/tools/compress-video) · [Extract audio](https://www.powertrove.net/en/tools/extract-audio-from-video) · [Convert to MP3](https://www.powertrove.net/en/tools/convert-to-mp3) · [Video to GIF](https://www.powertrove.net/en/tools/convert-video-to-gif) |
+| **Data tools** | 20 | [CSV to JSON](https://www.powertrove.net/en/tools/convert-csv-to-json) · [Excel to CSV](https://www.powertrove.net/en/tools/convert-excel-file-to-csv) · [Merge CSV files](https://www.powertrove.net/en/tools/merge-csv-files) · [Format JSON](https://www.powertrove.net/en/tools/format-json) · [Convert to UTF-8](https://www.powertrove.net/en/tools/convert-to-utf-8) |
+| **File Tools** | 19 | [Rename files](https://www.powertrove.net/en/tools/rename-files) · [Compress to ZIP](https://www.powertrove.net/en/tools/compress-to-zip) · [Find duplicate files](https://www.powertrove.net/en/tools/find-duplicate-files) · [Create checksum file](https://www.powertrove.net/en/tools/create-checksum-file) · [Folder size report](https://www.powertrove.net/en/tools/create-folder-size-report) |
+| **E-Invoice Tools** | 6 | [View XRechnung](https://www.powertrove.net/en/tools/view-xrechnung) · [XRechnung to PDF](https://www.powertrove.net/en/tools/xrechnung-to-pdf) · [XRechnung to Excel](https://www.powertrove.net/en/tools/xrechnung-to-excel) · [Extract Factur-X XML](https://www.powertrove.net/en/tools/extract-factur-x-xml) |
+| **Table Export** | 5 | Excel selection [to CSV](https://www.powertrove.net/en/tools/export-to-csv), [JSON](https://www.powertrove.net/en/tools/export-to-json), [Markdown](https://www.powertrove.net/en/tools/export-to-markdown) or [SQL](https://www.powertrove.net/en/tools/export-to-sql-insert) · [Combine into one workbook](https://www.powertrove.net/en/tools/combine-into-one-workbook) |
+| **Office tools** | 4 | [Word to PDF](https://www.powertrove.net/en/tools/convert-word-to-pdf) · [Excel to PDF](https://www.powertrove.net/en/tools/convert-excel-to-pdf) · [PowerPoint to PDF](https://www.powertrove.net/en/tools/convert-powerpoint-to-pdf) · [PDF to Word](https://www.powertrove.net/en/tools/convert-pdf-to-word) |
 
 Office conversions need a desktop Microsoft Office installation. Some media actions depend on the codecs available on your PC.
 
 ## Get started
 
-1. **Download** the installer or the portable ZIP from [Releases](https://github.com/fgrzesiak/powertrove/releases) or the [download page](https://powertrove.net/en/download).
+1. **Download** the installer or the portable ZIP from [Releases](https://github.com/fgrzesiak/powertrove/releases) or the [download page](https://www.powertrove.net/en/download).
 2. **Install your tools.** In Setup, choose the packs you need; File, PDF and Image Tools are preselected. Setup downloads and verifies the selected packs. With the portable ZIP, install packs in Settings.
 3. **Launch PowerTrove**, select files in Explorer or a range in Excel, and press **Alt + Space**.
 
@@ -83,7 +83,7 @@ By default, PowerTrove checks for new versions at startup and lets you install u
 
 ## Privacy and security
 
-PowerTrove processes selected content locally and does not upload it. Network requests check the official GitHub release channel for updates and download the app or tool packs. See [privacy](https://powertrove.net/en/privacy) and [security](https://powertrove.net/en/security) for details and for how to report a vulnerability.
+PowerTrove processes selected content locally and does not upload it. Network requests check the official GitHub release channel for updates and download the app or tool packs. See [privacy](https://www.powertrove.net/en/privacy) and [security](https://www.powertrove.net/en/security) for details and for how to report a vulnerability.
 
 ## Build from source
 

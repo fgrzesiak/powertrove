@@ -1,11 +1,11 @@
-# PowerTrove 0.3.2 Alpha 3
+# PowerTrove 0.3.2 Alpha 4
 
-Updated tool packs now follow your display language for commands and options. This update also corrects startup of the separately provided MSIX test package.
+PowerTrove now notifies you when updates are available for your installed tool packs, so you no longer need to search for updates manually.
 
-## Fixed
+## Added
 
-- German display language now applies to command names, descriptions, pack names and options in updated tool packs. Restart PowerTrove after changing the language.
-- Corrected missing interface resources that prevented the MSIX test package from opening its first window.
+- Installed tool packs are checked for compatible updates at startup and every six hours. A notice in the command bar opens Packs in Settings; downloading and installing still require your confirmation.
+- Automatic pack-update checks have their own setting, including in MSIX installations. You can turn them off independently of app-update checks.
 
 ## Known limitations
 

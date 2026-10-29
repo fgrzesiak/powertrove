@@ -21,9 +21,22 @@ public interface IPackDownloadAvailability
     bool IsDownloadConfigured { get; }
 }
 
-public sealed class PackManagementService(PackInstaller installer, PackChannelClient channel, InstalledPackRuntime runtime,
-    IReadOnlyList<IActionPack> builtIns, IActionCatalog bundledCatalog) : IPackManagementService, IPackDownloadAvailability
+public interface IPackUpdateChecks
 {
+    /// <summary>Signed metadata only; does not reload actions, stop workers or install anything.</summary>
+    Task<PackPageSnapshot> CheckForUpdatesAsync(CancellationToken token);
+}
+
+public sealed class PackManagementService(PackInstaller installer, PackChannelClient channel, InstalledPackRuntime runtime,
+    IReadOnlyList<IActionPack> builtIns, IActionCatalog bundledCatalog) : IPackManagementService, IPackDownloadAvailability, IPackUpdateChecks
+{
+    public async Task<PackPageSnapshot> CheckForUpdatesAsync(CancellationToken token)
+    {
+        var local = await ListAsync(token).ConfigureAwait(false);
+        if (!local.Any(p => p.CanUninstall && p.InstalledVersion is not null)) return new(PackChannelStatus.Ready, local);
+        var result = await channel.RefreshAutomaticallyAsync(token).ConfigureAwait(false);
+        return new(result.Status, await ListAsync(token).ConfigureAwait(false));
+    }
     public Task InitializeAsync(CancellationToken token = default) => RefreshRuntimeAsync(token);
     public bool IsDownloadConfigured => channel.IsConfigured;
     public async Task<PackPageSnapshot> OpenOnUserRequestAsync(CancellationToken token)

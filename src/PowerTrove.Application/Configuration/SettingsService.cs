@@ -8,7 +8,7 @@ using PowerTrove.Abstractions;
 
 namespace PowerTrove.Application.Configuration;
 
-public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings, IPackMigrationSettings
+public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings, IPackMigrationSettings, IPackUpdateCheckSettings
 {
     private readonly string _settingsFilePath;
     private UserSettings _settings;
@@ -177,7 +177,8 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
                 settings.RunFileToolsInSeparateProcess,
                 settings.CheckForUpdatesOnStartup,
                 settings.PackMigrationChecked,
-                settings.PendingPackMigration?.Where(id => !string.IsNullOrWhiteSpace(id)).Distinct(StringComparer.Ordinal).ToArray()
+                settings.PendingPackMigration?.Where(id => !string.IsNullOrWhiteSpace(id)).Distinct(StringComparer.Ordinal).ToArray(),
+                settings.CheckForPackUpdatesAutomatically
             );
         }
         catch (Exception ex)
@@ -336,6 +337,16 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
         lock (_lock)
         {
             _settings = _settings with { UiLanguage = PowerTrove.Application.Localization.UiLanguages.Normalize(language) };
+            Save();
+        }
+    }
+
+    public void SetCheckForPackUpdatesAutomatically(bool enabled)
+    {
+        lock (_lock)
+        {
+            if (IsReadOnly) return;
+            _settings = _settings with { CheckForPackUpdatesAutomatically = enabled };
             Save();
         }
     }
