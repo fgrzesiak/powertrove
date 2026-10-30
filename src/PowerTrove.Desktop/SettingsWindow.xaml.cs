@@ -6,6 +6,7 @@ using Windows.System;
 using PowerTrove.Application.Localization;
 using PowerTrove.Application.Configuration;
 using PowerTrove.Core.Input;
+using PowerTrove.Platform.Windows.Media;
 using PowerTrove.Platform.Windows.Shell;
 using PowerTrove.Application.ViewModels;
 
@@ -17,21 +18,25 @@ public sealed partial class SettingsWindow : HostedView
     private bool _loadingIsolation = true;
     private readonly IExplorerMenuRegistration _explorerMenu = new ExplorerMenuRegistration();
     private bool _explorerBusy;
+    private readonly IFFmpegSetup _ffmpeg = new FFmpegSetup();
+    private System.Threading.CancellationTokenSource? _ffmpegInstall;
+    private bool _ffmpegChecking;
     private System.Threading.CancellationTokenSource? _packInstallCancellation;
     private bool _packsClosed;
     private bool _packDialogOpen;
     public ActionPacksViewModel? Packs { get; }
-    // Settings hold no edits of their own; only running pack or Explorer work keeps them on screen.
+    // Settings hold no edits of their own; only running pack, Explorer or FFmpeg work keeps them on screen.
     public override bool KeepsWindow => !CanCloseForUpdate;
     // Start on the first setting, never on a footer button that Enter would trigger.
     protected internal override Control? InitialFocus => LanguageComboBox;
-    public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && Packs?.IsBusy != true;
+    public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && _ffmpegInstall is null && Packs?.IsBusy != true;
     private bool _loadingUpdatePreference = true;
     private bool _loadingPackUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
 
     private bool IsPackaged => ((App)App.Current).Distribution.IsPackaged;
     public string ExplorerDescription => IsPackaged ? UiText.StoreExplorerDescription : UiText.ExplorerDescription;
+    public string FFmpegDescription => IsPackaged ? UiText.StoreFFmpegDescription : UiText.FFmpegDescription;
 
     public SettingsWindow(bool selectPacks = false)
     {
@@ -39,7 +44,7 @@ public sealed partial class SettingsWindow : HostedView
         if (App.Current is App { PackManagement: { } management, SettingsService: { } settings } owner)
             Packs = new ActionPacksViewModel(management, settings, owner.RefreshPackVisibility);
         this.InitializeComponent();
-        Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); Packs?.Dispose(); };
+        Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); _ffmpegInstall?.Cancel(); Packs?.Dispose(); };
         Title = UiText.SettingsWindowTitle;
         TitleBar = AppTitleBar;
         TitleBarIcon.Source = AppIconImage.Create(32);
@@ -48,10 +53,12 @@ public sealed partial class SettingsWindow : HostedView
         if (IsPackaged)
         {
             ExplorerAddButton.Visibility = ExplorerRemoveButton.Visibility = Visibility.Collapsed;
+            FFmpegInstallButton.Visibility = FFmpegCancelButton.Visibility = Visibility.Collapsed;
             GitHubUpdatesCard.Visibility = Visibility.Collapsed;
             StoreUpdatesCard.Visibility = Visibility.Visible;
         }
         _ = RefreshExplorerRegistrationAsync();
+        _ = RefreshFFmpegAsync();
         if (selectPacks) PackSelectionExpander.IsExpanded = true;
 
         if (App.Current is App app && app.SettingsService != null)
@@ -357,6 +364,72 @@ public sealed partial class SettingsWindow : HostedView
 
     private async void ExplorerRemove_Click(object sender, RoutedEventArgs e) =>
         await ChangeExplorerRegistrationAsync(register: false);
+
+    private async System.Threading.Tasks.Task RefreshFFmpegAsync()
+    {
+        if (_ffmpegInstall is not null || _ffmpegChecking || _packsClosed) return;
+        _ffmpegChecking = true;
+        FFmpegRefreshButton.IsEnabled = false;
+        bool offerInstall = !IsPackaged;
+        try
+        {
+            var (installed, winget) = await System.Threading.Tasks.Task.Run(() =>
+                (_ffmpeg.FindInstalled() is not null, offerInstall && _ffmpeg.IsWingetAvailable()));
+            if (_packsClosed) return;
+            FFmpegStatus.Text = installed ? UiText.FFmpegFound : winget || !offerInstall ? UiText.FFmpegMissing : UiText.FFmpegWingetMissing;
+            FFmpegInstallButton.IsEnabled = !installed && winget;
+        }
+        catch (Exception)
+        {
+            if (!_packsClosed) FFmpegStatus.Text = UiText.FFmpegMissing;
+        }
+        finally
+        {
+            _ffmpegChecking = false;
+            if (!_packsClosed) FFmpegRefreshButton.IsEnabled = true;
+        }
+    }
+
+    private async void FFmpegInstall_Click(object sender, RoutedEventArgs e)
+    {
+        if (IsPackaged || _ffmpegInstall is not null || _ffmpegChecking || _packsClosed) return;
+        using var cancellation = new System.Threading.CancellationTokenSource();
+        _ffmpegInstall = cancellation;
+        FFmpegInstallButton.IsEnabled = FFmpegRefreshButton.IsEnabled = false;
+        FFmpegCancelButton.IsEnabled = true;
+        FFmpegProgress.Visibility = Visibility.Visible;
+        FFmpegStatus.Text = UiText.FFmpegInstalling;
+        FFmpegInstallOutcome outcome;
+        try
+        {
+            outcome = await System.Threading.Tasks.Task.Run(() => _ffmpeg.InstallAsync(cancellation.Token));
+        }
+        catch (Exception)
+        {
+            outcome = FFmpegInstallOutcome.Failed;
+        }
+        finally
+        {
+            _ffmpegInstall = null;
+        }
+        if (_packsClosed) return;
+        FFmpegProgress.Visibility = Visibility.Collapsed;
+        FFmpegCancelButton.IsEnabled = false;
+        FFmpegRefreshButton.IsEnabled = true;
+        FFmpegInstallButton.IsEnabled = outcome != FFmpegInstallOutcome.Installed;
+        FFmpegStatus.Text = outcome switch
+        {
+            FFmpegInstallOutcome.Installed => UiText.FFmpegInstalled,
+            FFmpegInstallOutcome.WingetMissing => UiText.FFmpegWingetMissing,
+            FFmpegInstallOutcome.Canceled => UiText.FFmpegCanceled,
+            FFmpegInstallOutcome.NotFoundAfterInstall => UiText.FFmpegNotFoundAfterInstall,
+            _ => UiText.FFmpegFailed
+        };
+    }
+
+    private void FFmpegCancel_Click(object sender, RoutedEventArgs e) => _ffmpegInstall?.Cancel();
+
+    private async void FFmpegRefresh_Click(object sender, RoutedEventArgs e) => await RefreshFFmpegAsync();
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {

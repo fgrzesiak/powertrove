@@ -17,9 +17,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\..\tools\FileKit.Text\src\FileKit.Text\FileKit.Text.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Media\src\FileKit.Media\FileKit.Media.csproj" />
   </ItemGroup>
 
-  <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Media.Composition" /></ItemGroup>
+  <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Media.Composition" /><InternalsVisibleTo Include="PowerTrove.Pack.Media.Tests" /></ItemGroup>
   <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
   <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
 </Project>

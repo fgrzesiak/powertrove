@@ -72,6 +72,37 @@ public class PdfOperationAdditionalTests
     }
 
     [Fact]
+    public void ResizePages_LandscapePageUsesLandscapeTarget()
+    {
+        var builder = new PdfDocumentBuilder();
+        builder.AddBlankPage(1000, 500); // wide slide
+        builder.AddBlankPage(400, 600);
+        var msDoc = new MemoryStream();
+        builder.Save(msDoc);
+        var doc = PdfDocument.Load(msDoc.ToArray());
+
+        using var ms = new MemoryStream();
+        PdfTools.ResizePages(doc, "a4", "fit", ms);
+
+        var resizedDoc = PdfDocument.Load(ms.ToArray());
+        var (w0, h0) = PdfTools.GetPageSize(resizedDoc, 0);
+        var (w1, h1) = PdfTools.GetPageSize(resizedDoc, 1);
+        Assert.InRange(w0, 841.8, 842.0);
+        Assert.InRange(h0, 595.2, 595.4);
+        Assert.InRange(w1, 595.2, 595.4);
+        Assert.InRange(h1, 841.8, 842.0);
+    }
+
+    [Fact]
+    public void ResizePages_HonorsCancellation()
+    {
+        var doc = CreateTestDocument();
+        using var cts = new System.Threading.CancellationTokenSource();
+        cts.Cancel();
+        Assert.Throws<OperationCanceledException>(() => PdfTools.ResizePages(doc, "a4", "fit", new MemoryStream(), cancellationToken: cts.Token));
+    }
+
+    [Fact]
     public void ResizePages_FitShrink_DoesNotEnlarge()
     {
         var builder = new PdfDocumentBuilder();

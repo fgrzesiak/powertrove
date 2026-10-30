@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using FileKit.Media;
 
 namespace PowerTrove.Pack.Media;
 
@@ -13,27 +14,43 @@ namespace PowerTrove.Pack.Media;
 /// Provides secure invocation of local FFmpeg processes.
 /// Note on Redistribution: FFmpeg is licensed under the LGPL or GPL (depending on compilation flags).
 /// If PowerTrove ever bundles or distributes FFmpeg binaries, it must comply with these licenses
-/// (e.g., providing source code, dynamic linking for LGPL). By default, this service expects the user
-/// to install FFmpeg independently and add it to the system PATH.
+/// (e.g., providing source code, dynamic linking for LGPL). PowerTrove never bundles FFmpeg: the user
+/// installs it, either themselves or through the guided winget installation in Settings.
 /// </summary>
 public class FFmpegService : IFFmpegService
 {
-    private readonly string? _executablePath;
+    private readonly string? _customPath;
+    private readonly Func<string?> _locate;
+    private readonly long _lookupIntervalMs;
+    private volatile string? _executablePath;
     private string? _version;
     private bool? _isAvailable;
+    private long _nextLookup;
 
-    public FFmpegService(string? customPath = null)
+    public FFmpegService(string? customPath = null) : this(customPath, FFmpegLocator.Find, 5000) { }
+
+    internal FFmpegService(string? customPath, Func<string?> locate, long lookupIntervalMs)
     {
-        _executablePath = customPath ?? FindFFmpeg();
+        _lookupIntervalMs = lookupIntervalMs;
+        _customPath = customPath;
+        _locate = locate ?? throw new ArgumentNullException(nameof(locate));
+        _executablePath = customPath ?? locate();
     }
 
     public bool IsAvailable
     {
         get
         {
-            if (_isAvailable.HasValue) return _isAvailable.Value;
-            _isAvailable = !string.IsNullOrEmpty(_executablePath) && File.Exists(_executablePath);
-            return _isAvailable.Value;
+            if (_isAvailable == true) return true;
+            // A missing FFmpeg is looked up again (at most every few seconds), so an installation made while
+            // the pack worker runs is picked up without restarting it.
+            long now = Environment.TickCount64;
+            if (_isAvailable == false && now < Interlocked.Read(ref _nextLookup)) return false;
+            if (_isAvailable.HasValue && _customPath is null) _executablePath = _locate();
+            bool available = !string.IsNullOrEmpty(_executablePath) && File.Exists(_executablePath);
+            Interlocked.Exchange(ref _nextLookup, now + _lookupIntervalMs);
+            _isAvailable = available;
+            return available;
         }
     }
 
@@ -77,36 +94,6 @@ public class FFmpegService : IFFmpegService
             // Ignore failure during version check
         }
         return _version;
-    }
-
-    private string? FindFFmpeg()
-    {
-        var exeName = OperatingSystem.IsWindows() ? "ffmpeg.exe" : "ffmpeg";
-
-        // 1. Check AppContext BaseDirectory
-        var appDirExe = Path.Combine(AppContext.BaseDirectory, exeName);
-        if (File.Exists(appDirExe)) return appDirExe;
-
-        // 2. Check PATH
-        var pathEnv = Environment.GetEnvironmentVariable("PATH");
-        if (!string.IsNullOrEmpty(pathEnv))
-        {
-            var paths = pathEnv.Split(Path.PathSeparator);
-            foreach (var path in paths)
-            {
-                try
-                {
-                    var fullPath = Path.Combine(path, exeName);
-                    if (File.Exists(fullPath)) return fullPath;
-                }
-                catch (Exception)
-                {
-                    // Ignore invalid paths in PATH env var
-                }
-            }
-        }
-
-        return null;
     }
 
     public bool IsProbeAvailable => ExecutablePath is { } path && File.Exists(ProbePath(path));

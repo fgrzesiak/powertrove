@@ -2517,8 +2517,8 @@
               "outputFormat": "jpeg",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition and the Windows HEIF/HEVC image extensions. The bundled Windows Magick.NET build does not provide HEIC decoding. Keep metadata removal enabled for the Windows engine.",
-                "de": "Benötigt das Bilder-Pack der Vollversion und die Windows-HEIF/HEVC-Bilderweiterungen. Die enthaltene Windows-Version von Magick.NET decodiert kein HEIC. Lasse die Metadatenentfernung für die Windows-Engine aktiviert."
+                "en": "Requires the free Images pack and the Windows HEIF/HEVC image extensions. The bundled Windows Magick.NET build does not provide HEIC decoding. Keep metadata removal enabled for the Windows engine.",
+                "de": "Benötigt das kostenlose Bilder-Pack und die Windows-HEIF/HEVC-Bilderweiterungen. Die enthaltene Windows-Version von Magick.NET decodiert kein HEIC. Lasse die Metadatenentfernung für die Windows-Engine aktiviert."
               }
             },
             {
@@ -2527,8 +2527,8 @@
               "outputFormat": "jpeg",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition. Magick.NET handles WebP when Windows cannot decode it.",
-                "de": "Benötigt das Bilder-Pack der Vollversion. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
+                "en": "Requires the free Images pack. Magick.NET handles WebP when Windows cannot decode it.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
               }
             },
             {
@@ -2537,8 +2537,8 @@
               "outputFormat": "jpeg",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
-                "de": "Benötigt das Bilder-Pack der Vollversion und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
+                "en": "Requires the free Images pack and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
+                "de": "Benötigt das kostenlose Bilder-Pack und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
               }
             },
             {
@@ -2547,8 +2547,18 @@
               "outputFormat": "jpeg",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition. The bundled image engines support PNG decoding and JPEG encoding.",
-                "de": "Benötigt das Bilder-Pack der Vollversion. Die enthaltenen Bild-Engines unterstützen PNG-Eingaben und JPEG-Ausgaben."
+                "en": "Requires the free Images pack. The bundled image engines support PNG decoding and JPEG encoding.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Die enthaltenen Bild-Engines unterstützen PNG-Eingaben und JPEG-Ausgaben."
+              }
+            },
+            {
+              "slug": "bmp-to-jpg",
+              "inputFormat": "bmp",
+              "outputFormat": "jpeg",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Images pack. Windows decodes BMP images without additional codecs.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Windows decodiert BMP-Bilder ohne zusätzliche Codecs."
               }
             }
           ]
@@ -2667,8 +2677,8 @@
               "outputFormat": "png",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition. Magick.NET handles WebP when Windows cannot decode it.",
-                "de": "Benötigt das Bilder-Pack der Vollversion. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
+                "en": "Requires the free Images pack. Magick.NET handles WebP when Windows cannot decode it.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Magick.NET verarbeitet WebP, wenn Windows es nicht decodieren kann."
               }
             },
             {
@@ -2677,8 +2687,8 @@
               "outputFormat": "png",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
-                "de": "Benötigt das Bilder-Pack der Vollversion und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
+                "en": "Requires the free Images pack and an available AVIF decoder. The bundled Magick.NET engine is the fallback for Windows codecs.",
+                "de": "Benötigt das kostenlose Bilder-Pack und einen verfügbaren AVIF-Decoder. Die enthaltene Magick.NET-Engine ergänzt die Windows-Codecs."
               }
             },
             {
@@ -2687,8 +2697,18 @@
               "outputFormat": "png",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Images pack in the full edition. The bundled image engines support JPEG decoding and PNG encoding.",
-                "de": "Benötigt das Bilder-Pack der Vollversion. Die enthaltenen Bild-Engines unterstützen JPEG-Eingaben und PNG-Ausgaben."
+                "en": "Requires the free Images pack. The bundled image engines support JPEG decoding and PNG encoding.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Die enthaltenen Bild-Engines unterstützen JPEG-Eingaben und PNG-Ausgaben."
+              }
+            },
+            {
+              "slug": "heic-to-png",
+              "inputFormat": "heic",
+              "outputFormat": "png",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Images pack and the Windows HEIF/HEVC image extensions. The bundled Windows Magick.NET build does not provide HEIC decoding. Keep metadata removal enabled for the Windows engine.",
+                "de": "Benötigt das kostenlose Bilder-Pack und die Windows-HEIF/HEVC-Bilderweiterungen. Die enthaltene Windows-Version von Magick.NET decodiert kein HEIC. Lasse die Metadatenentfernung für die Windows-Engine aktiviert."
               }
             }
           ]
@@ -2743,7 +2763,29 @@
               "en": "Convert website photos into WebP before adding them to a page.",
               "de": "Wandle Website-Fotos in WebP um, bevor du sie auf einer Seite einfügst."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "png-to-webp",
+              "inputFormat": "png",
+              "outputFormat": "webp",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Images pack. The bundled Magick.NET engine writes WebP, so no extra codec is needed.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Die enthaltene Magick.NET-Engine schreibt WebP, ein zusätzlicher Codec ist nicht nötig."
+              }
+            },
+            {
+              "slug": "jpg-to-webp",
+              "inputFormat": "jpeg",
+              "outputFormat": "webp",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Images pack. The bundled Magick.NET engine writes WebP, so no extra codec is needed.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Die enthaltene Magick.NET-Engine schreibt WebP, ein zusätzlicher Codec ist nicht nötig."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.image.crop-aspect",
@@ -3655,7 +3697,19 @@
               "en": "Turn a square logo into a website favicon.",
               "de": "Mach aus einem quadratischen Logo ein Website-Favicon."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "png-to-ico",
+              "inputFormat": "png",
+              "outputFormat": "ico",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Images pack. Choose the favicon sizes (16, 32 and 48 pixels) or the Windows icon sizes (16 to 256 pixels) in the action.",
+                "de": "Benötigt das kostenlose Bilder-Pack. Wähle in der Aktion die Favicon-Größen (16, 32 und 48 Pixel) oder die Windows-Symbolgrößen (16 bis 256 Pixel)."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.image.to-text",
@@ -4173,8 +4227,58 @@
               "outputFormat": "mp3",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Media pack in the full edition and a compatible audio encoder. Windows Media Foundation handles supported PCM WAV files; FFmpeg is an optional fallback.",
-                "de": "Benötigt das Medien-Pack der Vollversion und einen passenden Audio-Encoder. Windows Media Foundation verarbeitet unterstützte PCM-WAV-Dateien; FFmpeg ist eine optionale Ergänzung."
+                "en": "Requires the free Media pack and a compatible audio encoder. Windows Media Foundation handles supported PCM WAV files; FFmpeg is an optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack und einen passenden Audio-Encoder. Windows Media Foundation verarbeitet unterstützte PCM-WAV-Dateien; FFmpeg ist eine optionale Ergänzung."
+              }
+            },
+            {
+              "slug": "m4a-to-mp3",
+              "inputFormat": "m4a",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes AAC audio in M4A files; a separately installed FFmpeg is the optional fallback. DRM-protected files are not supported.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert AAC-Audio in M4A-Dateien; ein separat installiertes FFmpeg dient optional als Alternative. DRM-geschützte Dateien werden nicht unterstützt."
+              }
+            },
+            {
+              "slug": "flac-to-mp3",
+              "inputFormat": "flac",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes FLAC; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert FLAC; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            },
+            {
+              "slug": "wma-to-mp3",
+              "inputFormat": "wma",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes WMA; a separately installed FFmpeg is the optional fallback. DRM-protected files are not supported.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert WMA; ein separat installiertes FFmpeg dient optional als Alternative. DRM-geschützte Dateien werden nicht unterstützt."
+              }
+            },
+            {
+              "slug": "ogg-to-mp3",
+              "inputFormat": "ogg",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack and a separately installed FFmpeg that PowerTrove finds on the PATH. OGG input is not handled by the Windows media engine.",
+                "de": "Benötigt das kostenlose Medien-Pack und ein separat installiertes FFmpeg, das PowerTrove über den PATH findet. OGG-Eingaben verarbeitet die Windows-Medien-Engine nicht."
+              }
+            },
+            {
+              "slug": "aac-to-mp3",
+              "inputFormat": "aac",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes AAC files; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert AAC-Dateien; ein separat installiertes FFmpeg dient optional als Alternative."
               }
             }
           ]
@@ -4233,7 +4337,29 @@
               "en": "Prepare audio for an editor that requires WAV input.",
               "de": "Bereite Audio für ein Bearbeitungsprogramm vor, das WAV als Eingabe verlangt."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "mp3-to-wav",
+              "inputFormat": "mp3",
+              "outputFormat": "wav",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes MP3; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert MP3; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            },
+            {
+              "slug": "m4a-to-wav",
+              "inputFormat": "m4a",
+              "outputFormat": "wav",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes AAC audio in M4A files; a separately installed FFmpeg is the optional fallback. DRM-protected files are not supported.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert AAC-Audio in M4A-Dateien; ein separat installiertes FFmpeg dient optional als Alternative. DRM-geschützte Dateien werden nicht unterstützt."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.audio.normalize",
@@ -4570,8 +4696,48 @@
               "outputFormat": "mp4",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Media pack in the full edition. Decoding depends on the codecs inside the MOV file. A separately installed FFmpeg can handle additional codecs.",
-                "de": "Benötigt das Medien-Pack der Vollversion. Die Decodierung hängt von den Codecs in der MOV-Datei ab. Ein separat installiertes FFmpeg kann weitere Codecs verarbeiten."
+                "en": "Requires the free Media pack. Decoding depends on the codecs inside the MOV file. A separately installed FFmpeg can handle additional codecs.",
+                "de": "Benötigt das kostenlose Medien-Pack. Die Decodierung hängt von den Codecs in der MOV-Datei ab. Ein separat installiertes FFmpeg kann weitere Codecs verarbeiten."
+              }
+            },
+            {
+              "slug": "mkv-to-mp4",
+              "inputFormat": "mkv",
+              "outputFormat": "mp4",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Decoding depends on the codecs inside the MKV file. Windows Media Foundation is tried first; a separately installed FFmpeg can handle additional codecs.",
+                "de": "Benötigt das kostenlose Medien-Pack. Die Decodierung hängt von den Codecs in der MKV-Datei ab. Zuerst wird Windows Media Foundation verwendet; ein separat installiertes FFmpeg kann weitere Codecs verarbeiten."
+              }
+            },
+            {
+              "slug": "avi-to-mp4",
+              "inputFormat": "avi",
+              "outputFormat": "mp4",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Decoding depends on the codecs inside the AVI file; older AVI codecs often need a separately installed FFmpeg.",
+                "de": "Benötigt das kostenlose Medien-Pack. Die Decodierung hängt von den Codecs in der AVI-Datei ab; ältere AVI-Codecs benötigen oft ein separat installiertes FFmpeg."
+              }
+            },
+            {
+              "slug": "wmv-to-mp4",
+              "inputFormat": "wmv",
+              "outputFormat": "mp4",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack. Windows Media Foundation decodes WMV; a separately installed FFmpeg is the optional fallback. DRM-protected files are not supported.",
+                "de": "Benötigt das kostenlose Medien-Pack. Windows Media Foundation decodiert WMV; ein separat installiertes FFmpeg dient optional als Alternative. DRM-geschützte Dateien werden nicht unterstützt."
+              }
+            },
+            {
+              "slug": "webm-to-mp4",
+              "inputFormat": "webm",
+              "outputFormat": "mp4",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack and a separately installed FFmpeg that PowerTrove finds on the PATH. WebM input is not handled by the Windows media engine.",
+                "de": "Benötigt das kostenlose Medien-Pack und ein separat installiertes FFmpeg, das PowerTrove über den PATH findet. WebM-Eingaben verarbeitet die Windows-Medien-Engine nicht."
               }
             }
           ]
@@ -4626,7 +4792,19 @@
               "en": "Prepare a video for a website that uses WebM.",
               "de": "Bereite ein Video für eine Website vor, die WebM verwendet."
             }
-          }
+          },
+          "conversions": [
+            {
+              "slug": "mp4-to-webm",
+              "inputFormat": "mp4",
+              "outputFormat": "webm",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack and a separately installed FFmpeg that PowerTrove finds on the PATH. FFmpeg encodes VP9 video and Opus audio.",
+                "de": "Benötigt das kostenlose Medien-Pack und ein separat installiertes FFmpeg, das PowerTrove über den PATH findet. FFmpeg kodiert VP9-Video und Opus-Audio."
+              }
+            }
+          ]
         },
         {
           "id": "powertrove.video.embed-subtitles",
@@ -4745,8 +4923,18 @@
               "outputFormat": "mp3",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Media pack in the full edition and a supported audio track. Windows Media Foundation is tried first; a separately installed FFmpeg is the optional fallback.",
-                "de": "Benötigt das Medien-Pack der Vollversion und eine unterstützte Audiospur. Zuerst wird Windows Media Foundation verwendet; ein separat installiertes FFmpeg dient optional als Alternative."
+                "en": "Requires the free Media pack and a supported audio track. Windows Media Foundation is tried first; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack und eine unterstützte Audiospur. Zuerst wird Windows Media Foundation verwendet; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            },
+            {
+              "slug": "mov-to-mp3",
+              "inputFormat": "mov",
+              "outputFormat": "mp3",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack and a supported audio track. Windows Media Foundation is tried first; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack und eine unterstützte Audiospur. Zuerst wird Windows Media Foundation verwendet; ein separat installiertes FFmpeg dient optional als Alternative."
               }
             }
           ]
@@ -5142,8 +5330,18 @@
               "outputFormat": "gif",
               "parameters": {},
               "requirements": {
-                "en": "Requires the Media pack in the full edition and a decodable video track. Windows handles supported clips; a separately installed FFmpeg is the optional fallback.",
-                "de": "Benötigt das Medien-Pack der Vollversion und eine decodierbare Videospur. Windows verarbeitet unterstützte Clips; ein separat installiertes FFmpeg dient optional als Alternative."
+                "en": "Requires the free Media pack and a decodable video track. Windows handles supported clips; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack und eine decodierbare Videospur. Windows verarbeitet unterstützte Clips; ein separat installiertes FFmpeg dient optional als Alternative."
+              }
+            },
+            {
+              "slug": "mov-to-gif",
+              "inputFormat": "mov",
+              "outputFormat": "gif",
+              "parameters": {},
+              "requirements": {
+                "en": "Requires the free Media pack and a decodable video track. Windows handles supported clips; a separately installed FFmpeg is the optional fallback.",
+                "de": "Benötigt das kostenlose Medien-Pack und eine decodierbare Videospur. Windows verarbeitet unterstützte Clips; ein separat installiertes FFmpeg dient optional als Alternative."
               }
             }
           ]
@@ -7647,6 +7845,182 @@
             "example": {
               "en": "Extract two rectangular tables on each of two report pages into four worksheets. A code such as 00123 stays text and =2+2 stays a literal value. Review cell boundaries and reading order before editing or sharing the workbook; this tool does not promise universal PDF table recognition.",
               "de": "Extrahiere je zwei rechteckige Tabellen auf zwei Berichtsseiten in vier Tabellenblätter. Ein Code wie 00123 bleibt Text und =2+2 ein wörtlicher Wert. Prüfe Zellgrenzen und Lesereihenfolge vor dem Bearbeiten oder Teilen; das Werkzeug verspricht keine universelle PDF-Tabellenerkennung."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.crop",
+          "slug": "crop-pdf-margins",
+          "title": {
+            "en": "Crop PDF Margins",
+            "de": "PDF-Ränder zuschneiden"
+          },
+          "description": {
+            "en": "Trims the same margin from every edge of the selected pages, for example scanner borders, in a new PDF.",
+            "de": "Schneidet von jedem Rand der ausgewählten Seiten gleich viel ab, etwa Scannerränder, und speichert eine neue PDF."
+          },
+          "searchTerms": {
+            "en": [
+              "pdf",
+              "crop",
+              "margins",
+              "white",
+              "space"
+            ],
+            "de": [
+              "pdf",
+              "crop",
+              "margins",
+              "white",
+              "space"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local PDF files in File Explorer.",
+              "de": "Wähle lokale PDF-Dateien im Explorer aus."
+            },
+            "configure": {
+              "en": "Enter the margin to trim from each edge in millimetres (0 to 100, default 10) and the pages to crop, for example all or 1-3, 5.",
+              "de": "Gib den an jedem Rand abzuschneidenden Bereich in Millimetern ein (0 bis 100, Standard 10) und die zuzuschneidenden Seiten, etwa all oder 1-3, 5."
+            },
+            "output": {
+              "en": "Creates a PDF copy whose selected pages show less of each edge. The trimmed area is hidden, not deleted, so cropping does not remove confidential content. Source files stay unchanged.",
+              "de": "Erstellt eine PDF-Kopie, deren ausgewählte Seiten an jedem Rand weniger zeigen. Der abgeschnittene Bereich wird ausgeblendet, nicht gelöscht; Zuschneiden entfernt also keine vertraulichen Inhalte. Quelldateien bleiben unverändert."
+            },
+            "example": {
+              "en": "Remove the dark scanner border around every page of a scanned contract.",
+              "de": "Entferne den dunklen Scannerrand um jede Seite eines gescannten Vertrags."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.resize-pages",
+          "slug": "resize-pdf-pages",
+          "title": {
+            "en": "Resize PDF Pages",
+            "de": "PDF-Seitengröße ändern"
+          },
+          "description": {
+            "en": "Scales every page onto A4, US Letter, A5 or US Legal in a new PDF. Each page keeps its portrait or landscape orientation.",
+            "de": "Skaliert jede Seite in einer neuen PDF auf A4, US Letter, A5 oder US Legal. Jede Seite behält ihr Hoch- oder Querformat."
+          },
+          "searchTerms": {
+            "en": [
+              "pdf",
+              "resize",
+              "scale",
+              "a4",
+              "letter",
+              "a5",
+              "legal"
+            ],
+            "de": [
+              "pdf",
+              "resize",
+              "scale",
+              "a4",
+              "letter",
+              "a5",
+              "legal"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local PDF files in File Explorer.",
+              "de": "Wähle lokale PDF-Dateien im Explorer aus."
+            },
+            "configure": {
+              "en": "Choose A4, US Letter, A5 or US Legal and whether pages may be enlarged or only shrunk. Landscape pages use the landscape variant of the size.",
+              "de": "Wähle A4, US Letter, A5 oder US Legal und ob Seiten vergrößert oder nur verkleinert werden dürfen. Querformatseiten erhalten die quer liegende Variante der Größe."
+            },
+            "output": {
+              "en": "Creates a PDF copy with every page on the chosen size, scaled proportionally and centered. Source files stay unchanged.",
+              "de": "Erstellt eine PDF-Kopie mit jeder Seite in der gewählten Größe, proportional skaliert und zentriert. Quelldateien bleiben unverändert."
+            },
+            "example": {
+              "en": "Turn a US Letter document into A4 pages before printing it in Europe.",
+              "de": "Bringe ein Dokument im US-Letter-Format vor dem Drucken in Europa auf A4."
+            }
+          }
+        },
+        {
+          "id": "powertrove.pdf.sanitize",
+          "slug": "remove-hidden-pdf-content",
+          "title": {
+            "en": "Remove Hidden PDF Content",
+            "de": "Versteckte PDF-Inhalte entfernen"
+          },
+          "description": {
+            "en": "Removes JavaScript, file attachments, launch actions and metadata from PDF copies; links can be kept.",
+            "de": "Entfernt JavaScript, Dateianhänge, Startaktionen und Metadaten aus PDF-Kopien; Links können erhalten bleiben."
+          },
+          "searchTerms": {
+            "en": [
+              "pdf",
+              "sanitize",
+              "hidden",
+              "javascript",
+              "attachments",
+              "metadata",
+              "remove"
+            ],
+            "de": [
+              "pdf",
+              "sanitize",
+              "hidden",
+              "javascript",
+              "attachments",
+              "metadata",
+              "remove"
+            ]
+          },
+          "accepts": [
+            "files"
+          ],
+          "families": [
+            "pdf"
+          ],
+          "minItems": 1,
+          "maxItems": null,
+          "changesFiles": true,
+          "requiresPreview": true,
+          "guide": {
+            "input": {
+              "en": "Select local PDF files in File Explorer.",
+              "de": "Wähle lokale PDF-Dateien im Explorer aus."
+            },
+            "configure": {
+              "en": "Choose whether to keep links. The preview counts the scripts, attachments, launch actions, link actions and metadata entries it found, without showing their content.",
+              "de": "Lege fest, ob Links erhalten bleiben. Die Vorschau zählt gefundene Skripte, Anhänge, Startaktionen, Link-Aktionen und Metadaten-Einträge, ohne deren Inhalt anzuzeigen."
+            },
+            "output": {
+              "en": "Creates a PDF copy without the found items. Files with nothing to remove are skipped. Source files stay unchanged.",
+              "de": "Erstellt eine PDF-Kopie ohne die gefundenen Elemente. Dateien ohne entfernbare Inhalte werden übersprungen. Quelldateien bleiben unverändert."
+            },
+            "example": {
+              "en": "Strip embedded scripts and attachments from a PDF received by email before passing it on.",
+              "de": "Entferne eingebettete Skripte und Anhänge aus einer per E-Mail erhaltenen PDF, bevor du sie weitergibst."
             }
           }
         }

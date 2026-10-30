@@ -313,8 +313,12 @@ public static partial class PdfTools
 
         for (int i = 0; i < document.PageCount; i++)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             var (origW, origH) = GetPageSize(document, i);
-            double scale = Math.Min(targetW / origW, targetH / origH);
+            // A landscape page goes onto the landscape variant of the target size.
+            double pageW = origW > origH ? Math.Max(targetW, targetH) : Math.Min(targetW, targetH);
+            double pageH = origW > origH ? Math.Min(targetW, targetH) : Math.Max(targetW, targetH);
+            double scale = Math.Min(pageW / origW, pageH / origH);
             if (fit == "fit-shrink" && scale > 1.0)
             {
                 scale = 1.0;
@@ -323,15 +327,15 @@ public static partial class PdfTools
             double finalW = origW * scale;
             double finalH = origH * scale;
 
-            double offsetX = (targetW - finalW) / 2.0;
-            double offsetY = (targetH - finalH) / 2.0;
+            double offsetX = (pageW - finalW) / 2.0;
+            double offsetY = (pageH - finalH) / 2.0;
 
             var layers = new List<(PdfDocument document, int pageIndex, (double a, double b, double c, double d, double e, double f) matrix)>
             {
                 (document, i, (scale, 0, 0, scale, offsetX, offsetY))
             };
 
-            builder.AddComposedPage(targetW, targetH, layers);
+            builder.AddComposedPage(pageW, pageH, layers);
         }
         builder.Save(output, options, cancellationToken);
     }

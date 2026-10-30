@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/fgrzesiak/powertrove/releases"><img src="https://img.shields.io/github/v/release/fgrzesiak/powertrove?include_prereleases&label=release" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/platform-Windows%2011%20x64-0078D4" alt="Windows 11 x64">
-  <img src="https://img.shields.io/badge/actions-146-2ea44f" alt="146 actions">
+  <img src="https://img.shields.io/badge/actions-149-2ea44f" alt="149 actions">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0 license"></a>
 </p>
 
@@ -46,11 +46,11 @@ Review the preview  →  Run  →  A new PDF; source files unchanged
 
 ## Tool packs
 
-PowerTrove's 146 actions come in eight packs. Every action has its own page on the [website](https://www.powertrove.net/en/tools).
+PowerTrove's 149 actions come in eight packs. Every action has its own page on the [website](https://www.powertrove.net/en/tools).
 
 | Pack | Actions | Highlights |
 | --- | ---: | --- |
-| **PDF Tools** | 36 | [Merge PDFs](https://www.powertrove.net/en/tools/merge-pdfs) · [Compress PDF](https://www.powertrove.net/en/tools/compress-pdf) · [Organize pages](https://www.powertrove.net/en/tools/pdf-organize-pages) · [Make PDF searchable (OCR)](https://www.powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create PDF from images](https://www.powertrove.net/en/tools/create-pdf-from-images) |
+| **PDF Tools** | 39 | [Merge PDFs](https://www.powertrove.net/en/tools/merge-pdfs) · [Compress PDF](https://www.powertrove.net/en/tools/compress-pdf) · [Organize pages](https://www.powertrove.net/en/tools/pdf-organize-pages) · [Make PDF searchable (OCR)](https://www.powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create PDF from images](https://www.powertrove.net/en/tools/create-pdf-from-images) |
 | **Image Tools** | 33 | [Edit image visually](https://www.powertrove.net/en/tools/edit-image-visually) · [Resize images](https://www.powertrove.net/en/tools/resize-images) · [Compress to file size](https://www.powertrove.net/en/tools/compress-to-file-size) · [Remove metadata](https://www.powertrove.net/en/tools/remove-image-metadata) · [Copy text from image (OCR)](https://www.powertrove.net/en/tools/copy-text-from-image-ocr) |
 | **Audio and Video Tools** | 23 | [Trim audio or video](https://www.powertrove.net/en/tools/trim-audio-or-video) · [Compress video](https://www.powertrove.net/en/tools/compress-video) · [Extract audio](https://www.powertrove.net/en/tools/extract-audio-from-video) · [Convert to MP3](https://www.powertrove.net/en/tools/convert-to-mp3) · [Video to GIF](https://www.powertrove.net/en/tools/convert-video-to-gif) |
 | **Data tools** | 20 | [CSV to JSON](https://www.powertrove.net/en/tools/convert-csv-to-json) · [Excel to CSV](https://www.powertrove.net/en/tools/convert-excel-file-to-csv) · [Merge CSV files](https://www.powertrove.net/en/tools/merge-csv-files) · [Format JSON](https://www.powertrove.net/en/tools/format-json) · [Convert to UTF-8](https://www.powertrove.net/en/tools/convert-to-utf-8) |
@@ -83,7 +83,7 @@ By default, PowerTrove checks for new versions at startup and lets you install u
 
 ## Privacy and security
 
-PowerTrove processes selected content locally and does not upload it. Network requests check the official GitHub release channel for updates and download the app or tool packs. See [privacy](https://www.powertrove.net/en/privacy) and [security](https://www.powertrove.net/en/security) for details and for how to report a vulnerability.
+PowerTrove processes selected content locally and does not upload it. Network requests check the official GitHub release channel for updates and download the app or tool packs. Only when you select Install FFmpeg in Settings does winget download FFmpeg from its community source. See [privacy](https://www.powertrove.net/en/privacy) and [security](https://www.powertrove.net/en/security) for details and for how to report a vulnerability.
 
 ## Build from source
 

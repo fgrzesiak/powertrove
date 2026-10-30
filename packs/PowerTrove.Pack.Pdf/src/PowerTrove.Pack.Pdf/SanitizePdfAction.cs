@@ -68,11 +68,12 @@ public sealed class SanitizePdfAction : PerFileAction<SanitizePdfOptions>
                     if (items.Count > 0)
                     {
                         string foundMsg = string.Format(CultureInfo.CurrentCulture, SR.GetString("PdfSanitize_Found"), string.Join(", ", items));
-                        messages.Add($"{file.Name}: {foundMsg}");
+                        // Counts only: file names stay out of preview summaries.
+                        messages.Add(foundMsg);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex) when (ex is not OperationCanceledException)
             {
                 // Ignore load errors here, they will fail during processing
             }
@@ -95,8 +96,10 @@ public sealed class SanitizePdfAction : PerFileAction<SanitizePdfOptions>
         var counts = await Task.Run(() => PdfSanitizer.Analyze(document), cancellationToken).ConfigureAwait(false);
 
         bool willRemoveUri = !options.KeepLinks && counts.UriActions > 0;
+        bool removesContent = counts.Scripts > 0 || counts.Attachments > 0 || counts.LaunchActions > 0 || counts.MetadataItems > 0;
 
-        if (!counts.HasHiddenContent && !willRemoveUri)
+        // Kept links alone are nothing to remove; writing a copy would change nothing.
+        if (!removesContent && !willRemoveUri)
         {
              throw new FileSkippedException(SR.GetString("SanitizePdfAction_NothingToRemove"));
         }
