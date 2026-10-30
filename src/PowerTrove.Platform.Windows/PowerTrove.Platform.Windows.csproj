@@ -24,4 +24,5 @@
   </ItemGroup>
 
   <ItemGroup><ProjectReference Include="..\..\tools\FileKit.Imaging\src\FileKit.Imaging\FileKit.Imaging.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\tools\FileKit.Media\src\FileKit.Media\FileKit.Media.csproj" /></ItemGroup>
 </Project>

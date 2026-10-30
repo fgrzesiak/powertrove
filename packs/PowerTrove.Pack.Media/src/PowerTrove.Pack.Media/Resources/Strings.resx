@@ -52,7 +52,7 @@
   <data name="MediaInspectUnavailable" xml:space="preserve"><value>No local media inspector is available. On Windows use the media components, or install FFprobe next to FFmpeg.</value></data>
   <data name="MediaInspectFailed" xml:space="preserve"><value>The media properties could not be read or exceed the supported limits.</value></data>
   <data name="MediaProcessingFailed" xml:space="preserve"><value>The local media engine could not process this file.</value></data>
-  <data name="MediaNoEngine" xml:space="preserve"><value>No installed media engine supports this operation for the selection.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>No installed media engine supports this operation for the selection. Many formats work after installing FFmpeg: use Settings &gt; FFmpeg, or run winget install Gyan.FFmpeg in Terminal.</value></data>
   <data name="MediaInvalidRange" xml:space="preserve"><value>Use seconds, mm:ss or hh:mm:ss. The end must be after the start.</value></data>
   <data name="MediaInvalidTime" xml:space="preserve"><value>Enter a valid time. Intervals must be 0.5–3600 seconds; use a decimal point.</value></data>
   <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>The requested range extends beyond this file’s duration.</value></data>
@@ -79,7 +79,7 @@ Audio channels: {6}</value></data>
 <data name="MediaPack_Title" xml:space="preserve"><value>Audio and Video Tools</value></data>
 <data name="MediaProgressAudio" xml:space="preserve"><value>Converting audio</value></data>
 <data name="MediaProgressVideo" xml:space="preserve"><value>Processing video</value></data>
-<data name="MediaWebMUnavailable" xml:space="preserve"><value>WebM conversion requires FFmpeg, which is not installed.</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>WebM conversion requires FFmpeg. Install it in Settings &gt; FFmpeg, or run winget install Gyan.FFmpeg in Terminal.</value></data>
 <data name="MediaConversionUnavailable" xml:space="preserve"><value>No media engine on this system supports this conversion. On Windows N editions, install the Media Feature Pack.</value></data>
 <data name="MediaConvertAudio_One" xml:space="preserve"><value>Will convert {0} audio file to {1}.</value></data>
 <data name="MediaConvertAudio_Other" xml:space="preserve"><value>Will convert {0} audio files to {1}.</value></data>

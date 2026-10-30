@@ -16,6 +16,9 @@ public sealed class ConversionPairTests : IDisposable
     [InlineData(MagickFormat.Avif, "avif", "png", MagickFormat.Png)]
     [InlineData(MagickFormat.Png, "png", "jpeg", MagickFormat.Jpeg)]
     [InlineData(MagickFormat.Jpeg, "jpg", "png", MagickFormat.Png)]
+    [InlineData(MagickFormat.Png, "png", "webp", MagickFormat.WebP)]
+    [InlineData(MagickFormat.Jpeg, "jpg", "webp", MagickFormat.WebP)]
+    [InlineData(MagickFormat.Bmp, "bmp", "jpeg", MagickFormat.Jpeg)]
     public async Task DocumentedPairs_PassSignatureProbeDecodeAndSafeOutput(
         MagickFormat sourceFormat, string extension, string target, MagickFormat expected)
     {

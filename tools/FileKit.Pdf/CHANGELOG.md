@@ -4,6 +4,7 @@ All notable changes to FileKit.Pdf are documented here. The format follows [Keep
 
 ## [Unreleased]
 
+- `PdfTools.ResizePages` now puts landscape pages onto the landscape variant of the target size instead of shrinking them onto a portrait page, and checks cancellation per page.
 - Added production PDF AES-256 R6 writing with random per-document key, user/owner salts, IVs and permission flags. Encrypted compact mode is rejected.
 - Added appearance-based flattening of PDF fields/comments, configurable hyperlink preservation and preview counts for discarded annotations.
 

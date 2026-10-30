@@ -288,4 +288,17 @@
   <data name="StorePackageDescription" xml:space="preserve"><value>Lokale Dateiwerkzeuge für deine Auswahl mit optional herunterladbaren offiziellen Packs.</value></data>
   <data name="PackUpdatesReview" xml:space="preserve"><value>Paket-Updates ansehen</value></data>
   <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Installierte Pakete automatisch auf Updates prüfen</value></data>
+  <data name="FFmpegHeading" xml:space="preserve"><value>FFmpeg für weitere Medienformate</value></data>
+  <data name="FFmpegDescription" xml:space="preserve"><value>Einige Audio- und Videowerkzeuge brauchen FFmpeg, etwa OGG in MP3, WebM in MP4 oder ältere AVI-Dateien. PowerTrove enthält kein FFmpeg. FFmpeg installieren nutzt winget, um das kostenlose FFmpeg-Paket Gyan.FFmpeg (GPL-Lizenz) für deinen Windows-Benutzer zu installieren, und akzeptiert dessen Lizenzbedingungen. Dafür ist einmalig eine Internetverbindung nötig; Medienaktionen finden FFmpeg ohne Neustart.</value></data>
+  <data name="StoreFFmpegDescription" xml:space="preserve"><value>Einige Audio- und Videowerkzeuge brauchen FFmpeg, etwa OGG in MP3 oder WebM in MP4. PowerTrove enthält kein FFmpeg. Installiere es selbst, zum Beispiel mit dem Befehl winget install Gyan.FFmpeg im Terminal, und wähle dann Erneut prüfen.</value></data>
+  <data name="FFmpegInstall" xml:space="preserve"><value>FFmpeg installieren</value></data>
+  <data name="FFmpegCheckAgain" xml:space="preserve"><value>Erneut prüfen</value></data>
+  <data name="FFmpegFound" xml:space="preserve"><value>FFmpeg ist installiert. Medienaktionen, die es brauchen, sind verfügbar.</value></data>
+  <data name="FFmpegMissing" xml:space="preserve"><value>FFmpeg wurde nicht gefunden.</value></data>
+  <data name="FFmpegWingetMissing" xml:space="preserve"><value>FFmpeg wurde nicht gefunden, und winget ist auf diesem PC nicht verfügbar. Installiere den App-Installer aus dem Microsoft Store oder installiere FFmpeg selbst und wähle dann Erneut prüfen.</value></data>
+  <data name="FFmpegInstalling" xml:space="preserve"><value>FFmpeg wird mit winget installiert. Das kann einige Minuten dauern.</value></data>
+  <data name="FFmpegInstalled" xml:space="preserve"><value>FFmpeg ist installiert. Medienaktionen finden es innerhalb weniger Sekunden; ein Neustart ist nicht nötig.</value></data>
+  <data name="FFmpegFailed" xml:space="preserve"><value>winget konnte FFmpeg nicht installieren. Prüfe deine Internetverbindung und versuche es erneut, oder installiere FFmpeg selbst.</value></data>
+  <data name="FFmpegCanceled" xml:space="preserve"><value>Die FFmpeg-Installation wurde abgebrochen.</value></data>
+  <data name="FFmpegNotFoundAfterInstall" xml:space="preserve"><value>winget ist fertig, aber FFmpeg liegt nicht dort, wo PowerTrove danach sucht. Melde dich bei Windows ab und wieder an und wähle dann Erneut prüfen.</value></data>
 </root>

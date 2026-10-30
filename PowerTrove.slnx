@@ -39,6 +39,8 @@
     <Project Path="tools/FileKit.Xlsx/tests/FileKit.Xlsx.Tests/FileKit.Xlsx.Tests.csproj" />
     <Project Path="tools/FileKit.Text/src/FileKit.Text/FileKit.Text.csproj" />
     <Project Path="tools/FileKit.Text/tests/FileKit.Text.Tests/FileKit.Text.Tests.csproj" />
+    <Project Path="tools/FileKit.Media/src/FileKit.Media/FileKit.Media.csproj" />
+    <Project Path="tools/FileKit.Media/tests/FileKit.Media.Tests/FileKit.Media.Tests.csproj" />
     <Project Path="tools/FileKit.Tabular/src/FileKit.Tabular/FileKit.Tabular.csproj" />
     <Project Path="tools/FileKit.Tabular/tests/FileKit.Tabular.Tests/FileKit.Tabular.Tests.csproj" />
     <Project Path="tools/FileKit.Archive/src/FileKit.Archive/FileKit.Archive.csproj" />

@@ -83,7 +83,7 @@
   <data name="MediaInspectUnavailable" xml:space="preserve"><value>Es ist kein lokaler Mediendienst zur Prüfung verfügbar. Verwenden Sie die Windows-Medienkomponenten oder installieren Sie FFprobe neben FFmpeg.</value></data>
   <data name="MediaInspectFailed" xml:space="preserve"><value>Die Medieneigenschaften konnten nicht gelesen werden oder überschreiten die unterstützten Grenzen.</value></data>
   <data name="MediaProcessingFailed" xml:space="preserve"><value>Die lokale Medien-Engine konnte diese Datei nicht verarbeiten.</value></data>
-  <data name="MediaNoEngine" xml:space="preserve"><value>Keine installierte Medien-Engine unterstützt diese Aktion für die Auswahl.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Keine installierte Medien-Engine unterstützt diese Aktion für die Auswahl. Viele Formate funktionieren mit FFmpeg: Installiere es unter Einstellungen &gt; FFmpeg oder mit winget install Gyan.FFmpeg im Terminal.</value></data>
   <data name="MediaInvalidRange" xml:space="preserve"><value>Verwenden Sie Sekunden, mm:ss oder hh:mm:ss. Das Ende muss nach dem Beginn liegen.</value></data>
   <data name="MediaInvalidTime" xml:space="preserve"><value>Geben Sie eine gültige Zeit ein. Intervalle müssen 0,5–3600 Sekunden betragen; verwenden Sie einen Dezimalpunkt.</value></data>
   <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>Der angeforderte Bereich überschreitet die Dauer dieser Datei.</value></data>
@@ -110,7 +110,7 @@ Audiokanäle: {6}</value></data>
 <data name="MediaPack_Title" xml:space="preserve"><value>Audio- und Videowerkzeuge</value></data>
 <data name="MediaProgressAudio" xml:space="preserve"><value>Audio umwandeln</value></data>
 <data name="MediaProgressVideo" xml:space="preserve"><value>Video verarbeiten</value></data>
-<data name="MediaWebMUnavailable" xml:space="preserve"><value>Die WebM-Umwandlung erfordert FFmpeg, das nicht installiert ist.</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>Die WebM-Umwandlung erfordert FFmpeg. Installiere es unter Einstellungen &gt; FFmpeg oder mit winget install Gyan.FFmpeg im Terminal.</value></data>
 <data name="MediaConversionUnavailable" xml:space="preserve"><value>Keine Medien-Engine auf diesem System unterstützt diese Umwandlung. Installieren Sie bei Windows-N-Editionen das Media Feature Pack.</value></data>
 <data name="MediaConvertAudio_One" xml:space="preserve"><value>Wandelt {0} Audiodatei in {1} um.</value></data>
 <data name="MediaConvertAudio_Other" xml:space="preserve"><value>Wandelt {0} Audiodateien in {1} um.</value></data>

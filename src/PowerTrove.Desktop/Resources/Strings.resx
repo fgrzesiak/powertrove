@@ -288,4 +288,17 @@
   <data name="StorePackageDescription" xml:space="preserve"><value>Local file tools from your selection, with optional downloadable official packs.</value></data>
   <data name="PackUpdatesReview" xml:space="preserve"><value>View pack updates</value></data>
   <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Automatically check installed packs for updates</value></data>
+  <data name="FFmpegHeading" xml:space="preserve"><value>FFmpeg for more media formats</value></data>
+  <data name="FFmpegDescription" xml:space="preserve"><value>Some Audio and Video Tools need FFmpeg, for example OGG to MP3, WebM to MP4 or older AVI files. PowerTrove does not include FFmpeg. Install FFmpeg uses winget to install the free FFmpeg package Gyan.FFmpeg (GPL license) for your Windows user and accepts its license terms. This needs an internet connection once; media actions find FFmpeg without a restart.</value></data>
+  <data name="StoreFFmpegDescription" xml:space="preserve"><value>Some Audio and Video Tools need FFmpeg, for example OGG to MP3 or WebM to MP4. PowerTrove does not include FFmpeg. Install it yourself, for example by running winget install Gyan.FFmpeg in Terminal, then select Check again.</value></data>
+  <data name="FFmpegInstall" xml:space="preserve"><value>Install FFmpeg</value></data>
+  <data name="FFmpegCheckAgain" xml:space="preserve"><value>Check again</value></data>
+  <data name="FFmpegFound" xml:space="preserve"><value>FFmpeg is installed. Media actions that need it are available.</value></data>
+  <data name="FFmpegMissing" xml:space="preserve"><value>FFmpeg was not found.</value></data>
+  <data name="FFmpegWingetMissing" xml:space="preserve"><value>FFmpeg was not found, and winget is not available on this PC. Install App Installer from the Microsoft Store or install FFmpeg yourself, then select Check again.</value></data>
+  <data name="FFmpegInstalling" xml:space="preserve"><value>Installing FFmpeg with winget. This can take a few minutes.</value></data>
+  <data name="FFmpegInstalled" xml:space="preserve"><value>FFmpeg is installed. Media actions find it within a few seconds; no restart is needed.</value></data>
+  <data name="FFmpegFailed" xml:space="preserve"><value>winget could not install FFmpeg. Check your internet connection and try again, or install FFmpeg yourself.</value></data>
+  <data name="FFmpegCanceled" xml:space="preserve"><value>The FFmpeg installation was canceled.</value></data>
+  <data name="FFmpegNotFoundAfterInstall" xml:space="preserve"><value>winget finished, but FFmpeg was not found where PowerTrove looks for it. Sign out of Windows and back in, then select Check again.</value></data>
 </root>

@@ -51,6 +51,8 @@ public static class LocalizedActionCatalog
         ["A4"] = "Standard paper size identifier.",
         ["Letter"] = "Standard paper size identifier.",
         ["US Letter"] = "Standard paper size identifier.",
+        ["A5"] = "Standard paper size identifier.",
+        ["US Legal"] = "Standard paper size identifier.",
         ["2"] = "Fixed N-up pages-per-sheet count.",
         ["4"] = "Fixed N-up pages-per-sheet count.",
         ["n"] = "Page-number notation.",

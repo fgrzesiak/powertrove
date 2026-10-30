@@ -263,6 +263,25 @@
                     </StackPanel>
                 </Border>
 
+                <!-- FFmpeg is never bundled; the guided installation runs winget only after an explicit click. -->
+                <TextBlock Text="{x:Bind local:UiText.FFmpegHeading}" Style="{StaticResource SettingsSectionHeaderStyle}" />
+                <Border Style="{StaticResource SettingsCardStyle}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="{x:Bind FFmpegDescription}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button x:Name="FFmpegInstallButton" Content="{x:Bind local:UiText.FFmpegInstall}" Click="FFmpegInstall_Click"
+                                    IsEnabled="False" AutomationProperties.AutomationId="FFmpegInstall" />
+                            <Button x:Name="FFmpegCancelButton" Content="{x:Bind local:UiText.CommonCancel}" Click="FFmpegCancel_Click"
+                                    IsEnabled="False" AutomationProperties.AutomationId="FFmpegCancel" />
+                            <Button x:Name="FFmpegRefreshButton" Content="{x:Bind local:UiText.FFmpegCheckAgain}" Click="FFmpegRefresh_Click"
+                                    AutomationProperties.AutomationId="FFmpegCheckAgain" />
+                        </StackPanel>
+                        <ProgressBar x:Name="FFmpegProgress" IsIndeterminate="True" Visibility="Collapsed" />
+                        <TextBlock x:Name="FFmpegStatus" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"
+                                   Style="{StaticResource SettingsDescriptionStyle}" />
+                    </StackPanel>
+                </Border>
+
                 <!-- Release checks and explicit installer download. -->
                 <TextBlock Text="{x:Bind local:UiText.UpdatesHeading}" Style="{StaticResource SettingsSectionHeaderStyle}" />
                 <Border x:Name="StoreUpdatesCard" Style="{StaticResource SettingsCardStyle}" Visibility="Collapsed">
