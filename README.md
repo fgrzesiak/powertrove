@@ -5,8 +5,9 @@
 <h1 align="center">PowerTrove</h1>
 
 <p align="center">
-  <strong>Select. Alt + Space. Done.</strong><br>
-  A command bar for files, Excel selections and everyday tools on Windows.
+  <strong>The context-aware file toolbox for Windows.</strong><br>
+  Select files, press a shortcut, and instantly access the tools you need.<br>
+  Convert, compress, organize, and automate, all in one place.
 </p>
 
 <p align="center">
@@ -27,7 +28,7 @@
 
 ---
 
-Select files in Explorer or a range in Excel and press **Alt + Space**. Search for an action, review its options and preview, then run it. Processing takes place locally on your PC.
+Select files in Explorer and press **Alt + Space**. PowerTrove shows only the tools that fit your selection: PDF tools for PDFs, image tools for images, export actions for an Excel range. Review the options and preview, run, and get new files next to your untouched originals. Everything is processed locally on your PC.
 
 ```text
 Select images and PDFs in Explorer
@@ -35,10 +36,19 @@ Alt + Space  →  Search "combine"  →  Combine into one PDF
 Review the preview  →  Run  →  A new PDF; source files unchanged
 ```
 
-## Features
+## What you can do
 
-- **Actions for your selection.** Find image and PDF tools for selected files, export actions for Excel ranges, and combination actions for supported mixed selections.
-- **Keyboard navigation.** Search by action name, format or purpose, and navigate results with the keyboard.
+| | Examples |
+| --- | --- |
+| **Convert** | [Word to PDF](https://www.powertrove.net/en/tools/convert-word-to-pdf) · [Create PDF from images](https://www.powertrove.net/en/tools/create-pdf-from-images) · [Video to GIF](https://www.powertrove.net/en/tools/convert-video-to-gif) · [Convert to MP3](https://www.powertrove.net/en/tools/convert-to-mp3) · [CSV to JSON](https://www.powertrove.net/en/tools/convert-csv-to-json) · [XRechnung to PDF](https://www.powertrove.net/en/tools/xrechnung-to-pdf) |
+| **Compress** | [Compress PDF](https://www.powertrove.net/en/tools/compress-pdf) · [Compress to file size](https://www.powertrove.net/en/tools/compress-to-file-size) · [Compress video](https://www.powertrove.net/en/tools/compress-video) · [Compress to ZIP](https://www.powertrove.net/en/tools/compress-to-zip) |
+| **Organize** | [Merge PDFs](https://www.powertrove.net/en/tools/merge-pdfs) · [Organize pages](https://www.powertrove.net/en/tools/pdf-organize-pages) · [Rename files](https://www.powertrove.net/en/tools/rename-files) · [Find duplicate files](https://www.powertrove.net/en/tools/find-duplicate-files) · [Merge CSV files](https://www.powertrove.net/en/tools/merge-csv-files) |
+| **Automate** | Run a tool on many files at once · reuse saved presets · [Make PDF searchable (OCR)](https://www.powertrove.net/en/tools/make-pdf-searchable-ocr) · [Create checksum file](https://www.powertrove.net/en/tools/create-checksum-file) · [Folder size report](https://www.powertrove.net/en/tools/create-folder-size-report) |
+
+## Why PowerTrove
+
+- **Context-aware.** Find image and PDF tools for selected files, export actions for Excel ranges, and combination actions for supported mixed selections.
+- **Keyboard first.** Search by action name, format or purpose, and navigate results with the keyboard.
 - **Local processing.** Work with installed tools offline, without an account, cloud processing or telemetry.
 - **Preview and safe outputs.** Review options and planned changes before running file actions. Transformations create new files by default; source files are never overwritten silently.
 - **Optional tool packs.** Choose packs during setup and manage them in Settings. Packs can be updated separately from the app, and signatures are verified before execution.
