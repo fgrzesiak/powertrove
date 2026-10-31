@@ -26,6 +26,10 @@
   <a href="https://github.com/sponsors/fgrzesiak"><b>Sponsor</b></a>
 </p>
 
+<p align="center">
+  <a href="https://www.powertrove.net/en#watch-title"><img src="https://www.powertrove.net/media/powertrove-suggestions.gif" width="820" alt="Four photos are selected in File Explorer. Alt + Space opens PowerTrove, which suggests Create PDF from Images and creates one PDF."></a>
+</p>
+
 ---
 
 Select files in Explorer and press **Alt + Space**. PowerTrove shows only the tools that fit your selection: PDF tools for PDFs, image tools for images, export actions for an Excel range. Review the options and preview, run, and get new files next to your untouched originals. Everything is processed locally on your PC.
@@ -35,6 +39,11 @@ Select images and PDFs in Explorer
 Alt + Space  →  Search "combine"  →  Combine into one PDF
 Review the preview  →  Run  →  A new PDF; source files unchanged
 ```
+
+<p align="center">
+  <a href="https://www.powertrove.net/en#watch-title"><img src="https://www.powertrove.net/media/powertrove-compress.gif" width="820" alt="Typing compress in PowerTrove finds Compress Images; the four copies save 13.66 MB and the originals stay unchanged."></a><br>
+  <sub>Recorded in PowerTrove 0.3.2 with sample files. <a href="https://www.powertrove.net/en#watch-title">Watch the 30-second video</a>.</sub>
+</p>
 
 ## What you can do
 
