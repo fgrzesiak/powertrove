@@ -139,18 +139,38 @@ public sealed class PackChannelClientTests
     }
 
     [Fact]
-    public async Task SetupKeepsVerifiedInstalledPacksWithoutNetworkRequestsEvenWhenOffline()
+    public async Task SetupKeepsInstalledPacksWhenOffline_AndOnlyListsMissingPacksForTheNextStart()
     {
         using var fixture = new Fixture();
         Assert.Empty(await new SetupPackInstallation(fixture.Client).InstallAsync(["powertrove.fixture"], default));
         var installed = Assert.Single(await fixture.Installer.GetInstalledAsync());
-        int requests = fixture.Handler.Requests.Count;
         fixture.Handler.Respond = (_, _) => throw new HttpRequestException("Synthetic offline fixture.");
-        var setup = new SetupPackInstallation(fixture.Client, new HashSet<string>([installed.Manifest.Id], StringComparer.Ordinal));
+        var setup = new SetupPackInstallation(fixture.Client, new Dictionary<string, string> { [installed.Manifest.Id] = "0.0.9" });
         Assert.Empty(await setup.InstallAsync(["powertrove.fixture"], default));
-        Assert.Equal(requests, fixture.Handler.Requests.Count);
         Assert.Equal(["powertrove.missing"], await setup.InstallAsync(["powertrove.fixture", "powertrove.missing"], default));
         Assert.Equal(installed.Manifest.Version, Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+    }
+
+    [Fact]
+    public async Task SetupUpdatesSelectedInstalledPacksToTheNewestCompatibleVersion()
+    {
+        using var fixture = new Fixture();
+        // The installed store reports an older version than the catalog offers, as after a pack release.
+        var setup = new SetupPackInstallation(fixture.Client, new Dictionary<string, string> { ["powertrove.fixture"] = "0.0.9" });
+        Assert.Empty(await setup.InstallAsync(["powertrove.fixture"], default));
+        Assert.Equal("0.1.0", Assert.Single(await fixture.Installer.GetInstalledAsync()).Manifest.Version);
+        fixture.AssertCleanDownloads();
+    }
+
+    [Fact]
+    public async Task SetupLeavesCurrentInstalledPacksAlone_AndNeverDownloadsAgain()
+    {
+        using var fixture = new Fixture();
+        Assert.Empty(await new SetupPackInstallation(fixture.Client).InstallAsync(["powertrove.fixture"], default));
+        int bundles = fixture.Handler.Requests.Count(r => !r.Uri.AbsolutePath.Contains("catalog.json", StringComparison.Ordinal));
+        var setup = new SetupPackInstallation(fixture.Client, new Dictionary<string, string> { ["powertrove.fixture"] = "0.1.0" });
+        Assert.Empty(await setup.InstallAsync(["powertrove.fixture"], default));
+        Assert.Equal(bundles, fixture.Handler.Requests.Count(r => !r.Uri.AbsolutePath.Contains("catalog.json", StringComparison.Ordinal)));
     }
 
     [Fact]

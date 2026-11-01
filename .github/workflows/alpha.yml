@@ -60,15 +60,16 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $release = Get-Content release.json -Raw | ConvertFrom-Json
+          $isRelease = $release.channel -ceq 'release'
           if ($release.version -cnotmatch '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$' -or
-              "$($release.sequence)" -cnotmatch '^[1-9][0-9]{0,5}$' -or $release.channel -cne 'alpha') {
-            throw 'Invalid alpha version.'
+              (-not $isRelease -and ("$($release.sequence)" -cnotmatch '^[1-9][0-9]{0,5}$' -or $release.channel -cne 'alpha'))) {
+            throw 'Invalid release version.'
           }
-          $tag = "v$($release.version)-alpha.$($release.sequence)"
+          $tag = if ($isRelease) { "v$($release.version)" } else { "v$($release.version)-alpha.$($release.sequence)" }
           $response = gh api "repos/$env:REPOSITORY/git/matching-refs/tags/$tag"
           if ($LASTEXITCODE -ne 0) { throw 'Cannot verify release tag availability.' }
           $existing = @($response | ConvertFrom-Json | Where-Object { $_.ref -ceq "refs/tags/$tag" })
-          if ($existing.Count) { throw 'Release tag already exists. Prepare a new alpha sequence.' }
+          if ($existing.Count) { throw 'Release tag already exists. Prepare a new version.' }
       - name: Set up .NET 10
         if: steps.driver.outputs.managed != 'true'
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4

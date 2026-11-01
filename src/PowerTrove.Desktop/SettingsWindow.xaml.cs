@@ -641,6 +641,34 @@ public sealed partial class SettingsWindow : HostedView
         catch (Exception) { if (!_packsClosed) PackInstallStatus.Text = UiText.PacksInstallFailed; }
         finally { _packDialogOpen = false; }
     }
+    private async void UpdateAllPacks_Click(object sender, RoutedEventArgs e)
+    {
+        if (Updates.IsInstalling || _packDialogOpen || Packs?.CanOperate != true || !Packs.HasUpdates) return;
+        _packDialogOpen = true;
+        try
+        {
+            var offers = await Packs.PrepareUpdatesAsync();
+            if (offers.Count == 0 || _packsClosed) return;
+            string size = ActionPackRow.FormatSize(System.Linq.Enumerable.Sum(offers, offer => offer.DownloadBytes));
+            string publishers = string.Join(", ", System.Linq.Enumerable.Distinct(System.Linq.Enumerable.Select(offers, offer => offer.Publisher)));
+            string subject = offers.Count == 1 ? UiText.PackNameVersion(offers[0].Name, offers[0].Version)
+                : offers.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
+            var dialog = new ContentDialog { Title = UiText.PacksUpdateAllTitle, Content = UiText.PackUpdateAllConsent(offers.Count, subject, size, publishers),
+                PrimaryButtonText = UiText.PacksUpdateAllTitle, CloseButtonText = UiText.CommonCancel, DefaultButton = ContentDialogButton.Close, XamlRoot = Content.XamlRoot };
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary && !_packsClosed) await Packs.InstallAllAsync(offers);
+        }
+        catch (Exception) { if (!_packsClosed) PackInstallStatus.Text = UiText.PacksInstallFailed; }
+        finally { _packDialogOpen = false; }
+    }
+
+    // Only official pack rows carry a fixed https://www.powertrove.net address; nothing else is opened.
+    private async void PackWebsite_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: string url } || !url.StartsWith("https://www.powertrove.net/", StringComparison.Ordinal)) return;
+        try { await Launcher.LaunchUriAsync(new Uri(url)); }
+        catch (Exception) { }
+    }
+
     private async void UninstallPack_Click(object sender, RoutedEventArgs e)
     {
         if (Updates.IsInstalling || _packDialogOpen || Packs?.CanOperate != true || sender is not FrameworkElement { Tag: string id }) return;

@@ -144,6 +144,9 @@
   <data name="PacksUninstall" xml:space="preserve"><value>Entfernen</value></data>
   <data name="PacksBundled" xml:space="preserve"><value>In der Anwendung enthalten</value></data>
   <data name="PackDownloadConsent" xml:space="preserve"><value>Möchten Sie {0} ({1}) von {2} herunterladen und installieren?</value></data>
+  <data name="PackUpdateAllConsentOne" xml:space="preserve"><value>Möchten Sie das Update für {0} ({1}) von {2} herunterladen und installieren?</value></data>
+  <data name="PackUpdateAllConsentOther" xml:space="preserve"><value>Möchten Sie {0} Pack-Updates ({1}) von {2} herunterladen und installieren?</value></data>
+  <data name="PacksUpdateAllTitle" xml:space="preserve"><value>Packs aktualisieren</value></data>
   <data name="PackRemoveConsent" xml:space="preserve"><value>Möchten Sie {0} entfernen? Seine heruntergeladenen Versionen werden gelöscht. Enthaltene Werkzeuge bleiben verfügbar.</value></data>
   <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>Möchten Sie {0} entfernen? Seine Aktionen stehen erst nach einer erneuten Installation wieder zur Verfügung. Ihre Dateien und Einstellungen bleiben unverändert.</value></data>
   <data name="PackRolledBack" xml:space="preserve"><value>Ein Pack-Update konnte nicht starten. PowerTrove hat die vorherige Version wiederhergestellt.</value></data>
@@ -201,7 +204,7 @@
   <data name="Installer_ToolsTitle" xml:space="preserve"><value>Tools auswählen</value></data>
   <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>Welche Tools soll PowerTrove installieren?</value></data>
   <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Setup lädt die ausgewählten Tools aus dem offiziellen signierten Kanal herunter und überprüft sie vor dem Abschluss. Ist ein Download nicht verfügbar, versucht PowerTrove es beim nächsten Start erneut. Tools lassen sich jederzeit in den Einstellungen verwalten.</value></data>
-  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installierte Tools sind vorausgewählt. Wähle zusätzliche Tools zum Herunterladen und Überprüfen aus. Abwählen entfernt keine Tools; nutze dafür die Einstellungen. Nicht verfügbare Downloads werden beim nächsten App-Start erneut versucht.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installierte Tools sind vorausgewählt und werden auf die neueste Version aktualisiert. Wähle zusätzliche Tools zum Herunterladen und Überprüfen aus. Abwählen entfernt keine Tools; nutze dafür die Einstellungen. Nicht verfügbare Downloads werden beim nächsten App-Start erneut versucht.</value></data>
   <data name="Installer_Files" xml:space="preserve"><value>Datei-Tools: Dateien umbenennen, komprimieren, vergleichen und sortieren</value></data>
   <data name="Installer_Pdf" xml:space="preserve"><value>PDF-Tools: PDFs zusammenführen, aufteilen, umwandeln und ordnen</value></data>
   <data name="Installer_Images" xml:space="preserve"><value>Bild-Tools: Bilder umwandeln, skalieren und komprimieren</value></data>

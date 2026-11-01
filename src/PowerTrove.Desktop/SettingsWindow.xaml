@@ -249,6 +249,9 @@
                             <Button x:Name="InstallFromFileButton" Content="{x:Bind local:UiText.PacksInstallFromFile}" Click="InstallPackFromFile_Click"
                                     IsEnabled="{x:Bind Packs.CanOperate, Mode=OneWay}" AutomationProperties.AutomationId="InstallPackFromFile" />
                             <Button Content="{x:Bind local:UiText.PacksRefresh}" Click="RefreshPacks_Click" IsEnabled="{x:Bind Packs.CanOperate, Mode=OneWay}" />
+                            <Button x:Name="UpdateAllPacksButton" Content="{x:Bind Packs.UpdateAllText, Mode=OneWay}" Click="UpdateAllPacks_Click"
+                                    Visibility="{x:Bind local:Converters.BoolToVisibility(Packs.HasUpdates), Mode=OneWay}"
+                                    IsEnabled="{x:Bind Packs.CanOperate, Mode=OneWay}" AutomationProperties.AutomationId="UpdateAllPacks" />
                             <Button x:Name="CancelPackInstallButton" Content="{x:Bind local:UiText.CommonCancel}" Click="CancelPackInstall_Click"
                                     IsEnabled="{x:Bind Packs.IsBusy, Mode=OneWay}" />
                         </StackPanel>
@@ -256,18 +259,14 @@
                         <TextBlock x:Name="PackInstallStatus" Text="{x:Bind Packs.StatusMessage, Mode=OneWay}" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"
                                    Style="{StaticResource SettingsDescriptionStyle}" />
                         <TextBlock Text="{x:Bind Packs.ProgressText, Mode=OneWay}" Style="{StaticResource SettingsDescriptionStyle}" />
-                        <ListView ItemsSource="{x:Bind Packs.Rows, Mode=OneWay}" SelectionMode="None" MaxHeight="420"
-                                  AutomationProperties.Name="{x:Bind local:UiText.PacksHeading}">
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                    <Setter Property="Padding" Value="0,10" />
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.ItemTemplate>
+                        <!-- No own scroll viewer: the mouse wheel always scrolls the whole Settings page. -->
+                        <ItemsControl ItemsSource="{x:Bind Packs.Rows, Mode=OneWay}" AutomationProperties.Name="{x:Bind local:UiText.PacksHeading}">
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="vm:ActionPackRow">
-                                    <StackPanel Spacing="6" AutomationProperties.Name="{x:Bind AutomationName}">
+                                    <StackPanel Spacing="6" Padding="0,10" AutomationProperties.Name="{x:Bind AutomationName}">
                                         <TextBlock Text="{x:Bind Name}" Style="{ThemeResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind Summary}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap"
+                                                   Visibility="{x:Bind local:Converters.ToVisibility(Summary)}" />
                                         <TextBlock Text="{x:Bind StateText}" Style="{ThemeResource CaptionTextBlockStyle}" />
                                         <TextBlock Text="{x:Bind Details}" Style="{ThemeResource CaptionTextBlockStyle}" TextWrapping="Wrap" />
                                         <TextBlock Text="{x:Bind CompatibilityText}" TextWrapping="Wrap" Style="{ThemeResource CaptionTextBlockStyle}"
@@ -281,11 +280,14 @@
                                             <Button Content="{x:Bind local:UiText.PacksUninstall}" Tag="{x:Bind Id}" Click="UninstallPack_Click"
                                                     Visibility="{x:Bind local:Converters.BoolToVisibility(HasUninstallAction)}"
                                                     IsEnabled="{x:Bind CanUninstall, Mode=OneWay}" AutomationProperties.Name="{x:Bind UninstallAutomationName}" />
+                                            <HyperlinkButton Content="{x:Bind WebsiteText}" Tag="{x:Bind WebsiteUrl}" Click="PackWebsite_Click"
+                                                             Visibility="{x:Bind local:Converters.ToVisibility(WebsiteUrl)}"
+                                                             AutomationProperties.Name="{x:Bind WebsiteAutomationName}" />
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Expander>
 

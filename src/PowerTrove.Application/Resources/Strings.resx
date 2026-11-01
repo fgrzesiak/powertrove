@@ -248,6 +248,17 @@
   <data name="PackRemoveAutomationName" xml:space="preserve"><value>Remove {0}</value></data>
   <data name="PackInstall" xml:space="preserve"><value>Install</value></data>
   <data name="PackUpdate" xml:space="preserve"><value>Update</value></data>
+  <data name="PackSummary_files" xml:space="preserve"><value>Rename, zip, compare and sort files.</value></data>
+  <data name="PackSummary_pdf" xml:space="preserve"><value>Merge, split, compress, convert and organize PDFs, including text recognition (OCR).</value></data>
+  <data name="PackSummary_images" xml:space="preserve"><value>Convert, resize, compress and edit images, including HEIC photos.</value></data>
+  <data name="PackSummary_media" xml:space="preserve"><value>Convert, trim and compress audio and video.</value></data>
+  <data name="PackSummary_office" xml:space="preserve"><value>Convert Word, Excel and PowerPoint files to PDF, and PDFs to Word.</value></data>
+  <data name="PackSummary_data" xml:space="preserve"><value>Convert CSV, JSON, Excel and contact files.</value></data>
+  <data name="PackSummary_tables" xml:space="preserve"><value>Export Excel selections as CSV, JSON, Markdown or SQL.</value></data>
+  <data name="PackSummary_einvoice" xml:space="preserve"><value>View and convert XRechnung and ZUGFeRD invoices.</value></data>
+  <data name="PackWebsiteLink" xml:space="preserve"><value>All actions on the website</value></data>
+  <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: all actions on the website</value></data>
+  <data name="PacksUpdateAll" xml:space="preserve"><value>Update all ({0})</value></data>
   <data name="PacksNotOpened" xml:space="preserve"><value>Open this section to check the owner catalog.</value></data>
   <data name="PacksRefreshing" xml:space="preserve"><value>Checking the pack catalog…</value></data>
   <data name="PacksReady" xml:space="preserve"><value>The pack list is up to date.</value></data>

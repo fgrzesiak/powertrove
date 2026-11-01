@@ -144,6 +144,9 @@
   <data name="PacksUninstall" xml:space="preserve"><value>Remove</value></data>
   <data name="PacksBundled" xml:space="preserve"><value>Included with the application</value></data>
   <data name="PackDownloadConsent" xml:space="preserve"><value>Download {0} ({1}) from {2} and install it?</value></data>
+  <data name="PackUpdateAllConsentOne" xml:space="preserve"><value>Download the update for {0} ({1}) from {2} and install it?</value></data>
+  <data name="PackUpdateAllConsentOther" xml:space="preserve"><value>Download {0} pack updates ({1}) from {2} and install them?</value></data>
+  <data name="PacksUpdateAllTitle" xml:space="preserve"><value>Update packs</value></data>
   <data name="PackRemoveConsent" xml:space="preserve"><value>Remove {0}? Its downloaded versions will be deleted. Bundled tools remain available.</value></data>
   <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>Remove {0}? Its actions are unavailable until you install the pack again. Your files and settings stay unchanged.</value></data>
   <data name="PackRolledBack" xml:space="preserve"><value>A pack update could not start. PowerTrove restored the previous version.</value></data>
@@ -201,7 +204,7 @@
   <data name="Installer_ToolsTitle" xml:space="preserve"><value>Choose your tools</value></data>
   <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>Which tools should PowerTrove install?</value></data>
   <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Setup downloads the selected tools from the official signed channel and verifies them before finishing. If a download is unavailable, PowerTrove retries at its next start. You can manage tools in Settings at any time.</value></data>
-  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installed tools are preselected. Select additional tools to download and verify them before Setup finishes. Unchecking a tool does not remove it; use Settings to uninstall tools. Unavailable downloads are retried at the app's next start.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Installed tools are preselected and updated to their newest version. Select additional tools to download and verify them before Setup finishes. Unchecking a tool does not remove it; use Settings to uninstall tools. Unavailable downloads are retried at the app's next start.</value></data>
   <data name="Installer_Files" xml:space="preserve"><value>File Tools: rename, zip, compare and sort files</value></data>
   <data name="Installer_Pdf" xml:space="preserve"><value>PDF Tools: merge, split, convert and organize PDFs</value></data>
   <data name="Installer_Images" xml:space="preserve"><value>Image Tools: convert, resize and compress images</value></data>

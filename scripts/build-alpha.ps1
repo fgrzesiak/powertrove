@@ -13,16 +13,21 @@ $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 Push-Location $root
 try {
     $release = Get-Content -LiteralPath (Join-Path $root 'release.json') -Raw | ConvertFrom-Json
+    # An alpha carries a sequence (tag vX.Y.Z-alpha.N); a release is the plain version (tag vX.Y.Z).
+    $isRelease = $release.channel -ceq 'release'
     if ($release.version -cnotmatch '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$' -or
-        $release.channel -cne 'alpha' -or "$($release.sequence)" -cnotmatch '^[1-9][0-9]{0,5}$') {
-        throw 'Invalid alpha release identity.'
+        ($isRelease -and $null -ne $release.PSObject.Properties['sequence']) -or
+        (-not $isRelease -and ($release.channel -cne 'alpha' -or "$($release.sequence)" -cnotmatch '^[1-9][0-9]{0,5}$'))) {
+        throw 'Invalid release identity.'
     }
+    $tag = if ($isRelease) { "v$($release.version)" } else { "v$($release.version)-alpha.$($release.sequence)" }
+    $sequenceArguments = if ($isRelease) { @() } else { @('--alpha-sequence', $release.sequence) }
     $revision = (& git rev-parse HEAD).Trim()
     if ($LASTEXITCODE -ne 0 -or $revision -cnotmatch '^[a-f0-9]{40}$') { throw 'Cannot identify public source revision.' }
     $status = & git status --porcelain
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Build requires a clean public checkout.' }
     $output = if ($OutputDirectory) { [IO.Path]::GetFullPath($OutputDirectory) }
-        else { Join-Path $env:TEMP ("PowerTrove-Alpha-$($release.version)-$($release.sequence)-$revision") }
+        else { Join-Path $env:TEMP ("PowerTrove-$($tag.Substring(1))-$revision") }
     $packDirectory = Join-Path $output 'packs'
     $packPlan = Join-Path $packDirectory 'pack-plan.json'
     if (-not (Test-Path -LiteralPath $packPlan) -and $Phase -in @('All','Build','Package')) {
@@ -51,9 +56,9 @@ try {
         if ($LASTEXITCODE -ne 0) { throw 'Automated tests failed or timed out. Inspect candidate/test-results.' }
     }
     if ($Phase -in @('All', 'Package')) {
-        & dotnet run --project src/PowerTrove.ReleaseTools -- package --repo-root $root --output-dir $output --version $release.version --alpha-sequence $release.sequence --pack-plan-file $packPlan
+        & dotnet run --project src/PowerTrove.ReleaseTools -- package --repo-root $root --output-dir $output --version $release.version @sequenceArguments --pack-plan-file $packPlan
         if ($LASTEXITCODE -ne 0) { throw 'Candidate packaging failed.' }
-        @{ version = $release.version; tag = "v$($release.version)-alpha.$($release.sequence)";
+        @{ version = $release.version; tag = $tag;
            repository = 'fgrzesiak/powertrove'; revision = $revision; target = 'win-x64';
            publicReady = $false; windowsAcceptance = 'Not run'; signing = 'Unsigned';
            packPlanSha256 = (Get-FileHash -LiteralPath $packPlan -Algorithm SHA256).Hash.ToLowerInvariant() } |
