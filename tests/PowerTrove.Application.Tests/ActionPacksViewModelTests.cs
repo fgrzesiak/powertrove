@@ -151,6 +151,49 @@ public sealed class ActionPacksViewModelTests
         finally { CultureInfo.CurrentCulture = previous; CultureInfo.CurrentUICulture = previousUi; }
     }
 
+    [Fact]
+    public async Task UpdateAllPreparesAndInstallsOnlyAvailableUpdates()
+    {
+        using var temp = new TempDirectory();
+        var service = new FakeManagement();
+        using var vm = new ActionPacksViewModel(service, new SettingsService(temp.File("settings.json")));
+        Assert.False(vm.HasUpdates);
+        Assert.Empty(await vm.PrepareUpdatesAsync());
+        await vm.OpenAsync();
+        Assert.Equal(1, vm.UpdateCount);
+        Assert.Contains("1", vm.UpdateAllText);
+        var offers = await vm.PrepareUpdatesAsync();
+        Assert.Equal("powertrove.update", Assert.Single(offers).Id);
+        Assert.Empty(service.Commands);
+        await vm.InstallAllAsync(offers);
+        Assert.Equal(new[] { "install:powertrove.update" }, service.Commands);
+        await vm.InstallAllAsync([]);
+        Assert.Single(service.Commands);
+    }
+
+    [Theory]
+    [InlineData("en-US", "https://www.powertrove.net/en/tools/packs/pdf")]
+    [InlineData("de-DE", "https://www.powertrove.net/de/tools/packs/pdf")]
+    public void OfficialPacksShowASummaryAndTheirWebsiteOverview(string culture, string expected)
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+            var pdf = new ActionPackRow(new PackListItem("powertrove.pdf", "PDF Tools", "PowerTrove", "0.1.5", "0.1.5", 1, 39,
+                PackInstallState.Installed, false, true, false));
+            Assert.NotEmpty(pdf.Summary);
+            Assert.Equal(expected, pdf.WebsiteUrl);
+            foreach (string id in new[] { "powertrove.fixture", "example.pdf", "powertrove.pdfx" })
+            {
+                var other = new ActionPackRow(new PackListItem(id, "Generated", "Other", null, "1.0.0", 1, 1, PackInstallState.NotInstalled, true, false, false));
+                Assert.Empty(other.Summary);
+                Assert.Empty(other.WebsiteUrl);
+            }
+        }
+        finally { CultureInfo.CurrentUICulture = previous; }
+    }
+
     private sealed class TestCatalog(IReadOnlyList<CatalogEntry> entries) : IActionCatalog { public IReadOnlyList<CatalogEntry> Entries => entries; }
     private sealed class GeneratedPack : IActionPack
     {

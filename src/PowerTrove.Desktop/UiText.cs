@@ -92,6 +92,9 @@ public static class UiText
     public static string PacksUninstall => Get(nameof(PacksUninstall));
     public static string PacksBundled => Get(nameof(PacksBundled));
     public static string PackDownloadConsent(string name, string size, string publisher) => Format(Get("PackDownloadConsent"), name, size, publisher);
+    public static string PackUpdateAllConsent(int count, string nameOrCount, string size, string publishers) =>
+        Format(Get(count == 1 ? "PackUpdateAllConsentOne" : "PackUpdateAllConsentOther"), nameOrCount, size, publishers);
+    public static string PacksUpdateAllTitle => Get(nameof(PacksUpdateAllTitle));
     public static string PackRemoveConsent(string name) => Format(Get("PackRemoveConsent"), name);
     public static string PackRemoveConsentNoBundled(string name) => Format(Get("PackRemoveConsentNoBundled"), name);
     public static string PackRolledBack => Get(nameof(PackRolledBack));

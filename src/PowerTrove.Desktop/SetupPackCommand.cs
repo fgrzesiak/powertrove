@@ -6,7 +6,7 @@ using PowerTrove.Application.Packs;
 namespace PowerTrove.Desktop;
 
 /// <summary>
-/// Setup's last step: installs selected missing packs without a window, host election or palette.
+/// Setup's last step: installs selected missing packs and updates selected installed ones without a window, host election or palette.
 /// Exit code 0 means every selected pack is installed; otherwise the rest stays selected for the app's next start.
 /// </summary>
 internal static class SetupPackCommand
@@ -25,10 +25,10 @@ internal static class SetupPackCommand
             var installer = new PackInstaller(userRoot, PackDistributionConfiguration.HostVersion, (_, _) => System.Threading.Tasks.Task.CompletedTask);
             using var channel = PackChannelClient.CreateDefault(installer, userRoot, PackDistributionConfiguration.HostVersion);
             using var timeout = new CancellationTokenSource(TimeSpan.FromMinutes(15));
-            var installedIds = installer.GetInstalledAsync(timeout.Token).GetAwaiter().GetResult()
-                .Select(p => p.Manifest.Id).ToHashSet(StringComparer.Ordinal);
+            var installedVersions = installer.GetInstalledAsync(timeout.Token).GetAwaiter().GetResult()
+                .ToDictionary(p => p.Manifest.Id, p => p.Manifest.Version, StringComparer.Ordinal);
             channel.LoadCachedAsync(timeout.Token).GetAwaiter().GetResult();
-            var remaining = new SetupPackInstallation(channel, installedIds).InstallAsync(packs, timeout.Token).GetAwaiter().GetResult();
+            var remaining = new SetupPackInstallation(channel, installedVersions).InstallAsync(packs, timeout.Token).GetAwaiter().GetResult();
             BuiltInPackMigration.WriteSetupSelection(selection, remaining);
             return remaining.Count == 0 ? 0 : 1;
         }

@@ -14,6 +14,19 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
     public string Id => Item.Id;
     public string Name => Item.Name;
     public string Publisher => Item.Publisher;
+    /// <summary>Host-provided summary for official packs; signed catalogs carry no description.</summary>
+    public string Summary => OfficialSlug(Item.Id) is { } slug ? Strings.GetString("PackSummary_" + slug) : string.Empty;
+    /// <summary>The pack's action overview on the website, for official packs only.</summary>
+    public string WebsiteUrl => OfficialSlug(Item.Id) is { } slug
+        ? $"https://www.powertrove.net/{(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "de" ? "de" : "en")}/tools/packs/{slug}"
+        : string.Empty;
+    public string WebsiteText => Strings.GetString("PackWebsiteLink");
+    public string WebsiteAutomationName => string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackWebsiteAutomationName"), Name);
+    public bool IsUpdate => Item.State == PackInstallState.UpdateAvailable;
+    private static readonly string[] OfficialSlugs = ["files", "pdf", "images", "media", "office", "data", "tables", "einvoice"];
+    private static string? OfficialSlug(string id) =>
+        id.StartsWith("powertrove.", StringComparison.Ordinal) && Array.IndexOf(OfficialSlugs, id["powertrove.".Length..]) >= 0
+            ? id["powertrove.".Length..] : null;
     public string StateText => Strings.GetString("PackState" + Item.State);
     public string SizeText => FormatSize(Item.SizeBytes);
     public static string FormatSize(long bytes) => bytes >= 1048576 ? string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackSizeMegabytes"), bytes / 1048576d)
@@ -64,6 +77,9 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
     public bool IsBusy => _busy || _notifications?.Activity is not null;
     public bool CanChangeVisibility => CanOperate && !_settings.IsReadOnly && _settings is IPackVisibilitySettings;
     public bool HasNoPacks => Rows.Count == 0;
+    public int UpdateCount => Rows.Count(row => row.IsUpdate && row.CanDownload);
+    public bool HasUpdates => UpdateCount > 0;
+    public string UpdateAllText => string.Format(CultureInfo.CurrentCulture, Strings.GetString("PacksUpdateAll"), UpdateCount);
     public event PropertyChangedEventHandler? PropertyChanged;
     public bool ShowNotInstalledActions
     {
@@ -138,6 +154,43 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
             return _service.InstallAsync(offer, progress, ct);
         }, "PacksInstalling", token);
     }
+    /// <summary>Prepares every available update; an unavailable one is skipped and reported through the status.</summary>
+    public async Task<IReadOnlyList<PackInstallOffer>> PrepareUpdatesAsync(CancellationToken token = default)
+    {
+        var ids = Rows.Where(row => row.IsUpdate && row.CanDownload).Select(row => row.Id).ToArray();
+        var offers = new List<PackInstallOffer>();
+        if (ids.Length == 0) return offers;
+        await RunAsync(async ct =>
+        {
+            var status = PackChannelStatus.Ready;
+            foreach (string id in ids)
+            {
+                var result = await _service.PrepareAsync(id, ct);
+                if (result.Offer is { } offer) offers.Add(offer); else status = result.Status;
+            }
+            return status;
+        }, "PacksRefreshing", token, reload: false);
+        return offers;
+    }
+    /// <summary>Installs the confirmed updates one after another; one failure does not stop the others.</summary>
+    public Task InstallAllAsync(IReadOnlyList<PackInstallOffer> offers, CancellationToken token = default) => offers.Count == 0 ? Task.CompletedTask : RunAsync(async ct =>
+    {
+        long revision = _operationRevision;
+        var progress = new Progress<PackDownloadProgress>(value =>
+        {
+            if (_closed || !_busy || revision != _operationRevision) return;
+            ProgressText = string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackProgressBytes"), value.CompletedBytes);
+            PropertyChanged?.Invoke(this, new(nameof(ProgressText)));
+        });
+        var result = PackChannelStatus.Installed;
+        foreach (var offer in offers)
+        {
+            ct.ThrowIfCancellationRequested();
+            var status = await _service.InstallAsync(offer, progress, ct);
+            if (status != PackChannelStatus.Installed) result = status;
+        }
+        return result;
+    }, "PacksInstalling", token);
     public Task InstallFileAsync(string path, CancellationToken token = default) => RunAsync(ct => _service.InstallFileAsync(path, ct), "PacksInstalling", token);
     public Task UninstallAsync(string id, CancellationToken token = default)
     {
@@ -183,7 +236,7 @@ public sealed class ActionPacksViewModel : INotifyPropertyChanged, IDisposable
     {
         foreach (var row in Rows) row.SetBusy(IsBusy);
         foreach (string property in new[] { nameof(Rows), nameof(StatusMessage), nameof(ProgressText), nameof(IsBusy), nameof(CanOperate),
-            nameof(CanChangeVisibility), nameof(HasNoPacks), nameof(ShowNotInstalledActions) }) PropertyChanged?.Invoke(this, new(property));
+            nameof(CanChangeVisibility), nameof(HasNoPacks), nameof(ShowNotInstalledActions), nameof(UpdateCount), nameof(HasUpdates), nameof(UpdateAllText) }) PropertyChanged?.Invoke(this, new(property));
     }
     public void Dispose()
     {

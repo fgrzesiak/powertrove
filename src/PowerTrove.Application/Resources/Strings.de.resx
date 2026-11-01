@@ -177,6 +177,17 @@
   <data name="PackRemoveAutomationName" xml:space="preserve"><value>{0} entfernen</value></data>
   <data name="PackInstall" xml:space="preserve"><value>Installieren</value></data>
   <data name="PackUpdate" xml:space="preserve"><value>Aktualisieren</value></data>
+  <data name="PackSummary_files" xml:space="preserve"><value>Dateien umbenennen, komprimieren, vergleichen und sortieren.</value></data>
+  <data name="PackSummary_pdf" xml:space="preserve"><value>PDFs zusammenführen, aufteilen, komprimieren, umwandeln und ordnen, auch mit Texterkennung (OCR).</value></data>
+  <data name="PackSummary_images" xml:space="preserve"><value>Bilder umwandeln, skalieren, komprimieren und bearbeiten, auch HEIC-Fotos.</value></data>
+  <data name="PackSummary_media" xml:space="preserve"><value>Audio und Video umwandeln, schneiden und komprimieren.</value></data>
+  <data name="PackSummary_office" xml:space="preserve"><value>Word-, Excel- und PowerPoint-Dateien in PDF umwandeln und PDFs in Word.</value></data>
+  <data name="PackSummary_data" xml:space="preserve"><value>CSV-, JSON-, Excel- und Kontaktdateien umwandeln.</value></data>
+  <data name="PackSummary_tables" xml:space="preserve"><value>Excel-Auswahl als CSV, JSON, Markdown oder SQL exportieren.</value></data>
+  <data name="PackSummary_einvoice" xml:space="preserve"><value>XRechnung- und ZUGFeRD-Rechnungen anzeigen und umwandeln.</value></data>
+  <data name="PackWebsiteLink" xml:space="preserve"><value>Alle Aktionen auf der Website</value></data>
+  <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: alle Aktionen auf der Website</value></data>
+  <data name="PacksUpdateAll" xml:space="preserve"><value>Alle aktualisieren ({0})</value></data>
   <data name="PacksNotOpened" xml:space="preserve"><value>Öffnen Sie diesen Bereich, um den Katalog des Herausgebers zu prüfen.</value></data>
   <data name="PacksRefreshing" xml:space="preserve"><value>Der Paketkatalog wird geprüft…</value></data>
   <data name="PacksReady" xml:space="preserve"><value>Die Paketliste ist aktuell.</value></data>
