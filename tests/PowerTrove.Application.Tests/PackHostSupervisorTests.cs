@@ -8,6 +8,48 @@ namespace PowerTrove.Application.Tests;
 
 public sealed class PackHostSupervisorTests
 {
+    [Fact]
+    public async Task WorkerShutdown_RetriesOwnedCleanupAfterATransientWindowsFileLock()
+    {
+        if (!OperatingSystem.IsWindows()) return;
+        var clock = new TestClock();
+        await using var fixture = new Fixture("success", clock);
+        Assert.True((await fixture.Execute()).IsSuccess);
+        string work = Assert.Single(Directory.EnumerateDirectories(fixture.Temp.File("user/workers")));
+        using var imageMapping = new FileStream(Path.Combine(work, "generated-native.dll"), FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read);
+        var stopping = fixture.Host.StopPackAsync("powertrove.fixture", fixture.Token);
+        await clock.DelayScheduled(TimeSpan.FromMilliseconds(100)).WaitAsync(fixture.Token);
+        Assert.False(stopping.IsCompleted);
+        imageMapping.Dispose();
+        clock.Advance(TimeSpan.FromMilliseconds(100));
+        await stopping.WaitAsync(fixture.Token);
+        Assert.Empty(Directory.EnumerateDirectories(fixture.Temp.File("user/workers")));
+        Assert.Equal("original", File.ReadAllText(fixture.Input));
+    }
+
+    [Fact]
+    public async Task WorkerShutdown_PersistentCleanupDenialFailsWithoutDiscardingTheOwnedPath()
+    {
+        if (!OperatingSystem.IsWindows()) return;
+        var clock = new TestClock();
+        await using var fixture = new Fixture("success", clock);
+        Assert.True((await fixture.Execute()).IsSuccess);
+        string work = Assert.Single(Directory.EnumerateDirectories(fixture.Temp.File("user/workers")));
+        using var imageMapping = new FileStream(Path.Combine(work, "generated-native.dll"), FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read);
+        var stopping = fixture.Host.StopPackAsync("powertrove.fixture", fixture.Token);
+        for (int attempt = 0; attempt < 5; attempt++)
+        {
+            await clock.DelayScheduled(TimeSpan.FromMilliseconds(100)).WaitAsync(fixture.Token);
+            clock.Advance(TimeSpan.FromMilliseconds(100));
+        }
+        var error = await Record.ExceptionAsync(() => stopping.WaitAsync(fixture.Token));
+        Assert.True(error is IOException or UnauthorizedAccessException);
+        Assert.True(Directory.Exists(work));
+        imageMapping.Dispose();
+        await fixture.Host.StopPackAsync("powertrove.fixture", fixture.Token);
+        Assert.False(Directory.Exists(work));
+    }
+
     [Theory]
     [InlineData(false)]
     [InlineData(true)]

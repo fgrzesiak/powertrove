@@ -216,4 +216,7 @@
   <data name="UpdatesStoreManaged" xml:space="preserve"><value>App-Updates werden über den Microsoft Store verwaltet.</value></data>
   <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>Für ein installiertes Werkzeugpaket ist ein Update verfügbar.</value></data>
   <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>Für {0} installierte Werkzeugpakete sind Updates verfügbar.</value></data>
+  <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Rezept erstellen</value></data>
+  <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Mehrere Aktionen zu einem Rezept verbinden, das sie nacheinander ausführt.</value></data>
+  <data name="UserRecipeDescription" xml:space="preserve"><value>Ihr Rezept: {0}</value></data>
 </root>

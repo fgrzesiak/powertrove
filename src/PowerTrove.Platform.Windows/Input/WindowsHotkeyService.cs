@@ -15,6 +15,8 @@ public sealed class WindowsHotkeyService : IHotkeyService
     private int? _pendingReleaseId;
     private const int WM_HOTKEY = 0x0312;
     private const int ERROR_HOTKEY_ALREADY_REGISTERED = 1409;
+    // Registrations alternate between ids 1 and 2; probes use their own id.
+    private const int ProbeId = 3;
 
     public event EventHandler? HotkeyTriggered;
 
@@ -45,12 +47,7 @@ public sealed class WindowsHotkeyService : IHotkeyService
         if (_isRegistered && _currentConfig == configuration)
             return RegisterHotkeyResult.Success;
 
-        uint fsModifiers = 0;
-        if (configuration.Modifiers.HasFlag(KeyModifiers.Alt)) fsModifiers |= 0x0001;
-        if (configuration.Modifiers.HasFlag(KeyModifiers.Control)) fsModifiers |= 0x0002;
-        if (configuration.Modifiers.HasFlag(KeyModifiers.Shift)) fsModifiers |= 0x0004;
-        if (configuration.Modifiers.HasFlag(KeyModifiers.Windows)) fsModifiers |= 0x0008;
-        fsModifiers |= 0x4000; // MOD_NOREPEAT
+        uint fsModifiers = NativeModifiers(configuration);
 
         // Keep the working registration until the replacement is reserved.
         int candidateId = _isRegistered ? 3 - _hotkeyId : _hotkeyId;
@@ -74,6 +71,29 @@ public sealed class WindowsHotkeyService : IHotkeyService
         _isRegistered = true;
         _currentConfig = configuration;
         return RegisterHotkeyResult.Success;
+    }
+
+    public bool IsAvailable(HotkeyConfiguration configuration)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        if (_hwnd == IntPtr.Zero || _pendingReleaseId is not null) return false;
+        if (_isRegistered && _currentConfig == configuration) return false;
+        if (!_interop.RegisterHotKey(_hwnd, ProbeId, NativeModifiers(configuration), configuration.Key))
+            return false;
+        // An unreleased probe would block the shortcut it just found free; retry it before the next registration.
+        if (!_interop.UnregisterHotKey(_hwnd, ProbeId))
+            _pendingReleaseId = ProbeId;
+        return true;
+    }
+
+    private static uint NativeModifiers(HotkeyConfiguration configuration)
+    {
+        uint fsModifiers = 0;
+        if (configuration.Modifiers.HasFlag(KeyModifiers.Alt)) fsModifiers |= 0x0001;
+        if (configuration.Modifiers.HasFlag(KeyModifiers.Control)) fsModifiers |= 0x0002;
+        if (configuration.Modifiers.HasFlag(KeyModifiers.Shift)) fsModifiers |= 0x0004;
+        if (configuration.Modifiers.HasFlag(KeyModifiers.Windows)) fsModifiers |= 0x0008;
+        return fsModifiers | 0x4000; // MOD_NOREPEAT
     }
 
     public void Unregister()

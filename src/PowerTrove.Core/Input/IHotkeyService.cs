@@ -25,6 +25,8 @@ public sealed record HotkeyConfiguration(KeyModifiers Modifiers, uint Key);
 public interface IHotkeyService : IDisposable
 {
     RegisterHotkeyResult Register(HotkeyConfiguration configuration);
+    /// <summary>True when Windows would accept the shortcut now; the probe keeps the current registration.</summary>
+    bool IsAvailable(HotkeyConfiguration configuration);
     /// <summary>Releases owned shortcuts. Failed releases retain state for retry.</summary>
     /// <exception cref="InvalidOperationException">A native shortcut could not be released.</exception>
     void Unregister();

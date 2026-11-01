@@ -27,6 +27,28 @@ public sealed class PackLoaderTests : IDisposable
     }
 
     [Fact]
+    public async Task WindowsLibraryFallback_UsesSystem32AndRejectsOtherUnverifiedLibraries()
+    {
+        if (!OperatingSystem.IsWindows()) return;
+        var (directory, manifest) = WriteFixture();
+        using var pack = await LoadedPack.LoadAsync(directory, manifest, _temp.File("native-work"), new Version(0, 1, 0));
+        var context = AssemblyLoadContext.GetLoadContext(pack.Factory.GetType().Assembly)!;
+        var load = typeof(PackLoadContext).GetMethod("LoadUnmanagedDll", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!;
+        var handle = (IntPtr)load.Invoke(context, ["kernel32"])!;
+        var path = new System.Text.StringBuilder(32768);
+        Assert.NotEqual(0u, GetModuleFileName(handle, path, path.Capacity));
+        Assert.Equal(Path.Combine(Environment.SystemDirectory, "kernel32.dll"), path.ToString(), ignoreCase: true);
+        foreach (string name in new[] { "unverified-tool", "../kernel32", @"C:\unverified\kernel32.dll" })
+        {
+            var error = Assert.Throws<System.Reflection.TargetInvocationException>(() => load.Invoke(context, [name]));
+            Assert.IsType<DllNotFoundException>(error.InnerException);
+        }
+    }
+
+    [System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint = "GetModuleFileNameW", CharSet = System.Runtime.InteropServices.CharSet.Unicode)]
+    private static extern uint GetModuleFileName(IntPtr module, System.Text.StringBuilder filename, int size);
+
+    [Fact]
     public async Task SameSizeHashMutationIsRejectedBeforeAssemblyLoadingAndShadowIsCleaned()
     {
         var (directory, manifest) = WriteFixture();

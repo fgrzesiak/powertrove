@@ -27,6 +27,12 @@ public sealed record SavedImageExportPreset(
     bool StripMetadata
 );
 
+/// <summary>One step of a user recipe: an action id and the option values it runs with.</summary>
+public sealed record SavedRecipeStep(string ActionId, Dictionary<string, string> Parameters);
+
+/// <summary>A recipe the user composed from installed actions. Its id stays stable once saved.</summary>
+public sealed record SavedRecipe(string Id, string Title, IReadOnlyList<SavedRecipeStep> Steps);
+
 public sealed record SelectionUsageEntry(int Count, DateTimeOffset LastUsedUtc);
 
 public sealed record UserSettings(
@@ -46,7 +52,9 @@ public sealed record UserSettings(
     bool CheckForUpdatesOnStartup = true,
     bool PackMigrationChecked = false,
     IReadOnlyList<string>? PendingPackMigration = null,
-    bool CheckForPackUpdatesAutomatically = true)
+    bool CheckForPackUpdatesAutomatically = true,
+    IReadOnlyList<SavedRecipe>? UserRecipes = null,
+    bool LauncherHotkeyHintDismissed = false)
 {
     public const int CurrentVersion = 3;
 

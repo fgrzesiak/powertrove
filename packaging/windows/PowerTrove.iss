@@ -55,6 +55,8 @@ Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 [Tasks]
 Name: "startmenu"; Description: "{cm:Installer_StartMenu}"; GroupDescription: "{cm:Installer_WindowsIntegration}"
 Name: "explorermenu"; Description: "{cm:Installer_ExplorerMenu}"; GroupDescription: "{cm:Installer_WindowsIntegration}"; Flags: unchecked
+; Preselected on a new installation; Settings turns it off. Updates show the current registration instead (CurPageChanged).
+Name: "startup"; Description: "{cm:Installer_Startup}"; GroupDescription: "{cm:Installer_WindowsIntegration}"
 
 [Icons]
 Name: "{autoprograms}\PowerTrove"; Filename: "{app}\PowerTrove.exe"; WorkingDir: "{app}"; Tasks: startmenu
@@ -67,6 +69,11 @@ Filename: "{app}\PowerTrove.exe"; Flags: nowait; Check: IsInAppUpdate
 var
   PackPage: TInputOptionWizardPage;
   FreshInstall: Boolean;
+  StartupTaskPrepared: Boolean;
+
+const
+  UninstallKey = 'Software\Microsoft\Windows\CurrentVersion\Uninstall\PowerTrove_is1';
+  RunKey = 'Software\Microsoft\Windows\CurrentVersion\Run';
 
 // Official pack IDs in the order of the selection page. Keep in sync with pack-releases.json.
 function PackId(Index: Integer): String;
@@ -125,6 +132,29 @@ begin
     ((PageID = wpSelectTasks) and IsInAppUpdate);
 end;
 
+// True when the previous installation already offered the startup choice, selected or not.
+function PreviousSetupOfferedStartup(): Boolean;
+var
+  Tasks: String;
+begin
+  Result := False;
+  if RegQueryStringValue(HKCU, UninstallKey, 'Inno Setup: Selected Tasks', Tasks) then
+    Result := Pos(',startup,', ',' + Lowercase(Tasks) + ',') > 0;
+  if not Result and RegQueryStringValue(HKCU, UninstallKey, 'Inno Setup: Deselected Tasks', Tasks) then
+    Result := Pos(',startup,', ',' + Lowercase(Tasks) + ',') > 0;
+end;
+
+// An update shows whether PowerTrove currently starts at sign-in, so a choice made in Settings is never undone.
+// Installations from before this option keep the preselected default once.
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if (CurPageID <> wpSelectTasks) or FreshInstall or StartupTaskPrepared then Exit;
+  StartupTaskPrepared := True;
+  if not PreviousSetupOfferedStartup then Exit;
+  if RegValueExists(HKCU, RunKey, 'PowerTrove') then WizardSelectTasks('startup')
+  else WizardSelectTasks('!startup');
+end;
+
 // The app's headless setup command installs these through its verified package manager and removes this file.
 // Anything it cannot install now stays listed, and the app installs it at its next start.
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -138,6 +168,15 @@ begin
       ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode) or (ResultCode <> 0) then
       SuppressibleMsgBox(CustomMessage('Installer_ExplorerFailed'), mbInformation, MB_OK, IDOK);
   if not FreshInstall and WizardSilent then Exit;
+  if WizardIsTaskSelected('startup') then
+  begin
+    if not Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-startup enable', ExpandConstant('{app}'), SW_HIDE,
+      ewWaitUntilTerminated, ResultCode) or (ResultCode <> 0) then
+      SuppressibleMsgBox(CustomMessage('Installer_StartupFailed'), mbInformation, MB_OK, IDOK);
+  end
+  else if not FreshInstall then
+    Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-startup disable', ExpandConstant('{app}'), SW_HIDE,
+      ewWaitUntilTerminated, ResultCode);
   Selection := '';
   for I := 0 to 7 do
     if PackPage.Values[I] then
@@ -168,15 +207,18 @@ var
   ResultCode: Integer;
 begin
   if CurUninstallStep = usUninstall then
+  begin
     Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-explorer-menu remove ' + ActiveLanguage,
       ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
+    Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-startup disable',
+      ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  end;
 end;
 
 // Guard version downgrade in the user's existing installation; never reset settings.
 function InstalledVersion(): String;
 begin
-  if not RegQueryStringValue(HKCU,
-    'Software\Microsoft\Windows\CurrentVersion\Uninstall\PowerTrove_is1', 'DisplayVersion', Result) then
+  if not RegQueryStringValue(HKCU, UninstallKey, 'DisplayVersion', Result) then
     Result := '';
 end;
 

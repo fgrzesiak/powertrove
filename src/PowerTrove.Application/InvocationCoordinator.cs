@@ -103,10 +103,14 @@ public class InvocationCoordinator
 
         try
         {
+            var resolveStart = System.Diagnostics.Stopwatch.GetTimestamp();
             var resolvedSnapshot = await _contextResolver.ResolveContextAsync(
                 loadingSnapshot.InvocationId,
                 captureResult.Identity,
                 token).ConfigureAwait(true);
+            PowerTrove.Core.Diagnostics.InvocationMetrics.ContextResolveLatency.Record(
+                System.Diagnostics.Stopwatch.GetElapsedTime(resolveStart).TotalMilliseconds,
+                new KeyValuePair<string, object?>(PowerTrove.Core.Diagnostics.InvocationMetrics.ProviderTag, resolvedSnapshot.ProviderId));
 
             if (version == _invocationVersion && !token.IsCancellationRequested)
             {

@@ -22,6 +22,20 @@ public sealed class DesktopDistributionTests
     }
 
     [Fact]
+    public void TestAndProductionPackageFamilies_HaveDistinctStableActivationChannels()
+    {
+        string local = Path.GetTempPath();
+        var test = DesktopDistribution.Create(true, local, Path.Combine(local, "Packages", "test-family", "LocalCache"));
+        var production = DesktopDistribution.Create(true, local, Path.Combine(local, "Packages", "production-family", "LocalCache"));
+        Assert.NotEqual(test.InstanceKey, production.InstanceKey);
+        Assert.InRange(test.InstanceKey.Length, 1, 64);
+        Assert.All(test.InstanceKey, c => Assert.True(char.IsAsciiLetterOrDigit(c)));
+        Assert.Equal(test.InstanceKey, DesktopDistribution.Create(true, local,
+            Path.Combine(local, "Packages", "test-family", "LocalCache")).InstanceKey);
+        Assert.DoesNotContain(test.UserRoot, test.InstanceKey);
+    }
+
+    [Fact]
     public void MissingOrRelativePackageStorage_NeverFallsBackToTheExistingInstallation()
     {
         Assert.Throws<ArgumentNullException>(() => DesktopDistribution.Create(true, Path.GetTempPath()));

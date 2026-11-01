@@ -24,6 +24,10 @@ public static class Strings
     public static string Notice_Failed => GetString("Notice_Failed");
     public static string Action_OpenSettings_Title => GetString("Action_OpenSettings_Title");
     public static string Action_OpenSettings_Description => GetString("Action_OpenSettings_Description");
+    public static string Action_CreateRecipe_Title => GetString("Action_CreateRecipe_Title");
+    public static string Action_CreateRecipe_Description => GetString("Action_CreateRecipe_Description");
+    public static string UserRecipeDescription(string steps) =>
+        string.Format(System.Globalization.CultureInfo.CurrentCulture, GetString("UserRecipeDescription"), steps);
     public static string Group_Suggested => GetString("Group_Suggested");
     public static string Group_All => GetString("Group_All");
     public static string Badge_Favorite => GetString("Badge_Favorite");

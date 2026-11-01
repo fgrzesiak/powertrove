@@ -30,6 +30,24 @@ public sealed class DesktopDistributionProfileTests
     }
 
     [Fact]
+    public void UserRecipes_AreOnlyCompiledIntoDebugBuilds_UnlessEnabledExplicitly()
+    {
+        // Release workflows publish Release builds, so features in development stay out of releases.
+        string root = PackFactoriesTests.FindRoot();
+        var doc = XDocument.Load(Path.Combine(root, "src/PowerTrove.Desktop/PowerTrove.Desktop.csproj"));
+        var property = Assert.Single(doc.Descendants("PowerTroveUserRecipes"));
+        Assert.Equal("true", property.Value);
+        Assert.Equal("'$(PowerTroveUserRecipes)' == '' and '$(Configuration)' == 'Debug'", (string?)property.Attribute("Condition"));
+        var define = Assert.Single(doc.Descendants("DefineConstants").Where(e => e.Value.Contains("POWERTROVE_USER_RECIPES")));
+        Assert.Equal("'$(PowerTroveUserRecipes)' == 'true'", (string?)define.Attribute("Condition"));
+        string features = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/Features.cs"));
+        Assert.Contains("#if POWERTROVE_USER_RECIPES", features);
+        string app = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/App.xaml.cs"));
+        Assert.Matches(@"if \(Features\.UserRecipes\)\s+actionRegistry\.Register\(new PowerTrove\.Application\.Commands\.CreateRecipeAction", app);
+        Assert.Contains("!Features.UserRecipes", app);
+    }
+
+    [Fact]
     public void CoreSource_LinksNoPack_AndBaseSourceLinksOnlyFilesAndPdf()
     {
         string root = PackFactoriesTests.FindRoot();

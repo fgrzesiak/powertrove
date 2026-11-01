@@ -53,6 +53,7 @@ public sealed class ImageCanvasWindow : HostedView, IVisualActionEditor
     public override bool CanGoBack => true;
     public override void GoBack() { ReturnToOptions = true; Close(); }
     public bool ReturnToOptions { get; private set; }
+    public bool PreviewUnsupported { get; private set; }
     public DictionaryParameters DraftParameters => state is null ? initial : ImageEditorInput.Parameters(state.Layout);
     private static string T(string key) => UiText.ImageEditor(key);
 
@@ -174,6 +175,8 @@ public sealed class ImageCanvasWindow : HostedView, IVisualActionEditor
             // Decode and thumbnail generation stay in the installed pack/worker. The UI receives a bounded PNG only.
             var preview = await validate(new EmptyParameters(), closing.Token);
             if (closed) return;
+            // The installed pack predates visual previews: continue on the regular options page.
+            if (VisualEditorSupport.LacksImage(preview)) { PreviewUnsupported = ReturnToOptions = true; Close(); return; }
             if (preview is not { IsBlocked: false, ImagePreview: { } frame } || !frame.TryDecodePng(out var bytes))
             { status.Text = preview?.PreviewText ?? T("LoadFailed"); return; }
             state = new(frame.SourceWidth, frame.SourceHeight, ImageEditorInput.Seed(frame.SourceWidth, frame.SourceHeight, origin, initial.Values));

@@ -42,6 +42,7 @@ public sealed class ImageEffectsWindow : HostedView, IVisualActionEditor
     public override bool CanGoBack => true;
     public override void GoBack() { ReturnToOptions = true; Close(); }
     public bool ReturnToOptions { get; private set; }
+    public bool PreviewUnsupported { get; private set; }
     public DictionaryParameters DraftParameters => new(new Dictionary<string, string>(values));
     private static string T(string key) => UiText.ImageEditor(key);
 
@@ -228,6 +229,11 @@ public sealed class ImageEffectsWindow : HostedView, IVisualActionEditor
                         bool latest = renderedRevision == revision;
                         status.Text = resizeInputInvalid ? T("ResizeInvalid") : latest ? (resize ? string.Empty : preview.PreviewText) : T("EffectsUpdating");
                         apply.IsEnabled = latest && !resizeInputInvalid && preview.Confirmation is null;
+                    }
+                    else if (VisualEditorSupport.LacksImage(preview) && picture.Source is null)
+                    {
+                        // The installed pack predates visual previews: continue on the regular options page.
+                        PreviewUnsupported = ReturnToOptions = true; Close(); return;
                     }
                     else if (renderedRevision == revision)
                     { ClearPreview(); status.Text = preview?.IsBlocked == true ? preview.PreviewText : T("EffectsUnavailable"); }

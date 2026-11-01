@@ -40,6 +40,7 @@
     <Compile Include="..\..\src\PowerTrove.Desktop\BuiltInContextProviders.cs" Link="Desktop\BuiltInContextProviders.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\UiText.cs" Link="Desktop\UiText.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\VisualEditorSupport.cs" Link="Desktop\VisualEditorSupport.cs" />
     <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.resx" Link="Resources\DesktopStrings.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.resources" />
     <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.de.resx" Link="Resources\DesktopStrings.de.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.de.resources" />
   </ItemGroup>

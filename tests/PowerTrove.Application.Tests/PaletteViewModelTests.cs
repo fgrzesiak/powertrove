@@ -245,9 +245,10 @@ public class PaletteViewModelTests
         // Assert
         Assert.Equal(new[]
         {
+            // Several images of one kind: resizing leads the batch tasks (selection-intelligence S7).
+            "powertrove.image.resize",
             "powertrove.image.convert-webp",
             "powertrove.image.convert-avif",
-            "powertrove.image.resize",
             "powertrove.image.remove-metadata",
             "powertrove.fake.fail",
             "powertrove.fake.slow",
@@ -266,9 +267,10 @@ public class PaletteViewModelTests
         Assert.Equal("2 images", vm.ContextSummary);
         Assert.Equal(new[]
         {
+            // Several images of one kind: resizing leads the batch tasks (selection-intelligence S7).
+            "powertrove.image.resize",
             "powertrove.image.convert-webp",
             "powertrove.image.convert-avif",
-            "powertrove.image.resize",
             "powertrove.image.remove-metadata",
             "powertrove.fake.fail",
             "powertrove.fake.slow",

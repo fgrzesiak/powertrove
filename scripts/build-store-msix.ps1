@@ -10,6 +10,8 @@ trust a certificate, contact Partner Center or publish. Package identity is expl
 param(
     [Parameter(Mandatory=$true)][string]$Identity,
     [Parameter(Mandatory=$true)][string]$Publisher,
+    [string]$PublisherDisplayName,
+    [string]$SourceRevision,
     [Parameter(Mandatory=$true)][string]$PackageVersion,
     [Parameter(Mandatory=$true)][string]$HostVersion,
     [string]$CoreZip,
@@ -38,6 +40,11 @@ try {
     if ($LASTEXITCODE -ne 0 -or $status) { throw 'Commit the reviewed source before building an exact candidate.' }
     $revision = (& git rev-parse HEAD).Trim()
     if ($LASTEXITCODE -ne 0 -or $revision -cnotmatch '^[a-f0-9]{40}$') { throw 'Cannot identify exact public source.' }
+    $packagingRevision = $revision
+    if ($SourceRevision) {
+        if (-not $CoreZip -or $SourceRevision -cnotmatch '^[a-f0-9]{40}$') { throw 'SourceRevision requires an existing verified ZIP and exact source commit.' }
+        $revision = $SourceRevision
+    }
     # Prevent build-server proliferation in constrained environments. Child publishes inherit this.
     $previousNodeReuse = $env:MSBUILDDISABLENODEREUSE
     $env:MSBUILDDISABLENODEREUSE = '1'
@@ -59,7 +66,9 @@ try {
     $inputEvidence = Join-Path $output 'input-payload.json'
     & dotnet run --project src/PowerTrove.ReleaseTools -c Release --no-build -- extract-msix-payload --core-zip $CoreZip --core-sha256 $CoreZipSha256 --payload $payload --source-revision $revision --version $HostVersion --release-version $ReleaseVersion --input-evidence $inputEvidence
     if ($LASTEXITCODE -ne 0) { throw 'Existing Core ZIP provenance or extraction failed.' }
-    & dotnet run --project src/PowerTrove.ReleaseTools -c Release --no-build -- prepare-msix --repo-root $root --payload $payload --identity $Identity --publisher $Publisher --package-version $PackageVersion
+    $publisherArguments = @()
+    if ($PublisherDisplayName) { $publisherArguments = @('--publisher-display-name', $PublisherDisplayName) }
+    & dotnet run --project src/PowerTrove.ReleaseTools -c Release --no-build -- prepare-msix --repo-root $root --payload $payload --identity $Identity --publisher $Publisher --package-version $PackageVersion @publisherArguments
     if ($LASTEXITCODE -ne 0) { throw 'MSIX payload/identity validation failed.' }
 
     # Derive package logos from the existing owned Windows icon; no new binary source assets.
@@ -127,7 +136,9 @@ try {
         @{ path = $_.Path; bytes = $_.Bytes; sha256 = $_.Sha256 }
     })
     @{ schemaVersion = 2; sourceRevision = $revision; identity = $Identity; publisher = $Publisher;
+       packagingRevision = $packagingRevision;
        packageVersion = $PackageVersion; hostVersion = $HostVersion; architecture = 'x64'; profile = 'Core';
+       publisherDisplayName = $PublisherDisplayName;
        releaseVersion = $ReleaseVersion; sourceZipSha256 = $CoreZipSha256; payloadVerified = $true; sdkValidation = 'Passed';
        packageSha256 = (Get-FileHash -LiteralPath $package -Algorithm SHA256).Hash.ToLowerInvariant();
        signature = 'Unsigned'; windowsAcceptance = 'Not run'; certification = 'Not submitted';

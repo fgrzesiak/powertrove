@@ -309,7 +309,18 @@ public sealed class PackHostSupervisor : IAsyncDisposable
             group.Reader = null;
         }
         group.Writer?.Dispose(); group.Writer = null;
-        if (group.Work is { } work) { DeleteOwned(work, _workerRoot); group.Work = null; }
+        if (group.Work is { } work)
+        {
+            // Windows may briefly retain native image mappings after the worker exits.
+            // Retry only our owned GUID directory, without relaxing path/link checks.
+            // A persistent denial still fails maintenance and keeps the cleanup path.
+            for (int attempt = 0; ; attempt++)
+            {
+                try { DeleteOwned(work, _workerRoot); group.Work = null; break; }
+                catch (Exception ex) when (attempt < 5 && ex is IOException or UnauthorizedAccessException)
+                { await Task.Delay(TimeSpan.FromMilliseconds(100), _clock, CancellationToken.None).ConfigureAwait(false); }
+            }
+        }
     }
 
     private async Task WriteAsync(Group group, PackMessage message, TimeSpan timeout, CancellationToken token)

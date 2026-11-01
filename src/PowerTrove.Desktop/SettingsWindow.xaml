@@ -89,6 +89,19 @@
                                            Style="{ThemeResource CaptionTextBlockStyle}"
                                            TextWrapping="Wrap"
                                            Visibility="Collapsed" />
+                                <Button x:Name="ShortcutSuggestionButton" Click="UseSuggestedShortcut_Click"
+                                        Visibility="Collapsed" AutomationProperties.AutomationId="SettingsUseSuggestedShortcut" />
+                            </StackPanel>
+                        </Border>
+                        <!-- Start at sign-in: one owned per-user Run value. Hidden in the Store version. -->
+                        <Border x:Name="StartupCard" Style="{StaticResource SettingsCardStyle}">
+                            <StackPanel Spacing="8">
+                                <ToggleSwitch x:Name="StartupToggle" Header="{x:Bind local:UiText.StartupTitle}"
+                                              OnContent="{x:Bind local:UiText.ToggleOn}" OffContent="{x:Bind local:UiText.ToggleOff}"
+                                              IsEnabled="False" Toggled="StartupToggle_Toggled" AutomationProperties.AutomationId="StartupToggle" />
+                                <TextBlock Text="{x:Bind local:UiText.StartupDescription}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
+                                <TextBlock x:Name="StartupStatus" Visibility="Collapsed" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"
+                                           Style="{StaticResource SettingsDescriptionStyle}" />
                             </StackPanel>
                         </Border>
 
@@ -149,6 +162,28 @@
                             </StackPanel>
                         </Border>
 
+                        <!-- Recipes: rows are built in code from the saved recipes. Shown only when Features.UserRecipes is on. -->
+                        <TextBlock x:Name="RecipesHeader" Text="{x:Bind local:UiText.SettingsRecipes}" Style="{StaticResource SettingsSectionHeaderStyle}" Visibility="Collapsed" />
+                        <Border x:Name="RecipesCard" Style="{StaticResource SettingsCardStyle}" Visibility="Collapsed">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Glyph="&#xE71D;" FontSize="18" VerticalAlignment="Center" />
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind local:UiText.SettingsRecipesTitle}" />
+                                        <TextBlock Text="{x:Bind local:UiText.SettingsRecipesDescription}" Style="{StaticResource SettingsDescriptionStyle}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="2" Content="{x:Bind local:UiText.SettingsRecipesCreate}" Click="CreateRecipe_Click"
+                                            VerticalAlignment="Center" AutomationProperties.AutomationId="CreateRecipe" />
+                                </Grid>
+                                <StackPanel x:Name="RecipeList" Spacing="6" Margin="34,0,0,0" />
+                            </StackPanel>
+                        </Border>
+
                         <!-- Files -->
                         <TextBlock Text="{x:Bind local:UiText.SettingsFiles}" Style="{StaticResource SettingsSectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}">
@@ -168,6 +203,7 @@
                         <Border Style="{StaticResource SettingsCardStyle}">
                             <StackPanel Spacing="8">
                                 <ToggleSwitch x:Name="SeparateProcessToggle" Header="{x:Bind local:UiText.SeparateProcessTitle}"
+                                              OnContent="{x:Bind local:UiText.ToggleOn}" OffContent="{x:Bind local:UiText.ToggleOff}"
                                               Toggled="SeparateProcessToggle_Toggled" AutomationProperties.AutomationId="SeparateProcessToggle" />
                                 <TextBlock Text="{x:Bind local:UiText.SeparateProcessDescription}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
                                 <TextBlock x:Name="SeparateProcessRestartMessage" Text="{x:Bind local:UiText.SeparateProcessRestart}"
@@ -189,6 +225,10 @@
                                     <TextBlock Text="{x:Bind local:UiText.SettingsAboutText}" Style="{StaticResource SettingsDescriptionStyle}" />
                                     <Button x:Name="NoticesButton" Content="{x:Bind local:UiText.SettingsNotices}" Click="ShowNotices_Click" Margin="0,8,0,0" />
                                     <TextBlock x:Name="NoticesStatus" TextWrapping="Wrap" Style="{StaticResource SettingsDescriptionStyle}" AutomationProperties.LiveSetting="Polite" />
+                                    <TextBlock Text="{x:Bind local:UiText.SettingsDiagnosticsDescription}" TextWrapping="Wrap" Style="{StaticResource SettingsDescriptionStyle}" Margin="0,8,0,0" />
+                                    <Button Content="{x:Bind local:UiText.SettingsCopyDiagnostics}" Click="CopyDiagnostics_Click" Margin="0,8,0,0"
+                                            AutomationProperties.AutomationId="CopyDiagnostics" />
+                                    <TextBlock x:Name="DiagnosticsStatus" TextWrapping="Wrap" Style="{StaticResource SettingsDescriptionStyle}" AutomationProperties.LiveSetting="Polite" />
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -200,6 +240,7 @@
                     <StackPanel Spacing="12" Padding="12,0,12,12">
                         <TextBlock Text="{x:Bind local:UiText.PacksPrivacy}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />
                         <ToggleSwitch x:Name="AutomaticPackUpdatesToggle" Header="{x:Bind local:UiText.PackUpdatesAutomatic}"
+                                      OnContent="{x:Bind local:UiText.ToggleOn}" OffContent="{x:Bind local:UiText.ToggleOff}"
                                       Toggled="AutomaticPackUpdatesToggle_Toggled" AutomationProperties.AutomationId="AutomaticPackUpdatesToggle" />
                         <CheckBox Content="{x:Bind local:UiText.PacksShowMissing}" IsChecked="{x:Bind Packs.ShowNotInstalledActions, Mode=TwoWay}"
                                   IsEnabled="{x:Bind Packs.CanChangeVisibility, Mode=OneWay}" AutomationProperties.AutomationId="ShowMissingPackActions" />
@@ -295,6 +336,7 @@
                 <Border x:Name="GitHubUpdatesCard" Style="{StaticResource SettingsCardStyle}">
                     <StackPanel Spacing="10">
                         <ToggleSwitch x:Name="StartupUpdatesToggle" Header="{x:Bind local:UiText.UpdatesStartup}"
+                                      OnContent="{x:Bind local:UiText.ToggleOn}" OffContent="{x:Bind local:UiText.ToggleOff}"
                                       Toggled="StartupUpdatesToggle_Toggled" />
                         <TextBlock Text="{x:Bind Updates.InstalledVersionText}" Style="{ThemeResource BodyStrongTextBlockStyle}" />
                         <TextBlock Text="{x:Bind local:UiText.UpdatesPrivacy}" Style="{StaticResource SettingsDescriptionStyle}" TextWrapping="Wrap" />

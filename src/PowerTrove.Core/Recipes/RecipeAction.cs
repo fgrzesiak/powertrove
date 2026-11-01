@@ -94,7 +94,7 @@ public sealed class RecipeAction : IAction
         };
     }
 
-    private async Task<ActionReceipt> ExecuteFamiliesAsync(ContextSnapshot context, IProgress<ActionProgress>? progress, CancellationToken ct)
+    private async Task<ActionReceipt> ExecuteFamiliesAsync(ContextSnapshot context, IProgress<ActionProgress>? progress, List<string> intermediates, CancellationToken ct)
     {
         var selection = (FileSelection)context.Content;
         var aggregate = new List<SelectedFile>();
@@ -104,6 +104,7 @@ public sealed class RecipeAction : IAction
             int index = _recipe.Steps.ToList().FindIndex(s => s.Family != null && string.Equals(s.Family, SelectionFamilies.Of(file), StringComparison.OrdinalIgnoreCase));
             if (index < 0) { aggregate.Add(file); continue; }
             var receipt = await _workflowRunner.ExecuteWorkflowAsync(SingleStep(index), WithFiles(context, new[] { file }), progress, ct).ConfigureAwait(false);
+            intermediates.AddRange(receipt.OutputPaths);
             if (!receipt.IsSuccess || receipt.IsCanceled || receipt.Failures.Count > 0)
                 return receipt with { IsSuccess = false, OutputPaths = Array.Empty<string>(), IsUndoable = false };
             // A skipped transformation must retain its original input in the archive.
@@ -157,47 +158,54 @@ public sealed class RecipeAction : IAction
 
         string tempPath = Path.Combine(Path.GetTempPath(), "PowerTrove", "recipes", Guid.NewGuid().ToString("N"));
         _services.FileSystem.CreateDirectory(tempPath);
+        // Actions that run in a pack worker cannot see the output override and write next to their
+        // inputs. Every intermediate output is remembered so that none of them outlives the recipe.
+        var intermediates = new List<string>();
+        IReadOnlyList<string> finalOutputs = Array.Empty<string>();
 
         try
         {
             if (HasFamilySteps)
             {
                 _services.OutputDirectoryOverride.Value = tempPath;
-                return await ExecuteFamiliesAsync(context, progress, cancellationToken).ConfigureAwait(false);
+                var familyReceipt = await ExecuteFamiliesAsync(context, progress, intermediates, cancellationToken).ConfigureAwait(false);
+                finalOutputs = familyReceipt.OutputPaths;
+                return familyReceipt;
             }
-            // Execute all but the last step with the temporary output directory override.
-            var intermediateSteps = _workflow.Steps.Take(_workflow.Steps.Count - 1).ToList();
-            var intermediateWorkflow = new WorkflowDefinition(_workflow.Id, _workflow.Title, _workflow.Description, intermediateSteps);
 
-            _services.OutputDirectoryOverride.Value = tempPath;
-            ActionReceipt intermediateReceipt;
-            try
+            // Run all but the last step one by one with the temporary output directory override.
+            var currentContext = context;
+            int lastIndex = _workflow.Steps.Count - 1;
+            for (int i = 0; i < lastIndex; i++)
             {
-                intermediateReceipt = await _workflowRunner.ExecuteWorkflowAsync(intermediateWorkflow, context, progress, cancellationToken).ConfigureAwait(false);
-            }
-            finally
-            {
-                _services.OutputDirectoryOverride.Value = null;
-            }
+                _services.OutputDirectoryOverride.Value = tempPath;
+                ActionReceipt stepReceipt;
+                try
+                {
+                    stepReceipt = await _workflowRunner.ExecuteWorkflowAsync(SingleStep(i), currentContext, StepProgress(progress, i), cancellationToken).ConfigureAwait(false);
+                }
+                finally
+                {
+                    _services.OutputDirectoryOverride.Value = null;
+                }
+                intermediates.AddRange(stepReceipt.OutputPaths);
 
-            if (!intermediateReceipt.IsSuccess || intermediateReceipt.IsCanceled)
-            {
-                return new ActionReceipt(
-                    intermediateReceipt.IsSuccess,
-                    intermediateReceipt.IsCanceled,
-                    Array.Empty<string>(), // We don't return intermediate outputs since they will be deleted.
-                    intermediateReceipt.Failures,
-                    false,
-                    intermediateReceipt.Message
-                );
+                if (!stepReceipt.IsSuccess || stepReceipt.IsCanceled || stepReceipt.Failures.Count > 0)
+                {
+                    return new ActionReceipt(
+                        stepReceipt.IsSuccess && stepReceipt.Failures.Count == 0,
+                        stepReceipt.IsCanceled,
+                        Array.Empty<string>(), // Intermediate outputs are deleted below.
+                        stepReceipt.Failures,
+                        false,
+                        stepReceipt.Message
+                    );
+                }
+
+                // A step without outputs passes its input on, as in a workflow.
+                if (stepReceipt.OutputPaths.Count > 0)
+                    currentContext = WithFiles(context, stepReceipt.OutputPaths.Select(OutputFile));
             }
-
-            // Create context for final step based on the outputs of the intermediate steps.
-            var newFiles = intermediateReceipt.OutputPaths.Select(path =>
-                new SelectedFile(path, Path.GetFileName(path) ?? "unknown", Path.GetExtension(path) ?? "", null, null, true, true, null)
-            ).ToList();
-
-            var finalContext = context with { Content = new FileSelection(newFiles) };
 
             // To make sure the final step writes next to the original files,
             // we override the output directory to the original folder of the first input file.
@@ -210,11 +218,8 @@ public sealed class RecipeAction : IAction
                 }
             }
 
-            var finalStep = _workflow.Steps.Last();
-            var finalWorkflow = new WorkflowDefinition(_workflow.Id, _workflow.Title, _workflow.Description, new[] { finalStep });
-
-            var finalReceipt = await _workflowRunner.ExecuteWorkflowAsync(finalWorkflow, finalContext, progress, cancellationToken).ConfigureAwait(false);
-
+            var finalReceipt = await _workflowRunner.ExecuteWorkflowAsync(SingleStep(lastIndex), currentContext, StepProgress(progress, lastIndex), cancellationToken).ConfigureAwait(false);
+            finalOutputs = finalReceipt.OutputPaths;
             return finalReceipt;
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -224,6 +229,7 @@ public sealed class RecipeAction : IAction
         finally
         {
             _services.OutputDirectoryOverride.Value = null; // Ensure it's cleared
+            DeleteIntermediates(intermediates, context, finalOutputs, tempPath);
             try
             {
                 if (_services.FileSystem.DirectoryExists(tempPath))
@@ -236,5 +242,42 @@ public sealed class RecipeAction : IAction
                 // Ignore cleanup errors
             }
         }
+    }
+
+    private IProgress<ActionProgress>? StepProgress(IProgress<ActionProgress>? progress, int index)
+    {
+        if (progress is null) return null;
+        int count = _workflow.Steps.Count;
+        return new Progress<ActionProgress>(p => progress.Report(p with { Percentage = (index + p.Percentage) / count }));
+    }
+
+    /// <summary>
+    /// Deletes files that earlier steps created outside the temporary folder. Never touches a
+    /// selected original or a final output, and only removes files, never folders.
+    /// </summary>
+    private void DeleteIntermediates(IEnumerable<string> intermediates, ContextSnapshot context, IReadOnlyList<string> finalOutputs, string tempPath)
+    {
+        var keep = new HashSet<string>(finalOutputs.Select(Normalize), StringComparer.OrdinalIgnoreCase);
+        if (context.Content is FileSelection selection)
+            keep.UnionWith(selection.Files.Where(f => f.Path is not null).Select(f => Normalize(f.Path!)));
+        string temporary = Normalize(tempPath) + Path.DirectorySeparatorChar;
+        foreach (var path in intermediates.Select(Normalize).Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            if (keep.Contains(path) || path.StartsWith(temporary, StringComparison.OrdinalIgnoreCase)) continue;
+            try
+            {
+                if (_services.FileSystem.FileExists(path)) _services.FileSystem.DeleteFile(path);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                // A locked intermediate stays; the recipe result is still valid.
+            }
+        }
+    }
+
+    private static string Normalize(string path)
+    {
+        try { return Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
+        catch (Exception ex) when (ex is ArgumentException or NotSupportedException or PathTooLongException) { return path; }
     }
 }

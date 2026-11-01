@@ -29,7 +29,8 @@ public static class ActionOptionsDialog
         bool allowMediaEditor = false,
         IReadOnlyDictionary<string, string>? initialValues = null,
         bool allowImageEditor = false,
-        bool allowEffectsEditor = false)
+        bool allowEffectsEditor = false,
+        string? confirmText = null)
     {
         var values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
@@ -87,9 +88,10 @@ public static class ActionOptionsDialog
         panel.Children.Add(warningsText);
         panel.Children.Add(renameTable);
         panel.Children.Add(consent);
-        if (descriptor.CanRememberParameters && descriptor.Parameters is { Count: > 0 }) panel.Children.Add(remember);
+        // A custom confirmation (recipe steps) stores the values elsewhere, so "remember" does not apply.
+        if (confirmText is null && descriptor.CanRememberParameters && descriptor.Parameters is { Count: > 0 }) panel.Children.Add(remember);
 
-        var run = new Button { Content = UiText.OptionsRun, IsEnabled = false };
+        var run = new Button { Content = confirmText ?? UiText.OptionsRun, IsEnabled = false };
         if (Microsoft.UI.Xaml.Application.Current.Resources.TryGetValue("AccentButtonStyle", out var accent) && accent is Style accentStyle)
             run.Style = accentStyle;
         view = new ActionOptionsView(descriptor.Title, panel, run, () => { ran = true; view?.Close(); });
@@ -436,6 +438,8 @@ public static class ActionOptionsDialog
                 var toggle = new ToggleSwitch
                 {
                     Header = parameter.Title,
+                    OnContent = UiText.ToggleOn,
+                    OffContent = UiText.ToggleOff,
                     IsOn = string.Equals(values[parameter.Name], "true", StringComparison.OrdinalIgnoreCase)
                 };
                 subscribe = changed => toggle.Toggled += (_, _) =>

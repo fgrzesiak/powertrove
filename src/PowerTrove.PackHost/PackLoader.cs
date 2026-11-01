@@ -138,9 +138,18 @@ internal sealed class PackLoadContext : AssemblyLoadContext
         if (path is not null && Known(path)) return LoadUnmanagedDllFromPath(path);
         string simple = Path.GetFileNameWithoutExtension(name).ToLowerInvariant();
         if (name.IndexOfAny(['/', '\\', ':']) < 0 && (simple is "kernel32" or "user32" or "advapi32" or "shell32" or "ole32" or "oleaut32" or "combase" or "windowscodecs" or "propsys"
-            || simple.StartsWith("api-ms-win-", StringComparison.Ordinal))) return IntPtr.Zero;
+            || simple.StartsWith("api-ms-win-", StringComparison.Ordinal)))
+        {
+            // LOAD_LIBRARY_SEARCH_SYSTEM32 excludes the working directory and PATH.
+            // API-set names are resolved by Windows; they need not exist as physical files.
+            IntPtr handle = LoadLibraryEx(simple + ".dll", IntPtr.Zero, 0x00000800);
+            if (handle == IntPtr.Zero) throw new DllNotFoundException("Windows dependency could not be loaded from System32.");
+            return handle;
+        }
         throw new DllNotFoundException("Native dependency is not in the verified payload.");
     }
+    [System.Runtime.InteropServices.DllImport("kernel32.dll", EntryPoint = "LoadLibraryExW", CharSet = System.Runtime.InteropServices.CharSet.Unicode, SetLastError = true)]
+    private static extern IntPtr LoadLibraryEx(string name, IntPtr file, uint flags);
     private bool Known(string path)
     {
         string relative = Path.GetRelativePath(_root, path).Replace(Path.DirectorySeparatorChar, '/');

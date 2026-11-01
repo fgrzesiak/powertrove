@@ -13,8 +13,11 @@ public sealed class PreLocalDesktopIntegrationContractTests
         string program = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/Program.cs"));
         string app = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/App.xaml.cs"));
         Assert.Contains("DISABLE_XAML_GENERATED_MAIN", project);
-        Assert.Contains("new App(elector, message)", program);
-        Assert.Contains("App(IHostElector elector, ActivationMessage message)", app);
+        Assert.Contains("new App(elector, message, background)", program);
+        Assert.Contains("App(IHostElector elector, ActivationMessage message, bool background = false)", app);
+        // A sign-in start only elects a host; it never forwards a palette request to a running copy.
+        Assert.Contains("if (!elector.Elect()) return 0;", program);
+        Assert.Contains("if (_startInBackground) return;", app);
         Assert.Contains("StartListeningAsync(ReceiveActivationAsync", app);
         Assert.Contains("ExplicitSelectionValidator", app);
         Assert.DoesNotContain("TryOpenPagesFromCommandLine", app);

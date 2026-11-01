@@ -5,7 +5,11 @@ public sealed record DesktopDistribution(bool IsPackaged, string UserRoot)
 {
     public bool AllowsInstallerUpdates => !IsPackaged;
     public bool AllowsSetupMaintenance => !IsPackaged;
-    public string InstanceKey => IsPackaged ? "PowerTroveStore" : "PowerTrove";
+    // LocalCache is stable across package upgrades and distinct for every package family.
+    // Test and production packages must not forward activation into each other.
+    public string InstanceKey => IsPackaged ? "PowerTroveStore" + Convert.ToHexString(
+        System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(
+            Path.GetFullPath(UserRoot).TrimEnd(Path.DirectorySeparatorChar).ToUpperInvariant())))[..32] : "PowerTrove";
 
     public static DesktopDistribution Create(bool isPackaged, string localAppData, string? packageCache = null)
     {

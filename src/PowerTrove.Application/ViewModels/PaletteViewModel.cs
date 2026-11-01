@@ -273,6 +273,34 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         }
     }
 
+    private string _hotkeySuggestionText = string.Empty;
+
+    /// <summary>Label of the button that switches to a free alternative shortcut; empty hides the button.</summary>
+    public string HotkeySuggestionText
+    {
+        get => _hotkeySuggestionText;
+        set
+        {
+            if (_hotkeySuggestionText == value) return;
+            _hotkeySuggestionText = value;
+            OnPropertyChanged(nameof(HotkeySuggestionText));
+        }
+    }
+
+    private bool _canDismissHotkeyNotice;
+
+    /// <summary>True for advice the user may ignore, such as a launcher that may share the shortcut.</summary>
+    public bool CanDismissHotkeyNotice
+    {
+        get => _canDismissHotkeyNotice;
+        set
+        {
+            if (_canDismissHotkeyNotice == value) return;
+            _canDismissHotkeyNotice = value;
+            OnPropertyChanged(nameof(CanDismissHotkeyNotice));
+        }
+    }
+
     private string? _contextNotice;
 
     /// <summary>Localized explanation shown when the selection could not be used; null otherwise.</summary>

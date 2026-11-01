@@ -15,5 +15,7 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+    <ProjectReference Include="..\..\src\PowerTrove.Application\PowerTrove.Application.csproj" />
+    <ProjectReference Include="..\..\src\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
   </ItemGroup>
 </Project>

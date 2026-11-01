@@ -152,9 +152,18 @@
                     <FontIcon Glyph="&#xE7BA;" FontSize="18" VerticalAlignment="Center"
                               AutomationProperties.AccessibilityView="Raw"
                               Foreground="{ThemeResource SystemFillColorCautionBrush}" />
-                    <TextBlock x:Name="HotkeyNoticeText" Grid.Column="1" TextWrapping="WrapWholeWords"
-                               AutomationProperties.LiveSetting="Polite"
-                               Text="{x:Bind ViewModel.HotkeyWarningMessage, Mode=OneWay}" />
+                    <StackPanel Grid.Column="1" Spacing="8">
+                        <TextBlock x:Name="HotkeyNoticeText" TextWrapping="WrapWholeWords"
+                                   AutomationProperties.LiveSetting="Polite"
+                                   Text="{x:Bind ViewModel.HotkeyWarningMessage, Mode=OneWay}" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="{x:Bind ViewModel.HotkeySuggestionText, Mode=OneWay}" Click="UseSuggestedShortcut_Click"
+                                    Visibility="{x:Bind local:Converters.ToVisibility(ViewModel.HotkeySuggestionText), Mode=OneWay}"
+                                    AutomationProperties.AutomationId="UseSuggestedShortcut" />
+                            <Button Content="{x:Bind local:UiText.HotkeyKeepShortcut}" Click="DismissHotkeyNotice_Click"
+                                    Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanDismissHotkeyNotice), Mode=OneWay}" />
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Border>
             <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
