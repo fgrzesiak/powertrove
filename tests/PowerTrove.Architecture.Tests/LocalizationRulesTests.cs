@@ -58,6 +58,24 @@ public class LocalizationRulesTests
     }
 
     [Fact]
+    public void Desktop_ToggleSwitchesLabelOnAndOffInTheAppLanguage()
+    {
+        // WinUI's default On/Off labels follow the Windows display language, even with an English app UI.
+        var offenders = new List<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(Root, "src", "PowerTrove.Desktop"), "*.*", SearchOption.AllDirectories))
+        {
+            if (IsBuildOutput(file) || Path.GetExtension(file) is not (".xaml" or ".cs"))
+                continue;
+            string text = File.ReadAllText(file);
+            var toggles = Regex.Matches(text, Path.GetExtension(file) == ".xaml" ? @"<ToggleSwitch\b[^>]*>" : @"new ToggleSwitch\s*\{[^}]*\}");
+            foreach (Match toggle in toggles)
+                if (!toggle.Value.Contains("UiText.ToggleOn") || !toggle.Value.Contains("UiText.ToggleOff"))
+                    offenders.Add($"{Path.GetFileName(file)}: {toggle.Value.Split('\n')[0].Trim()}");
+        }
+        Assert.True(offenders.Count == 0, "Set OnContent/OffContent to UiText.ToggleOn/ToggleOff: " + string.Join("; ", offenders));
+    }
+
+    [Fact]
     public void DesktopXaml_HasNoLiteralUserVisibleText()
     {
         var attribute = new Regex(

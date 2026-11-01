@@ -6,13 +6,16 @@ namespace PowerTrove.ReleaseTools;
 /// <summary>Prepares the verified Core payload for SDK validation. Does not sign or install anything.</summary>
 public static class MsixManifest
 {
-    public static void Prepare(string repository, string payload, string name, string publisher, string version)
+    public static void Prepare(string repository, string payload, string name, string publisher, string version, string? publisherDisplayName = null)
     {
         if (!Regex.IsMatch(name, @"\A[A-Za-z0-9][A-Za-z0-9.-]{2,49}\z") ||
             name.EndsWith('.') || name.Equals("Microsoft", StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Use the package identity assigned by Partner Center or an explicit test identity.");
         if (publisher.Length is < 4 or > 256 || !publisher.StartsWith("CN=", StringComparison.Ordinal) || publisher.Any(char.IsControl))
             throw new ArgumentException("A publisher distinguished name beginning with CN= is required.");
+        if (publisherDisplayName is not null && (string.IsNullOrWhiteSpace(publisherDisplayName) ||
+            publisherDisplayName.Length > 256 || publisherDisplayName.Any(char.IsControl)))
+            throw new ArgumentException("A valid Partner Center publisher display name is required.");
         if (!Regex.IsMatch(version, @"\A[1-9][0-9]*\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.0\z") ||
             !Version.TryParse(version, out var parsed) || parsed.Major > 65535 || parsed.Minor > 65535 || parsed.Build > 65535)
             throw new ArgumentException("Use a four-part Store package version with a positive major and revision zero.");
@@ -61,7 +64,8 @@ public static class MsixManifest
             string Read(string key) => source.Root!.Elements("data").Single(e => (string?)e.Attribute("name") == key).Element("value")!.Value;
             var resources = new XDocument(new XElement("root",
                 new[] { ("AppDisplayName", "MainWindowTitle"), ("AppPublisherName", "StorePublisherDisplayName"), ("AppDescription", "StorePackageDescription") }
-                    .Select(pair => new XElement("data", new XAttribute("name", pair.Item1), new XAttribute(XNamespace.Xml + "space", "preserve"), new XElement("value", Read(pair.Item2))))));
+                    .Select(pair => new XElement("data", new XAttribute("name", pair.Item1), new XAttribute(XNamespace.Xml + "space", "preserve"),
+                        new XElement("value", pair.Item1 == "AppPublisherName" && publisherDisplayName is not null ? publisherDisplayName : Read(pair.Item2))))));
             string directory = Path.Combine(payload, "Strings", language);
             Directory.CreateDirectory(directory);
             resources.Save(Path.Combine(directory, "Resources.resw"));

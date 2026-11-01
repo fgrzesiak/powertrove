@@ -20,6 +20,10 @@
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <!-- Core: no compiled-in packs (release default). Base: Files and PDF. Full: every pack, for development and offline builds. -->
     <PowerTroveProfile Condition="'$(PowerTroveProfile)' == ''">Core</PowerTroveProfile>
+    <!-- User-defined recipes are in development: on in Debug builds, off in Release builds (and so in every
+         release) unless built with -p:PowerTroveUserRecipes=true. See Features.cs. -->
+    <PowerTroveUserRecipes Condition="'$(PowerTroveUserRecipes)' == '' and '$(Configuration)' == 'Debug'">true</PowerTroveUserRecipes>
+    <DefineConstants Condition="'$(PowerTroveUserRecipes)' == 'true'">$(DefineConstants);POWERTROVE_USER_RECIPES</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

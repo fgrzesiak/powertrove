@@ -44,6 +44,19 @@ public sealed class MsixManifestTests : IDisposable
     }
 
     [Theory]
+    [InlineData("Publisher & Co.")]
+    public void PartnerCenterPublisherDisplayName_IsUsedInBothPackageLanguages(string publisherDisplayName)
+    {
+        MsixManifest.Prepare(_root, Payload, "Assigned.Package", "CN=Assigned", "1.0.1.0", publisherDisplayName);
+        foreach (string language in new[] { "en-US", "de-DE" })
+        {
+            var resources = XDocument.Load(Path.Combine(Payload, "Strings", language, "Resources.resw"));
+            Assert.Equal(publisherDisplayName, resources.Root!.Elements("data")
+                .Single(e => (string?)e.Attribute("name") == "AppPublisherName").Element("value")!.Value);
+        }
+    }
+
+    [Theory]
     [InlineData("0.3.2.0")]
     [InlineData("1.0.1.4")]
     [InlineData("1.0.0-alpha.1")]

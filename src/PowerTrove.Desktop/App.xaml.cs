@@ -41,9 +41,22 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private IntPtr _iconHandle;
     private readonly IHostElector? _hostElector;
     private readonly ActivationMessage? _startupMessage;
+    /// <summary>Started at sign-in: wait in the tray for the shortcut instead of showing the palette.</summary>
+    private readonly bool _startInBackground;
     private readonly CancellationTokenSource _activationLifetime = new();
     private Task? _activationListener;
     private PackRegistryBinding? _packRegistryBinding;
+
+    private readonly IRunningProcessProbe _processProbe = new WindowsRunningProcessProbe();
+    private HotkeyConfiguration? _suggestedShortcut;
+    private long _hotkeyTimestamp;
+    private PowerTrove.Core.Workflows.IWorkflowRunner? _workflowRunner;
+    // Recipes run in-process and in pack workers; RecipeAction removes intermediates either way.
+    private readonly PowerTrove.Abstractions.Files.FileActionServices _recipeServices =
+        PowerTrove.Abstractions.Files.FileActionServices.CreatePhysical(new PowerTrove.Infrastructure.Files.FileSignatureVerifier());
+
+    /// <summary>Timings of this session for "Copy diagnostics"; kept in memory only.</summary>
+    public PowerTrove.Core.Diagnostics.PerformanceJournal Performance { get; } = PowerTrove.Core.Diagnostics.PerformanceJournal.Listen();
 
     public ISettingsService? SettingsService { get; private set; }
     public IActionSearchEngine? SearchEngine { get; private set; }
@@ -65,10 +78,11 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         InitializeComponent();
     }
 
-    public App(IHostElector elector, ActivationMessage message) : this()
+    public App(IHostElector elector, ActivationMessage message, bool background = false) : this()
     {
         _hostElector = elector ?? throw new ArgumentNullException(nameof(elector));
         _startupMessage = message ?? throw new ArgumentNullException(nameof(message));
+        _startInBackground = background;
     }
 
     protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -111,6 +125,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         var actionRegistry = new ActionRegistry();
         var workflowRunner = new PowerTrove.Core.Workflows.WorkflowRunner(actionRegistry);
+        _workflowRunner = workflowRunner;
 
         var undoService = new PowerTrove.Core.UndoService(new PowerTrove.Abstractions.Files.PhysicalOutputFileSystem());
         m_window.ViewModel.UndoService = undoService;
@@ -131,6 +146,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         actionRegistry.RegisterPack("powertrove.image-presets", (SettingsService.Settings.ImageExportPresets ?? [])
             .Select(p => (IAction)new PowerTrove.Application.Packs.ImagePresetAction(p, actionRegistry.GetAction)).ToArray());
         actionRegistry.Register(new PowerTrove.Application.Commands.OpenSettingsAction(() => OpenSettings()));
+        if (Features.UserRecipes)
+            actionRegistry.Register(new PowerTrove.Application.Commands.CreateRecipeAction(() => OpenRecipeEditor()));
         var catalog = await ActionCatalogFile.LoadAsync(Path.Combine(AppContext.BaseDirectory, "catalog.json"),
             installedPacks.Select(p => p.Info), PowerTrove.Application.Packs.PackDistributionConfiguration.HostVersion);
         m_window.ViewModel.CatalogWarningMessage = isolationUnavailable ? UiText.IsolationUnavailable : catalog.Warning;
@@ -150,6 +167,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         try { await PackRuntime.ReloadAsync(); }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
         { m_window.ViewModel.CatalogWarningMessage = PowerTrove.Core.Resources.Strings.CatalogLoadFailed; }
+        // After the downloaded packs are loaded, so recipes take the selection shape of their first step.
+        RefreshUserRecipes();
         var packManagement = new PowerTrove.Application.Packs.PackManagementService(PackInstaller, PackChannel, PackRuntime, installedPacks, catalog.Catalog);
         try { await packManagement.InitializeAsync(_activationLifetime.Token); }
         catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or System.Text.Json.JsonException or InvalidOperationException)
@@ -186,6 +205,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
                 if (hwnd is { } sourceHwnd)
                     m_window.PositionPalette(sourceHwnd, monitorService);
                 m_window.ShowPalette();
+                RecordPaletteShown();
             }
         };
 
@@ -202,17 +222,9 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         _hotkeyService.HotkeyTriggered += OnHotkeyTriggered;
 
-        var config = SettingsService.Settings.GlobalShortcut ?? new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
+        var config = SettingsService.Settings.GlobalShortcut ?? HotkeyAdvisor.Default;
         var result = _hotkeyService.Register(config);
-
-        if (result == RegisterHotkeyResult.Conflict)
-        {
-            m_window.ViewModel.HotkeyWarningMessage = UiText.HotkeyConflict;
-        }
-        else if (result != RegisterHotkeyResult.Success)
-        {
-            m_window.ViewModel.HotkeyWarningMessage = UiText.HotkeyRegistrationFailed;
-        }
+        ShowHotkeyAdvice(config, result);
 
         m_window.ViewModel.ShowFirstRun = !SettingsService.Settings.HasSeenFirstRun;
 
@@ -254,6 +266,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             if (!TryShowExplicitSelection(selection)) ExitApplication();
             return;
         }
+        if (_startInBackground) return;
         m_window.PositionPalette(IntPtr.Zero, monitorService);
         m_window.ShowPalette();
     }
@@ -398,24 +411,121 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         if (_hotkeyService == null || SettingsService == null) return false;
 
         var result = _hotkeyService.Register(config);
-
-        if (result == RegisterHotkeyResult.Success)
-        {
-            SettingsService.SetGlobalShortcut(config);
-            if (m_window != null) m_window.ViewModel.HotkeyWarningMessage = "";
-            return true;
-        }
-
-        if (result == RegisterHotkeyResult.Conflict)
-        {
-            errorMessage = UiText.HotkeyConflict;
-            if (m_window != null) m_window.ViewModel.HotkeyWarningMessage = errorMessage;
-            return false;
-        }
-
-        errorMessage = UiText.HotkeyRegistrationFailed;
-        if (m_window != null) m_window.ViewModel.HotkeyWarningMessage = errorMessage;
+        if (result == RegisterHotkeyResult.Success) SettingsService.SetGlobalShortcut(config);
+        var advice = ShowHotkeyAdvice(config, result);
+        if (result == RegisterHotkeyResult.Success) return true;
+        errorMessage = HotkeyAdviceText(advice);
         return false;
+    }
+
+    /// <summary>A free alternative to the shortcut that failed or that a launcher may share; null when none is needed.</summary>
+    public HotkeyConfiguration? SuggestedShortcut => _suggestedShortcut;
+
+    public bool ApplySuggestedShortcut(out string errorMessage)
+    {
+        errorMessage = string.Empty;
+        return _suggestedShortcut is { } suggestion && TryUpdateGlobalShortcut(suggestion, out errorMessage);
+    }
+
+    /// <summary>Keeps the current shortcut and stops reporting the launcher that may share it.</summary>
+    public void DismissHotkeyNotice()
+    {
+        (SettingsService as IHotkeyHintSettings)?.DismissLauncherHotkeyHint();
+        _suggestedShortcut = null;
+        if (m_window is null) return;
+        m_window.ViewModel.HotkeyWarningMessage = string.Empty;
+        m_window.ViewModel.HotkeySuggestionText = string.Empty;
+        m_window.ViewModel.CanDismissHotkeyNotice = false;
+    }
+
+    private HotkeyAdvice ShowHotkeyAdvice(HotkeyConfiguration config, RegisterHotkeyResult result)
+    {
+        var advice = HotkeyAdvice.None;
+        if (_hotkeyService is { } service)
+            advice = HotkeyAdvisor.Evaluate(config, result, _processProbe, service.IsAvailable,
+                (SettingsService as IHotkeyHintSettings)?.LauncherHotkeyHintDismissed == true);
+        _suggestedShortcut = advice.Suggestion;
+        if (m_window is { } window)
+        {
+            window.ViewModel.HotkeyWarningMessage = HotkeyAdviceText(advice);
+            window.ViewModel.HotkeySuggestionText = advice.Suggestion is { } suggestion
+                ? UiText.HotkeyUseSuggestion(ShortcutText.Format(suggestion)) : string.Empty;
+            window.ViewModel.CanDismissHotkeyNotice = advice.Issue == HotkeyIssue.LauncherMayConflict;
+        }
+        return advice;
+    }
+
+    private static string HotkeyAdviceText(HotkeyAdvice advice) => advice.Issue switch
+    {
+        HotkeyIssue.Conflict => UiText.HotkeyConflict,
+        HotkeyIssue.RegistrationFailed => UiText.HotkeyRegistrationFailed,
+        HotkeyIssue.LauncherMayConflict => UiText.HotkeyLauncherMayConflict(advice.LauncherName!, ShortcutText.Format(HotkeyAdvisor.Default)),
+        _ => string.Empty
+    };
+
+    /// <summary>Records how long the palette took to render after the global shortcut.</summary>
+    private void RecordPaletteShown()
+    {
+        long start = Interlocked.Exchange(ref _hotkeyTimestamp, 0);
+        if (start == 0 || m_window is null) return;
+        // Low priority runs after layout and the first frame of the shown palette.
+        m_window.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () =>
+            PowerTrove.Core.Diagnostics.InvocationMetrics.PaletteShownLatency.Record(
+                System.Diagnostics.Stopwatch.GetElapsedTime(start).TotalMilliseconds));
+    }
+
+    /// <summary>Plain-text diagnostics for a bug report: versions, counts and timings, no file data.</summary>
+    public string BuildDiagnostics()
+    {
+        string version = typeof(App).Assembly.GetCustomAttributes(typeof(System.Reflection.AssemblyInformationalVersionAttribute), false)
+            .OfType<System.Reflection.AssemblyInformationalVersionAttribute>().FirstOrDefault()?.InformationalVersion
+            ?? typeof(App).Assembly.GetName().Version?.ToString() ?? "unknown";
+        using var process = System.Diagnostics.Process.GetCurrentProcess();
+        return PowerTrove.Application.Diagnostics.DiagnosticsReport.Build(new PowerTrove.Application.Diagnostics.DiagnosticsInfo(
+            version,
+            Environment.OSVersion.Version.ToString(),
+            System.Runtime.InteropServices.RuntimeInformation.OSArchitecture.ToString(),
+            Distribution.IsPackaged ? "Store package" : "unpackaged",
+            Actions?.GetAllActions().Count(a => a is not PowerTrove.Core.Catalog.CatalogAction) ?? 0,
+            process.WorkingSet64,
+            Performance.Summaries()));
+    }
+
+    /// <summary>Registers the saved recipes as palette actions, replacing the previous set atomically.</summary>
+    public void RefreshUserRecipes()
+    {
+        // Saved recipes stay in the settings while the feature is off; they are just not offered.
+        if (!Features.UserRecipes || Actions is not ActionRegistry registry || _workflowRunner is null || SettingsService is not IUserRecipeSettings recipes) return;
+        var actions = recipes.UserRecipes
+            .Select(recipe => PowerTrove.Application.Recipes.UserRecipes.ToAction(recipe, registry.GetAction, _workflowRunner, _recipeServices))
+            .ToArray();
+        registry.RegisterPack(PowerTrove.Application.Recipes.UserRecipes.PackId, actions);
+    }
+
+    public void OpenRecipeEditor(SavedRecipe? recipe = null)
+    {
+        if (!Features.UserRecipes || m_window is null || Actions is null || SettingsService is not IUserRecipeSettings) return;
+        if (m_window.TryResurfaceHostedView()) return;
+        m_window.ShowView(new RecipeEditorView(Actions, recipe));
+    }
+
+    /// <summary>
+    /// Edits one step's options on the normal options page, then returns to the editor with the draft.
+    /// The page needs no selection: the values are stored in the recipe, not run.
+    /// </summary>
+    internal async void EditRecipeStep(RecipeDraft draft, int index)
+    {
+        if (m_window is null || Actions is null || index < 0 || index >= draft.Steps.Count) return;
+        var step = draft.Steps[index];
+        var action = Actions.GetAction(step.ActionId);
+        if (action is null or PowerTrove.Core.Catalog.CatalogAction) return;
+        var result = await ActionOptionsDialog.ShowAsync(m_window, action.Descriptor, null,
+            (_, _) => Task.FromResult<ActionPreview?>(new ActionPreview(false, UiText.RecipeOptionsHint, [], [])),
+            initialValues: step.Parameters, confirmText: UiText.RecipeOptionsApply);
+        if (result is not null)
+            draft.Steps[index] = step with { Parameters = new Dictionary<string, string>(result.Parameters.Values, StringComparer.OrdinalIgnoreCase) };
+        if (m_window is not null && Actions is not null)
+            m_window.ShowView(new RecipeEditorView(Actions, draft, changed: true));
     }
 
     public void OpenSettings(bool selectPacks = false)
@@ -430,13 +540,15 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
     private void OnHotkeyTriggered(object? sender, EventArgs e)
     {
+        Interlocked.Exchange(ref _hotkeyTimestamp, System.Diagnostics.Stopwatch.GetTimestamp());
         RequestPaletteOrEditor();
     }
 
     private void RequestPaletteOrEditor()
     {
-        if (UpdateInstalling) return;
-        if (m_window?.TryResurfaceHostedView() == true) return;
+        bool invoke = !UpdateInstalling && m_window?.TryResurfaceHostedView() != true;
+        // Only a palette opened by this request may report the shortcut's timing.
+        if (!invoke) { Interlocked.Exchange(ref _hotkeyTimestamp, 0); return; }
         _ = _invocationCoordinator?.InvokeAsync();
     }
 

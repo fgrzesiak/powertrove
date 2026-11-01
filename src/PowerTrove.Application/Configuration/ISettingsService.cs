@@ -19,6 +19,20 @@ public interface IPackUpdateCheckSettings
     void SetCheckForPackUpdatesAutomatically(bool enabled);
 }
 
+public interface IUserRecipeSettings
+{
+    IReadOnlyList<SavedRecipe> UserRecipes { get; }
+    /// <summary>Adds the recipe or replaces the one with the same id.</summary>
+    void SaveUserRecipe(SavedRecipe recipe);
+    void RemoveUserRecipe(string id);
+}
+
+public interface IHotkeyHintSettings
+{
+    bool LauncherHotkeyHintDismissed { get; }
+    void DismissLauncherHotkeyHint();
+}
+
 /// <summary>Takes over the packs an earlier version compiled in, once, after updating to a Core-only version.</summary>
 public interface IPackMigrationSettings
 {

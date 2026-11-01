@@ -38,11 +38,12 @@ public static class Program
         var identityOption = new Option<string>("--identity", "Explicit test or Partner Center package identity.") { IsRequired = true };
         var publisherOption = new Option<string>("--publisher", "Publisher distinguished name matching the signing identity.") { IsRequired = true };
         var msixVersionOption = new Option<string>("--package-version", "Four-part Store version; positive major and revision zero.") { IsRequired = true };
+        var publisherDisplayOption = new Option<string?>("--publisher-display-name", "Publisher display name assigned in Partner Center.");
         var msixCommand = new Command("prepare-msix", "Prepare a Core payload's MSIX manifest and localized package resources; does not install or publish.")
-        { repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption };
-        msixCommand.SetHandler((repo, payload, identity, publisher, packageVersion) =>
-            MsixManifest.Prepare(repo, payload, identity, publisher, packageVersion),
-            repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption);
+        { repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption, publisherDisplayOption };
+        msixCommand.SetHandler((repo, payload, identity, publisher, packageVersion, publisherDisplayName) =>
+            MsixManifest.Prepare(repo, payload, identity, publisher, packageVersion, publisherDisplayName),
+            repoRootOption, payloadOption, identityOption, publisherOption, msixVersionOption, publisherDisplayOption);
         rootCommand.AddCommand(msixCommand);
 
         var coreZipOption = new Option<string>("--core-zip", "Exact previously verified Core ZIP.") { IsRequired = true };

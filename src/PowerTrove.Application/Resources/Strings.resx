@@ -287,4 +287,7 @@
   <data name="UpdatesStoreManaged" xml:space="preserve"><value>App updates are managed by Microsoft Store.</value></data>
   <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>An update is available for an installed tool pack.</value></data>
   <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>Updates are available for {0} installed tool packs.</value></data>
+  <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Create Recipe</value></data>
+  <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Combine several actions into one recipe that runs them in order.</value></data>
+  <data name="UserRecipeDescription" xml:space="preserve"><value>Your recipe: {0}</value></data>
 </root>

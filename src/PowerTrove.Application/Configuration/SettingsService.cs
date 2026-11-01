@@ -8,7 +8,8 @@ using PowerTrove.Abstractions;
 
 namespace PowerTrove.Application.Configuration;
 
-public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings, IPackMigrationSettings, IPackUpdateCheckSettings
+public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdateCheckSettings, IPackMigrationSettings, IPackUpdateCheckSettings,
+    IUserRecipeSettings, IHotkeyHintSettings
 {
     private readonly string _settingsFilePath;
     private UserSettings _settings;
@@ -178,7 +179,9 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
                 settings.CheckForUpdatesOnStartup,
                 settings.PackMigrationChecked,
                 settings.PendingPackMigration?.Where(id => !string.IsNullOrWhiteSpace(id)).Distinct(StringComparer.Ordinal).ToArray(),
-                settings.CheckForPackUpdatesAutomatically
+                settings.CheckForPackUpdatesAutomatically,
+                PowerTrove.Application.Recipes.UserRecipes.Normalize(settings.UserRecipes),
+                settings.LauncherHotkeyHintDismissed
             );
         }
         catch (Exception ex)
@@ -405,6 +408,43 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
     }
 
 
+    public IReadOnlyList<SavedRecipe> UserRecipes => Settings.UserRecipes ?? [];
+
+    public void SaveUserRecipe(SavedRecipe recipe)
+    {
+        ArgumentNullException.ThrowIfNull(recipe);
+        lock (_lock)
+        {
+            var recipes = new List<SavedRecipe>(_settings.UserRecipes ?? []);
+            int index = recipes.FindIndex(r => string.Equals(r.Id, recipe.Id, StringComparison.Ordinal));
+            if (index >= 0) recipes[index] = recipe;
+            else recipes.Add(recipe);
+            _settings = _settings with { UserRecipes = PowerTrove.Application.Recipes.UserRecipes.Normalize(recipes) };
+            Save();
+        }
+    }
+
+    public void RemoveUserRecipe(string id)
+    {
+        lock (_lock)
+        {
+            var recipes = (_settings.UserRecipes ?? []).Where(r => !string.Equals(r.Id, id, StringComparison.Ordinal)).ToArray();
+            _settings = _settings with { UserRecipes = recipes };
+            Save();
+        }
+    }
+
+    public bool LauncherHotkeyHintDismissed => Settings.LauncherHotkeyHintDismissed;
+
+    public void DismissLauncherHotkeyHint()
+    {
+        lock (_lock)
+        {
+            _settings = _settings with { LauncherHotkeyHintDismissed = true };
+            Save();
+        }
+    }
+
     public void AddImageExportPreset(SavedImageExportPreset preset)
     {
         lock (_lock)
@@ -461,7 +501,8 @@ public class SettingsService : ISettingsService, IPackVisibilitySettings, IUpdat
         {
             // Keep pinned actions as they are user's explicit setup, but we could clear them if required
             // Let's clear everything to really reset to default.
-            _settings = UserSettings.CreateDefault();
+            // Recipes are the user's own work, like files; resetting preferences keeps them.
+            _settings = UserSettings.CreateDefault() with { UserRecipes = _settings.UserRecipes };
             Save();
         }
     }

@@ -25,6 +25,7 @@
     <Compile Include="..\..\src\PowerTrove.Desktop\RecipePack.cs" Link="Desktop\RecipePack.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\UiText.cs" Link="Desktop\UiText.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\SetupShellCommand.cs" Link="Desktop\SetupShellCommand.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\SetupStartupCommand.cs" Link="Desktop\SetupStartupCommand.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageEditorInput.cs" Link="Desktop\ImageEditorInput.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageEffectsInput.cs" Link="Desktop\ImageEffectsInput.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageResizeDimensions.cs" Link="Desktop\ImageResizeDimensions.cs" />

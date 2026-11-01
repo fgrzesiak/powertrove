@@ -218,6 +218,100 @@ public class RecipeActionTests
         _runnerMock.Verify(r => r.ExecuteWorkflowAsync(It.IsAny<WorkflowDefinition>(), It.IsAny<ContextSnapshot>(), null, It.IsAny<CancellationToken>()), Times.Once);
     }
 
+    // Pack workers ignore the in-process output override and write next to their inputs.
+    private static RecipeDefinition ThreeStepRecipe() => new("three", "Three", "", SelectionRequirements.Any(), new[]
+    {
+        new RecipeStep("resize", new Dictionary<string, string>()),
+        new RecipeStep("compress", new Dictionary<string, string>()),
+        new RecipeStep("zip", new Dictionary<string, string>())
+    });
+
+    private void SetupWorkerLikeSteps(string directory, List<(string Step, string[] Inputs)> calls, string? failingStep = null, bool passThroughOriginal = false)
+    {
+        _runnerMock.Setup(r => r.ExecuteWorkflowAsync(It.IsAny<WorkflowDefinition>(), It.IsAny<ContextSnapshot>(), null, It.IsAny<CancellationToken>()))
+            .Returns((WorkflowDefinition workflow, ContextSnapshot input, IProgress<ActionProgress>? _, CancellationToken _) =>
+            {
+                var step = Assert.Single(workflow.Steps).ActionId;
+                string[] inputs = ((FileSelection)input.Content).Files.Select(f => f.Path).ToArray()!;
+                calls.Add((step, inputs.Select(path => Path.GetFileName(path)).ToArray()));
+                if (step == failingStep)
+                    return Task.FromResult(new ActionReceipt(false, false, Array.Empty<string>(), new[] { new ActionFailure(null, "failed") }, false));
+                if (passThroughOriginal && step == "resize")
+                    return Task.FromResult(new ActionReceipt(true, false, inputs, Array.Empty<ActionFailure>(), false));
+                string output = Path.Combine(directory, step == "zip" ? "photo.zip" : $"photo ({step}).png");
+                File.WriteAllText(output, step);
+                return Task.FromResult(new ActionReceipt(true, false, new[] { output }, Array.Empty<ActionFailure>(), false));
+            });
+    }
+
+    [Fact]
+    public async Task SequentialRecipe_ChainsEachStepAndDeletesIntermediatesNextToOriginals()
+    {
+        var directory = Directory.CreateTempSubdirectory("recipe-worker-").FullName;
+        try
+        {
+            var original = Path.Combine(directory, "photo.png");
+            File.WriteAllText(original, "original");
+            var calls = new List<(string Step, string[] Inputs)>();
+            SetupWorkerLikeSteps(directory, calls);
+
+            var receipt = await new RecipeAction(ThreeStepRecipe(), _runnerMock.Object, _services)
+                .ExecuteAsync(CreateFileContext(original), new EmptyParameters(), null, CancellationToken.None);
+
+            Assert.True(receipt.IsSuccess);
+            Assert.Equal(new[] { Path.Combine(directory, "photo.zip") }, receipt.OutputPaths);
+            Assert.Equal(new[] { "resize", "compress", "zip" }, calls.Select(c => c.Step));
+            Assert.Equal(new[] { "photo (resize).png" }, calls[1].Inputs);
+            Assert.Equal(new[] { "photo (compress).png" }, calls[2].Inputs);
+            Assert.Equal(new[] { "photo.png", "photo.zip" }, Directory.GetFiles(directory).Select(Path.GetFileName).Order());
+            Assert.Equal("original", File.ReadAllText(original));
+        }
+        finally { Directory.Delete(directory, recursive: true); }
+    }
+
+    [Fact]
+    public async Task SequentialRecipe_FailedStepDeletesEarlierIntermediatesAndKeepsOriginal()
+    {
+        var directory = Directory.CreateTempSubdirectory("recipe-worker-").FullName;
+        try
+        {
+            var original = Path.Combine(directory, "photo.png");
+            File.WriteAllText(original, "original");
+            var calls = new List<(string Step, string[] Inputs)>();
+            SetupWorkerLikeSteps(directory, calls, failingStep: "compress");
+
+            var receipt = await new RecipeAction(ThreeStepRecipe(), _runnerMock.Object, _services)
+                .ExecuteAsync(CreateFileContext(original), new EmptyParameters(), null, CancellationToken.None);
+
+            Assert.False(receipt.IsSuccess);
+            Assert.Empty(receipt.OutputPaths);
+            Assert.Equal(new[] { "resize", "compress" }, calls.Select(c => c.Step));
+            Assert.Equal(new[] { "photo.png" }, Directory.GetFiles(directory).Select(Path.GetFileName));
+        }
+        finally { Directory.Delete(directory, recursive: true); }
+    }
+
+    [Fact]
+    public async Task SequentialRecipe_NeverDeletesAnOriginalThatAStepPassedThrough()
+    {
+        var directory = Directory.CreateTempSubdirectory("recipe-worker-").FullName;
+        try
+        {
+            var original = Path.Combine(directory, "photo.png");
+            File.WriteAllText(original, "original");
+            var calls = new List<(string Step, string[] Inputs)>();
+            SetupWorkerLikeSteps(directory, calls, passThroughOriginal: true);
+
+            var receipt = await new RecipeAction(ThreeStepRecipe(), _runnerMock.Object, _services)
+                .ExecuteAsync(CreateFileContext(original), new EmptyParameters(), null, CancellationToken.None);
+
+            Assert.True(receipt.IsSuccess);
+            Assert.Equal("original", File.ReadAllText(original));
+            Assert.Equal(new[] { "photo.png", "photo.zip" }, Directory.GetFiles(directory).Select(Path.GetFileName).Order());
+        }
+        finally { Directory.Delete(directory, recursive: true); }
+    }
+
     private static RecipeDefinition FamilyRecipe() => new("mixed", "Mixed", "", SelectionRequirements.Any(), new[]
     {
         new RecipeStep("images", new Dictionary<string, string>(), "image"),

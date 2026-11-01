@@ -373,6 +373,51 @@ public class WindowsHotkeyServiceTests
         Assert.False(IsClassRegistered(secondClass.ToString()));
     }
 
+    [Fact]
+    public void IsAvailable_FreeShortcut_ProbesAndReleasesWithoutTouchingTheRegistration()
+    {
+        var interop = CreateInterop();
+        interop.Setup(x => x.RegisterHotKey(It.IsAny<IntPtr>(), It.IsAny<int>(), It.IsAny<uint>(), It.IsAny<uint>())).Returns(true);
+        using var service = new WindowsHotkeyService(interop.Object);
+        Assert.Equal(RegisterHotkeyResult.Success, service.Register(new HotkeyConfiguration(KeyModifiers.Alt, 0x20)));
+
+        Assert.True(service.IsAvailable(new HotkeyConfiguration(KeyModifiers.Control | KeyModifiers.Alt, 0x20)));
+
+        // MOD_ALT | MOD_CONTROL | MOD_NOREPEAT under the probe id, released right away; id 1 stays registered.
+        interop.Verify(x => x.RegisterHotKey(new IntPtr(42), 3, 0x4003u, 0x20u), Times.Once);
+        interop.Verify(x => x.UnregisterHotKey(new IntPtr(42), 3), Times.Once);
+        interop.Verify(x => x.UnregisterHotKey(new IntPtr(42), 1), Times.Never);
+    }
+
+    [Fact]
+    public void IsAvailable_TakenOrOwnShortcut_ReturnsFalse()
+    {
+        var interop = CreateInterop();
+        interop.Setup(x => x.RegisterHotKey(It.IsAny<IntPtr>(), 1, It.IsAny<uint>(), It.IsAny<uint>())).Returns(true);
+        interop.Setup(x => x.RegisterHotKey(It.IsAny<IntPtr>(), 3, It.IsAny<uint>(), It.IsAny<uint>())).Returns(false);
+        using var service = new WindowsHotkeyService(interop.Object);
+        var own = new HotkeyConfiguration(KeyModifiers.Alt, 0x20);
+        service.Register(own);
+
+        Assert.False(service.IsAvailable(own));
+        Assert.False(service.IsAvailable(new HotkeyConfiguration(KeyModifiers.Control | KeyModifiers.Alt, 0x20)));
+    }
+
+    [Fact]
+    public void IsAvailable_UnreleasedProbe_IsRetriedBeforeTheNextRegistration()
+    {
+        var interop = CreateInterop();
+        interop.Setup(x => x.RegisterHotKey(It.IsAny<IntPtr>(), It.IsAny<int>(), It.IsAny<uint>(), It.IsAny<uint>())).Returns(true);
+        interop.SetupSequence(x => x.UnregisterHotKey(It.IsAny<IntPtr>(), 3)).Returns(false).Returns(true);
+        using var service = new WindowsHotkeyService(interop.Object);
+
+        Assert.True(service.IsAvailable(new HotkeyConfiguration(KeyModifiers.Control | KeyModifiers.Alt, 0x20)));
+        Assert.False(service.IsAvailable(new HotkeyConfiguration(KeyModifiers.Alt | KeyModifiers.Shift, 0x20)));
+        Assert.Equal(RegisterHotkeyResult.Success, service.Register(new HotkeyConfiguration(KeyModifiers.Control | KeyModifiers.Alt, 0x20)));
+
+        interop.Verify(x => x.UnregisterHotKey(new IntPtr(42), 3), Times.Exactly(2));
+    }
+
     private static bool IsClassRegistered(string className)
     {
         // WNDCLASS fits in 128 bytes on both x86 and x64. The returned string

@@ -154,6 +154,11 @@
   <data name="SeparateProcessTitle" xml:space="preserve"><value>Dateiwerkzeuge in einem separaten Prozess ausführen</value></data>
   <data name="SeparateProcessDescription" xml:space="preserve"><value>Isoliert PDF-, Bild- und Medienwerkzeuge vom Hauptfenster. Neustart erforderlich.</value></data>
   <data name="SeparateProcessRestart" xml:space="preserve"><value>PowerTrove neu starten, um diese Einstellung anzuwenden.</value></data>
+  <data name="StartupTitle" xml:space="preserve"><value>PowerTrove bei der Anmeldung starten</value></data>
+  <data name="StartupDescription" xml:space="preserve"><value>PowerTrove wartet im Infobereich, damit das Tastenkürzel sofort funktioniert. Es liest nichts, bis Sie das Tastenkürzel drücken.</value></data>
+  <data name="StartupDisabledByWindows" xml:space="preserve"><value>Windows hat dies unter Einstellungen > Apps > Autostart ausgeschaltet. Schalten Sie PowerTrove dort wieder ein, damit es bei der Anmeldung startet.</value></data>
+  <data name="StartupConflict" xml:space="preserve"><value>Eine andere PowerTrove-Kopie startet bereits bei der Anmeldung. Ihr Eintrag wurde unverändert beibehalten.</value></data>
+  <data name="StartupUnavailable" xml:space="preserve"><value>Der Autostart-Eintrag konnte nicht gelesen oder geändert werden. Prüfen Sie die Zugriffsrechte und den Speicherort der App.</value></data>
   <data name="IsolationUnavailable" xml:space="preserve"><value>Isolierte Dateiwerkzeuge sind nicht verfügbar. Pack-Dateien prüfen und neu starten.</value></data>
   <data name="SettingsNotices" xml:space="preserve"><value>Lizenzen und Hinweise zu Drittanbietern anzeigen</value></data>
   <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>Die Hinweisdateien konnten nicht geöffnet werden. Prüfe die installierten Programmdateien.</value></data>
@@ -208,11 +213,13 @@
   <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Windows-Integration:</value></data>
   <data name="Installer_StartMenu" xml:space="preserve"><value>Verknüpfung im Startmenü erstellen</value></data>
   <data name="Installer_ExplorerMenu" xml:space="preserve"><value>In PowerTrove öffnen zum Datei-Explorer hinzufügen (Windows 11: Weitere Optionen anzeigen)</value></data>
+  <data name="Installer_Startup" xml:space="preserve"><value>PowerTrove bei der Anmeldung starten (in den Einstellungen abschaltbar)</value></data>
   <data name="Installer_Launch" xml:space="preserve"><value>PowerTrove starten</value></data>
   <data name="Installer_Downloading" xml:space="preserve"><value>Ausgewählte Tools werden heruntergeladen und überprüft...</value></data>
   <data name="Installer_DownloadDeferred" xml:space="preserve"><value>Einige Tools konnten jetzt nicht heruntergeladen werden. PowerTrove versucht es beim nächsten Start erneut.</value></data>
   <data name="Installer_SelectionFailed" xml:space="preserve"><value>Die Tool-Auswahl konnte nicht gespeichert werden. Installiere Tools nach dem Setup in den PowerTrove-Einstellungen.</value></data>
   <data name="Installer_ExplorerFailed" xml:space="preserve"><value>Der Datei-Explorer-Eintrag konnte nicht hinzugefügt werden. Du kannst ihn in den PowerTrove-Einstellungen prüfen und einrichten.</value></data>
+  <data name="Installer_StartupFailed" xml:space="preserve"><value>PowerTrove konnte nicht für den Start bei der Anmeldung eingerichtet werden. Du kannst das später in den Einstellungen einschalten.</value></data>
   <data name="Installer_DowngradeRefused" xml:space="preserve"><value>Eine neuere Version von PowerTrove ist installiert oder die installierte Version kann nicht überprüft werden. Ein Downgrade wird abgelehnt.</value></data>
   <data name="ImageEditor_Title" xml:space="preserve"><value>Bildeditor</value></data>
   <data name="ImageEditor_Open" xml:space="preserve"><value>Bild visuell bearbeiten…</value></data>
@@ -301,4 +308,51 @@
   <data name="FFmpegFailed" xml:space="preserve"><value>winget konnte FFmpeg nicht installieren. Prüfe deine Internetverbindung und versuche es erneut, oder installiere FFmpeg selbst.</value></data>
   <data name="FFmpegCanceled" xml:space="preserve"><value>Die FFmpeg-Installation wurde abgebrochen.</value></data>
   <data name="FFmpegNotFoundAfterInstall" xml:space="preserve"><value>winget ist fertig, aber FFmpeg liegt nicht dort, wo PowerTrove danach sucht. Melde dich bei Windows ab und wieder an und wähle dann Erneut prüfen.</value></data>
+  <data name="HotkeyUseSuggestion" xml:space="preserve"><value>{0} verwenden</value></data>
+  <data name="HotkeyKeepShortcut" xml:space="preserve"><value>Aktuelles Tastenkürzel behalten</value></data>
+  <data name="HotkeyLauncherMayConflict" xml:space="preserve"><value>{0} läuft und öffnet sich standardmäßig mit {1}. Falls {1} die falsche App öffnet, wechseln Sie PowerTrove auf ein anderes Tastenkürzel.</value></data>
+  <data name="ToggleOn" xml:space="preserve"><value>Ein</value></data>
+  <data name="ToggleOff" xml:space="preserve"><value>Aus</value></data>
+  <data name="SettingsRecipes" xml:space="preserve"><value>Rezepte</value></data>
+  <data name="SettingsRecipesTitle" xml:space="preserve"><value>Ihre Rezepte</value></data>
+  <data name="SettingsRecipesDescription" xml:space="preserve"><value>Mehrere Aktionen nacheinander mit einem Befehl ausführen. Rezepte erscheinen in der Palette wie jede andere Aktion.</value></data>
+  <data name="SettingsRecipesCreate" xml:space="preserve"><value>Rezept erstellen…</value></data>
+  <data name="SettingsRecipesEmpty" xml:space="preserve"><value>Noch keine Rezepte.</value></data>
+  <data name="RecipeStepMissing" xml:space="preserve"><value>Fehlende Aktion</value></data>
+  <data name="RecipeEdit" xml:space="preserve"><value>Bearbeiten</value></data>
+  <data name="RecipeDelete" xml:space="preserve"><value>Löschen</value></data>
+  <data name="RecipeEditNamed" xml:space="preserve"><value>{0} bearbeiten</value></data>
+  <data name="RecipeDeleteNamed" xml:space="preserve"><value>{0} löschen</value></data>
+  <data name="RecipeDeleteTitle" xml:space="preserve"><value>Rezept löschen?</value></data>
+  <data name="RecipeDeleteText" xml:space="preserve"><value>„{0}“ wird aus der Palette entfernt. Bereits erstellte Dateien bleiben erhalten.</value></data>
+  <data name="SettingsDiagnosticsDescription" xml:space="preserve"><value>Kopiert Versionen und Zeitmessungen dieser Sitzung ohne Dateinamen oder Inhalte, damit Sie sie in einen Fehlerbericht einfügen können.</value></data>
+  <data name="SettingsCopyDiagnostics" xml:space="preserve"><value>Diagnose kopieren</value></data>
+  <data name="SettingsDiagnosticsCopied" xml:space="preserve"><value>Diagnose in die Zwischenablage kopiert.</value></data>
+  <data name="SettingsDiagnosticsCopyFailed" xml:space="preserve"><value>Die Diagnose konnte nicht kopiert werden. Versuchen Sie es erneut.</value></data>
+  <data name="RecipeEditorTitleNew" xml:space="preserve"><value>Neues Rezept</value></data>
+  <data name="RecipeEditorTitleEdit" xml:space="preserve"><value>Rezept bearbeiten</value></data>
+  <data name="RecipeEditorName" xml:space="preserve"><value>Name</value></data>
+  <data name="RecipeEditorNamePlaceholder" xml:space="preserve"><value>Zum Beispiel: Fotos für die Website</value></data>
+  <data name="RecipeEditorSteps" xml:space="preserve"><value>Schritte</value></data>
+  <data name="RecipeEditorStepsHelp" xml:space="preserve"><value>Jeder Schritt arbeitet mit den Dateien des vorherigen. Nur die Dateien des letzten Schritts bleiben erhalten, neben Ihren Originalen.</value></data>
+  <data name="RecipeEditorAddStep" xml:space="preserve"><value>Schritt hinzufügen</value></data>
+  <data name="RecipeEditorChooseAction" xml:space="preserve"><value>Aktion auswählen</value></data>
+  <data name="RecipeEditorOptions" xml:space="preserve"><value>Optionen…</value></data>
+  <data name="RecipeEditorMoveUp" xml:space="preserve"><value>Nach oben</value></data>
+  <data name="RecipeEditorMoveDown" xml:space="preserve"><value>Nach unten</value></data>
+  <data name="RecipeEditorRemove" xml:space="preserve"><value>Entfernen</value></data>
+  <data name="RecipeEditorSave" xml:space="preserve"><value>Rezept speichern</value></data>
+  <data name="RecipeEditorStep" xml:space="preserve"><value>{0}. {1}</value></data>
+  <data name="RecipeEditorStepOptionsNamed" xml:space="preserve"><value>Optionen für Schritt {0}</value></data>
+  <data name="RecipeEditorSaved" xml:space="preserve"><value>Rezept gespeichert. Wählen Sie Dateien aus und suchen Sie in der Palette nach „{0}“.</value></data>
+  <data name="RecipeOptionsHint" xml:space="preserve"><value>Diese Optionen werden im Rezept gespeichert und bei jeder Ausführung verwendet.</value></data>
+  <data name="RecipeOptionsApply" xml:space="preserve"><value>Übernehmen</value></data>
+  <data name="RecipeProblemTitleMissing" xml:space="preserve"><value>Geben Sie einen Namen für das Rezept ein.</value></data>
+  <data name="RecipeProblemTitleTooLong" xml:space="preserve"><value>Verwenden Sie einen Namen mit höchstens {0} Zeichen.</value></data>
+  <data name="RecipeProblemTooFewSteps" xml:space="preserve"><value>Fügen Sie mindestens {0} Schritte hinzu.</value></data>
+  <data name="RecipeProblemTooManySteps" xml:space="preserve"><value>Ein Rezept kann höchstens {0} Schritte haben.</value></data>
+  <data name="RecipeProblemActionMissing" xml:space="preserve"><value>Schritt {0} verwendet eine Aktion, die nicht installiert ist. Installieren Sie ihr Pack oder entfernen Sie den Schritt.</value></data>
+  <data name="RecipeProblemNotAFileAction" xml:space="preserve"><value>Schritt {0} arbeitet nicht mit Dateien.</value></data>
+  <data name="RecipeProblemStepCreatesNoFiles" xml:space="preserve"><value>Schritt {0} erstellt keine Dateien und kann daher nur der letzte Schritt sein.</value></data>
+  <data name="RecipeProblemNested" xml:space="preserve"><value>Schritt {0} ist ein Rezept. Rezepte können keine anderen Rezepte enthalten.</value></data>
 </root>

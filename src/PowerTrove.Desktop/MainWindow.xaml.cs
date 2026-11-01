@@ -137,6 +137,8 @@ public partial class MainWindow : Window
     public PackUpdatesViewModel PackUpdates => ((App)App.Current).PackUpdates;
     private void ReviewPackUpdates_Click(object sender, RoutedEventArgs e) => ((App)App.Current).OpenSettings(selectPacks: true);
     private void DismissPackUpdates_Click(object sender, RoutedEventArgs e) => PackUpdates.DismissNotice();
+    private void UseSuggestedShortcut_Click(object sender, RoutedEventArgs e) => ((App)App.Current).ApplySuggestedShortcut(out _);
+    private void DismissHotkeyNotice_Click(object sender, RoutedEventArgs e) => ((App)App.Current).DismissHotkeyNotice();
     private async void DownloadContextPack_Click(object sender, RoutedEventArgs e)
     {
         if (((App)App.Current).UpdateInstalling || ViewModel.IsExecuting || sender is not FrameworkElement { Tag: PackSuggestion suggestion }) return;
@@ -520,6 +522,7 @@ public partial class MainWindow : Window
     private bool _focusSearchPending = true;
     private bool _isWindowActive;
     private bool _dialogOpen;
+    private readonly VisualEditorSupport _visualEditors = new();
     private CancellationTokenSource? _packInstallCancellation;
     private bool _activatedSinceShown;
     private readonly PaletteEnterController _enterController = new();
@@ -741,6 +744,11 @@ public partial class MainWindow : Window
             OpenSettingsFromPalette();
             return;
         }
+        if (descriptor.Id == PowerTrove.Application.Commands.CreateRecipeAction.ActionId)
+        {
+            app?.OpenRecipeEditor();
+            return;
+        }
         var expectedSnapshot = ViewModel.CurrentSnapshot;
         if (result.Action is CatalogAction missing)
         {
@@ -805,8 +813,10 @@ public partial class MainWindow : Window
                 var sourcePreferences = prefs;
                 IReadOnlyDictionary<string, string>? sourceDraft = null;
                 bool imageFirst = result.Action is not CatalogAction && ImageEditorInput.OpensDirectly(descriptor.Id, expectedSnapshot) &&
-                    app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } directImageAction && directImageAction is not CatalogAction;
-                bool effectsFirst = result.Action is not CatalogAction && ImageEffectsInput.OpensDirectly(descriptor.Id, expectedSnapshot);
+                    app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } directImageAction && directImageAction is not CatalogAction &&
+                    _visualEditors.IsSupported(directImageAction);
+                bool effectsFirst = result.Action is not CatalogAction && ImageEffectsInput.OpensDirectly(descriptor.Id, expectedSnapshot) &&
+                    _visualEditors.IsSupported(result.Action);
                 while (true)
                 {
                     options = effectsFirst ? new ActionOptionsResult(new DictionaryParameters(prefs ?? new Dictionary<string, string>()), false, EditEffectsVisually: true)
@@ -819,8 +829,9 @@ public partial class MainWindow : Window
                         result.InstallState != PackInstallState.NotInstalled && VisualPageActions.Contains(descriptor.Id) ? OpenPageOrganizer : null,
                         allowMediaEditor: descriptor.Id == "powertrove.media.trim" && MediaTrimRange.CanEdit(expectedSnapshot),
                         initialValues: draft,
-                        allowImageEditor: ImageEditorInput.CanOffer(descriptor.Id, expectedSnapshot) && app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } availableImageAction && availableImageAction is not CatalogAction,
-                        allowEffectsEditor: ImageEffectsInput.CanOffer(descriptor.Id, expectedSnapshot));
+                        allowImageEditor: ImageEditorInput.CanOffer(descriptor.Id, expectedSnapshot) && app?.Actions?.GetAction(ImageEditorInput.ActionId) is { } availableImageAction && availableImageAction is not CatalogAction &&
+                            _visualEditors.IsSupported(availableImageAction),
+                        allowEffectsEditor: ImageEffectsInput.CanOffer(descriptor.Id, expectedSnapshot) && _visualEditors.IsSupported(result.Action));
                     imageFirst = effectsFirst = false;
                     if (options is null || !options.EditMediaVisually && !options.EditImageVisually && !options.EditEffectsVisually) break;
                     if (!ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) || expectedSnapshot.IsStale ||
@@ -859,6 +870,8 @@ public partial class MainWindow : Window
                     {
                         chosen = await editor.ShowSelectionAsync();
                         completed = true;
+                        // Offer this action's editor no more: its pack renders no preview (the editor returned to Options).
+                        if (editor.PreviewUnsupported) _visualEditors.MarkUnsupported(result.Action);
                     }
                     finally
                     {

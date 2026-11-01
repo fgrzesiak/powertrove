@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Windows.System;
@@ -17,6 +19,9 @@ public sealed partial class SettingsWindow : HostedView
     private bool _loadingLanguage;
     private bool _loadingIsolation = true;
     private readonly IExplorerMenuRegistration _explorerMenu = new ExplorerMenuRegistration();
+    private readonly IStartupRegistration _startup = new StartupRegistration();
+    private bool _startupBusy;
+    private bool _showingStartupState;
     private bool _explorerBusy;
     private readonly IFFmpegSetup _ffmpeg = new FFmpegSetup();
     private System.Threading.CancellationTokenSource? _ffmpegInstall;
@@ -29,7 +34,7 @@ public sealed partial class SettingsWindow : HostedView
     public override bool KeepsWindow => !CanCloseForUpdate;
     // Start on the first setting, never on a footer button that Enter would trigger.
     protected internal override Control? InitialFocus => LanguageComboBox;
-    public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && _ffmpegInstall is null && Packs?.IsBusy != true;
+    public override bool CanCloseForUpdate => !_packDialogOpen && _packInstallCancellation is null && !_explorerBusy && !_startupBusy && _ffmpegInstall is null && Packs?.IsBusy != true;
     private bool _loadingUpdatePreference = true;
     private bool _loadingPackUpdatePreference = true;
     public ReleaseUpdatesViewModel Updates { get; }
@@ -56,8 +61,10 @@ public sealed partial class SettingsWindow : HostedView
             FFmpegInstallButton.Visibility = FFmpegCancelButton.Visibility = Visibility.Collapsed;
             GitHubUpdatesCard.Visibility = Visibility.Collapsed;
             StoreUpdatesCard.Visibility = Visibility.Visible;
+            StartupCard.Visibility = Visibility.Collapsed;
         }
         _ = RefreshExplorerRegistrationAsync();
+        _ = ChangeStartupAsync(enable: null);
         _ = RefreshFFmpegAsync();
         if (selectPacks) PackSelectionExpander.IsExpanded = true;
 
@@ -71,8 +78,10 @@ public sealed partial class SettingsWindow : HostedView
             LoadLanguageChoices(app.SettingsService.Settings.UiLanguage);
             SeparateProcessToggle.IsOn = app.SettingsService.Settings.RunFileToolsInSeparateProcess;
             _loadingIsolation = false;
-            var config = app.SettingsService.Settings.GlobalShortcut ?? new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
+            var config = app.SettingsService.Settings.GlobalShortcut ?? HotkeyAdvisor.Default;
             UpdateShortcutText(config);
+            ShowShortcutSuggestion(app);
+            LoadRecipes();
 
             if (app.SettingsService.IsReadOnly)
             {
@@ -179,51 +188,121 @@ public sealed partial class SettingsWindow : HostedView
             return;
         }
 
-        var config = new HotkeyConfiguration(modifiers, (uint)key);
-
-        if (App.Current is App app)
-        {
-            if (app.TryUpdateGlobalShortcut(config, out string error))
-            {
-                UpdateShortcutText(config);
-                ShortcutErrorTextBlock.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ShortcutErrorTextBlock.Text = error;
-                ShortcutErrorTextBlock.Visibility = Visibility.Visible;
-            }
-        }
+        if (App.Current is App app) ApplyShortcut(app, new HotkeyConfiguration(modifiers, (uint)key));
     }
 
-    private void UpdateShortcutText(HotkeyConfiguration config)
+    private void ApplyShortcut(App app, HotkeyConfiguration config)
     {
-        string text = "";
-        if (config.Modifiers.HasFlag(KeyModifiers.Control)) text += "Ctrl + ";
-        if (config.Modifiers.HasFlag(KeyModifiers.Windows)) text += "Win + ";
-        if (config.Modifiers.HasFlag(KeyModifiers.Alt)) text += "Alt + ";
-        if (config.Modifiers.HasFlag(KeyModifiers.Shift)) text += "Shift + ";
-
-        text += ((VirtualKey)config.Key).ToString();
-
-        ShortcutTextBox.Text = text;
+        if (app.TryUpdateGlobalShortcut(config, out string error))
+        {
+            UpdateShortcutText(config);
+            ShortcutErrorTextBlock.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            ShortcutErrorTextBlock.Text = error;
+            ShortcutErrorTextBlock.Visibility = Visibility.Visible;
+        }
+        ShowShortcutSuggestion(app);
     }
+
+    /// <summary>Offers the free alternative the app found for a failed or shared shortcut.</summary>
+    private void ShowShortcutSuggestion(App app)
+    {
+        if (app.SuggestedShortcut is { } suggestion)
+        {
+            ShortcutSuggestionButton.Content = UiText.HotkeyUseSuggestion(ShortcutText.Format(suggestion));
+            ShortcutSuggestionButton.Visibility = Visibility.Visible;
+        }
+        else ShortcutSuggestionButton.Visibility = Visibility.Collapsed;
+    }
+
+    private void UseSuggestedShortcut_Click(object sender, RoutedEventArgs e)
+    {
+        if (App.Current is App { SuggestedShortcut: { } suggestion } app) ApplyShortcut(app, suggestion);
+    }
+
+    private void UpdateShortcutText(HotkeyConfiguration config) => ShortcutTextBox.Text = ShortcutText.Format(config);
 
     private void ResetShortcut_Click(object sender, RoutedEventArgs e)
     {
-        if (App.Current is App app)
+        if (App.Current is App app) ApplyShortcut(app, HotkeyAdvisor.Default);
+    }
+
+    private void CreateRecipe_Click(object sender, RoutedEventArgs e) => OpenRecipeEditor(null);
+
+    private void OpenRecipeEditor(SavedRecipe? recipe)
+    {
+        // The editor replaces settings in the window, as settings replaced the palette.
+        if (App.Current is App app) app.OpenRecipeEditor(recipe);
+    }
+
+    private void LoadRecipes()
+    {
+        if (!Features.UserRecipes) return;
+        RecipesHeader.Visibility = RecipesCard.Visibility = Visibility.Visible;
+        RecipeList.Children.Clear();
+        if (App.Current is not App { SettingsService: IUserRecipeSettings settings } app) return;
+        if (settings.UserRecipes.Count == 0)
         {
-            var config = new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
-            if (app.TryUpdateGlobalShortcut(config, out string error))
-            {
-                UpdateShortcutText(config);
-                ShortcutErrorTextBlock.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ShortcutErrorTextBlock.Text = error;
-                ShortcutErrorTextBlock.Visibility = Visibility.Visible;
-            }
+            RecipeList.Children.Add(new TextBlock { Text = UiText.SettingsRecipesEmpty, Style = (Style)Microsoft.UI.Xaml.Application.Current.Resources["SettingsDescriptionStyle"] });
+            return;
+        }
+        foreach (var recipe in settings.UserRecipes)
+        {
+            var row = new Grid { ColumnSpacing = 8 };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            var steps = string.Join(" → ", recipe.Steps.Select(step => app.Actions?.GetAction(step.ActionId)?.Descriptor.Title ?? UiText.RecipeStepMissing));
+            var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
+            text.Children.Add(new TextBlock { Text = recipe.Title, TextTrimming = TextTrimming.CharacterEllipsis });
+            text.Children.Add(new TextBlock { Text = steps, TextWrapping = TextWrapping.Wrap, Style = (Style)Microsoft.UI.Xaml.Application.Current.Resources["SettingsDescriptionStyle"] });
+            var edit = new Button { Content = UiText.RecipeEdit, VerticalAlignment = VerticalAlignment.Center };
+            edit.Click += (_, _) => OpenRecipeEditor(recipe);
+            var remove = new Button { Content = UiText.RecipeDelete, VerticalAlignment = VerticalAlignment.Center };
+            remove.Click += async (_, _) => await DeleteRecipeAsync(recipe);
+            AutomationProperties.SetName(edit, UiText.RecipeEditNamed(recipe.Title));
+            AutomationProperties.SetName(remove, UiText.RecipeDeleteNamed(recipe.Title));
+            Grid.SetColumn(edit, 1);
+            Grid.SetColumn(remove, 2);
+            row.Children.Add(text);
+            row.Children.Add(edit);
+            row.Children.Add(remove);
+            RecipeList.Children.Add(row);
+        }
+    }
+
+    private async System.Threading.Tasks.Task DeleteRecipeAsync(SavedRecipe recipe)
+    {
+        if (App.Current is not App { SettingsService: IUserRecipeSettings settings } app) return;
+        var dialog = new ContentDialog
+        {
+            Title = UiText.RecipeDeleteTitle,
+            Content = UiText.RecipeDeleteText(recipe.Title),
+            PrimaryButtonText = UiText.RecipeDelete,
+            CloseButtonText = UiText.CommonCancel,
+            DefaultButton = ContentDialogButton.Close,
+            XamlRoot = this.Content.XamlRoot
+        };
+        if (await dialog.ShowAsync() != ContentDialogResult.Primary) return;
+        settings.RemoveUserRecipe(recipe.Id);
+        app.RefreshUserRecipes();
+        LoadRecipes();
+    }
+
+    private async void CopyDiagnostics_Click(object sender, RoutedEventArgs e)
+    {
+        if (App.Current is not App app) return;
+        try
+        {
+            // Explicit user request: the only time PowerTrove writes these values to the clipboard.
+            await new PowerTrove.Platform.Windows.ClipboardWriter().WriteTextAsync(app.BuildDiagnostics());
+            DiagnosticsStatus.Text = UiText.SettingsDiagnosticsCopied;
+        }
+        catch (Exception ex) when (ex is System.Runtime.InteropServices.COMException or UnauthorizedAccessException)
+        {
+            DiagnosticsStatus.Text = UiText.SettingsDiagnosticsCopyFailed;
         }
     }
 
@@ -286,9 +365,10 @@ public sealed partial class SettingsWindow : HostedView
             app.PackUpdates.SetEnabled(app.SettingsService.Settings.CheckForPackUpdatesAutomatically);
 
             // Re-register default hotkey
-            var config = new HotkeyConfiguration(KeyModifiers.Alt, 0x20 /* VK_SPACE */);
+            var config = HotkeyAdvisor.Default;
             app.TryUpdateGlobalShortcut(config, out _);
             UpdateShortcutText(config);
+            ShowShortcutSuggestion(app);
 
             _loadingLanguage = true;
             LanguageComboBox.SelectedIndex = 0; // the defaults follow the Windows language
@@ -364,6 +444,47 @@ public sealed partial class SettingsWindow : HostedView
 
     private async void ExplorerRemove_Click(object sender, RoutedEventArgs e) =>
         await ChangeExplorerRegistrationAsync(register: false);
+
+    /// <summary>Shows the effective registration; null only reads it. Windows' own Startup apps switch is never changed.</summary>
+    private async System.Threading.Tasks.Task ChangeStartupAsync(bool? enable)
+    {
+        if (IsPackaged || _startupBusy || _packsClosed) return;
+        _startupBusy = true;
+        StartupToggle.IsEnabled = false;
+        StartupState state;
+        try
+        {
+            string executable = ExplorerExePath();
+            state = await System.Threading.Tasks.Task.Run(() => enable switch
+            {
+                true => _startup.Enable(executable),
+                false => _startup.Disable(executable),
+                null => _startup.GetState(executable)
+            });
+        }
+        catch (Exception) { state = StartupState.Unavailable; }
+        finally { _startupBusy = false; }
+        if (_packsClosed) return;
+        _showingStartupState = true;
+        StartupToggle.IsOn = state == StartupState.Enabled;
+        _showingStartupState = false;
+        StartupToggle.IsEnabled = state is StartupState.Enabled or StartupState.Disabled;
+        string? message = state switch
+        {
+            StartupState.DisabledByWindows => UiText.StartupDisabledByWindows,
+            StartupState.Conflict => UiText.StartupConflict,
+            StartupState.Unavailable => UiText.StartupUnavailable,
+            _ => null
+        };
+        StartupStatus.Text = message ?? "";
+        StartupStatus.Visibility = message is null ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private async void StartupToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (_showingStartupState) return;
+        await ChangeStartupAsync(StartupToggle.IsOn);
+    }
 
     private async System.Threading.Tasks.Task RefreshFFmpegAsync()
     {
