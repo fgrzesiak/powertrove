@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MainWindowTitle" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StatusReady" xml:space="preserve"><value>Gotowy</value></data>
+  <data name="UseClipboardText" xml:space="preserve"><value>Wklej tekst</value></data>
+  <data name="UseClipboardTooltip" xml:space="preserve"><value>Otwórz pole wprowadzania tekstu, a następnie wklej lub wpisz tekst dla narzędzi tekstowych</value></data>
+  <data name="ClipboardTooLarge" xml:space="preserve"><value>Tekst przekracza limit 65 536 znaków lub zawiera nieobsługiwane znaki.</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Akcje wyszukiwania…</value></data>
+  <data name="SearchAutomationName" xml:space="preserve"><value>Akcje wyszukiwania</value></data>
+  <data name="SearchRetry" xml:space="preserve"><value>Spróbuj ponownie</value></data>
+  <data name="SearchRetryAutomationName" xml:space="preserve"><value>Spróbuj ponownie wyszukać</value></data>
+  <data name="ActionListAutomationName" xml:space="preserve"><value>Dostępne akcje</value></data>
+  <data name="ExecutionPressEscToCancel" xml:space="preserve"><value>Naciśnij Esc, aby anulować</value></data>
+  <data name="CancelQuestion" xml:space="preserve"><value>Anulować tę operację?</value></data>
+  <data name="CancelContinueRunning" xml:space="preserve"><value>Kontynuuj działanie</value></data>
+  <data name="CancelOperation" xml:space="preserve"><value>Anuluj operację</value></data>
+  <data name="ResultShowInExplorer" xml:space="preserve"><value>Pokaż w Eksploratorze</value></data>
+  <data name="ResultOpen" xml:space="preserve"><value>Otwórz</value></data>
+  <data name="ResultDone" xml:space="preserve"><value>Gotowe</value></data>
+  <data name="FirstRunTitle" xml:space="preserve"><value>Witamy w PowerTrove</value></data>
+  <data name="FirstRunShortcut" xml:space="preserve"><value>Naciśnij skrót (domyślnie Alt+spacja) w dowolnym momencie.</value></data>
+  <data name="FirstRunContext" xml:space="preserve"><value>PowerTrove wykrywa, że ​​bieżący kontekst (pliki, Excel i inne) jest offline. Jeśli bieżąca aplikacja nie jest obsługiwana, wyświetlane są akcje ogólne.</value></data>
+  <data name="FirstRunOutputs" xml:space="preserve"><value>Twoje pliki są bezpieczne: akcje tworzą nowe pliki zamiast nadpisywać oryginały.</value></data>
+  <data name="FirstRunPrivacy" xml:space="preserve"><value>Przetwarzanie plików pozostaje na komputerze. Instalacja pakietów narzędzi wymaga pobrania; zainstalowane narzędzia działają w trybie offline. Nie jest wymagane konto w chmurze.</value></data>
+  <data name="FirstRunGetStarted" xml:space="preserve"><value>Rozpocznij</value></data>
+  <data name="FirstRunGetStartedAutomationName" xml:space="preserve"><value>Rozpocznij korzystanie z PowerTrove</value></data>
+  <data name="HotkeyConflict" xml:space="preserve"><value>Skrót jest już używany przez inną aplikację.</value></data>
+  <data name="HotkeyRegistrationFailed" xml:space="preserve"><value>Nie można zarejestrować skrótu globalnego.</value></data>
+  <data name="SettingsWindowTitle" xml:space="preserve"><value>Ustawienia PowerTrove</value></data>
+  <data name="SettingsHeading" xml:space="preserve"><value>Ustawienia</value></data>
+  <data name="SettingsReadOnlyWarning" xml:space="preserve"><value>Plik ustawień pochodzi z nowszej wersji PowerTrove. Nie można zapisać zmian w tej sesji.</value></data>
+  <data name="SettingsLanguage" xml:space="preserve"><value>Język</value></data>
+  <data name="SettingsLanguageSystem" xml:space="preserve"><value>Domyślne ustawienia systemu Windows</value></data>
+  <data name="SettingsLanguageEnglish" xml:space="preserve"><value>Angielski</value></data>
+  <data name="SettingsLanguageGerman" xml:space="preserve"><value>Niemiecki</value></data>
+  <data name="SettingsLanguageRestart" xml:space="preserve"><value>Uruchom ponownie PowerTrove, aby zastosować nowy język.</value></data>
+  <data name="SettingsGlobalShortcut" xml:space="preserve"><value>Skrót globalny</value></data>
+  <data name="SettingsShortcutPlaceholder" xml:space="preserve"><value>Naciśnij kombinację klawiszy…</value></data>
+  <data name="SettingsResetShortcut" xml:space="preserve"><value>Resetuj skrót</value></data>
+  <data name="SettingsShortcutNeedsModifier" xml:space="preserve"><value>Dodaj klawisz modyfikujący (Ctrl, Alt, Shift lub Win).</value></data>
+  <data name="SettingsPinnedActions" xml:space="preserve"><value>Przypięte akcje</value></data>
+  <data name="SettingsUnpinPlaceholder" xml:space="preserve"><value>Wprowadź identyfikator akcji, aby odpiąć…</value></data>
+  <data name="SettingsUnpinAction" xml:space="preserve"><value>Odepnij akcję</value></data>
+  <data name="SettingsUnpinDone" xml:space="preserve"><value>Akcja odpięta.</value></data>
+  <data name="SettingsOutputDefaults" xml:space="preserve"><value>Domyślne ustawienia wyjściowe</value></data>
+  <data name="SettingsOutputDefaultsText" xml:space="preserve"><value>PowerTrove zachowuje oryginalne pliki. Akcje automatycznie tworzą nowe pliki i rozwiązują kolizje nazw.</value></data>
+  <data name="SettingsRanking" xml:space="preserve"><value>Ranking</value></data>
+  <data name="SettingsClearRecent" xml:space="preserve"><value>Wyczyść ostatnie działania</value></data>
+  <data name="SettingsRecentCleared" xml:space="preserve"><value>Ostatnie działania zostały wyczyszczone.</value></data>
+  <data name="SettingsClearSuggestions" xml:space="preserve"><value>Wyczyść historię sugestii</value></data>
+  <data name="SettingsSuggestionsPrivacy" xml:space="preserve"><value>Do podpowiedzi zapisywane są tylko typy zaznaczeń i ich liczebności.</value></data>
+  <data name="SettingsClearSuggestionsTitle" xml:space="preserve"><value>Wyczyścić historię sugestii?</value></data>
+  <data name="SettingsClearSuggestionsText" xml:space="preserve"><value>Ta operacja czyści lokalną historię akcji użytych dla każdego rodzaju zaznaczenia.</value></data>
+  <data name="SettingsSuggestionsCleared" xml:space="preserve"><value>Historia sugestii została wyczyszczona.</value></data>
+  <data name="SettingsResetDefaults" xml:space="preserve"><value>Resetuj do ustawień domyślnych</value></data>
+  <data name="SettingsResetDone" xml:space="preserve"><value>Ustawienia zostaną przywrócone do wartości domyślnych.</value></data>
+  <data name="CommonClear" xml:space="preserve"><value>Wyczyść</value></data>
+  <data name="CommonCancel" xml:space="preserve"><value>Anuluj</value></data>
+  <data name="CommonClose" xml:space="preserve"><value>Zamknij</value></data>
+  <data name="CommonBack" xml:space="preserve"><value>Wstecz</value></data>
+  <data name="ColorPickFromScreen" xml:space="preserve"><value>Wybierz kolor z ekranu lub podglądu</value></data>
+  <data name="ColorHex" xml:space="preserve"><value>Szesnastkowy</value></data>
+  <data name="OptionsRemember" xml:space="preserve"><value>Zapamiętaj te opcje</value></data>
+  <data name="OptionsRun" xml:space="preserve"><value>Uruchom</value></data>
+  <data name="OptionsChecking" xml:space="preserve"><value>Sprawdzanie wyboru…</value></data>
+  <data name="OptionsSelectionGone" xml:space="preserve"><value>Zaznaczenie nie jest już dostępne.</value></data>
+  <data name="OptionsOneOutput" xml:space="preserve"><value>Zostanie utworzony jeden nowy element.</value></data>
+  <data name="OptionsManyOutputs" xml:space="preserve"><value>{0} nowych elementów zostanie utworzonych.</value></data>
+  <data name="OptionsPathPlaceholder" xml:space="preserve"><value>Ścieżka do pliku</value></data>
+  <data name="OptionsBrowse" xml:space="preserve"><value>Przeglądaj…</value></data>
+  <data name="SettingsTooltip" xml:space="preserve"><value>Ustawienia</value></data>
+  <data name="LegendRun" xml:space="preserve"><value>Uruchom</value></data>
+  <data name="LegendSelect" xml:space="preserve"><value>Wybierz</value></data>
+  <data name="LegendClose" xml:space="preserve"><value>Zamknij</value></data>
+  <data name="KeySettings" xml:space="preserve"><value>Ctrl+,</value></data>
+  <data name="KeyEsc" xml:space="preserve"><value>Esc</value></data>
+  <data name="TrayTooltip" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="TrayOpen" xml:space="preserve"><value>Otwórz PowerTrove</value></data>
+  <data name="TraySettings" xml:space="preserve"><value>Ustawienia</value></data>
+  <data name="TrayExit" xml:space="preserve"><value>Wyjście</value></data>
+  <data name="SettingsGeneral" xml:space="preserve"><value>Ogólne</value></data>
+  <data name="SettingsLanguageDescription" xml:space="preserve"><value>Język interfejsu PowerTrove.</value></data>
+  <data name="SettingsShortcutDescription" xml:space="preserve"><value>Otwiera paletę z dowolnej aplikacji.</value></data>
+  <data name="SettingsSuggestions" xml:space="preserve"><value>Sugestie</value></data>
+  <data name="SettingsPinnedDescription" xml:space="preserve"><value>Przypięte akcje pojawiają się jako pierwsze. Wprowadź identyfikator akcji, aby ją odpiąć.</value></data>
+  <data name="SettingsFiles" xml:space="preserve"><value>Pliki</value></data>
+  <data name="SettingsAbout" xml:space="preserve"><value>Informacje</value></data>
+  <data name="SettingsAboutText" xml:space="preserve"><value>PowerTrove działa całkowicie offline. Twoje pliki i zaznaczenia nigdy nie opuszczają tego komputera.</value></data>
+  <data name="OrganizerTitle" xml:space="preserve"><value>Organizuj strony</value></data>
+  <data name="OrganizerOpenVisual" xml:space="preserve"><value>Edycja wizualna stron…</value></data>
+  <data name="OrganizerRotateLeft" xml:space="preserve"><value>Obróć w lewo</value></data>
+  <data name="OrganizerRotateRight" xml:space="preserve"><value>Obróć w prawo</value></data>
+  <data name="OrganizerRemove" xml:space="preserve"><value>Usuń</value></data>
+  <data name="OrganizerSelectAll" xml:space="preserve"><value>Zaznacz wszystko</value></data>
+  <data name="OrganizerReset" xml:space="preserve"><value>Resetuj</value></data>
+  <data name="OrganizerZoom" xml:space="preserve"><value>Rozmiar miniatury</value></data>
+  <data name="OrganizerHint" xml:space="preserve"><value>Przeciągnij strony, aby zmienić ich kolejność. Ctrl lub Shift zaznacza kilka.</value></data>
+  <data name="OrganizerPageLabel" xml:space="preserve"><value>Strona {0}</value></data>
+  <data name="OrganizerPageCount" xml:space="preserve"><value>{0} stron</value></data>
+  <data name="OrganizerSave" xml:space="preserve"><value>Zapisz jako nowy plik PDF</value></data>
+  <data name="OrganizerSaved" xml:space="preserve"><value>Utworzono nowy plik PDF. Oryginalne pliki pozostają niezmienione.</value></data>
+  <data name="OrganizerSaveFailed" xml:space="preserve"><value>Nie można utworzyć nowego pliku PDF.</value></data>
+  <data name="OrganizerProtected" xml:space="preserve"><value>Ten plik PDF jest chroniony hasłem. Najpierw odblokuj go za pomocą opcji „Odblokuj PDF”.</value></data>
+  <data name="OrganizerOpenFailed" xml:space="preserve"><value>Plik PDF nie został otwarty.</value></data>
+  <data name="OrganizerTooLarge" xml:space="preserve"><value>Zbyt wiele stron do wyświetlenia (maksymalnie {0}).</value></data>
+  <data name="NoMatchingActions" xml:space="preserve"><value>Brak pasujących działań. Spróbuj wyszukać ponownie.</value></data>
+  <data name="UnavailableFilterLabel" xml:space="preserve"><value>Niedostępne ({0})</value></data>
+  <data name="GroupActionsOne" xml:space="preserve"><value>{0}, {1} akcja</value></data>
+  <data name="GroupActionsOther" xml:space="preserve"><value>{0}, {1} akcje</value></data>
+  <data name="ResultUndo" xml:space="preserve"><value>Cofnij</value></data>
+  <data name="RenameOldName" xml:space="preserve"><value>Bieżąca nazwa</value></data>
+  <data name="RenameNewName" xml:space="preserve"><value>Nowa nazwa</value></data>
+  <data name="UpdatesHeading" xml:space="preserve"><value>Aktualizacje</value></data>
+  <data name="UpdatesPrivacy" xml:space="preserve"><value>PowerTrove sprawdza GitHub pod kątem nowych wersji podczas uruchamiania. Możesz wyłączyć tę opcję powyżej. GitHub otrzymuje zwykłe metadane połączenia, a nie wybraną zawartość. Aktualizacja pobiera teraz instalator, weryfikuje jego skrót SHA-256 i zamyka PowerTrove w celu przeprowadzenia aktualizacji, a następnie uruchamia go ponownie. W przypadku kompilacji ZIP bieżący folder staje się zarejestrowaną instalacją. Monity zabezpieczeń systemu Windows pozostają włączone.</value></data>
+  <data name="UpdatesCheck" xml:space="preserve"><value>Sprawdź dostępność aktualizacji</value></data>
+  <data name="UpdatesOpenPage" xml:space="preserve"><value>Otwórz stronę wydania</value></data>
+<data name="RecipePackTitle" xml:space="preserve"><value>Przepisy</value></data>
+<data name="RecipeImagesForEmailTitle" xml:space="preserve"><value>Przygotowanie obrazów do wysłania e-mailem</value></data>
+<data name="RecipeImagesForEmailDescription" xml:space="preserve"><value>Zmienia rozmiar obrazów do maks. 1600 pikseli, kompresuje je do jakości 75% i kompresuje wynik.</value></data>
+<data name="RecipeMixedForEmailTitle" xml:space="preserve"><value>Przygotowanie do wysłania e-mailem</value></data>
+<data name="RecipeMixedForEmailDescription" xml:space="preserve"><value>Zmienia rozmiar obrazów do maks. 1600 pikseli, kompresuje pliki PDF i kompresuje wynik.</value></data>
+  <data name="ActivationRejected" xml:space="preserve"><value>Nie można otworzyć wybranych plików. Użyj istniejących plików lokalnych i spróbuj ponownie.</value></data>
+  <data name="ExplorerHeading" xml:space="preserve"><value>Eksplorator plików</value></data>
+  <data name="ExplorerDescription" xml:space="preserve"><value>Dodaj opcję „Otwórz w PowerTrove” dla pojedynczego pliku lokalnego. W systemie Windows 11 sprawdź w sekcji „Pokaż więcej opcji”. W przypadku wielu plików użyj skrótu globalnego.</value></data>
+  <data name="ExplorerAdd" xml:space="preserve"><value>Dodaj lub zaktualizuj pozycję menu</value></data>
+  <data name="ExplorerRemove" xml:space="preserve"><value>Usunąć wpis menu</value></data>
+  <data name="ExplorerMenuLabel" xml:space="preserve"><value>Otwórz w PowerTrove</value></data>
+  <data name="ExplorerRegistered" xml:space="preserve"><value>Wpis menu jest zarejestrowany dla tej kopii PowerTrove.</value></data>
+  <data name="ExplorerAbsent" xml:space="preserve"><value>Wpis menu nie jest zarejestrowany.</value></data>
+  <data name="ExplorerIncomplete" xml:space="preserve"><value>Wpis jest niekompletny. Dodaj go ponownie lub usuń.</value></data>
+  <data name="ExplorerConflict" xml:space="preserve"><value>Istniejący wpis należy do innej kopii aplikacji lub ma nieoczekiwane ustawienia. Pozostawiono go bez zmian.</value></data>
+  <data name="ExplorerUnavailable" xml:space="preserve"><value>Nie można odczytać ani zmienić wpisu menu. Sprawdź dostęp i lokalizację aplikacji.</value></data>
+  <data name="PacksHeading" xml:space="preserve"><value>Pakiety akcji</value></data>
+  <data name="PacksLocalDescription" xml:space="preserve"><value>Zainstaluj podpisany pakiet PowerTrove z lokalnego pliku .cbpack.</value></data>
+  <data name="PacksInstallFromFile" xml:space="preserve"><value>Zainstaluj pakiet z pliku…</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>Weryfikacja i instalacja pakietu…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>Pakiet jest zainstalowany. Jego akcje będą dostępne po następnym otwarciu palety.</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>Instalacja pakietu anulowana.</value></data>
+  <data name="PacksInstallFailed" xml:space="preserve"><value>Nie można zweryfikować ani aktywować pakietu. Istniejące narzędzia pozostają dostępne.</value></data>
+  <data name="PacksPrivacy" xml:space="preserve"><value>Automatyczne sprawdzanie zainstalowanych pakietów jest uruchamiane podczas uruchamiania i co sześć godzin. PowerTrove pobiera podpisany katalog GitHub bez wysyłania listy zainstalowanych pakietów ani wybranej zawartości. Możesz wyłączyć te sprawdzanie poniżej. Otwarcie tej sekcji powoduje również sprawdzenie dostępności aktualizacji. Pobieranie i instalacja wymagają potwierdzenia.</value></data>
+  <data name="PacksShowMissing" xml:space="preserve"><value>Pokaż akcje pakietów, które nie są zainstalowane</value></data>
+  <data name="PacksRefresh" xml:space="preserve"><value>Odśwież katalog</value></data>
+  <data name="PacksUninstall" xml:space="preserve"><value>Usuń</value></data>
+  <data name="PacksBundled" xml:space="preserve"><value>Dołączone do aplikacji</value></data>
+  <data name="PackDownloadConsent" xml:space="preserve"><value>Pobrać {0} ({1}) z {2} i zainstalować?</value></data>
+  <data name="PackUpdateAllConsentOne" xml:space="preserve"><value>Pobrać aktualizację dla {0} ({1}) z {2} i zainstalować ją?</value></data>
+  <data name="PackUpdateAllConsentOther" xml:space="preserve"><value>Pobrać {0} aktualizacje pakietu ({1}) z {2} i zainstalować je?</value></data>
+  <data name="PacksUpdateAllTitle" xml:space="preserve"><value>Aktualizuj pakiety</value></data>
+  <data name="PackRemoveConsent" xml:space="preserve"><value>Usunąć {0}? Jego pobrane wersje zostaną usunięte. Dołączone narzędzia pozostają dostępne.</value></data>
+  <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>Usunąć {0}? Jego akcje będą niedostępne do momentu ponownej instalacji pakietu. Twoje pliki i ustawienia pozostaną niezmienione.</value></data>
+  <data name="PackRolledBack" xml:space="preserve"><value>Nie można rozpocząć aktualizacji pakietu. PowerTrove przywrócił poprzednią wersję.</value></data>
+  <data name="PackInstallAndRun" xml:space="preserve"><value>Zainstaluj i kontynuuj</value></data>
+  <data name="PackSelectAgain" xml:space="preserve"><value>Wybierz pliki ponownie.</value></data>
+  <data name="PackNeedsInstall" xml:space="preserve"><value>{0} nie jest zainstalowany</value></data>
+  <data name="PackNameVersion" xml:space="preserve"><value>{0}, wersja {1}</value></data>
+  <data name="SeparateProcessTitle" xml:space="preserve"><value>Uruchom narzędzia plików w oddzielnym procesie</value></data>
+  <data name="SeparateProcessDescription" xml:space="preserve"><value>Wyizoluj narzędzia PDF, obrazów i multimediów z okna głównego. Wymaga ponownego uruchomienia.</value></data>
+  <data name="SeparateProcessRestart" xml:space="preserve"><value>Uruchom ponownie PowerTrove, aby zastosować to ustawienie.</value></data>
+  <data name="StartupTitle" xml:space="preserve"><value>Uruchom PowerTrove po zalogowaniu</value></data>
+  <data name="StartupDescription" xml:space="preserve"><value>PowerTrove czeka w obszarze powiadomień, więc skrót działa natychmiast. Nie odczytuje niczego, dopóki nie naciśniesz skrótu.</value></data>
+  <data name="StartupDisabledByWindows" xml:space="preserve"><value>System Windows wyłączył tę opcję w Ustawieniach &gt; Aplikacje &gt; Uruchamianie. Włącz tam program PowerTrove, aby uruchomić go ponownie po zalogowaniu.</value></data>
+  <data name="StartupConflict" xml:space="preserve"><value>Kolejna kopia PowerTrove jest już uruchamiana po zalogowaniu. Jej wpis pozostał niezmieniony.</value></data>
+  <data name="StartupUnavailable" xml:space="preserve"><value>Nie można odczytać ani zmienić wpisu startowego. Sprawdź dostęp i lokalizację aplikacji.</value></data>
+  <data name="IsolationUnavailable" xml:space="preserve"><value>Wyizolowane narzędzia plików są niedostępne. Sprawdź zainstalowane pliki pakietu i uruchom ponownie.</value></data>
+  <data name="SettingsNotices" xml:space="preserve"><value>Pokaż licencje i powiadomienia stron trzecich</value></data>
+  <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>Nie można otworzyć plików powiadomień. Sprawdź zainstalowane pliki aplikacji.</value></data>
+  <data name="OptionsSelectAll" xml:space="preserve"><value>Użyj wszystkich</value></data>
+  <data name="OptionsSelectNone" xml:space="preserve"><value>Wyczyść zaznaczenie</value></data>
+  <data name="OptionsSelectionAdjusted" xml:space="preserve"><value>Dostępne pola uległy zmianie. Sprawdź swój wybór.</value></data>
+  <data name="OptionsSelectionTooLarge" xml:space="preserve"><value>Wybierz mniej pól do tego eksportu.</value></data>
+  <data name="OptionsMoveUp" xml:space="preserve"><value>Przesuń w górę</value></data>
+  <data name="OptionsDragToReorder" xml:space="preserve"><value>Przeciągnij, aby zmienić kolejność</value></data>
+  <data name="OptionsMoveDown" xml:space="preserve"><value>Przesuń w dół</value></data>
+  <data name="MediaTrimTitle" xml:space="preserve"><value>Przytnij dźwięk lub wideo</value></data>
+  <data name="MediaTrimOpenVisual" xml:space="preserve"><value>Przytnij wizualnie…</value></data>
+  <data name="MediaTrimAudioPreview" xml:space="preserve"><value>Audio Podgląd</value></data>
+  <data name="MediaTrimLoading" xml:space="preserve"><value>Otwieranie podglądu lokalnego…</value></data>
+  <data name="MediaTrimPosition" xml:space="preserve"><value>Pozycja odtwarzania</value></data>
+  <data name="MediaTrimPositionValue" xml:space="preserve"><value>Pozycja: {0}</value></data>
+  <data name="MediaTrimDuration" xml:space="preserve"><value>Czas trwania pliku: {0}</value></data>
+  <data name="MediaTrimStart" xml:space="preserve"><value>Rozpocznij zaznaczanie</value></data>
+  <data name="MediaTrimEnd" xml:space="preserve"><value>Koniec wyboru</value></data>
+  <data name="MediaTrimSeconds" xml:space="preserve"><value>Sekundy</value></data>
+  <data name="MediaTrimPlay" xml:space="preserve"><value>Wybór odtwarzania</value></data>
+  <data name="MediaTrimPause" xml:space="preserve"><value>Pauza</value></data>
+  <data name="MediaTrimSetStart" xml:space="preserve"><value>Ustaw początek tutaj</value></data>
+  <data name="MediaTrimSetEnd" xml:space="preserve"><value>Ustaw koniec tutaj</value></data>
+  <data name="MediaTrimVolume" xml:space="preserve"><value>Głośność podglądu</value></data>
+  <data name="MediaTrimPrecise" xml:space="preserve"><value>Dokładne przycinanie (może potrwać dłużej)</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Bez dokładnego cięcia zapisany początek i koniec mogą się nieznacznie różnić. Podgląd głośności nie zmienia eksportowanego pliku.</value></data>
+  <data name="MediaTrimSaveHint" xml:space="preserve"><value>Zachowywana jest tylko podświetlona sekcja. Potwierdzenie powoduje utworzenie nowego pliku poprzez operację przycinania; oryginał pozostaje niezmieniony.</value></data>
+  <data name="MediaTrimApply" xml:space="preserve"><value>Przytnij zaznaczenie</value></data>
+  <data name="MediaTrimBack" xml:space="preserve"><value>Wstecz do ustawień czasu</value></data>
+  <data name="MediaTrimSelection" xml:space="preserve"><value>Zaznaczenie: {0} – {1} · Długość: {2}</value></data>
+  <data name="MediaTrimPreviewFailed" xml:space="preserve"><value>System Windows nie może wyświetlić podglądu tego pliku. Wróć do ustawień czasu, aby użyć dostępnego mechanizmu konwersji.</value></data>
+  <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>Ustawienia czasu nie pasują do tego pliku. Wybrano pełny zakres; wybierz sekcję ponownie.</value></data>
+  <data name="MediaTrimReady" xml:space="preserve"><value>Gotowy do zapisania zaznaczonego fragmentu jako nowego pliku.</value></data>
+  <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Wróć do ustawień czasu, aby sprawdzić dodatkowe potwierdzenie.</value></data>
+  <data name="UpdatesInstall" xml:space="preserve"><value>Aktualizuj teraz</value></data>
+  <data name="UpdatesLater" xml:space="preserve"><value>Później</value></data>
+  <data name="UpdatesCancel" xml:space="preserve"><value>Anuluj pobieranie</value></data>
+  <data name="UpdatesStartup" xml:space="preserve"><value>Sprawdź dostępność aktualizacji podczas uruchamiania</value></data>
+  <data name="ContextPackDismiss" xml:space="preserve"><value>Odrzuć</value></data>
+  <data name="Installer_ToolsTitle" xml:space="preserve"><value>Wybierz swoje narzędzia</value></data>
+  <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>Które narzędzia należy zainstalować w PowerTrove?</value></data>
+  <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Instalator pobiera wybrane narzędzia z oficjalnego, podpisanego kanału i weryfikuje je przed zakończeniem. Jeśli pobieranie jest niedostępne, PowerTrove próbuje ponownie przy następnym uruchomieniu. Możesz zarządzać narzędziami w Ustawieniach w dowolnym momencie.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Zainstalowane narzędzia są wstępnie wybrane i zaktualizowane do najnowszej wersji. Wybierz dodatkowe narzędzia do pobrania i zweryfikuj je przed zakończeniem instalacji. Odznaczenie narzędzia nie powoduje jego usunięcia; użyj Ustawień, aby odinstalować narzędzia. Niedostępne pobrania zostaną ponowione przy następnym uruchomieniu aplikacji.</value></data>
+  <data name="Installer_Files" xml:space="preserve"><value>Narzędzia plików: zmiana nazwy, kompresja, porównywanie i sortowanie plików</value></data>
+  <data name="Installer_Pdf" xml:space="preserve"><value>Narzędzia PDF: scalanie, dzielenie, konwertowanie i organizowanie plików PDF</value></data>
+  <data name="Installer_Images" xml:space="preserve"><value>Narzędzia do obrazów: konwersja, zmiana rozmiaru i kompresja obrazów</value></data>
+  <data name="Installer_Media" xml:space="preserve"><value>Narzędzia audio i wideo: konwertuj, przycinaj i kompresuj audio i wideo</value></data>
+  <data name="Installer_Office" xml:space="preserve"><value>Narzędzia pakietu Office: konwertuj dokumenty pakietu Office do formatu PDF i pliki PDF do programu Word</value></data>
+  <data name="Installer_Data" xml:space="preserve"><value>Narzędzia danych: konwertuj pliki CSV, JSON, Excel i pliki kontaktów</value></data>
+  <data name="Installer_Tables" xml:space="preserve"><value>Eksport tabeli: eksportuj zaznaczenia z Excela jako pliki CSV, JSON, Markdown lub SQL</value></data>
+  <data name="Installer_Invoice" xml:space="preserve"><value>Narzędzia e-faktury: przeglądaj i konwertuj faktury XRechnung i ZUGFeRD</value></data>
+  <data name="Installer_Markdown" xml:space="preserve"><value>Narzędzia Markdown: przeglądaj, edytuj i konwertuj pliki Markdown do formatu HTML lub PDF</value></data>
+  <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Integracja z systemem Windows:</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Utwórz skrót w menu Start</value></data>
+  <data name="Installer_ExplorerMenu" xml:space="preserve"><value>Dodaj opcję Otwórz w PowerTrove do Eksploratora plików (Windows 11: Pokaż więcej opcji)</value></data>
+  <data name="Installer_Startup" xml:space="preserve"><value>Uruchom PowerTrove po zalogowaniu (możesz wyłączyć tę opcję w Ustawieniach)</value></data>
+  <data name="Installer_Launch" xml:space="preserve"><value>Uruchom PowerTrove</value></data>
+  <data name="Installer_Downloading" xml:space="preserve"><value>Pobieranie i weryfikacja wybranych narzędzi...</value></data>
+  <data name="Installer_DownloadDeferred" xml:space="preserve"><value>Niektórych narzędzi nie można teraz pobrać. PowerTrove ponawia próbę przy następnym uruchomieniu.</value></data>
+  <data name="Installer_SelectionFailed" xml:space="preserve"><value>Nie można zapisać wybranego narzędzia. Zainstaluj narzędzia z ustawień PowerTrove po zakończeniu instalacji.</value></data>
+  <data name="Installer_ExplorerFailed" xml:space="preserve"><value>Nie można dodać wpisu Eksploratora plików. Można to sprawdzić i skonfigurować w Ustawieniach PowerTrove.</value></data>
+  <data name="Installer_StartupFailed" xml:space="preserve"><value>Nie można skonfigurować PowerTrove do uruchamiania po zalogowaniu. Możesz włączyć tę funkcję później w Ustawieniach.</value></data>
+  <data name="Installer_DowngradeRefused" xml:space="preserve"><value>Zainstalowano nowszą wersję PowerTrove lub nie można zweryfikować zainstalowanej wersji. Odmówiono obniżenia wersji.</value></data>
+  <data name="ImageEditor_Title" xml:space="preserve"><value>Edytor obrazów</value></data>
+  <data name="ImageEditor_Open" xml:space="preserve"><value>Edycja wizualna obrazu…</value></data>
+  <data name="ImageEditor_Undo" xml:space="preserve"><value>Cofnij</value></data>
+  <data name="ImageEditor_Redo" xml:space="preserve"><value>Powtórz</value></data>
+  <data name="ImageEditor_RotateLeft" xml:space="preserve"><value>Obróć w lewo o 90°</value></data>
+  <data name="ImageEditor_RotateRight" xml:space="preserve"><value>Obróć w prawo o 90°</value></data>
+  <data name="ImageEditor_FitImage" xml:space="preserve"><value>Dopasuj obraz</value></data>
+  <data name="ImageEditor_FitCanvas" xml:space="preserve"><value>Od płótna do obrazu</value></data>
+  <data name="ImageEditor_Reset" xml:space="preserve"><value>Resetuj</value></data>
+  <data name="ImageEditor_Preview" xml:space="preserve"><value>Podgląd układu obrazu</value></data>
+  <data name="ImageEditor_Help" xml:space="preserve"><value>Przeciągnij obraz, aby go przesunąć. Przeciągnij uchwyt, aby zmienić rozmiar; użyj uchwytu obrotu, aby go swobodnie obracać. Zaznaczony uchwyt akceptuje również klawisze strzałek.</value></data>
+  <data name="ImageEditor_CanvasMode" xml:space="preserve"><value>Zmień rozmiar płótna za pomocą uchwytów</value></data>
+  <data name="ImageEditor_CanvasWidth" xml:space="preserve"><value>Szerokość płótna (px)</value></data>
+  <data name="ImageEditor_CanvasHeight" xml:space="preserve"><value>Wysokość płótna (px)</value></data>
+  <data name="ImageEditor_ImageWidth" xml:space="preserve"><value>Szerokość obrazu (px)</value></data>
+  <data name="ImageEditor_ImageHeight" xml:space="preserve"><value>Wysokość obrazu (px)</value></data>
+  <data name="ImageEditor_OffsetX" xml:space="preserve"><value>Przesunięcie poziome (px)</value></data>
+  <data name="ImageEditor_OffsetY" xml:space="preserve"><value>Przesunięcie pionowe (px)</value></data>
+  <data name="ImageEditor_Angle" xml:space="preserve"><value>Obrót (°)</value></data>
+  <data name="ImageEditor_LockAspect" xml:space="preserve"><value>Zachowaj proporcje obrazu</value></data>
+  <data name="ImageEditor_Align" xml:space="preserve"><value>Wyrównaj na płótnie</value></data>
+  <data name="ImageEditor_AlignAt" xml:space="preserve"><value>Wyrównaj: {0}</value></data>
+  <data name="ImageEditor_TopLeft" xml:space="preserve"><value>lewy górny róg</value></data>
+  <data name="ImageEditor_Top" xml:space="preserve"><value>góra</value></data>
+  <data name="ImageEditor_TopRight" xml:space="preserve"><value>prawy górny róg</value></data>
+  <data name="ImageEditor_Left" xml:space="preserve"><value>lewy</value></data>
+  <data name="ImageEditor_Center" xml:space="preserve"><value>środek</value></data>
+  <data name="ImageEditor_Right" xml:space="preserve"><value>prawo</value></data>
+  <data name="ImageEditor_BottomLeft" xml:space="preserve"><value>lewy dolny róg</value></data>
+  <data name="ImageEditor_Bottom" xml:space="preserve"><value>dół</value></data>
+  <data name="ImageEditor_BottomRight" xml:space="preserve"><value>prawy dolny róg</value></data>
+  <data name="ImageEditor_Rotate" xml:space="preserve"><value>obrót</value></data>
+  <data name="ImageEditor_Handle" xml:space="preserve"><value>{0} uchwyt: przeciągnij lub użyj klawiszy strzałek</value></data>
+  <data name="ImageEditor_SaveHint" xml:space="preserve"><value>Opcja „Zapisz” tworzy nowy plik PNG; oryginały pozostają niezmienione. Szachownica reprezentuje przezroczystość. Podgląd jest zmniejszony; eksport używa pełnej rozdzielczości. Metadane są usuwane; animacja używa swojej pierwszej klatki.</value></data>
+  <data name="ImageEditor_Loading" xml:space="preserve"><value>Ładowanie podglądu obrazu...</value></data>
+  <data name="ImageEditor_Back" xml:space="preserve"><value>Opcje</value></data>
+  <data name="ImageEditor_Save" xml:space="preserve"><value>Zapisz nowy plik PNG</value></data>
+  <data name="ImageEditor_LoadFailed" xml:space="preserve"><value>Nie można załadować podglądu obrazu. Sprawdź wybór i zainstalowany pakiet narzędzi do tworzenia obrazów.</value></data>
+  <data name="ImageEditor_Ready" xml:space="preserve"><value>Przeciągnij, aby dostosować układ, a następnie zapisz nowy plik PNG.</value></data>
+  <data name="ImageEditor_Clipped" xml:space="preserve"><value>Zawartość obrazu poza obszarem roboczym zostanie przycięta. Użyj opcji Dopasuj obraz lub Obszar roboczy do obrazu, aby zachować całość.</value></data>
+  <data name="ImageEditor_Invalid" xml:space="preserve"><value>Rozmiar przekracza limity: 10 000 pikseli na stronę i 40 milionów pikseli. Poprzedni układ został zachowany.</value></data>
+  <data name="ImageEditor_Summary" xml:space="preserve"><value>Płótno: {0} × {1} px. Obraz: {2} × {3} px. Obrót: {4}°.</value></data>
+  <data name="ImageEditor_EffectsOpen" xml:space="preserve"><value>Dostosuj z podglądem wizualnym…</value></data>
+  <data name="ImageEditor_EffectsHint" xml:space="preserve"><value>Dostosuj opcje, aby zaktualizować podgląd. Podglądy są zmniejszone i przybliżone; eksport używa oryginalnej rozdzielczości. W przypadku partii wyświetlany jest pierwszy naturalnie uporządkowany obraz; siatki pokazują cały układ.</value></data>
+  <data name="ImageEditor_EffectsPreview" xml:space="preserve"><value>Podgląd renderowanego pliku wyjściowego</value></data>
+  <data name="ImageEditor_EffectsUnavailable" xml:space="preserve"><value>Podgląd wizualny jest niedostępny. Sprawdź opcje lub wróć do Opcji. Żadne pliki nie zostały zapisane.</value></data>
+  <data name="ImageEditor_EffectsDimensions" xml:space="preserve"><value>Płótno wyjściowe: {0} × {1} px. Szachownica: przezroczystość.</value></data>
+  <data name="ImageEditor_EffectsUpdating" xml:space="preserve"><value>Aktualizacja podglądu…</value></data>
+  <data name="ImageEditor_Modifiers" xml:space="preserve"><value>Przesunięcie: proporcjonalna zmiana rozmiaru obrazu/płótna, ruch z blokadą osi, obrót o 15°. Shift + klawisze strzałek: krok o 10 pikseli (obrót: 15°).</value></data>
+  <data name="ImageEditor_FitView" xml:space="preserve"><value>Dopasuj widok</value></data>
+  <data name="ImageEditor_ResizeHint" xml:space="preserve"><value>Dostosuj szerokość lub wysokość, aby proporcjonalnie zmienić rozmiar całego obrazu. Większe wymiary powiększają obraz. Zmniejszony podgląd pokazuje wybrany rozmiar wyjściowy.</value></data>
+  <data name="ImageEditor_ResizeWidth" xml:space="preserve"><value>Szerokość (px)</value></data>
+  <data name="ImageEditor_ResizeHeight" xml:space="preserve"><value>Wysokość (px)</value></data>
+  <data name="ImageEditor_ResizeHalf" xml:space="preserve"><value>½×</value></data>
+  <data name="ImageEditor_ResizeOriginal" xml:space="preserve"><value>1×</value></data>
+  <data name="ImageEditor_ResizeDouble" xml:space="preserve"><value>2×</value></data>
+  <data name="ImageEditor_ResizeQuadruple" xml:space="preserve"><value>4×</value></data>
+  <data name="ImageEditor_ResizeInvalid" xml:space="preserve"><value>Rozmiar przekracza limity podglądu wizualnego: 30 000 pikseli na stronę i 60 milionów pikseli. Poprzedni rozmiar został zachowany.</value></data>
+  <data name="ImageEditor_ResizeDimensions" xml:space="preserve"><value>Wyjście: {0} × {1} px · Oryginał: {2} × {3} px</value></data>
+  <data name="ImageEditor_ResizeScale" xml:space="preserve"><value>Rozmiar obrazu</value></data>
+  <data name="ImageEditor_ResizeDetails" xml:space="preserve"><value>Rozmiar i jakość</value></data>
+  <data name="ImageEditor_ResizeImprove" xml:space="preserve"><value>Popraw jakość powiększenia</value></data>
+  <data name="ImageEditor_ResizeSave" xml:space="preserve"><value>Zmień rozmiar</value></data>
+  <data name="ImageEditor_ResizeOutput" xml:space="preserve"><value>{0} × {1} px</value></data>
+  <data name="ImageEditor_ResizePercent" xml:space="preserve"><value>{0}%</value></data>
+  <data name="StoreExplorerDescription" xml:space="preserve"><value>Użyj globalnego skrótu, aby otworzyć PowerTrove dla wybranego elementu. Menu kontekstowe Eksploratora nie jest dostępne w tej wersji Store.</value></data>
+  <data name="StoreUpdatesDescription" xml:space="preserve"><value>Aktualizacje aplikacji są dostarczane przez Microsoft Store. Oficjalne pakiety narzędzi są instalowane i aktualizowane osobno w pakietach, za Twoją zgodą.</value></data>
+  <data name="StoreUpdatesOpen" xml:space="preserve"><value>Otwórz aktualizacje Microsoft Store</value></data>
+  <data name="StoreUpdatesOpenFailed" xml:space="preserve"><value>Nie można otworzyć sklepu Microsoft Store. Otwórz go z menu Start, aby sprawdzić dostępność aktualizacji aplikacji.</value></data>
+  <data name="FirstRunChoosePacks" xml:space="preserve"><value>Wybierz pakiety narzędzi</value></data>
+  <data name="StorePublisherDisplayName" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StorePackageDescription" xml:space="preserve"><value>Wybrane przez Ciebie narzędzia do obsługi plików lokalnych, z opcjonalnymi, oficjalnymi pakietami do pobrania.</value></data>
+  <data name="PackUpdatesReview" xml:space="preserve"><value>Wyświetl aktualizacje pakietów</value></data>
+  <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Automatycznie sprawdzaj zainstalowane pakiety pod kątem aktualizacji</value></data>
+  <data name="FFmpegHeading" xml:space="preserve"><value>FFmpeg dla większej liczby formatów multimediów</value></data>
+  <data name="FFmpegDescription" xml:space="preserve"><value>Niektóre narzędzia audio i wideo wymagają FFmpeg, na przykład konwertując OGG na MP3, WebM na MP4 lub starsze pliki AVI. PowerTrove nie zawiera FFmpeg. Instalacja FFmpeg wymaga użycia winget do zainstalowania bezpłatnego pakietu FFmpeg Gyan.FFmpeg (licencja GPL) dla użytkownika systemu Windows i zaakceptowania jego warunków licencji. Wymaga to jednorazowego połączenia z internetem; działania związane z multimediami wykryją FFmpeg bez ponownego uruchamiania.</value></data>
+  <data name="StoreFFmpegDescription" xml:space="preserve"><value>Niektóre narzędzia audio i wideo wymagają FFmpeg, na przykład konwertując OGG na MP3 lub WebM na MP4. PowerTrove nie zawiera FFmpeg. Zainstaluj go samodzielnie, na przykład uruchamiając winget install Gyan.FFmpeg w Terminalu, a następnie ponownie wybierając opcję Sprawdź.</value></data>
+  <data name="FFmpegInstall" xml:space="preserve"><value>Instalacja FFmpeg</value></data>
+  <data name="FFmpegCheckAgain" xml:space="preserve"><value>Sprawdź ponownie</value></data>
+  <data name="FFmpegFound" xml:space="preserve"><value>FFmpeg jest zainstalowany. Akcje multimedialne, które go wymagają, są dostępne.</value></data>
+  <data name="FFmpegMissing" xml:space="preserve"><value>FFmpeg nie został znaleziony.</value></data>
+  <data name="FFmpegWingetMissing" xml:space="preserve"><value>FFmpeg nie został znaleziony, a winget nie jest dostępny na tym komputerze. Zainstaluj instalator aplikacji ze sklepu Microsoft Store lub zainstaluj FFmpeg samodzielnie, a następnie ponownie wybierz opcję Sprawdź.</value></data>
+  <data name="FFmpegInstalling" xml:space="preserve"><value>Instalacja FFmpeg za pomocą winget. Może to potrwać kilka minut.</value></data>
+  <data name="FFmpegInstalled" xml:space="preserve"><value>FFmpeg jest zainstalowany. Akcje multimedialne znajdują go w ciągu kilku sekund; nie jest wymagane ponowne uruchomienie.</value></data>
+  <data name="FFmpegFailed" xml:space="preserve"><value>winget nie mógł zainstalować FFmpeg. Sprawdź połączenie internetowe i spróbuj ponownie lub zainstaluj FFmpeg samodzielnie.</value></data>
+  <data name="FFmpegCanceled" xml:space="preserve"><value>Instalacja FFmpeg została anulowana.</value></data>
+  <data name="FFmpegNotFoundAfterInstall" xml:space="preserve"><value>winget zakończył działanie, ale FFmpeg nie został znaleziony tam, gdzie PowerTrove go szuka. Wyloguj się z systemu Windows i zaloguj ponownie, a następnie wybierz opcję Sprawdź ponownie.</value></data>
+  <data name="HotkeyUseSuggestion" xml:space="preserve"><value>Użyj {0}</value></data>
+  <data name="HotkeyKeepShortcut" xml:space="preserve"><value>Zachowaj bieżący skrót</value></data>
+  <data name="HotkeyLauncherMayConflict" xml:space="preserve"><value>{0} jest uruchomiony i domyślnie otwiera się z {1}. Jeśli {1} otwiera niewłaściwą aplikację, przełącz PowerTrove na inny skrót.</value></data>
+  <data name="ToggleOn" xml:space="preserve"><value>Włączone</value></data>
+  <data name="ToggleOff" xml:space="preserve"><value>Wyłączone</value></data>
+  <data name="SettingsRecipes" xml:space="preserve"><value>Przepisy</value></data>
+  <data name="SettingsRecipesTitle" xml:space="preserve"><value>Twoje przepisy</value></data>
+  <data name="SettingsRecipesDescription" xml:space="preserve"><value>Uruchom kilka akcji z rzędu za pomocą jednego polecenia. Przepisy pojawiają się na palecie jak każda inna akcja.</value></data>
+  <data name="SettingsRecipesCreate" xml:space="preserve"><value>Utwórz przepis…</value></data>
+  <data name="SettingsRecipesEmpty" xml:space="preserve"><value>Brak przepisów.</value></data>
+  <data name="RecipeStepMissing" xml:space="preserve"><value>Brak akcji</value></data>
+  <data name="RecipeEdit" xml:space="preserve"><value>Edytuj</value></data>
+  <data name="RecipeDelete" xml:space="preserve"><value>Usuń</value></data>
+  <data name="RecipeEditNamed" xml:space="preserve"><value>Edytuj {0}</value></data>
+  <data name="RecipeDeleteNamed" xml:space="preserve"><value>Usuń {0}</value></data>
+  <data name="RecipeDeleteTitle" xml:space="preserve"><value>Usunąć przepis?</value></data>
+  <data name="RecipeDeleteText" xml:space="preserve"><value>„{0}” zostanie usunięte z palety. Pliki, które zostały już utworzone, pozostaną na swoim miejscu.</value></data>
+  <data name="SettingsDiagnosticsDescription" xml:space="preserve"><value>Kopiuje wersje i godziny tej sesji bez nazw plików i zawartości, aby można je było wkleić do zgłoszenia błędu.</value></data>
+  <data name="SettingsCopyDiagnostics" xml:space="preserve"><value>Kopiuj diagnostykę</value></data>
+  <data name="SettingsDiagnosticsCopied" xml:space="preserve"><value>Diagnostyka skopiowana do schowka.</value></data>
+  <data name="SettingsDiagnosticsCopyFailed" xml:space="preserve"><value>Nie można skopiować diagnostyki. Spróbuj ponownie.</value></data>
+  <data name="RecipeEditorTitleNew" xml:space="preserve"><value>Nowa receptura</value></data>
+  <data name="RecipeEditorTitleEdit" xml:space="preserve"><value>Edytuj przepis</value></data>
+  <data name="RecipeEditorName" xml:space="preserve"><value>Nazwa</value></data>
+  <data name="RecipeEditorNamePlaceholder" xml:space="preserve"><value>Na przykład: Zdjęcia na stronę internetową</value></data>
+  <data name="RecipeEditorSteps" xml:space="preserve"><value>Kroki</value></data>
+  <data name="RecipeEditorStepsHelp" xml:space="preserve"><value>Każdy krok działa na plikach kroku poprzedniego. Zachowywane są tylko pliki z ostatniego kroku, obok oryginałów.</value></data>
+  <data name="RecipeEditorAddStep" xml:space="preserve"><value>Dodaj krok</value></data>
+  <data name="RecipeEditorChooseAction" xml:space="preserve"><value>Wybierz akcję</value></data>
+  <data name="RecipeEditorOptions" xml:space="preserve"><value>Opcje…</value></data>
+  <data name="RecipeEditorMoveUp" xml:space="preserve"><value>Przesuń w górę</value></data>
+  <data name="RecipeEditorMoveDown" xml:space="preserve"><value>Przesuń w dół</value></data>
+  <data name="RecipeEditorRemove" xml:space="preserve"><value>Usuń</value></data>
+  <data name="RecipeEditorSave" xml:space="preserve"><value>Zapisz przepis</value></data>
+  <data name="RecipeEditorStep" xml:space="preserve"><value>{0}. {1}</value></data>
+  <data name="RecipeEditorStepOptionsNamed" xml:space="preserve"><value>Opcje dla kroku {0}</value></data>
+  <data name="RecipeEditorSaved" xml:space="preserve"><value>Przepis zapisany. Wybierz pliki i wyszukaj „{0}” w palecie.</value></data>
+  <data name="RecipeOptionsHint" xml:space="preserve"><value>Te opcje są przechowywane w przepisie i używane przy każdym jego uruchomieniu.</value></data>
+  <data name="RecipeOptionsApply" xml:space="preserve"><value>Zastosuj</value></data>
+  <data name="RecipeProblemTitleMissing" xml:space="preserve"><value>Wprowadź nazwę przepisu.</value></data>
+  <data name="RecipeProblemTitleTooLong" xml:space="preserve"><value>Użyj nazwy składającej się z maksymalnie {0} znaków.</value></data>
+  <data name="RecipeProblemTooFewSteps" xml:space="preserve"><value>Dodaj co najmniej {0} kroków.</value></data>
+  <data name="RecipeProblemTooManySteps" xml:space="preserve"><value>Receptura może mieć maksymalnie {0} kroków.</value></data>
+  <data name="RecipeProblemActionMissing" xml:space="preserve"><value>Krok {0} używa akcji, która nie jest zainstalowana. Zainstaluj jej pakiet lub usuń krok.</value></data>
+  <data name="RecipeProblemNotAFileAction" xml:space="preserve"><value>Krok {0} nie działa na plikach.</value></data>
+  <data name="RecipeProblemStepCreatesNoFiles" xml:space="preserve"><value>Krok {0} nie tworzy żadnych plików, więc może być tylko ostatnim krokiem.</value></data>
+  <data name="RecipeProblemNested" xml:space="preserve"><value>Krok {0} jest przepisem. Przepisy nie mogą zawierać innych przepisów.</value></data>
+  <data name="DocumentEditor_WindowTitle" xml:space="preserve"><value>{0} – Markdown</value></data>
+  <data name="DocumentEditor_Preview" xml:space="preserve"><value>Podgląd</value></data>
+  <data name="DocumentEditor_Split" xml:space="preserve"><value>Obok siebie</value></data>
+  <data name="DocumentEditor_Edit" xml:space="preserve"><value>Edytuj</value></data>
+  <data name="DocumentEditor_Modes" xml:space="preserve"><value>Wyświetl</value></data>
+  <data name="DocumentEditor_Save" xml:space="preserve"><value>Zapisz</value></data>
+  <data name="DocumentEditor_SaveAs" xml:space="preserve"><value>Zapisz jako…</value></data>
+  <data name="DocumentEditor_EditorName" xml:space="preserve"><value>Tekst Markdown</value></data>
+  <data name="DocumentEditor_PreviewName" xml:space="preserve"><value>Podgląd formatowania</value></data>
+  <data name="DocumentEditor_Loading" xml:space="preserve"><value>Otwieranie pliku…</value></data>
+  <data name="DocumentEditor_Rendering" xml:space="preserve"><value>Aktualizacja podglądu…</value></data>
+  <data name="DocumentEditor_Counts" xml:space="preserve"><value>{0} słów · {1} znaków</value></data>
+  <data name="DocumentEditor_Details" xml:space="preserve"><value>{0} · {1}</value></data>
+  <data name="DocumentEditor_LineEndingsWindows" xml:space="preserve"><value>Podziały wiersza w systemie Windows (CRLF)</value></data>
+  <data name="DocumentEditor_LineEndingsUnix" xml:space="preserve"><value>Podziały wiersza w systemie Unix (LF)</value></data>
+  <data name="DocumentEditor_Unsaved" xml:space="preserve"><value>{0} – niezapisane zmiany</value></data>
+  <data name="DocumentEditor_Saved" xml:space="preserve"><value>Zapisano.</value></data>
+  <data name="DocumentEditor_SavedAsUtf8" xml:space="preserve"><value>Zapisano jako UTF-8, ponieważ oryginalne kodowanie pliku nie może pomieścić wszystkich wpisanych znaków.</value></data>
+  <data name="DocumentEditor_SaveFailed" xml:space="preserve"><value>Nie można zapisać pliku. Twój tekst nadal znajduje się tutaj; spróbuj zapisać jako.</value></data>
+  <data name="DocumentEditor_ReadOnly" xml:space="preserve"><value>Plik jest tylko do odczytu lub chroniony. Użyj opcji Zapisz jako, aby zachować kopię.</value></data>
+  <data name="DocumentEditor_ChangedTitle" xml:space="preserve"><value>Plik został zmieniony poza PowerTrove.</value></data>
+  <data name="DocumentEditor_ChangedText" xml:space="preserve"><value>Zastąpienie powoduje nadpisanie tych zmian Twoim tekstem. Opcja „Zapisz jako” zachowuje obie wersje.</value></data>
+  <data name="DocumentEditor_Overwrite" xml:space="preserve"><value>Zamień</value></data>
+  <data name="DocumentEditor_UnsavedTitle" xml:space="preserve"><value>Zapisać zmiany w {0}?</value></data>
+  <data name="DocumentEditor_UnsavedText" xml:space="preserve"><value>Zmiany zostaną utracone, jeśli ich nie zapiszesz.</value></data>
+  <data name="DocumentEditor_DontSave" xml:space="preserve"><value>Nie zapisuj</value></data>
+  <data name="DocumentEditor_RecoveryText" xml:space="preserve"><value>Niezapisane zmiany z {0} zostały zachowane po zamknięciu PowerTrove.</value></data>
+  <data name="DocumentEditor_Restore" xml:space="preserve"><value>Przywróć</value></data>
+  <data name="DocumentEditor_Discard" xml:space="preserve"><value>Odrzuć</value></data>
+  <data name="DocumentEditor_OpenFailed" xml:space="preserve"><value>Nie można otworzyć pliku.</value></data>
+  <data name="DocumentEditor_TooLarge" xml:space="preserve"><value>Plik jest większy niż 2 MB i nie można go tutaj edytować.</value></data>
+  <data name="DocumentEditor_NotText" xml:space="preserve"><value>Plik nie zawiera tekstu do odczytu.</value></data>
+  <data name="DocumentEditor_ViewOnly" xml:space="preserve"><value>Ten plik jest zbyt długi do edycji na żywo, dlatego otwiera się tylko w podglądzie.</value></data>
+  <data name="DocumentEditor_PreviewTooLarge" xml:space="preserve"><value>Tekst jest zbyt długi dla podglądu na żywo.</value></data>
+  <data name="DocumentEditor_PreviewFailed" xml:space="preserve"><value>Nie można utworzyć podglądu.</value></data>
+  <data name="DocumentEditor_PackUnavailable" xml:space="preserve"><value>Narzędzia Markdown nie są już zainstalowane. Twój tekst pozostaje tutaj; zapisz go, aby go zachować.</value></data>
+  <data name="DocumentEditor_PackTooOld" xml:space="preserve"><value>Aktualizuj narzędzia Markdown w Ustawieniach &gt; Pakiety, aby zobaczyć podgląd.</value></data>
+  <data name="DocumentEditor_WebViewMissing" xml:space="preserve"><value>Podgląd wymaga środowiska uruchomieniowego Microsoft Edge WebView2, które jest częścią systemu Windows 11.</value></data>
+  <data name="DocumentEditor_WebViewFailed" xml:space="preserve"><value>Nie można uruchomić podglądu (krok {0}, kod 0x{1}). Zamknij widok i ponownie otwórz plik; jeśli problem będzie się powtarzał, zgłoś ten kod.</value></data>
+  <data name="DocumentEditor_LocalLink" xml:space="preserve"><value>Linki do innych plików nie są otwierane z podglądu.</value></data>
+  <data name="DocumentEditor_LinkTitle" xml:space="preserve"><value>Otworzyć ten link w przeglądarce?</value></data>
+  <data name="DocumentEditor_LinkOpen" xml:space="preserve"><value>Otwórz</value></data>
+  <data name="DocumentEditor_FileType" xml:space="preserve"><value>Markdown</value></data>
+  <data name="DocumentEditor_FormatBar" xml:space="preserve"><value>Formatowanie</value></data>
+  <data name="DocumentEditor_FormatHeading" xml:space="preserve"><value>Nagłówek</value></data>
+  <data name="DocumentEditor_FormatHeadingTip" xml:space="preserve"><value>Styl akapitu (Ctrl+0 do 3)</value></data>
+  <data name="DocumentEditor_FormatParagraph" xml:space="preserve"><value>Normalny tekst</value></data>
+  <data name="DocumentEditor_FormatHeading1" xml:space="preserve"><value>Nagłówek 1</value></data>
+  <data name="DocumentEditor_FormatHeading2" xml:space="preserve"><value>Nagłówek 2</value></data>
+  <data name="DocumentEditor_FormatHeading3" xml:space="preserve"><value>Nagłówek 3</value></data>
+  <data name="DocumentEditor_FormatBold" xml:space="preserve"><value>Pogrubienie</value></data>
+  <data name="DocumentEditor_FormatItalic" xml:space="preserve"><value>Kursywa</value></data>
+  <data name="DocumentEditor_FormatStrike" xml:space="preserve"><value>Przekreślenie</value></data>
+  <data name="DocumentEditor_FormatCode" xml:space="preserve"><value>Kod</value></data>
+  <data name="DocumentEditor_FormatBullets" xml:space="preserve"><value>Lista wypunktowana</value></data>
+  <data name="DocumentEditor_FormatNumbers" xml:space="preserve"><value>Lista numerowana</value></data>
+  <data name="DocumentEditor_FormatTasks" xml:space="preserve"><value>Lista kontrolna</value></data>
+  <data name="DocumentEditor_FormatQuote" xml:space="preserve"><value>Cytat</value></data>
+  <data name="DocumentEditor_FormatLink" xml:space="preserve"><value>Link</value></data>
+  <data name="DocumentEditor_FormatImage" xml:space="preserve"><value>Obraz z folderu dokumentu</value></data>
+  <data name="DocumentEditor_FormatTable" xml:space="preserve"><value>Tabela</value></data>
+  <data name="DocumentEditor_FormatRule" xml:space="preserve"><value>Linia pozioma</value></data>
+  <data name="DocumentEditor_FormatShortcut" xml:space="preserve"><value>{0} ({1})</value></data>
+  <data name="DocumentEditor_FormatPlaceholder" xml:space="preserve"><value>tekst</value></data>
+  <data name="DocumentEditor_FormatCodePlaceholder" xml:space="preserve"><value>kod</value></data>
+  <data name="DocumentEditor_FormatLinkText" xml:space="preserve"><value>tekst linku</value></data>
+  <data name="DocumentEditor_FormatImageText" xml:space="preserve"><value>opis</value></data>
+  <data name="DocumentEditor_FormatTableColumn" xml:space="preserve"><value>Kolumna</value></data>
+  <data name="DocumentEditor_FormatTableCell" xml:space="preserve"><value>Tekst</value></data>
+  <data name="DocumentEditor_FormatImageCopied" xml:space="preserve"><value>Obraz został skopiowany do {0} obok tego pliku, więc pozostanie z dokumentem podczas udostępniania.</value></data>
+  <data name="DocumentEditor_FormatImageNotAnImage" xml:space="preserve"><value>Plik nie jest obsługiwanym obrazem (PNG, JPEG, GIF, WebP, AVIF, BMP lub SVG).</value></data>
+  <data name="DocumentEditor_FormatImageTooLarge" xml:space="preserve"><value>Obraz jest większy niż 25 MB.</value></data>
+  <data name="DocumentEditor_FormatImageUnreadable" xml:space="preserve"><value>Nie można odczytać obrazu.</value></data>
+  <data name="DocumentEditor_FormatImageCannotCopy" xml:space="preserve"><value>Nie można skopiować obrazu obok tego pliku. Sprawdź, czy folder jest zapisywalny.</value></data>
+  <data name="TextInputInstructions" xml:space="preserve"><value>Wklej lub wpisz tekst tutaj (do 65 536 znaków), a następnie wybierz opcję Użyj tekstu.</value></data>
+  <data name="TextInputUse" xml:space="preserve"><value>Użyj tekstu</value></data>
+  <data name="TextInputFailed" xml:space="preserve"><value>Nie można zaakceptować tekstu. Spróbuj ponownie.</value></data>
+  <data name="BrowserConnectTitle" xml:space="preserve"><value>Połącz przeglądarkę z PowerTrove</value></data>
+  <data name="BrowserConnectConsent" xml:space="preserve"><value>Rozszerzenie {1} w {0} chce połączyć się lokalnie z PowerTrove. Zezwól na to tylko wtedy, gdy właśnie kliknąłeś Połącz z PowerTrove w tym rozszerzeniu. Możesz je później rozłączyć w Ustawieniach.</value></data>
+  <data name="BrowserConnectConfirm" xml:space="preserve"><value>Połącz</value></data>
+  <data name="BrowserConnectSuccess" xml:space="preserve"><value>Przeglądarka połączona. Możesz teraz wysłać zaznaczony tekst bezpośrednio do PowerTrove.</value></data>
+  <data name="BrowserConnectFailed" xml:space="preserve"><value>Nie można skonfigurować połączenia przeglądarki. Sprawdź instalację i spróbuj ponownie.</value></data>
+  <data name="BrowserSettingsHeading" xml:space="preserve"><value>Integracja przeglądarki</value></data>
+  <data name="BrowserSettingsDescription" xml:space="preserve"><value>1. Zainstaluj rozszerzenie dla Chrome lub Edge. Do czasu publikacji w sklepie skorzystaj z instrukcji instalacji z pliku ZIP. 2. Kliknij „Połącz z PowerTrove” w rozszerzeniu. 3. Potwierdź połączenie w PowerTrove.</value></data>
+  <data name="BrowserSettingsConnected" xml:space="preserve"><value>Połączono</value></data>
+  <data name="BrowserSettingsDisconnected" xml:space="preserve"><value>Rozszerzenie nie jest jeszcze połączone</value></data>
+  <data name="BrowserSettingsDisconnect" xml:space="preserve"><value>Rozłącz</value></data>
+  <data name="BrowserSettingsDisconnectConfirm" xml:space="preserve"><value>Usunąć wszystkie połączenia przeglądarki PowerTrove dla tego konta Windows?</value></data>
+  <data name="BrowserSettingsDisconnectFailed" xml:space="preserve"><value>Nie można usunąć połączenia przeglądarki.</value></data>
+  <data name="BrowserSettingsStatusFailed" xml:space="preserve"><value>Nie można odczytać stanu połączenia przeglądarki.</value></data>
+  <data name="Installer_Text" xml:space="preserve"><value>Narzędzia tekstowe</value></data>
+  <data name="Installer_Browser" xml:space="preserve"><value>Narzędzia przeglądarki</value></data>
+  <data name="BrowserSettingsInstallerRequired" xml:space="preserve"><value>Integracja z przeglądarką wymaga obecnie wersji z instalatorem Windows. MSIX nie jest jeszcze obsługiwany.</value></data>
+  <data name="BrowserSettingsLiveSessions" xml:space="preserve"><value>Połączenia z przeglądarkami: {0}</value></data>
+  <data name="ResultContinueWithFiles" xml:space="preserve"><value>Kontynuuj z wynikiem</value></data>
+  <data name="BrowserSettingsInstallChrome" xml:space="preserve"><value>Zainstaluj w Chrome</value></data>
+  <data name="BrowserSettingsInstallEdge" xml:space="preserve"><value>Zainstaluj w Edge</value></data>
+  <data name="BrowserPreviewLabel" xml:space="preserve"><value>Wersja testowa</value></data>
+  <data name="BrowserSettingsInstallFailed" xml:space="preserve"><value>Nie można otworzyć instrukcji instalacji.</value></data>
+  <data name="GroupActionsFew" xml:space="preserve"><value>{0}, {1} akcje</value></data>
+  <data name="GroupActionsMany" xml:space="preserve"><value>{0}, {1} akcji</value></data>
+  <data name="PackUpdateAllConsentFew" xml:space="preserve"><value>Pobrać {0} aktualizacje pakietów ({1}) z {2} i zainstalować je?</value></data>
+  <data name="PackUpdateAllConsentMany" xml:space="preserve"><value>Pobrać {0} aktualizacji pakietów ({1}) z {2} i zainstalować je?</value></data>
+  <data name="OptionsManyOutputsFew" xml:space="preserve"><value>Zostaną utworzone {0} nowe elementy.</value></data>
+  <data name="OptionsManyOutputsMany" xml:space="preserve"><value>Zostanie utworzonych {0} nowych elementów.</value></data>
+  <data name="OrganizerPageCountOne" xml:space="preserve"><value>{0} strona</value></data>
+  <data name="OrganizerPageCountFew" xml:space="preserve"><value>{0} strony</value></data>
+  <data name="OrganizerPageCountMany" xml:space="preserve"><value>{0} stron</value></data>
+  <data name="BrowserSettingsLiveSessionsOne" xml:space="preserve"><value>Połączona przeglądarka: {0}</value></data>
+  <data name="BrowserSettingsLiveSessionsFew" xml:space="preserve"><value>Połączone przeglądarki: {0}</value></data>
+  <data name="BrowserSettingsLiveSessionsMany" xml:space="preserve"><value>Połączonych przeglądarek: {0}</value></data>
+  <data name="BrowserPaletteHintTitle" xml:space="preserve"><value>Połącz przeglądarkę</value></data>
+  <data name="BrowserPaletteHintDescription" xml:space="preserve"><value>Pakiet przeglądarki jest zainstalowany, ale rozszerzenie nie jest połączone. Skonfiguruj je w ustawieniach.</value></data>
+  <data name="BrowserPaletteSearchTerms" xml:space="preserve"><value>przeglądarka browser chrome edge rozszerzenie połącz</value></data>
+  <data name="DocumentEditor_WordsOne" xml:space="preserve"><value>{0} słowo</value></data>
+  <data name="DocumentEditor_WordsOther" xml:space="preserve"><value>{0} słów</value></data>
+  <data name="DocumentEditor_CharactersOne" xml:space="preserve"><value>{0} znak</value></data>
+  <data name="DocumentEditor_CharactersOther" xml:space="preserve"><value>{0} znaków</value></data>
+  <data name="DocumentEditor_WordsFew" xml:space="preserve"><value>{0} słowa</value></data>
+  <data name="DocumentEditor_WordsMany" xml:space="preserve"><value>{0} słów</value></data>
+  <data name="DocumentEditor_CharactersFew" xml:space="preserve"><value>{0} znaki</value></data>
+  <data name="DocumentEditor_CharactersMany" xml:space="preserve"><value>{0} znaków</value></data>
+  <data name="Installer_BrowserPreview" xml:space="preserve"><value>{0} (wersja testowa)</value></data>
+  <data name="OcrReaderTitle" xml:space="preserve"><value>Wizualne rozpoznawanie tekstu</value></data>
+  <data name="OcrReaderLanguage" xml:space="preserve"><value>Język</value></data>
+  <data name="OcrReaderAuto" xml:space="preserve"><value>Wykryj automatycznie</value></data>
+  <data name="OcrReaderHelp" xml:space="preserve"><value>Przeciągnij po obrazie, aby zaznaczyć tekst jak w dokumencie. Dwukrotne kliknięcie zaznacza wiersz, Ctrl+A wszystko, Ctrl+C kopiuje. Kliknięcie wiersza po prawej również go zaznacza.</value></data>
+  <data name="OcrReaderSelectedText" xml:space="preserve"><value>Zaznaczony tekst</value></data>
+  <data name="OcrReaderZoomOut" xml:space="preserve"><value>Oddal</value></data>
+  <data name="OcrReaderZoomIn" xml:space="preserve"><value>Przybliż</value></data>
+  <data name="OcrReaderCopySelected" xml:space="preserve"><value>Kopiuj zaznaczenie</value></data>
+  <data name="OcrReaderCopyAll" xml:space="preserve"><value>Kopiuj wszystko</value></data>
+  <data name="OcrReaderAllText" xml:space="preserve"><value>Cały rozpoznany tekst</value></data>
+  <data name="OcrReaderLoading" xml:space="preserve"><value>Otwieranie obrazu…</value></data>
+  <data name="OcrReaderImageUnavailable" xml:space="preserve"><value>Nie można otworzyć obrazu lub przekracza bezpieczny limit rozmiaru.</value></data>
+  <data name="OcrReaderRecognizing" xml:space="preserve"><value>Rozpoznawanie tekstu na urządzeniu…</value></data>
+  <data name="OcrReaderDetectedLanguage" xml:space="preserve"><value>Prawdopodobny język: {0}</value></data>
+  <data name="OcrReaderRecognitionFailed" xml:space="preserve"><value>Rozpoznawanie nie powiodło się. Spróbuj innego zainstalowanego języka.</value></data>
+  <data name="OcrReaderNoText" xml:space="preserve"><value>Nie znaleziono tekstu. Spróbuj wybrać język.</value></data>
+  <data name="OcrReaderFound" xml:space="preserve"><value>Rozpoznano {0} wierszy</value></data>
+  <data name="OcrReaderOverlayLimited" xml:space="preserve"><value>Widoczne są tylko pierwsze 2400 ramek słów. Pełny tekst znajduje się poniżej.</value></data>
+  <data name="OcrReaderCopied" xml:space="preserve"><value>Skopiowano do schowka</value></data>
+  <data name="OcrReaderCopyFailed" xml:space="preserve"><value>Nie udało się skopiować tekstu</value></data>
+  <data name="OcrReaderSaveTxt" xml:space="preserve"><value>Zapisz jako TXT</value></data>
+  <data name="OcrReaderSaving" xml:space="preserve"><value>Zapisywanie pliku tekstowego…</value></data>
+  <data name="OcrReaderSaved" xml:space="preserve"><value>Zapisano plik tekstowy</value></data>
+  <data name="OcrReaderSaveFailed" xml:space="preserve"><value>Nie udało się zapisać pliku tekstowego</value></data>
+</root>

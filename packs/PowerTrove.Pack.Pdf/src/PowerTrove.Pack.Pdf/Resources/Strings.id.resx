@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MergePdfAction_Title" xml:space="preserve"><value>Gabungkan PDF</value></data><data name="MergePdfAction_Description" xml:space="preserve"><value>Menggabungkan PDF yang dipilih menjadi satu file sesuai urutan nama file.</value></data><data name="MergePdfAction_Operation_Description" xml:space="preserve"><value>Akan menggabungkan {0} menjadi satu dokumen sesuai urutan nama file.</value></data><data name="MergePdfAction_DefaultOutput" xml:space="preserve"><value>PDF yang Digabungkan</value></data><data name="MergePdfAction_ParamTitle_AddBookmarks" xml:space="preserve"><value>Buat bookmark untuk setiap file</value></data><data name="Pdf_File" xml:space="preserve"><value>PDF</value></data><data name="Pdf_Files" xml:space="preserve"><value>PDF</value></data><data name="SplitPdfAction_Title" xml:space="preserve"><value>Pisahkan PDF menjadi Halaman</value></data><data name="SplitPdfAction_Description" xml:space="preserve"><value>Memisahkan PDF yang dipilih, menyimpan hasilnya dalam folder baru.</value></data><data name="SplitPdfAction_ProgressVerb" xml:space="preserve"><value>Pemisahan</value></data><data name="SplitPdfAction_Operation_Description" xml:space="preserve"><value>Akan memisahkan {0} berdasarkan mode yang dipilih ke dalam folder baru.</value></data><data name="ExtractPagesAction_Title" xml:space="preserve"><value>Ekstrak Halaman PDF</value></data><data name="ExtractPagesAction_Description" xml:space="preserve"><value>Membuat PDF baru dengan halaman yang dipilih. Anda dapat mengubah urutan atau menduplikasi halaman.</value></data><data name="Pdf_ParamTitle_Pages" xml:space="preserve"><value>Halaman</value></data><data name="Pdf_ParamDesc_Pages" xml:space="preserve"><value>Nomor dan rentang halaman, misalnya 1-3, 5, 2.</value></data><data name="ExtractPagesAction_Operation_Description" xml:space="preserve"><value>Akan mengekstrak halaman {0} dari {1} ke dalam {2}.</value></data><data name="Pdf_NewDoc" xml:space="preserve"><value>dokumen baru</value></data><data name="Pdf_NewDocs" xml:space="preserve"><value>baru dokumen</value></data><data name="RemovePagesAction_Title" xml:space="preserve"><value>Hapus Halaman PDF</value></data><data name="RemovePagesAction_Description" xml:space="preserve"><value>Membuat PDF baru tanpa halaman yang ditentukan.</value></data><data name="RemovePagesAction_ParamTitle_Pages" xml:space="preserve"><value>Jumlah halaman yang akan dihapus</value></data><data name="RemovePagesAction_ParamDesc_Pages" xml:space="preserve"><value>Nomor dan rentang halaman, misalnya 1-3, 5.</value></data><data name="RemovePagesAction_Operation_Description" xml:space="preserve"><value>Akan menghapus halaman {0} dari {1} dan menyimpan sisanya sebagai {2}.</value></data><data name="RotatePdfAction_Title" xml:space="preserve"><value>Putar Halaman PDF</value></data><data name="RotatePdfAction_Description" xml:space="preserve"><value>Membuat salinan PDF dengan halaman diputar searah jarum jam.</value></data><data name="RotatePdfAction_ParamTitle_Angle" xml:space="preserve"><value>Rotasi</value></data><data name="RotatePdfAction_ParamChoice_90" xml:space="preserve"><value>90° searah jarum jam</value></data><data name="RotatePdfAction_ParamChoice_180" xml:space="preserve"><value>180°</value></data><data name="RotatePdfAction_ParamChoice_270" xml:space="preserve"><value>270°</value></data><data name="RotatePdfAction_ParamTitle_Pages" xml:space="preserve"><value>Jumlah halaman yang akan diputar</value></data><data name="RotatePdfAction_ParamDesc_Pages" xml:space="preserve"><value>&quot;semua&quot; atau nomor dan rentang halaman, misalnya 1-3, 5.</value></data><data name="RotatePdfAction_Operation_Description" xml:space="preserve"><value>Akan membuat {0} ({1}° searah jarum jam, halaman: {2}).</value></data><data name="Pdf_AllPages" xml:space="preserve"><value>semua</value></data><data name="RemovePdfMetadataAction_Title" xml:space="preserve"><value>Hapus Metadata PDF</value></data><data name="EditPdfMetadataAction_Title" xml:space="preserve"><value>Edit Properti PDF</value></data><data name="EditPdfMetadataAction_Description" xml:space="preserve"><value>Mengatur judul dokumen, penulis, subjek, dan kata kunci. Kolom kosong akan menghapus nilainya.</value></data><data name="EditPdfMetadataAction_ParamTitle_Title" xml:space="preserve"><value>Judul</value></data><data name="EditPdfMetadataAction_ParamDesc_Title" xml:space="preserve"><value>Judul dokumen.</value></data><data name="EditPdfMetadataAction_ParamTitle_Author" xml:space="preserve"><value>Penulis</value></data><data name="EditPdfMetadataAction_ParamDesc_Author" xml:space="preserve"><value>Nama orang yang membuat dokumen.</value></data><data name="EditPdfMetadataAction_ParamTitle_Subject" xml:space="preserve"><value>Subjek</value></data><data name="EditPdfMetadataAction_ParamDesc_Subject" xml:space="preserve"><value>Tentang dokumen ini.</value></data><data name="EditPdfMetadataAction_ParamTitle_Keywords" xml:space="preserve"><value>Kata kunci</value></data><data name="EditPdfMetadataAction_ParamDesc_Keywords" xml:space="preserve"><value>Kata kunci yang dipisahkan koma.</value></data><data name="EditPdfMetadataAction_Operation_Description" xml:space="preserve"><value>Akan membuat {0} dengan properti yang ditentukan.</value></data><data name="EditPdfMetadataAction_Error_TooLong" xml:space="preserve"><value>Teks lebih panjang dari 500 karakter.</value></data><data name="RemovePdfMetadataAction_Description" xml:space="preserve"><value>Membuat salinan PDF tanpa metadata (seperti penulis atau judul).</value></data><data name="RemovePdfMetadataAction_Operation_Description" xml:space="preserve"><value>Akan membuat {0} tanpa metadata.</value></data><data name="Pdf_Copy" xml:space="preserve"><value>salinan</value></data><data name="Pdf_Copies" xml:space="preserve"><value>salinan</value></data><data name="ImagesToPdfAction_Title" xml:space="preserve"><value>Buat PDF dari Gambar</value></data><data name="ImagesToPdfAction_Description" xml:space="preserve"><value>Menggabungkan gambar JPEG dan PNG yang dipilih ke dalam satu PDF, satu gambar per halaman, sesuai urutan nama file.</value></data><data name="ImagesToPdfAction_ParamTitle_PageSize" xml:space="preserve"><value>Ukuran halaman</value></data><data name="ImagesToPdfAction_ParamChoice_A4" xml:space="preserve"><value>A4</value></data><data name="ImagesToPdfAction_ParamChoice_Letter" xml:space="preserve"><value>US Letter</value></data><data name="ImagesToPdfAction_ParamChoice_Fit" xml:space="preserve"><value>Sama seperti gambar</value></data><data name="ImagesToPdfAction_Operation_Description" xml:space="preserve"><value>Akan membuat satu PDF dengan {0} dari gambar yang dipilih sesuai urutan nama file. Gambar JPEG disematkan tanpa kehilangan kualitas.</value></data><data name="ImagesToPdfAction_DefaultOutput" xml:space="preserve"><value>Gambar</value></data><data name="Pdf_Page" xml:space="preserve"><value>halaman</value></data><data name="Pdf_Pages" xml:space="preserve"><value>halaman</value></data><data name="PdfToImagesAction_Title" xml:space="preserve"><value>Konversi PDF ke Gambar</value></data><data name="PdfToImagesAction_Description" xml:space="preserve"><value>Menyimpan halaman PDF sebagai gambar PNG atau JPEG di folder baru.</value></data><data name="PdfToImagesAction_ParamTitle_Format" xml:space="preserve"><value>Format gambar</value></data><data name="PdfToImagesAction_ParamChoice_Png" xml:space="preserve"><value>PNG (teks tajam)</value></data><data name="PdfToImagesAction_ParamChoice_Jpeg" xml:space="preserve"><value>JPEG (foto lebih kecil)</value></data><data name="PdfToImagesAction_ParamTitle_Dpi" xml:space="preserve"><value>Resolusi (DPI)</value></data><data name="PdfToImagesAction_ParamDesc_Pages" xml:space="preserve"><value>&quot;semua&quot; atau nomor dan rentang halaman, misalnya 1-3, 5.</value></data><data name="PdfToImagesAction_ProgressVerb" xml:space="preserve"><value>Merender PDF</value></data><data name="PdfToImagesAction_Operation_Description" xml:space="preserve"><value>Akan merender halaman {0} sebagai gambar {1} dengan resolusi {2} DPI, setiap PDF ke dalam folder baru.</value></data><data name="PdfToImagesAction_Error_NoRenderer" xml:space="preserve"><value>Rendering PDF tidak tersedia pada sistem ini.</value></data><data name="PdfInfoAction_Title" xml:space="preserve"><value>Properti PDF</value></data><data name="PdfInfoAction_Description" xml:space="preserve"><value>Menampilkan jumlah halaman, ukuran halaman, versi PDF, dan penulis PDF yang dipilih.</value></data><data name="PdfInfoAction_Preview_Encrypted" xml:space="preserve"><value>Terenkripsi</value></data><data name="PdfInfoAction_Preview_Pages" xml:space="preserve"><value>halaman(halaman)</value></data><data name="PdfPack_Title" xml:space="preserve"><value>Alat PDF</value></data><data name="PdfSupport_FilterDescription" xml:space="preserve"><value>Dokumen PDF</value></data><data name="PdfSupport_Error_InvalidPageSyntax" xml:space="preserve"><value>Masukkan setidaknya satu rentang halaman yang valid.</value></data><data name="PdfSupport_Error_PageOutOfRange" xml:space="preserve"><value>Nomor halaman harus antara 1 dan {0}.</value></data><data name="PdfSupport_Error_Encrypted" xml:space="preserve"><value>PDF yang dilindungi kata sandi atau dienkripsi belum didukung.</value></data><data name="PdfSupport_Error_Damaged" xml:space="preserve"><value>PDF rusak dan tidak dapat dibaca.</value></data><data name="InterleavePdfAction_Title" xml:space="preserve"><value>Gabungkan Pindai Depan dan Belakang</value></data>
+<data name="InterleavePdfAction_Description" xml:space="preserve"><value>Menggabungkan dua PDF dengan mengambil halaman secara bergantian dari PDF pertama dan kedua.</value></data>
+<data name="InterleavePdfAction_ParamTitle_ReverseSecond" xml:space="preserve"><value>Balikkan PDF kedua</value></data>
+<data name="InterleavePdfAction_Operation_Description" xml:space="preserve"><value>Akan menggabungkan {0} dan {1}.</value></data>
+<data name="InterleavePdfAction_Warning_UnequalPages" xml:space="preserve"><value>PDF memiliki jumlah halaman yang berbeda. Halaman yang tersisa akan ditambahkan.</value></data>
+<data name="InsertPdfAction_Title" xml:space="preserve"><value>Sisipkan PDF ke dalam PDF</value></data>
+<data name="InsertPdfAction_Description" xml:space="preserve"><value>Menyisipkan satu PDF ke dalam PDF lainnya.</value></data>
+<data name="InsertPdfAction_ParamTitle_Position" xml:space="preserve"><value>Posisi</value></data>
+<data name="InsertPdfAction_ParamChoice_Start" xml:space="preserve"><value>Di awal</value></data>
+<data name="InsertPdfAction_ParamChoice_End" xml:space="preserve"><value>Di akhir</value></data>
+<data name="InsertPdfAction_ParamChoice_After" xml:space="preserve"><value>Setelah halaman</value></data>
+<data name="InsertPdfAction_ParamTitle_AfterPage" xml:space="preserve"><value>Nomor halaman</value></data>
+<data name="InsertPdfAction_ParamTitle_Swap" xml:space="preserve"><value>Sisipkan yang pertama ke dalam yang kedua</value></data>
+<data name="InsertPdfAction_Operation_Description" xml:space="preserve"><value>Akan menyisipkan {0} ke dalam {1}.</value></data>
+<data name="InsertPdfAction_Error_AfterPageOutOfBounds" xml:space="preserve"><value>PDF target memiliki jumlah halaman yang lebih sedikit daripada AfterPage yang diminta.</value></data>
+<data name="InsertBlankPdfAction_Title" xml:space="preserve"><value>Sisipkan Halaman Kosong</value></data>
+<data name="InsertBlankPdfAction_Description" xml:space="preserve"><value>Menyisipkan halaman kosong ke dalam PDF.</value></data>
+<data name="InsertBlankPdfAction_ParamTitle_Mode" xml:space="preserve"><value>Mode</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AfterEach" xml:space="preserve"><value>Setelah setiap halaman</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AtPositions" xml:space="preserve"><value>Pada posisi tertentu</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_MakeEven" xml:space="preserve"><value>Jadikan jumlah halaman genap</value></data>
+<data name="InsertBlankPdfAction_Operation_Description" xml:space="preserve"><value>Akan menyisipkan halaman kosong ke dalam {0}.</value></data>
+<data name="OrganizePages_Title" xml:space="preserve"><value>Atur Halaman</value></data><data name="OrganizePages_Description" xml:space="preserve"><value>Mengatur ulang, memutar, dan menghapus halaman secara visual, juga di beberapa PDF.</value></data><data name="OrganizePages_Param_Pages" xml:space="preserve"><value>Halaman</value></data><data name="OrganizePages_Param_PagesDescription" xml:space="preserve"><value>Halaman PDF baru sebagai file:halaman, opsional dengan @90, @180 atau @270 untuk rotasi.</value></data><data name="OrganizePages_Operation" xml:space="preserve"><value>Akan membuat satu PDF baru dengan {0} halaman.</value></data><data name="OrganizePages_Error_Empty" xml:space="preserve"><value>Pertahankan setidaknya satu halaman.</value></data><data name="OrganizePages_Error_TooMany" xml:space="preserve"><value>PDF baru dapat memiliki paling banyak {0} halaman.</value></data><data name="OrganizePages_Error_Syntax" xml:space="preserve"><value>Masukkan halaman sebagai file:halaman, misalnya 1:3, 2:1.</value></data><data name="OrganizePages_Error_Rotation" xml:space="preserve"><value>Rotasi harus merupakan kelipatan 90 derajat.</value></data><data name="OrganizePages_Error_UnknownFile" xml:space="preserve"><value>Daftar halaman mengacu pada PDF yang tidak dipilih.</value></data><data name="OrganizePages_Error_UnknownPage" xml:space="preserve"><value>Daftar halaman mengacu pada halaman yang tidak ada.</value></data><data name="CombineToPdf_Title" xml:space="preserve"><value>Gabungkan menjadi Satu PDF</value></data><data name="CombineToPdf_Description" xml:space="preserve"><value>Gabungkan PDF, gambar, dan dokumen Office yang dipilih menjadi PDF baru dalam urutan yang dipilih.</value></data><data name="CombineToPdf_Operation" xml:space="preserve"><value>Akan menggabungkan {0} item ke dalam PDF baru: PDF mempertahankan semua halaman, gambar menjadi halaman, dan dokumen Office diekspor terlebih dahulu.</value></data><data name="CombineToPdf_Error_UnsupportedImage" xml:space="preserve"><value>Format gambar ini tidak dapat ditambahkan ke PDF di PC ini.</value></data><data name="NUpPdfAction_Title" xml:space="preserve"><value>Cetak Beberapa Halaman per Lembar</value></data><data name="NUpPdfAction_Description" xml:space="preserve"><value>Membuat halaman N-up.</value></data><data name="NUpPdfAction_ParamTitle_PerSheet" xml:space="preserve"><value>Jumlah halaman per lembar</value></data><data name="NUpPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Lembar</value></data><data name="NUpPdfAction_Operation" xml:space="preserve"><value>Akan membuat PDF {0}-up.</value></data><data name="BookletPdfAction_Title" xml:space="preserve"><value>Buat Buklet</value></data><data name="BookletPdfAction_Description" xml:space="preserve"><value>Membuat buklet jilid staples.</value></data><data name="BookletPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Lembar</value></data><data name="BookletPdfAction_Operation" xml:space="preserve"><value>Akan membuat PDF buklet. Pengaturan cetak: dua sisi (penjilidan sisi pendek).</value></data><data name="CombineToPdf_ParamTitle_Order" xml:space="preserve"><value>Urutan</value></data><data name="CombineToPdf_ParamChoice_Name" xml:space="preserve"><value>Nama file</value></data><data name="CombineToPdf_ParamChoice_PdfsFirst" xml:space="preserve"><value>PDF terlebih dahulu</value></data><data name="CombineToPdf_ParamChoice_ImagesFirst" xml:space="preserve"><value>Gambar pertama</value></data><data name="HeaderFooterPdfAction_Title" xml:space="preserve"><value>Tambahkan Header atau Footer</value></data><data name="HeaderFooterPdfAction_Description" xml:space="preserve"><value>Menambahkan teks header atau footer ke PDF yang dipilih.</value></data><data name="HeaderFooterPdfAction_Operation_Description" xml:space="preserve"><value>Akan menambahkan header/footer ke {0}.</value></data><data name="HeaderFooterPdfAction_ParamTitle_Text" xml:space="preserve"><value>Teks</value></data><data name="HeaderFooterPdfAction_ParamTitle_Placement" xml:space="preserve"><value>Penempatan</value></data><data name="HeaderFooterPdfAction_ParamChoice_Header" xml:space="preserve"><value>Header</value></data><data name="HeaderFooterPdfAction_ParamChoice_Footer" xml:space="preserve"><value>Footer</value></data><data name="HeaderFooterPdfAction_ParamTitle_Alignment" xml:space="preserve"><value>Perataan</value></data><data name="HeaderFooterPdfAction_ParamChoice_Left" xml:space="preserve"><value>Kiri</value></data><data name="HeaderFooterPdfAction_ParamChoice_Center" xml:space="preserve"><value>Pusat</value></data><data name="HeaderFooterPdfAction_ParamChoice_Right" xml:space="preserve"><value>Kanan</value></data><data name="HeaderFooterPdfAction_ParamTitle_FontSize" xml:space="preserve"><value>Ukuran Font</value></data><data name="HeaderFooterPdfAction_Error_TooLong" xml:space="preserve"><value>Teks tidak boleh melebihi 200 karakter.</value></data><data name="HeaderFooterPdfAction_Error_InvalidChars" xml:space="preserve"><value>Teks berisi karakter yang tidak dapat ditulis dengan font bawaan.</value></data>  <data name="PdfSupport_Error_PasswordRequired" xml:space="preserve">
+    <value>Kata sandi salah.</value>
+  </data>
+  <data name="PdfSupport_Error_LimitExceeded" xml:space="preserve">
+    <value>PDF melebihi ukuran atau kompleksitas yang didukung.</value>
+  </data>
+  <data name="PdfSupport_Error_OperationFailed" xml:space="preserve">
+    <value>Operasi PDF gagal.</value>
+  </data>
+  <data name="Pdf_Error_UnknownMode" xml:space="preserve">
+    <value>Mode tidak dikenal: {0}</value>
+  </data>
+  <data name="PdfSupport_Warning_UsageRestrictionsRemoved" xml:space="preserve">
+    <value>PDF ini memiliki batasan penggunaan; file baru tidak akan memilikinya.</value>
+  </data>
+  <data name="UnlockPdfAction_Title" xml:space="preserve">
+    <value>Buka kunci PDF</value>
+  </data>
+  <data name="UnlockPdfAction_Description" xml:space="preserve">
+    <value>Membuat salinan PDF tanpa perlindungan kata sandi.</value>
+  </data>
+  <data name="UnlockPdfAction_ParamTitle_Password" xml:space="preserve">
+    <value>Kata sandi</value>
+  </data>
+  <data name="UnlockPdfAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat {0} tanpa perlindungan kata sandi.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Pisahkan berdasarkan</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Single" xml:space="preserve">
+    <value>Setiap halaman</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Ranges" xml:space="preserve">
+    <value>Rentang halaman kustom</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Every" xml:space="preserve">
+    <value>Setiap N halaman</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_OddEven" xml:space="preserve">
+    <value>Halaman ganjil dan genap</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Ranges" xml:space="preserve">
+    <value>Rentang halaman</value>
+  </data>
+  <data name="SplitPdfAction_ParamDesc_Ranges" xml:space="preserve">
+    <value>Rentang halaman, misalnya 1-5; 6-10; 11-15.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Every" xml:space="preserve">
+    <value>Jumlah halaman per berkas</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoRanges" xml:space="preserve">
+    <value>Masukkan setidaknya satu rentang halaman.</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoValidPages" xml:space="preserve">
+    <value>Tidak ada halaman valid yang ditemukan dalam rentang &apos;{0}&apos;.</value>
+  </data>
+  <data name="SplitPdfAction_Error_InvalidRangeOrder" xml:space="preserve">
+    <value>Rentang halaman harus dimulai dari posisi yang lebih rendah ke posisi yang lebih tinggi.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Title" xml:space="preserve">
+    <value>Ekstrak Halaman PDF</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Description" xml:space="preserve">
+    <value>Membuat PDF baru yang hanya berisi halaman yang dipilih, sesuai urutan yang dimasukkan.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat {0} dengan halaman {1}.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Title" xml:space="preserve">
+    <value>Hapus Halaman PDF</value>
+  </data>
+  <data name="RemovePdfPagesAction_Description" xml:space="preserve">
+    <value>Membuat salinan PDF tanpa halaman yang dipilih.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat {0} tanpa halaman {1}.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Title" xml:space="preserve">
+    <value>Mengatur Ulang Halaman PDF</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Description" xml:space="preserve">
+    <value>Mengatur ulang halaman dalam PDF.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Custom" xml:space="preserve">
+    <value>Urutan Kustom</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Reverse" xml:space="preserve">
+    <value>Balikkan</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Order" xml:space="preserve">
+    <value>Urutan</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamDesc_Order" xml:space="preserve">
+    <value>Halaman dalam urutan baru, misalnya 3,1,2.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat {0} dengan halaman yang diurutkan ulang.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Error_NoValidRanges" xml:space="preserve">
+    <value>Masukkan setidaknya satu rentang halaman yang valid.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Title" xml:space="preserve">
+    <value>Tambahkan Nomor Halaman</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Description" xml:space="preserve">
+    <value>Menambahkan nomor halaman ke file PDF yang dipilih.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Position" xml:space="preserve">
+    <value>Posisi</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopLeft" xml:space="preserve">
+    <value>Kiri Atas</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopCenter" xml:space="preserve">
+    <value>Tengah Atas</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopRight" xml:space="preserve">
+    <value>Kanan Atas</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomLeft" xml:space="preserve">
+    <value>Kiri Bawah</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomCenter" xml:space="preserve">
+    <value>Tengah Bawah</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomRight" xml:space="preserve">
+    <value>Kanan Bawah</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Operation_Description" xml:space="preserve">
+    <value>Akan menambahkan nomor halaman ke {0}.</value>
+  </data>
+  <data name="WatermarkPdfAction_Title" xml:space="preserve">
+    <value>Tambahkan Tanda Air</value>
+  </data>
+  <data name="WatermarkPdfAction_Description" xml:space="preserve">
+    <value>Menambahkan watermark teks ke PDF.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_Text" xml:space="preserve">
+    <value>Teks yang akan digunakan sebagai watermark (maksimal 100 karakter).</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Style" xml:space="preserve">
+    <value>Gaya</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Diagonal" xml:space="preserve">
+    <value>Diagonal</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Horizontal" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Tiled" xml:space="preserve">
+    <value>Tata letak ubin</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opasitas</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Ukuran Font</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_FontSize" xml:space="preserve">
+    <value>0 untuk ukuran otomatis.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Color" xml:space="preserve">
+    <value>Warna</value>
+  </data>
+  <data name="WatermarkPdfAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat {0}. Tanda air dapat dihapus oleh orang lain dan bukan merupakan tindakan keamanan.</value>
+  </data>
+  <data name="StampPdfImageAction_Title" xml:space="preserve">
+    <value>Tambahkan Gambar atau Tanda Tangan</value>
+  </data>
+  <data name="StampPdfImageAction_Description" xml:space="preserve">
+    <value>Menempelkan gambar ke halaman PDF.</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Image" xml:space="preserve">
+    <value>Gambar</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Position" xml:space="preserve">
+    <value>Posisi</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleLeft" xml:space="preserve">
+    <value>Tengah Kiri</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_Center" xml:space="preserve">
+    <value>Pusat</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleRight" xml:space="preserve">
+    <value>Tengah Kanan</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Width" xml:space="preserve">
+    <value>Lebar (mm)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opasitas (%)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamDesc_Pages" xml:space="preserve">
+    <value>Rentang halaman, &apos;semua&apos;, &apos;pertama&apos;, atau &apos;terakhir&apos;</value>
+  </data>
+  <data name="StampPdfImageAction_Error_InvalidImage" xml:space="preserve">
+    <value>Silakan pilih file gambar yang valid.</value>
+  </data>
+  <data name="StampPdfImageAction_Error_UnreadableImage" xml:space="preserve">
+    <value>Berkas gambar tidak dapat dibaca.</value>
+  </data>
+  <data name="StampPdfImageAction_Operation_Description" xml:space="preserve">
+    <value>Akan menempelkan gambar ke {0}.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoPositions" xml:space="preserve">
+    <value>Masukkan setidaknya satu posisi halaman.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoValidPositions" xml:space="preserve">
+    <value>Masukkan setidaknya satu posisi halaman yang valid.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PagePositions" xml:space="preserve">
+    <value>Posisi halaman harus antara 0 dan {0}.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PositionsMustBeNonNegative" xml:space="preserve">
+    <value>Posisi halaman harus berupa bilangan bulat non-negatif.</value>
+  </data>
+  <data name="CropPdfAction_Error_MarginBounds" xml:space="preserve">
+    <value>Margin harus antara 0 dan 100 mm.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NotFileSelection" xml:space="preserve">
+    <value>Bukan pilihan file.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoPdfs" xml:space="preserve">
+    <value>Tidak ada file PDF yang didukung dalam pilihan.</value>
+  </data>
+  <data name="PdfInfoAction_Error_MaxFiles" xml:space="preserve">
+    <value>Pilih paling banyak {0} file PDF.</value>
+  </data>
+  <data name="PdfInfoAction_Error_Stale" xml:space="preserve">
+    <value>Pilihan telah kedaluwarsa. Pilih file lagi.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoReadablePdfs" xml:space="preserve">
+    <value>Tidak ada PDF yang dapat dibaca dalam pilihan.</value>
+  </data>
+  <data name="PdfInfoAction_TotalPages" xml:space="preserve">
+    <value>Total: {0} halaman.</value>
+  </data>
+  <data name="PdfInfoAction_Repaired" xml:space="preserve">
+    <value> (Struktur yang rusak diperbaiki saat membaca)</value>
+  </data>
+  <data name="PdfInfoAction_Canceled" xml:space="preserve">
+    <value>Dibatalkan.</value>
+  </data>
+  <data name="PdfInfoAction_PdfLabel" xml:space="preserve">
+    <value>PDF {0}</value>
+  </data>
+  <data name="PdfInfoAction_Details" xml:space="preserve">
+    <value>{0}: {1} halaman, versi {2}, halaman pertama {3:0} x {4:0} mm{5}</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddThenEven" xml:space="preserve">
+    <value>Ganjil lalu Genap</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenThenOdd" xml:space="preserve">
+    <value>Genap lalu Ganjil</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Shuffle" xml:space="preserve">
+    <value>Acak</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1" xml:space="preserve">
+    <value>Halaman 1, Halaman 2...</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_Format1ofN" xml:space="preserve">
+    <value>1 dari N</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1ofN" xml:space="preserve">
+    <value>Halaman 1 dari N</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Start" xml:space="preserve">
+    <value>Mulai Dari</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_SkipFirst" xml:space="preserve">
+    <value>Lewati Halaman Pertama</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Ukuran Font</value>
+  </data>
+  <data name="PdfSupport_Error_PageListedTwice" xml:space="preserve">
+    <value>Halaman {0} tercantum dua kali.</value>
+  </data>
+  <data name="PdfSupport_Error_PageMissing" xml:space="preserve">
+    <value>Halaman {0} hilang.</value>
+  </data>
+  <data name="PdfSupport_Error_UnsupportedImage" xml:space="preserve">
+    <value>Hanya gambar JPEG dan PNG yang dapat ditambahkan ke PDF.</value>
+  </data>
+  <data name="PdfSupport_Pages_Title" xml:space="preserve">
+    <value>Halaman</value>
+  </data>
+  <data name="PdfSupport_Pages_Description" xml:space="preserve">
+    <value>Nomor dan rentang halaman, misalnya 1-3, 5, 8- atau terakhir.</value>
+  </data>
+  <data name="CompressPdfAction_Title" xml:space="preserve">
+    <value>Kompres PDF</value>
+  </data>
+  <data name="CompressPdfAction_Description" xml:space="preserve">
+    <value>Mengurangi ukuran file dokumen PDF.</value>
+  </data>
+  <data name="CompressPdfAction_ParamTitle_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Light" xml:space="preserve">
+    <value>Cahaya</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Balanced" xml:space="preserve">
+    <value>Seimbang</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Strong" xml:space="preserve">
+    <value>Tegas</value>
+  </data>
+  <data name="CompressPdfAction_Operation_One" xml:space="preserve">
+    <value>Akan membuat salinan yang lebih kecil.</value>
+  </data>
+  <data name="CompressPdfAction_Operation_Many" xml:space="preserve">
+    <value>Akan membuat salinan yang lebih kecil.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_QualityReduced" xml:space="preserve">
+    <value>Kualitas gambar dikurangi pada level seimbang dan kuat.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_UnsupportedImages" xml:space="preserve">
+    <value>Ditemukan {0} gambar yang tidak didukung yang akan dibiarkan apa adanya.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_NOfTotal" xml:space="preserve">
+    <value>Halaman n dari N</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddFirst" xml:space="preserve">
+    <value>Halaman Ganjil Terlebih Dahulu</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenFirst" xml:space="preserve">
+    <value>Halaman Genap Terlebih Dahulu</value>
+  </data>
+  <data name="StampSelectedImagePdfAction_Title" xml:space="preserve">
+    <value>Tempatkan Gambar pada PDF</value>
+  </data>
+  <data name="RepairPdfAction_Title" xml:space="preserve">
+    <value>Memperbaiki PDF</value>
+  </data>
+  <data name="RepairPdfAction_Description" xml:space="preserve">
+    <value>Menulis ulang dokumen untuk memperbaiki masalah struktural.</value>
+  </data>
+  <data name="RepairPdfAction_Operation_Description" xml:space="preserve">
+    <value>Akan memperbaiki {0}.</value>
+  </data>
+  <data name="RepairPdfAction_NoProblems" xml:space="preserve">
+    <value>Tidak ditemukan masalah.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Title" xml:space="preserve">
+    <value>Hapus Halaman Kosong</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Description" xml:space="preserve">
+    <value>Menghapus halaman kosong dari PDF.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamTitle_Sensitivity" xml:space="preserve">
+    <value>Sensitivitas</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Strict" xml:space="preserve">
+    <value>Ketat</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Relaxed" xml:space="preserve">
+    <value>Santai</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Operation_Description" xml:space="preserve">
+    <value>Akan menghapus halaman kosong dari {0}.</value>
+  </data>
+  <data name="PdfToTextAction_Title" xml:space="preserve">
+    <value>Konversi PDF ke Teks</value>
+  </data>
+  <data name="PdfToTextAction_Description" xml:space="preserve">
+    <value>Mengekstrak teks dari PDF ke dalam file teks.</value>
+  </data>
+  <data name="PdfToTextAction_Operation_Description" xml:space="preserve">
+    <value>Akan membuat file teks yang berisi teks yang diekstrak dari {0}.</value>
+  </data>
+  <data name="PdfToTextAction_Warning_NoText" xml:space="preserve">
+    <value>Tidak ada teks yang ditemukan. Jika ini adalah dokumen yang dipindai, Anda dapat menggunakan &apos;Jadikan PDF Dapat Dicari (OCR)&apos; terlebih dahulu.</value>
+  </data>
+<data name="SanitizePdfAction_Title" xml:space="preserve"><value>Hapus Konten PDF Tersembunyi</value></data><data name="SanitizePdfAction_Description" xml:space="preserve"><value>Menghapus JavaScript, lampiran, metadata, dan tindakan dari PDF.</value></data><data name="SanitizePdfAction_ParamTitle_KeepLinks" xml:space="preserve"><value>Pertahankan Tautan</value></data><data name="SanitizePdfAction_Operation_Description" xml:space="preserve"><value>Akan menghapus konten tersembunyi dari {0}.</value></data><data name="SanitizePdfAction_NothingToRemove" xml:space="preserve"><value>Tidak ada yang perlu dihapus.</value></data><data name="PdfSanitize_Scripts_One" xml:space="preserve"><value>1 skrip</value></data><data name="PdfSanitize_Scripts_Other" xml:space="preserve"><value>{0} skrip</value></data><data name="PdfSanitize_Attachments_One" xml:space="preserve"><value>1 lampiran</value></data><data name="PdfSanitize_Attachments_Other" xml:space="preserve"><value>{0} lampiran</value></data><data name="PdfSanitize_LaunchActions_One" xml:space="preserve"><value>1 aksi peluncuran</value></data><data name="PdfSanitize_LaunchActions_Other" xml:space="preserve"><value>{0} tindakan peluncuran</value></data><data name="PdfSanitize_UriActions_One" xml:space="preserve"><value>1 aksi tautan</value></data><data name="PdfSanitize_UriActions_Other" xml:space="preserve"><value>{0} tindakan tautan</value></data><data name="PdfSanitize_Metadata_One" xml:space="preserve"><value>1 item metadata</value></data><data name="PdfSanitize_Metadata_Other" xml:space="preserve"><value>{0} item metadata</value></data><data name="PdfSanitize_Found" xml:space="preserve"><value>Ditemukan: {0}</value></data>  <data name="OcrPdfAction_Title" xml:space="preserve">
+    <value>Jadikan PDF Dapat Dicari (OCR)</value>
+  </data>
+  <data name="OcrPdfAction_Description" xml:space="preserve">
+    <value>Mengenali teks dalam PDF yang dipindai dan membuatnya dapat dicari. Proses ini berjalan secara lokal dan dapat memakan waktu cukup lama (sekitar 1-3 detik per halaman).</value>
+  </data>
+  <data name="OcrPdfAction_ParamTitle_Language" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="OcrPdfAction_RendererUnavailable" xml:space="preserve">
+    <value>Rendering PDF tidak tersedia pada sistem ini.</value>
+  </data>
+  <data name="OcrPdfAction_RecognizerUnavailable" xml:space="preserve">
+    <value>Pengenalan teks OCR tidak tersedia di sistem ini.</value>
+  </data>
+  <data name="OcrPdfAction_NoLanguagesInstalled" xml:space="preserve">
+    <value>Tidak ada bahasa OCR yang terpasang pada sistem ini.</value>
+  </data>
+  <data name="OcrPdfAction_Message" xml:space="preserve">
+    <value>Akan membuat {0} PDF yang dapat dicari menggunakan OCR.</value>
+  </data>
+  <data name="OcrPdfAction_OutputSuffix" xml:space="preserve">
+    <value> (Dapat dicari)</value>
+  </data>
+  <data name="OcrPdfAction_Skipped_HasText" xml:space="preserve">
+    <value>PDF sudah berisi teks yang dapat diekstrak.</value>
+  </data>
+
+<data name="CombineToPdf_OfficeMissing" xml:space="preserve"><value>Pilihan berisi dokumen yang membutuhkan aplikasi Office yang belum terinstal. Tidak ada yang akan digabungkan.</value></data>
+<data name="CombineToPdf_OfficeLayoutWarning" xml:space="preserve"><value>Dokumen Office dikonversi ke PDF sementara pada posisi pengurutannya. Tata letak Office, font, dan pengaturan cetak memengaruhi hasilnya.</value></data>
+<data name="CombineToPdf_OfficeMissingApplication" xml:space="preserve"><value>Aplikasi Microsoft Office yang dibutuhkan belum terinstal.</value></data>
+<data name="CombineToPdf_OfficePasswordProtected" xml:space="preserve"><value>Dokumen dilindungi kata sandi.</value></data>
+<data name="CombineToPdf_OfficeUnsafeMacros" xml:space="preserve"><value>Dokumen ini berisi makro atau konten rumus yang tidak dapat dibuka dengan aman untuk konversi.</value></data>
+<data name="CombineToPdf_OfficeInvalidDocument" xml:space="preserve"><value>Format dokumen tidak valid, tidak didukung, atau melebihi batas konversi.</value></data>
+<data name="CombineToPdf_OfficeBusy" xml:space="preserve"><value>Instansi Office terpisah tidak dapat diperoleh. Tutup aplikasi Office tersebut dan coba lagi.</value></data>
+<data name="CombineToPdf_OfficeTimedOut" xml:space="preserve"><value>Konversi Office habis waktu. Tidak ada output yang disimpan.</value></data>
+<data name="CombineToPdf_OfficeConversionFailed" xml:space="preserve"><value>Office tidak dapat mengkonversi dokumen ini. Tidak ada output yang disimpan.</value></data>
+<data name="CombineToPdf_OfficePreferenceRestoreFailed" xml:space="preserve"><value>Preferensi sementara Word tidak dapat dipulihkan. Periksa pengaturan peringatan konversi PDF di Word.</value></data>
+<data name="CombineToPdf_Inputs" xml:space="preserve"><value>PDF, gambar, dan dokumen Office</value></data>
+<data name="ExtractPdfImages_Title" xml:space="preserve"><value>Ekstrak Gambar dari PDF</value></data>
+<data name="ExtractPdfImages_Description" xml:space="preserve"><value>Menyimpan gambar tersemat yang didukung ke folder baru untuk setiap PDF.</value></data>
+<data name="ExtractPdfImages_MinSize" xml:space="preserve"><value>Lebar dan tinggi minimum (px)</value></data>
+<data name="ExtractPdfImages_Preview_One" xml:space="preserve"><value>Akan mengekstrak gambar dengan lebar dan tinggi minimal {1} ​​px dari PDF {0} ke dalam folder baru.</value></data>
+<data name="ExtractPdfImages_Preview_Other" xml:space="preserve"><value>Akan mengekstrak gambar dengan lebar dan tinggi minimal {1} ​​px dari PDF {0} ke dalam folder baru yang terpisah.</value></data>
+<data name="ExtractPdfImages_Warning" xml:space="preserve"><value>Mengekstrak gambar JPEG dan gambar datar Gray/RGB 8-bit yang tertanam, bukan halaman yang dirender. Masker, dekode sampel khusus, pengkodean lain, dan gambar sebaris tidak didukung. Gambar di bawah lebar atau tinggi minimum akan dilewati. Jumlah gambar dan ukuran output terbatas.</value></data>
+<data name="ExtractPdfImages_NoImages" xml:space="preserve"><value>Tidak ada gambar yang ditemukan.</value></data>
+<data name="ExtractPdfImages_NoEligibleImages" xml:space="preserve"><value>Tidak ada gambar yang didukung yang memenuhi ukuran minimum.</value></data>
+<data name="ExtractPdfImages_Extracted_One" xml:space="preserve"><value>Gambar {0} diekstrak.</value></data>
+<data name="ExtractPdfImages_Extracted_Other" xml:space="preserve"><value>Gambar {0} diekstrak.</value></data>
+<data name="ExtractPdfImages_Unsupported_One" xml:space="preserve"><value>Melewati {0} gambar yang tidak didukung.</value></data>
+<data name="ExtractPdfImages_Unsupported_Other" xml:space="preserve"><value>Melewati {0} gambar yang tidak didukung.</value></data>
+<data name="ExtractPdfImages_TooSmall_One" xml:space="preserve"><value>Melewati {0} gambar di bawah ukuran minimum.</value></data>
+<data name="ExtractPdfImages_TooSmall_Other" xml:space="preserve"><value>Melewati {0} gambar di bawah ukuran minimum.</value></data>
+  <data name="HeaderFooterPdfAction_ParamDesc_Text" xml:space="preserve"><value>Teks yang akan ditambahkan ke header atau footer, hingga 200 karakter.</value></data>
+  <data name="ProtectPdf_Title" xml:space="preserve"><value>Lindungi PDF dengan Kata Sandi</value></data>
+  <data name="ProtectPdf_Description" xml:space="preserve"><value>Enkripsi salinan dengan AES-256.</value></data>
+  <data name="ProtectPdf_Password" xml:space="preserve"><value>Kata sandi</value></data>
+  <data name="ProtectPdf_ConfirmPassword" xml:space="preserve"><value>Konfirmasi kata sandi</value></data>
+  <data name="ProtectPdf_Print" xml:space="preserve"><value>Izinkan pencetakan</value></data>
+  <data name="ProtectPdf_Copy" xml:space="preserve"><value>Izinkan penyalinan</value></data>
+  <data name="ProtectPdf_Empty" xml:space="preserve"><value>Masukkan kata sandi sebelum melanjutkan.</value></data>
+  <data name="ProtectPdf_Mismatch" xml:space="preserve"><value>Kedua kata sandi tidak cocok.</value></data>
+  <data name="ProtectPdf_Warning" xml:space="preserve"><value>Jika Anda lupa kata sandi ini, kata sandi tidak dapat dipulihkan. Izin pencetakan dan penyalinan PDF bergantung pada penampil dan tidak menyediakan DRM.</value></data>
+  <data name="ProtectPdf_Operation" xml:space="preserve"><value>Buat salinan PDF yang dilindungi kata sandi.</value></data>
+  <data name="FlattenPdf_Title" xml:space="preserve"><value>Ratakan Kolom Formulir dan Komentar</value></data>
+  <data name="FlattenPdf_Description" xml:space="preserve"><value>Konversi tampilan kolom dan komentar yang terlihat ke dalam konten halaman.</value></data>
+  <data name="FlattenPdf_KeepLinks" xml:space="preserve"><value>Pertahankan hyperlink</value></data>
+  <data name="FlattenPdf_Operation" xml:space="preserve"><value>Ratakan kolom formulir dan komentar dalam salinan PDF.</value></data>
+  <data name="FlattenPdf_SignatureWarning" xml:space="preserve"><value>Perataan dapat membatalkan tanda tangan digital yang ada; dokumen asli yang ditandatangani tidak diubah.</value></data>
+  <data name="FlattenPdf_Counts" xml:space="preserve"><value>Anotasi dengan tampilan: {0}; tanpa tampilan yang didukung: {1}; tautan yang dipertahankan: {2}.</value></data>
+  <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>Anotasi tanpa tampilan yang dapat digunakan akan dihapus dan konten visualnya mungkin hilang.</value></data>
+  <data name="FlattenPdf_Nothing" xml:space="preserve"><value>Tidak ada anotasi yang perlu diratakan.</value></data>
+  <data name="HtmlTitle" xml:space="preserve"><value>Konversi HTML ke PDF</value></data>
+  <data name="HtmlDescription" xml:space="preserve"><value>Mencetak HTML lokal mandiri dengan CSS sebaris dan gambar yang disematkan ke file PDF baru.</value></data>
+  <data name="HtmlPaper" xml:space="preserve"><value>Ukuran kertas</value></data>
+  <data name="HtmlPaperA4" xml:space="preserve"><value>A4</value></data>
+  <data name="HtmlPaperLetter" xml:space="preserve"><value>Huruf</value></data>
+  <data name="HtmlLandscape" xml:space="preserve"><value>Orientasi lanskap</value></data>
+  <data name="HtmlMargin" xml:space="preserve"><value>Margin (milimeter)</value></data>
+  <data name="HtmlFiles" xml:space="preserve"><value>Berkas HTML</value></data>
+  <data name="HtmlUnavailable" xml:space="preserve"><value>Pencetakan HTML memerlukan browser Microsoft Edge yang terinstal secara lokal.</value></data>
+  <data name="HtmlLimits" xml:space="preserve"><value>Hanya HTML UTF-8 mandiri hingga 5 MiB yang didukung. CSS inline dan gambar/font yang disematkan data dapat ditampilkan. Permintaan jaringan, skrip, frame, objek, dan sumber daya file lokal diblokir. Lembar gaya eksternal dan gambar relatif tidak dimuat. Setiap file memiliki pohon proses browser baru yang terbatas memori dengan batas waktu 60 detik.</value></data>
+  <data name="HtmlInvalid" xml:space="preserve"><value>HTML harus berupa teks UTF-8 pasif dan tidak kosong hingga 5 MiB. Elemen aktif, penyegaran otomatis, formulir, dan konten asing sebaris tidak didukung.</value></data>
+  <data name="HtmlReadError" xml:space="preserve"><value>Input HTML tidak dapat dibaca.</value></data>
+  <data name="HtmlRenderFailed" xml:space="preserve"><value>Pencetakan HTML lokal gagal, melebihi batasnya, atau mencoba navigasi yang tidak didukung. Gunakan HTML mandiri dengan CSS inline dan gambar data tersemat. Tidak ada file sumber yang diubah.</value></data>
+  <data name="HtmlCleanupFailed" xml:space="preserve"><value>Data sementara browser tidak dapat dihapus. Periksa akses folder sementara dan coba lagi.</value></data>
+  <data name="EpubTitle" xml:space="preserve"><value>Konversi EPUB ke PDF</value></data>
+  <data name="EpubDescription" xml:space="preserve"><value>Mengatur ulang tata letak bab EPUB lokal, gambar yang didukung, dan gaya ke dalam file PDF baru.</value></data>
+  <data name="EpubFiles" xml:space="preserve"><value>Buku EPUB</value></data>
+  <data name="EpubLimits" xml:space="preserve"><value>Mendukung EPUB 2/3 pasif dan dapat diatur ulang dengan XHTML UTF-8, CSS internal, dan gambar PNG/JPEG/GIF/WebP. Tata letak tetap, sumber daya terenkripsi/disamarkan, skrip, SVG, media, dan sumber daya eksternal tidak didukung. Batas: arsip 25 MiB, diekspansi 50 MiB, 500 bab, dan HTML yang disiapkan 5 MiB. Bab dimulai di halaman baru; tautan cetak dihapus. Tata letak mungkin berbeda dari pembaca ebook.</value></data>
+  <data name="EpubProtected" xml:space="preserve"><value>Sumber daya EPUB yang terenkripsi atau disamarkan tidak didukung. Gunakan ekspor yang tidak terlindungi yang diizinkan untuk Anda konversi.</value></data>
+  <data name="EpubTooLarge" xml:space="preserve"><value>EPUB melebihi batas arsip, sumber daya, bab, atau dokumen yang telah disiapkan.</value></data>
+  <data name="EpubUnsupported" xml:space="preserve"><value>EPUB ini menggunakan konten atau referensi sumber daya yang tidak didukung. Gunakan XHTML UTF-8 yang dapat diatur ulang dengan gaya internal dan gambar raster yang didukung; skrip, tata letak tetap, SVG, dan sumber daya eksternal tidak didukung.</value></data>
+  <data name="EpubInvalid" xml:space="preserve"><value>Arsip EPUB, metadata, urutan baca, atau sumber daya yang diperlukan tidak valid atau hilang.</value></data>
+  <data name="EpubRenderFailed" xml:space="preserve"><value>Pencetakan EPUB lokal gagal atau melebihi batasnya. Tidak ada file sumber yang diubah.</value></data>
+  <data name="EmlTitle" xml:space="preserve"><value>Konversi EML ke PDF</value></data>
+  <data name="EmlDescription" xml:space="preserve"><value>Membuat visualisasi PDF lokal dari header email dan isi pesan statis, dengan opsi ekspor lampiran terpisah.</value></data>
+  <data name="EmlFiles" xml:space="preserve"><value>Pesan EML</value></data>
+  <data name="EmlExportAttachments" xml:space="preserve"><value>Ekspor lampiran ke folder baru bersama PDF.</value></data>
+  <data name="EmlFrom" xml:space="preserve"><value>Dari</value></data>
+  <data name="EmlTo" xml:space="preserve"><value>Kepada</value></data>
+  <data name="EmlCc" xml:space="preserve"><value>Cc</value></data>
+  <data name="EmlSubject" xml:space="preserve"><value>Subjek</value></data>
+  <data name="EmlDate" xml:space="preserve"><value>Tanggal</value></data>
+  <data name="EmlAttachments" xml:space="preserve"><value>Lampiran</value></data>
+  <data name="EmlPrintNotice" xml:space="preserve"><value>Visualisasi email statis. Konten aktif, sumber daya eksternal, dan tautan dihilangkan. Lampiran tidak disematkan. Tanda tangan digital dan keaslian belum divalidasi.</value></data>
+  <data name="EmlLimits" xml:space="preserve"><value>Hanya EML lokal, hingga 25 MiB dan 100 lampiran. HTML dikurangi menjadi konten pasif; sumber daya eksternal, elemen aktif, dan tautan dihapus. Teks biasa dan gambar raster CID yang didukung dipertahankan. Pesan terenkripsi, MSG, dan isi TNEF tidak didukung. Ekspor lampiran membuat satu folder baru dengan file message.pdf dan file lampiran bernomor; tidak ada yang dibuka secara otomatis. Pesan yang disiapkan dibatasi hingga 5 MiB.</value></data>
+  <data name="EmlInvalid" xml:space="preserve"><value>Pesan EML salah format, terenkripsi, tidak didukung, atau melebihi batasnya. Pengirim, tanggal, dan isi teks atau HTML diperlukan. Periksa struktur MIME, lampiran, dan gambar yang disematkan.</value></data>
+  <data name="EmlReadError" xml:space="preserve"><value>Input EML tidak dapat dibaca.</value></data>
+  <data name="EmlRenderFailed" xml:space="preserve"><value>Pencetakan email lokal gagal atau melebihi batasnya. Tidak ada file sumber yang diubah.</value></data>
+  <data name="PdfExcelTitle" xml:space="preserve"><value>Ekstrak Tabel PDF ke Excel</value></data>
+  <data name="PdfExcelDescription" xml:space="preserve"><value>Mendeteksi tabel teks persegi panjang yang didukung dan mengekspor satu lembar kerja per tabel ke dalam buku kerja Excel baru.</value></data>
+  <data name="PdfExcelInfer" xml:space="preserve"><value>Juga deteksi tabel tanpa garis yang diratakan (minimal 3 kolom dan 3 baris)</value></data>
+  <data name="PdfExcelUnavailable" xml:space="preserve"><value>Ekstraksi tabel PDF tidak tersedia dalam konfigurasi ini.</value></data>
+  <data name="PdfExcelLimits" xml:space="preserve"><value>Mendukung teks horizontal dalam grid persegi panjang lengkap, ditambah tabel tanpa garis yang sejajar dengan minimal 3 kolom dan 3 baris. Sel yang digabungkan, teks yang diputar, tabel yang dipindai, dan struktur yang tidak jelas tidak didukung. Setiap tabel/halaman adalah lembar terpisah; kelanjutan tidak digabungkan. Sel tetap berupa teks; rumus dan tipe numerik/tanggal tidak disimpulkan. Batasan: 25 MiB, 200 halaman, 128 tabel, dan satu juta sel keluaran. Tinjau buku kerja terhadap PDF sumber.</value></data>
+  <data name="PdfExcelPreview" xml:space="preserve"><value>Tabel yang didukung terdeteksi: {0}. Konten tidak ditampilkan.</value></data>
+  <data name="PdfExcelSheet" xml:space="preserve"><value>Halaman {0} Tabel {1}</value></data>
+  <data name="PdfExcelInvalid" xml:space="preserve"><value>Tidak ada tabel yang didukung yang dapat diekstrak, atau PDF tersebut ambigu, salah format, terenkripsi, atau melebihi batasnya. Gunakan grid persegi panjang lengkap atau tabel yang tersusun rapi dengan minimal 3 kolom dan 3 baris. Halaman yang dipindai memerlukan OCR, yang tidak dilakukan oleh tindakan ini.</value></data>
+  <data name="PdfExcelReadError" xml:space="preserve"><value>Input PDF tidak dapat dibaca.</value></data>
+  <data name="PdfExcelWriteError" xml:space="preserve"><value>Tabel yang diekstrak tidak dapat ditulis ke Excel. Tidak ada file sumber yang diubah.</value></data>
+  <data name="CropPdfAction_Title" xml:space="preserve"><value>Pangkas Margin PDF</value></data>
+  <data name="CropPdfAction_Description" xml:space="preserve"><value>Memangkas margin yang sama dari setiap tepi halaman yang dipilih, misalnya batas pemindai, dalam PDF baru.</value></data>
+  <data name="CropPdfAction_ParamTitle_Margin" xml:space="preserve"><value>Margin untuk memotong (mm)</value></data>
+  <data name="CropPdfAction_ParamDesc_Margin" xml:space="preserve"><value>Dipangkas dari setiap tepi, 0 hingga 100 mm. Konten di luar tepi baru disembunyikan, bukan dihapus.</value></data>
+  <data name="CropPdfAction_Operation_Description" xml:space="preserve"><value>Akan memotong margin {0} ke dalam salinan baru.</value></data>
+  <data name="ResizePdfPagesAction_Title" xml:space="preserve"><value>Ubah Ukuran Halaman PDF</value></data>
+  <data name="ResizePdfPagesAction_Description" xml:space="preserve"><value>Mengubah ukuran setiap halaman ke A4, US Letter, A5, atau US Legal dalam PDF baru. Setiap halaman mempertahankan orientasi potret atau lanskapnya.</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Size" xml:space="preserve"><value>Ukuran halaman</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Fit" xml:space="preserve"><value>Penskalaan</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_Fit" xml:space="preserve"><value>Sesuaikan dengan halaman (perbesar atau perkecil)</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_FitShrink" xml:space="preserve"><value>Hanya perkecil halaman yang lebih besar</value></data>
+  <data name="ResizePdfPagesAction_Operation_Description" xml:space="preserve"><value>Akan membuat salinan {0} yang ukurannya telah diubah.</value></data>
+</root>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ImageExportAction_Title_Convert" xml:space="preserve">
+    <value>{0}&apos;a Dönüştür</value>
+  </data>
+  <data name="ImageExportAction_Desc_Convert" xml:space="preserve">
+    <value>Seçilen resimleri {0} formatına dönüştürür.</value>
+  </data>
+  <data name="ImageExportAction_Operation_Convert" xml:space="preserve">
+    <value>{0} dosyasını {1} dosyasına dönüştürecektir.</value>
+  </data>
+  <data name="ImageExportAction_Title_Resize" xml:space="preserve">
+    <value>Görüntüleri Yeniden Boyutlandır</value>
+  </data>
+  <data name="ImageExportAction_Desc_Resize" xml:space="preserve">
+    <value>Seçilen görüntüleri maksimum genişliğe veya yüksekliğe yeniden boyutlandırır.</value>
+  </data>
+  <data name="ImageExportAction_ParamTitle_Size" xml:space="preserve">
+    <value>Maksimum Boyut (piksel)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1920" xml:space="preserve">
+    <value>1920x1080 (HD)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1280" xml:space="preserve">
+    <value>1280x720 (Web)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_800" xml:space="preserve">
+    <value>800x600 (E-posta)</value>
+  </data>
+  <data name="ImageExportAction_Operation_Resize" xml:space="preserve">
+    <value>{0} görüntüsünü {1}x{1} piksele sığacak şekilde yeniden boyutlandıracaktır.</value>
+  </data>
+  <data name="ImageExportAction_Title_RemoveMeta" xml:space="preserve">
+    <value>Görüntü Meta Verilerini Kaldır</value>
+  </data>
+  <data name="ImageExportAction_Desc_RemoveMeta" xml:space="preserve">
+    <value>Seçilen görüntülerin EXIF ​​verileri (GPS konumu gibi) olmadan kopyalarını oluşturur.</value>
+  </data>
+  <data name="ImageExportAction_Operation_RemoveMeta" xml:space="preserve">
+    <value>Meta veri içermeyen {0} kopyaları oluşturulacaktır.</value>
+  </data>
+  <data name="Image_File" xml:space="preserve">
+    <value>resim</value>
+  </data>
+  <data name="Image_Files" xml:space="preserve">
+    <value>resimler</value>
+  </data>
+  <data name="Image_Operation_Progress" xml:space="preserve">
+    <value>Dışa Aktarma</value>
+  </data>
+  <data name="ImagesPack_Title" xml:space="preserve">
+    <value>Görüntü Araçları</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertWebP" xml:space="preserve">
+    <value>WebP&apos;ye Dönüştür</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertWebP" xml:space="preserve">
+    <value>Seçilen resimleri web için kompakt bir format olan WebP&apos;ye dönüştürür.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertAvif" xml:space="preserve">
+    <value>AVIF&apos;e Dönüştür</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertAvif" xml:space="preserve">
+    <value>Seçilen görüntüleri, yüksek oranda sıkıştırılmış modern bir format olan AVIF&apos;e dönüştürür.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertJpeg" xml:space="preserve">
+    <value>JPEG&apos;e Dönüştür</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertJpeg" xml:space="preserve">
+    <value>Seçilen görüntüleri (HEIC fotoğraflar dahil) yaygın olarak uyumlu JPEG dosyalarına dönüştürür.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertPng" xml:space="preserve">
+    <value>PNG&apos;ye Dönüştür</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertPng" xml:space="preserve">
+    <value>Seçilen resimleri kayıpsız PNG dosyalarına dönüştürür.</value>
+  </data>
+  <data name="ImagesPack_Title_Resize" xml:space="preserve">
+    <value>Görüntüleri Yeniden Boyutlandır</value>
+  </data>
+  <data name="ImagesPack_Desc_Resize" xml:space="preserve">
+    <value>En geniş ve en yüksek boyut aralığına sığacak şekilde, en boy oranını koruyarak yeniden boyutlandırılmış kopyalar oluşturur.</value>
+  </data>
+  <data name="ImagesPack_Title_Compress" xml:space="preserve">
+    <value>Görüntüleri Sıkıştır</value>
+  </data>
+  <data name="ImagesPack_Desc_Compress" xml:space="preserve">
+    <value>Kaliteyi düşürerek ve boyutu sınırlayarak daha küçük kopyalar oluşturur; orijinaller değişmeden kalır.</value>
+  </data>
+  <data name="ImagesPack_Title_RemoveMetadata" xml:space="preserve">
+    <value>Görüntü Meta Verilerini Kaldır</value>
+  </data>
+  <data name="ImagesPack_Desc_RemoveMetadata" xml:space="preserve">
+    <value>Kamera bilgileri ve konum gibi gizlilik açısından hassas meta veriler içermeyen kopyalar oluşturur.</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Title" xml:space="preserve">
+    <value>Kalite</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Desc" xml:space="preserve">
+    <value>Daha yüksek değerler daha fazla ayrıntı korur ve daha büyük dosyalar oluşturur.</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxWidth_Title" xml:space="preserve">
+    <value>Maksimum genişlik (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxHeight_Title" xml:space="preserve">
+    <value>Maksimum Yükseklik (piksel)</value>
+  </data>
+  <data name="ImageExportAction_Param_AllowUpscale_Title" xml:space="preserve">
+    <value>Küçük resimleri büyüt</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxDimension_Title" xml:space="preserve">
+    <value>Maksimum genişlik/yükseklik (px, 0 = boyutu koru)</value>
+  </data>
+  <data name="ImageExportAction_Param_StripMetadata_Title" xml:space="preserve">
+    <value>Meta verileri (kamera, konum) kaldır</value>
+  </data>
+  <data name="ImageExportAction_Op_WillProcess" xml:space="preserve">
+    <value>İşlem yapılacak</value>
+  </data>
+  <data name="ImageExportAction_Op_WillConvert" xml:space="preserve">
+    <value>Dönüştürülecektir</value>
+  </data>
+  <data name="ImageExportAction_Op_To" xml:space="preserve">
+    <value> {0}&apos;a</value>
+  </data>
+  <data name="ImageExportAction_Op_FitWithin" xml:space="preserve">
+    <value>{0} x {1} içine sığar px</value>
+  </data>
+  <data name="ImageExportAction_Op_NoEnlargement" xml:space="preserve">
+    <value> (Büyütme yok)</value>
+  </data>
+  <data name="ImageExportAction_Op_Quality" xml:space="preserve">
+    <value>kalite {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_RemoveMeta" xml:space="preserve">
+    <value>konum gibi meta verileri kaldır</value>
+  </data>
+  <data name="ImageExportAction_Op_KeepMeta" xml:space="preserve">
+    <value>meta verileri sakla</value>
+  </data>
+  <data name="ImageExportAction_Warn_Animation" xml:space="preserve">
+    <value>Hareketli görüntüler durağan görüntüye (ilk kare) dönüştürülür.</value>
+  </data>
+  <data name="ImageExportAction_Warn_Transparency" xml:space="preserve">
+    <value>JPEG&apos;de şeffaflık yoktur; şeffaf alanlar kodeğe bağlı olarak beyaz veya siyah olur.</value>
+  </data>
+  <data name="ImageExportAction_Warn_PreserveMetadata" xml:space="preserve">
+    <value>Yüklenen kodekler meta verileri koruyamaz.</value>
+  </data>
+  <data name="ImageExportAction_Err_TooLarge" xml:space="preserve">
+    <value>Görüntü dosyası çok büyük.</value>
+  </data>
+  <data name="ImageExportAction_Err_Dimensions" xml:space="preserve">
+    <value>Görüntü boyutları desteklenen sınırı aşıyor.</value>
+  </data>
+  <data name="ImageExportAction_Err_UnknownFormat" xml:space="preserve">
+    <value>Görüntü formatı belirlenemedi.</value>
+  </data>
+  <data name="ImageExportAction_Err_NoCodec" xml:space="preserve">
+    <value>Yüklü hiçbir kodek bu {0} görüntüsünü {1}&apos;e dönüştüremez.</value>
+  </data>
+  <data name="ImageTarget_Original" xml:space="preserve">
+    <value>orijinal format</value>
+  </data>
+  <data name="ImageExportAction_Unavailable" xml:space="preserve">
+    <value>{0} kodlaması bu sistemde mevcut değil.</value>
+  </data>
+  <data name="Raster_DecodeFailed" xml:space="preserve"><value>Görüntü kodlanamadı veya raster sınırını aşıyor.</value></data>
+  <data name="Raster_EncodeFailed" xml:space="preserve"><value>Görüntü kodlanamadı.</value></data>
+  <data name="Raster_NoCodec" xml:space="preserve"><value>Yüklü raster codec&apos;lerden hiçbiri bu işlemi desteklemiyor.</value></data>
+  <data name="Raster_TooManyPixels" xml:space="preserve"><value>Görüntü veya tuval 60 milyon pikseli veya her kenar için 30000 pikseli aşıyor.</value></data>
+  <data name="Raster_InvalidRatio" xml:space="preserve"><value>G:Y olarak pozitif bir en boy oranı girin.</value></data>
+  <data name="Raster_ProcessCount" xml:space="preserve"><value>{0} resminin dönüştürülmüş kopyaları oluşturulacaktır.</value></data>
+  <data name="Raster_MetadataRemoved" xml:space="preserve"><value>Meta veriler kaldırılır. Orijinaller değişmeden kalır.</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>Çıktı formatı</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>[Microsoft Mağazası&apos;ndan HEVC Video Uzantıları](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7) ile Windows, HEIC formatında kaydedebilir. Ayrıca &quot;Çıktı formatı&quot; altında başka bir format da seçebilirsiniz.</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} buraya kaydedilemiyor, bu nedenle bu sonuçlar {1} olarak kaydedildi.</value></data>
+  <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>Şeffaf dolgu yalnızca PNG ve WebP için mevcuttur; diğer formatlar beyaz kullanır.</value></data>
+  <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>PNG zaten optimize edilmiş sonuçtan daha küçük.</value></data>
+  <data name="Raster_AlreadySmall" xml:space="preserve"><value>Görüntü zaten hedef boyutun altında.</value></data>
+  <data name="Raster_TargetUnreachable" xml:space="preserve"><value>Kalite ve yeniden boyutlandırma sınırları dahilinde hedef boyuta ulaşılamadı.</value></data>
+  <data name="Raster_TargetPreview" xml:space="preserve"><value>{0} resim, her biri en fazla {1} KB olacak şekilde sıkıştırılacaktır. Kalite veya boyutlar azalabilir.</value></data>
+  <data name="Raster_TargetResult" xml:space="preserve"><value>{0} resim istenen boyut sınırı içinde.</value></data>
+  <data name="Raster_CombineCount" xml:space="preserve"><value>{0} resim dosya adı sırasına göre birleştirilecektir.</value></data>
+  <data name="Raster_CombineExtension" xml:space="preserve"><value>Sonuç, alfa kanalı içeren kaynaklar için PNG, aksi takdirde JPEG kullanır.</value></data>
+  <data name="Raster_MetadataFailed" xml:space="preserve"><value>Görüntü meta verileri hasar görmüş veya desteklenen sınırı aşıyor.</value></data>
+  <data name="Raster_InfoPreview" xml:space="preserve"><value>{0} görüntüsü(leri) için tanımlayıcı olmayan ayrıntıları gösterecektir.</value></data>
+  <data name="Raster_InfoLine" xml:space="preserve"><value>Görüntü {0}: {1}, {2} × {3} px, {4:0.##} MP; DPI {5} × {6}; yönlendirme {7}; konum: {8}; renk profili: {9}; çerçeveler: {10}.</value></data>
+  <data name="Raster_Unknown" xml:space="preserve"><value>Kullanılamaz</value></data>
+  <data name="Raster_Yes" xml:space="preserve"><value>Evet</value></data>
+  <data name="Raster_No" xml:space="preserve"><value>Hayır</value></data>
+  <data name="Raster_Ratio" xml:space="preserve"><value>En Boy Oranı</value></data>
+  <data name="Raster_CustomRatio" xml:space="preserve"><value>Özel oran (G:Y)</value></data>
+  <data name="Raster_Anchor" xml:space="preserve"><value>Kırpma noktası</value></data>
+  <data name="Raster_Mode" xml:space="preserve"><value>Dolgu modu</value></data>
+  <data name="Raster_BorderPx" xml:space="preserve"><value>Kenarlık Genişliği (px)</value></data>
+  <data name="Raster_Color" xml:space="preserve"><value>Kenarlık Rengi</value></data>
+  <data name="Raster_Transparent" xml:space="preserve"><value>Şeffaf dolgu</value></data>
+  <data name="Raster_Colors" xml:space="preserve"><value>Palet renkleri</value></data>
+  <data name="Raster_Dither" xml:space="preserve"><value>Titreşim gradyanları</value></data>
+  <data name="Raster_Sizes" xml:space="preserve"><value>Simge boyutları</value></data>
+  <data name="Raster_Format" xml:space="preserve"><value>Çıktı formatı</value></data>
+  <data name="Raster_TargetKb" xml:space="preserve"><value>Maksimum Boyut (KB)</value></data>
+  <data name="Raster_Gap" xml:space="preserve"><value>Boşluk (px)</value></data>
+  <data name="Raster_Background" xml:space="preserve"><value>Arka Plan Rengi</value></data>
+  <data name="Raster_Columns" xml:space="preserve"><value>Sütunlar (0 = otomatik)</value></data>
+  <data name="Raster_CellSize" xml:space="preserve"><value>Hücre boyutu (px)</value></data>
+  <data name="Raster_Fit" xml:space="preserve"><value>Görüntüleri sığdır</value></data>
+  <data name="Raster_Direction" xml:space="preserve"><value>Yön</value></data>
+  <data name="Raster_Align" xml:space="preserve"><value>Hizalama</value></data>
+  <data name="Raster_Title_Crop" xml:space="preserve"><value>En Boy Oranına Göre Kırpma</value></data>
+  <data name="Raster_Title_Pad" xml:space="preserve"><value>Kenarlık Ekle veya Kare Yap</value></data>
+  <data name="Raster_Title_Grayscale" xml:space="preserve"><value>Siyah Beyaza Dönüştür</value></data>
+  <data name="Raster_Title_OptimizePng" xml:space="preserve"><value>PNG&apos;yi Optimize Et (Daha Küçük Renkler)</value></data>
+  <data name="Raster_Title_Icon" xml:space="preserve"><value>Simge (ICO) Oluştur</value></data>
+  <data name="Raster_Title_ConvertOther" xml:space="preserve"><value>Diğer Formata Dönüştür</value></data>
+  <data name="Raster_Title_TargetSize" xml:space="preserve"><value>Dosya Boyutuna Sıkıştır</value></data>
+  <data name="Raster_Title_Stitch" xml:space="preserve"><value>Görüntüleri Yan Yana Birleştir</value></data>
+  <data name="Raster_Title_Collage" xml:space="preserve"><value>Fotoğraf Izgarası Oluştur</value></data>
+  <data name="Raster_Title_Info" xml:space="preserve"><value>Görüntü Ayrıntılarını Göster</value></data>
+  <data name="Raster_Description_Crop" xml:space="preserve"><value>Seçilen oran ve sabitleme noktasını kullanarak kırpılmış kopyalar oluşturur.</value></data>
+  <data name="Raster_Description_Pad" xml:space="preserve"><value>Resimlere kare şeklinde kenarlık veya dolgu ekler.</value></data>
+  <data name="Raster_Description_Grayscale" xml:space="preserve"><value>Görüntü formatını koruyarak gri tonlamalı kopyalar oluşturur.</value></data>
+  <data name="Raster_Description_OptimizePng" xml:space="preserve"><value>Alfa duyarlı bir palet kullanarak daha küçük PNG kopyaları oluşturur.</value></data>
+  <data name="Raster_Description_Icon" xml:space="preserve"><value>Favicon veya Windows boyutlarında PNG tabanlı simgeler oluşturun.</value></data>
+  <data name="Raster_Description_ConvertOther" xml:space="preserve"><value>Bir durağan görüntüyü TIFF, BMP, GIF veya ICO olarak dışa aktarır.</value></data>
+  <data name="Raster_Description_TargetSize" xml:space="preserve"><value>Boyut sınırına uyan görüntü kalitesini ve boyutlarını bulur.</value></data>
+  <data name="Raster_Description_Stitch" xml:space="preserve"><value>Görüntüleri ortak bir boyuta ölçeklendirir ve birleştirir.</value></data>
+  <data name="Raster_Description_Collage" xml:space="preserve"><value>Görüntüleri kırpma veya dolgu ile bir ızgaraya yerleştirir.</value></data>
+  <data name="Raster_Description_Info" xml:space="preserve"><value>Meta veri değerlerini göstermeden boyutları ve gizlilik işaretlerini gösterir.</value></data>
+  <data name="Raster_Choice_1_1" xml:space="preserve"><value>1:1</value></data>
+  <data name="Raster_Choice_4_3" xml:space="preserve"><value>4:3</value></data>
+  <data name="Raster_Choice_3_2" xml:space="preserve"><value>3:2</value></data>
+  <data name="Raster_Choice_16_9" xml:space="preserve"><value>16:9</value></data>
+  <data name="Raster_Choice_9_16" xml:space="preserve"><value>9:16</value></data>
+  <data name="Raster_Choice_4_5" xml:space="preserve"><value>4:5</value></data>
+  <data name="Raster_Choice_custom" xml:space="preserve"><value>Özel</value></data>
+  <data name="Raster_Choice_center" xml:space="preserve"><value>Merkez</value></data>
+  <data name="Raster_Choice_top" xml:space="preserve"><value>Üst</value></data>
+  <data name="Raster_Choice_bottom" xml:space="preserve"><value>Alt</value></data>
+  <data name="Raster_Choice_left" xml:space="preserve"><value>Sol</value></data>
+  <data name="Raster_Choice_right" xml:space="preserve"><value>Sağ</value></data>
+  <data name="Raster_Choice_square" xml:space="preserve"><value>Kare</value></data>
+  <data name="Raster_Choice_border" xml:space="preserve"><value>Kenarlık</value></data>
+  <data name="Raster_Choice_favicon" xml:space="preserve"><value>Favicon (16, 32, 48)</value></data>
+  <data name="Raster_Choice_windows" xml:space="preserve"><value>Windows (16–256)</value></data>
+  <data name="Raster_Choice_tiff" xml:space="preserve"><value>TIFF</value></data>
+  <data name="Raster_Choice_bmp" xml:space="preserve"><value>BMP</value></data>
+  <data name="Raster_Choice_gif" xml:space="preserve"><value>GIF (tek kare)</value></data>
+  <data name="Raster_Choice_ico" xml:space="preserve"><value>ICO</value></data>
+  <data name="Raster_Choice_same" xml:space="preserve"><value>Orijinal format</value></data>
+  <data name="Raster_Choice_jpeg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="Raster_Choice_webp" xml:space="preserve"><value>WebP</value></data>
+  <data name="Raster_Choice_cover" xml:space="preserve"><value>Doldur ve kırp</value></data>
+  <data name="Raster_Choice_contain" xml:space="preserve"><value>Dolguyla sığdır</value></data>
+  <data name="Raster_Choice_horizontal" xml:space="preserve"><value>Yatay</value></data>
+  <data name="Raster_Choice_vertical" xml:space="preserve"><value>Dikey</value></data>
+  <data name="Raster_Choice_start" xml:space="preserve"><value>Başlangıç</value></data>
+  <data name="Raster_Choice_end" xml:space="preserve"><value>Son</value></data>
+  <data name="Extra_JpegMetadataKept" xml:space="preserve"><value>Konum dahil olmak üzere JPEG görüntü kalitesi ve meta verileri korunur. Bazı görüntü boyutları kırpma olmadan desteklenmez. Gömülü önizlemeler önceki yönlerini korur.</value></data>
+  <data name="Extra_RotationUnavailable" xml:space="preserve"><value>Gerekli görüntü döndürme codec&apos;i kullanılamıyor.</value></data>
+  <data name="Extra_AlreadyUpright" xml:space="preserve"><value>Zaten dik.</value></data>
+  <data name="Extra_JpegFailed" xml:space="preserve"><value>JPEG dosyası güvenli bir şekilde dönüştürülemedi.</value></data>
+  <data name="Extra_JpegUnsupported" xml:space="preserve"><value>JPEG formatı veya boyutu kayıpsız dönüştürme için desteklenmiyor.</value></data>
+  <data name="Extra_JpegPartialMcu" xml:space="preserve"><value>Bu JPEG boyutları kırpma olmadan kayıpsız olarak dönüştürülemez. Orijinal dosya değişmez.</value></data>
+  <data name="Extra_GpsFailed" xml:space="preserve"><value>Konum meta verileri güvenli bir şekilde kaldırılamadı.</value></data>
+  <data name="Extra_NoGps" xml:space="preserve"><value>GPS verisi bulunamadı.</value></data>
+  <data name="Extra_GpsUnavailable" xml:space="preserve"><value>Yüklü hiçbir kodek diğer meta verileri korurken GPS verilerini kaldıramaz.</value></data>
+  <data name="Extra_GpsResave" xml:space="preserve"><value>Görüntü, algılanan orijinal kalitesinde yeniden kaydedilir. Diğer meta veriler korunur; bu, EXIF ​​GPS ve XMP exif:GPS alanlarını kaldırır, ancak her olası konum referansını kaldırmaz.</value></data>
+  <data name="Extra_WatermarkUnavailable" xml:space="preserve"><value>Görüntü filigran motoru kullanılamıyor.</value></data>
+  <data name="Extra_WatermarkTextInvalid" xml:space="preserve"><value>Kontrol karakterleri olmadan 1–500 karakterlik filigran metni girin.</value></data>
+  <data name="Extra_WatermarkImageInvalid" xml:space="preserve"><value>Görüntü sınırları dahilinde geçerli ve desteklenen bir filigran görüntüsü seçin.</value></data>
+  <data name="Extra_WatermarkFailed" xml:space="preserve"><value>Filigran uygulanamadı.</value></data>
+  <data name="Extra_FontUnavailable" xml:space="preserve"><value>Desteklenen filigran yazı tipi yüklü değil.</value></data>
+  <data name="Extra_GifUnavailable" xml:space="preserve"><value>Hareketli GIF kodlayıcı kullanılamıyor.</value></data>
+  <data name="Extra_GifColors" xml:space="preserve"><value>GIF sınırlı bir palet kullanır. Şeffaflık beyaza düzleştirilir; gecikmeler bir sonraki 10 ms&apos;ye yuvarlanır.</value></data>
+  <data name="Extra_GifFailed" xml:space="preserve"><value>Animasyon, desteklenen sınırlar dahilinde kodlanamadı.</value></data>
+  <data name="Extra_FaceUnavailable" xml:space="preserve"><value>Bu cihazda yerel yüz algılama kullanılamıyor.</value></data>
+  <data name="Extra_FaceWarning" xml:space="preserve"><value>Algılama garanti edilmez. Paylaşmadan önce her sonucu kontrol edin; başarılı bir çalıştırma, her yüzün gizlendiğini garanti etmez.</value></data>
+  <data name="Extra_NoFaces" xml:space="preserve"><value>Hiçbir yüz bulunamadı.</value></data>
+  <data name="Extra_FaceFailed" xml:space="preserve"><value>Yüzler güvenli bir şekilde işlenemedi.</value></data>
+  <data name="Extra_OcrUnavailable" xml:space="preserve"><value>Yerel OCR kullanılamıyor. Windows Ayarları &gt; Zaman ve dil bölümünden bir OCR dili yükleyin.</value></data>
+  <data name="Extra_OcrFailed" xml:space="preserve"><value>Metin tanınamadı.</value></data>
+  <data name="Extra_OcrTooLarge" xml:space="preserve"><value>Tanınan metin desteklenen sınırı aşıyor.</value></data>
+  <data name="Extra_NoText" xml:space="preserve"><value>Metin bulunamadı.</value></data>
+  <data name="Extra_Position" xml:space="preserve"><value>Konum</value></data>
+  <data name="Extra_Opacity" xml:space="preserve"><value>Opaklık (%)</value></data>
+  <data name="Extra_Image" xml:space="preserve"><value>Filigran resmi</value></data>
+  <data name="Extra_WidthPercent" xml:space="preserve"><value>Filigran genişliği (%)</value></data>
+  <data name="Extra_Text" xml:space="preserve"><value>Filigran metni</value></data>
+  <data name="Extra_FontSizePercent" xml:space="preserve"><value>Yazı tipi boyutu (% görüntü genişliğinin)</value></data>
+  <data name="Extra_Color" xml:space="preserve"><value>Metin rengi</value></data>
+  <data name="Extra_DelayMs" xml:space="preserve"><value>Kare gecikmesi (ms)</value></data>
+  <data name="Extra_Loop" xml:space="preserve"><value>Animasyonu tekrarla</value></data>
+  <data name="Extra_MaxSize" xml:space="preserve"><value>Maksimum Kenar Uzunluğu (piksel)</value></data>
+  <data name="Extra_Strength" xml:space="preserve"><value>Piksel yoğunluğu</value></data>
+  <data name="Extra_Output" xml:space="preserve"><value>Metin çıktısı</value></data>
+  <data name="Extra_Language" xml:space="preserve"><value>Tanıma dili</value></data>
+  <data name="Extra_Title_rotate-right" xml:space="preserve"><value>Sağa Döndür (90°)</value></data>
+  <data name="Extra_Description_rotate-right" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_rotate-left" xml:space="preserve"><value>Sola Döndür (90°)</value></data>
+  <data name="Extra_Description_rotate-left" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_rotate-180" xml:space="preserve"><value>180° Döndür</value></data>
+  <data name="Extra_Description_rotate-180" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_flip-horizontal" xml:space="preserve"><value>Yatay çevir</value></data>
+  <data name="Extra_Description_flip-horizontal" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_flip-vertical" xml:space="preserve"><value>Dikey çevir</value></data>
+  <data name="Extra_Description_flip-vertical" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_auto-rotate" xml:space="preserve"><value>Kamera Kullanarak Düzelt Yönlendirme</value></data>
+  <data name="Extra_Description_auto-rotate" xml:space="preserve"><value>Normalleştirilmiş yönlendirme ile döndürülmüş veya aynalanmış kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_WatermarkText" xml:space="preserve"><value>Metin Filigranı Ekle</value></data>
+  <data name="Extra_Description_WatermarkText" xml:space="preserve"><value>Orijinalleri değiştirmeden filigranlı kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_WatermarkImage" xml:space="preserve"><value>Resim Filigranı Ekle</value></data>
+  <data name="Extra_Description_WatermarkImage" xml:space="preserve"><value>Orijinalleri değiştirmeden filigranlı kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_AnimatedGif" xml:space="preserve"><value>Hareketli GIF Oluştur</value></data>
+  <data name="Extra_Description_AnimatedGif" xml:space="preserve"><value>Seçilen hareketsiz görüntülerden animasyon oluşturur.</value></data>
+  <data name="Extra_Title_Ocr" xml:space="preserve"><value>Görüntüden Metin Kopyala (OCR)</value></data>
+  <data name="Extra_Description_Ocr" xml:space="preserve"><value>Görüntü metnini yerel olarak bir dosya veya pano için tanır.</value></data>
+  <data name="Extra_Title_BlurFaces" xml:space="preserve"><value>Yüzleri Bulanıklaştır</value></data>
+  <data name="Extra_Description_BlurFaces" xml:space="preserve"><value>Yerel yüz algılama kullanarak pikselli kopyalar oluşturur.</value></data>
+  <data name="Extra_Title_RemoveLocation" xml:space="preserve"><value>Yalnızca Konumu (GPS) Kaldır</value></data>
+  <data name="Extra_Description_RemoveLocation" xml:space="preserve"><value>Diğer meta verileri korurken EXIF/XMP GPS alanlarını kaldırır.</value></data>
+  <data name="Extra_Choice_top-left" xml:space="preserve"><value>Sol üst</value></data>
+  <data name="Extra_Choice_top" xml:space="preserve"><value>Üst</value></data>
+  <data name="Extra_Choice_top-right" xml:space="preserve"><value>Sağ üst</value></data>
+  <data name="Extra_Choice_left" xml:space="preserve"><value>Sol</value></data>
+  <data name="Extra_Choice_center" xml:space="preserve"><value>Merkez</value></data>
+  <data name="Extra_Choice_right" xml:space="preserve"><value>Sağ</value></data>
+  <data name="Extra_Choice_bottom-left" xml:space="preserve"><value>Sol alt</value></data>
+  <data name="Extra_Choice_bottom" xml:space="preserve"><value>Alt</value></data>
+  <data name="Extra_Choice_bottom-right" xml:space="preserve"><value>Sağ alt</value></data>
+  <data name="Extra_Choice_tiled" xml:space="preserve"><value>Döşemeli</value></data>
+  <data name="Extra_Choice_light" xml:space="preserve"><value>Açık</value></data>
+  <data name="Extra_Choice_strong" xml:space="preserve"><value>Güçlü</value></data>
+  <data name="Extra_Choice_clipboard" xml:space="preserve"><value>Pano</value></data>
+  <data name="Extra_Choice_file" xml:space="preserve"><value>UTF-8 metin dosyası</value></data>
+  <data name="Extra_Choice_auto" xml:space="preserve"><value>Windows dil tercihi</value></data>
+  <data name="Extra_RotateCount_One" xml:space="preserve"><value>{0} adet döndürülmüş veya aynalanmış görüntü kopyası oluşturacaktır.</value></data>
+  <data name="Extra_RotateCount_Other" xml:space="preserve"><value>{0} adet döndürülmüş veya aynalanmış görüntü kopyası oluşturacaktır.</value></data>
+  <data name="Extra_RemoveGpsCount_One" xml:space="preserve"><value>{0} görüntüsünden GPS meta verileri kaldırılacaktır.</value></data>
+  <data name="Extra_RemoveGpsCount_Other" xml:space="preserve"><value>{0} görüntülerinden GPS meta verileri kaldırılacaktır.</value></data>
+  <data name="Extra_WatermarkCount_One" xml:space="preserve"><value>{0} resim kopyasına filigran eklenecektir.</value></data>
+  <data name="Extra_WatermarkCount_Other" xml:space="preserve"><value>{0} resim kopyasına filigran eklenecektir.</value></data>
+  <data name="Extra_GifCount_One" xml:space="preserve"><value>{0} resminden bir animasyon oluşturulacaktır.</value></data>
+  <data name="Extra_GifCount_Other" xml:space="preserve"><value>Dosya adı sırasına göre {0} resimden bir animasyon oluşturulacaktır.</value></data>
+  <data name="Extra_FaceCount_One" xml:space="preserve"><value>{0} adet görüntü kopyasında yüzleri algılayacak ve pikselleştirecektir.</value></data>
+  <data name="Extra_FaceCount_Other" xml:space="preserve"><value>{0} adet görüntü kopyasında yüzleri algılayacak ve pikselleştirecektir.</value></data>
+  <data name="Extra_OcrFileCount_One" xml:space="preserve"><value>{0} görüntüsündeki metin tanınacak ve UTF-8 metin dosyası kaydedilecektir.</value></data>
+  <data name="Extra_OcrFileCount_Other" xml:space="preserve"><value>{0} görüntülerindeki metin tanınacak ve UTF-8 metin dosyaları kaydedilecektir.</value></data>
+  <data name="Extra_OcrClipboardCount_One" xml:space="preserve"><value>{0} görüntüsündeki metin panoya kopyalanacaktır.</value></data>
+  <data name="Extra_OcrClipboardCount_Other" xml:space="preserve"><value>{0} görüntülerindeki metin panoya kopyalanacaktır.</value></data>
+  <data name="Extra_OcrResult_One" xml:space="preserve"><value>{0} görüntüsünden tanınan metin panoya hazır.</value></data>
+  <data name="Extra_OcrResult_Other" xml:space="preserve"><value>{0} görüntüsünden tanınan metin panoya hazır.</value></data>
+  <data name="ImagesPack_Title_Compare" xml:space="preserve"><value>Görüntüleri Karşılaştır</value></data>
+  <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>Değişen pikselleri vurgulayan fark görüntüsüyle yan yana bir karşılaştırma oluşturur.</value></data>
+  <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>Görüntülerin boyutları farklı. İkinci görüntü, birincisiyle eşleşecek şekilde ölçeklendirilecektir.</value></data>
+  <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % değiştirilen pikseller</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>SVG&apos;yi PNG&apos;ye dönüştür</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>Desteklenen statik SVG grafiklerini, seçtiğiniz çözünürlüğe uygun yeni şeffaf PNG resimleri olarak oluşturur.</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Hedef genişlik (piksel)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Hedef yükseklik (piksel)</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>Tam tuval boyutunu kullanın</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>Tam olarak hedef genişlik ve yükseklikte bir PNG dosyası oluşturur. Şeffaf dolgu ile resmi ortalar, uzatma veya kırpma yapmaz. Kapalıyken, genişlik ve yükseklik maksimum sınırlardır.</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>Tam olarak {0} × {1} piksel boyutunda, ortalanmış, orantılı resim ve şeffaf dolguya sahip PNG resimleri oluşturacaktır.</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>SVG dosyaları</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>SVG oluşturucu kullanılamıyor.</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>SVG geçersiz, sınırları aşıyor veya desteklenmeyen içerik içeriyor. Statik şekiller, metin ve gradyanları viewBox veya piksel boyutlarıyla kullanın; harici kaynaklar ve aktif içerik reddedilir.</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>En boy oranını ve şeffaflığı korur. Yalnızca statik şekilleri, metni ve gradyanları destekler. Komut dosyaları, stil sayfaları, animasyon, gömülü resimler, referans kullanımı ve harici kaynaklar reddedilir. Giriş limiti: 1 MiB ve 5.000 öğe; çıkış limiti: 40 milyon piksel.</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>SVG girişi okunamadı.</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>Statik SVG işlenemedi.</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>PNG&apos;yi SVG&apos;ye Vektörleştir</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>Logolar ve basit çizimler için nicelleştirilmiş PNG renk bölgelerini kapalı SVG çokgen yollarına dönüştürür.</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>Renk modu</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>Renk</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>Siyah Beyaz</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>Detay seviyesi</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>Düşük (256 piksele kadar, 8 renk)</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>Orta (512 piksele kadar, 16 renk)</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>Yüksek (1024 piksele kadar, 32 renk)</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>Siyah/Beyaz Parlaklık Eşiği</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>PNG resimleri</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>Gömülü bir bitmap değil, gerçek çokgen yollar oluşturur. Düz logolar ve basit çizimler için en iyisidir; fotoğraflar, gradyanlar, ince metinler ve yumuşak eğriler ayrıntı kaybına neden olur. Renk modu renkleri ve alfa değerini nicelendirir; siyah/beyaz modu parlaklığı ve alfa değerini eşiklendirir. İşleme, orijinal ekran boyutunu korurken 256/512/1024 piksel çalışma ızgarası kullanır. Kaynak sınırı: 16 milyon piksel; karmaşıklık: 250.000 sınır kenarı; SVG: 5 MiB. Yalnızca şeffaf veya aşırı karmaşık girdiler başarısız olur.</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>PNG vektörleştirilemedi: görünür şekil yok, desteklenmeyen boyutlar veya aşırı kontur karmaşıklığı. Daha düşük detay seviyesi veya daha basit bir logo deneyin.</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0 orijinal boyutu korur.</value>
+  </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>Görüntüyü Görsel Olarak Düzenle</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>Şeffaf bir tuval üzerinde tek bir görüntüyü yeniden boyutlandırın, döndürün ve konumlandırın, ardından yeni bir PNG olarak kaydedin.</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>Tuval genişliği (piksel)</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>Tuval yüksekliği (piksel)</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>Görüntü genişliği (piksel)</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>Görüntü yüksekliği (piksel)</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>Tuval merkezinden yatay uzaklık (piksel)</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>Tuval merkezinden dikey uzaklık (piksel)</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>Saat yönünde döndürme (derece)</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0 kaynak boyutunu kullanır veya görüntüyü tuval içine orantılı olarak sığdırır.</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>Tuval veya görüntü, desteklenen boyutu aşıyor: kenar başına 10.000 piksel ve 40 milyon piksel.</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>Görüntü yüklenemedi veya düzeni desteklenen sınırları aşıyor.</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>Bu resim düzeniyle yeni bir {0} × {1} piksellik PNG dosyası oluşturulacaktır.</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>Şeffaflığı ve kaynak dosyaları korur; meta verileri kaldırır. Animasyonlu resimler ilk karelerini kullanır. Bu bir raster PNG dışa aktarımıdır.</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>Tuval dışındaki görüntü içeriği kırpılacaktır. Görüntünün tamamını korumak için &quot;Görüntüyü sığdır&quot; veya &quot;Tuvale görüntüye sığdır&quot; seçeneklerini kullanın.</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>Ölçeklendirme yöntemi</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>Standart ölçeklendirme</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>Yüksek kalite (Lanczos)</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>Büyütme sırasında hafif keskinleştirme ile yerel Lanczos yeniden örnekleme. Kenar netliğini iyileştirebilir; eksik ayrıntıları yeniden oluşturamaz.</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>Bu sunucuda yüksek kaliteli ölçeklendirme yöntemi kullanılamıyor.</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>Yeniden boyutlandırma önizlemesi oluşturulamadı. Görüntü ve çıktı boyutlarını kontrol edin veya normal seçenekleri kullanın.</value></data>
+</root>

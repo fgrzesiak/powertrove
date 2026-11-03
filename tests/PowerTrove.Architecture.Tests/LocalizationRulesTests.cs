@@ -16,7 +16,8 @@ public class LocalizationRulesTests
     private static readonly string Root = FindRepositoryRoot();
 
     /// <summary>Translations every Strings.resx must have (English is the neutral resource).</summary>
-    private static readonly string[] RequiredTranslations = { "de" };
+    private static readonly string[] RequiredTranslations =
+    { "de", "es", "pt-BR", "fr", "ja", "pl", "it", "tr", "id" };
 
     public static TheoryData<string> NeutralResourceFiles => new(
         new[] { "src", "packs" }
@@ -53,8 +54,25 @@ public class LocalizationRulesTests
                 Assert.False(string.IsNullOrWhiteSpace(actual[key]), $"Key '{key}' in {name} is empty.");
             }
             foreach (var key in actual.Keys)
-                Assert.True(expected.ContainsKey(key), $"Key '{key}' in {name} does not exist in English.");
+                Assert.True(expected.ContainsKey(key) || IsPolishPluralVariant(name, key, expected, actual),
+                    $"Key '{key}' in {name} does not exist in English or is not a valid Polish plural variant.");
         }
+    }
+
+    // Polish has CLDR Few/Many forms; all other languages keep exact resource key parity.
+    private static bool IsPolishPluralVariant(string filename, string key,
+        Dictionary<string, string> neutral, Dictionary<string, string> translation)
+    {
+        if (filename != "Strings.pl.resx") return false;
+        string suffix = key.EndsWith("Few", System.StringComparison.Ordinal) ? "Few" :
+            key.EndsWith("Many", System.StringComparison.Ordinal) ? "Many" :
+            key.EndsWith("One", System.StringComparison.Ordinal) ? "One" : "";
+        if (suffix.Length == 0) return false;
+        string stem = key[..^suffix.Length];
+        string reference = neutral.ContainsKey(stem + "Other") ? stem + "Other" : stem;
+        return neutral.TryGetValue(reference, out var template) &&
+            Placeholders(template).SetEquals(Placeholders(translation[key])) &&
+            !string.IsNullOrWhiteSpace(translation[key]);
     }
 
     [Fact]

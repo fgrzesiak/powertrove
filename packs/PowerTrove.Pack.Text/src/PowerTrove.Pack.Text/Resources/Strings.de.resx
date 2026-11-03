@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Zwischenablage &amp; Text</value></data>
+  <data name="Description" xml:space="preserve"><value>Wandelt ausdrücklich erfassten Text lokal um und kopiert das Ergebnis in die Zwischenablage.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Prüfe die Umwandlung. Erst nach dem Ausführen wird das Ergebnis in die Zwischenablage kopiert.</value></data>
+  <data name="Done" xml:space="preserve"><value>Text in die Zwischenablage kopiert.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Keine verfügbare Textauswahl, Auswahl abgelaufen oder zu groß.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Text überschreitet die Grenze von 65.536 Zeichen.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Der Text oder das Suchmuster kann nicht verarbeitet werden.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Nicht unterstützte Textoperation.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>Die Eingabe enthält ungültig kodierte Daten.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>Der reguläre Ausdruck hat das Zeitlimit überschritten.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Gib einen regulären Ausdruck ein.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Suchmuster</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Ersetzung</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Regulärer .NET-Ausdruck, 200 ms Zeitlimit</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>Das Ergebnis ist leer; Ausführen leert den Text in der Zwischenablage.</value></data>
+  <data name="trim" xml:space="preserve"><value>Leerzeichen am Anfang und Ende entfernen</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Jede Zeile kürzen</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Leerzeichen zusammenfassen</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Leere Zeilen entfernen</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Doppelte Zeilen entfernen</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Zeilen sortieren</value></data>
+  <data name="lowercase" xml:space="preserve"><value>In Kleinbuchstaben umwandeln</value></data>
+  <data name="uppercase" xml:space="preserve"><value>In Großbuchstaben umwandeln</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Wörter großschreiben</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Text mit Regex ersetzen</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Text URL-kodieren</value></data>
+  <data name="url-decode" xml:space="preserve"><value>URL-kodierten Text dekodieren</value></data>
+  <data name="html-encode" xml:space="preserve"><value>HTML-Sonderzeichen kodieren</value></data>
+  <data name="html-decode" xml:space="preserve"><value>HTML-Sonderzeichen dekodieren</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Text in Base64 kodieren</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Base64-Text dekodieren</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Text als JSON-String kodieren</value></data>
+</root>

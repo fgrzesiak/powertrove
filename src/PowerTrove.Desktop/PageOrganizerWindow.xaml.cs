@@ -224,7 +224,7 @@ public sealed partial class PageOrganizerWindow : HostedView
 
     private void UpdateCount()
     {
-        CountText.Text = UiText.Format(UiText.OrganizerPageCount, Pages.Count);
+        CountText.Text = UiText.Format(UiText.PluralString("OrganizerPageCount", Pages.Count), Pages.Count);
         SaveButton.IsEnabled = Pages.Count > 0 && !LoadInfo.IsOpen && !SaveProgress.IsActive;
     }
 

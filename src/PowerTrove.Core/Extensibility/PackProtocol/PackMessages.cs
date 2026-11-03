@@ -28,7 +28,8 @@ public sealed record PreviewMessage(
     [property: JsonRequired] FileSelectionPayload Selection,
     [property: JsonRequired] IReadOnlyDictionary<string, string> Parameters,
     [property: JsonRequired] DateTimeOffset ExpiresAt,
-    TableSelectionPayload? Table = null) : PackMessage
+    TableSelectionPayload? Table = null, string? TextInput = null,
+    BrowserTextContextPayload? BrowserContext = null) : PackMessage
 {
     public override string Type => "preview";
 }
@@ -41,7 +42,8 @@ public sealed record ExecuteMessage(
     [property: JsonRequired] IReadOnlyDictionary<string, string> Parameters,
     [property: JsonRequired] DateTimeOffset ExpiresAt,
     [property: JsonRequired] string StagingDirectory,
-    TableSelectionPayload? Table = null) : PackMessage
+    TableSelectionPayload? Table = null, string? TextInput = null,
+    BrowserTextContextPayload? BrowserContext = null) : PackMessage
 {
     public override string Type => "execute";
 }
@@ -59,12 +61,13 @@ public sealed record PreviewResultMessage(
     IReadOnlyList<ActionParameterChoiceSet>? ParameterChoices = null) : PackMessage
 {
     public ImagePreviewData? ImagePreview { get; init; }
+    public DocumentPreviewData? DocumentPreview { get; init; }
     public override string Type => "previewResult";
     public static PreviewResultMessage FromPreview(Guid requestId, ActionPreview preview) => new(requestId,
         preview.RequiresConfirmation, preview.PreviewText, preview.ExpectedOutputs, preview.Warnings,
-        preview.IsBlocked, preview.RenameRows, preview.Confirmation, preview.ParameterChoices) { ImagePreview = preview.ImagePreview };
+        preview.IsBlocked, preview.RenameRows, preview.Confirmation, preview.ParameterChoices) { ImagePreview = preview.ImagePreview, DocumentPreview = preview.DocumentPreview };
     public ActionPreview ToPreview() => new(RequiresConfirmation, PreviewText, ExpectedOutputs, Warnings,
-        IsBlocked, RenameRows, Confirmation, ParameterChoices) { ImagePreview = ImagePreview };
+        IsBlocked, RenameRows, Confirmation, ParameterChoices) { ImagePreview = ImagePreview, DocumentPreview = DocumentPreview };
 }
 
 public sealed record ProgressMessage(

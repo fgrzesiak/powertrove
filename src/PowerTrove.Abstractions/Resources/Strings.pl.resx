@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>Dotyczy {0} z {1} elementów.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>Nowe pliki są tworzone obok oryginałów; oryginały nie są zmieniane.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>Plik już nie istnieje.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>Folder już nie istnieje.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>Treść nie jest obsługiwanym formatem {0}.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>Dostęp został zablokowany.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>Nie znaleziono wymaganego pliku.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>Nie znaleziono wymaganego folderu.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>Ścieżka jest zbyt długa.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Wystąpił błąd systemu plików.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Ta operacja nie jest obsługiwana.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>Przetwarzanie nieoczekiwanie zakończyło się niepowodzeniem.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>Zaznaczenie wygasło. Wybierz pliki ponownie.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>To nie jest zaznaczenie pliku.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>Brak obsługiwanego {0} w zaznaczeniu.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>Wybierz co najmniej {0} {1}.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>Wybierz co najwyżej {0} {1}.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Wybierz istniejący plik {0}.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Wybierz istniejący plik.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>Anulowano.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>Anulowano. Przed anulowaniem ukończono 1 wynik.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>Anulowano. Przed anulowaniem ukończono {0} wyników.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>Utworzono 1 wynik.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>Utworzono {0} wyników.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>Utworzono 1 wynik; 1 element zakończył się błędem.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>Utworzono 1 wynik; nieudane elementy: {1}.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>Utworzone wyniki: {0}; 1 element zakończył się błędem.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>Utworzone wyniki: {0}; nieudane elementy: {1}.</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>Nie utworzono żadnego pliku wyjściowego.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>Pominięto 1 nieobsługiwany element.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>Pominięto {0} nieobsługiwanych elementów.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 element nie wymagał zmian.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} elementów nie wymagało zmian.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>Utworzono 1 wynik. Zapisano {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>Utworzono {0} wyników. Zapisano {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>Utworzono 1 wynik. Wynik jest większy o {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>Utworzono {0} wyników. Wynik jest większy o {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Rozpoczęcie...</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>Przetwarzanie</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} element {1} z {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Gotowe.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>Wymagane jest co najmniej {0} prawidłowych {1}.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Praca...</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>Silnik przetwarzania nie wygenerował danych wyjściowych.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>Nie można zapisać danych wyjściowych pod dowolną nazwą.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>Folder wyjściowy jest niedostępny.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>Folder wyjściowy już nie istnieje.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Element nie wymaga zmian.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>Kontekst jest niedostępny.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Brak wymaganych możliwości.</value></data><data name="RequiresType" xml:space="preserve"><value>Wymaga {0}, ale aktualnie zaznaczone jest {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>Wybierz co najmniej {0} plik {1}.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>Wybierz co najmniej {0} plików {1}.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Wybierz tylko {0} plik {1}.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Wybierz tylko {0} plików {1}.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Usunąć pozostałe zaznaczone elementy.</value></data>  <data name="Summary_CanceledOutputs_Few" xml:space="preserve"><value>Anulowano. Przed anulowaniem ukończono {0} wyniki.</value></data>
+  <data name="Summary_Created_Few" xml:space="preserve"><value>Utworzono {0} wyniki.</value></data>
+  <data name="Summary_Skipped_Few" xml:space="preserve"><value>Pominięto {0} nieobsługiwane elementy.</value></data>
+  <data name="Summary_NeededNoChanges_Few" xml:space="preserve"><value>{0} elementy nie wymagały zmian.</value></data>
+  <data name="Summary_Saved_Few" xml:space="preserve"><value>Utworzono {0} wyniki. Zapisano {1} ({2} -&gt; {3}).</value></data>
+  <data name="Summary_Larger_Few" xml:space="preserve"><value>Utworzono {0} wyniki. Wynik jest większy o {1} ({2} -&gt; {3}).</value></data>
+  <data name="RequiresMinItems_Few" xml:space="preserve"><value>Wybierz co najmniej {0} pliki {1}.</value></data>
+  <data name="RequiresMaxItems_Few" xml:space="preserve"><value>Wybierz tylko {0} pliki {1}.</value></data>
+</root>

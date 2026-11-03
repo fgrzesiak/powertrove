@@ -18,6 +18,10 @@ Excel export requires a supported locally installed desktop Excel and a rectangu
 
 Core use works offline without an account. The optional Check for updates button contacts GitHub only when requested. For problems, use the issue link in the published repository and provide version, environment and reproduction steps without private filenames, selected contents or credentials.
 
+## Browser integration
+
+The desktop package includes the native browser host, but Chrome and Edge extensions are distributed separately (not as untrusted ZIP attachments in the installer). Install the official extension through the browser store when it is available, then use its **Connect to PowerTrove** button and confirm in PowerTrove. The signed **Text Tools** and **Browser Tools** packs can be selected during Setup or installed later in Settings. Without those packs, sending selected browser text may have no matching actions.
+
 ## Installer and removal
 
 The interactive installer lets you select tool packs, including when rerunning

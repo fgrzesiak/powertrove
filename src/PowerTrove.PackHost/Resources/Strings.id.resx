@@ -1,0 +1,6 @@
+<root>
+  <data name="Busy" xml:space="preserve"><value>Alat masih memproses permintaan.</value></data>
+  <data name="InvalidRequest" xml:space="preserve"><value>File atau permintaan yang dipilih sudah tidak tersedia.</value></data>
+  <data name="UnknownAction" xml:space="preserve"><value>Tindakan ini tidak tersedia dalam paket yang dipilih.</value></data>
+  <data name="Failed" xml:space="preserve"><value>Alat tidak dapat menyelesaikan permintaan.</value></data>
+</root>

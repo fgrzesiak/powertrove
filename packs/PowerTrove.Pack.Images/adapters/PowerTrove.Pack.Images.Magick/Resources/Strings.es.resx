@@ -1,0 +1,5 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>No se pudo decodificar la imagen.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>No se pudo codificar la imagen.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Formato de imagen no compatible.</value></data>
+</root>

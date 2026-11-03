@@ -7,6 +7,7 @@ public enum PackInstallState { Installed, NotInstalled, UpdateAvailable, Incompa
 public sealed record CatalogEntry(ManifestAction Action, ActionPackInfo Pack, PackInstallState State, long DownloadBytes, string? ManifestFingerprint = null)
 {
     public string? EnglishTitle { get; init; }
+    public IReadOnlyList<string>? EnglishSearchTerms { get; init; }
 }
 
 public interface IActionCatalog

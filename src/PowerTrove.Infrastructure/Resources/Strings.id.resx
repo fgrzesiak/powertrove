@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="OfficeMissingApplication" xml:space="preserve"><value>Aplikasi Microsoft Office yang dibutuhkan belum terinstal.</value></data>
+  <data name="OfficePasswordProtected" xml:space="preserve"><value>Dokumen dilindungi kata sandi.</value></data>
+  <data name="OfficeUnsafeMacros" xml:space="preserve"><value>Dokumen ini berisi makro atau konten rumus yang tidak dapat dibuka dengan aman untuk konversi.</value></data>
+  <data name="OfficeInvalidDocument" xml:space="preserve"><value>Format dokumen tidak valid, tidak didukung, atau melebihi batas konversi.</value></data>
+  <data name="OfficeBusy" xml:space="preserve"><value>Instansi Office terpisah tidak dapat diperoleh. Tutup aplikasi Office tersebut dan coba lagi.</value></data>
+  <data name="OfficeTimedOut" xml:space="preserve"><value>Konversi Office habis waktu. Tidak ada output yang disimpan.</value></data>
+  <data name="OfficeConversionFailed" xml:space="preserve"><value>Office tidak dapat mengkonversi dokumen ini. Tidak ada output yang disimpan.</value></data>
+  <data name="OfficePreferenceRestoreFailed" xml:space="preserve"><value>Preferensi sementara Word tidak dapat dipulihkan. Periksa pengaturan peringatan konversi PDF di Word.</value></data>
+  <data name="FileAccessDenied" xml:space="preserve"><value>Akses ditolak.</value></data>
+  <data name="FileReadFailed" xml:space="preserve"><value>File tidak dapat dibaca.</value></data>
+  <data name="FileFormatNotRecognized" xml:space="preserve"><value>Konten bukan format {0} yang dikenali.</value></data>
+  <data name="FileFormatMismatch" xml:space="preserve"><value>Konten tidak sesuai dengan format {0} yang didukung.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Gambar tidak dapat didekode.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Gambar tidak dapat dienkode.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Format gambar tidak didukung.</value></data>
+</root>

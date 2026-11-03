@@ -45,7 +45,7 @@ public sealed class EditPdfMetadataAction : PerFileAction<EditPdfMetadataOptions
     }
 
     protected override string DescribeOperation(int inputCount, EditPdfMetadataOptions options) =>
-        string.Format(SR.GetString("EditPdfMetadataAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_Copy"), SR.GetString("Pdf_Copies")));
+        string.Format(SR.GetString("EditPdfMetadataAction_Operation_Description"), SR.Noun(inputCount, "Pdf_Copy", "Pdf_Copies"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, EditPdfMetadataOptions options)
     {

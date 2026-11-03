@@ -1,0 +1,6 @@
+<root>
+  <data name="Busy" xml:space="preserve"><value>Narzędzie nadal przetwarza żądanie.</value></data>
+  <data name="InvalidRequest" xml:space="preserve"><value>Wybrane pliki lub żądanie nie są już dostępne.</value></data>
+  <data name="UnknownAction" xml:space="preserve"><value>Ta akcja nie jest dostępna w wybranym pakiecie.</value></data>
+  <data name="Failed" xml:space="preserve"><value>Narzędzie nie mogło zrealizować żądania.</value></data>
+</root>

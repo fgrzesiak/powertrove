@@ -3,6 +3,5 @@
   <ItemGroup>
     <ProjectReference Include="../../../../tools/FileKit.Pdf/src/FileKit.Pdf/FileKit.Pdf.csproj" />
     <ProjectReference Include="../../../../tools/FileKit.Tabular/src/FileKit.Tabular/FileKit.Tabular.csproj" />
-    <PackageReference Include="PdfPig" Version="0.1.16" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Browser</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>Salin pilihan browser</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>Salin pilihan sebagai kutipan Markdown</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>Salin tautan halaman sebagai Markdown</value></data>
+  <data name="Description" xml:space="preserve"><value>Memproses pilihan browser yang dikirim secara eksplisit dan menyalin hasilnya ke clipboard.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Pratinjau — jalankan untuk menyalin ke clipboard:</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Pilihan browser tidak tersedia atau kedaluwarsa.</value></data>
+  <data name="Done" xml:space="preserve"><value>Disalin ke papan klip.</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>Salin URL halaman</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>Salin tautan halaman sebagai HTML</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>Kutip pilihan beserta sumbernya</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>Salin artikel sebagai Markdown</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>Salin halaman web sebagai Markdown</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>Salin tautan halaman sebagai Markdown</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>Salin gambar halaman sebagai Markdown</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>Salin tabel HTML pertama sebagai CSV</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>Membaca tab browser yang diizinkan setelah konfirmasi dan menyalin hasil tanpa mengubah file.</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>Konten halaman hanya dibaca ketika tindakan ini dijalankan.</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>Konten halaman tidak tersedia. Halaman mungkin berubah, memerlukan izin, atau melebihi batas ukuran.</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>Simpan artikel sebagai Markdown</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>Simpan halaman web sebagai Markdown</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>Simpan tautan halaman sebagai Markdown</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>Simpan tautan halaman sebagai CSV</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>Simpan tabel HTML pertama sebagai CSV</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>Menyimpan data tab browser yang diizinkan ke file baru tanpa menimpa file yang sudah ada.</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>Tab saat ini hanya dibaca setelah konfirmasi, lalu disimpan sebagai file baru di Desktop.</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>Halaman browser diekspor ke file baru.</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>Simpan tampilan browser yang terlihat sebagai PNG</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>Simpan seluruh halaman browser sebagai PNG</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>Simpan halaman browser sebagai MHTML</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>Simpan halaman browser sebagai PDF (tanpa dialog cetak)</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>artikel</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>tautan</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>tabel</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>layar</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>halaman penuh</value></data>
+</root>

@@ -1,0 +1,6 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>画像をデコードできませんでした。</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>画像をエンコードできませんでした。</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>サポートされていない出力形式です。</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows イメージングではメタデータを保持できません。</value></data>
+</root>

@@ -2,7 +2,21 @@ namespace PowerTrove.Core.Activation;
 
 public abstract record ActivationMessage;
 public sealed record ActivatePaletteMessage : ActivationMessage;
+/// <summary>User-approved request to pair one Chrome/Edge extension with the native host.</summary>
+public sealed record BrowserPairingMessage(string Browser, string ExtensionId) : ActivationMessage;
+/// <summary>Explicit user-initiated browser table; no arbitrary file paths or commands.</summary>
+public sealed record BrowserTableMessage(string Url, string Title,
+    IReadOnlyList<IReadOnlyList<string>> Rows) : ActivationMessage
+{
+    public override string ToString() => "BrowserTableMessage { Redacted }";
+}
 public sealed record ExplicitSelectionMessage(IReadOnlyList<string> FilePaths, string? ActionId = null) : ActivationMessage;
+/// <summary>Explicit user-initiated browser selection; never a background clipboard capture.</summary>
+public sealed record BrowserSelectionMessage(string Text, string Url, string Title) : ActivationMessage
+{
+    // Never expose selected browser text or visited URLs in record diagnostics.
+    public sealed override string ToString() => "BrowserSelectionMessage { Redacted }";
+}
 
 public interface IHostElector : IDisposable
 {

@@ -25,6 +25,15 @@ public interface IOutputFileSystem
 
     /// <summary>Deletes a directory created by the action itself (recursive).</summary>
     void DeleteDirectory(string path);
+
+    /// <summary>
+    /// Opens a file that a selected document references, such as an image of a Markdown file. Only references that
+    /// <see cref="CompanionResources.TryResolve"/> accepts are readable, never a folder, reparse point or network
+    /// file. Throws <see cref="UnauthorizedAccessException"/> when the host does not grant the read (hosts before
+    /// PowerTrove 0.4.0 grant none) and <see cref="FileNotFoundException"/> when the file does not exist.
+    /// </summary>
+    Stream OpenCompanionRead(string documentPath, string reference) =>
+        throw new UnauthorizedAccessException("This host does not grant reads of referenced files.");
 }
 
 /// <summary>Optional physical output mapping for isolated engines that require a path instead of a stream.</summary>
@@ -54,4 +63,19 @@ public sealed class PhysicalOutputFileSystem : IOutputFileSystem
     }
 
     public void DeleteDirectory(string path) => Directory.Delete(path, recursive: true);
+
+    public Stream OpenCompanionRead(string documentPath, string reference)
+    {
+        if (!File.Exists(documentPath) || !CompanionResources.TryResolve(documentPath, reference, out var path))
+            throw new UnauthorizedAccessException("The reference is outside the document's folder.");
+        string folder = Path.GetDirectoryName(Path.GetFullPath(documentPath))!;
+        for (string? current = path; current is not null && current.Length > folder.Length; current = Path.GetDirectoryName(current))
+        {
+            if (!File.Exists(current) && !Directory.Exists(current)) throw new FileNotFoundException("The referenced file does not exist.");
+            const FileAttributes rejected = FileAttributes.ReparsePoint | FileAttributes.Offline | (FileAttributes)0x40000 | (FileAttributes)0x400000;
+            if ((File.GetAttributes(current) & rejected) != 0) throw new UnauthorizedAccessException("Linked or offline files are not read.");
+        }
+        if (!File.Exists(path)) throw new FileNotFoundException("The referenced file does not exist.");
+        return OpenRead(path);
+    }
 }

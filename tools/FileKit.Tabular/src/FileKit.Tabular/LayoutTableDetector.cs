@@ -4,7 +4,9 @@ public sealed class TableLayoutException(string message) : Exception(message);
 public sealed record PositionedWord(string Text, double Left, double Bottom, double Right, double Top);
 public sealed record TableRule(double X1, double Y1, double X2, double Y2);
 public sealed record PositionedPage(int Number, IReadOnlyList<PositionedWord> Words, IReadOnlyList<TableRule> Rules);
-public sealed record DetectedTable(int Page, IReadOnlyList<IReadOnlyList<string>> Rows, bool Inferred, double Top = 0);
+/// <summary>A table found on a page; <see cref="Left"/>, <see cref="Bottom"/>, <see cref="Right"/> and <see cref="Top"/> bound it.</summary>
+public sealed record DetectedTable(int Page, IReadOnlyList<IReadOnlyList<string>> Rows, bool Inferred, double Top = 0,
+    double Left = 0, double Bottom = 0, double Right = 0);
 
 /// <summary>Conservative rectangular grid/whitespace table detection, independent of PDF parsing.</summary>
 public static class LayoutTableDetector
@@ -62,7 +64,7 @@ public static class LayoutTableDetector
                     rows.Add(cells.AsReadOnly());
                 }
                 if (inside.Any(w => !consumed.Contains(w))) throw new TableLayoutException("Ambiguous table boundary text.");
-                tables.Add(new(page.Number, rows.AsReadOnly(), false, top));
+                tables.Add(new(page.Number, rows.AsReadOnly(), false, top, left, bottom, right));
             }
         }
         if (inferUnruled)
@@ -88,7 +90,8 @@ public static class LayoutTableDetector
                     if ((!left && !right) || data.Any(c => c.Count > 8 || string.Join(' ', c.Select(w => w.Text)).Length > 100)) throw new TableLayoutException("Ambiguous unruled table alignment.");
                 }
                 var rows = block.Select(row => (IReadOnlyList<string>)row.Select(c => CheckText(string.Join(' ', c.Select(w => w.Text)))).ToArray()).ToArray();
-                tables.Add(new(page.Number, rows, true, block[0].SelectMany(c => c).Max(w => w.Top)));
+                var all = block.SelectMany(row => row.SelectMany(c => c)).ToArray();
+                tables.Add(new(page.Number, rows, true, all.Max(w => w.Top), all.Min(w => w.Left), all.Min(w => w.Bottom), all.Max(w => w.Right)));
             }
         }
         if (tables.Count > 128) throw new TableLayoutException("Too many tables on the page.");

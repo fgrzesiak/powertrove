@@ -1,11 +1,11 @@
 #requires -Version 7.0
 <#
 .SYNOPSIS
-Publishes supported first-party file packs and creates signed owner-channel bundles.
+Publishes supported first-party file and explicit-text packs and creates signed owner-channel bundles.
 .DESCRIPTION
 Requires Windows, .NET 10 SDK, and a PEM P-256 private key outside the repository.
 DryRun never writes signatures or installable .cbpack files.
-The Tables composition is intentionally excluded: worker protocol v1 rejects table inputs.
+The Tables composition is intentionally excluded here; table inputs need separate adapter support.
 #>
 [CmdletBinding()]
 param(
@@ -13,7 +13,7 @@ param(
     [string]$SigningKeyPath = $env:POWERTROVE_PACK_SIGNING_KEY_FILE,
     [version]$MinimumHostVersion = '0.1.0',
     [switch]$DryRun,
-    [string[]]$Packs = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office')
+    [string[]]$Packs = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office', 'Text', 'Browser')
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -23,7 +23,7 @@ $output = [IO.Path]::GetFullPath($OutputDirectory)
 if (-not $DryRun -and [string]::IsNullOrWhiteSpace($SigningKeyPath)) {
     throw 'SigningKeyPath or POWERTROVE_PACK_SIGNING_KEY_FILE is required.'
 }
-$allowed = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office')
+$allowed = @('Files', 'Images', 'Pdf', 'Media', 'Data', 'Office', 'Text', 'Browser')
 foreach ($pack in $Packs) {
     if ($pack -cnotin $allowed) { throw "Unsupported or unsafe worker-v1 pack: $pack" }
 }

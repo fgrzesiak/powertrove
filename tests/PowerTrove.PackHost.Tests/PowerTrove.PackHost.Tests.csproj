@@ -12,8 +12,11 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
     <ProjectReference Include="..\..\src\PowerTrove.PackHost\PowerTrove.PackHost.csproj" />
     <ProjectReference Include="..\PowerTrove.PackHost.TestPack\PowerTrove.PackHost.TestPack.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Text\composition\PowerTrove.Pack.Text.Composition\PowerTrove.Pack.Text.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Browser\composition\PowerTrove.Pack.Browser.Composition\PowerTrove.Pack.Browser.Composition.csproj" />
     <ProjectReference Include="..\..\src\PowerTrove.Abstractions.Testing\PowerTrove.Abstractions.Testing.csproj" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Markdown\composition\PowerTrove.Pack.Markdown.Composition\PowerTrove.Pack.Markdown.Composition.csproj" />
     <Using Include="Xunit" />
     <Using Include="PowerTrove.Abstractions" />
     <Using Include="PowerTrove.Abstractions.Files" />

@@ -93,6 +93,19 @@ public sealed class StagingOutputFileSystem : IOutputFileSystem, IOutputPathMapp
         RequireRead(canonical);
         return _physical.OpenRead(canonical);
     }
+    /// <summary>A file in a selected document's folder tree, read-only; never staging or another document's folder.</summary>
+    public Stream OpenCompanionRead(string documentPath, string reference)
+    {
+        string document = Canonical(documentPath);
+        if (!_selection.Files.Any(f => !f.IsDirectory && Canonical(f.Path).Equals(document, StringComparison.OrdinalIgnoreCase))
+            || !CompanionResources.TryResolve(document, reference, out string resolved))
+            throw new UnauthorizedAccessException("Read is outside the selected document's folder.");
+        string path = Canonical(resolved);
+        if (IsStaged(path)) throw new UnauthorizedAccessException("Read is outside the selected document's folder.");
+        RejectReparseAncestors(path);
+        if (!File.Exists(path)) throw new FileNotFoundException("The referenced file does not exist.");
+        return _physical.OpenRead(path);
+    }
     public long GetFileLength(string path)
     {
         string canonical = Canonical(path);

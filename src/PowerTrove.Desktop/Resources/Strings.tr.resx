@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MainWindowTitle" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StatusReady" xml:space="preserve"><value>Hazır</value></data>
+  <data name="UseClipboardText" xml:space="preserve"><value>Metin Yapıştır</value></data>
+  <data name="UseClipboardTooltip" xml:space="preserve"><value>Bir metin giriş alanı açın, ardından metin araçları için metni yapıştırın veya yazın</value></data>
+  <data name="ClipboardTooLarge" xml:space="preserve"><value>Metin 65.536 karakter sınırını aşıyor veya desteklenmeyen karakterler içeriyor.</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Arama işlemleri…</value></data>
+  <data name="SearchAutomationName" xml:space="preserve"><value>Arama işlemleri</value></data>
+  <data name="SearchRetry" xml:space="preserve"><value>Tekrar Dene</value></data>
+  <data name="SearchRetryAutomationName" xml:space="preserve"><value>Aramayı tekrar dene</value></data>
+  <data name="ActionListAutomationName" xml:space="preserve"><value>Mevcut işlemler</value></data>
+  <data name="ExecutionPressEscToCancel" xml:space="preserve"><value>İptal etmek için Esc tuşuna basın</value></data>
+  <data name="CancelQuestion" xml:space="preserve"><value>Bu işlemi iptal etmek ister misiniz?</value></data>
+  <data name="CancelContinueRunning" xml:space="preserve"><value>Çalıştırmaya Devam Et</value></data>
+  <data name="CancelOperation" xml:space="preserve"><value>İşlemi iptal et</value></data>
+  <data name="ResultShowInExplorer" xml:space="preserve"><value>Dosya Gezgini&apos;nde göster</value></data>
+  <data name="ResultOpen" xml:space="preserve"><value>Aç</value></data>
+  <data name="ResultDone" xml:space="preserve"><value>Tamamlandı</value></data>
+  <data name="FirstRunTitle" xml:space="preserve"><value>PowerTrove&apos;a hoş geldiniz</value></data>
+  <data name="FirstRunShortcut" xml:space="preserve"><value>İstediğiniz zaman kısayolunuza (varsayılan olarak Alt+Boşluk) basın.</value></data>
+  <data name="FirstRunContext" xml:space="preserve"><value>PowerTrove, mevcut bağlamınızı (dosyalar, Excel ve daha fazlası) çevrimdışı olarak algılar. Mevcut uygulama desteklenmiyorsa, genel işlemler gösterilir.</value></data>
+  <data name="FirstRunOutputs" xml:space="preserve"><value>Dosyalarınız güvende: işlemler orijinal dosyaların üzerine yazmak yerine yeni dosyalar oluşturur.</value></data>
+  <data name="FirstRunPrivacy" xml:space="preserve"><value>Dosya işleme bilgisayarınızda kalır. Araç paketlerinin yüklenmesi indirme gerektirir; yüklenen araçlar çevrimdışı çalışır. Bulut hesabı gerekmez.</value></data>
+  <data name="FirstRunGetStarted" xml:space="preserve"><value>Başlayın</value></data>
+  <data name="FirstRunGetStartedAutomationName" xml:space="preserve"><value>PowerTrove ile başlayın</value></data>
+  <data name="HotkeyConflict" xml:space="preserve"><value>Kısayol zaten başka bir uygulama tarafından kullanılıyor.</value></data>
+  <data name="HotkeyRegistrationFailed" xml:space="preserve"><value>Genel kısayol kaydedilemedi.</value></data>
+  <data name="SettingsWindowTitle" xml:space="preserve"><value>PowerTrove Ayarları</value></data>
+  <data name="SettingsHeading" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="SettingsReadOnlyWarning" xml:space="preserve"><value>Ayarlar dosyası PowerTrove&apos;un daha yeni bir sürümünden. Değişiklikler bu oturumda kaydedilemez.</value></data>
+  <data name="SettingsLanguage" xml:space="preserve"><value>Dil</value></data>
+  <data name="SettingsLanguageSystem" xml:space="preserve"><value>Windows varsayılanı</value></data>
+  <data name="SettingsLanguageEnglish" xml:space="preserve"><value>İngilizce</value></data>
+  <data name="SettingsLanguageGerman" xml:space="preserve"><value>Almanca</value></data>
+  <data name="SettingsLanguageRestart" xml:space="preserve"><value>Yeni dili uygulamak için PowerTrove&apos;u yeniden başlatın.</value></data>
+  <data name="SettingsGlobalShortcut" xml:space="preserve"><value>Küresel kısayol</value></data>
+  <data name="SettingsShortcutPlaceholder" xml:space="preserve"><value>Bir tuş kombinasyonuna basın…</value></data>
+  <data name="SettingsResetShortcut" xml:space="preserve"><value>Sıfırlama kısayolu</value></data>
+  <data name="SettingsShortcutNeedsModifier" xml:space="preserve"><value>Bir değiştirici tuş ekle (Ctrl, Alt, Shift veya Win).</value></data>
+  <data name="SettingsPinnedActions" xml:space="preserve"><value>Sabitlenmiş Eylemler</value></data>
+  <data name="SettingsUnpinPlaceholder" xml:space="preserve"><value>Sabitlemeyi kaldırmak için işlem kimliğini girin…</value></data>
+  <data name="SettingsUnpinAction" xml:space="preserve"><value>Sabitlemeyi kaldır</value></data>
+  <data name="SettingsUnpinDone" xml:space="preserve"><value>Eylem sabitlenmedi.</value></data>
+  <data name="SettingsOutputDefaults" xml:space="preserve"><value>Çıktı varsayılanları</value></data>
+  <data name="SettingsOutputDefaultsText" xml:space="preserve"><value>PowerTrove orijinal dosyalarınızı korur. İşlemler yeni dosyalar oluşturur ve ad çakışmalarını otomatik olarak çözer.</value></data>
+  <data name="SettingsRanking" xml:space="preserve"><value>Sıralama</value></data>
+  <data name="SettingsClearRecent" xml:space="preserve"><value>Son işlemleri temizle</value></data>
+  <data name="SettingsRecentCleared" xml:space="preserve"><value>Son işlemler temizlendi.</value></data>
+  <data name="SettingsClearSuggestions" xml:space="preserve"><value>Öneri geçmişini temizle</value></data>
+  <data name="SettingsSuggestionsPrivacy" xml:space="preserve"><value>Öneriler için yalnızca seçim türleri ve sayıları saklanır.</value></data>
+  <data name="SettingsClearSuggestionsTitle" xml:space="preserve"><value>Öneri geçmişini temizle?</value></data>
+  <data name="SettingsClearSuggestionsText" xml:space="preserve"><value>Bu, her seçim türü için kullanılan işlemlerin yerel geçmişini temizler.</value></data>
+  <data name="SettingsSuggestionsCleared" xml:space="preserve"><value>Öneri geçmişi temizlendi.</value></data>
+  <data name="SettingsResetDefaults" xml:space="preserve"><value>Varsayılan ayarlara sıfırla</value></data>
+  <data name="SettingsResetDone" xml:space="preserve"><value>Ayarlar varsayılan değerlere sıfırlanır.</value></data>
+  <data name="CommonClear" xml:space="preserve"><value>Temizle</value></data>
+  <data name="CommonCancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="CommonClose" xml:space="preserve"><value>Kapat</value></data>
+  <data name="CommonBack" xml:space="preserve"><value>Geri</value></data>
+  <data name="ColorPickFromScreen" xml:space="preserve"><value>Ekrandan veya önizlemeden bir renk seçin</value></data>
+  <data name="ColorHex" xml:space="preserve"><value>Onaltılık (Hex)</value></data>
+  <data name="OptionsRemember" xml:space="preserve"><value>Bu seçenekleri hatırla</value></data>
+  <data name="OptionsRun" xml:space="preserve"><value>Çalıştır</value></data>
+  <data name="OptionsChecking" xml:space="preserve"><value>Seçim kontrol ediliyor…</value></data>
+  <data name="OptionsSelectionGone" xml:space="preserve"><value>Seçim artık kullanılamıyor.</value></data>
+  <data name="OptionsOneOutput" xml:space="preserve"><value>Yeni bir öğe oluşturulacaktır.</value></data>
+  <data name="OptionsManyOutputs" xml:space="preserve"><value>{0} yeni öğe oluşturulacak.</value></data>
+  <data name="OptionsPathPlaceholder" xml:space="preserve"><value>Dosya Yolu</value></data>
+  <data name="OptionsBrowse" xml:space="preserve"><value>Gözat…</value></data>
+  <data name="SettingsTooltip" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="LegendRun" xml:space="preserve"><value>Çalıştır</value></data>
+  <data name="LegendSelect" xml:space="preserve"><value>Seç</value></data>
+  <data name="LegendClose" xml:space="preserve"><value>Kapat</value></data>
+  <data name="KeySettings" xml:space="preserve"><value>Ctrl+,</value></data>
+  <data name="KeyEsc" xml:space="preserve"><value>Esc</value></data>
+  <data name="TrayTooltip" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="TrayOpen" xml:space="preserve"><value>PowerTrove&apos;u aç</value></data>
+  <data name="TraySettings" xml:space="preserve"><value>Ayarlar</value></data>
+  <data name="TrayExit" xml:space="preserve"><value>Çıkış</value></data>
+  <data name="SettingsGeneral" xml:space="preserve"><value>Genel</value></data>
+  <data name="SettingsLanguageDescription" xml:space="preserve"><value>PowerTrove arayüzünün dili.</value></data>
+  <data name="SettingsShortcutDescription" xml:space="preserve"><value>Herhangi bir uygulamadan paleti açar.</value></data>
+  <data name="SettingsSuggestions" xml:space="preserve"><value>Öneriler</value></data>
+  <data name="SettingsPinnedDescription" xml:space="preserve"><value>Sabitlenmiş eylemler ilk önce görünür. Sabitlemeyi kaldırmak için bir eylem kimliği girin.</value></data>
+  <data name="SettingsFiles" xml:space="preserve"><value>Dosyalar</value></data>
+  <data name="SettingsAbout" xml:space="preserve"><value>Hakkında</value></data>
+  <data name="SettingsAboutText" xml:space="preserve"><value>PowerTrove tamamen çevrimdışı çalışır. Dosyalarınız ve seçimleriniz asla bu bilgisayardan ayrılmaz.</value></data>
+  <data name="OrganizerTitle" xml:space="preserve"><value>Sayfaları düzenle</value></data>
+  <data name="OrganizerOpenVisual" xml:space="preserve"><value>Sayfaları görsel olarak düzenle…</value></data>
+  <data name="OrganizerRotateLeft" xml:space="preserve"><value>Sola Döndür</value></data>
+  <data name="OrganizerRotateRight" xml:space="preserve"><value>Sağa Döndür</value></data>
+  <data name="OrganizerRemove" xml:space="preserve"><value>Kaldır</value></data>
+  <data name="OrganizerSelectAll" xml:space="preserve"><value>Tümünü seç</value></data>
+  <data name="OrganizerReset" xml:space="preserve"><value>Sıfırla</value></data>
+  <data name="OrganizerZoom" xml:space="preserve"><value>Küçük resim boyutu</value></data>
+  <data name="OrganizerHint" xml:space="preserve"><value>Sayfaları yeniden sıralamak için sürükleyin. Ctrl veya Shift birden fazla sayfayı seçer.</value></data>
+  <data name="OrganizerPageLabel" xml:space="preserve"><value>Sayfa {0}</value></data>
+  <data name="OrganizerPageCount" xml:space="preserve"><value>{0} sayfa</value></data>
+  <data name="OrganizerSave" xml:space="preserve"><value>Yeni PDF olarak kaydet</value></data>
+  <data name="OrganizerSaved" xml:space="preserve"><value>Yeni PDF oluşturuldu. Orijinal dosyalarda değişiklik yapılmadı.</value></data>
+  <data name="OrganizerSaveFailed" xml:space="preserve"><value>Yeni PDF oluşturulamadı.</value></data>
+  <data name="OrganizerProtected" xml:space="preserve"><value>Bu PDF parola korumalıdır. Önce &quot;PDF Kilidini Aç&quot; seçeneğiyle kilidini açın.</value></data>
+  <data name="OrganizerOpenFailed" xml:space="preserve"><value>PDF açılamadı.</value></data>
+  <data name="OrganizerTooLarge" xml:space="preserve"><value>Gösterilecek çok fazla sayfa (en fazla {0}).</value></data>
+  <data name="NoMatchingActions" xml:space="preserve"><value>Eşleşen işlem bulunamadı. Başka bir arama deneyin.</value></data>
+  <data name="UnavailableFilterLabel" xml:space="preserve"><value>Kullanılamaz ({0})</value></data>
+  <data name="GroupActionsOne" xml:space="preserve"><value>{0}, {1} eylem</value></data>
+  <data name="GroupActionsOther" xml:space="preserve"><value>{0}, {1} eylemler</value></data>
+  <data name="ResultUndo" xml:space="preserve"><value>Geri Al</value></data>
+  <data name="RenameOldName" xml:space="preserve"><value>Geçerli Ad</value></data>
+  <data name="RenameNewName" xml:space="preserve"><value>Yeni ad</value></data>
+  <data name="UpdatesHeading" xml:space="preserve"><value>Güncellemeler</value></data>
+  <data name="UpdatesPrivacy" xml:space="preserve"><value>PowerTrove, başlangıçta GitHub&apos;da yeni sürümleri kontrol eder. Bunu yukarıdan kapatabilirsiniz. GitHub, seçilen içeriği değil, sıradan bağlantı meta verilerini alır. Güncelleme artık yükleyiciyi indirir, SHA-256 özetini doğrular ve güncelleme için PowerTrove&apos;u kapatır, ardından yeniden başlatır. ZIP derlemeleri için geçerli klasör kayıtlı bir kurulum haline gelir. Windows güvenlik uyarıları etkin kalır.</value></data>
+  <data name="UpdatesCheck" xml:space="preserve"><value>Güncellemeleri kontrol et</value></data>
+  <data name="UpdatesOpenPage" xml:space="preserve"><value>Sürüm sayfasını aç</value></data>
+<data name="RecipePackTitle" xml:space="preserve"><value>Tarifler</value></data>
+<data name="RecipeImagesForEmailTitle" xml:space="preserve"><value>E-posta için görselleri hazırlayın</value></data>
+<data name="RecipeImagesForEmailDescription" xml:space="preserve"><value>Görüntüleri maksimum 1600 piksele boyutlandırır, %75 kaliteye sıkıştırır ve sonucu zip dosyasına dönüştürür.</value></data>
+<data name="RecipeMixedForEmailTitle" xml:space="preserve"><value>E-posta için Hazırlık</value></data>
+<data name="RecipeMixedForEmailDescription" xml:space="preserve"><value>Görüntüleri maksimum 1600 piksele boyutlandırır, PDF&apos;leri sıkıştırır ve sonucu zip dosyasına dönüştürür.</value></data>
+  <data name="ActivationRejected" xml:space="preserve"><value>Seçilen dosyalar açılamadı. Mevcut yerel dosyaları kullanın ve tekrar deneyin.</value></data>
+  <data name="ExplorerHeading" xml:space="preserve"><value>Dosya Gezgini</value></data>
+  <data name="ExplorerDescription" xml:space="preserve"><value>Tek bir yerel dosya için “PowerTrove&apos;da Aç” ekle. Windows 11&apos;de, “Daha fazla seçenek göster” altında arayın. Birden fazla dosya için genel kısayolu kullanın.</value></data>
+  <data name="ExplorerAdd" xml:space="preserve"><value>Menü girişi ekle veya güncelle</value></data>
+  <data name="ExplorerRemove" xml:space="preserve"><value>Menü girişini kaldır</value></data>
+  <data name="ExplorerMenuLabel" xml:space="preserve"><value>PowerTrove&apos;da aç</value></data>
+  <data name="ExplorerRegistered" xml:space="preserve"><value>Menü girişi bu PowerTrove kopyası için kayıtlı.</value></data>
+  <data name="ExplorerAbsent" xml:space="preserve"><value>Menü girişi kayıtlı değil.</value></data>
+  <data name="ExplorerIncomplete" xml:space="preserve"><value>Giriş eksik. Tekrar ekleyin veya kaldırın.</value></data>
+  <data name="ExplorerConflict" xml:space="preserve"><value>Mevcut giriş başka bir uygulama kopyasına ait veya beklenmedik ayarlara sahip. Değiştirilmeden bırakıldı.</value></data>
+  <data name="ExplorerUnavailable" xml:space="preserve"><value>Menü girişi okunamadı veya değiştirilemedi. Erişim ve uygulama konumunu kontrol edin.</value></data>
+  <data name="PacksHeading" xml:space="preserve"><value>Eylem paketleri</value></data>
+  <data name="PacksLocalDescription" xml:space="preserve"><value>Yerel bir .cbpack dosyasından imzalı bir PowerTrove paketini kurun.</value></data>
+  <data name="PacksInstallFromFile" xml:space="preserve"><value>Dosyadan paket yükle…</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>Paket doğrulanıyor ve yükleniyor…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>Paket yüklendi. Paleti bir sonraki açışınızda işlemleri kullanılabilir olacaktır.</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>Paket kurulumu iptal edildi.</value></data>
+  <data name="PacksInstallFailed" xml:space="preserve"><value>Paket doğrulanamadı veya etkinleştirilemedi. Mevcut araçlar kullanılabilir durumda.</value></data>
+  <data name="PacksPrivacy" xml:space="preserve"><value>Yüklenenler için otomatik kontroller Paketler başlangıçta ve her altı saatte bir çalıştırılır. PowerTrove, kurulu paket listenizi veya seçili içeriği göndermeden imzalı GitHub kataloğunu alır. Bu kontrolleri aşağıdan kapatabilirsiniz. Bu bölümü açmak ayrıca güncellemeleri de kontrol eder. İndirmeler ve kurulum için onayınız gereklidir.</value></data>
+  <data name="PacksShowMissing" xml:space="preserve"><value>Yüklenmemiş paketlerin eylemlerini göster</value></data>
+  <data name="PacksRefresh" xml:space="preserve"><value>Kataloğu Yenile</value></data>
+  <data name="PacksUninstall" xml:space="preserve"><value>Kaldır</value></data>
+  <data name="PacksBundled" xml:space="preserve"><value>Uygulamaya dahildir</value></data>
+  <data name="PackDownloadConsent" xml:space="preserve"><value>{0} ({1}) dosyasını {2} adresinden indirip kurun mu?</value></data>
+  <data name="PackUpdateAllConsentOne" xml:space="preserve"><value>{0} ({1}) için güncellemeyi {2} adresinden indirip yüklemek ister misiniz?</value></data>
+  <data name="PackUpdateAllConsentOther" xml:space="preserve"><value>{0} paket güncellemelerini ({1}) {2} adresinden indirip yüklemek ister misiniz?</value></data>
+  <data name="PacksUpdateAllTitle" xml:space="preserve"><value>Paketleri Güncelle</value></data>
+  <data name="PackRemoveConsent" xml:space="preserve"><value>{0} öğesini kaldır? İndirilen sürümleri silinecektir. Paket halindeki araçlar kullanılabilir durumda kalır.</value></data>
+  <data name="PackRemoveConsentNoBundled" xml:space="preserve"><value>{0} öğesini kaldır? Paketi tekrar yükleyene kadar bu işlemler kullanılamaz. Dosyalarınız ve ayarlarınız değişmeden kalır.</value></data>
+  <data name="PackRolledBack" xml:space="preserve"><value>Bir paket güncellemesi başlatılamadı. PowerTrove önceki sürümü geri yükledi.</value></data>
+  <data name="PackInstallAndRun" xml:space="preserve"><value>Kur ve devam et</value></data>
+  <data name="PackSelectAgain" xml:space="preserve"><value>Dosyaları tekrar seçin.</value></data>
+  <data name="PackNeedsInstall" xml:space="preserve"><value>{0} yüklü değil</value></data>
+  <data name="PackNameVersion" xml:space="preserve"><value>{0}, sürüm {1}</value></data>
+  <data name="SeparateProcessTitle" xml:space="preserve"><value>Dosya araçlarını ayrı bir işlemde çalıştır</value></data>
+  <data name="SeparateProcessDescription" xml:space="preserve"><value>PDF, resim ve medya araçlarını ana pencereden ayırın. Yeniden başlatma gerektirir.</value></data>
+  <data name="SeparateProcessRestart" xml:space="preserve"><value>Bu ayarı uygulamak için PowerTrove&apos;u yeniden başlatın.</value></data>
+  <data name="StartupTitle" xml:space="preserve"><value>Oturum açtığımda PowerTrove&apos;u başlat</value></data>
+  <data name="StartupDescription" xml:space="preserve"><value>PowerTrove, kısayolun hemen çalışması için bildirim alanında bekler. Kısayola basana kadar hiçbir şey okumaz.</value></data>
+  <data name="StartupDisabledByWindows" xml:space="preserve"><value>Windows bunu Ayarlar &gt; Uygulamalar &gt; Başlangıç ​​altında kapattı. Oturum açtığınızda tekrar başlatmak için PowerTrove&apos;u orada açın.</value></data>
+  <data name="StartupConflict" xml:space="preserve"><value>Oturum açtığınızda başka bir PowerTrove kopyası zaten başlatılıyor. Girişi değiştirilmeden bırakıldı.</value></data>
+  <data name="StartupUnavailable" xml:space="preserve"><value>Başlangıç ​​girdisi okunamadı veya değiştirilemedi. Erişim ve uygulama konumunu kontrol edin.</value></data>
+  <data name="IsolationUnavailable" xml:space="preserve"><value>Ayrılan dosya araçları kullanılamıyor. Yüklenen paket dosyalarını doğrulayın ve yeniden başlatın.</value></data>
+  <data name="SettingsNotices" xml:space="preserve"><value>Üçüncü taraf lisanslarını ve bildirimlerini göster</value></data>
+  <data name="SettingsNoticesUnavailable" xml:space="preserve"><value>Bildirim dosyaları açılamadı. Yüklü uygulama dosyalarını doğrulayın.</value></data>
+  <data name="OptionsSelectAll" xml:space="preserve"><value>Tümünü Kullan</value></data>
+  <data name="OptionsSelectNone" xml:space="preserve"><value>Seçimi temizle</value></data>
+  <data name="OptionsSelectionAdjusted" xml:space="preserve"><value>Kullanılabilir alanlar değişti. Lütfen seçiminizi kontrol edin.</value></data>
+  <data name="OptionsSelectionTooLarge" xml:space="preserve"><value>Lütfen bu dışa aktarma için daha az alan seçin.</value></data>
+  <data name="OptionsMoveUp" xml:space="preserve"><value>Yukarı taşı</value></data>
+  <data name="OptionsDragToReorder" xml:space="preserve"><value>Sıralamayı değiştirmek için sürükleyin</value></data>
+  <data name="OptionsMoveDown" xml:space="preserve"><value>Aşağı taşı</value></data>
+  <data name="MediaTrimTitle" xml:space="preserve"><value>Ses veya video kırp</value></data>
+  <data name="MediaTrimOpenVisual" xml:space="preserve"><value>Görsel olarak kırp…</value></data>
+  <data name="MediaTrimAudioPreview" xml:space="preserve"><value>Ses önizlemesi</value></data>
+  <data name="MediaTrimLoading" xml:space="preserve"><value>Yerel önizleme açılıyor…</value></data>
+  <data name="MediaTrimPosition" xml:space="preserve"><value>Oynatma konumu</value></data>
+  <data name="MediaTrimPositionValue" xml:space="preserve"><value>Konum: {0}</value></data>
+  <data name="MediaTrimDuration" xml:space="preserve"><value>Dosya süresi: {0}</value></data>
+  <data name="MediaTrimStart" xml:space="preserve"><value>Seçimin başlangıcı</value></data>
+  <data name="MediaTrimEnd" xml:space="preserve"><value>Seçimin sonu</value></data>
+  <data name="MediaTrimSeconds" xml:space="preserve"><value>Saniye</value></data>
+  <data name="MediaTrimPlay" xml:space="preserve"><value>Oynatma seçimi</value></data>
+  <data name="MediaTrimPause" xml:space="preserve"><value>Duraklat</value></data>
+  <data name="MediaTrimSetStart" xml:space="preserve"><value>Başlangıç ​​noktasını buraya ayarlayın</value></data>
+  <data name="MediaTrimSetEnd" xml:space="preserve"><value>Bitiş noktasını buraya ayarlayın</value></data>
+  <data name="MediaTrimVolume" xml:space="preserve"><value>Önizleme hacmi</value></data>
+  <data name="MediaTrimPrecise" xml:space="preserve"><value>Doğru Kes (daha uzun sürebilir)</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Doğru kesim yapılmadığı takdirde, kaydedilen başlangıç ​​ve bitiş noktaları biraz farklılık gösterebilir. Önizleme hacmi dışa aktarılan dosyayı değiştirmez.</value></data>
+  <data name="MediaTrimSaveHint" xml:space="preserve"><value>Yalnızca vurgulanan bölüm korunur. Onaylama, kırpma işlemiyle yeni bir dosya oluşturur; orijinal dosyanız değişmeden kalır.</value></data>
+  <data name="MediaTrimApply" xml:space="preserve"><value>Seçimi kırp</value></data>
+  <data name="MediaTrimBack" xml:space="preserve"><value>Zaman ayarlarına geri dön</value></data>
+  <data name="MediaTrimSelection" xml:space="preserve"><value>Seçim: {0} – {1} · Uzunluk: {2}</value></data>
+  <data name="MediaTrimPreviewFailed" xml:space="preserve"><value>Windows bu dosyayı önizleyemez. Mevcut dönüştürme motorunu kullanmak için zaman ayarlarına geri dönün.</value></data>
+  <data name="MediaTrimRangeAdjusted" xml:space="preserve"><value>Zaman ayarları bu dosyaya uymadı. Tam aralık seçildi; lütfen bölümü tekrar seçin.</value></data>
+  <data name="MediaTrimReady" xml:space="preserve"><value>Vurgulanan bölümü yeni bir dosya olarak kaydetmeye hazır.</value></data>
+  <data name="MediaTrimNeedsConfirmation" xml:space="preserve"><value>Ek onayı incelemek için zaman ayarlarına geri dönün.</value></data>
+  <data name="UpdatesInstall" xml:space="preserve"><value>Şimdi Güncelle</value></data>
+  <data name="UpdatesLater" xml:space="preserve"><value>Sonra</value></data>
+  <data name="UpdatesCancel" xml:space="preserve"><value>İndirmeyi iptal et</value></data>
+  <data name="UpdatesStartup" xml:space="preserve"><value>Başlangıçta güncellemeleri kontrol et</value></data>
+  <data name="ContextPackDismiss" xml:space="preserve"><value>Kapat</value></data>
+  <data name="Installer_ToolsTitle" xml:space="preserve"><value>Araçlarınızı seçin</value></data>
+  <data name="Installer_ToolsSubtitle" xml:space="preserve"><value>PowerTrove hangi araçları yüklemeli?</value></data>
+  <data name="Installer_ToolsDescriptionFresh" xml:space="preserve"><value>Kurulum, seçilen araçları resmi imzalı kanaldan indirir ve bitirmeden önce doğrular. İndirme işlemi mümkün değilse, PowerTrove bir sonraki başlatmada tekrar dener. Araçları istediğiniz zaman Ayarlar&apos;da yönetebilirsiniz.</value></data>
+  <data name="Installer_ToolsDescriptionExisting" xml:space="preserve"><value>Yüklenen araçlar önceden seçilir ve en yeni sürümlerine güncellenir. Kurulum tamamlanmadan önce indirmek ve doğrulamak için ek araçlar seçin. Bir aracın işaretini kaldırmak onu kaldırmaz; araçları kaldırmak için Ayarlar&apos;ı kullanın. Kullanılamayan indirmeler, uygulamanın bir sonraki başlatılışında yeniden denenir.</value></data>
+  <data name="Installer_Files" xml:space="preserve"><value>Dosya Araçları: dosyaları yeniden adlandır, sıkıştır, karşılaştır ve sırala</value></data>
+  <data name="Installer_Pdf" xml:space="preserve"><value>PDF Araçları: PDF&apos;leri birleştirme, bölme, dönüştürme ve düzenleme</value></data>
+  <data name="Installer_Images" xml:space="preserve"><value>Görüntü Araçları: Görüntüleri dönüştürme, yeniden boyutlandırma ve sıkıştırma</value></data>
+  <data name="Installer_Media" xml:space="preserve"><value>Ses ve Video Araçları: ses ve videoyu dönüştürme, kırpma ve sıkıştırma</value></data>
+  <data name="Installer_Office" xml:space="preserve"><value>Ofis Araçları: Office belgelerini PDF&apos;ye ve PDF&apos;leri Word&apos;e dönüştürün</value></data>
+  <data name="Installer_Data" xml:space="preserve"><value>Veri Araçları: CSV, JSON, Excel ve iletişim dosyalarını dönüştür</value></data>
+  <data name="Installer_Tables" xml:space="preserve"><value>Tablo Dışa Aktarma: Excel seçimlerini CSV, JSON, Markdown veya SQL olarak dışa aktarın</value></data>
+  <data name="Installer_Invoice" xml:space="preserve"><value>E-Fatura Araçları: XRechnung ve ZUGFeRD faturalarını görüntüleyin ve dönüştürün</value></data>
+  <data name="Installer_Markdown" xml:space="preserve"><value>Markdown Araçları: Markdown dosyalarını HTML veya PDF&apos;ye görüntüleme, düzenleme ve dönüştürme</value></data>
+  <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Windows entegrasyonu:</value></data>
+  <data name="Installer_StartMenu" xml:space="preserve"><value>Başlat menüsü kısayolu oluştur</value></data>
+  <data name="Installer_ExplorerMenu" xml:space="preserve"><value>Dosya Gezgini&apos;ne PowerTrove&apos;da Aç Ekle (Windows 11: Daha fazla seçenek göster)</value></data>
+  <data name="Installer_Startup" xml:space="preserve"><value>Oturum açtığımda PowerTrove&apos;u başlat (bunu Ayarlar&apos;dan kapatabilirsiniz)</value></data>
+  <data name="Installer_Launch" xml:space="preserve"><value>PowerTrove&apos;u Başlat</value></data>
+  <data name="Installer_Downloading" xml:space="preserve"><value>Seçilen araçlar indiriliyor ve doğrulanıyor...</value></data>
+  <data name="Installer_DownloadDeferred" xml:space="preserve"><value>Bazı araçlar şu anda indirilemiyor. PowerTrove bir sonraki başlatılışında tekrar deneyecektir.</value></data>
+  <data name="Installer_SelectionFailed" xml:space="preserve"><value>Araç seçimi kaydedilemedi. Kurulum bittikten sonra PowerTrove Ayarlarından araçları yükleyin.</value></data>
+  <data name="Installer_ExplorerFailed" xml:space="preserve"><value>Dosya Gezgini girişi eklenemedi. Bunu PowerTrove Ayarlarında kontrol edebilir ve yapılandırabilirsiniz.</value></data>
+  <data name="Installer_StartupFailed" xml:space="preserve"><value>PowerTrove, oturum açtığınızda otomatik olarak başlatılacak şekilde ayarlanamadı. Bunu daha sonra Ayarlar&apos;dan etkinleştirebilirsiniz.</value></data>
+  <data name="Installer_DowngradeRefused" xml:space="preserve"><value>PowerTrove&apos;un daha yeni bir sürümü yüklü veya yüklü sürüm doğrulanamıyor. Sürüm düşürme reddedildi.</value></data>
+  <data name="ImageEditor_Title" xml:space="preserve"><value>Görüntü düzenleyici</value></data>
+  <data name="ImageEditor_Open" xml:space="preserve"><value>Görüntüyü görsel olarak düzenle…</value></data>
+  <data name="ImageEditor_Undo" xml:space="preserve"><value>Geri Al</value></data>
+  <data name="ImageEditor_Redo" xml:space="preserve"><value>Yeniden Yap</value></data>
+  <data name="ImageEditor_RotateLeft" xml:space="preserve"><value>90° Sola Döndür</value></data>
+  <data name="ImageEditor_RotateRight" xml:space="preserve"><value>90° Sağa Döndür</value></data>
+  <data name="ImageEditor_FitImage" xml:space="preserve"><value>Görüntüyü sığdır</value></data>
+  <data name="ImageEditor_FitCanvas" xml:space="preserve"><value>Tuvalden görüntüye</value></data>
+  <data name="ImageEditor_Reset" xml:space="preserve"><value>Sıfırla</value></data>
+  <data name="ImageEditor_Preview" xml:space="preserve"><value>Görüntü düzeni önizlemesi</value></data>
+  <data name="ImageEditor_Help" xml:space="preserve"><value>Resmi taşımak için sürükleyin. Boyutunu değiştirmek için tutamacı sürükleyin; serbestçe döndürmek için döndürme tutamacını kullanın. Odaklanmış tutamaç ayrıca ok tuşlarını da kabul eder.</value></data>
+  <data name="ImageEditor_CanvasMode" xml:space="preserve"><value>Tutacaklarla tuvali boyutlandır</value></data>
+  <data name="ImageEditor_CanvasWidth" xml:space="preserve"><value>Tuval genişliği (px)</value></data>
+  <data name="ImageEditor_CanvasHeight" xml:space="preserve"><value>Tuval yüksekliği (px)</value></data>
+  <data name="ImageEditor_ImageWidth" xml:space="preserve"><value>Görüntü genişliği (piksel)</value></data>
+  <data name="ImageEditor_ImageHeight" xml:space="preserve"><value>Görüntü yüksekliği (piksel)</value></data>
+  <data name="ImageEditor_OffsetX" xml:space="preserve"><value>Yatay ofset (px)</value></data>
+  <data name="ImageEditor_OffsetY" xml:space="preserve"><value>Dikey kaydırma (px)</value></data>
+  <data name="ImageEditor_Angle" xml:space="preserve"><value>Döndürme (°)</value></data>
+  <data name="ImageEditor_LockAspect" xml:space="preserve"><value>En boy oranını koru</value></data>
+  <data name="ImageEditor_Align" xml:space="preserve"><value>Tuval üzerinde hizala</value></data>
+  <data name="ImageEditor_AlignAt" xml:space="preserve"><value>Hizala: {0}</value></data>
+  <data name="ImageEditor_TopLeft" xml:space="preserve"><value>sol üst</value></data>
+  <data name="ImageEditor_Top" xml:space="preserve"><value>üst</value></data>
+  <data name="ImageEditor_TopRight" xml:space="preserve"><value>sağ üst</value></data>
+  <data name="ImageEditor_Left" xml:space="preserve"><value>sol</value></data>
+  <data name="ImageEditor_Center" xml:space="preserve"><value>orta</value></data>
+  <data name="ImageEditor_Right" xml:space="preserve"><value>sağ</value></data>
+  <data name="ImageEditor_BottomLeft" xml:space="preserve"><value>sol alt</value></data>
+  <data name="ImageEditor_Bottom" xml:space="preserve"><value>alt</value></data>
+  <data name="ImageEditor_BottomRight" xml:space="preserve"><value>sağ alt</value></data>
+  <data name="ImageEditor_Rotate" xml:space="preserve"><value>döndürme</value></data>
+  <data name="ImageEditor_Handle" xml:space="preserve"><value>{0} tutamaç: sürükleyin veya ok tuşlarını kullanın</value></data>
+  <data name="ImageEditor_SaveHint" xml:space="preserve"><value>Kaydet, yeni bir PNG dosyası oluşturur; orijinal dosyalar değişmeden kalır. Kareli desen şeffaflığı temsil eder. Önizleme küçültülür; dışa aktarma tam çözünürlükte yapılır. Meta veriler kaldırılır; animasyon ilk karesini kullanır.</value></data>
+  <data name="ImageEditor_Loading" xml:space="preserve"><value>Görüntü önizlemesi yükleniyor…</value></data>
+  <data name="ImageEditor_Back" xml:space="preserve"><value>Seçenekler</value></data>
+  <data name="ImageEditor_Save" xml:space="preserve"><value>Yeni PNG kaydet</value></data>
+  <data name="ImageEditor_LoadFailed" xml:space="preserve"><value>Görüntü önizlemesi yüklenemedi. Seçimi ve yüklü Görüntü Araçları paketini kontrol edin.</value></data>
+  <data name="ImageEditor_Ready" xml:space="preserve"><value>Düzeni ayarlamak için sürükleyin, ardından yeni bir PNG olarak kaydedin.</value></data>
+  <data name="ImageEditor_Clipped" xml:space="preserve"><value>Tuvalin dışındaki görüntü içeriği kırpılacaktır. Tamamını korumak için Görüntüyü Sığdır veya Tuvali Görüntüye Uyar seçeneğini kullanın.</value></data>
+  <data name="ImageEditor_Invalid" xml:space="preserve"><value>Bu boyut sınırları aşıyor: kenar başına 10.000 piksel ve 40 milyon piksel. Önceki düzen korundu.</value></data>
+  <data name="ImageEditor_Summary" xml:space="preserve"><value>Tuval: {0} × {1} px. Görüntü: {2} × {3} px. Döndürme: {4}°.</value></data>
+  <data name="ImageEditor_EffectsOpen" xml:space="preserve"><value>Görsel önizleme ile ayarlayın…</value></data>
+  <data name="ImageEditor_EffectsHint" xml:space="preserve"><value>Önizlemeyi güncellemek için seçenekleri ayarlayın. Önizlemeler küçültülmüş ve yaklaşıktır; dışa aktarma orijinal çözünürlüğü kullanır. Toplu işlemler için, doğal olarak sıralanmış ilk görüntü gösterilir; ızgaralar tüm düzeni gösterir.</value></data>
+  <data name="ImageEditor_EffectsPreview" xml:space="preserve"><value>Oluşturulan çıktı önizlemesi</value></data>
+  <data name="ImageEditor_EffectsUnavailable" xml:space="preserve"><value>Görsel önizleme kullanılamıyor. Seçenekleri kontrol edin veya Seçenekler&apos;e geri dönün. Hiçbir dosya yazılmadı.</value></data>
+  <data name="ImageEditor_EffectsDimensions" xml:space="preserve"><value>Çıktı tuvali: {0} × {1} piksel. Kareli desen: şeffaflık.</value></data>
+  <data name="ImageEditor_EffectsUpdating" xml:space="preserve"><value>Önizleme güncelleniyor…</value></data>
+  <data name="ImageEditor_Modifiers" xml:space="preserve"><value>Shift: Orantılı görüntü/tuval yeniden boyutlandırma, eksen kilitli hareket, 15° döndürme adımları. Shift + ok tuşları: 10 piksel adımlar (döndürme: 15°).</value></data>
+  <data name="ImageEditor_FitView" xml:space="preserve"><value>Görünümü sığdır</value></data>
+  <data name="ImageEditor_ResizeHint" xml:space="preserve"><value>Tüm görüntüyü orantılı olarak yeniden boyutlandırmak için genişliği veya yüksekliği ayarlayın. Daha büyük boyutlar görüntüyü büyütür. Küçültülmüş önizleme, seçilen çıktı boyutunu gösterir.</value></data>
+  <data name="ImageEditor_ResizeWidth" xml:space="preserve"><value>Genişlik (px)</value></data>
+  <data name="ImageEditor_ResizeHeight" xml:space="preserve"><value>Yükseklik (px)</value></data>
+  <data name="ImageEditor_ResizeHalf" xml:space="preserve"><value>½×</value></data>
+  <data name="ImageEditor_ResizeOriginal" xml:space="preserve"><value>1×</value></data>
+  <data name="ImageEditor_ResizeDouble" xml:space="preserve"><value>2×</value></data>
+  <data name="ImageEditor_ResizeQuadruple" xml:space="preserve"><value>4×</value></data>
+  <data name="ImageEditor_ResizeInvalid" xml:space="preserve"><value>Bu boyut görsel önizleme sınırlarını aşıyor: kenar başına 30.000 piksel ve 60 milyon piksel. Önceki boyut korundu.</value></data>
+  <data name="ImageEditor_ResizeDimensions" xml:space="preserve"><value>Çıktı: {0} × {1} px · Orijinal: {2} × {3} px</value></data>
+  <data name="ImageEditor_ResizeScale" xml:space="preserve"><value>Görüntü boyutu</value></data>
+  <data name="ImageEditor_ResizeDetails" xml:space="preserve"><value>Boyut ve kalite</value></data>
+  <data name="ImageEditor_ResizeImprove" xml:space="preserve"><value>Büyütme kalitesini iyileştir</value></data>
+  <data name="ImageEditor_ResizeSave" xml:space="preserve"><value>Boyutlandır</value></data>
+  <data name="ImageEditor_ResizeOutput" xml:space="preserve"><value>{0} × {1} piksel</value></data>
+  <data name="ImageEditor_ResizePercent" xml:space="preserve"><value>{0}%</value></data>
+  <data name="StoreExplorerDescription" xml:space="preserve"><value>Seçiminiz için PowerTrove&apos;u açmak üzere genel kısayolu kullanın. Bu Mağaza sürümünde Gezgin bağlam menüsü mevcut değil.</value></data>
+  <data name="StoreUpdatesDescription" xml:space="preserve"><value>Uygulama güncellemeleri Microsoft Store tarafından sağlanır. Resmi araç paketleri, izninizle Paketler&apos;de ayrı olarak yüklenir ve güncellenir.</value></data>
+  <data name="StoreUpdatesOpen" xml:space="preserve"><value>Microsoft Store güncellemelerini aç</value></data>
+  <data name="StoreUpdatesOpenFailed" xml:space="preserve"><value>Microsoft Store açılamadı. Uygulama güncellemelerini kontrol etmek için Başlat menüsünden açın.</value></data>
+  <data name="FirstRunChoosePacks" xml:space="preserve"><value>Araç paketlerini seçin</value></data>
+  <data name="StorePublisherDisplayName" xml:space="preserve"><value>PowerTrove</value></data>
+  <data name="StorePackageDescription" xml:space="preserve"><value>Seçiminizden yerel dosya araçları, isteğe bağlı olarak indirilebilir resmi paketlerle birlikte.</value></data>
+  <data name="PackUpdatesReview" xml:space="preserve"><value>Paket güncellemelerini görüntüle</value></data>
+  <data name="PackUpdatesAutomatic" xml:space="preserve"><value>Yüklü paketleri otomatik olarak güncellemeler için kontrol et</value></data>
+  <data name="FFmpegHeading" xml:space="preserve"><value>Daha fazla medya formatı için FFmpeg</value></data>
+  <data name="FFmpegDescription" xml:space="preserve"><value>Bazı Ses ve Video Araçları, örneğin OGG&apos;den MP3&apos;e, WebM&apos;den MP4&apos;e veya eski AVI dosyalarına dönüştürme gibi, FFmpeg gerektirir. PowerTrove, FFmpeg içermez. FFmpeg kurulumu, Windows kullanıcınız için ücretsiz FFmpeg paketi Gyan.FFmpeg&apos;i (GPL lisansı) kurmak için winget&apos;i kullanır ve lisans koşullarını kabul eder. Bu işlem bir kez internet bağlantısı gerektirir; medya işlemleri yeniden başlatmaya gerek kalmadan FFmpeg&apos;i bulur.</value></data>
+  <data name="StoreFFmpegDescription" xml:space="preserve"><value>Bazı Ses ve Video Araçları, örneğin OGG&apos;den MP3&apos;e veya WebM&apos;den MP4&apos;e dönüştürme gibi, FFmpeg gerektirir. PowerTrove, FFmpeg içermez. Örneğin, Terminal&apos;de winget install Gyan.FFmpeg komutunu çalıştırarak kendiniz kurun, ardından tekrar kontrol et seçeneğini seçin.</value></data>
+  <data name="FFmpegInstall" xml:space="preserve"><value>FFmpeg&apos;i Kur</value></data>
+  <data name="FFmpegCheckAgain" xml:space="preserve"><value>Tekrar kontrol et</value></data>
+  <data name="FFmpegFound" xml:space="preserve"><value>FFmpeg yüklü. İhtiyaç duyan medya işlemleri kullanılabilir.</value></data>
+  <data name="FFmpegMissing" xml:space="preserve"><value>FFmpeg bulunamadı.</value></data>
+  <data name="FFmpegWingetMissing" xml:space="preserve"><value>FFmpeg bulunamadı ve winget bu bilgisayarda mevcut değil. Microsoft Store&apos;dan Uygulama Yükleyicisini yükleyin veya FFmpeg&apos;i kendiniz yükleyin, ardından Tekrar Kontrol Et&apos;i seçin.</value></data>
+  <data name="FFmpegInstalling" xml:space="preserve"><value>FFmpeg winget ile yükleniyor. Bu işlem birkaç dakika sürebilir.</value></data>
+  <data name="FFmpegInstalled" xml:space="preserve"><value>FFmpeg yüklü. Medya işlemleri birkaç saniye içinde bulur; yeniden başlatmaya gerek yoktur.</value></data>
+  <data name="FFmpegFailed" xml:space="preserve"><value>winget, FFmpeg&apos;i yükleyemedi. İnternet bağlantınızı kontrol edin ve tekrar deneyin veya FFmpeg&apos;i kendiniz yükleyin.</value></data>
+  <data name="FFmpegCanceled" xml:space="preserve"><value>FFmpeg kurulumu iptal edildi.</value></data>
+  <data name="FFmpegNotFoundAfterInstall" xml:space="preserve"><value>winget tamamlandı, ancak FFmpeg, PowerTrove&apos;un aradığı yerde bulunamadı. Windows&apos;tan çıkış yapıp tekrar giriş yapın, ardından tekrar kontrol et seçeneğini seçin.</value></data>
+  <data name="HotkeyUseSuggestion" xml:space="preserve"><value>{0} kullanın</value></data>
+  <data name="HotkeyKeepShortcut" xml:space="preserve"><value>Geçerli kısayolu koru</value></data>
+  <data name="HotkeyLauncherMayConflict" xml:space="preserve"><value>{0} çalışıyor ve varsayılan olarak {1} ile açılıyor. Eğer {1} yanlış uygulamayı açarsa, PowerTrove&apos;u başka bir kısayola geçirin.</value></data>
+  <data name="ToggleOn" xml:space="preserve"><value>Açık</value></data>
+  <data name="ToggleOff" xml:space="preserve"><value>Kapalı</value></data>
+  <data name="SettingsRecipes" xml:space="preserve"><value>Tarifler</value></data>
+  <data name="SettingsRecipesTitle" xml:space="preserve"><value>Tarifleriniz</value></data>
+  <data name="SettingsRecipesDescription" xml:space="preserve"><value>Tek bir komutla art arda birden fazla işlem çalıştır. Tarifler, diğer işlemler gibi palette görünür.</value></data>
+  <data name="SettingsRecipesCreate" xml:space="preserve"><value>Tarif oluştur…</value></data>
+  <data name="SettingsRecipesEmpty" xml:space="preserve"><value>Henüz tarif yok.</value></data>
+  <data name="RecipeStepMissing" xml:space="preserve"><value>Eksik işlem</value></data>
+  <data name="RecipeEdit" xml:space="preserve"><value>Düzenle</value></data>
+  <data name="RecipeDelete" xml:space="preserve"><value>Sil</value></data>
+  <data name="RecipeEditNamed" xml:space="preserve"><value>{0} düzenle</value></data>
+  <data name="RecipeDeleteNamed" xml:space="preserve"><value>{0} Sil</value></data>
+  <data name="RecipeDeleteTitle" xml:space="preserve"><value>Tarifi silmek ister misiniz?</value></data>
+  <data name="RecipeDeleteText" xml:space="preserve"><value>&quot;{0}&quot; paletten kaldırılacaktır. Zaten oluşturulmuş dosyalar oldukları yerde kalır.</value></data>
+  <data name="SettingsDiagnosticsDescription" xml:space="preserve"><value>Dosya adları veya içerikleri olmadan, bu oturumun sürümlerini ve zamanlamalarını kopyalar, böylece bunları bir hata raporuna yapıştırabilirsiniz.</value></data>
+  <data name="SettingsCopyDiagnostics" xml:space="preserve"><value>Kopyalama tanılaması</value></data>
+  <data name="SettingsDiagnosticsCopied" xml:space="preserve"><value>Tanılama bilgileri panoya kopyalandı.</value></data>
+  <data name="SettingsDiagnosticsCopyFailed" xml:space="preserve"><value>Tanılama bilgileri kopyalanamadı. Tekrar deneyin.</value></data>
+  <data name="RecipeEditorTitleNew" xml:space="preserve"><value>Yeni tarif</value></data>
+  <data name="RecipeEditorTitleEdit" xml:space="preserve"><value>Tarifi düzenle</value></data>
+  <data name="RecipeEditorName" xml:space="preserve"><value>Ad</value></data>
+  <data name="RecipeEditorNamePlaceholder" xml:space="preserve"><value>Örneğin: Web sitesi için fotoğraflar</value></data>
+  <data name="RecipeEditorSteps" xml:space="preserve"><value>Adımlar</value></data>
+  <data name="RecipeEditorStepsHelp" xml:space="preserve"><value>Her adım, bir önceki adımın dosyaları üzerinde çalışır. Yalnızca son adımın dosyaları, orijinallerinizin yanında saklanır.</value></data>
+  <data name="RecipeEditorAddStep" xml:space="preserve"><value>Adım ekle</value></data>
+  <data name="RecipeEditorChooseAction" xml:space="preserve"><value>Bir işlem seçin</value></data>
+  <data name="RecipeEditorOptions" xml:space="preserve"><value>Seçenekler…</value></data>
+  <data name="RecipeEditorMoveUp" xml:space="preserve"><value>Yukarı taşı</value></data>
+  <data name="RecipeEditorMoveDown" xml:space="preserve"><value>Aşağı taşı</value></data>
+  <data name="RecipeEditorRemove" xml:space="preserve"><value>Kaldır</value></data>
+  <data name="RecipeEditorSave" xml:space="preserve"><value>Tarifi kaydet</value></data>
+  <data name="RecipeEditorStep" xml:space="preserve"><value>{0}. {1}</value></data>
+  <data name="RecipeEditorStepOptionsNamed" xml:space="preserve"><value>{0} adımı için seçenekler</value></data>
+  <data name="RecipeEditorSaved" xml:space="preserve"><value>Tarif kaydedildi. Dosyaları seçin ve palette &quot;{0}&quot; ifadesini arayın.</value></data>
+  <data name="RecipeOptionsHint" xml:space="preserve"><value>Bu seçenekler tarifte saklanır ve her çalıştırıldığında kullanılır.</value></data>
+  <data name="RecipeOptionsApply" xml:space="preserve"><value>Başvur</value></data>
+  <data name="RecipeProblemTitleMissing" xml:space="preserve"><value>Tarif için bir ad girin.</value></data>
+  <data name="RecipeProblemTitleTooLong" xml:space="preserve"><value>En fazla {0} karakter içeren bir ad kullanın.</value></data>
+  <data name="RecipeProblemTooFewSteps" xml:space="preserve"><value>En az {0} adım ekleyin.</value></data>
+  <data name="RecipeProblemTooManySteps" xml:space="preserve"><value>Bir tarif en fazla {0} adım içerebilir.</value></data>
+  <data name="RecipeProblemActionMissing" xml:space="preserve"><value>Adım {0} yüklü olmayan bir eylem kullanıyor. Paketini yükleyin veya adımı kaldırın.</value></data>
+  <data name="RecipeProblemNotAFileAction" xml:space="preserve"><value>{0} adımı dosyalarda çalışmaz.</value></data>
+  <data name="RecipeProblemStepCreatesNoFiles" xml:space="preserve"><value>{0} adımı dosya oluşturmaz, bu nedenle yalnızca son adım olabilir.</value></data>
+  <data name="RecipeProblemNested" xml:space="preserve"><value>Adım {0} bir tariftir. Tarifler başka tarifler içeremez.</value></data>
+  <data name="DocumentEditor_WindowTitle" xml:space="preserve"><value>{0} – Markdown</value></data>
+  <data name="DocumentEditor_Preview" xml:space="preserve"><value>Önizleme</value></data>
+  <data name="DocumentEditor_Split" xml:space="preserve"><value>Yan yana</value></data>
+  <data name="DocumentEditor_Edit" xml:space="preserve"><value>Düzenle</value></data>
+  <data name="DocumentEditor_Modes" xml:space="preserve"><value>Görüntüle</value></data>
+  <data name="DocumentEditor_Save" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="DocumentEditor_SaveAs" xml:space="preserve"><value>Farklı kaydet…</value></data>
+  <data name="DocumentEditor_EditorName" xml:space="preserve"><value>Markdown metni</value></data>
+  <data name="DocumentEditor_PreviewName" xml:space="preserve"><value>Biçimlendirilmiş önizleme</value></data>
+  <data name="DocumentEditor_Loading" xml:space="preserve"><value>Dosya açılıyor…</value></data>
+  <data name="DocumentEditor_Rendering" xml:space="preserve"><value>Önizleme güncelleniyor…</value></data>
+  <data name="DocumentEditor_Counts" xml:space="preserve"><value>{0} kelime · {1} karakter</value></data>
+  <data name="DocumentEditor_Details" xml:space="preserve"><value>{0} · {1}</value></data>
+  <data name="DocumentEditor_LineEndingsWindows" xml:space="preserve"><value>Windows satır sonları (CRLF)</value></data>
+  <data name="DocumentEditor_LineEndingsUnix" xml:space="preserve"><value>Unix satır sonları (LF)</value></data>
+  <data name="DocumentEditor_Unsaved" xml:space="preserve"><value>{0} – kaydedilmemiş değişiklikler</value></data>
+  <data name="DocumentEditor_Saved" xml:space="preserve"><value>Kaydedildi.</value></data>
+  <data name="DocumentEditor_SavedAsUtf8" xml:space="preserve"><value>UTF-8 olarak kaydedildi, çünkü dosyanın orijinal kodlaması yazdığınız her karakteri tutamaz.</value></data>
+  <data name="DocumentEditor_SaveFailed" xml:space="preserve"><value>Dosya kaydedilemedi. Metniniz hala burada; Farklı Kaydet&apos;i deneyin.</value></data>
+  <data name="DocumentEditor_ReadOnly" xml:space="preserve"><value>Dosya salt okunur veya korumalı. Bir kopyasını saklamak için &quot;Farklı Kaydet&quot; seçeneğini kullanın.</value></data>
+  <data name="DocumentEditor_ChangedTitle" xml:space="preserve"><value>Dosya PowerTrove dışında değiştirildi.</value></data>
+  <data name="DocumentEditor_ChangedText" xml:space="preserve"><value>Değiştirme işlemi, bu değişikliklerin üzerine kendi metninizi yazar. Farklı Kaydet seçeneği her iki sürümü de saklar.</value></data>
+  <data name="DocumentEditor_Overwrite" xml:space="preserve"><value>Değiştir</value></data>
+  <data name="DocumentEditor_UnsavedTitle" xml:space="preserve"><value>Değişiklikleri {0} olarak kaydet?</value></data>
+  <data name="DocumentEditor_UnsavedText" xml:space="preserve"><value>Değişikliklerinizi kaydetmezseniz kaybolur.</value></data>
+  <data name="DocumentEditor_DontSave" xml:space="preserve"><value>Kaydetme</value></data>
+  <data name="DocumentEditor_RecoveryText" xml:space="preserve"><value>PowerTrove kapatıldığında {0}&apos;dan kaydedilmemiş değişiklikler saklandı.</value></data>
+  <data name="DocumentEditor_Restore" xml:space="preserve"><value>Geri Yükle</value></data>
+  <data name="DocumentEditor_Discard" xml:space="preserve"><value>At</value></data>
+  <data name="DocumentEditor_OpenFailed" xml:space="preserve"><value>Dosya açılamadı.</value></data>
+  <data name="DocumentEditor_TooLarge" xml:space="preserve"><value>Dosya 2 MB&apos;tan büyük ve burada düzenlenemiyor.</value></data>
+  <data name="DocumentEditor_NotText" xml:space="preserve"><value>Dosya okunabilir metin değil.</value></data>
+  <data name="DocumentEditor_ViewOnly" xml:space="preserve"><value>Bu dosya canlı düzenleme için çok uzun, bu nedenle yalnızca önizlemede açılıyor.</value></data>
+  <data name="DocumentEditor_PreviewTooLarge" xml:space="preserve"><value>Metin canlı önizleme için çok uzun.</value></data>
+  <data name="DocumentEditor_PreviewFailed" xml:space="preserve"><value>Önizleme oluşturulamadı.</value></data>
+  <data name="DocumentEditor_PackUnavailable" xml:space="preserve"><value>Markdown Araçları artık yüklü değil. Metniniz burada kalıyor; saklamak için kaydedin.</value></data>
+  <data name="DocumentEditor_PackTooOld" xml:space="preserve"><value>Önizlemeyi görmek için Ayarlar &gt; Paketler bölümündeki Markdown Araçlarını güncelleyin.</value></data>
+  <data name="DocumentEditor_WebViewMissing" xml:space="preserve"><value>Önizleme, Windows 11&apos;in bir parçası olan Microsoft Edge WebView2 Çalışma Zamanı&apos;nı gerektirir.</value></data>
+  <data name="DocumentEditor_WebViewFailed" xml:space="preserve"><value>Önizleme başlatılamadı (adım {0}, kod 0x{1}). Görünümü kapatın ve dosyayı tekrar açın; hata devam ederse lütfen bu kodu bildirin.</value></data>
+  <data name="DocumentEditor_LocalLink" xml:space="preserve"><value>Önizlemeden diğer dosyalara bağlantılar açılmaz.</value></data>
+  <data name="DocumentEditor_LinkTitle" xml:space="preserve"><value>Bu bağlantıyı tarayıcınızda açın?</value></data>
+  <data name="DocumentEditor_LinkOpen" xml:space="preserve"><value>Aç</value></data>
+  <data name="DocumentEditor_FileType" xml:space="preserve"><value>Markdown</value></data>
+  <data name="DocumentEditor_FormatBar" xml:space="preserve"><value>Biçimlendirme</value></data>
+  <data name="DocumentEditor_FormatHeading" xml:space="preserve"><value>Başlık</value></data>
+  <data name="DocumentEditor_FormatHeadingTip" xml:space="preserve"><value>Paragraf stili (Ctrl+0 ila 3)</value></data>
+  <data name="DocumentEditor_FormatParagraph" xml:space="preserve"><value>Normal metin</value></data>
+  <data name="DocumentEditor_FormatHeading1" xml:space="preserve"><value>Başlık 1</value></data>
+  <data name="DocumentEditor_FormatHeading2" xml:space="preserve"><value>Başlık 2</value></data>
+  <data name="DocumentEditor_FormatHeading3" xml:space="preserve"><value>Başlık 3</value></data>
+  <data name="DocumentEditor_FormatBold" xml:space="preserve"><value>Kalın</value></data>
+  <data name="DocumentEditor_FormatItalic" xml:space="preserve"><value>İtalik</value></data>
+  <data name="DocumentEditor_FormatStrike" xml:space="preserve"><value>Üstü Çizili</value></data>
+  <data name="DocumentEditor_FormatCode" xml:space="preserve"><value>Kod</value></data>
+  <data name="DocumentEditor_FormatBullets" xml:space="preserve"><value>Madde işaretli liste</value></data>
+  <data name="DocumentEditor_FormatNumbers" xml:space="preserve"><value>Numaralı liste</value></data>
+  <data name="DocumentEditor_FormatTasks" xml:space="preserve"><value>Kontrol listesi</value></data>
+  <data name="DocumentEditor_FormatQuote" xml:space="preserve"><value>Alıntı</value></data>
+  <data name="DocumentEditor_FormatLink" xml:space="preserve"><value>Bağlantı</value></data>
+  <data name="DocumentEditor_FormatImage" xml:space="preserve"><value>Belgenin klasöründeki görüntü</value></data>
+  <data name="DocumentEditor_FormatTable" xml:space="preserve"><value>Tablo</value></data>
+  <data name="DocumentEditor_FormatRule" xml:space="preserve"><value>Yatay çizgi</value></data>
+  <data name="DocumentEditor_FormatShortcut" xml:space="preserve"><value>{0} ({1})</value></data>
+  <data name="DocumentEditor_FormatPlaceholder" xml:space="preserve"><value>metin</value></data>
+  <data name="DocumentEditor_FormatCodePlaceholder" xml:space="preserve"><value>kod</value></data>
+  <data name="DocumentEditor_FormatLinkText" xml:space="preserve"><value>bağlantı metni</value></data>
+  <data name="DocumentEditor_FormatImageText" xml:space="preserve"><value>açıklama</value></data>
+  <data name="DocumentEditor_FormatTableColumn" xml:space="preserve"><value>Sütun</value></data>
+  <data name="DocumentEditor_FormatTableCell" xml:space="preserve"><value>Metin</value></data>
+  <data name="DocumentEditor_FormatImageCopied" xml:space="preserve"><value>Görüntü, bu dosyanın yanındaki {0} konumuna kopyalandı, böylece paylaştığınızda belgeyle birlikte kalır.</value></data>
+  <data name="DocumentEditor_FormatImageNotAnImage" xml:space="preserve"><value>Dosya desteklenen bir resim dosyası değil (PNG, JPEG, GIF, WebP, AVIF, BMP veya SVG).</value></data>
+  <data name="DocumentEditor_FormatImageTooLarge" xml:space="preserve"><value>Görüntü 25 MB&apos;tan büyük.</value></data>
+  <data name="DocumentEditor_FormatImageUnreadable" xml:space="preserve"><value>Görüntü okunamadı.</value></data>
+  <data name="DocumentEditor_FormatImageCannotCopy" xml:space="preserve"><value>Resim bu dosyanın yanına kopyalanamadı. Klasörün yazılabilir olduğundan emin olun.</value></data>
+  <data name="TextInputInstructions" xml:space="preserve"><value>Buraya metin yapıştırın veya yazın (en fazla 65.536 karakter), ardından &quot;Metni kullan&quot;ı seçin.</value></data>
+  <data name="TextInputUse" xml:space="preserve"><value>Metin Kullan</value></data>
+  <data name="TextInputFailed" xml:space="preserve"><value>Metin kabul edilemedi. Tekrar deneyin.</value></data>
+  <data name="BrowserConnectTitle" xml:space="preserve"><value>Tarayıcıyı PowerTrove&apos;a Bağla</value></data>
+  <data name="BrowserConnectConsent" xml:space="preserve"><value>{0} içindeki {1} uzantısı PowerTrove&apos;a yerel olarak bağlanmak istiyor. Bunu yalnızca o uzantıda PowerTrove&apos;a Bağlan&apos;ı tıkladıysanız izin verin. Daha sonra Ayarlar&apos;dan bağlantıyı kesebilirsiniz.</value></data>
+  <data name="BrowserConnectConfirm" xml:space="preserve"><value>Bağlan</value></data>
+  <data name="BrowserConnectSuccess" xml:space="preserve"><value>Tarayıcı bağlandı. Seçilen metni artık doğrudan PowerTrove&apos;a gönderebilirsiniz.</value></data>
+  <data name="BrowserConnectFailed" xml:space="preserve"><value>Tarayıcı bağlantısı yapılandırılamadı. Kurulumunuzu kontrol edin ve tekrar deneyin.</value></data>
+  <data name="BrowserSettingsHeading" xml:space="preserve"><value>Tarayıcı entegrasyonu</value></data>
+  <data name="BrowserSettingsDescription" xml:space="preserve"><value>1. Chrome veya Edge uzantısını yükleyin. Mağazada yayımlanana kadar ZIP kurulum kılavuzunu izleyin. 2. Uzantıda PowerTrove’a Bağlan’a tıklayın. 3. PowerTrove’da bağlantıyı onaylayın.</value></data>
+  <data name="BrowserSettingsConnected" xml:space="preserve"><value>Bağlandı</value></data>
+  <data name="BrowserSettingsDisconnected" xml:space="preserve"><value>Uzantı henüz bağlı değil</value></data>
+  <data name="BrowserSettingsDisconnect" xml:space="preserve"><value>Bağlantıyı kes</value></data>
+  <data name="BrowserSettingsDisconnectConfirm" xml:space="preserve"><value>Bu Windows hesabı için tüm PowerTrove tarayıcı bağlantılarını kaldırmak ister misiniz?</value></data>
+  <data name="BrowserSettingsDisconnectFailed" xml:space="preserve"><value>Tarayıcı bağlantısı kaldırılamadı.</value></data>
+  <data name="BrowserSettingsStatusFailed" xml:space="preserve"><value>Tarayıcı bağlantı durumu okunamadı.</value></data>
+  <data name="Installer_Text" xml:space="preserve"><value>Metin araçları</value></data>
+  <data name="Installer_Browser" xml:space="preserve"><value>Tarayıcı Araçları</value></data>
+  <data name="BrowserSettingsInstallerRequired" xml:space="preserve"><value>Tarayıcı entegrasyonu şu anda Windows yükleyici sürümünü gerektirir. MSIX henüz desteklenmiyor.</value></data>
+  <data name="BrowserSettingsLiveSessions" xml:space="preserve"><value>Bağlı tarayıcı oturumları: {0}</value></data>
+  <data name="ResultContinueWithFiles" xml:space="preserve"><value>Sonuçla devam et</value></data>
+  <data name="BrowserSettingsInstallChrome" xml:space="preserve"><value>Chrome için yükle</value></data>
+  <data name="BrowserSettingsInstallEdge" xml:space="preserve"><value>Edge için yükle</value></data>
+  <data name="BrowserPreviewLabel" xml:space="preserve"><value>Önizleme</value></data>
+  <data name="BrowserSettingsInstallFailed" xml:space="preserve"><value>Kurulum kılavuzu açılamadı.</value></data>
+  <data name="BrowserPaletteHintTitle" xml:space="preserve"><value>Tarayıcıyı bağla</value></data>
+  <data name="BrowserPaletteHintDescription" xml:space="preserve"><value>Tarayıcı paketi yüklü ancak uzantı bağlı değil. Ayarlar’dan bağlantıyı yapılandırın.</value></data>
+  <data name="BrowserPaletteSearchTerms" xml:space="preserve"><value>tarayıcı browser chrome edge uzantı bağlan</value></data>
+  <data name="DocumentEditor_WordsOne" xml:space="preserve"><value>{0} sözcük</value></data>
+  <data name="DocumentEditor_WordsOther" xml:space="preserve"><value>{0} sözcük</value></data>
+  <data name="DocumentEditor_CharactersOne" xml:space="preserve"><value>{0} karakter</value></data>
+  <data name="DocumentEditor_CharactersOther" xml:space="preserve"><value>{0} karakter</value></data>
+  <data name="Installer_BrowserPreview" xml:space="preserve"><value>{0} (Önizleme)</value></data>
+  <data name="OcrReaderTitle" xml:space="preserve"><value>Metni görsel olarak tanı</value></data>
+  <data name="OcrReaderLanguage" xml:space="preserve"><value>Dil</value></data>
+  <data name="OcrReaderAuto" xml:space="preserve"><value>Otomatik algıla</value></data>
+  <data name="OcrReaderHelp" xml:space="preserve"><value>Metni bir belgedeki gibi seçmek için resmin üzerinde sürükleyin. Çift tıklama bir satırı, Ctrl+A tümünü seçer, Ctrl+C kopyalar. Sağdaki bir satıra tıklamak da onu seçer.</value></data>
+  <data name="OcrReaderSelectedText" xml:space="preserve"><value>Seçilen metin</value></data>
+  <data name="OcrReaderZoomOut" xml:space="preserve"><value>Uzaklaştır</value></data>
+  <data name="OcrReaderZoomIn" xml:space="preserve"><value>Yakınlaştır</value></data>
+  <data name="OcrReaderCopySelected" xml:space="preserve"><value>Seçimi kopyala</value></data>
+  <data name="OcrReaderCopyAll" xml:space="preserve"><value>Tümünü kopyala</value></data>
+  <data name="OcrReaderAllText" xml:space="preserve"><value>Tanınan metnin tamamı</value></data>
+  <data name="OcrReaderLoading" xml:space="preserve"><value>Görsel açılıyor…</value></data>
+  <data name="OcrReaderImageUnavailable" xml:space="preserve"><value>Görsel açılamıyor veya güvenli boyut sınırını aşıyor.</value></data>
+  <data name="OcrReaderRecognizing" xml:space="preserve"><value>Metin cihazda tanınıyor…</value></data>
+  <data name="OcrReaderDetectedLanguage" xml:space="preserve"><value>Olası dil: {0}</value></data>
+  <data name="OcrReaderRecognitionFailed" xml:space="preserve"><value>Metin tanıma başarısız oldu. Yüklü başka bir dili deneyin.</value></data>
+  <data name="OcrReaderNoText" xml:space="preserve"><value>Metin bulunamadı. Bir dil seçmeyi deneyin.</value></data>
+  <data name="OcrReaderFound" xml:space="preserve"><value>{0} satır tanındı</value></data>
+  <data name="OcrReaderOverlayLimited" xml:space="preserve"><value>Yalnızca ilk 2.400 sözcük kutusu gösteriliyor. Metnin tamamı aşağıda.</value></data>
+  <data name="OcrReaderCopied" xml:space="preserve"><value>Panoya kopyalandı</value></data>
+  <data name="OcrReaderCopyFailed" xml:space="preserve"><value>Metin kopyalanamadı</value></data>
+  <data name="OcrReaderSaveTxt" xml:space="preserve"><value>TXT olarak kaydet</value></data>
+  <data name="OcrReaderSaving" xml:space="preserve"><value>Metin dosyası kaydediliyor…</value></data>
+  <data name="OcrReaderSaved" xml:space="preserve"><value>Metin dosyası kaydedildi</value></data>
+  <data name="OcrReaderSaveFailed" xml:space="preserve"><value>Metin dosyası kaydedilemedi</value></data>
+</root>

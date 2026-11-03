@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve">
+    <value>Veri araçları</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Seçilen girdileri koruyarak ayrı bir kopya oluşturur.</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>metin dosyaları</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>Veriler desteklenen boyut sınırını aşıyor.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>Metin kodlaması geçersiz.</value>
+  </data>
+  <data name="InvalidTable" xml:space="preserve">
+    <value>CSV verileri geçersiz veya sınırlarını aşıyor.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Seçilen veriler okunamadı.</value>
+  </data>
+  <data name="InvalidJson" xml:space="preserve">
+    <value>{0} satırında, {1} sütununda geçersiz JSON.</value>
+  </data>
+  <data name="JsonArray" xml:space="preserve">
+    <value>Nesneler içeren bir JSON dizisi seçin.</value>
+  </data>
+  <data name="JsonDuplicate" xml:space="preserve">
+    <value>JSON nesneleri yinelenen anahtarlar içerir.</value>
+  </data>
+  <data name="InvalidTableName" xml:space="preserve">
+    <value>Tablo adı girin.</value>
+  </data>
+  <data name="HeaderMismatch" xml:space="preserve">
+    <value>CSV başlıkları farklı. Sütunları birleştirmek için birleştirme modunu seçin.</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>Seçim kullanılamıyor veya süresi dolmuş.</value>
+  </data>
+  <data name="ValidJson" xml:space="preserve">
+    <value>{0} geçerli JSON dosyası(ları).</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>{0} dosya işleniyor.</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>{0} satır, {1} sütun.</value>
+  </data>
+  <data name="merge-text" xml:space="preserve">
+    <value>Metin Dosyalarını Birleştir</value>
+  </data>
+  <data name="to-utf8" xml:space="preserve">
+    <value>UTF-8&apos;e Dönüştür</value>
+  </data>
+  <data name="line-endings" xml:space="preserve">
+    <value>Çizgi Uçlarını Değiştir</value>
+  </data>
+  <data name="csv-to-json" xml:space="preserve">
+    <value>CSV&apos;yi JSON&apos;a Dönüştür</value>
+  </data>
+  <data name="csv-to-markdown" xml:space="preserve">
+    <value>CSV&apos;yi Markdown&apos;a Dönüştür</value>
+  </data>
+  <data name="csv-to-sql" xml:space="preserve">
+    <value>CSV&apos;yi SQL&apos;e Dönüştür</value>
+  </data>
+  <data name="merge-csv" xml:space="preserve">
+    <value>CSV Dosyalarını Birleştir</value>
+  </data>
+  <data name="json-format" xml:space="preserve">
+    <value>JSON biçimi</value>
+  </data>
+  <data name="json-minify" xml:space="preserve">
+    <value>JSON&apos;u küçültün</value>
+  </data>
+  <data name="json-validate" xml:space="preserve">
+    <value>JSON Doğrula</value>
+  </data>
+  <data name="json-to-csv" xml:space="preserve">
+    <value>JSON&apos;u CSV&apos;ye Dönüştür</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>Bayt sıralama işaretini dahil et</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Satır Sonu Stili</value>
+  </data>
+  <data name="HeaderMode" xml:space="preserve">
+    <value>Başlık satırı</value>
+  </data>
+  <data name="Dialect" xml:space="preserve">
+    <value>SQL lehçesi</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Tablo adı</value>
+  </data>
+  <data name="Indent" xml:space="preserve">
+    <value>Girinti</value>
+  </data>
+  <data name="Separator" xml:space="preserve">
+    <value>Ayırıcı</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Birleştirme modu</value>
+  </data>
+  <data name="windows" xml:space="preserve">
+    <value>Windows (CRLF)</value>
+  </data>
+  <data name="unix" xml:space="preserve">
+    <value>Unix (LF)</value>
+  </data>
+  <data name="first-row" xml:space="preserve">
+    <value>İlk satır başlıkları içerir</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="2" xml:space="preserve">
+    <value>2 boşluk</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>4 boşluk</value>
+  </data>
+  <data name="tabs" xml:space="preserve">
+    <value>Sekmeler</value>
+  </data>
+  <data name="blank-line" xml:space="preserve">
+    <value>Boş Çizgi</value>
+  </data>
+  <data name="header" xml:space="preserve">
+    <value>Dosya adı başlığı</value>
+  </data>
+  <data name="identical" xml:space="preserve">
+    <value>Aynı başlıklar</value>
+  </data>
+  <data name="union" xml:space="preserve">
+    <value>Sütunların birleşimi</value>
+  </data>
+  <data name="postgresql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="mysql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="sqlite" xml:space="preserve">
+    <value>SQLite</value>
+  </data>
+  <data name="sqlserver" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="xlsx-to-csv" xml:space="preserve"><value>Excel Dosyasını CSV&apos;ye Dönüştür</value></data>
+  <data name="xlsx-to-json" xml:space="preserve"><value>Excel Dosyasını JSON&apos;a Dönüştür</value></data>
+  <data name="csv-to-xlsx" xml:space="preserve"><value>CSV&apos;yi Excel Dosyasına Dönüştür</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Excel kullanmadan elektronik tabloları yeni dosyalara dönüştür.</value></data>
+  <data name="Sheet" xml:space="preserve"><value>Çalışma Sayfaları</value></data>
+  <data name="first" xml:space="preserve"><value>İlk çalışma sayfası</value></data>
+  <data name="all" xml:space="preserve"><value>Tüm çalışma sayfaları</value></data>
+  <data name="CachedFormulas" xml:space="preserve"><value>Kaydedilen formül sonuçları kullanılır. Formüller yeniden hesaplanmaz.</value></data>
+  <data name="InvalidWorkbook" xml:space="preserve"><value>Çalışma kitabı geçersiz veya desteklenen sınırları aşıyor.</value></data>
+  <data name="json-to-xlsx" xml:space="preserve"><value>JSON&apos;u Excel&apos;e Dönüştür</value></data>
+  <data name="JsonExcelDescription" xml:space="preserve"><value>JSON nesne dizilerini, metin hücreleri ve isteğe bağlı iç içe sütunlar içeren yeni XLSX çalışma kitapları olarak dışa aktarır.</value></data>
+  <data name="JsonExcelFlatten" xml:space="preserve"><value>İç içe geçmiş alanları ayrı sütunlara yerleştirin</value></data>
+  <data name="JsonExcelColumns" xml:space="preserve"><value>Sütunlar</value></data>
+  <data name="JsonExcelColumnsHelp" xml:space="preserve"><value>Dahil edilecek sütunları işaretleyin. Sıralarını değiştirmek için okları kullanın.</value></data>
+  <data name="JsonExcelInvalidColumns" xml:space="preserve"><value>En az bir kullanılabilir sütun seçin veya tüm sütunları seçin.</value></data>
+  <data name="JsonExcelInvalid" xml:space="preserve"><value>JSON, çalışma kitabı sınırları içinde geçerli, belirsiz olmayan sütunlara sahip, boş olmayan bir nesne dizisi olmalıdır. Seçilen sütun adlarını ve iç içe nesneleri kontrol edin.</value></data>
+  <data name="JsonExcelTypes" xml:space="preserve"><value>Orijinal dosyalar korunur. Uzun sayılar ve tanımlayıcılar metin olarak kalır, böylece hiçbir rakam kaybolmaz.</value></data>
+  <data name="vcf-to-csv" xml:space="preserve"><value>Kişileri CSV&apos;ye dönüştür</value></data>
+  <data name="csv-to-vcf" xml:space="preserve"><value>CSV&apos;yi vCard&apos;a Dönüştür</value></data>
+  <data name="vcf-to-xlsx" xml:space="preserve"><value>Kişileri Excel&apos;e dönüştür</value></data>
+  <data name="xlsx-to-vcf" xml:space="preserve"><value>Excel&apos;i vCard&apos;a Dönüştür</value></data>
+  <data name="merge-vcf" xml:space="preserve"><value>İletişim Dosyalarını Birleştir</value></data>
+  <data name="MergeContactsDescription" xml:space="preserve"><value>Yinelenen kişileri silmeden UTF-8 vCard 3.0/4.0 dosyalarını yeni bir kişi dosyasına birleştirir.</value></data>
+  <data name="ContactPreview" xml:space="preserve"><value>İşlenecek kişiler: {0}</value></data>
+  <data name="ContactInvalid" xml:space="preserve"><value>Kişiler geçersiz, sınırları aşıyor veya desteklenmeyen kodlama veya sütunlar kullanıyor. UTF-8 vCard 3.0/4.0 veya desteklenen başlıklar ve metin değerlerine sahip bir kişi tablosu kullanın; bilinmeyen boş olmayan içe aktarma sütunları reddedilir.</value></data>
+  <data name="ContactLimits" xml:space="preserve"><value>Tablolar, fotoğraflar veya her tedarikçi alanı değil, ortak ad, kuruluş, unvan, notlar, telefon, e-posta ve adres alanlarını içerir. Excel&apos;e aktarırken metin hücreleri içeren tek bir çalışma sayfası kullanın. vCard 2.1, quoted-printable ve gömülü ikili kodlamalar desteklenmemektedir. Orijinaller saklanır.</value></data>
+  <data name="ContactDesc_vcf-to-csv" xml:space="preserve"><value>Tekrarlanan telefon numaraları ve e-posta adresleri de dahil olmak üzere, yaygın vCard iletişim alanlarını yeni CSV tablolarına dışa aktarır.</value></data>
+  <data name="ContactDesc_vcf-to-xlsx" xml:space="preserve"><value>Yaygın vCard iletişim alanlarını metin hücreleri içeren yeni XLSX çalışma kitaplarına dışa aktarır; Excel&apos;in kurulu olması gerekmez.</value></data>
+  <data name="ContactDesc_csv-to-vcf" xml:space="preserve"><value>Desteklenen başlıklara sahip UTF-8 CSV veya TSV iletişim tablolarını yeni vCard 3.0 dosyalarına dönüştürür.</value></data>
+  <data name="ContactDesc_xlsx-to-vcf" xml:space="preserve"><value>Metin değerlerine sahip tek sayfalık XLSX iletişim tablolarını Excel çalıştırmadan yeni vCard 3.0 dosyalarına dönüştürür.</value></data>
+  <data name="JsonExcelCommonColumns" xml:space="preserve"><value>Liste, seçilen tüm dosyalar tarafından paylaşılan sütunları gösterir. Tüm sütunlar, her dosyanın kendi sütunlarını korur.</value></data>
+  <data name="JsonExcelNoCommonColumns" xml:space="preserve"><value>Bu dosyaların paylaşılan sütunları yok. Her dosyayı kendi sütunlarıyla dışa aktarmak için tüm sütunları seçin.</value></data>
+  <data name="JsonExcelColumnsTooLarge" xml:space="preserve"><value>Bu sütun listesi görüntülenemeyecek kadar büyük. Dosyaları dışa aktarmak için tüm sütunları seçin.</value></data>
+</root>

@@ -16,7 +16,7 @@ public sealed class DesktopDistributionProfileTests
             var match = Assert.Single(refs.Where(x => ((string?)x.Attribute("Include"))?.Contains("PowerTrove.Pack." + name + @"\composition\") == true));
             Assert.Equal("'$(PowerTroveProfile)' != 'Core'", (string?)match.Attribute("Condition"));
         }
-        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
+        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice", "Markdown" })
         {
             var match = Assert.Single(refs.Where(x => ((string?)x.Attribute("Include"))?.Contains("PowerTrove.Pack." + name + @"\composition\") == true));
             Assert.Equal("'$(PowerTroveProfile)' == 'Full'", (string?)match.Attribute("Condition"));
@@ -54,7 +54,7 @@ public sealed class DesktopDistributionProfileTests
         string core = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.cs"));
         string @base = File.ReadAllText(Path.Combine(root, "src/PowerTrove.Desktop/BuiltInActionPacks.Base.cs"));
         Assert.DoesNotContain("PowerTrove.Pack.", core, StringComparison.Ordinal);
-        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice" })
+        foreach (string name in new[] { "Images", "Media", "Office", "Tables", "Data", "EInvoice", "Markdown" })
             Assert.DoesNotContain("PowerTrove.Pack." + name, @base, StringComparison.Ordinal);
         Assert.Contains("new FilesPackFactory()", @base);
         Assert.Contains("new PdfPackFactory(", @base);

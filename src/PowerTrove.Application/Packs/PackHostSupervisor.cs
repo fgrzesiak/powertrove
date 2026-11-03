@@ -10,6 +10,9 @@ public sealed class PackHostSupervisor : IAsyncDisposable
     private readonly string _workerRoot, _stagingRoot;
     private readonly TimeProvider _clock;
     private readonly PackOutputCommitter _committer;
+    private IBrowserPageService? _browserPageService;
+    public void ConfigureBrowserService(IBrowserPageService service) =>
+        _browserPageService = service ?? throw new ArgumentNullException(nameof(service));
     private readonly ConcurrentDictionary<string, Group> _groups = new(StringComparer.Ordinal);
     private readonly ConcurrentDictionary<string, PackWorkerGroup> _bindings = new(StringComparer.Ordinal);
 
@@ -68,8 +71,22 @@ public sealed class PackHostSupervisor : IAsyncDisposable
         ActionParameters parameters, IProgress<ActionProgress>? progress, CancellationToken token, bool execute)
     {
         ObjectDisposedException.ThrowIf(_lifetime.IsCancellationRequested, this);
-        if (snapshot.IsStale || snapshot.Status != ContextStatus.Available || snapshot.Content is not (FileSelection or TableData))
+        if (snapshot.IsStale || snapshot.Status != ContextStatus.Available || snapshot.Content is not (FileSelection or TableData or TextSelection))
             return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
+        string? textInput = snapshot.Content is TextSelection text ? text.Text : null;
+        if (textInput is not null && (textInput.Length == 0 || textInput.Length > PackProtocolLimits.MaximumTextInputLength))
+            return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
+        BrowserTextContextPayload? browserContext = null;
+        if (textInput is not null && snapshot.ProviderId == "powertrove.provider.browser.explicit")
+        {
+            string? url = snapshot.UserMessage;
+            string? title = snapshot.Source.Title;
+            if (url is null || url.Length > 2048 || title is null || title.Length > 300 ||
+                !Uri.TryCreate(url, UriKind.Absolute, out var parsed) ||
+                parsed.Scheme is not ("https" or "http") || parsed.UserInfo.Length != 0)
+                return new ErrorMessage("invalidRequest", PackStrings.InvalidSelection);
+            browserContext = new BrowserTextContextPayload(url, title, snapshot.BrowserPage?.Tab);
+        }
         using var executionLifetime = CancellationTokenSource.CreateLinkedTokenSource(token, _lifetime.Token);
         await _executionGate.WaitAsync(executionLifetime.Token).ConfigureAwait(false);
         await using var executionLease = new ExecutionLease(_executionGate);
@@ -95,7 +112,8 @@ public sealed class PackHostSupervisor : IAsyncDisposable
             catch (PackProtocolException) { return new ErrorMessage("invalidRequest", PackStrings.TableTooLarge); }
             selection = new FileSelectionPayload([]);
         }
-        else selection = FileSelectionPayload.FromSnapshot(snapshot);
+        // A text request carries its text, never file paths.
+        else selection = textInput is null ? FileSelectionPayload.FromSnapshot(snapshot) : new FileSelectionPayload([]);
         ValidateGroup(definition);
         var group = _groups.GetOrAdd(definition.Id, _ => new Group(definition, _clock.GetUtcNow()));
         if (!SameDefinition(group.Definition, definition)) throw new InvalidOperationException("Stop the previous pack group before replacing its payload.");
@@ -123,11 +141,12 @@ public sealed class PackHostSupervisor : IAsyncDisposable
             {
                 staging = Path.Combine(_stagingRoot, Guid.NewGuid().ToString("N"));
                 PackOutputCommitter.RejectReparse(staging); Directory.CreateDirectory(staging);
-                request = new ExecuteMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, staging, table);
+                request = new ExecuteMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, staging, table, textInput, browserContext);
             }
-            else request = new PreviewMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, table);
+            else request = new PreviewMessage(requestId, actionId, selection, values, snapshot.ExpiresAt, table, textInput, browserContext);
             await WriteAsync(group, request, TimeSpan.FromSeconds(10), _lifetime.Token).ConfigureAwait(false);
-            PackMessage response = await ResponseAsync(group, requestId, execute, progress, active.Token).ConfigureAwait(false);
+            PackMessage response = await ResponseAsync(group, requestId, execute, progress,
+                snapshot, actionId, active.Token).ConfigureAwait(false);
             if (response is ResultMessage result)
             {
                 // Already completed staged outputs may be retained after cooperative cancellation.
@@ -194,7 +213,8 @@ public sealed class PackHostSupervisor : IAsyncDisposable
     }
 
     private async Task<PackMessage> ResponseAsync(Group group, Guid requestId, bool execute,
-        IProgress<ActionProgress>? progress, CancellationToken token)
+        IProgress<ActionProgress>? progress, ContextSnapshot snapshot, string actionId,
+        CancellationToken token)
     {
         var canceled = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         using var registration = token.Register(() => canceled.TrySetResult());
@@ -217,6 +237,46 @@ public sealed class PackHostSupervisor : IAsyncDisposable
             group.PendingRead = null;
             switch (group.Reader.Current)
             {
+                case BrowserServiceRequestMessage browser when browser.RequestId == requestId:
+                    if (_browserPageService is null || snapshot.BrowserPage?.Tab is null ||
+                        !actionId.StartsWith("powertrove.browser.", StringComparison.Ordinal))
+                        throw new IOException("Unauthorized worker browser request.");
+                    // The worker supplies an operation, never a URL or a tab. The host
+                    // always uses its own verified, expiring snapshot and tab handle.
+                    BrowserPageContent? content = await _browserPageService.FetchAsync(
+                        snapshot.BrowserPage, browser.Operation, token).ConfigureAwait(false);
+                    if (browser.Operation is BrowserPageOperation.CaptureVisiblePng
+                        or BrowserPageOperation.CaptureFullPng or BrowserPageOperation.CaptureMhtml)
+                    {
+                        if (content?.Binary is not { Length: > 0 } bytes)
+                        {
+                            await WriteAsync(group, new BrowserServiceResultMessage(
+                                requestId, browser.OperationId, null), TimeSpan.FromSeconds(10),
+                                _lifetime.Token).ConfigureAwait(false);
+                            break;
+                        }
+                        string kind = browser.Operation == BrowserPageOperation.CaptureMhtml ? "mhtml" : "image";
+                        int max = kind == "mhtml" ? 64 * 1024 * 1024 : 24 * 1024 * 1024;
+                        if (bytes.Length > max) throw new IOException("Browser capture exceeded its limit.");
+                        int seq = 0;
+                        for (int offset = 0; offset < bytes.Length; offset += 128 * 1024)
+                        {
+                            token.ThrowIfCancellationRequested();
+                            int length = Math.Min(128 * 1024, bytes.Length - offset);
+                            await WriteAsync(group, new BrowserServiceBinaryChunkMessage(
+                                requestId, browser.OperationId, seq++,
+                                offset + length == bytes.Length, kind,
+                                Convert.ToBase64String(bytes, offset, length)),
+                                TimeSpan.FromSeconds(10), _lifetime.Token).ConfigureAwait(false);
+                        }
+                    }
+                    else
+                    {
+                        await WriteAsync(group, new BrowserServiceResultMessage(
+                            requestId, browser.OperationId, content),
+                            TimeSpan.FromSeconds(10), _lifetime.Token).ConfigureAwait(false);
+                    }
+                    break;
                 case ProgressMessage p when p.RequestId == requestId && execute:
                     progress?.Report(new ActionProgress(p.Fraction)); break;
                 case HeartbeatMessage h when h.RequestId == requestId: break;

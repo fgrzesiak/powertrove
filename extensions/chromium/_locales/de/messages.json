@@ -1,0 +1,200 @@
+{
+  "appName": {
+    "message": "PowerTrove Browser Pack"
+  },
+  "subtitle": {
+    "message": "Browser-Werkzeuge"
+  },
+  "website": {
+    "message": "Webseite"
+  },
+  "sectionContext": {
+    "message": "PowerTrove-Kontext"
+  },
+  "sendSelection": {
+    "message": "Markierten Text an PowerTrove senden"
+  },
+  "sendPageUrl": {
+    "message": "Seiten-URL an PowerTrove senden"
+  },
+  "copyLinkMarkdown": {
+    "message": "Link als Markdown kopieren"
+  },
+  "sectionExport": {
+    "message": "Webseite speichern"
+  },
+  "saveArticleMarkdown": {
+    "message": "Artikel → Markdown"
+  },
+  "savePageMarkdown": {
+    "message": "Webseite → Markdown"
+  },
+  "saveSelectionMarkdown": {
+    "message": "Markierter Text → Markdown"
+  },
+  "saveMhtml": {
+    "message": "Offline-Seite speichern (MHTML)"
+  },
+  "printPdf": {
+    "message": "Drucken / als PDF speichern"
+  },
+  "sectionCapture": {
+    "message": "Screenshots und Bilder"
+  },
+  "visibleScreenshot": {
+    "message": "Sichtbaren Tab aufnehmen"
+  },
+  "areaScreenshot": {
+    "message": "Bildschirmbereich aufnehmen"
+  },
+  "fullScreenshot": {
+    "message": "Ganze Webseite aufnehmen"
+  },
+  "downloadImages": {
+    "message": "Seitenbilder herunterladen (max. 25)"
+  },
+  "working": {
+    "message": "Verarbeitung…"
+  },
+  "done": {
+    "message": "Fertig."
+  },
+  "failed": {
+    "message": "Aktion fehlgeschlagen. Diese Seite ist möglicherweise gesperrt."
+  },
+  "connectDesktop": {
+    "message": "Mit PowerTrove verbinden"
+  },
+  "connectHint": {
+    "message": "Optional: Verbinde PowerTrove Desktop für zusätzliche Übergabe-Aktionen. Datei-Exporte und Screenshots funktionieren auch ohne Desktop-App."
+  },
+  "connectOpened": {
+    "message": "Bitte Verbindung in PowerTrove bestätigen."
+  },
+  "sectionPageData": {
+    "message": "Seitendaten"
+  },
+  "exportTablesCsv": {
+    "message": "Tabellen → CSV"
+  },
+  "exportTablesJson": {
+    "message": "Tabellen → JSON"
+  },
+  "exportTablesMarkdown": {
+    "message": "Tabellen → Markdown"
+  },
+  "exportLinksCsv": {
+    "message": "Seitenlinks → CSV"
+  },
+  "exportLinksMarkdown": {
+    "message": "Seitenlinks → Markdown"
+  },
+  "sendLargestTable": {
+    "message": "Tabelle für PowerTrove auswählen"
+  },
+  "openLastDownload": {
+    "message": "Letzten Download in PowerTrove öffnen"
+  },
+  "visibleScreenshotToPowerTrove": {
+    "message": "Screenshot → PowerTrove"
+  },
+  "fullScreenshotToPowerTrove": {
+    "message": "Ganze Seite → PowerTrove"
+  },
+  "openImageFromContext": {
+    "message": "Bild in PowerTrove öffnen"
+  },
+  "openLinkFromContext": {
+    "message": "Dateilink in PowerTrove öffnen"
+  },
+  "tablePickerTitle": {
+    "message": "Tabelle auswählen"
+  },
+  "tablePickerItem": {
+    "message": "Tabelle {0} · {1} Zeilen × {2} Spalten"
+  },
+  "tablePickerCancel": {
+    "message": "Abbrechen"
+  },
+  "tablePickerConfirm": {
+    "message": "An PowerTrove senden"
+  },
+  "noTables": {
+    "message": "Keine HTML-Tabellen auf dieser Seite"
+  },
+  "openPdfInPowerTrove": {
+    "message": "Aktuelle PDF in PowerTrove öffnen"
+  },
+  "tablePickerExport": {
+    "message": "Ausgewählte Tabelle exportieren"
+  },
+  "disconnectHint": {
+    "message": "Live-Verbindung beenden und optionale Seitenrechte entziehen."
+  },
+  "disconnectDesktop": {
+    "message": "Trennen"
+  },
+  "disconnectedDone": {
+    "message": "Browser-Verbindung getrennt."
+  },
+  "openEmbeddedPdfInPowerTrove": {
+    "message": "Eingebettete PDF in PowerTrove öffnen"
+  },
+  "connectionConnected": {
+    "message": "Verbunden"
+  },
+  "connectionConfigured": {
+    "message": "Wartet auf PowerTrove"
+  },
+  "connectionDisconnected": {
+    "message": "Nicht verbunden"
+  },
+  "searchPlaceholder": {
+    "message": "Aktionen suchen"
+  },
+  "footerHint": {
+    "message": "Browser-Exporte funktionieren eigenständig. Mit PowerTrove Desktop bietet Alt+Leertaste weitere Aktionen."
+  },
+  "allowAllPagesHint": {
+    "message": "Screenshots, die du in PowerTrove startest, brauchen Zugriff auf alle Seiten."
+  },
+  "allowAllPages": {
+    "message": "Zugriff auf alle Seiten erlauben"
+  },
+  "fastFullPageLabel": {
+    "message": "Schnelle Ganzseiten-Screenshots"
+  },
+  "fastFullPageHint": {
+    "message": "Die Debugger-Berechtigung wird bereits beim Installieren oder Aktualisieren der Erweiterung angefordert. Bei schnellen Aufnahmen zeigt Chrome/Edge kurz die Leiste „… hat die Fehlerbehebung gestartet“. Deaktivieren nutzt die normale Scroll-Aufnahme."
+  },
+  "fastFullPageDenied": {
+    "message": "Die Debugger-Berechtigung der Erweiterung ist nicht verfügbar. Die normale Screenshot-Funktion bleibt nutzbar."
+  },
+  "fastFullPageEnabled": {
+    "message": "Schnelle Screenshots aktiviert."
+  },
+  "fastFullPageDisabled": {
+    "message": "Schnelle Screenshots deaktiviert."
+  },
+  "fastFullPageCanceled": {
+    "message": "Schneller Screenshot über die Debugging-Leiste abgebrochen. Es wurde kein Screenshot erstellt."
+  },
+  "saveModeLabel": {
+    "message": "Exportierte Dateien speichern"
+  },
+  "saveModeAsk": {
+    "message": "Jedes Mal nach Speicherort fragen"
+  },
+  "saveModeDownloads": {
+    "message": "Direkt in den Downloadordner"
+  },
+  "saveModeHint": {
+    "message": "Gilt für einzelne Dateien. Seitenbilder und Dateien für PowerTrove landen immer im Downloadordner des Browsers."
+  },
+  "saveModeChanged": {
+    "message": "Speichereinstellung aktualisiert."
+  },
+  "saveModeFailure": {
+    "message": "Speichereinstellung konnte nicht übernommen werden."
+  }
+}

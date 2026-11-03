@@ -21,6 +21,32 @@ public sealed class InstallerMessagesTests : IDisposable
         Assert.DoesNotContain("Other", content);
     }
 
+    [Fact]
+    public void BrowserPreviewFollowsTheSingleStoreIdSource()
+    {
+        string resources = Path.Combine(root, "src", "PowerTrove.Desktop", "Resources");
+        Directory.CreateDirectory(resources);
+        foreach (string language in new[] { "Strings.resx", "Strings.de.resx" })
+        {
+            new XDocument(new XElement("root",
+                new XElement("data", new XAttribute("name", "Installer_Browser"), new XElement("value", "Browser Tools")),
+                new XElement("data", new XAttribute("name", "Installer_BrowserPreview"), new XElement("value", "{0} (Preview)"))))
+                .Save(Path.Combine(resources, language));
+        }
+
+        string source = Path.Combine(root, "src", "PowerTrove.Application", "Localization", "BrowserExtensionSetup.cs");
+        Directory.CreateDirectory(Path.GetDirectoryName(source)!);
+        string output = Path.Combine(root, "messages.isl");
+        File.WriteAllText(source, "public const string? ChromeWebStoreId = null; public const string? EdgeAddonsId = null;");
+        InstallerMessages.Write(root, output);
+        Assert.Contains("en.Installer_Browser=Browser Tools (Preview)", File.ReadAllText(output));
+
+        File.WriteAllText(source, "public const string? ChromeWebStoreId = \"chrome-id\"; public const string? EdgeAddonsId = \"edge-id\";");
+        InstallerMessages.Write(root, output);
+        Assert.Contains("en.Installer_Browser=Browser Tools\n", File.ReadAllText(output));
+        Assert.DoesNotContain("en.Installer_Browser=Browser Tools (Preview)", File.ReadAllText(output));
+    }
+
     [Theory]
     [InlineData("Installer_Other", "Tools")]
     [InlineData("Installer_Title", "Injected\n[Setup]")]

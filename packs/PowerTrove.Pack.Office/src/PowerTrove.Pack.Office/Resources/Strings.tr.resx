@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Office araçları</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Office belgeleri</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Word&apos;ü PDF&apos;ye dönüştür</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Yüklü Microsoft Word kullanarak yeni PDF&apos;ler oluşturun.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Excel&apos;i PDF&apos;ye Dönüştür</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Yüklü Microsoft Excel ve yazdırma düzenini kullanarak yeni PDF&apos;ler oluşturun.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>PowerPoint&apos;i PDF&apos;ye Dönüştür</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Yüklü Microsoft PowerPoint kullanarak yeni PDF&apos;ler oluşturun.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>PDF&apos;yi Word&apos;e Dönüştür</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Yüklü Word PDF Reflow kullanarak düzenlenebilir DOCX kopyaları oluşturun.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>Microsoft Word gereklidir.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>Microsoft Excel gereklidir.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>Microsoft PowerPoint gereklidir.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Dönüştürülüyor</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Bir Office belgesini yeni bir PDF&apos;ye aktaracaktır.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>{0} adet Office belgesini yeni PDF&apos;lere aktaracaktır.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Bir PDF dosyası yeni bir Word belgesine dönüştürülecektir.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>{0} PDF dosyasını yeni Word belgelerine dönüştürecektir.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Yerel olarak kurulu Office gerektirir. Düzen, Office&apos;e, yazı tiplerine ve yazdırma ayarlarına bağlıdır. Desteklenmeyen makro içeriği ve formül içeren CSV dosyaları reddedilir; 64 MiB&apos;den büyük belgeler ve bazı eski kapsayıcılar desteklenmez.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>Word PDF Yeniden Düzenleme, düzeni, yazı tiplerini, tabloları ve sayfa sonlarını değiştirebilir. Taranmış sayfalar resim olarak kalabilir. Word 16.0 dönüştürme uyarısı tercihi geçici olarak değiştirilir ve daha sonra geri yüklenir.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>Gerekli Microsoft Office uygulaması yüklü değil.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>Belge parola korumalı.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>Bu belge, güvenli bir şekilde dönüştürülemeyen makrolar veya formül içeriği içeriyor.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>Belge biçimi geçersiz, desteklenmiyor veya dönüştürme sınırlarını aşıyor.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>Ayrı bir Office örneği alınamadı. Bu Office uygulamasını kapatıp tekrar deneyin.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>Office dönüştürme işlemi zaman aşımına uğradı. Hiçbir çıktı kaydedilmedi.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Office bu belgeyi dönüştüremedi. Hiçbir çıktı kaydedilmedi.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>Geçici Word tercihi geri yüklenemedi. Word&apos;deki PDF dönüştürme uyarısı ayarını kontrol edin.</value></data>
+</root>

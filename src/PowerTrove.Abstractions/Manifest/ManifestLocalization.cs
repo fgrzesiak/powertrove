@@ -14,7 +14,8 @@ public sealed record ManifestPresentation(
 public sealed record ManifestActionPresentation(
     [property: JsonPropertyName("title")] string Title,
     [property: JsonPropertyName("description")] string? Description = null,
-    [property: JsonPropertyName("parameters")] IReadOnlyDictionary<string, ManifestParameterPresentation>? Parameters = null);
+    [property: JsonPropertyName("parameters")] IReadOnlyDictionary<string, ManifestParameterPresentation>? Parameters = null,
+    [property: JsonPropertyName("searchTerms")] IReadOnlyList<string>? SearchTerms = null);
 
 [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
 public sealed record ManifestParameterPresentation(
@@ -41,9 +42,12 @@ public static class ManifestLocalization
     /// <summary>Captures existing pack resources while refusing language-dependent execution contracts.</summary>
     public static ActionManifest WithTranslation(ActionManifest manifest, string language, ActionManifest translated)
     {
+        var englishActions = manifest.Actions.ToDictionary(a => a.Id, StringComparer.Ordinal);
         var presentation = new ManifestPresentation(translated.DisplayName, translated.Actions.ToDictionary(a => a.Id, a =>
             new ManifestActionPresentation(a.Title, a.Description, a.Parameters?.ToDictionary(p => p.Name, p =>
-                new ManifestParameterPresentation(p.Title, p.Description, p.Placeholder, p.ChoiceTitles), StringComparer.Ordinal)), StringComparer.Ordinal));
+                new ManifestParameterPresentation(p.Title, p.Description, p.Placeholder, p.ChoiceTitles), StringComparer.Ordinal),
+                a.SearchTerms?.SequenceEqual(englishActions[a.Id].SearchTerms ?? Array.Empty<string>(), StringComparer.Ordinal) == false
+                    ? a.SearchTerms : null), StringComparer.Ordinal));
         var candidate = Apply(manifest with { Localizations = null }, presentation);
         if (!JsonNode.DeepEquals(JsonSerializer.SerializeToNode(candidate), JsonSerializer.SerializeToNode(translated with { Localizations = null })))
             throw new JsonException("A translation changes the pack execution contract.");
@@ -61,6 +65,7 @@ public static class ManifestLocalization
         Actions = manifest.Actions.Select(action => !presentation.Actions.TryGetValue(action.Id, out var text) ? action : action with
         {
             Title = text.Title, Description = text.Description ?? action.Description,
+            SearchTerms = text.SearchTerms ?? action.SearchTerms,
             Parameters = action.Parameters?.Select(parameter => text.Parameters?.TryGetValue(parameter.Name, out var label) != true ? parameter : parameter with
             {
                 Title = label!.Title ?? parameter.Title, Description = label.Description ?? parameter.Description,
@@ -89,6 +94,7 @@ public static class ManifestLocalization
             {
                 if (!actions.TryGetValue(item.Key, out var action) || item.Value is null) throw new JsonException("Unknown localized action.");
                 Required(item.Value.Title); Optional(item.Value.Description);
+                ActionPackManifest.ValidateSearchTerms(item.Value.SearchTerms);
                 if (item.Value.Parameters is null) continue;
                 if (item.Value.Parameters.Count > (action.Parameters?.Count ?? 0)) throw new JsonException("Invalid localized parameters.");
                 foreach (var entry in item.Value.Parameters)

@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using System.Globalization;
 using PowerTrove.Application.Packs;
 using PowerTrove.Application.Media;
+using PowerTrove.Application.Localization;
+using PowerTrove.Abstractions;
 
 namespace PowerTrove.Desktop;
 
@@ -110,7 +112,7 @@ public class ActionGroupProxy
     public ObservableCollection<ActionSearchResultProxy> Items { get; }
     public bool HasTitle => !string.IsNullOrEmpty(Title);
     public string CountText => Items.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
-    public string AccessibleName => UiText.Format(Items.Count == 1 ? UiText.GroupActionsOne : UiText.GroupActionsOther, Title, Items.Count);
+    public string AccessibleName => UiText.Format(UiText.PluralString("GroupActions", Items.Count), Title, Items.Count);
 
     public ActionGroupProxy(string title, IEnumerable<ActionSearchResultProxy> items, bool compactTitle = false)
     {
@@ -165,6 +167,7 @@ public partial class MainWindow : Window
         // WinUI can raise Window.Activated before its XAML content is loaded.
         // Both Loaded and the deferred activation callback are used for first focus.
         this.Activated += MainWindow_Activated;
+        this.Activated += (_, _) => ShowInstalledBrowserInfoOnce();
         ViewModel.PropertyChanged += ViewModel_PropertyChanged;
         ViewModel.DismissRequested += ViewModel_DismissRequested;
 
@@ -229,6 +232,66 @@ public partial class MainWindow : Window
 
     private void SettingsButton_Click(object sender, RoutedEventArgs e) => OpenSettingsFromPalette();
 
+    /// <summary>Accept text pasted or typed by the user; never read the clipboard programmatically.</summary>
+    private async void UseClipboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.IsExecuting || _dialogOpen || App.Current is not App app || app.UpdateInstalling ||
+            app.Actions is null || app.SearchEngine is null) return;
+        var expectedSnapshot = ViewModel.CurrentSnapshot;
+        var input = new TextBox
+        {
+            Header = UiText.TextInputInstructions,
+            AcceptsReturn = true,
+            TextWrapping = TextWrapping.Wrap,
+            MinWidth = 360,
+            MinHeight = 160,
+            IsSpellCheckEnabled = false,
+            IsTextPredictionEnabled = false
+        };
+        var dialog = new ContentDialog
+        {
+            Title = UiText.UseClipboardText,
+            Content = input,
+            PrimaryButtonText = UiText.TextInputUse,
+            CloseButtonText = UiText.CommonCancel,
+            DefaultButton = ContentDialogButton.Close,
+            IsPrimaryButtonEnabled = false,
+            XamlRoot = Content.XamlRoot
+        };
+        input.TextChanged += (_, _) =>
+            dialog.IsPrimaryButtonEnabled = PowerTrove.Application.ForegroundTextSelectionPolicy.IsValid(input.Text);
+        dialog.Opened += (_, _) => input.Focus(FocusState.Programmatic);
+        _dialogOpen = true;
+        try
+        {
+            if (await dialog.ShowAsync() != ContentDialogResult.Primary || AllowClose || !IsPaletteVisible ||
+                !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot)) return;
+            string text = input.Text;
+            if (!PowerTrove.Application.ForegroundTextSelectionPolicy.IsValid(text))
+            {
+                ViewModel.ShowPackNotice(UiText.ClipboardTooLarge);
+                return;
+            }
+            // The confirmed input belongs to this invocation and is never persisted.
+            var now = DateTimeOffset.UtcNow;
+            var snapshot = new ContextSnapshot(Guid.NewGuid(),
+                new SourceWindowIdentity(IntPtr.Zero, 0, "text-input", now),
+                ContextStatus.Available, new TextSelection(text), now, now.AddMinutes(2),
+                "powertrove.provider.explicit-text", null);
+            ViewModel.Initialize(snapshot, app.Actions, app.SearchEngine, app.SettingsService);
+        }
+        catch (Exception ex) when (ex is System.Runtime.InteropServices.COMException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            ViewModel.ShowPackNotice(UiText.TextInputFailed);
+        }
+        finally
+        {
+            input.Text = string.Empty;
+            _dialogOpen = false;
+            if (!AllowClose && IsPaletteVisible) SearchBox.Focus(FocusState.Keyboard);
+        }
+    }
+
     private void OpenSettingsFromPalette()
     {
         if (App.Current is App app)
@@ -282,6 +345,28 @@ public partial class MainWindow : Window
         if (notice is not null)
             AnnounceNotice(notice);
     }
+
+    private bool _browserFirstRunInfoShown;
+
+    /// <summary>Once per user, after the Browser pack arrives, explain how to connect the extension.</summary>
+    private void ShowInstalledBrowserInfoOnce()
+    {
+        if (_browserFirstRunInfoShown || App.Current is not App app || app.Distribution.IsPackaged || !app.HasBrowserPackActions)
+            return;
+        _browserFirstRunInfoShown = true;
+        try
+        {
+            // Users who already connected a browser need no setup education.
+            bool connected = app.BrowserSessionCount > 0 || App.IsBrowserPaired();
+            if (BrowserSetupHintState.TryMarkShown(app.Distribution.UserRoot) && !connected)
+                BrowserFirstRunInfo.IsOpen = true;
+        }
+        catch (Exception ex) when (ex is System.IO.IOException or UnauthorizedAccessException
+            or System.Security.SecurityException) { }
+    }
+
+    private void OpenBrowserSettings_Click(object sender, RoutedEventArgs e) =>
+        ((App)App.Current).OpenSettings(selectBrowser: true);
 
     private void AnnounceNotice(TextBlock notice)
     {
@@ -504,6 +589,11 @@ public partial class MainWindow : Window
     private async void OpenSingle_Click(object sender, RoutedEventArgs e)
     {
         await ViewModel.OpenSingleOutputAsync();
+    }
+
+    private void ContinueWithOutputs_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.ContinueWithOutputs();
     }
 
     private async void UndoResult_Click(object sender, RoutedEventArgs e)
@@ -744,6 +834,11 @@ public partial class MainWindow : Window
             OpenSettingsFromPalette();
             return;
         }
+        if (descriptor.Id == PowerTrove.Application.Commands.ConnectBrowserAction.ActionId)
+        {
+            app?.OpenSettings(selectBrowser: true);
+            return;
+        }
         if (descriptor.Id == PowerTrove.Application.Commands.CreateRecipeAction.ActionId)
         {
             app?.OpenRecipeEditor();
@@ -789,6 +884,37 @@ public partial class MainWindow : Window
         { ViewModel.ShowPackNotice(UiText.PackSelectAgain); return; }
         if (result.InstallState != PackInstallState.NotInstalled)
             app?.SettingsService?.RecordActionExecution(descriptor.Id);
+        if (result.Action is not CatalogAction && DocumentEditorInput.OpensEditor(descriptor.Id) is bool edit && app?.Actions is { } registry)
+        {
+            // The viewer renders through the action's previews; nothing runs or is written until the user saves.
+            string actionId = descriptor.Id;
+            ShowView(new DocumentEditorView(() => registry.GetAction(actionId) is { } current and not CatalogAction ? current : null,
+                expectedSnapshot, edit, app.Distribution.UserRoot));
+            return;
+        }
+
+        if (result.Action is not CatalogAction && OcrReaderInput.CanOpen(descriptor.Id, expectedSnapshot))
+        {
+            // The installed Image Tools action is still the discoverability gate.
+            // OCR runs locally on the exact one-image snapshot; batches retain the
+            // pack's existing TXT/clipboard options.
+            ShowView(new OcrReaderView(expectedSnapshot, async (language, token) =>
+            {
+                if (expectedSnapshot.IsStale || !ReferenceEquals(ViewModel.CurrentSnapshot, expectedSnapshot) ||
+                    !ReferenceEquals(app?.Actions?.GetAction(descriptor.Id), result.Action))
+                    return null;
+                var export = new DictionaryParameters(new Dictionary<string, string>
+                {
+                    ["Output"] = "file", ["Language"] = language ?? "auto"
+                });
+                var preview = await result.Action.PreviewAsync(expectedSnapshot, export, token);
+                if (preview.IsBlocked) return null;
+                var receipt = await result.Action.ExecuteAsync(expectedSnapshot, export, null, token);
+                return receipt is { IsSuccess: true, IsCanceled: false, OutputPaths.Count: > 0 }
+                    ? receipt.OutputPaths[0] : null;
+            }));
+            return;
+        }
 
         // Saved preferences seed the options; file-changing actions always show the
         // options/preview dialog so nothing is written without confirmation.
@@ -914,8 +1040,10 @@ public partial class MainWindow : Window
             parameters = options.Parameters;
             if (options.Remember && settingsService != null)
             {
+                // A file order describes this selection only.
                 foreach (var (key, value) in options.Parameters.Values)
-                    settingsService.SetActionPreference(descriptor, key, value);
+                    if (descriptor.Parameters?.FirstOrDefault(p => string.Equals(p.Name, key, StringComparison.OrdinalIgnoreCase))?.Editor != ActionParameterEditor.FileOrder)
+                        settingsService.SetActionPreference(descriptor, key, value);
             }
         }
 

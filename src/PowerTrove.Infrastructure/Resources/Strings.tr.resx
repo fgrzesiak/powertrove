@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="OfficeMissingApplication" xml:space="preserve"><value>Gerekli Microsoft Office uygulaması yüklü değil.</value></data>
+  <data name="OfficePasswordProtected" xml:space="preserve"><value>Belge parola korumalı.</value></data>
+  <data name="OfficeUnsafeMacros" xml:space="preserve"><value>Bu belge, dönüştürme için güvenli bir şekilde açılamayan makrolar veya formül içeriği içeriyor.</value></data>
+  <data name="OfficeInvalidDocument" xml:space="preserve"><value>Belge formatı geçersiz, desteklenmiyor veya dönüştürme sınırlarını aşıyor.</value></data>
+  <data name="OfficeBusy" xml:space="preserve"><value>Ayrı bir Office örneği alınamadı. Bu Office uygulamasını kapatın ve tekrar deneyin.</value></data>
+  <data name="OfficeTimedOut" xml:space="preserve"><value>Ofis dönüştürme işlemi zaman aşımına uğradı. Hiçbir çıktı kaydedilmedi.</value></data>
+  <data name="OfficeConversionFailed" xml:space="preserve"><value>Ofis bu belgeyi dönüştüremedi. Hiçbir çıktı kaydedilmedi.</value></data>
+  <data name="OfficePreferenceRestoreFailed" xml:space="preserve"><value>Geçici Word tercihi geri yüklenemedi. Word&apos;deki PDF dönüştürme uyarısı ayarını kontrol edin.</value></data>
+  <data name="FileAccessDenied" xml:space="preserve"><value>Erişim reddedildi.</value></data>
+  <data name="FileReadFailed" xml:space="preserve"><value>Dosya okunamadı.</value></data>
+  <data name="FileFormatNotRecognized" xml:space="preserve"><value>İçerik, tanınan bir {0} formatında değil.</value></data>
+  <data name="FileFormatMismatch" xml:space="preserve"><value>İçerik, desteklenen {0} formatlarıyla eşleşmiyor.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Resim çözülemedi.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Resim kodlanamadı.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Desteklenmeyen görüntü formatı.</value></data>
+</root>

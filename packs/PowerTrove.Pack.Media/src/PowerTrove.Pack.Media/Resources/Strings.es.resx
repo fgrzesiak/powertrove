@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>Convertir a {0}</value></data><data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>Convierte los archivos de audio seleccionados a {0}.</value></data><data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>Convertir a {0}</value></data><data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>Convierte los vídeos seleccionados a {0} usando un ajuste preestablecido compatible.</value></data><data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>Extraer audio de vídeo</value></data><data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>Guarda la pista de audio de los vídeos seleccionados como archivos MP3.</value></data><data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>Eliminar audio</value></data><data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>Crea copias de los vídeos seleccionados sin la pista de audio.</value></data><data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>Extraer fotogramas</value></data><data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>Guarda un fotograma por segundo de los vídeos seleccionados como imágenes JPEG en una nueva carpeta.</value></data><data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>Convertir a GIF</value></data><data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>Convierte los primeros 10 segundos de los vídeos seleccionados a una animación GIF sin sonido.</value></data><data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>Convertirá {0} a {1}.</value></data><data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>Convertirá {0} a {1}.</value></data><data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>Extraerá la pista de audio de {0} como MP3.</value></data><data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>Creará una copia de {0} sin la pista de audio.</value></data><data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>Guardará un fotograma por segundo de {0} como imágenes JPEG en una nueva carpeta.</value></data><data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>Convertirá los primeros 10 segundos de {0} a una animación GIF sin sonido.</value></data><data name="Media_AudioFile" xml:space="preserve"><value>Archivo de audio</value></data><data name="Media_AudioFiles" xml:space="preserve"><value>Archivos de audio</value></data><data name="Media_Video" xml:space="preserve"><value>vídeo</value></data><data name="Media_Videos" xml:space="preserve"><value>vídeos</value></data><data name="Media_Progress_Converting" xml:space="preserve"><value>Convirtiendo</value></data><data name="Media_Progress_Extracting" xml:space="preserve"><value>Extracción</value></data><data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>Tiempo de espera agotado para la conversión de medios.</value></data><data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>Error en la conversión de medios (código de salida {0}).</value></data><data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>Reemplazar pista de audio</value></data>
+<data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>Reemplaza la pista de audio del video seleccionado con el archivo de audio seleccionado.</value></data>
+<data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>Reemplazará la pista de audio del video.</value></data>
+<data name="Media_RequiresFFmpeg" xml:space="preserve"><value>Requiere FFmpeg</value></data>
+<data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>Añadir subtítulos</value></data>
+<data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>Añade pistas de subtítulos al vídeo sin recodificarlo.</value></data>
+<data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>Añadirá subtítulos al vídeo.</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>Mostrar detalles del archivo multimedia</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>Muestra las propiedades técnicas sin títulos, artistas ni otras etiquetas.</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>Recortar audio o vídeo</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>Guarda el intervalo de tiempo seleccionado como un nuevo archivo.</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>Comprimir vídeo</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>Crear un archivo MP4 más pequeño sin escalado. Los resultados que no sean más pequeños se omiten.</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>Unir archivos de vídeo o audio</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>Unir archivos del mismo tipo en orden natural de nombre de archivo en un nuevo MP4 o M4A.</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>Convertir vídeo a GIF</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>Crea un GIF animado a partir de un breve vídeo, con hasta 600 fotogramas.</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>Guardar fotogramas de vídeo como imágenes</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>Guarda un fotograma o una secuencia de fotogramas a tamaño completo en una nueva carpeta.</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>Normalizar volumen</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>Crear una copia normalizada a -16 LUFS mediante análisis de dos pasadas. Requiere FFmpeg.</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>Rotar vídeo</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>Rota un vídeo para crear una nueva copia. Requiere FFmpeg.</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>Inicio (hora)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>Fin (vacío = hasta el final)</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>Recorte preciso con recodificación</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>Preajuste de calidad</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>Conservar audio</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>Duración (segundos)</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>Fotogramas por segundo</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>Ancho del GIF (píxeles)</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>Selección de fotograma</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>En (tiempo)</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>Intervalo (0,5–3600 segundos)</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>Formato de imagen</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>Rotación en sentido horario</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>Cambiar solo metadatos de rotación</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>Alta · hasta 1080p, 5 Mbps</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>Medio · hasta 720p, 2,5 Mbps</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>Pequeño · hasta 480p, 1 Mbps</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>Fotograma único</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>A intervalos</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° En el sentido de las agujas del reloj</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° en sentido horario</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° en sentido horario</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>archivos multimedia</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>Archivos de audio</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>archivos de vídeo</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>No hay un inspector de medios local disponible. En Windows, utilice los componentes multimedia o instale FFprobe junto con FFmpeg.</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>No se pudieron leer las propiedades del archivo multimedia o superaron los límites admitidos.</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>El motor multimedia local no pudo procesar este archivo.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Ningún motor multimedia instalado admite esta operación para la selección. Muchos formatos funcionan tras instalar FFmpeg: vaya a Configuración &gt; FFmpeg o ejecute `winget install Gyan.FFmpeg` en la Terminal.</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>Utilice segundos, mm:ss o hh:mm:ss. El final debe ir después del inicio.</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>Introduce un intervalo de tiempo válido. Los intervalos deben estar entre 0,5 y 3600 segundos; utiliza un punto decimal.</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>El rango solicitado supera la duración de este archivo.</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>El archivo no tiene pistas de vídeo utilizables.</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>El rango GIF seleccionado supera los 600 fotogramas o las dimensiones compatibles. Reduzca la duración, la velocidad de fotogramas o el ancho.</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>El recorte rápido de FFmpeg sigue los fotogramas clave. El procesamiento de Windows Media y el recorte preciso recodifican.</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>La extracción por intervalo guarda un máximo de 500 fotogramas, comenzando desde el principio.</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>La rotación solo de metadatos no tiene pérdida de calidad, pero algunos reproductores la ignoran.</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>Seleccione solo archivos de audio o solo archivos de video para unirlos.</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>Los vídeos se escalan y se ajustan al tamaño del primer vídeo.</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>Desconocido / No aplicable</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>Duración: {0}
+Resolución: {1}
+Velocidad de fotogramas: {2} fps
+Códec de vídeo: {3}
+Códec de audio: {4}
+Tasa de bits: {5} kbit/s
+Canales de audio: {6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>No se pudo medir el volumen de forma fiable. El audio silencioso o no válido no se puede normalizar.</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>La rotación solo de metadatos requiere un contenedor MP4/MOV. Desactive la opción para rotar los píxeles.</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>Crear vídeo a partir de imagen y audio</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>Crear vídeo a partir de imagen y audio</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>Creará un vídeo a partir de la imagen y el audio.</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>Herramientas de audio y vídeo</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>Convirtiendo audio</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>Procesar vídeo</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>La conversión a WebM requiere FFmpeg. Instálelo en Ajustes &gt; FFmpeg o ejecute `winget install Gyan.FFmpeg` en la terminal.</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>Ningún motor multimedia de este sistema admite esta conversión. En las ediciones Windows N, instale el Paquete de características multimedia.</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>Convertirá {0} archivo de audio a {1}.</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>Convertirá {0} archivos de audio a {1}.</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>Convertirá {0} video a {1}. La conversión de video puede tardar un poco.</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>Convertirá {0} videos a {1}. La conversión de video puede tardar un poco.</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>Guardará la pista de audio del video {0} como {1}.</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>Guardará la pista de audio de los videos {0} como {1}.</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>Creará una copia de {0} sin la pista de audio.</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>Creará copias de {0} sin la pista de audio.</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>Convertir de un formato sin pérdida a uno con pérdida reduce la calidad del audio.</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>Convertir de un formato con pérdida a uno sin pérdida aumenta el tamaño del archivo sin mejorar la calidad.</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>La conversión entre formatos con pérdida reduce la calidad del audio (pérdida de generación).</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>El archivo no tiene pistas de audio ni de vídeo utilizables.</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>Esta conversión no es compatible con FFmpeg.</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>Crear vídeo de presentación de diapositivas</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>Crear un vídeo a partir de imágenes seleccionadas con audio opcional.</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>Creará un vídeo de presentación de diapositivas a partir de las imágenes seleccionadas y audio opcional.</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>Duración por imagen</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>Tamaño del vídeo</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>Automático (ajustar duración del audio)</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0} segundos</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0} segundos</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p horizontal</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p horizontal</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>Cuadrado (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>Convertir SRT a VTT</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>Convertir VTT a SRT</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Ajustar la sincronización de los subtítulos</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>Crea copias WebVTT UTF-8 de subtítulos SRT, conservando la sincronización de las señales y los saltos de línea.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Crea copias SRT UTF-8 de las señales WebVTT compatibles sin perder el formato no compatible.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Desplaza cada señal SRT o VTT en un valor positivo o negativo y crea un nuevo archivo.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Desplazamiento en milisegundos</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1000 ms = 1 segundo. Los valores negativos adelantan las señales. Un desplazamiento antes del tiempo cero se rechaza; no se descarta ninguna señal.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Subtítulo archivos</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>Procesará {0} subtítulos.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>Los subtítulos no son válidos, superan los límites admitidos, contienen metadatos o formato no compatibles, o el desplazamiento colocaría una señal antes del cero. Utilice UTF-8 SRT o WebVTT con marcas de tiempo de hasta siete días.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>No se pudo leer la entrada de subtítulos.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Tamaño máximo por vídeo (MB; 0 = (Preestablecido)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1.000.000 bytes. Cero utiliza únicamente el preajuste de calidad. Un valor positivo presupuesta la tasa de bits de vídeo a partir de la duración, reserva espacio para el audio y el contenedor, y luego verifica el tamaño de salida real.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Máximo {0} MB por vídeo. Tasa de bits de vídeo prevista: {1}–{2} kbit/s. El audio consume hasta 128 kbit/s cuando se conserva. El tamaño final del archivo se comprueba antes de guardarlo.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>El tamaño solicitado es demasiado pequeño para esta duración y el audio conservado, o las dimensiones/duración del vídeo no son compatibles. Aumente el tamaño o elimine el audio.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>El codificador no pudo alcanzar el tamaño máximo solicitado. No se guardó ningún archivo de salida. Aumente el límite, seleccione una calidad inferior o elimine el audio.</value></data>
+</root>

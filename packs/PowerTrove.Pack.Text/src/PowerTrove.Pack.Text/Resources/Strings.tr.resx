@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Pano ve Metin</value></data>
+  <data name="Description" xml:space="preserve"><value>Açıkça yakalanan bir metin seçimini yerel olarak dönüştürür ve sonucu panoya kopyalar.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Dönüşümü inceleyin. Sonuç, yalnızca işlemi çalıştırdıktan sonra panoya kopyalanacaktır.</value></data>
+  <data name="Done" xml:space="preserve"><value>Metin panoya kopyalandı.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Kullanılabilir metin seçeneği yok veya seçim süresi dolmuş ya da çok büyük.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Metin 65.536 karakter sınırını aşıyor.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Metin veya desen işlenemiyor.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Desteklenmeyen metin işlemi.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>Giriş geçersiz kodlanmış içeriğe sahip.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>Düzenli ifade zaman sınırını aştı.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Bir düzenli ifade kalıbı girin.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Desen</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Değiştirme</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>.NET düzenli ifadesi, 200 ms zaman aşımı</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>Sonuç boş; çalıştırmak panodaki metni silecektir.</value></data>
+  <data name="trim" xml:space="preserve"><value>Boşlukları kırp</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Her satırı kırp</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Boşluğu Daralt</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Boş satırları kaldır</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Yinelenen satırları kaldır</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Satırları sırala</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Küçük harfe dönüştürün</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Büyük harfe dönüştürün</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Başlık büyük harfe dönüştürün</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Regex kullanarak metni değiştirin</value></data>
+  <data name="url-encode" xml:space="preserve"><value>URL kodlama metni</value></data>
+  <data name="url-decode" xml:space="preserve"><value>URL kod çözme metni</value></data>
+  <data name="html-encode" xml:space="preserve"><value>HTML metin kodlama</value></data>
+  <data name="html-decode" xml:space="preserve"><value>HTML metin kod çözme</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Metni Base64 kodlama</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Metni Base64 kod çözme</value></data>
+  <data name="json-escape" xml:space="preserve"><value>JSON kaçış metni</value></data>
+</root>

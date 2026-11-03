@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Alat Office</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Dokumen Office</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Konversi Word ke PDF</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Buat PDF baru menggunakan Microsoft Word yang terpasang.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Konversi Excel ke PDF</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Buat PDF baru menggunakan Microsoft Excel yang terpasang dan tata letak cetaknya.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>Konversi PowerPoint ke PDF</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Buat PDF baru menggunakan Microsoft PowerPoint yang terpasang.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>Konversi PDF ke Word</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Buat salinan DOCX yang dapat diedit menggunakan Word PDF Reflow yang terpasang.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>Microsoft Word diperlukan.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>Microsoft Excel diperlukan.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>Microsoft PowerPoint diperlukan.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Konversi</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Akan mengekspor satu dokumen Office ke PDF baru.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>Akan mengekspor {0} dokumen Office ke PDF baru.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Akan mengkonversi satu PDF ke dokumen Word baru.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>Akan mengkonversi {0} PDF ke dokumen Word baru.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Membutuhkan Office yang terinstal secara lokal. Tata letak bergantung pada Office, font, dan pengaturan cetak. Konten makro yang tidak didukung dan CSV yang dapat menggunakan rumus akan ditolak; dokumen di atas 64 MiB dan beberapa kontainer lama tidak didukung.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>Pengaturan Ulang Tata Letak PDF Word dapat mengubah tata letak, font, tabel, dan pemisah halaman. Halaman yang dipindai mungkin tetap berupa gambar. Pengaturan peringatan konversi Word 16.0 diubah sementara dan dikembalikan setelahnya.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>Aplikasi Microsoft Office yang diperlukan tidak terinstal.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>Dokumen dilindungi kata sandi.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>Dokumen ini berisi makro atau konten formula yang tidak dapat dibuka dengan aman untuk konversi.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>Format dokumen tidak valid, tidak didukung, atau melebihi batas konversi.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>Instansi Office terpisah tidak dapat diperoleh. Tutup aplikasi Office tersebut dan coba lagi.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>Konversi Office habis waktu. Tidak ada output yang disimpan.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Office tidak dapat mengonversi dokumen ini. Tidak ada output yang disimpan.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>Preferensi sementara Word tidak dapat dipulihkan. Periksa pengaturan peringatan konversi PDF di Word.</value></data>
+</root>

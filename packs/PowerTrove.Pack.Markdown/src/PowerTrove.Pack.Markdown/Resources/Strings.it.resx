@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="PackTitle" xml:space="preserve">
+    <value>Strumenti Markdown</value>
+  </data>
+  <data name="ViewTitle" xml:space="preserve">
+    <value>Visualizza Markdown</value>
+  </data>
+  <data name="ViewDescription" xml:space="preserve">
+    <value>Mostra un file Markdown come una pagina formattata con tabelle, codice, elenchi di attività e immagini locali.</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Modifica Markdown</value>
+  </data>
+  <data name="EditDescription" xml:space="preserve">
+    <value>Modifica un file Markdown con un&apos;anteprima in tempo reale affiancata. Le modifiche vengono salvate solo quando si seleziona Salva.</value>
+  </data>
+  <data name="MarkdownFiles" xml:space="preserve">
+    <value>File Markdown</value>
+  </data>
+  <data name="EngineUnavailable" xml:space="preserve">
+    <value>Il motore Markdown non è disponibile.</value>
+  </data>
+  <data name="ViewOperation" xml:space="preserve">
+    <value>Apre il file Markdown nel visualizzatore.</value>
+  </data>
+  <data name="EditOperation" xml:space="preserve">
+    <value>Apre il file Markdown nell&apos;editor.</value>
+  </data>
+  <data name="RemovedContent" xml:space="preserve">
+    <value>{0} parti HTML attive o non supportate sono state rimosse dalla visualizzazione.</value>
+  </data>
+  <data name="RemoteImagesBlocked" xml:space="preserve">
+    <value>{0} immagini da Internet non vengono caricate.</value>
+  </data>
+  <data name="UnsupportedImages" xml:space="preserve">
+    <value>{0} immagini si trovano al di fuori della cartella del file o utilizzano una sorgente non supportata e non vengono visualizzate.</value>
+  </data>
+  <data name="PreviewTooLarge" xml:space="preserve">
+    <value>Il documento è troppo grande per l&apos;anteprima.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Impossibile leggere il file Markdown.</value>
+  </data>
+  <data name="ViewerOnly" xml:space="preserve">
+    <value>Apri questa azione dalla tavolozza di PowerTrove; mostra il file nel visualizzatore.</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>Il file supera la dimensione massima supportata.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>Il file non è un testo leggibile.</value>
+  </data>
+  <data name="TooComplex" xml:space="preserve">
+    <value>Il documento è troppo grande o troppo annidato.</value>
+  </data>
+  <data name="Converting" xml:space="preserve">
+    <value>Conversione</value>
+  </data>
+  <data name="ToHtmlTitle" xml:space="preserve">
+    <value>Markdown in HTML</value>
+  </data>
+  <data name="ToHtmlDescription" xml:space="preserve">
+    <value>Crea una pagina HTML formattata da ciascun file Markdown, con immagini locali incorporate o collegate.</value>
+  </data>
+  <data name="ImagesOption" xml:space="preserve">
+    <value>Immagini locali</value>
+  </data>
+  <data name="ImagesEmbed" xml:space="preserve">
+    <value>Incorpora nella pagina</value>
+  </data>
+  <data name="ImagesLink" xml:space="preserve">
+    <value>Collegamento ai file immagine</value>
+  </data>
+  <data name="ToHtmlOperation_One" xml:space="preserve">
+    <value>Crea {0} pagine HTML.</value>
+  </data>
+  <data name="ToHtmlOperation_Other" xml:space="preserve">
+    <value>Crea {0} pagine HTML.</value>
+  </data>
+  <data name="SanitizedNotice" xml:space="preserve">
+    <value>Il codice HTML scritto in Markdown viene ridotto a formattazione statica: script, moduli, frame e stili vengono rimossi.</value>
+  </data>
+  <data name="HtmlEmbedNotice" xml:space="preserve">
+    <value>Le immagini dalla cartella del file vengono incorporate, quindi la pagina funziona autonomamente. Le immagini da Internet rimangono collegamenti.</value>
+  </data>
+  <data name="HtmlLinkNotice" xml:space="preserve">
+    <value>Le immagini rimangono collegamenti ai rispettivi file; mantenere la pagina accanto alla cartella delle immagini.</value>
+  </data>
+  <data name="ToPdfTitle" xml:space="preserve">
+    <value>Markdown in PDF</value>
+  </data>
+  <data name="ToPdfDescription" xml:space="preserve">
+    <value>Stampa ogni file Markdown come PDF formattato con tabelle, codice e immagini locali, utilizzando Microsoft Edge su questo PC.</value>
+  </data>
+  <data name="Paper" xml:space="preserve">
+    <value>Carta</value>
+  </data>
+  <data name="PaperA4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="PaperLetter" xml:space="preserve">
+    <value>Lettera USA</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Orizzontale</value>
+  </data>
+  <data name="Margin" xml:space="preserve">
+    <value>Margine (mm)</value>
+  </data>
+  <data name="PrinterUnavailable" xml:space="preserve">
+    <value>È necessario Microsoft Edge per creare PDF.</value>
+  </data>
+  <data name="ToPdfOperation_One" xml:space="preserve">
+    <value>Crea {0} PDF.</value>
+  </data>
+  <data name="ToPdfOperation_Other" xml:space="preserve">
+    <value>Crea {0} PDF.</value>
+  </data>
+  <data name="PdfNotice" xml:space="preserve">
+    <value>Le immagini dalla cartella del file vengono incorporate fino a circa 3 MB per documento; le immagini da Internet non vengono scaricate e vengono visualizzate come descrizione.</value>
+  </data>
+  <data name="PdfFailed" xml:space="preserve">
+    <value>Impossibile creare il PDF.</value>
+  </data>
+  <data name="PdfCleanupFailed" xml:space="preserve">
+    <value>Il PDF è stato creato, ma non è stato possibile rimuovere i file temporanei del browser.</value>
+  </data>
+  <data name="NoContent" xml:space="preserve">
+    <value>Il file non contiene testo convertibile.</value>
+  </data>
+  <data name="MergeTitle" xml:space="preserve">
+    <value>Unisci file Markdown</value>
+  </data>
+  <data name="MergeDescription" xml:space="preserve">
+    <value>Unisce i file Markdown selezionati nell&apos;ordine scelto in un unico file Markdown, HTML o PDF.</value>
+  </data>
+  <data name="MergeFormat" xml:space="preserve">
+    <value>Risultato</value>
+  </data>
+  <data name="MergeFormatMarkdown" xml:space="preserve">
+    <value>Un file Markdown</value>
+  </data>
+  <data name="MergeFormatHtml" xml:space="preserve">
+    <value>Una pagina HTML</value>
+  </data>
+  <data name="MergeFormatPdf" xml:space="preserve">
+    <value>Un PDF</value>
+  </data>
+  <data name="MergeOrder" xml:space="preserve">
+    <value>File e ordine</value>
+  </data>
+  <data name="MergeOrderHelp" xml:space="preserve">
+    <value>Trascina i file o usa le frecce per cambiarne l&apos;ordine. Deseleziona una casella per escludere un file.</value>
+  </data>
+  <data name="MergeOrderInvalid" xml:space="preserve">
+    <value>L&apos;ordine dei file non è valido. Seleziona nuovamente i file.</value>
+  </data>
+  <data name="MergeNeedsTwo" xml:space="preserve">
+    <value>Seleziona almeno due file da unire.</value>
+  </data>
+  <data name="MergeDivider" xml:space="preserve">
+    <value>Linea orizzontale tra i file</value>
+  </data>
+  <data name="MergePageBreaks" xml:space="preserve">
+    <value>Inizia ogni file su una nuova pagina</value>
+  </data>
+  <data name="MergeOperation_Markdown" xml:space="preserve">
+    <value>Unisce i file selezionati in un unico file Markdown, affiancandoli al primo file.</value>
+  </data>
+  <data name="MergeOperation_Html" xml:space="preserve">
+    <value>Unisce i file selezionati in un&apos;unica pagina HTML, affiancandoli al primo file.</value>
+  </data>
+  <data name="MergeOperation_Pdf" xml:space="preserve">
+    <value>Unisce i file selezionati in un unico file PDF, affiancandoli al primo file.</value>
+  </data>
+  <data name="MergeMarkdownNotice" xml:space="preserve">
+    <value>Il testo rimane invariato. I collegamenti relativi e le immagini vengono adattati alla cartella del nuovo file, le note a piè di pagina vengono rinominate in modo da mantenerle univoche e viene conservato solo il frontespizio del primo file.</value>
+  </data>
+  <data name="MergeTooLarge" xml:space="preserve">
+    <value>I file sono troppo grandi per essere uniti.</value>
+  </data>
+  <data name="MergeTip" xml:space="preserve">
+    <value>Crea un file per ogni file Markdown. Per ottenere un singolo file, attiva &quot;Unisci tutti i file in uno&quot;.</value>
+  </data>
+  <data name="CombineOption" xml:space="preserve">
+    <value>Unisci tutti i file in uno solo</value>
+  </data>
+  <data name="CombineHelp" xml:space="preserve">
+    <value>Selezionando più file, crea un singolo file nell&apos;ordine scelto, anziché un file per ciascun file.</value>
+  </data>
+  <data name="MergeTooMany" xml:space="preserve">
+    <value>Seleziona al massimo 100 file da combinare.</value>
+  </data>
+  <data name="ToMarkdownTitle" xml:space="preserve">
+    <value>Converti in Markdown</value>
+  </data>
+  <data name="ToMarkdownDescription" xml:space="preserve">
+    <value>Converte file Word, PowerPoint, Excel, PDF, EPUB, Jupyter e HTML in Markdown con titoli, elenchi, tabelle, collegamenti e immagini.</value>
+  </data>
+  <data name="ToMarkdownFiles" xml:space="preserve">
+    <value>documenti</value>
+  </data>
+  <data name="ToMarkdownImages" xml:space="preserve">
+    <value>Mantieni le immagini</value>
+  </data>
+  <data name="ToMarkdownImagesHelp" xml:space="preserve">
+    <value>Salva le immagini dal documento in una cartella con lo stesso nome del file Markdown, accanto ad esso.</value>
+  </data>
+  <data name="ToMarkdownNotesOption" xml:space="preserve">
+    <value>Includi le note del relatore (PowerPoint)</value>
+  </data>
+  <data name="ToMarkdownOutputsOption" xml:space="preserve">
+    <value>Includi gli output delle celle salvate (Jupyter)</value>
+  </data>
+  <data name="ToMarkdownOperation_One" xml:space="preserve">
+    <value>Crea {0} file Markdown.</value>
+  </data>
+  <data name="ToMarkdownOperation_Other" xml:space="preserve">
+    <value>Crea {0} file Markdown.</value>
+  </data>
+  <data name="ToMarkdownNotice" xml:space="preserve">
+    <value>Intestazioni, elenchi, elementi in evidenza, link, tabelle, codice e immagini vengono mantenuti. Layout, colori, commenti, modifiche tracciate e script vengono esclusi.</value>
+  </data>
+  <data name="ToMarkdownImagesNotice" xml:space="preserve">
+    <value>Le immagini vengono salvate in una nuova cartella con lo stesso nome del file Markdown, accanto ad esso; i file esistenti non vengono mai sovrascritti.</value>
+  </data>
+  <data name="ToMarkdownPdfNotice" xml:space="preserve">
+    <value>I PDF vengono letti dal livello di testo: i PDF con tag mantengono titoli, tabelle ed elenchi; altrimenti i titoli provengono da segnalibri o dimensioni del carattere. L&apos;indice diventa un elenco concatenato, i link rimangono link, le note a piè di pagina rimangono note a piè di pagina, le tabelle vengono riconosciute dalle loro colonne anche senza bordi, le intestazioni ripetute, i numeri di pagina e i loghi vengono rimossi e le immagini vengono posizionate dove appaiono. I PDF scansionati necessitano prima del riconoscimento del testo.</value>
+  </data>
+  <data name="ToMarkdownTooLarge" xml:space="preserve">
+    <value>Il documento convertito supera le dimensioni supportate.</value>
+  </data>
+  <data name="ToMarkdownInvalid" xml:space="preserve">
+    <value>Il file è danneggiato o non è in un formato supportato.</value>
+  </data>
+  <data name="ToMarkdownNoContent" xml:space="preserve">
+    <value>Il file non contiene contenuti convertibili.</value>
+  </data>
+  <data name="ToMarkdownSlide" xml:space="preserve">
+    <value>Slide {0}</value>
+  </data>
+  <data name="ToMarkdownNotes" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="ToMarkdownProtected" xml:space="preserve">
+    <value>L&apos;e-book è protetto da copia e non può essere convertito.</value>
+  </data>
+  <data name="ToMarkdownPdfNoText" xml:space="preserve">
+    <value>Il PDF non ha un livello di testo, ad esempio perché è stato scansionato. Renderlo prima ricercabile tramite il riconoscimento del testo.</value>
+  </data>
+  <data name="ToMarkdownPdfEncrypted" xml:space="preserve">
+    <value>Il PDF è protetto da password. Rimuovere prima la protezione.</value>
+  </data>
+</root>

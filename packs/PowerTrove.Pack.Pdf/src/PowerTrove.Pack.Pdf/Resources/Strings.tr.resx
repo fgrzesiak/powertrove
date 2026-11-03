@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MergePdfAction_Title" xml:space="preserve"><value>PDF&apos;leri Birleştir</value></data><data name="MergePdfAction_Description" xml:space="preserve"><value>Seçilen PDF dosyalarını dosya adı sırasına göre tek bir dosyada birleştirir.</value></data><data name="MergePdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyası, dosya adı sırasına göre tek bir belgeye birleştirilecektir.</value></data><data name="MergePdfAction_DefaultOutput" xml:space="preserve"><value>Birleştirilmiş PDF&apos;ler</value></data><data name="MergePdfAction_ParamTitle_AddBookmarks" xml:space="preserve"><value>Her dosya için yer imi oluştur</value></data><data name="Pdf_File" xml:space="preserve"><value>PDF</value></data><data name="Pdf_Files" xml:space="preserve"><value>PDF&apos;ler</value></data><data name="SplitPdfAction_Title" xml:space="preserve"><value>PDF&apos;yi Sayfalara Böl</value></data><data name="SplitPdfAction_Description" xml:space="preserve"><value>Seçilen PDF&apos;leri böler ve sonuçları yeni bir klasöre kaydeder.</value></data><data name="SplitPdfAction_ProgressVerb" xml:space="preserve"><value>Bölme</value></data><data name="SplitPdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyası, seçilen moda göre yeni bir klasöre bölünecektir.</value></data><data name="ExtractPagesAction_Title" xml:space="preserve"><value>PDF Sayfalarını Çıkarma</value></data><data name="ExtractPagesAction_Description" xml:space="preserve"><value>Seçilen sayfalarla yeni bir PDF oluşturur. Sayfaları yeniden sıralayabilir veya çoğaltabilirsiniz.</value></data><data name="Pdf_ParamTitle_Pages" xml:space="preserve"><value>Sayfalar</value></data><data name="Pdf_ParamDesc_Pages" xml:space="preserve"><value>Sayfa numaraları ve aralıkları, örneğin 1-3, 5, 2.</value></data><data name="ExtractPagesAction_Operation_Description" xml:space="preserve"><value>{1} dosyasından {0} sayfalarını {2} dosyasına çıkaracaktır.</value></data><data name="Pdf_NewDoc" xml:space="preserve"><value>yeni bir belge</value></data><data name="Pdf_NewDocs" xml:space="preserve"><value>yeni Belgeler</value></data><data name="RemovePagesAction_Title" xml:space="preserve"><value>PDF Sayfalarını Kaldır</value></data><data name="RemovePagesAction_Description" xml:space="preserve"><value>Belirtilen sayfalar olmadan yeni bir PDF oluşturur.</value></data><data name="RemovePagesAction_ParamTitle_Pages" xml:space="preserve"><value>Silinecek sayfa sayısı</value></data><data name="RemovePagesAction_ParamDesc_Pages" xml:space="preserve"><value>Sayfa numaraları ve aralıkları, örneğin 1-3, 5.</value></data><data name="RemovePagesAction_Operation_Description" xml:space="preserve"><value>{0} sayfaları {1} dosyasından kaldırılacak ve geri kalanlar {2} olarak kaydedilecektir.</value></data><data name="RotatePdfAction_Title" xml:space="preserve"><value>PDF Sayfalarını Döndür</value></data><data name="RotatePdfAction_Description" xml:space="preserve"><value>Sayfaları saat yönünde döndürülmüş PDF kopyası oluşturur.</value></data><data name="RotatePdfAction_ParamTitle_Angle" xml:space="preserve"><value>Döndürme</value></data><data name="RotatePdfAction_ParamChoice_90" xml:space="preserve"><value>90° saat yönünde</value></data><data name="RotatePdfAction_ParamChoice_180" xml:space="preserve"><value>180°</value></data><data name="RotatePdfAction_ParamChoice_270" xml:space="preserve"><value>270°</value></data><data name="RotatePdfAction_ParamTitle_Pages" xml:space="preserve"><value>Döndürülecek sayfa sayısı</value></data><data name="RotatePdfAction_ParamDesc_Pages" xml:space="preserve"><value>&quot;tümü&quot; veya sayfa numaraları ve aralıkları, örneğin 1-3, 5.</value></data><data name="RotatePdfAction_Operation_Description" xml:space="preserve"><value>{0} ({1}° saat yönünde, sayfalar: {2}) oluşturulacaktır.</value></data><data name="Pdf_AllPages" xml:space="preserve"><value>tüm</value></data><data name="RemovePdfMetadataAction_Title" xml:space="preserve"><value>PDF Meta Verilerini Kaldır</value></data><data name="EditPdfMetadataAction_Title" xml:space="preserve"><value>PDF Özelliklerini Düzenle</value></data><data name="EditPdfMetadataAction_Description" xml:space="preserve"><value>Belge başlığını, yazarı, konuyu ve anahtar kelimeleri ayarlar. Boş alanlar değeri siler.</value></data><data name="EditPdfMetadataAction_ParamTitle_Title" xml:space="preserve"><value>Başlık</value></data><data name="EditPdfMetadataAction_ParamDesc_Title" xml:space="preserve"><value>Belgenin başlığı.</value></data><data name="EditPdfMetadataAction_ParamTitle_Author" xml:space="preserve"><value>Yazar</value></data><data name="EditPdfMetadataAction_ParamDesc_Author" xml:space="preserve"><value>Belgeyi oluşturan kişinin adı.</value></data><data name="EditPdfMetadataAction_ParamTitle_Subject" xml:space="preserve"><value>Konu</value></data><data name="EditPdfMetadataAction_ParamDesc_Subject" xml:space="preserve"><value>Belgenin konusu.</value></data><data name="EditPdfMetadataAction_ParamTitle_Keywords" xml:space="preserve"><value>Anahtar kelimeler</value></data><data name="EditPdfMetadataAction_ParamDesc_Keywords" xml:space="preserve"><value>Virgülle ayrılmış anahtar kelimeler.</value></data><data name="EditPdfMetadataAction_Operation_Description" xml:space="preserve"><value>Belirtilen özelliklere sahip {0} oluşturulacaktır.</value></data><data name="EditPdfMetadataAction_Error_TooLong" xml:space="preserve"><value>Metin 500 karakterden uzun.</value></data><data name="RemovePdfMetadataAction_Description" xml:space="preserve"><value>Meta veriler (yazar veya başlık gibi) olmadan PDF&apos;nin bir kopyasını oluşturur.</value></data><data name="RemovePdfMetadataAction_Operation_Description" xml:space="preserve"><value>Meta veri içermeyen {0} oluşturulacaktır.</value></data><data name="Pdf_Copy" xml:space="preserve"><value>kopya</value></data><data name="Pdf_Copies" xml:space="preserve"><value>kopyalar</value></data><data name="ImagesToPdfAction_Title" xml:space="preserve"><value>Resimlerden PDF Oluştur</value></data><data name="ImagesToPdfAction_Description" xml:space="preserve"><value>Seçilen JPEG ve PNG resimlerini, dosya adı sırasına göre, sayfa başına bir resim olacak şekilde tek bir PDF&apos;ye yerleştirir.</value></data><data name="ImagesToPdfAction_ParamTitle_PageSize" xml:space="preserve"><value>Sayfa boyutu</value></data><data name="ImagesToPdfAction_ParamChoice_A4" xml:space="preserve"><value>A4</value></data><data name="ImagesToPdfAction_ParamChoice_Letter" xml:space="preserve"><value>ABD Mektup formatı</value></data><data name="ImagesToPdfAction_ParamChoice_Fit" xml:space="preserve"><value>Resimdekiyle aynı</value></data><data name="ImagesToPdfAction_Operation_Description" xml:space="preserve"><value>Seçilen resimlerden dosya adı sırasına göre {0} içeren tek bir PDF oluşturacak. JPEG resimler kalite kaybı olmadan yerleştirilir.</value></data><data name="ImagesToPdfAction_DefaultOutput" xml:space="preserve"><value>Görüntüler</value></data><data name="Pdf_Page" xml:space="preserve"><value>sayfa</value></data><data name="Pdf_Pages" xml:space="preserve"><value>sayfalar</value></data><data name="PdfToImagesAction_Title" xml:space="preserve"><value>PDF&apos;yi Görüntülere dönüştürün</value></data><data name="PdfToImagesAction_Description" xml:space="preserve"><value>PDF sayfalarını yeni bir klasöre PNG veya JPEG resimleri olarak kaydeder.</value></data><data name="PdfToImagesAction_ParamTitle_Format" xml:space="preserve"><value>Görüntü formatı</value></data><data name="PdfToImagesAction_ParamChoice_Png" xml:space="preserve"><value>PNG (keskin metin)</value></data><data name="PdfToImagesAction_ParamChoice_Jpeg" xml:space="preserve"><value>JPEG (daha küçük fotoğraflar)</value></data><data name="PdfToImagesAction_ParamTitle_Dpi" xml:space="preserve"><value>Çözünürlük (DPI)</value></data><data name="PdfToImagesAction_ParamDesc_Pages" xml:space="preserve"><value>&quot;tümü&quot; veya sayfa numaraları ve aralıkları, örneğin 1-3, 5.</value></data><data name="PdfToImagesAction_ProgressVerb" xml:space="preserve"><value>PDF oluşturuluyor</value></data><data name="PdfToImagesAction_Operation_Description" xml:space="preserve"><value>{0} sayfalarının her biri yeni bir klasöre olmak üzere, {2} DPI çözünürlüğünde {1} resimleri olarak işlenecektir.</value></data><data name="PdfToImagesAction_Error_NoRenderer" xml:space="preserve"><value>Bu sistemde PDF oluşturma özelliği mevcut değildir.</value></data><data name="PdfInfoAction_Title" xml:space="preserve"><value>PDF Özellikleri</value></data><data name="PdfInfoAction_Description" xml:space="preserve"><value>Seçilen PDF&apos;nin sayfa sayısını, sayfa boyutunu, PDF sürümünü ve yazarını gösterir.</value></data><data name="PdfInfoAction_Preview_Encrypted" xml:space="preserve"><value>Şifrelenmiş</value></data><data name="PdfInfoAction_Preview_Pages" xml:space="preserve"><value>sayfa(lar)</value></data><data name="PdfPack_Title" xml:space="preserve"><value>PDF Araçları</value></data><data name="PdfSupport_FilterDescription" xml:space="preserve"><value>PDF belgeleri</value></data><data name="PdfSupport_Error_InvalidPageSyntax" xml:space="preserve"><value>En az bir geçerli sayfa aralığı girin.</value></data><data name="PdfSupport_Error_PageOutOfRange" xml:space="preserve"><value>Sayfa numaraları 1 ile {0} arasında olmalıdır.</value></data><data name="PdfSupport_Error_Encrypted" xml:space="preserve"><value>Şifre korumalı veya şifrelenmiş PDF&apos;ler henüz desteklenmiyor.</value></data><data name="PdfSupport_Error_Damaged" xml:space="preserve"><value>PDF dosyası hasar görmüş ve okunamıyor.</value></data><data name="InterleavePdfAction_Title" xml:space="preserve"><value>Ön ve Arka Taramaları Birleştir</value></data>
+<data name="InterleavePdfAction_Description" xml:space="preserve"><value>İlk ve ikinci PDF&apos;den sırayla sayfalar alarak iki PDF&apos;yi birleştirir.</value></data>
+<data name="InterleavePdfAction_ParamTitle_ReverseSecond" xml:space="preserve"><value>İkinci PDF&apos;yi Ters Çevir</value></data>
+<data name="InterleavePdfAction_Operation_Description" xml:space="preserve"><value>{0} ve {1} birleştirilecek.</value></data>
+<data name="InterleavePdfAction_Warning_UnequalPages" xml:space="preserve"><value>PDF dosyalarının sayfa sayısı farklı. Kalan sayfalar eklenecektir.</value></data>
+<data name="InsertPdfAction_Title" xml:space="preserve"><value>PDF&apos;yi PDF&apos;ye Ekle</value></data>
+<data name="InsertPdfAction_Description" xml:space="preserve"><value>Bir PDF&apos;yi diğerine ekler.</value></data>
+<data name="InsertPdfAction_ParamTitle_Position" xml:space="preserve"><value>Konum</value></data>
+<data name="InsertPdfAction_ParamChoice_Start" xml:space="preserve"><value>Başlangıçta</value></data>
+<data name="InsertPdfAction_ParamChoice_End" xml:space="preserve"><value>Sonunda</value></data>
+<data name="InsertPdfAction_ParamChoice_After" xml:space="preserve"><value>Sayfadan sonra</value></data>
+<data name="InsertPdfAction_ParamTitle_AfterPage" xml:space="preserve"><value>Sayfa numarası</value></data>
+<data name="InsertPdfAction_ParamTitle_Swap" xml:space="preserve"><value>Birinciyi ikinciye ekle</value></data>
+<data name="InsertPdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyası {1} dosyasına eklenecektir.</value></data>
+<data name="InsertPdfAction_Error_AfterPageOutOfBounds" xml:space="preserve"><value>Hedef PDF, istenen AfterPage sayısından daha az sayfaya sahip.</value></data>
+<data name="InsertBlankPdfAction_Title" xml:space="preserve"><value>Boş Sayfalar Ekle</value></data>
+<data name="InsertBlankPdfAction_Description" xml:space="preserve"><value>PDF&apos;ye boş sayfalar ekler.</value></data>
+<data name="InsertBlankPdfAction_ParamTitle_Mode" xml:space="preserve"><value>Mod</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AfterEach" xml:space="preserve"><value>Her sayfadan sonra</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AtPositions" xml:space="preserve"><value>Belirli konumlarda</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_MakeEven" xml:space="preserve"><value>Sayfa sayısını çift yap</value></data>
+<data name="InsertBlankPdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyasına boş sayfalar eklenecektir.</value></data>
+<data name="OrganizePages_Title" xml:space="preserve"><value>Sayfaları Düzenle</value></data><data name="OrganizePages_Description" xml:space="preserve"><value>Sayfaları görsel olarak, hatta birden fazla PDF&apos;de yeniden sıralayın, döndürün ve kaldırın.</value></data><data name="OrganizePages_Param_Pages" xml:space="preserve"><value>Sayfalar</value></data><data name="OrganizePages_Param_PagesDescription" xml:space="preserve"><value>Yeni PDF&apos;nin sayfaları dosya:sayfa olarak, isteğe bağlı olarak döndürme için @90, @180 veya @270 ile.</value></data><data name="OrganizePages_Operation" xml:space="preserve"><value>{0} sayfalık yeni bir PDF oluşturacak.</value></data><data name="OrganizePages_Error_Empty" xml:space="preserve"><value>En az bir sayfa sakla.</value></data><data name="OrganizePages_Error_TooMany" xml:space="preserve"><value>Yeni bir PDF en fazla {0} sayfaya sahip olabilir.</value></data><data name="OrganizePages_Error_Syntax" xml:space="preserve"><value>Sayfaları dosya:sayfa şeklinde girin, örneğin 1:3, 2:1.</value></data><data name="OrganizePages_Error_Rotation" xml:space="preserve"><value>Döndürme, 90 derecenin katı olmalıdır.</value></data><data name="OrganizePages_Error_UnknownFile" xml:space="preserve"><value>Sayfa listesi seçili olmayan bir PDF&apos;ye işaret ediyor.</value></data><data name="OrganizePages_Error_UnknownPage" xml:space="preserve"><value>Sayfa listesi mevcut olmayan bir sayfaya işaret ediyor.</value></data><data name="CombineToPdf_Title" xml:space="preserve"><value>Tek Bir PDF&apos;ye Birleştir</value></data><data name="CombineToPdf_Description" xml:space="preserve"><value>Seçili PDF&apos;leri, resimleri ve Office belgelerini seçilen sırayla yeni bir PDF&apos;de birleştirir.</value></data><data name="CombineToPdf_Operation" xml:space="preserve"><value>{0} öğeyi yeni bir PDF&apos;ye birleştirecek: PDF&apos;ler tüm sayfaları korur, resimler sayfa haline gelir ve Office belgeleri önce dışa aktarılır.</value></data><data name="CombineToPdf_Error_UnsupportedImage" xml:space="preserve"><value>Bu resim formatı, bu bilgisayarda bir PDF&apos;ye eklenemiyor.</value></data><data name="NUpPdfAction_Title" xml:space="preserve"><value>Sayfa Başına Birden Çok Sayfa Yazdır</value></data><data name="NUpPdfAction_Description" xml:space="preserve"><value>N sayfalık diziler oluşturur.</value></data><data name="NUpPdfAction_ParamTitle_PerSheet" xml:space="preserve"><value>Sayfa başına sayfa sayısı</value></data><data name="NUpPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Sayfa</value></data><data name="NUpPdfAction_Operation" xml:space="preserve"><value>{0} sayfalık bir PDF oluşturacak.</value></data><data name="BookletPdfAction_Title" xml:space="preserve"><value>Kitapçık Oluştur</value></data><data name="BookletPdfAction_Description" xml:space="preserve"><value>Tel dikişli bir kitapçık oluşturur.</value></data><data name="BookletPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>Sayfa</value></data><data name="BookletPdfAction_Operation" xml:space="preserve"><value>Bir kitapçık PDF&apos;si oluşturacak. Yazdırma ayarları: çift taraflı (kısa kenar ciltleme).</value></data><data name="CombineToPdf_ParamTitle_Order" xml:space="preserve"><value>Sıralama</value></data><data name="CombineToPdf_ParamChoice_Name" xml:space="preserve"><value>Dosya adı</value></data><data name="CombineToPdf_ParamChoice_PdfsFirst" xml:space="preserve"><value>Önce PDF&apos;ler</value></data><data name="CombineToPdf_ParamChoice_ImagesFirst" xml:space="preserve"><value>Önce görüntüler</value></data><data name="HeaderFooterPdfAction_Title" xml:space="preserve"><value>Üstbilgi veya Altbilgi Ekle</value></data><data name="HeaderFooterPdfAction_Description" xml:space="preserve"><value>Seçili PDF&apos;lere başlık veya altbilgi metni ekler.</value></data><data name="HeaderFooterPdfAction_Operation_Description" xml:space="preserve"><value>{0}&apos;a başlık/altbilgi eklenecek.</value></data><data name="HeaderFooterPdfAction_ParamTitle_Text" xml:space="preserve"><value>Metin</value></data><data name="HeaderFooterPdfAction_ParamTitle_Placement" xml:space="preserve"><value>Yerleşim</value></data><data name="HeaderFooterPdfAction_ParamChoice_Header" xml:space="preserve"><value>Başlık</value></data><data name="HeaderFooterPdfAction_ParamChoice_Footer" xml:space="preserve"><value>Alt Bilgi</value></data><data name="HeaderFooterPdfAction_ParamTitle_Alignment" xml:space="preserve"><value>Hizalama</value></data><data name="HeaderFooterPdfAction_ParamChoice_Left" xml:space="preserve"><value>Sol</value></data><data name="HeaderFooterPdfAction_ParamChoice_Center" xml:space="preserve"><value>Merkez</value></data><data name="HeaderFooterPdfAction_ParamChoice_Right" xml:space="preserve"><value>Sağ</value></data><data name="HeaderFooterPdfAction_ParamTitle_FontSize" xml:space="preserve"><value>Yazı Tipi Boyutu</value></data><data name="HeaderFooterPdfAction_Error_TooLong" xml:space="preserve"><value>Metin 200 karakteri geçmemelidir.</value></data><data name="HeaderFooterPdfAction_Error_InvalidChars" xml:space="preserve"><value>Metin, yerleşik yazı tipleriyle yazılamayan karakterler içeriyor.</value></data>  <data name="PdfSupport_Error_PasswordRequired" xml:space="preserve">
+    <value>Şifre doğru değil.</value>
+  </data>
+  <data name="PdfSupport_Error_LimitExceeded" xml:space="preserve">
+    <value>PDF, desteklenen boyutu veya karmaşıklığı aşıyor.</value>
+  </data>
+  <data name="PdfSupport_Error_OperationFailed" xml:space="preserve">
+    <value>PDF işlemi başarısız oldu.</value>
+  </data>
+  <data name="Pdf_Error_UnknownMode" xml:space="preserve">
+    <value>Bilinmeyen mod: {0}</value>
+  </data>
+  <data name="PdfSupport_Warning_UsageRestrictionsRemoved" xml:space="preserve">
+    <value>Bu PDF&apos;de kullanım kısıtlamaları vardı; yeni dosyada bunlar olmayacak.</value>
+  </data>
+  <data name="UnlockPdfAction_Title" xml:space="preserve">
+    <value>PDF kilidini aç</value>
+  </data>
+  <data name="UnlockPdfAction_Description" xml:space="preserve">
+    <value>Şifre koruması olmadan PDF&apos;nin bir kopyasını oluşturur.</value>
+  </data>
+  <data name="UnlockPdfAction_ParamTitle_Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="UnlockPdfAction_Operation_Description" xml:space="preserve">
+    <value>Şifre koruması olmayan {0} oluşturulacaktır.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Bölme Ölçütü</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Single" xml:space="preserve">
+    <value>Her bir sayfada</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Ranges" xml:space="preserve">
+    <value>Özel Sayfa Aralıkları</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Every" xml:space="preserve">
+    <value>Her N sayfada bir</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_OddEven" xml:space="preserve">
+    <value>Tek ve çift sayfalar</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Ranges" xml:space="preserve">
+    <value>Sayfa aralıkları</value>
+  </data>
+  <data name="SplitPdfAction_ParamDesc_Ranges" xml:space="preserve">
+    <value>Sayfa aralıkları, örneğin 1-5; 6-10; 11-15.</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Every" xml:space="preserve">
+    <value>Dosya başına sayfa sayısı</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoRanges" xml:space="preserve">
+    <value>En az bir sayfa aralığı girin.</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoValidPages" xml:space="preserve">
+    <value>&apos;{0}&apos; aralığında geçerli sayfa bulunamadı.</value>
+  </data>
+  <data name="SplitPdfAction_Error_InvalidRangeOrder" xml:space="preserve">
+    <value>Bir sayfa aralığı daha düşük bir konumdan daha yüksek bir konuma gitmelidir.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Title" xml:space="preserve">
+    <value>PDF Sayfalarını Çıkarma</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Description" xml:space="preserve">
+    <value>Yalnızca seçilen sayfaları, girilen sırayla içeren yeni bir PDF oluşturur.</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>{1} sayfalı {0} oluşturulacaktır.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Title" xml:space="preserve">
+    <value>PDF Sayfalarını Kaldır</value>
+  </data>
+  <data name="RemovePdfPagesAction_Description" xml:space="preserve">
+    <value>Seçilen sayfalar olmadan PDF&apos;nin bir kopyasını oluşturur.</value>
+  </data>
+  <data name="RemovePdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>{1} sayfa içermeyen {0} oluşturulacaktır.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Title" xml:space="preserve">
+    <value>PDF Sayfalarını Yeniden Sırala</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Description" xml:space="preserve">
+    <value>Bir PDF&apos;deki sayfaları yeniden sıralar.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Mode" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Custom" xml:space="preserve">
+    <value>Özel Sipariş</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Reverse" xml:space="preserve">
+    <value>Ters Çevir</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Order" xml:space="preserve">
+    <value>Sıralama</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamDesc_Order" xml:space="preserve">
+    <value>Sayfalar yeni sırayla, örneğin 3,1,2.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>Sayfaları yeniden sıralanmış {0} oluşturulacaktır.</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Error_NoValidRanges" xml:space="preserve">
+    <value>En az bir geçerli sayfa aralığı girin.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Title" xml:space="preserve">
+    <value>Sayfa Numaraları Ekle</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Description" xml:space="preserve">
+    <value>Seçili PDF dosyalarına sayfa numaraları ekler.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Position" xml:space="preserve">
+    <value>Konum</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopLeft" xml:space="preserve">
+    <value>Üst Sol</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopCenter" xml:space="preserve">
+    <value>Üst Orta</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopRight" xml:space="preserve">
+    <value>Üst Sağ</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomLeft" xml:space="preserve">
+    <value>Alt Sol</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomCenter" xml:space="preserve">
+    <value>Alt Orta</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomRight" xml:space="preserve">
+    <value>Alt Sağ</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0}&apos;a sayfa numaraları eklenecek.</value>
+  </data>
+  <data name="WatermarkPdfAction_Title" xml:space="preserve">
+    <value>Filigran Ekle</value>
+  </data>
+  <data name="WatermarkPdfAction_Description" xml:space="preserve">
+    <value>PDF&apos;ye metin filigranı ekler.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_Text" xml:space="preserve">
+    <value>Filigran olarak kullanılacak metin (en fazla 100 karakter).</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Style" xml:space="preserve">
+    <value>Stil</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Diagonal" xml:space="preserve">
+    <value>Çapraz</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Horizontal" xml:space="preserve">
+    <value>Yatay</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Tiled" xml:space="preserve">
+    <value>Döşemeli</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opaklık</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Yazı Tipi Boyutu</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_FontSize" xml:space="preserve">
+    <value>Otomatik boyut için 0.</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Color" xml:space="preserve">
+    <value>Renk</value>
+  </data>
+  <data name="WatermarkPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0} oluşturulacaktır. Filigranlar başkaları tarafından kaldırılabilir ve bir güvenlik önlemi değildir.</value>
+  </data>
+  <data name="StampPdfImageAction_Title" xml:space="preserve">
+    <value>Resim veya İmza Ekle</value>
+  </data>
+  <data name="StampPdfImageAction_Description" xml:space="preserve">
+    <value>PDF sayfalarına bir resim ekler.</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Image" xml:space="preserve">
+    <value>Resim</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Position" xml:space="preserve">
+    <value>Konum</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleLeft" xml:space="preserve">
+    <value>Orta Sol</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_Center" xml:space="preserve">
+    <value>Merkez</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleRight" xml:space="preserve">
+    <value>Orta Sağ</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Width" xml:space="preserve">
+    <value>Genişlik (mm)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>Opaklık (%)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamDesc_Pages" xml:space="preserve">
+    <value>Sayfa aralıkları, &apos;tümü&apos;, &apos;ilk&apos; veya &apos;son&apos;</value>
+  </data>
+  <data name="StampPdfImageAction_Error_InvalidImage" xml:space="preserve">
+    <value>Lütfen geçerli bir resim dosyası seçin.</value>
+  </data>
+  <data name="StampPdfImageAction_Error_UnreadableImage" xml:space="preserve">
+    <value>Görüntü dosyası okunamadı.</value>
+  </data>
+  <data name="StampPdfImageAction_Operation_Description" xml:space="preserve">
+    <value>Görüntü {0} üzerine damgalanacak.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoPositions" xml:space="preserve">
+    <value>En az bir sayfa konumu girin.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoValidPositions" xml:space="preserve">
+    <value>En az bir geçerli sayfa konumu girin.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PagePositions" xml:space="preserve">
+    <value>Sayfa konumları 0 ile {0} arasında olmalıdır.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PositionsMustBeNonNegative" xml:space="preserve">
+    <value>Sayfa konumları negatif olmayan tamsayılar olmalıdır.</value>
+  </data>
+  <data name="CropPdfAction_Error_MarginBounds" xml:space="preserve">
+    <value>Kenar boşluğu 0 ile 100 mm arasında olmalıdır.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NotFileSelection" xml:space="preserve">
+    <value>Dosya seçimi değil.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoPdfs" xml:space="preserve">
+    <value>Seçimde desteklenen PDF dosyası yok.</value>
+  </data>
+  <data name="PdfInfoAction_Error_MaxFiles" xml:space="preserve">
+    <value>En fazla {0} PDF dosyası seçin.</value>
+  </data>
+  <data name="PdfInfoAction_Error_Stale" xml:space="preserve">
+    <value>Seçimin süresi doldu. Dosyaları tekrar seçin.</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoReadablePdfs" xml:space="preserve">
+    <value>Seçimde okunabilir PDF yok.</value>
+  </data>
+  <data name="PdfInfoAction_TotalPages" xml:space="preserve">
+    <value>Toplam: {0} sayfa.</value>
+  </data>
+  <data name="PdfInfoAction_Repaired" xml:space="preserve">
+    <value> (Okuma sırasında hasarlı yapı onarıldı)</value>
+  </data>
+  <data name="PdfInfoAction_Canceled" xml:space="preserve">
+    <value>İptal edildi.</value>
+  </data>
+  <data name="PdfInfoAction_PdfLabel" xml:space="preserve">
+    <value>PDF {0}</value>
+  </data>
+  <data name="PdfInfoAction_Details" xml:space="preserve">
+    <value>{0}: {1} sayfa(lar), sürüm {2}, ilk sayfa {3:0} x {4:0} mm{5}</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddThenEven" xml:space="preserve">
+    <value>Önce Tek, sonra Çift</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenThenOdd" xml:space="preserve">
+    <value>Sonra Tek Sayfalar</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Shuffle" xml:space="preserve">
+    <value>Karıştır</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Format" xml:space="preserve">
+    <value>Biçim</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1" xml:space="preserve">
+    <value>Sayfa 1, Sayfa 2...</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_Format1ofN" xml:space="preserve">
+    <value>N&apos;den 1</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1ofN" xml:space="preserve">
+    <value>Sayfa 1 / N</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Start" xml:space="preserve">
+    <value>Başlangıç ​​Noktası</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_SkipFirst" xml:space="preserve">
+    <value>İlk Sayfayı Atla</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>Yazı Tipi Boyutu</value>
+  </data>
+  <data name="PdfSupport_Error_PageListedTwice" xml:space="preserve">
+    <value>Sayfa {0} iki kez listelenmiş.</value>
+  </data>
+  <data name="PdfSupport_Error_PageMissing" xml:space="preserve">
+    <value>Sayfa {0} eksik.</value>
+  </data>
+  <data name="PdfSupport_Error_UnsupportedImage" xml:space="preserve">
+    <value>PDF&apos;ye yalnızca JPEG ve PNG resimleri eklenebilir.</value>
+  </data>
+  <data name="PdfSupport_Pages_Title" xml:space="preserve">
+    <value>Sayfalar</value>
+  </data>
+  <data name="PdfSupport_Pages_Description" xml:space="preserve">
+    <value>Sayfa numaraları ve aralıkları, örneğin 1-3, 5, 8- veya son.</value>
+  </data>
+  <data name="CompressPdfAction_Title" xml:space="preserve">
+    <value>PDF&apos;yi Sıkıştır</value>
+  </data>
+  <data name="CompressPdfAction_Description" xml:space="preserve">
+    <value>PDF belgelerinin dosya boyutunu küçültür.</value>
+  </data>
+  <data name="CompressPdfAction_ParamTitle_Level" xml:space="preserve">
+    <value>Seviye</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Light" xml:space="preserve">
+    <value>Işık</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Balanced" xml:space="preserve">
+    <value>Dengeli</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Strong" xml:space="preserve">
+    <value>Kalın</value>
+  </data>
+  <data name="CompressPdfAction_Operation_One" xml:space="preserve">
+    <value>Daha küçük bir kopya oluşturacak.</value>
+  </data>
+  <data name="CompressPdfAction_Operation_Many" xml:space="preserve">
+    <value>Daha küçük kopyalar oluşturacak.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_QualityReduced" xml:space="preserve">
+    <value>Görüntü kalitesi, dengeli ve güçlü seviyelerde düşürülür.</value>
+  </data>
+  <data name="CompressPdfAction_Warning_UnsupportedImages" xml:space="preserve">
+    <value>Dokunulmayacak {0} desteklenmeyen resim bulundu.</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_NOfTotal" xml:space="preserve">
+    <value>Sayfa n / N</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddFirst" xml:space="preserve">
+    <value>Önce Tek Sayfalar</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenFirst" xml:space="preserve">
+    <value>Önce Çift Sayfalar</value>
+  </data>
+  <data name="StampSelectedImagePdfAction_Title" xml:space="preserve">
+    <value>PDF&apos;ye Resim Yerleştir</value>
+  </data>
+  <data name="RepairPdfAction_Title" xml:space="preserve">
+    <value>PDF&apos;yi Onar</value>
+  </data>
+  <data name="RepairPdfAction_Description" xml:space="preserve">
+    <value>Yapısal sorunları düzeltmek için belgeyi yeniden yazar.</value>
+  </data>
+  <data name="RepairPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0} dosyası onarılacaktır.</value>
+  </data>
+  <data name="RepairPdfAction_NoProblems" xml:space="preserve">
+    <value>Sorun bulunamadı.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Title" xml:space="preserve">
+    <value>Boş Sayfaları Kaldır</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Description" xml:space="preserve">
+    <value>PDF&apos;den boş sayfaları kaldırır.</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamTitle_Sensitivity" xml:space="preserve">
+    <value>Hassasiyet</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Strict" xml:space="preserve">
+    <value>Sıkı</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Relaxed" xml:space="preserve">
+    <value>Rahatla</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0} dosyasından boş sayfalar kaldırılacaktır.</value>
+  </data>
+  <data name="PdfToTextAction_Title" xml:space="preserve">
+    <value>PDF&apos;yi Metne dönüştürün</value>
+  </data>
+  <data name="PdfToTextAction_Description" xml:space="preserve">
+    <value>PDF&apos;den metni bir metin dosyasına çıkarır.</value>
+  </data>
+  <data name="PdfToTextAction_Operation_Description" xml:space="preserve">
+    <value>{0}&apos;dan çıkarılan metni içeren bir metin dosyası oluşturacak.</value>
+  </data>
+  <data name="PdfToTextAction_Warning_NoText" xml:space="preserve">
+    <value>Metin bulunamadı. Bu taranmış bir belgeyse, önce &apos;PDF&apos;yi Aranabilir Hale Getir (OCR)&apos; seçeneğini kullanabilirsiniz.</value>
+  </data>
+<data name="SanitizePdfAction_Title" xml:space="preserve"><value>Gizli PDF İçeriğini Kaldır</value></data><data name="SanitizePdfAction_Description" xml:space="preserve"><value>PDF&apos;lerden JavaScript, ekler, meta veriler ve işlemleri kaldırır.</value></data><data name="SanitizePdfAction_ParamTitle_KeepLinks" xml:space="preserve"><value>Bağlantıları Sakla</value></data><data name="SanitizePdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyasından gizli içerik kaldırılacaktır.</value></data><data name="SanitizePdfAction_NothingToRemove" xml:space="preserve"><value>Kaldırılacak bir şey yok.</value></data><data name="PdfSanitize_Scripts_One" xml:space="preserve"><value>1 komut dosyası</value></data><data name="PdfSanitize_Scripts_Other" xml:space="preserve"><value>{0} komut dosyası</value></data><data name="PdfSanitize_Attachments_One" xml:space="preserve"><value>1 ek</value></data><data name="PdfSanitize_Attachments_Other" xml:space="preserve"><value>{0} ekler</value></data><data name="PdfSanitize_LaunchActions_One" xml:space="preserve"><value>1 başlatma eylemi</value></data><data name="PdfSanitize_LaunchActions_Other" xml:space="preserve"><value>{0} başlatma eylemi</value></data><data name="PdfSanitize_UriActions_One" xml:space="preserve"><value>1 bağlantı eylemi</value></data><data name="PdfSanitize_UriActions_Other" xml:space="preserve"><value>{0} bağlantı eylemi</value></data><data name="PdfSanitize_Metadata_One" xml:space="preserve"><value>1 meta veri öğesi</value></data><data name="PdfSanitize_Metadata_Other" xml:space="preserve"><value>{0} meta veri öğesi</value></data><data name="PdfSanitize_Found" xml:space="preserve"><value>Bulunan: {0}</value></data>  <data name="OcrPdfAction_Title" xml:space="preserve">
+    <value>PDF&apos;yi Aranabilir Hale Getir (OCR)</value>
+  </data>
+  <data name="OcrPdfAction_Description" xml:space="preserve">
+    <value>Taranmış PDF&apos;lerdeki metni tanır ve aranabilir hale getirir. Bu işlem yerel olarak çalışır ve biraz zaman alabilir (sayfa başına yaklaşık 1-3 saniye).</value>
+  </data>
+  <data name="OcrPdfAction_ParamTitle_Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="OcrPdfAction_RendererUnavailable" xml:space="preserve">
+    <value>Bu sistemde PDF oluşturma özelliği mevcut değildir.</value>
+  </data>
+  <data name="OcrPdfAction_RecognizerUnavailable" xml:space="preserve">
+    <value>Bu sistemde OCR metin tanıma özelliği mevcut değil.</value>
+  </data>
+  <data name="OcrPdfAction_NoLanguagesInstalled" xml:space="preserve">
+    <value>Bu sistemde hiçbir OCR dili yüklü değil.</value>
+  </data>
+  <data name="OcrPdfAction_Message" xml:space="preserve">
+    <value>OCR kullanarak aranabilir {0} PDF oluşturulacaktır.</value>
+  </data>
+  <data name="OcrPdfAction_OutputSuffix" xml:space="preserve">
+    <value> (Aranabilir)</value>
+  </data>
+  <data name="OcrPdfAction_Skipped_HasText" xml:space="preserve">
+    <value>PDF zaten çıkarılabilir metin içeriyor.</value>
+  </data>
+
+<data name="CombineToPdf_OfficeMissing" xml:space="preserve"><value>Seçim, yüklü olmayan bir Office uygulaması gerektiren belgeler içeriyor. Hiçbir şey birleştirilmeyecek.</value></data>
+<data name="CombineToPdf_OfficeLayoutWarning" xml:space="preserve"><value>Ofis belgeleri, sıralanmış konumlarında geçici PDF&apos;lere dönüştürülür. Ofis düzeni, yazı tipleri ve yazdırma ayarları sonucu etkiler.</value></data>
+<data name="CombineToPdf_OfficeMissingApplication" xml:space="preserve"><value>Gerekli Microsoft Office uygulaması yüklü değil.</value></data>
+<data name="CombineToPdf_OfficePasswordProtected" xml:space="preserve"><value>Belge parola korumalı.</value></data>
+<data name="CombineToPdf_OfficeUnsafeMacros" xml:space="preserve"><value>Bu belge, dönüştürme için güvenli bir şekilde açılamayan makrolar veya formül içeriği içeriyor.</value></data>
+<data name="CombineToPdf_OfficeInvalidDocument" xml:space="preserve"><value>Belge formatı geçersiz, desteklenmiyor veya dönüştürme sınırlarını aşıyor.</value></data>
+<data name="CombineToPdf_OfficeBusy" xml:space="preserve"><value>Ayrı bir Office örneği alınamadı. Bu Office uygulamasını kapatın ve tekrar deneyin.</value></data>
+<data name="CombineToPdf_OfficeTimedOut" xml:space="preserve"><value>Ofis dönüştürme işlemi zaman aşımına uğradı. Hiçbir çıktı kaydedilmedi.</value></data>
+<data name="CombineToPdf_OfficeConversionFailed" xml:space="preserve"><value>Ofis bu belgeyi dönüştüremedi. Hiçbir çıktı kaydedilmedi.</value></data>
+<data name="CombineToPdf_OfficePreferenceRestoreFailed" xml:space="preserve"><value>Geçici Word tercihi geri yüklenemedi. Word&apos;deki PDF dönüştürme uyarısı ayarını kontrol edin.</value></data>
+<data name="CombineToPdf_Inputs" xml:space="preserve"><value>PDF&apos;ler, Resimler ve Office Belgeleri</value></data>
+<data name="ExtractPdfImages_Title" xml:space="preserve"><value>PDF&apos;den Görüntü Çıkarma</value></data>
+<data name="ExtractPdfImages_Description" xml:space="preserve"><value>Desteklenen gömülü resimleri her PDF için yeni bir klasöre kaydeder.</value></data>
+<data name="ExtractPdfImages_MinSize" xml:space="preserve"><value>Minimum genişlik ve yükseklik (px)</value></data>
+<data name="ExtractPdfImages_Preview_One" xml:space="preserve"><value>{0} PDF dosyasından en az {1} piksel genişliğinde ve yüksekliğindeki resimleri yeni bir klasöre çıkaracaktır.</value></data>
+<data name="ExtractPdfImages_Preview_Other" xml:space="preserve"><value>{0} PDF dosyasından en az {1} piksel genişliğinde ve yüksekliğindeki resimleri ayrı yeni klasörlere çıkaracaktır.</value></data>
+<data name="ExtractPdfImages_Warning" xml:space="preserve"><value>Gömülü JPEG ve 8 bit Gri/RGB Düz resimleri çıkarır, işlenmiş sayfaları değil. Maskeler, özel örnek kod çözme, diğer kodlamalar ve satır içi resimler desteklenmez. Minimum genişlik veya yüksekliğin altındaki resimler atlanır. Resim sayısı ve çıktı boyutu sınırlıdır.</value></data>
+<data name="ExtractPdfImages_NoImages" xml:space="preserve"><value>Hiçbir resim bulunamadı.</value></data>
+<data name="ExtractPdfImages_NoEligibleImages" xml:space="preserve"><value>Desteklenen resimler minimum boyutu karşılamıyor.</value></data>
+<data name="ExtractPdfImages_Extracted_One" xml:space="preserve"><value>Çıkarılan {0} resim.</value></data>
+<data name="ExtractPdfImages_Extracted_Other" xml:space="preserve"><value>Çıkarılan {0} resim.</value></data>
+<data name="ExtractPdfImages_Unsupported_One" xml:space="preserve"><value>Desteklenmeyen {0} resim atlandı.</value></data>
+<data name="ExtractPdfImages_Unsupported_Other" xml:space="preserve"><value>Desteklenmeyen {0} resim atlandı.</value></data>
+<data name="ExtractPdfImages_TooSmall_One" xml:space="preserve"><value>Minimum boyutun altındaki {0} resim atlandı.</value></data>
+<data name="ExtractPdfImages_TooSmall_Other" xml:space="preserve"><value>Minimum boyutun altındaki {0} resim atlandı.</value></data>
+  <data name="HeaderFooterPdfAction_ParamDesc_Text" xml:space="preserve"><value>Başlığa veya altbilgiye eklenecek metin, en fazla 200 karakter.</value></data>
+  <data name="ProtectPdf_Title" xml:space="preserve"><value>PDF&apos;yi Şifreyle Koruyun</value></data>
+  <data name="ProtectPdf_Description" xml:space="preserve"><value>Bir kopyayı AES-256 ile şifrele.</value></data>
+  <data name="ProtectPdf_Password" xml:space="preserve"><value>Şifre</value></data>
+  <data name="ProtectPdf_ConfirmPassword" xml:space="preserve"><value>Şifreyi Onayla</value></data>
+  <data name="ProtectPdf_Print" xml:space="preserve"><value>Yazdırmaya izin ver</value></data>
+  <data name="ProtectPdf_Copy" xml:space="preserve"><value>Kopyalamaya izin ver</value></data>
+  <data name="ProtectPdf_Empty" xml:space="preserve"><value>Devam etmeden önce bir parola girin.</value></data>
+  <data name="ProtectPdf_Mismatch" xml:space="preserve"><value>İki parola eşleşmiyor.</value></data>
+  <data name="ProtectPdf_Warning" xml:space="preserve"><value>Bu şifreyi unutursanız, kurtarılamaz. PDF yazdırma ve kopyalama izinleri görüntüleyiciye bağlıdır ve DRM sağlamaz.</value></data>
+  <data name="ProtectPdf_Operation" xml:space="preserve"><value>Şifre korumalı PDF kopyaları oluştur.</value></data>
+  <data name="FlattenPdf_Title" xml:space="preserve"><value>Form Alanlarını ve Yorumları Düzleştir</value></data>
+  <data name="FlattenPdf_Description" xml:space="preserve"><value>Görünür alan ve yorum görünümlerini sayfa içeriğine dönüştürün.</value></data>
+  <data name="FlattenPdf_KeepLinks" xml:space="preserve"><value>Hiper bağlantıları koru</value></data>
+  <data name="FlattenPdf_Operation" xml:space="preserve"><value>PDF kopyalarındaki form alanlarını ve yorumları düzleştirin.</value></data>
+  <data name="FlattenPdf_SignatureWarning" xml:space="preserve"><value>Düzleştirme, mevcut dijital imzaları geçersiz kılabilir; imzalı orijinaller değiştirilmez.</value></data>
+  <data name="FlattenPdf_Counts" xml:space="preserve"><value>Görünümlü açıklamalar: {0}; desteklenmeyen görünümler: {1}; saklanan bağlantılar: {2}.</value></data>
+  <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>Kullanılabilir görünümü olmayan açıklamalar kaldırılacak ve görsel içerikleri kaybolabilir.</value></data>
+  <data name="FlattenPdf_Nothing" xml:space="preserve"><value>Düzleştirilecek ek açıklama yok.</value></data>
+  <data name="HtmlTitle" xml:space="preserve"><value>HTML&apos;yi PDF&apos;ye dönüştürün</value></data>
+  <data name="HtmlDescription" xml:space="preserve"><value>Satır içi CSS ve gömülü görseller içeren bağımsız yerel HTML&apos;yi yeni PDF dosyalarına yazdırır.</value></data>
+  <data name="HtmlPaper" xml:space="preserve"><value>Kağıt boyutu</value></data>
+  <data name="HtmlPaperA4" xml:space="preserve"><value>A4</value></data>
+  <data name="HtmlPaperLetter" xml:space="preserve"><value>Harf</value></data>
+  <data name="HtmlLandscape" xml:space="preserve"><value>Yatay yönlendirme</value></data>
+  <data name="HtmlMargin" xml:space="preserve"><value>Kenar boşlukları (milimetre)</value></data>
+  <data name="HtmlFiles" xml:space="preserve"><value>HTML dosyaları</value></data>
+  <data name="HtmlUnavailable" xml:space="preserve"><value>HTML yazdırma için yerel olarak yüklenmiş bir Microsoft Edge tarayıcısı gereklidir.</value></data>
+  <data name="HtmlLimits" xml:space="preserve"><value>Yalnızca 5 MiB&apos;ye kadar bağımsız UTF-8 HTML desteklenir. Satır içi CSS ve veri gömülü resimler/yazı tipleri işlenebilir. Ağ istekleri, komut dosyaları, çerçeveler, nesneler ve yerel dosya kaynakları engellenir. Harici stil sayfaları ve göreceli resimler yüklenmez. Her dosya, 60 saniyelik zaman aşımıyla yeni, bellek sınırlı bir tarayıcı işlem ağacına sahiptir.</value></data>
+  <data name="HtmlInvalid" xml:space="preserve"><value>HTML, 5 MiB&apos;ye kadar pasif, boş olmayan UTF-8 metin olmalıdır. Aktif öğeler, otomatik yenileme, formlar ve satır içi yabancı içerik desteklenmemektedir.</value></data>
+  <data name="HtmlReadError" xml:space="preserve"><value>HTML girişi okunamadı.</value></data>
+  <data name="HtmlRenderFailed" xml:space="preserve"><value>Yerel HTML yazdırma başarısız oldu, sınırlarını aştı veya desteklenmeyen bir gezinme girişiminde bulundu. İç içe geçmiş CSS ve gömülü veri resimleriyle bağımsız HTML kullanın. Kaynak dosyasında hiçbir değişiklik yapılmadı.</value></data>
+  <data name="HtmlCleanupFailed" xml:space="preserve"><value>Geçici tarayıcı verileri kaldırılamadı. Geçici klasör erişimini kontrol edin ve tekrar deneyin.</value></data>
+  <data name="EpubTitle" xml:space="preserve"><value>EPUB&apos;u PDF&apos;ye dönüştürün</value></data>
+  <data name="EpubDescription" xml:space="preserve"><value>Yerel EPUB bölümlerini, desteklenen resimleri ve stilleri yeni PDF dosyalarına yeniden düzenler.</value></data>
+  <data name="EpubFiles" xml:space="preserve"><value>EPUB kitapları</value></data>
+  <data name="EpubLimits" xml:space="preserve"><value>UTF-8 XHTML, dahili CSS ve PNG/JPEG/GIF/WebP resimleriyle pasif, yeniden akışa uygun EPUB 2/3&apos;ü destekler. Sabit düzenler, şifrelenmiş/gizlenmiş kaynaklar, komut dosyaları, SVG, medya ve harici kaynaklar desteklenmez. Sınırlar: 25 MiB arşiv, 50 MiB genişletilmiş, 500 bölüm ve 5 MiB hazırlanmış HTML. Bölümler yeni sayfalarda başlar; yazdırılan bağlantılar kaldırılır. Düzen, e-okuyucudan farklı olabilir.</value></data>
+  <data name="EpubProtected" xml:space="preserve"><value>Şifrelenmiş veya gizlenmiş EPUB kaynakları desteklenmemektedir. Dönüştürme izniniz olan korumasız bir dışa aktarma kullanın.</value></data>
+  <data name="EpubTooLarge" xml:space="preserve"><value>EPUB, arşiv, kaynak, bölüm veya hazırlanmış belge sınırlarını aşıyor.</value></data>
+  <data name="EpubUnsupported" xml:space="preserve"><value>Bu EPUB, desteklenmeyen içerik veya kaynak referansları kullanıyor. Dahili stiller ve desteklenen raster görüntülerle yeniden akışlı UTF-8 XHTML kullanın; komut dosyaları, sabit düzenler, SVG ve harici kaynaklar desteklenmez.</value></data>
+  <data name="EpubInvalid" xml:space="preserve"><value>EPUB arşivi, meta verileri, okuma sırası veya gerekli bir kaynak geçersiz veya eksik.</value></data>
+  <data name="EpubRenderFailed" xml:space="preserve"><value>Yerel EPUB yazdırma başarısız oldu veya sınırlarını aştı. Kaynak dosyada değişiklik yapılmadı.</value></data>
+  <data name="EmlTitle" xml:space="preserve"><value>EML&apos;yi PDF&apos;ye dönüştürün</value></data>
+  <data name="EmlDescription" xml:space="preserve"><value>E-posta başlıklarının ve statik mesaj gövdelerinin yerel PDF görselleştirmelerini oluşturur, isteğe bağlı olarak ayrı ek dışa aktarma seçeneği sunar.</value></data>
+  <data name="EmlFiles" xml:space="preserve"><value>EML mesajları</value></data>
+  <data name="EmlExportAttachments" xml:space="preserve"><value>Ekleri PDF ile birlikte yeni bir klasöre dışa aktarın.</value></data>
+  <data name="EmlFrom" xml:space="preserve"><value>Nereden</value></data>
+  <data name="EmlTo" xml:space="preserve"><value>Kime</value></data>
+  <data name="EmlCc" xml:space="preserve"><value>Cc</value></data>
+  <data name="EmlSubject" xml:space="preserve"><value>Konu</value></data>
+  <data name="EmlDate" xml:space="preserve"><value>Tarih</value></data>
+  <data name="EmlAttachments" xml:space="preserve"><value>Ekler</value></data>
+  <data name="EmlPrintNotice" xml:space="preserve"><value>Statik e-posta görselleştirmesi. Aktif içerik, harici kaynaklar ve bağlantılar atlanmıştır. Ekler yerleştirilmemiştir. Dijital imzalar ve orijinallik doğrulanmamıştır.</value></data>
+  <data name="EmlLimits" xml:space="preserve"><value>Yalnızca yerel EML, 25 MiB&apos;ye kadar ve 100 ek dosya. HTML pasif içeriğe indirgenir; harici kaynaklar, aktif öğeler ve bağlantılar kaldırılır. Düz metin ve desteklenen CID raster görüntüler korunur. Şifrelenmiş mesajlar, MSG ve TNEF gövdeleri desteklenmez. Ek dosya dışa aktarma işlemi, message.pdf ve numaralandırılmış ek dosyaları içeren yeni bir klasör oluşturur; hiçbir şey otomatik olarak açılmaz. Hazırlanan mesaj 5 MiB ile sınırlıdır.</value></data>
+  <data name="EmlInvalid" xml:space="preserve"><value>EML mesajı hatalı, şifrelenmiş, desteklenmiyor veya sınırlarını aşıyor. Gönderen, tarih ve metin veya HTML gövdesi gereklidir. MIME yapısını, ekleri ve gömülü resimleri kontrol edin.</value></data>
+  <data name="EmlReadError" xml:space="preserve"><value>EML girişi okunamadı.</value></data>
+  <data name="EmlRenderFailed" xml:space="preserve"><value>Yerel e-posta yazdırma başarısız oldu veya sınırlarını aştı. Kaynak dosyada değişiklik yapılmadı.</value></data>
+  <data name="PdfExcelTitle" xml:space="preserve"><value>PDF Tablolarını Excel&apos;e Çıkarma</value></data>
+  <data name="PdfExcelDescription" xml:space="preserve"><value>Desteklenen dikdörtgen metin tablolarını algılar ve her tablo için bir çalışma sayfasını yeni bir Excel çalışma kitabına aktarır.</value></data>
+  <data name="PdfExcelInfer" xml:space="preserve"><value>Ayrıca hizalanmış çizgisiz tabloları (en az 3 sütun ve 3 satır) algıla</value></data>
+  <data name="PdfExcelUnavailable" xml:space="preserve"><value>Bu yapılandırmada PDF tablo çıkarma özelliği mevcut değildir.</value></data>
+  <data name="PdfExcelLimits" xml:space="preserve"><value>Tam dikdörtgen ızgaralarda yatay metni ve en az 3 sütun ve 3 satırdan oluşan hizalanmış çizgisiz tabloları destekler. Birleştirilmiş hücreler, döndürülmüş metin, taranmış tablolar ve belirsiz yapılar desteklenmez. Her tablo/sayfa ayrı bir sayfadır; devamlar birleştirilmez. Hücreler metin olarak kalır; formüller ve sayısal/tarih türleri çıkarılmaz. Sınırlar: 25 MiB, 200 sayfa, 128 tablo ve bir milyon çıktı hücresi. Çalışma kitabını kaynak PDF ile karşılaştırın.</value></data>
+  <data name="PdfExcelPreview" xml:space="preserve"><value>Desteklenen tablolar tespit edildi: {0}. İçerik görüntülenmiyor.</value></data>
+  <data name="PdfExcelSheet" xml:space="preserve"><value>Sayfa {0} Tablo {1}</value></data>
+  <data name="PdfExcelInvalid" xml:space="preserve"><value>Desteklenen tablo çıkarılamadı veya PDF belirsiz, bozuk, şifrelenmiş veya sınırlarını aşıyor. En az 3 sütun ve 3 satırdan oluşan tam dikdörtgen ızgaralar veya net bir şekilde hizalanmış tablolar kullanın. Taranmış sayfalar OCR gerektirir ve bu işlem OCR gerçekleştirmez.</value></data>
+  <data name="PdfExcelReadError" xml:space="preserve"><value>PDF girişi okunamadı.</value></data>
+  <data name="PdfExcelWriteError" xml:space="preserve"><value>Çıkarılan tablolar Excel&apos;e yazılamadı. Kaynak dosyada değişiklik yapılmadı.</value></data>
+  <data name="CropPdfAction_Title" xml:space="preserve"><value>PDF Kenar Boşluklarını Kırp</value></data>
+  <data name="CropPdfAction_Description" xml:space="preserve"><value>Seçilen sayfaların her kenarından aynı kenar boşluğunu (örneğin tarayıcı kenarlıkları) yeni bir PDF&apos;de kırpar.</value></data>
+  <data name="CropPdfAction_ParamTitle_Margin" xml:space="preserve"><value>Kesilecek kenar boşluğu (mm)</value></data>
+  <data name="CropPdfAction_ParamDesc_Margin" xml:space="preserve"><value>Her kenardan 0 ila 100 mm kırpılır. Yeni kenarın dışındaki içerik gizlenir, silinmez.</value></data>
+  <data name="CropPdfAction_Operation_Description" xml:space="preserve"><value>{0} dosyasının kenar boşluklarını yeni kopyalara kırpacaktır.</value></data>
+  <data name="ResizePdfPagesAction_Title" xml:space="preserve"><value>PDF Sayfalarını Boyutlandır</value></data>
+  <data name="ResizePdfPagesAction_Description" xml:space="preserve"><value>Her sayfayı yeni bir PDF dosyası olarak A4, US Letter, A5 veya US Legal boyutuna ölçeklendirir. Her sayfa dikey veya yatay yönünü korur.</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Size" xml:space="preserve"><value>Sayfa boyutu</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Fit" xml:space="preserve"><value>Ölçeklendirme</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_Fit" xml:space="preserve"><value>Sayfaya sığdır (büyüt veya küçült)</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_FitShrink" xml:space="preserve"><value>Yalnızca daha büyük sayfaları küçült</value></data>
+  <data name="ResizePdfPagesAction_Operation_Description" xml:space="preserve"><value>{0}&apos;ın yeniden boyutlandırılmış kopyalarını oluşturacak.</value></data>
+</root>

@@ -57,7 +57,7 @@ public sealed class RepairPdfAction : PerFileAction<NoOptions>
     }
 
     protected override string DescribeOperation(int inputCount, NoOptions options) =>
-        string.Format(CultureInfo.CurrentCulture, SR.GetString("RepairPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(CultureInfo.CurrentCulture, SR.GetString("RepairPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, NoOptions options)
     {

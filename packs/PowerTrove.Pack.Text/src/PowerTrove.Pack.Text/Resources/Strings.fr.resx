@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Presse-papiers et texte</value></data>
+  <data name="Description" xml:space="preserve"><value>Transforme localement une sélection de texte capturée explicitement et copie le résultat dans le presse-papiers.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Vérifiez la transformation. Le résultat sera copié dans le presse-papiers uniquement après l&apos;exécution de l&apos;action.</value></data>
+  <data name="Done" xml:space="preserve"><value>Texte copié dans le presse-papiers.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Aucune sélection de texte disponible, ou la sélection a expiré ou est trop volumineuse.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Le texte dépasse la limite de 65 536 caractères.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Le texte ou le modèle ne peut pas être traité.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Opération de texte non prise en charge.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>Contenu encodé invalide.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>L’expression régulière a dépassé le délai imparti.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Saisissez une expression régulière.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Motif</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Remplacement</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Expression régulière .NET, délai d’expiration de 200 ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>Le résultat est vide ; l’exécution effacera le texte du presse-papiers.</value></data>
+  <data name="trim" xml:space="preserve"><value>Supprimer les espaces blancs</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Rogner chaque ligne</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Réduire les espaces blancs</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Supprimer les lignes vides</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Supprimer les lignes en double</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Trier les lignes</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Convertir en minuscules</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Convertir en majuscules</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Convertir en majuscules (titre)</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Remplacer du texte à l&apos;aide d&apos;une expression régulière</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Encoder le texte de l&apos;URL</value></data>
+  <data name="url-decode" xml:space="preserve"><value>Décoder le texte de l&apos;URL</value></data>
+  <data name="html-encode" xml:space="preserve"><value>Encodage de texte HTML</value></data>
+  <data name="html-decode" xml:space="preserve"><value>Décodage de texte HTML</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Encodage Base64 du texte</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Décodage Base64 du texte</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Texte d&apos;échappement JSON</value></data>
+</root>

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>Aplica-se a {0} de {1} itens.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>Novos arquivos são criados ao lado dos originais; os originais não são alterados.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>O arquivo não existe mais.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>A pasta não existe mais.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>O conteúdo não está em um formato {0} suportado.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>O acesso foi negado.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>Um arquivo necessário não foi encontrado.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>Uma pasta necessária não foi encontrada.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>O caminho é muito longo.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Ocorreu um erro no sistema de arquivos.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Esta operação não é compatível.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>O processamento falhou inesperadamente.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>A seleção expirou. Selecione os arquivos novamente.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Não é uma seleção de arquivo.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>Não há suporte para {0} na seleção.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>Selecione pelo menos {0} {1}.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>Selecione no máximo {0} {1}.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Selecione um arquivo {0} existente.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Escolher um arquivo existente.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>Cancelado.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>Cancelado. 1 saída foi concluída antes do cancelamento.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>Cancelado. {0} saídas foram concluídas antes do cancelamento.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>1 saída criada.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>Criadas {0} saídas.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>1 saída criada; 1 item(ns) falhou(ram).</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>Criada 1 saída; {1} item(ns) falhou(ram).</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>Criadas {0} saídas; 1 item(ns) falhou(ram).</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>Criadas {0} saídas; {1} item(ns) falhou(ram).</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>Nenhuma saída foi criada.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>1 item não suportado ignorado.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>Ignorado {0} item(ns) não suportado(s).</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 item(ns) não necessitam de alterações.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} item(ns) não precisa(m) de alterações.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>1 saída criada. Salvo {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>Criadas {0} saídas. Salvo {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>1 saída criada. A saída é {1} maior ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>Criadas {0} saídas. A saída é {1} maior ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>Processando</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} item {1} de {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Concluído.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>São necessários pelo menos {0} {1} válidos.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Em andamento...</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>O mecanismo de processamento não gerou nenhuma saída.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>Não foi possível salvar a saída com um nome válido.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>A pasta de saída não está disponível.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>A pasta de saída não existe mais.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Item necessário, sem alterações.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>O contexto não está disponível.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Recursos necessários ausentes.</value></data><data name="RequiresType" xml:space="preserve"><value>Requer {0}, mas a seleção atual é {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>Selecionar pelo menos {0} {1} arquivo.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>Selecione pelo menos {0} {1} arquivos.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Selecione apenas {0} {1} arquivo.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Selecione apenas {0} {1} arquivos.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Remover os outros itens selecionados.</value></data></root>

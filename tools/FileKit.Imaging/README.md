@@ -59,3 +59,28 @@ paths with even-odd holes. It reuses `PaletteQuantizer` without dithering, suppo
 color/black-white and three bounded working resolutions, and embeds no raster.
 It is intended for flat artwork; gradients, photos and curves are approximated.
 Source, boundary-edge and output limits fail explicitly.
+
+## JPEG coefficient transforms (BCL-only)
+
+`FileKit.Imaging.Jpeg.JpegCoefficientCodec` supports bounded 8-bit baseline JPEG
+and progressive Huffman JPEGs through quantized DCT coefficient arrays. It
+recognizes restart markers and MCU sampling, decodes spectral/successive scans
+without an RGB decoder, transforms 8×8 block positions and frequency signs for
+orthogonal rotations and mirroring, and emits JPEG entropy data with the same
+quantized DCT coefficients. Subsampling and source APP/COM metadata are retained;
+the caller remains responsible for normalizing orientation and dimensions within
+EXIF/XMP/JFIF metadata.
+
+Current limits: 300 MiB JPEG input/output, 60 MP, 30,000 pixels per axis, 96
+million DCT coefficients, 32 scans, and 1 MiB before the first scan. Transforms
+other than identity reject partial MCU edges without cropping. Unsupported
+arithmetic coding, lossless JPEG coding and 16-bit quantization are rejected;
+quantized coefficients remain exact, but output entropy coding, scan structure
+and compressed file size can differ. Progressive inputs are written as baseline
+JPEGs. No additional NuGet library or native JPEG executable is used.
+
+**Acceptance before release:** run the original adapter tests plus FileKit
+coefficient tests locally on Windows and compare against independently
+generated LibJpeg.NET coefficient baselines, including 4:2:0/4:2:2/4:4:4,
+progressive scan patterns, Restart intervals, EXIF/XMP/JFIF and malformed files.
+The source implementation alone does not demonstrate compatibility.

@@ -20,5 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\PowerTrove.ReleaseTools\PowerTrove.ReleaseTools.csproj" />
+    <ProjectReference Include="..\..\src\PowerTrove.Application\PowerTrove.Application.csproj" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 using PowerTrove.Abstractions.Packs;
+using System.Collections.Concurrent;
 using PowerTrove.Core.Extensibility.PackProtocol;
 
 namespace PowerTrove.PackHost;
@@ -6,6 +7,8 @@ namespace PowerTrove.PackHost;
 public sealed class WorkerSession
 {
     private readonly IReadOnlyList<IPackFactory> _factories;
+    private readonly ConcurrentDictionary<Guid,TaskCompletionSource<BrowserServiceResultMessage>> _browserPending = new();
+    private readonly ConcurrentDictionary<Guid,WorkerBrowserBinaryPending> _browserBinaryPending = new();
     private readonly Func<FileActionServices, IPackHostServices> _services;
     private readonly IFileTypeVerifier _verifier;
     private readonly string _stagingRoot;
@@ -36,6 +39,15 @@ public sealed class WorkerSession
                     await writer.WriteAsync(new ReadyMessage(_factories.Select(f => new WorkerPack(f.Info.Id, f.Info.Version)).ToArray()), lifetime.Token).ConfigureAwait(false);
                 }
                 else if (message is CancelMessage cancel && requestId == cancel.RequestId) request?.Cancel();
+                else if (message is BrowserServiceResultMessage browser && requestId == browser.RequestId)
+                {
+                    if (_browserPending.TryRemove(browser.OperationId, out var pending)) pending.TrySetResult(browser);
+                    else if (_browserBinaryPending.TryGetValue(browser.OperationId, out var binary))
+                        binary.Fail(); // Failed or missing capture: never expose partial bytes.
+                }
+                else if (message is BrowserServiceBinaryChunkMessage chunk && requestId == chunk.RequestId &&
+                    _browserBinaryPending.TryGetValue(chunk.OperationId, out var transfer))
+                    transfer.Append(chunk);
                 else if (ready && message is PreviewMessage or ExecuteMessage)
                 {
                     Guid id = message is PreviewMessage preview ? preview.RequestId : ((ExecuteMessage)message).RequestId;
@@ -61,6 +73,10 @@ public sealed class WorkerSession
             }
             lifetime.Cancel();
             request?.Dispose();
+            foreach (var pending in _browserPending.Values) pending.TrySetCanceled();
+            _browserPending.Clear();
+            foreach (var binary in _browserBinaryPending.Values) binary.Fail();
+            _browserBinaryPending.Clear();
         }
     }
 
@@ -74,11 +90,15 @@ public sealed class WorkerSession
         var table = execute is null ? preview!.Table : execute.Table;
         var expires = execute?.ExpiresAt ?? preview!.ExpiresAt;
         var values = execute?.Parameters ?? preview!.Parameters;
+        var textInput = execute?.TextInput ?? preview?.TextInput;
+        var browserContext = execute?.BrowserContext ?? preview?.BrowserContext;
         using var heartbeatLifetime = CancellationTokenSource.CreateLinkedTokenSource(token, sessionToken);
         Task? heartbeat = null;
         try
         {
-            if (expires <= _clock.GetUtcNow() || expires > _clock.GetUtcNow().AddMinutes(5) || (selection.Files.Count == 0) == (table is null))
+            // Exactly one input kind: files, a table or text.
+            if (expires <= _clock.GetUtcNow() || expires > _clock.GetUtcNow().AddMinutes(5) ||
+                (selection.Files.Count > 0 ? 1 : 0) + (table is null ? 0 : 1) + (textInput is null ? 0 : 1) != 1)
                 throw new InvalidDataException();
             string staging;
             if (execute is not null)
@@ -90,6 +110,9 @@ public sealed class WorkerSession
             else staging = Path.Combine(_stagingRoot, "preview");
             var fs = new StagingOutputFileSystem(selection, staging, readOnly: execute is null);
             var host = _services(new FileActionServices(fs, new OutputPlanner(fs), new SelectionVerifier(fs, _verifier)));
+            if (browserContext?.Tab is { } allowedTab && host is PackHostServices typedHost)
+                typedHost.Add<IBrowserPageService>(new WorkerBrowserPageProxy(writer,
+                    _browserPending, _browserBinaryPending, id, allowedTab));
             var actions = _factories.SelectMany(f => f.Create(host).Actions).ToArray();
             var ids = actions.Select(a => a.Descriptor.Id).ToHashSet(StringComparer.Ordinal);
             if (ids.Count != actions.Length || _declaredActionIds is not null && !_declaredActionIds.SetEquals(ids))
@@ -97,7 +120,7 @@ public sealed class WorkerSession
             var action = actions.SingleOrDefault(a => a.Descriptor.Id == actionId);
             if (action is null)
             { await writer.WriteAsync(new ErrorMessage("unknownAction", Resources.Strings.UnknownAction, id), sessionToken).ConfigureAwait(false); return; }
-            var snapshot = table is null ? Snapshot(selection, expires) : Snapshot(table, expires);
+            var snapshot = table is not null ? Snapshot(table, expires) : textInput is not null ? TextSnapshot(textInput, expires, browserContext) : Snapshot(selection, expires);
             var parameters = new DictionaryParameters(values);
             if (execute is null)
             {
@@ -141,6 +164,22 @@ public sealed class WorkerSession
             await writer.WriteAsync(new HeartbeatMessage(id), token).ConfigureAwait(false);
         }
     }
+    private ContextSnapshot TextSnapshot(string text, DateTimeOffset expires,
+        BrowserTextContextPayload? browser)
+    {
+        var now = _clock.GetUtcNow();
+        return new ContextSnapshot(Guid.NewGuid(),
+            new SourceWindowIdentity(IntPtr.Zero, 0, browser is null ? null : "browser", now, browser?.Title),
+            ContextStatus.Available, new TextSelection(text), now, expires,
+            browser is null ? "pack-worker" : "powertrove.provider.browser.explicit", browser?.Url)
+        {
+            BrowserPage = browser?.Tab is { } tab
+                ? new BrowserPageInfo(browser.Url, browser.Title, new Uri(browser.Url).Host,
+                    text != browser.Url, text.Length, false, 0, 0, 0, 0, 0, null, 0)
+                { Tab = tab } : null
+        };
+    }
+
     private ContextSnapshot Snapshot(FileSelectionPayload selection, DateTimeOffset expires)
     {
         var files = selection.Files.Select(f =>

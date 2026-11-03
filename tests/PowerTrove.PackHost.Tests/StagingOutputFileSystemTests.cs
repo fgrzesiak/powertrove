@@ -82,6 +82,23 @@ public sealed class StagingOutputFileSystemTests : IDisposable
         Assert.Throws<UnauthorizedAccessException>(() => Create(input, link));
     }
 
+    [Fact]
+    public void CompanionReadsStayInsideTheSelectedDocumentsFolder()
+    {
+        string document = Path.GetFullPath(_temp.Write("docs/readme.md", "# x"));
+        _temp.Write("docs/img/a.png", "png");
+        _temp.Write("private.txt", "private");
+        string other = Path.GetFullPath(_temp.Write("other/notes.md", "# y"));
+        _temp.Write("other/b.png", "png");
+        string stage = Directory.CreateDirectory(_temp.File("stage")).FullName;
+        var fs = Create(document, stage);
+        using (var stream = fs.OpenCompanionRead(document, "img/a.png")) Assert.Equal(3, stream.Length);
+        Assert.Throws<UnauthorizedAccessException>(() => fs.OpenCompanionRead(document, "../private.txt"));
+        Assert.Throws<UnauthorizedAccessException>(() => fs.OpenCompanionRead(other, "b.png"));
+        Assert.Throws<UnauthorizedAccessException>(() => fs.OpenRead(Path.GetFullPath(_temp.File("docs/img/a.png"))));
+        Assert.Throws<FileNotFoundException>(() => fs.OpenCompanionRead(document, "img/missing.png"));
+    }
+
     private static FileSelectionPayload Selection(string input) => new([new ProtocolFile(input, Path.GetFileName(input), ".txt", false, new FileInfo(input).Length)]);
     private static StagingOutputFileSystem Create(string input, string staging) => new(Selection(input), staging);
 }

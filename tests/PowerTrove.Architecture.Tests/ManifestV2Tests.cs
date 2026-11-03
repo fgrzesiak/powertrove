@@ -41,7 +41,7 @@ public sealed class ManifestV2Tests
                 var metadata = parsed.Actions.Single(a => a.Id == action.Descriptor.Id);
                 Assert.Equal(action.Descriptor.ChangesFiles, metadata.ChangesFiles);
                 foreach (var parameter in action.Descriptor.Parameters ?? [])
-                    Assert.Equal(parameter.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null,
+                    Assert.Equal(ActionPackManifest.EditorName(parameter.Editor),
                         metadata.Parameters!.Single(p => p.Name == parameter.Name).Editor);
                 if (action.Descriptor.Selection is not null)
                 {
@@ -70,7 +70,7 @@ public sealed class ManifestV2Tests
     private static void Check(JsonElement value, JsonElement schema, JsonElement root, string path)
     {
         foreach (var property in schema.EnumerateObject())
-            Assert.Contains(property.Name, new[] { "$schema", "$id", "$defs", "$ref", "title", "description", "default", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "pattern", "minimum", "minItems", "maxItems", "uniqueItems", "maxProperties", "allOf", "if", "then", "contains" });
+            Assert.Contains(property.Name, new[] { "$schema", "$id", "$defs", "$ref", "title", "description", "default", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "pattern", "minimum", "minItems", "maxItems", "uniqueItems", "maxProperties", "allOf", "if", "then", "contains" });
         if (schema.TryGetProperty("$ref", out var reference))
         {
             var target = root;
@@ -116,6 +116,7 @@ public sealed class ManifestV2Tests
         if (value.ValueKind == JsonValueKind.String)
         {
             if (schema.TryGetProperty("minLength", out var min)) Assert.True(value.GetString()!.Length >= min.GetInt32(), path);
+            if (schema.TryGetProperty("maxLength", out var maxLength)) Assert.True(value.GetString()!.Length <= maxLength.GetInt32(), path);
             if (schema.TryGetProperty("pattern", out var pattern)) Assert.True(Regex.IsMatch(value.GetString()!, pattern.GetString()!, RegexOptions.CultureInvariant, TimeSpan.FromSeconds(1)), path);
         }
         if (value.ValueKind == JsonValueKind.Number && schema.TryGetProperty("minimum", out var minimum)) Assert.True(value.GetInt64() >= minimum.GetInt64(), path);

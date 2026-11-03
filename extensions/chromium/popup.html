@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PowerTrove Browser Pack</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img class="brandmark" src="icons/icon48.png" alt="">
+    <div class="header-info">
+      <h1>PowerTrove</h1>
+      <span class="subtitle" data-i18n="subtitle"></span>
+    </div>
+    <span id="connection" role="status" aria-live="polite"></span>
+  </header>
+  <main>
+    <div class="search">
+      <span class="glyph" aria-hidden="true">&#xE721;</span>
+      <input id="actionSearch" type="search" data-placeholder="searchPlaceholder"
+             autocomplete="off" data-aria-label="searchPlaceholder" />
+    </div>
+    <div class="connect-card" id="connectCard">
+      <p data-i18n="connectHint"></p>
+      <button data-action="connectDesktop" data-i18n="connectDesktop"></button>
+    </div>
+    <div class="connect-card" id="accessCard" hidden>
+      <p data-i18n="allowAllPagesHint"></p>
+      <button data-action="allowAllPages" data-i18n="allowAllPages"></button>
+    </div>
+    <div class="connect-card" id="disconnectCard" hidden>
+      <p data-i18n="disconnectHint"></p>
+      <button data-action="disconnectDesktop" data-i18n="disconnectDesktop"></button>
+    </div>
+    <section>
+      <h2 data-i18n="sectionContext"></h2>
+      <div class="actions">
+        <button data-action="sendSelection" data-i18n="sendSelection" data-icon="&#xE8D4;"></button>
+        <button data-action="sendPageUrl" data-i18n="sendPageUrl" data-icon="&#xE71B;"></button>
+        <button data-action="openLastDownload" data-i18n="openLastDownload" data-icon="&#xE896;"></button>
+        <button data-action="copyLinkMarkdown" data-i18n="copyLinkMarkdown" data-icon="&#xE8C8;"></button>
+      </div>
+    </section>
+    <section>
+      <h2 data-i18n="sectionExport"></h2>
+      <div class="actions">
+        <button data-action="saveArticleMarkdown" data-i18n="saveArticleMarkdown" data-icon="&#xE8A5;"></button>
+        <button data-action="savePageMarkdown" data-i18n="savePageMarkdown" data-icon="&#xE8A5;"></button>
+        <button data-action="saveSelectionMarkdown" data-i18n="saveSelectionMarkdown" data-icon="&#xE8A5;"></button>
+        <button data-action="saveMhtml" data-i18n="saveMhtml" data-icon="&#xE7C3;"></button>
+        <button data-action="printPdf" data-i18n="printPdf" data-icon="&#xE749;"></button>
+        <button data-action="openPdfInPowerTrove" data-i18n="openPdfInPowerTrove" data-icon="&#xE896;"></button>
+        <button data-action="openEmbeddedPdfInPowerTrove" data-i18n="openEmbeddedPdfInPowerTrove" data-icon="&#xE896;"></button>
+      </div>
+    </section>
+    <section>
+      <h2 data-i18n="sectionCapture"></h2>
+      <div class="actions">
+        <button data-action="visibleScreenshot" data-i18n="visibleScreenshot" data-icon="&#xE91B;"></button>
+        <button data-action="visibleScreenshotToPowerTrove" data-i18n="visibleScreenshotToPowerTrove" data-icon="&#xE896;"></button>
+        <button data-action="fullScreenshotToPowerTrove" data-i18n="fullScreenshotToPowerTrove" data-icon="&#xE896;"></button>
+        <button data-action="areaScreenshot" data-i18n="areaScreenshot" data-icon="&#xE722;"></button>
+        <button data-action="fullScreenshot" data-i18n="fullScreenshot" data-icon="&#xE91B;"></button>
+        <button data-action="downloadImages" data-i18n="downloadImages" data-icon="&#xE8B7;"></button>
+      </div>
+      <div class="fast-screenshot-setting">
+        <label for="fastFullPageScreenshots">
+          <input type="checkbox" id="fastFullPageScreenshots"
+                 aria-describedby="fastFullPageHint">
+          <span data-i18n="fastFullPageLabel"></span>
+        </label>
+        <p id="fastFullPageHint" data-i18n="fastFullPageHint"></p>
+      </div>
+    </section>
+    <section>
+      <h2 data-i18n="sectionPageData"></h2>
+      <div class="actions">
+        <button data-action="sendLargestTable" data-i18n="sendLargestTable" data-icon="&#xE80A;"></button>
+        <button data-action="exportTablesCsv" data-i18n="exportTablesCsv" data-icon="&#xE80A;"></button>
+        <button data-action="exportTablesJson" data-i18n="exportTablesJson" data-icon="&#xE80A;"></button>
+        <button data-action="exportTablesMarkdown" data-i18n="exportTablesMarkdown" data-icon="&#xE80A;"></button>
+        <button data-action="exportLinksCsv" data-i18n="exportLinksCsv" data-icon="&#xE71B;"></button>
+        <button data-action="exportLinksMarkdown" data-i18n="exportLinksMarkdown" data-icon="&#xE71B;"></button>
+      </div>
+    </section>
+    <div class="save-destination-setting">
+      <label id="saveModeLabel" for="saveMode" data-i18n="saveModeLabel"></label>
+      <select id="saveMode" aria-describedby="saveModeHint">
+        <option value="ask" data-i18n="saveModeAsk"></option>
+        <option value="downloads" data-i18n="saveModeDownloads"></option>
+      </select>
+      <p id="saveModeHint" data-i18n="saveModeHint"></p>
+    </div>
+    <dialog id="tablePicker" aria-labelledby="tablePickerTitle">
+      <form method="dialog">
+        <h2 id="tablePickerTitle" data-i18n="tablePickerTitle"></h2>
+        <select id="tablePickerSelect" aria-label="Choose HTML table"></select>
+        <div class="picker-buttons">
+          <button value="cancel" data-i18n="tablePickerCancel"></button>
+          <button id="tablePickerConfirm" value="confirm" data-i18n="tablePickerConfirm"></button>
+        </div>
+      </form>
+    </dialog>
+    <p id="status" role="status" aria-live="polite"></p>
+    <footer>
+      <span data-i18n="footerHint"></span>
+      <a href="https://www.powertrove.net/en" target="_blank" rel="noopener noreferrer"
+         data-i18n="website"></a>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

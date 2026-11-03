@@ -71,7 +71,7 @@ public sealed class RenameFilesAction(FileActionServices services, IFileRenameSe
         {
             var result = await renamer!.RenameAsync(plan.Renames, ct).ConfigureAwait(false);
             stats.CompletedWithoutOutput = true; stats.UndoOperationId = result.OperationId; stats.UndoUntil = result.UndoUntil;
-            stats.ResultMessage = string.Format(SR.GetString(result.RenamedCount == 1 ? "RenameCompleted_One" : "RenameCompleted_Other"), result.RenamedCount);
+            stats.ResultMessage = string.Format(SR.Plural("RenameCompleted", result.RenamedCount), result.RenamedCount);
         }
         catch (RenameRecoveryException ex)
         {

@@ -56,7 +56,7 @@ public sealed class CountFilesAction : IAction
         }
 
         string limitNote = anyLimitReached ? SR.GetString("CountFilesAction_Preview_LimitReachedNote") : "";
-        string previewText = SR.Format("FoundItems" + (totalCount == 1 ? "_One" : "_Other"), totalCount, limitNote);
+        string previewText = string.Format(SR.Plural("FoundItems", totalCount), totalCount, limitNote);
 
         return new ValueTask<ActionPreview>(new ActionPreview(
             RequiresConfirmation: false,

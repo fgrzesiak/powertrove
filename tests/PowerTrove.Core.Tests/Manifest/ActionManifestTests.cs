@@ -90,6 +90,17 @@ public class ActionManifestTests
         Assert.Null(secretParam.Default);
     }
 
+    [Fact]
+    public void ManifestFactory_CarriesActionSearchTermsIntoSignedMetadata()
+    {
+        var descriptor = new PowerTrove.Abstractions.ActionDescriptor("test.search", "Extract archive", "Unpack an archive",
+            new System.Collections.Generic.HashSet<PowerTrove.Abstractions.ContentKind> { PowerTrove.Abstractions.ContentKind.None },
+            new[] { "unzip", "entpacken", "extract" }, false, false);
+        var pack = new DummyManifestPack(new[] { new DummyManifestAction(descriptor) });
+        var read = ActionPackManifest.Read(ActionPackManifest.ToJson(ActionPackManifest.Create(pack)));
+        Assert.Equal(new[] { "unzip", "entpacken", "extract" }, Assert.Single(read.Actions).SearchTerms);
+    }
+
     private sealed class DummyManifestAction : PowerTrove.Abstractions.IAction
     {
         public DummyManifestAction(PowerTrove.Abstractions.ActionDescriptor descriptor) => Descriptor = descriptor;

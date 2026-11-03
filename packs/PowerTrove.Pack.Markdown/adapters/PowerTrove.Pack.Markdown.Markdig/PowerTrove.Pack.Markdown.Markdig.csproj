@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Markdig (BSD-2-Clause) renders Markdown; AngleSharp (MIT) sanitizes HTML and reads it for HTML to Markdown. -->
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/PowerTrove.Pack.Markdown/PowerTrove.Pack.Markdown.csproj" />
+    <ProjectReference Include="../../../../tools/FileKit.Html/src/FileKit.Html/FileKit.Html.csproj" />
+    <PackageReference Include="Markdig" Version="1.5.1" />
+    <PackageReference Include="AngleSharp" Version="1.8.6" />
+    <InternalsVisibleTo Include="PowerTrove.Pack.Markdown.Tests" />
+  </ItemGroup>
+</Project>

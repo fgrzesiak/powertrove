@@ -226,7 +226,7 @@ public sealed class MergePdfAction : CombineFilesAction<MergePdfOptions>
     }
 
     protected override string DescribeOperation(int inputCount, MergePdfOptions options) =>
-        string.Format(SR.GetString("MergePdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("MergePdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override PlannedOutput PlanOutput(IReadOnlyList<SelectedFile> inputs, MergePdfOptions options) =>
         new(Path.GetFileNameWithoutExtension(inputs[0].Name) + " (merged)", ".pdf");
@@ -301,7 +301,7 @@ public sealed class SplitPdfAction : PerFileAction<SplitPdfOptions>
     }
 
     protected override string DescribeOperation(int inputCount, SplitPdfOptions options) =>
-        string.Format(SR.GetString("SplitPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("SplitPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, SplitPdfOptions options)
     {
@@ -436,7 +436,7 @@ public sealed class ExtractPdfPagesAction : PerFileAction<PageSelectionOptions>
     }
 
     protected override string DescribeOperation(int inputCount, PageSelectionOptions options) =>
-        string.Format(SR.GetString("ExtractPdfPagesAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")), options.Pages);
+        string.Format(SR.GetString("ExtractPdfPagesAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"), options.Pages);
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, PageSelectionOptions options)
     {
@@ -490,7 +490,7 @@ public sealed class RemovePdfPagesAction : PerFileAction<PageSelectionOptions>
     }
 
     protected override string DescribeOperation(int inputCount, PageSelectionOptions options) =>
-        string.Format(SR.GetString("RemovePdfPagesAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")), options.Pages);
+        string.Format(SR.GetString("RemovePdfPagesAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"), options.Pages);
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, PageSelectionOptions options)
     {
@@ -540,7 +540,7 @@ public sealed class RotatePdfAction : PerFileAction<RotateOptions>
     protected override string? ValidateOptions(RotateOptions options) => PdfSupport.ValidatePageSyntax(options.Pages, allowEmpty: true);
 
     protected override string DescribeOperation(int inputCount, RotateOptions options) =>
-        string.Format(SR.GetString("RotatePdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")), options.Degrees, (string.IsNullOrWhiteSpace(options.Pages) ? "all" : options.Pages));
+        string.Format(SR.GetString("RotatePdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"), options.Degrees, (string.IsNullOrWhiteSpace(options.Pages) ? "all" : options.Pages));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, RotateOptions options)
     {
@@ -593,7 +593,7 @@ public sealed class RemovePdfMetadataAction : PerFileAction<NoOptions>
     }
 
     protected override string DescribeOperation(int inputCount, NoOptions options) =>
-        string.Format(SR.GetString("RemovePdfMetadataAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_Copy"), SR.GetString("Pdf_Copies")));
+        string.Format(SR.GetString("RemovePdfMetadataAction_Operation_Description"), SR.Noun(inputCount, "Pdf_Copy", "Pdf_Copies"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, NoOptions options)
     {
@@ -649,7 +649,7 @@ public sealed class ImagesToPdfAction : CombineFilesAction<ImagesToPdfOptions>
     });
 
     protected override string DescribeOperation(int inputCount, ImagesToPdfOptions options) =>
-        string.Format(SR.GetString("ImagesToPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_Page"), SR.GetString("Pdf_Pages")));
+        string.Format(SR.GetString("ImagesToPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_Page", "Pdf_Pages"));
 
     protected override PlannedOutput PlanOutput(IReadOnlyList<SelectedFile> inputs, ImagesToPdfOptions options)
     {
@@ -721,7 +721,7 @@ public sealed class HeaderFooterPdfAction : PerFileAction<HeaderFooterOptions>
         new(values.GetText("Text"), values.GetChoice("Placement"), values.GetChoice("Alignment"), values.GetInt32("FontSize"));
 
     protected override string DescribeOperation(int inputCount, HeaderFooterOptions options) =>
-        string.Format(SR.GetString("HeaderFooterPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("HeaderFooterPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, HeaderFooterOptions options)
     {
@@ -816,7 +816,7 @@ public sealed class AddPageNumbersPdfAction : PerFileAction<PageNumbersOptions>
         new(values.GetChoice("Position"), values.GetChoice("Format"), values.GetInt32("StartAt"), values.GetBoolean("SkipFirst"), values.GetInt32("FontSize"));
 
     protected override string DescribeOperation(int inputCount, PageNumbersOptions options) =>
-        string.Format(SR.GetString("AddPageNumbersPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("AddPageNumbersPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, PageNumbersOptions options)
     {
@@ -895,7 +895,7 @@ public sealed class PdfToImagesAction : PerFileAction<PdfToImagesOptions>
     protected override string? ValidateOptions(PdfToImagesOptions options) => PdfSupport.ValidatePageSyntax(options.Pages, allowEmpty: true);
 
     protected override string DescribeOperation(int inputCount, PdfToImagesOptions options) =>
-        string.Format(SR.GetString("PdfToImagesAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")), options.Format.ToUpperInvariant(), options.Dpi);
+        string.Format(SR.GetString("PdfToImagesAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"), options.Format.ToUpperInvariant(), options.Dpi);
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, PdfToImagesOptions options)
     {
@@ -955,7 +955,7 @@ public sealed class ReorderPdfPagesAction : PerFileAction<ReorderPdfPagesOptions
     }
 
     protected override string DescribeOperation(int inputCount, ReorderPdfPagesOptions options) =>
-        string.Format(SR.GetString("ReorderPdfPagesAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("ReorderPdfPagesAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, ReorderPdfPagesOptions options)
     {
@@ -1068,7 +1068,7 @@ public sealed class InsertBlankPagesAction : PerFileAction<InsertBlankPagesOptio
     }
 
     protected override string DescribeOperation(int inputCount, InsertBlankPagesOptions options) =>
-        string.Format(SR.GetString("InsertBlankPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("InsertBlankPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, InsertBlankPagesOptions options)
     {
@@ -1256,7 +1256,7 @@ public sealed class WatermarkPdfAction : PerFileAction<WatermarkPdfOptions>
     protected override string? ValidateOptions(WatermarkPdfOptions options) => string.IsNullOrWhiteSpace(options.Text) ? "Watermark text cannot be empty." : null;
 
     protected override string DescribeOperation(int inputCount, WatermarkPdfOptions options) =>
-        string.Format(SR.GetString("WatermarkPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("WatermarkPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, WatermarkPdfOptions options)
     {
@@ -1306,7 +1306,7 @@ public sealed class CropPdfAction : PerFileAction<CropPdfOptions>
     }
 
     protected override string DescribeOperation(int inputCount, CropPdfOptions options) =>
-        string.Format(SR.GetString("CropPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("CropPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, CropPdfOptions options)
     {
@@ -1362,7 +1362,7 @@ public sealed class ResizePdfPagesAction : PerFileAction<ResizePdfPagesOptions>
     protected override string? ValidateOptions(ResizePdfPagesOptions options) => null;
 
     protected override string DescribeOperation(int inputCount, ResizePdfPagesOptions options) =>
-        string.Format(SR.GetString("ResizePdfPagesAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("ResizePdfPagesAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, ResizePdfPagesOptions options)
     {
@@ -1481,7 +1481,7 @@ public sealed class StampPdfImageAction : PerFileAction<StampPdfImageOptions>
     }
 
     protected override string DescribeOperation(int inputCount, StampPdfImageOptions options) =>
-        string.Format(SR.GetString("StampPdfImageAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("StampPdfImageAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, StampPdfImageOptions options)
     {

@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MergePdfAction_Title" xml:space="preserve"><value>PDFを結合する</value></data><data name="MergePdfAction_Description" xml:space="preserve"><value>選択したPDFをファイル名の順序で1つのファイルに結合します。</value></data><data name="MergePdfAction_Operation_Description" xml:space="preserve"><value>{0}をファイル名順に1つのドキュメントに結合します。</value></data><data name="MergePdfAction_DefaultOutput" xml:space="preserve"><value>結合されたPDF</value></data><data name="MergePdfAction_ParamTitle_AddBookmarks" xml:space="preserve"><value>各ファイルにブックマークを作成</value></data><data name="Pdf_File" xml:space="preserve"><value>PDF</value></data><data name="Pdf_Files" xml:space="preserve"><value>PDF</value></data><data name="SplitPdfAction_Title" xml:space="preserve"><value>PDFをページに分割</value></data><data name="SplitPdfAction_Description" xml:space="preserve"><value>選択したPDFを分割し、結果を新しいフォルダに保存します。</value></data><data name="SplitPdfAction_ProgressVerb" xml:space="preserve"><value>分割</value></data><data name="SplitPdfAction_Operation_Description" xml:space="preserve"><value>選択したモードに基づいて{0}を分割し、新しいフォルダに保存します。</value></data><data name="ExtractPagesAction_Title" xml:space="preserve"><value>PDFページを抽出</value></data><data name="ExtractPagesAction_Description" xml:space="preserve"><value>選択したページを含む新しいPDFを作成します。ページの順序変更や複製も可能です。</value></data><data name="Pdf_ParamTitle_Pages" xml:space="preserve"><value>ページ</value></data><data name="Pdf_ParamDesc_Pages" xml:space="preserve"><value>ページ番号と範囲（例：1-3、5、2）</value></data><data name="ExtractPagesAction_Operation_Description" xml:space="preserve"><value>{1}から{0}ページを{2}に抽出します。</value></data><data name="Pdf_NewDoc" xml:space="preserve"><value>新規ドキュメント</value></data><data name="Pdf_NewDocs" xml:space="preserve"><value>新規ドキュメント</value></data><data name="RemovePagesAction_Title" xml:space="preserve"><value>PDFページを削除</value></data><data name="RemovePagesAction_Description" xml:space="preserve"><value>指定したページを含まない新しいPDFを作成します。</value></data><data name="RemovePagesAction_ParamTitle_Pages" xml:space="preserve"><value>削除するページ</value></data><data name="RemovePagesAction_ParamDesc_Pages" xml:space="preserve"><value>ページ番号と範囲（例：1-3、5）</value></data><data name="RemovePagesAction_Operation_Description" xml:space="preserve"><value>{1}から{0}ページを削除し、残りを{2}として保存します。</value></data><data name="RotatePdfAction_Title" xml:space="preserve"><value>PDFページを回転</value></data><data name="RotatePdfAction_Description" xml:space="preserve"><value>ページを時計回りに回転させたPDFのコピーを作成します。</value></data><data name="RotatePdfAction_ParamTitle_Angle" xml:space="preserve"><value>回転角度</value></data><data name="RotatePdfAction_ParamChoice_90" xml:space="preserve"><value>時計回り 90°</value></data><data name="RotatePdfAction_ParamChoice_180" xml:space="preserve"><value>180°</value></data><data name="RotatePdfAction_ParamChoice_270" xml:space="preserve"><value>270°</value></data><data name="RotatePdfAction_ParamTitle_Pages" xml:space="preserve"><value>回転するページ</value></data><data name="RotatePdfAction_ParamDesc_Pages" xml:space="preserve"><value>「すべて」またはページ番号と範囲（例：1-3、5）を指定してください。</value></data><data name="RotatePdfAction_Operation_Description" xml:space="preserve"><value>{0}（{1}°時計回り、ページ数：{2}）を作成します。</value></data><data name="Pdf_AllPages" xml:space="preserve"><value>すべて</value></data><data name="RemovePdfMetadataAction_Title" xml:space="preserve"><value>PDFメタデータを削除</value></data><data name="EditPdfMetadataAction_Title" xml:space="preserve"><value>PDFプロパティの編集</value></data><data name="EditPdfMetadataAction_Description" xml:space="preserve"><value>文書のタイトル、作成者、件名、キーワードを設定します。空欄の場合は値が削除されます。</value></data><data name="EditPdfMetadataAction_ParamTitle_Title" xml:space="preserve"><value>タイトル</value></data><data name="EditPdfMetadataAction_ParamDesc_Title" xml:space="preserve"><value>ドキュメントのタイトルです。</value></data><data name="EditPdfMetadataAction_ParamTitle_Author" xml:space="preserve"><value>作成者</value></data><data name="EditPdfMetadataAction_ParamDesc_Author" xml:space="preserve"><value>ドキュメントを作成したユーザーの名前。</value></data><data name="EditPdfMetadataAction_ParamTitle_Subject" xml:space="preserve"><value>件名</value></data><data name="EditPdfMetadataAction_ParamDesc_Subject" xml:space="preserve"><value>このドキュメントの内容。</value></data><data name="EditPdfMetadataAction_ParamTitle_Keywords" xml:space="preserve"><value>キーワード</value></data><data name="EditPdfMetadataAction_ParamDesc_Keywords" xml:space="preserve"><value>カンマ区切りのキーワード。</value></data><data name="EditPdfMetadataAction_Operation_Description" xml:space="preserve"><value>指定されたプロパティを持つ{0}を作成します。</value></data><data name="EditPdfMetadataAction_Error_TooLong" xml:space="preserve"><value>テキストが500文字を超えています。</value></data><data name="RemovePdfMetadataAction_Description" xml:space="preserve"><value>メタデータ（作成者やタイトルなど）を含まないPDFのコピーを作成します。</value></data><data name="RemovePdfMetadataAction_Operation_Description" xml:space="preserve"><value>メタデータなしで{0}を作成します。</value></data><data name="Pdf_Copy" xml:space="preserve"><value>コピー</value></data><data name="Pdf_Copies" xml:space="preserve"><value>コピー</value></data><data name="ImagesToPdfAction_Title" xml:space="preserve"><value>画像からPDFを作成</value></data><data name="ImagesToPdfAction_Description" xml:space="preserve"><value>選択したJPEG画像とPNG画像を、ファイル名順に1ページに1枚ずつ、1つのPDFファイルにまとめます。</value></data><data name="ImagesToPdfAction_ParamTitle_PageSize" xml:space="preserve"><value>ページサイズ</value></data><data name="ImagesToPdfAction_ParamChoice_A4" xml:space="preserve"><value>A4</value></data><data name="ImagesToPdfAction_ParamChoice_Letter" xml:space="preserve"><value>USレターサイズ</value></data><data name="ImagesToPdfAction_ParamChoice_Fit" xml:space="preserve"><value>画像と同じ</value></data><data name="ImagesToPdfAction_Operation_Description" xml:space="preserve"><value>選択した画像からファイル名順に{0}個のPDFを作成します。JPEG画像は画質を損なうことなく埋め込まれます。</value></data><data name="ImagesToPdfAction_DefaultOutput" xml:space="preserve"><value>画像</value></data><data name="Pdf_Page" xml:space="preserve"><value>ページ</value></data><data name="Pdf_Pages" xml:space="preserve"><value>ページ</value></data><data name="PdfToImagesAction_Title" xml:space="preserve"><value>PDFを画像に変換</value></data><data name="PdfToImagesAction_Description" xml:space="preserve"><value>PDFページをPNGまたはJPEG画像として新しいフォルダに保存します。</value></data><data name="PdfToImagesAction_ParamTitle_Format" xml:space="preserve"><value>画像形式</value></data><data name="PdfToImagesAction_ParamChoice_Png" xml:space="preserve"><value>PNG (鮮明なテキスト)</value></data><data name="PdfToImagesAction_ParamChoice_Jpeg" xml:space="preserve"><value>JPEG（小さめの写真）</value></data><data name="PdfToImagesAction_ParamTitle_Dpi" xml:space="preserve"><value>解像度（DPI）</value></data><data name="PdfToImagesAction_ParamDesc_Pages" xml:space="preserve"><value>「すべて」またはページ番号と範囲（例：1-3、5）を指定してください。</value></data><data name="PdfToImagesAction_ProgressVerb" xml:space="preserve"><value>PDFをレンダリング中</value></data><data name="PdfToImagesAction_Operation_Description" xml:space="preserve"><value>{0}のページを{1}個の画像として{2} DPIでレンダリングし、各PDFを新しいフォルダに保存します。</value></data><data name="PdfToImagesAction_Error_NoRenderer" xml:space="preserve"><value>このシステムでは PDF レンダリングは利用できません。</value></data><data name="PdfInfoAction_Title" xml:space="preserve"><value>PDF プロパティ</value></data><data name="PdfInfoAction_Description" xml:space="preserve"><value>選択したPDFのページ数、ページサイズ、PDFバージョン、および作成者を表示します。</value></data><data name="PdfInfoAction_Preview_Encrypted" xml:space="preserve"><value>暗号化済み</value></data><data name="PdfInfoAction_Preview_Pages" xml:space="preserve"><value>ページ</value></data><data name="PdfPack_Title" xml:space="preserve"><value>PDF ツール</value></data><data name="PdfSupport_FilterDescription" xml:space="preserve"><value>PDF ドキュメント</value></data><data name="PdfSupport_Error_InvalidPageSyntax" xml:space="preserve"><value>少なくとも1つの有効なページ範囲を入力してください。</value></data><data name="PdfSupport_Error_PageOutOfRange" xml:space="preserve"><value>Page numbers must be between 1 and {0}.</value></data><data name="PdfSupport_Error_Encrypted" xml:space="preserve"><value>パスワードで保護または暗号化されたPDFは現在サポートされていません。</value></data><data name="PdfSupport_Error_Damaged" xml:space="preserve"><value>PDFが破損しているため、読み取れませんでした。</value></data><data name="InterleavePdfAction_Title" xml:space="preserve"><value>表裏スキャンを結合</value></data>
+<data name="InterleavePdfAction_Description" xml:space="preserve"><value>2つのPDFからページを交互に取得して結合します。</value></data>
+<data name="InterleavePdfAction_ParamTitle_ReverseSecond" xml:space="preserve"><value>2番目のPDFの反転</value></data>
+<data name="InterleavePdfAction_Operation_Description" xml:space="preserve"><value>{0} と {1} を結合します。</value></data>
+<data name="InterleavePdfAction_Warning_UnequalPages" xml:space="preserve"><value>PDFファイルのページ数が異なります。残りのページは追加されます。</value></data>
+<data name="InsertPdfAction_Title" xml:space="preserve"><value>PDF を PDF に挿入</value></data>
+<data name="InsertPdfAction_Description" xml:space="preserve"><value>ある PDF を別の PDF に挿入します。</value></data>
+<data name="InsertPdfAction_ParamTitle_Position" xml:space="preserve"><value>位置</value></data>
+<data name="InsertPdfAction_ParamChoice_Start" xml:space="preserve"><value>先頭</value></data>
+<data name="InsertPdfAction_ParamChoice_End" xml:space="preserve"><value>末尾</value></data>
+<data name="InsertPdfAction_ParamChoice_After" xml:space="preserve"><value>ページ後</value></data>
+<data name="InsertPdfAction_ParamTitle_AfterPage" xml:space="preserve"><value>ページ番号</value></data>
+<data name="InsertPdfAction_ParamTitle_Swap" xml:space="preserve"><value>最初の PDF を2番目の PDF に挿入</value></data>
+<data name="InsertPdfAction_Operation_Description" xml:space="preserve"><value>{0}を{1}に挿入します。</value></data>
+<data name="InsertPdfAction_Error_AfterPageOutOfBounds" xml:space="preserve"><value>ターゲットPDFのページ数が、指定されたAfterPageよりも少ないです。</value></data>
+<data name="InsertBlankPdfAction_Title" xml:space="preserve"><value>空白ページの挿入</value></data>
+<data name="InsertBlankPdfAction_Description" xml:space="preserve"><value>PDF に空白ページを挿入します。</value></data>
+<data name="InsertBlankPdfAction_ParamTitle_Mode" xml:space="preserve"><value>モード</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AfterEach" xml:space="preserve"><value>各ページ後</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_AtPositions" xml:space="preserve"><value>特定の位置</value></data>
+<data name="InsertBlankPdfAction_ParamChoice_MakeEven" xml:space="preserve"><value>ページ数を偶数にする</value></data>
+<data name="InsertBlankPdfAction_Operation_Description" xml:space="preserve"><value>{0}に空白ページを挿入します。</value></data>
+<data name="OrganizePages_Title" xml:space="preserve"><value>ページの整理</value></data><data name="OrganizePages_Description" xml:space="preserve"><value>複数のPDFファイルにわたって、ページの並べ替え、回転、削除を視覚的に行えます。</value></data><data name="OrganizePages_Param_Pages" xml:space="preserve"><value>ページ</value></data><data name="OrganizePages_Param_PagesDescription" xml:space="preserve"><value>新しいPDFのページをファイル:ページ形式で指定します。回転角度はオプションで@90、@180、@270を指定できます。</value></data><data name="OrganizePages_Operation" xml:space="preserve"><value>{0}ページの新しいPDFを作成します。</value></data><data name="OrganizePages_Error_Empty" xml:space="preserve"><value>少なくとも1ページを保持</value></data><data name="OrganizePages_Error_TooMany" xml:space="preserve"><value>新しいPDFは最大{0}ページまで作成できます。</value></data><data name="OrganizePages_Error_Syntax" xml:space="preserve"><value>ページはファイル名:ページ番号の形式で入力してください（例：1:3、2:1）。</value></data><data name="OrganizePages_Error_Rotation" xml:space="preserve"><value>回転角度は90度の倍数である必要があります。</value></data><data name="OrganizePages_Error_UnknownFile" xml:space="preserve"><value>ページ一覧は、選択されていないPDFを参照しています。</value></data><data name="OrganizePages_Error_UnknownPage" xml:space="preserve"><value>ページ一覧は、存在しないページを参照しています。</value></data><data name="CombineToPdf_Title" xml:space="preserve"><value>1つのPDFに結合</value></data><data name="CombineToPdf_Description" xml:space="preserve"><value>選択したPDF、画像、Officeドキュメントを、指定した順序で新しいPDFに結合します。</value></data><data name="CombineToPdf_Operation" xml:space="preserve"><value>{0}個のアイテムを新しいPDFに結合します。PDFは全ページを保持し、画像もページとして扱われ、Office文書は最初にエクスポートされます。</value></data><data name="CombineToPdf_Error_UnsupportedImage" xml:space="preserve"><value>この画像形式は、このPCのPDFに追加できません。</value></data><data name="NUpPdfAction_Title" xml:space="preserve"><value>1枚の用紙に複数ページを印刷</value></data><data name="NUpPdfAction_Description" xml:space="preserve"><value>Nページを縦に並べて作成します。</value></data><data name="NUpPdfAction_ParamTitle_PerSheet" xml:space="preserve"><value>1シートあたりのページ数</value></data><data name="NUpPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>シート</value></data><data name="NUpPdfAction_Operation" xml:space="preserve"><value>{0}から始まるPDFを作成します。</value></data><data name="BookletPdfAction_Title" xml:space="preserve"><value>小冊子を作成</value></data><data name="BookletPdfAction_Description" xml:space="preserve"><value>中綴じ冊子を作成します。</value></data><data name="BookletPdfAction_ParamTitle_Sheet" xml:space="preserve"><value>シート</value></data><data name="BookletPdfAction_Operation" xml:space="preserve"><value>小冊子PDFを作成します。印刷設定：両面印刷（短辺綴じ）。</value></data><data name="CombineToPdf_ParamTitle_Order" xml:space="preserve"><value>順序</value></data><data name="CombineToPdf_ParamChoice_Name" xml:space="preserve"><value>ファイル名</value></data><data name="CombineToPdf_ParamChoice_PdfsFirst" xml:space="preserve"><value>PDFを優先</value></data><data name="CombineToPdf_ParamChoice_ImagesFirst" xml:space="preserve"><value>画像を優先</value></data><data name="HeaderFooterPdfAction_Title" xml:space="preserve"><value>ヘッダーまたはフッターを追加</value></data><data name="HeaderFooterPdfAction_Description" xml:space="preserve"><value>選択したPDFにヘッダーまたはフッターテキストを追加します。</value></data><data name="HeaderFooterPdfAction_Operation_Description" xml:space="preserve"><value>{0} にヘッダー/フッターを追加します。</value></data><data name="HeaderFooterPdfAction_ParamTitle_Text" xml:space="preserve"><value>テキスト</value></data><data name="HeaderFooterPdfAction_ParamTitle_Placement" xml:space="preserve"><value>配置</value></data><data name="HeaderFooterPdfAction_ParamChoice_Header" xml:space="preserve"><value>ヘッダー</value></data><data name="HeaderFooterPdfAction_ParamChoice_Footer" xml:space="preserve"><value>フッター</value></data><data name="HeaderFooterPdfAction_ParamTitle_Alignment" xml:space="preserve"><value>整列</value></data><data name="HeaderFooterPdfAction_ParamChoice_Left" xml:space="preserve"><value>左</value></data><data name="HeaderFooterPdfAction_ParamChoice_Center" xml:space="preserve"><value>センター</value></data><data name="HeaderFooterPdfAction_ParamChoice_Right" xml:space="preserve"><value>右回転</value></data><data name="HeaderFooterPdfAction_ParamTitle_FontSize" xml:space="preserve"><value>フォントサイズ</value></data><data name="HeaderFooterPdfAction_Error_TooLong" xml:space="preserve"><value>テキストは200文字以内である必要があります。</value></data><data name="HeaderFooterPdfAction_Error_InvalidChars" xml:space="preserve"><value>テキストに、組み込みフォントで入力できない文字が含まれています。</value></data>  <data name="PdfSupport_Error_PasswordRequired" xml:space="preserve">
+    <value>パスワードが正しくありません。</value>
+  </data>
+  <data name="PdfSupport_Error_LimitExceeded" xml:space="preserve">
+    <value>PDFがサポートされているサイズまたは複雑さを超えています。</value>
+  </data>
+  <data name="PdfSupport_Error_OperationFailed" xml:space="preserve">
+    <value>PDF操作に失敗しました。</value>
+  </data>
+  <data name="Pdf_Error_UnknownMode" xml:space="preserve">
+    <value>不明なモード: {0}</value>
+  </data>
+  <data name="PdfSupport_Warning_UsageRestrictionsRemoved" xml:space="preserve">
+    <value>このPDFには使用制限があります。新しいファイルにはそれらは含まれません。</value>
+  </data>
+  <data name="UnlockPdfAction_Title" xml:space="preserve">
+    <value>PDFのロックを解除</value>
+  </data>
+  <data name="UnlockPdfAction_Description" xml:space="preserve">
+    <value>パスワード保護なしのPDFのコピーを作成します。</value>
+  </data>
+  <data name="UnlockPdfAction_ParamTitle_Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="UnlockPdfAction_Operation_Description" xml:space="preserve">
+    <value>パスワード保護なしで{0}を作成します。</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Mode" xml:space="preserve">
+    <value>分割基準</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Single" xml:space="preserve">
+    <value>すべてのページ</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Ranges" xml:space="preserve">
+    <value>カスタムページ範囲</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_Every" xml:space="preserve">
+    <value>Nページごと</value>
+  </data>
+  <data name="SplitPdfAction_ParamChoice_OddEven" xml:space="preserve">
+    <value>奇数ページと偶数ページ</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Ranges" xml:space="preserve">
+    <value>ページ範囲</value>
+  </data>
+  <data name="SplitPdfAction_ParamDesc_Ranges" xml:space="preserve">
+    <value>ページ範囲（例：1-5、6-10、11-15）</value>
+  </data>
+  <data name="SplitPdfAction_ParamTitle_Every" xml:space="preserve">
+    <value>1ファイルあたりのページ数</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoRanges" xml:space="preserve">
+    <value>少なくとも1つのページ範囲を入力してください。</value>
+  </data>
+  <data name="SplitPdfAction_Error_NoValidPages" xml:space="preserve">
+    <value>範囲「{0}」内に有効なページが見つかりませんでした。</value>
+  </data>
+  <data name="SplitPdfAction_Error_InvalidRangeOrder" xml:space="preserve">
+    <value>ページ範囲は、低い位置から高い位置へ指定する必要があります。</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Title" xml:space="preserve">
+    <value>PDFページを抽出</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Description" xml:space="preserve">
+    <value>選択したページのみを含む新しいPDFを、入力した順序で作成します。</value>
+  </data>
+  <data name="ExtractPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>ページ{1}を含む{0}を作成します。</value>
+  </data>
+  <data name="RemovePdfPagesAction_Title" xml:space="preserve">
+    <value>PDFページを削除</value>
+  </data>
+  <data name="RemovePdfPagesAction_Description" xml:space="preserve">
+    <value>選択したページを含まないPDFのコピーを作成します。</value>
+  </data>
+  <data name="RemovePdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>ページ{1}を含まない{0}を作成します。</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Title" xml:space="preserve">
+    <value>PDFページの並べ替え</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Description" xml:space="preserve">
+    <value>PDFのページ順序を変更します。</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Mode" xml:space="preserve">
+    <value>モード</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Custom" xml:space="preserve">
+    <value>カスタム順序</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Reverse" xml:space="preserve">
+    <value>反転</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamTitle_Order" xml:space="preserve">
+    <value>順序</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamDesc_Order" xml:space="preserve">
+    <value>新しいページ順序（例：3,1,2）。</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Operation_Description" xml:space="preserve">
+    <value>ページ順序を変更した{0}を作成します。</value>
+  </data>
+  <data name="ReorderPdfPagesAction_Error_NoValidRanges" xml:space="preserve">
+    <value>少なくとも1つの有効なページ範囲を入力してください。</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Title" xml:space="preserve">
+    <value>ページ番号を追加</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Description" xml:space="preserve">
+    <value>選択したPDFファイルにページ番号を追加します。</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Position" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopLeft" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopCenter" xml:space="preserve">
+    <value>上部中央</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_TopRight" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomLeft" xml:space="preserve">
+    <value>下左</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomCenter" xml:space="preserve">
+    <value>下中央</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_BottomRight" xml:space="preserve">
+    <value>下右</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0} にページ番号を追加します。</value>
+  </data>
+  <data name="WatermarkPdfAction_Title" xml:space="preserve">
+    <value>透かしを追加</value>
+  </data>
+  <data name="WatermarkPdfAction_Description" xml:space="preserve">
+    <value>PDFにテキスト透かしを追加します。</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_Text" xml:space="preserve">
+    <value>透かしとして使用するテキスト（最大100文字）。</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Style" xml:space="preserve">
+    <value>スタイル</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Diagonal" xml:space="preserve">
+    <value>斜め</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Horizontal" xml:space="preserve">
+    <value>水平方向</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamChoice_Tiled" xml:space="preserve">
+    <value>タイル表示</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>フォントサイズ</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamDesc_FontSize" xml:space="preserve">
+    <value>0は自動サイズです。</value>
+  </data>
+  <data name="WatermarkPdfAction_ParamTitle_Color" xml:space="preserve">
+    <value>色</value>
+  </data>
+  <data name="WatermarkPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0}を作成します。透かしは他者によって削除される可能性があり、セキュリティ対策ではありません。</value>
+  </data>
+  <data name="StampPdfImageAction_Title" xml:space="preserve">
+    <value>画像または署名を追加</value>
+  </data>
+  <data name="StampPdfImageAction_Description" xml:space="preserve">
+    <value>PDFページに画像をスタンプします。</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Image" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Position" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleLeft" xml:space="preserve">
+    <value>左中央</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_Center" xml:space="preserve">
+    <value>センター</value>
+  </data>
+  <data name="StampPdfImageAction_ParamChoice_MiddleRight" xml:space="preserve">
+    <value>右中央</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Width" xml:space="preserve">
+    <value>幅 (mm)</value>
+  </data>
+  <data name="StampPdfImageAction_ParamTitle_Opacity" xml:space="preserve">
+    <value>不透明度（％）</value>
+  </data>
+  <data name="StampPdfImageAction_ParamDesc_Pages" xml:space="preserve">
+    <value>ページ範囲（例：「all」、「first」、「last」）</value>
+  </data>
+  <data name="StampPdfImageAction_Error_InvalidImage" xml:space="preserve">
+    <value>有効な画像ファイルを選択してください。</value>
+  </data>
+  <data name="StampPdfImageAction_Error_UnreadableImage" xml:space="preserve">
+    <value>画像ファイルを読み込めませんでした。</value>
+  </data>
+  <data name="StampPdfImageAction_Operation_Description" xml:space="preserve">
+    <value>画像を{0}にスタンプします。</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoPositions" xml:space="preserve">
+    <value>少なくとも1つのページ位置を入力してください。</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_NoValidPositions" xml:space="preserve">
+    <value>少なくとも1つの有効なページ位置を入力してください。</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PagePositions" xml:space="preserve">
+    <value>Page positions must be between 0 and {0}.</value>
+  </data>
+  <data name="InsertBlankPdfAction_Error_PositionsMustBeNonNegative" xml:space="preserve">
+    <value>ページ位置は負でない整数で指定してください。</value>
+  </data>
+  <data name="CropPdfAction_Error_MarginBounds" xml:space="preserve">
+    <value>余白は0～100mmの範囲で設定してください。</value>
+  </data>
+  <data name="PdfInfoAction_Error_NotFileSelection" xml:space="preserve">
+    <value>ファイル選択ではありません。</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoPdfs" xml:space="preserve">
+    <value>選択範囲にサポートされているPDFファイルがありません。</value>
+  </data>
+  <data name="PdfInfoAction_Error_MaxFiles" xml:space="preserve">
+    <value>最大{0}個のPDFファイルを選択してください。</value>
+  </data>
+  <data name="PdfInfoAction_Error_Stale" xml:space="preserve">
+    <value>選択したファイルの有効期限が切れました。ファイルを再度選択してください。</value>
+  </data>
+  <data name="PdfInfoAction_Error_NoReadablePdfs" xml:space="preserve">
+    <value>選択範囲に読み取り可能なPDFがありません。</value>
+  </data>
+  <data name="PdfInfoAction_TotalPages" xml:space="preserve">
+    <value>合計：{0}ページ。</value>
+  </data>
+  <data name="PdfInfoAction_Repaired" xml:space="preserve">
+    <value> （読み取り中に破損した構造が修復されました）</value>
+  </data>
+  <data name="PdfInfoAction_Canceled" xml:space="preserve">
+    <value>キャンセルされました。</value>
+  </data>
+  <data name="PdfInfoAction_PdfLabel" xml:space="preserve">
+    <value>PDF {0}</value>
+  </data>
+  <data name="PdfInfoAction_Details" xml:space="preserve">
+    <value>{0}: {1}ページ、バージョン{2}、最初のページ{3:0} x {4:0} mm{5}</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddThenEven" xml:space="preserve">
+    <value>奇数ページ、次に偶数ページ</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenThenOdd" xml:space="preserve">
+    <value>偶数ページ、次に奇数ページ</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_Shuffle" xml:space="preserve">
+    <value>シャッフル</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Format" xml:space="preserve">
+    <value>フォーマット</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1" xml:space="preserve">
+    <value>1ページ目、2ページ目…</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_Format1ofN" xml:space="preserve">
+    <value>N件中1件目</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_FormatPage1ofN" xml:space="preserve">
+    <value>Nページ中1ページ目</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_Start" xml:space="preserve">
+    <value>開始位置</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_SkipFirst" xml:space="preserve">
+    <value>最初のページをスキップ</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamTitle_FontSize" xml:space="preserve">
+    <value>フォントサイズ</value>
+  </data>
+  <data name="PdfSupport_Error_PageListedTwice" xml:space="preserve">
+    <value>ページ {0} が二重に表示されています。</value>
+  </data>
+  <data name="PdfSupport_Error_PageMissing" xml:space="preserve">
+    <value>ページ {0} がありません。</value>
+  </data>
+  <data name="PdfSupport_Error_UnsupportedImage" xml:space="preserve">
+    <value>PDFに追加できる画像はJPEGとPNGのみです。</value>
+  </data>
+  <data name="PdfSupport_Pages_Title" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="PdfSupport_Pages_Description" xml:space="preserve">
+    <value>ページ番号と範囲（例：1-3、5、8-、またはlast）</value>
+  </data>
+  <data name="CompressPdfAction_Title" xml:space="preserve">
+    <value>PDFを圧縮</value>
+  </data>
+  <data name="CompressPdfAction_Description" xml:space="preserve">
+    <value>PDFドキュメントのファイルサイズを縮小します。</value>
+  </data>
+  <data name="CompressPdfAction_ParamTitle_Level" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Light" xml:space="preserve">
+    <value>光</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Balanced" xml:space="preserve">
+    <value>バランス</value>
+  </data>
+  <data name="CompressPdfAction_ParamChoice_Strong" xml:space="preserve">
+    <value>強め</value>
+  </data>
+  <data name="CompressPdfAction_Operation_One" xml:space="preserve">
+    <value>より小さなコピーを作成します。</value>
+  </data>
+  <data name="CompressPdfAction_Operation_Many" xml:space="preserve">
+    <value>より小さなコピーを作成します。</value>
+  </data>
+  <data name="CompressPdfAction_Warning_QualityReduced" xml:space="preserve">
+    <value>「バランス」と「強」のレベルで画像品質が低下します。</value>
+  </data>
+  <data name="CompressPdfAction_Warning_UnsupportedImages" xml:space="preserve">
+    <value>サポートされていない画像が{0}個見つかりました。これらの画像は変更されません。</value>
+  </data>
+  <data name="AddPageNumbersPdfAction_ParamChoice_NOfTotal" xml:space="preserve">
+    <value>Nページ中nページ目</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_OddFirst" xml:space="preserve">
+    <value>奇数ページから開始</value>
+  </data>
+  <data name="ReorderPdfPagesAction_ParamChoice_EvenFirst" xml:space="preserve">
+    <value>偶数ページを先に処理</value>
+  </data>
+  <data name="StampSelectedImagePdfAction_Title" xml:space="preserve">
+    <value>PDFに画像を配置する</value>
+  </data>
+  <data name="RepairPdfAction_Title" xml:space="preserve">
+    <value>PDFを修復します</value>
+  </data>
+  <data name="RepairPdfAction_Description" xml:space="preserve">
+    <value>構造上の問題を修正するためにドキュメントを書き換えます。</value>
+  </data>
+  <data name="RepairPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0}を修復します。</value>
+  </data>
+  <data name="RepairPdfAction_NoProblems" xml:space="preserve">
+    <value>問題は見つかりませんでした。</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Title" xml:space="preserve">
+    <value>空白ページを削除</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Description" xml:space="preserve">
+    <value>PDFから空白ページを削除します。</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamTitle_Sensitivity" xml:space="preserve">
+    <value>感度</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Strict" xml:space="preserve">
+    <value>厳密</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Normal" xml:space="preserve">
+    <value>標準</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_ParamChoice_Relaxed" xml:space="preserve">
+    <value>リラックスモード</value>
+  </data>
+  <data name="RemoveBlankPagesPdfAction_Operation_Description" xml:space="preserve">
+    <value>{0}から空白ページを削除します。</value>
+  </data>
+  <data name="PdfToTextAction_Title" xml:space="preserve">
+    <value>PDFをテキストに変換</value>
+  </data>
+  <data name="PdfToTextAction_Description" xml:space="preserve">
+    <value>PDFからテキストをテキストファイルに抽出します。</value>
+  </data>
+  <data name="PdfToTextAction_Operation_Description" xml:space="preserve">
+    <value>{0}から抽出したテキストを含むテキストファイルを作成します。</value>
+  </data>
+  <data name="PdfToTextAction_Warning_NoText" xml:space="preserve">
+    <value>テキストが見つかりませんでした。スキャンした文書の場合は、まず「PDFを検索可能にする（OCR）」を実行してください。</value>
+  </data>
+<data name="SanitizePdfAction_Title" xml:space="preserve"><value>非表示のPDFコンテンツを削除</value></data><data name="SanitizePdfAction_Description" xml:space="preserve"><value>PDFからJavaScript、添付ファイル、メタデータ、アクションを削除します。</value></data><data name="SanitizePdfAction_ParamTitle_KeepLinks" xml:space="preserve"><value>リンクを保持</value></data><data name="SanitizePdfAction_Operation_Description" xml:space="preserve"><value>{0}から非表示コンテンツを削除します。</value></data><data name="SanitizePdfAction_NothingToRemove" xml:space="preserve"><value>削除するものはありません。</value></data><data name="PdfSanitize_Scripts_One" xml:space="preserve"><value>スクリプト 1件</value></data><data name="PdfSanitize_Scripts_Other" xml:space="preserve"><value>{0} スクリプト</value></data><data name="PdfSanitize_Attachments_One" xml:space="preserve"><value>添付ファイル1件</value></data><data name="PdfSanitize_Attachments_Other" xml:space="preserve"><value>{0} 添付ファイル</value></data><data name="PdfSanitize_LaunchActions_One" xml:space="preserve"><value>起動アクション 1件</value></data><data name="PdfSanitize_LaunchActions_Other" xml:space="preserve"><value>{0} 起動アクション</value></data><data name="PdfSanitize_UriActions_One" xml:space="preserve"><value>リンクアクション 1件</value></data><data name="PdfSanitize_UriActions_Other" xml:space="preserve"><value>{0} リンクアクション</value></data><data name="PdfSanitize_Metadata_One" xml:space="preserve"><value>メタデータ項目 1件</value></data><data name="PdfSanitize_Metadata_Other" xml:space="preserve"><value>{0} メタデータアイテム</value></data><data name="PdfSanitize_Found" xml:space="preserve"><value>見つかった画像数：{0}</value></data>  <data name="OcrPdfAction_Title" xml:space="preserve">
+    <value>PDFを検索可能にする（OCR）</value>
+  </data>
+  <data name="OcrPdfAction_Description" xml:space="preserve">
+    <value>スキャンしたPDF内のテキストを認識し、検索可能にします。この処理はローカルで実行され、時間がかかる場合があります（1ページあたり約1～3秒）。</value>
+  </data>
+  <data name="OcrPdfAction_ParamTitle_Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="OcrPdfAction_RendererUnavailable" xml:space="preserve">
+    <value>このシステムでは PDF レンダリングは利用できません。</value>
+  </data>
+  <data name="OcrPdfAction_RecognizerUnavailable" xml:space="preserve">
+    <value>このシステムではOCRテキスト認識は利用できません。</value>
+  </data>
+  <data name="OcrPdfAction_NoLanguagesInstalled" xml:space="preserve">
+    <value>このシステムにはOCR言語がインストールされていません。</value>
+  </data>
+  <data name="OcrPdfAction_Message" xml:space="preserve">
+    <value>OCRを使用して{0}個の検索可能なPDFを作成します。</value>
+  </data>
+  <data name="OcrPdfAction_OutputSuffix" xml:space="preserve">
+    <value> （検索可能）</value>
+  </data>
+  <data name="OcrPdfAction_Skipped_HasText" xml:space="preserve">
+    <value>PDFに既に抽出可能なテキストが含まれています。</value>
+  </data>
+
+<data name="CombineToPdf_OfficeMissing" xml:space="preserve"><value>選択したファイルには、インストールされていない Office アプリケーションを必要とするドキュメントが含まれています。何も結合されません。</value></data>
+<data name="CombineToPdf_OfficeLayoutWarning" xml:space="preserve"><value>オフィス文書は、ソートされた位置で一時的なPDFに変換されます。オフィスレイアウト、フォント、印刷設定が結果に影響します。</value></data>
+<data name="CombineToPdf_OfficeMissingApplication" xml:space="preserve"><value>必要な Microsoft Office アプリケーションがインストールされていません。</value></data>
+<data name="CombineToPdf_OfficePasswordProtected" xml:space="preserve"><value>ドキュメントはパスワードで保護されています。</value></data>
+<data name="CombineToPdf_OfficeUnsafeMacros" xml:space="preserve"><value>このドキュメントには、安全に変換のために開くことができないマクロまたは数式が含まれています。</value></data>
+<data name="CombineToPdf_OfficeInvalidDocument" xml:space="preserve"><value>ドキュメント形式が無効、サポートされていない、または変換制限を超えています。</value></data>
+<data name="CombineToPdf_OfficeBusy" xml:space="preserve"><value>別の Office インスタンスを取得できませんでした。Office アプリケーションを閉じて、もう一度お試しください。</value></data>
+<data name="CombineToPdf_OfficeTimedOut" xml:space="preserve"><value>Officeの変換がタイムアウトしました。出力は保存されませんでした。</value></data>
+<data name="CombineToPdf_OfficeConversionFailed" xml:space="preserve"><value>Officeはこの文書を変換できませんでした。出力は保存されませんでした。</value></data>
+<data name="CombineToPdf_OfficePreferenceRestoreFailed" xml:space="preserve"><value>一時的なWordの設定を復元できませんでした。WordのPDF変換警告設定を確認してください。</value></data>
+<data name="CombineToPdf_Inputs" xml:space="preserve"><value>PDF、画像、Office ドキュメント</value></data>
+<data name="ExtractPdfImages_Title" xml:space="preserve"><value>PDFから画像を抽出</value></data>
+<data name="ExtractPdfImages_Description" xml:space="preserve"><value>サポートされている埋め込み画像を、PDFごとに新しいフォルダに保存します。</value></data>
+<data name="ExtractPdfImages_MinSize" xml:space="preserve"><value>最小幅と高さ（ピクセル）</value></data>
+<data name="ExtractPdfImages_Preview_One" xml:space="preserve"><value>{0}のPDFから、幅と高さが少なくとも{1}ピクセル以上の画像を新しいフォルダに抽出します。</value></data>
+<data name="ExtractPdfImages_Preview_Other" xml:space="preserve"><value>{0}個のPDFから、幅と高さがそれぞれ{1}ピクセル以上の画像を抽出し、個別の新しいフォルダに保存します。</value></data>
+<data name="ExtractPdfImages_Warning" xml:space="preserve"><value>レンダリングされたページではなく、埋め込まれたJPEG画像と8ビットグレースケール/RGBフラット画像を抽出します。マスク、カスタムサンプルデコード、その他のエンコード、インライン画像はサポートされていません。最小幅または高さ以下の画像はスキップされます。画像数と出力サイズには制限があります。</value></data>
+<data name="ExtractPdfImages_NoImages" xml:space="preserve"><value>画像が見つかりません。</value></data>
+<data name="ExtractPdfImages_NoEligibleImages" xml:space="preserve"><value>サポートされている画像が最小サイズを満たしていません。</value></data>
+<data name="ExtractPdfImages_Extracted_One" xml:space="preserve"><value>{0}枚の画像を抽出しました。</value></data>
+<data name="ExtractPdfImages_Extracted_Other" xml:space="preserve"><value>{0}枚の画像を抽出しました。</value></data>
+<data name="ExtractPdfImages_Unsupported_One" xml:space="preserve"><value>サポートされていない画像を{0}枚スキップしました。</value></data>
+<data name="ExtractPdfImages_Unsupported_Other" xml:space="preserve"><value>サポートされていない画像を{0}枚スキップしました。</value></data>
+<data name="ExtractPdfImages_TooSmall_One" xml:space="preserve"><value>最小サイズに満たない画像を{0}枚スキップしました。</value></data>
+<data name="ExtractPdfImages_TooSmall_Other" xml:space="preserve"><value>最小サイズに満たない画像を{0}枚スキップしました。</value></data>
+  <data name="HeaderFooterPdfAction_ParamDesc_Text" xml:space="preserve"><value>ヘッダーまたはフッターに追加するテキスト（最大200文字）。</value></data>
+  <data name="ProtectPdf_Title" xml:space="preserve"><value>PDFをパスワードで保護</value></data>
+  <data name="ProtectPdf_Description" xml:space="preserve"><value>コピーをAES-256で暗号化します。</value></data>
+  <data name="ProtectPdf_Password" xml:space="preserve"><value>パスワード</value></data>
+  <data name="ProtectPdf_ConfirmPassword" xml:space="preserve"><value>パスワードを確認してください</value></data>
+  <data name="ProtectPdf_Print" xml:space="preserve"><value>印刷を許可</value></data>
+  <data name="ProtectPdf_Copy" xml:space="preserve"><value>コピーを許可</value></data>
+  <data name="ProtectPdf_Empty" xml:space="preserve"><value>続行する前にパスワードを入力してください。</value></data>
+  <data name="ProtectPdf_Mismatch" xml:space="preserve"><value>2つのパスワードが一致しません。</value></data>
+  <data name="ProtectPdf_Warning" xml:space="preserve"><value>このパスワードを忘れた場合、復元することはできません。PDFの印刷およびコピー権限はビューアに依存し、DRMは提供されません。</value></data>
+  <data name="ProtectPdf_Operation" xml:space="preserve"><value>パスワードで保護されたPDFコピーを作成</value></data>
+  <data name="FlattenPdf_Title" xml:space="preserve"><value>フォームフィールドとコメントをフラット化</value></data>
+  <data name="FlattenPdf_Description" xml:space="preserve"><value>表示フィールドとコメントの表示をページコンテンツに変換します。</value></data>
+  <data name="FlattenPdf_KeepLinks" xml:space="preserve"><value>ハイパーリンクを保持</value></data>
+  <data name="FlattenPdf_Operation" xml:space="preserve"><value>PDFコピー内のフォームフィールドとコメントをフラット化します。</value></data>
+  <data name="FlattenPdf_SignatureWarning" xml:space="preserve"><value>フラット化によって既存のデジタル署名が無効になる場合があります。署名済みの原本は変更されません。</value></data>
+  <data name="FlattenPdf_Counts" xml:space="preserve"><value>外観を持つ注釈: {0};サポートされていない外観: {1}; 保持されたリンク: {2}。</value></data>
+  <data name="FlattenPdf_DiscardWarning" xml:space="preserve"><value>使用可能な外観を持たない注釈は削除され、その視覚コンテンツが失われる可能性があります。</value></data>
+  <data name="FlattenPdf_Nothing" xml:space="preserve"><value>フラット化する注釈はありません。</value></data>
+  <data name="HtmlTitle" xml:space="preserve"><value>HTMLをPDFに変換</value></data>
+  <data name="HtmlDescription" xml:space="preserve"><value>インラインCSSと埋め込み画像を含むローカルHTMLを、新しいPDFファイルに印刷します。</value></data>
+  <data name="HtmlPaper" xml:space="preserve"><value>用紙サイズ</value></data>
+  <data name="HtmlPaperA4" xml:space="preserve"><value>A4</value></data>
+  <data name="HtmlPaperLetter" xml:space="preserve"><value>文字</value></data>
+  <data name="HtmlLandscape" xml:space="preserve"><value>横向き</value></data>
+  <data name="HtmlMargin" xml:space="preserve"><value>余白（ミリメートル）</value></data>
+  <data name="HtmlFiles" xml:space="preserve"><value>HTMLファイル</value></data>
+  <data name="HtmlUnavailable" xml:space="preserve"><value>HTML印刷には、ローカルにインストールされたMicrosoft Edgeブラウザが必要です。</value></data>
+  <data name="HtmlLimits" xml:space="preserve"><value>最大5MiBまでの自己完結型UTF-8 HTMLのみがサポートされています。インラインCSSとデータ埋め込み画像/フォントはレンダリング可能です。ネットワークリクエスト、スクリプト、フレーム、オブジェクト、ローカルファイルリソースはブロックされます。外部スタイルシートと関連画像は読み込まれません。各ファイルには、60秒のタイムアウトを持つ、メモリ制限付きの新しいブラウザプロセスツリーが作成されます。</value></data>
+  <data name="HtmlInvalid" xml:space="preserve"><value>HTMLは、最大5MiBのパッシブで空でないUTF-8テキストである必要があります。アクティブ要素、自動更新、フォーム、インライン外部コンテンツはサポートされていません。</value></data>
+  <data name="HtmlReadError" xml:space="preserve"><value>HTML入力が読み取れませんでした。</value></data>
+  <data name="HtmlRenderFailed" xml:space="preserve"><value>ローカルHTML印刷が失敗したか、制限を超えたか、サポートされていないナビゲーションを試みました。インラインCSSと埋め込みデータ画像を含む自己完結型のHTMLを使用してください。ソースファイルは変更されていません。</value></data>
+  <data name="HtmlCleanupFailed" xml:space="preserve"><value>ブラウザの一時データを削除できませんでした。一時フォルダへのアクセス権限を確認して、もう一度お試しください。</value></data>
+  <data name="EpubTitle" xml:space="preserve"><value>EPUBをPDFに変換</value></data>
+  <data name="EpubDescription" xml:space="preserve"><value>ローカルEPUBチャプター、対応画像、スタイルを新しいPDFファイルに再配置します。</value></data>
+  <data name="EpubFiles" xml:space="preserve"><value>EPUB書籍</value></data>
+  <data name="EpubLimits" xml:space="preserve"><value>UTF-8 XHTML、内部CSS、PNG/JPEG/GIF/WebP画像を含む、パッシブおよびリフロー可能なEPUB 2/3形式をサポートします。固定レイアウト、暗号化/難読化されたリソース、スクリプト、SVG、メディア、外部リソースはサポートされていません。制限：アーカイブサイズ25MiB、展開サイズ50MiB、チャプター数500、準備済みHTMLサイズ5MiB。チャプターは新しいページから開始され、印刷されたリンクは削除されます。レイアウトは電子書籍リーダーと異なる場合があります。</value></data>
+  <data name="EpubProtected" xml:space="preserve"><value>暗号化または難読化されたEPUBリソースはサポートされていません。変換が許可されている保護されていないエクスポートを使用してください。</value></data>
+  <data name="EpubTooLarge" xml:space="preserve"><value>EPUBがアーカイブ、リソース、章、または準備済みドキュメントの制限を超えています。</value></data>
+  <data name="EpubUnsupported" xml:space="preserve"><value>このEPUBはサポートされていないコンテンツまたはリソース参照を使用しています。内部スタイルとサポートされているラスター画像を使用したリフロー可能なUTF-8 XHTMLを使用してください。スクリプト、固定レイアウト、SVG、および外部リソースはサポートされていません。</value></data>
+  <data name="EpubInvalid" xml:space="preserve"><value>EPUBアーカイブ、メタデータ、読み上げ順序、または必要なリソースが無効または欠落しています。</value></data>
+  <data name="EpubRenderFailed" xml:space="preserve"><value>ローカルEPUB印刷が失敗したか、制限を超えました。ソースファイルは変更されていません。</value></data>
+  <data name="EmlTitle" xml:space="preserve"><value>EMLをPDFに変換</value></data>
+  <data name="EmlDescription" xml:space="preserve"><value>メールヘッダーと静的メッセージ本文のローカルPDFビジュアライゼーションを作成します。オプションで添付ファイルを個別にエクスポートできます。</value></data>
+  <data name="EmlFiles" xml:space="preserve"><value>EMLメッセージ</value></data>
+  <data name="EmlExportAttachments" xml:space="preserve"><value>添付ファイルをPDFと同じ新しいフォルダーにエクスポートします。</value></data>
+  <data name="EmlFrom" xml:space="preserve"><value>送信元</value></data>
+  <data name="EmlTo" xml:space="preserve"><value>終了</value></data>
+  <data name="EmlCc" xml:space="preserve"><value>Cc</value></data>
+  <data name="EmlSubject" xml:space="preserve"><value>件名</value></data>
+  <data name="EmlDate" xml:space="preserve"><value>日付</value></data>
+  <data name="EmlAttachments" xml:space="preserve"><value>添付ファイル</value></data>
+  <data name="EmlPrintNotice" xml:space="preserve"><value>静的メールの視覚化。アクティブコンテンツ、外部リソース、リンクは省略されます。添付ファイルは埋め込まれません。デジタル署名と真正性は検証されていません。</value></data>
+  <data name="EmlLimits" xml:space="preserve"><value>ローカルEMLのみ対応、最大25MiB、添付ファイルは100個まで。HTMLはパッシブコンテンツに変換され、外部リソース、アクティブ要素、リンクは削除されます。プレーンテキストとサポートされているCIDラスター画像は保持されます。暗号化されたメッセージ、MSG、TNEF本文はサポートされていません。添付ファイルのエクスポートでは、message.pdfと番号付き添付ファイルを含む新しいフォルダが1つ作成されます。ファイルは自動的に開かれません。準備されたメッセージのサイズは5MiBに制限されています。</value></data>
+  <data name="EmlInvalid" xml:space="preserve"><value>EMLメッセージの形式が不正、暗号化されている、サポートされていない、または制限を超えています。送信者、日付、テキストまたはHTML本文が必要です。MIME構造、添付ファイル、埋め込み画像を確認してください。</value></data>
+  <data name="EmlReadError" xml:space="preserve"><value>EML入力が読み取れませんでした。</value></data>
+  <data name="EmlRenderFailed" xml:space="preserve"><value>ローカルEメール印刷が失敗したか、制限を超えました。ソースファイルは変更されていません。</value></data>
+  <data name="PdfExcelTitle" xml:space="preserve"><value>PDFテーブルをExcelに抽出</value></data>
+  <data name="PdfExcelDescription" xml:space="preserve"><value>サポートされている長方形のテキストテーブルを検出し、テーブルごとに1つのワークシートを新しいExcelワークブックにエクスポートします。</value></data>
+  <data name="PdfExcelInfer" xml:space="preserve"><value>整列された罫線のない表（少なくとも3列3行）も検出します</value></data>
+  <data name="PdfExcelUnavailable" xml:space="preserve"><value>この構成では PDF テーブルの抽出は利用できません。</value></data>
+  <data name="PdfExcelLimits" xml:space="preserve"><value>完全な長方形グリッド内の横書きテキスト、および少なくとも3列3行の整列された無罫表をサポートします。結合セル、回転テキスト、スキャンされた表、および不明瞭な構造はサポートされていません。各表/ページは別々のシートとして扱われ、継続は結合されません。セルはテキストのままであり、数式や数値/日付型は推測されません。制限：25 MiB、200ページ、128表、出力セル数100万個。ワークブックをソースPDFと照合して確認してください。</value></data>
+  <data name="PdfExcelPreview" xml:space="preserve"><value>サポートされているテーブルが検出されました: {0}。コンテンツは表示されません。</value></data>
+  <data name="PdfExcelSheet" xml:space="preserve"><value>ページ {0} 表 {1}</value></data>
+  <data name="PdfExcelInvalid" xml:space="preserve"><value>サポートされている表を抽出できませんでした。または、PDFが曖昧、不正な形式、暗号化されているか、制限を超えています。完全な長方形のグリッド、または少なくとも3列3行の明確に整列された表を使用してください。スキャンされたページにはOCRが必要ですが、このアクションではOCRは実行されません。</value></data>
+  <data name="PdfExcelReadError" xml:space="preserve"><value>PDF入力が読み取れませんでした。</value></data>
+  <data name="PdfExcelWriteError" xml:space="preserve"><value>抽出したテーブルをExcelに書き込めませんでした。ソースファイルは変更されていません。</value></data>
+  <data name="CropPdfAction_Title" xml:space="preserve"><value>PDFの余白をトリミング</value></data>
+  <data name="CropPdfAction_Description" xml:space="preserve"><value>選択したページのすべての辺から同じ余白（例えば、スキャナーの境界線）を新しいPDFでトリミングします。</value></data>
+  <data name="CropPdfAction_ParamTitle_Margin" xml:space="preserve"><value>トリミング余白（mm）</value></data>
+  <data name="CropPdfAction_ParamDesc_Margin" xml:space="preserve"><value>各辺から0～100mmの範囲でトリミングします。新しい辺の外側のコンテンツは削除されず、非表示になります。</value></data>
+  <data name="CropPdfAction_Operation_Description" xml:space="preserve"><value>{0}の余白を切り取って新しいコピーを作成します。</value></data>
+  <data name="ResizePdfPagesAction_Title" xml:space="preserve"><value>PDFページのサイズ変更</value></data>
+  <data name="ResizePdfPagesAction_Description" xml:space="preserve"><value>各ページをA4、USレター、A5、またはUSリーガルサイズに拡大縮小して、新しいPDFファイルを作成します。各ページは縦向きまたは横向きのままです。</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Size" xml:space="preserve"><value>ページサイズ</value></data>
+  <data name="ResizePdfPagesAction_ParamTitle_Fit" xml:space="preserve"><value>拡大縮小</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_Fit" xml:space="preserve"><value>ページに合わせる（拡大または縮小）</value></data>
+  <data name="ResizePdfPagesAction_ParamChoice_FitShrink" xml:space="preserve"><value>大きなページのみを縮小します</value></data>
+  <data name="ResizePdfPagesAction_Operation_Description" xml:space="preserve"><value>{0}のサイズ変更コピーを作成します。</value></data>
+</root>

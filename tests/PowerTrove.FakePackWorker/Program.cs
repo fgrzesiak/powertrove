@@ -34,6 +34,13 @@ public static class Program
                     active = execute.RequestId;
                     await writer.WriteAsync(new ProgressMessage(execute.RequestId, 0.1));
                     if (mode is "cancel" or "hang") break;
+                    if (execute.TextInput is not null && mode == "text")
+                    {
+                        await writer.WriteAsync(new ResultMessage(execute.RequestId,
+                            new ActionReceipt(true, false, [], [], false,
+                                ClipboardText: execute.TextInput.ToUpperInvariant()), []));
+                        active = null; break;
+                    }
                     await File.WriteAllTextAsync(Path.Combine(execute.StagingDirectory, "generated.txt"), "generated");
                     string directory = Path.GetDirectoryName(execute.Selection.Files[0].Path)!;
                     if (mode == "bad-output") directory = Path.Combine(directory, "unapproved");

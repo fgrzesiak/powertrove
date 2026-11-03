@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>Se aplica a {0} de {1} elementos.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>Los nuevos archivos se crean junto a los originales; los originales no se modifican.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>El archivo ya no existe.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>La carpeta ya no existe.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>El contenido no tiene un formato {0} admitido.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>Se denegó el acceso.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>No se encontró un archivo necesario.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>No se encontró una carpeta necesaria.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>La ruta es demasiado larga.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Se produjo un error del sistema de archivos.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Esta operación no es compatible.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>El procesamiento falló inesperadamente.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>La selección ha caducado. Seleccione los archivos de nuevo.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>No es una selección de archivo.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>No se admite {0} en la selección.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>Seleccionar al menos {0} {1}.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>Seleccionar como máximo {0} {1}.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Seleccionar un archivo {0} existente.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Seleccionar un archivo existente.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>Cancelada.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>Cancelada. Se completó 1 salida antes de la cancelación.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>Cancelada. Se completaron {0} salidas antes de la cancelación.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>Se creó 1 resultado.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>Se crearon {0} salidas.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>Se creó 1 resultado; 1 elemento falló.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>Se creó 1 salida; {1} elemento(s) falló(n).</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>Se crearon {0} salidas; 1 elemento(s) falló(n).</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>Se crearon {0} salidas; {1} elemento(s) falló(n).</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>No se generó ningún resultado.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>Se omitió 1 elemento no compatible.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>Se omitieron {0} elementos no compatibles.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 elemento no necesitó cambios.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} elemento(s) no necesita(n) cambios.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>Se creó 1 resultado. Guardado {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>Se crearon {0} salidas. Se guardó {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>Se creó 1 resultado. El resultado es {1} mayor ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>Se crearon {0} salidas. La salida es {1} más grande ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>Procesando</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} elemento {1} de {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Listo.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>Se requieren al menos {0} {1} válidos.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Procesando...</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>Tecla de base de conocimientos</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>El motor de procesamiento no generó ningún resultado.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>No se pudo guardar el resultado con un nombre libre.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>La carpeta de salida no está disponible.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>La carpeta de salida ya no existe.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Elemento necesario: no se requieren cambios.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>El contexto no está disponible.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Faltan capacidades requeridas.</value></data><data name="RequiresType" xml:space="preserve"><value>Requiere {0}, pero la selección actual es {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>Seleccionar al menos {0} {1} archivo.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>Seleccionar al menos {0} {1} archivo.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Seleccionar solo {0} {1} archivo.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Seleccione solo {0} {1} archivos.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Eliminar los demás elementos seleccionados.</value></data></root>

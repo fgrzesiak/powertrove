@@ -43,7 +43,7 @@ public class SelectionRankingTests
 
         var top = results[0];
         Assert.Equal("pdf.extract", top.Action.Descriptor.Id);
-        Assert.Equal(1450, top.Rank); // 1000 + 200(fit) + 150(context specificity) + 100(exact text match)
+        Assert.Equal(1460, top.Rank); // 1000 + 200(fit) + 150(context specificity) + 110(exact title)
 
         var second = results[1];
         Assert.Equal("pdf.compress", second.Action.Descriptor.Id);

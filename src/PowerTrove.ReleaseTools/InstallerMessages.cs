@@ -1,5 +1,6 @@
 using System.Text;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace PowerTrove.ReleaseTools;
 
@@ -13,11 +14,35 @@ internal static class InstallerMessages
         var german = Read(Path.Combine(directory, "Strings.de.resx"));
         if (english.Count == 0 || !english.Keys.ToHashSet(StringComparer.Ordinal).SetEquals(german.Keys))
             throw new InvalidDataException("Installer translations must contain the same nonempty key set.");
+        bool preview = english.ContainsKey("Installer_Browser")
+            && BrowserStoreListingsMissing(root);
         var content = new StringBuilder("[CustomMessages]\n");
         foreach (var (language, messages) in new[] { ("en", english), ("de", german) })
             foreach (var key in messages.Keys.Order(StringComparer.Ordinal))
-                content.Append(language).Append('.').Append(key).Append('=').Append(messages[key]).Append('\n');
+                content.Append(language).Append('.').Append(key).Append('=')
+                    .Append(key == "Installer_Browser" && preview
+                        ? string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                            messages["Installer_BrowserPreview"], messages[key])
+                        : messages[key]).Append('\n');
         File.WriteAllText(output, content.ToString(), new UTF8Encoding(false));
+    }
+
+    private static bool BrowserStoreListingsMissing(string root)
+    {
+        string source = File.ReadAllText(Path.Combine(root, "src", "PowerTrove.Application",
+            "Localization", "BrowserExtensionSetup.cs"));
+        bool chromeMissing = IsMissing("ChromeWebStoreId");
+        bool edgeMissing = IsMissing("EdgeAddonsId");
+        return chromeMissing || edgeMissing;
+
+        bool IsMissing(string name)
+        {
+            var match = Regex.Match(source,
+                @"\b" + name + @"\s*=\s*(?<value>null|""[^""]+"")\s*;");
+            if (!match.Success)
+                throw new InvalidDataException("Browser store ID constant could not be read.");
+            return match.Groups["value"].Value == "null";
+        }
     }
 
     private static Dictionary<string, string> Read(string file)

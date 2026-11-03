@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>一部の出力はエクスプローラーに表示できませんでした。もう一度お試しください。</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excelが利用できません。</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>Excelウィンドウが変更されました。</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>Excelウィンドウが利用できません。</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>選択された項目は範囲（グラフや図形など）ではありません。</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>重複しない選択範囲はサポートされていません。</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>選択範囲が大きすぎます。</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>Excelから範囲の寸法に矛盾が返されました。</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>Excelから無効な範囲値が返されました。</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>Excel へのアクセスが拒否されました。</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>Excelとの通信中にエラーが発生しました。</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>Excelキャプチャがビジー状態です。</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>Excelから範囲データが返されませんでした。</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Excelキャプチャを開始できませんでした。</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Excelキャプチャがタイムアウトしました。</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>エクスプローラーキャプチャはまだ処理中です。</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>現在、ファイルまたはフォルダが選択されていません。</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>サポートされていない表示、または選択範囲にアクセスできませんでした。</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>エクスプローラーの選択範囲をキャプチャできませんでした。</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>エクスプローラーキャプチャを開始できませんでした。</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>エクスプローラーキャプチャがタイムアウトしました。</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windowsイメージングは​​メタデータを保持できません。</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>画像をデコードできませんでした。</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>画像をエンコードできませんでした。</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>サポートされていない出力形式です。</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>メディアファイルを開けませんでした。</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>必要なコーデックがこのシステムにインストールされていません。</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>このファイルでは、この変換はサポートされていません。</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>メディアファイルを変換できません。</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>メディア変換に失敗しました。</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>サポートされていないオーディオ形式です。</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>ファイルにビデオトラックがありません。</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>サポートされていないメディア操作です。</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>パスワードで保護されたPDFは現在サポートされていません。</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>PDFを開くことができませんでした。</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>ローカルOCRは利用できません。Windowsの設定 &gt; 時刻と言語でOCR言語をインストールしてください。</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>テキストが認識できませんでした。</value></data>
+</root>

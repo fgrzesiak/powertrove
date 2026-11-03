@@ -32,6 +32,8 @@ internal static class BrowsePriority
         int commonTask = operation switch
         {
             // Formatting is what most people want from a single JSON file, not a re-encoding.
+            // Viewing is the first thing people do with a document they selected (Markdown, e-invoices).
+            "view" => 65,
             "convert-webp" or "merge" or "combine" or "to-pdf" or "json-format" or "csv-to-xlsx" => 60,
             "resize" or "compress" or "zip" => 55,
             // Compressing is the most common task for a single PDF; extracting pages follows it.

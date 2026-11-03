@@ -1,4 +1,4 @@
-using System.CommandLine;
+using PowerTrove.ReleaseTools.Cli;
 
 namespace PowerTrove.ReleaseTools;
 

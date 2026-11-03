@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>{0}形式に変換</value></data><data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>選択した音声ファイルを{0}に変換します。</value></data><data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>{0}形式に変換</value></data><data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>選択した動画を互換性のあるプリセットを使用して{0}に変換します。</value></data><data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>ビデオから音声を抽出</value></data><data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>選択した動画の音声トラックをMP3ファイルとして保存します。</value></data><data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>音声を削除</value></data><data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>選択した動画から音声トラックを削除したコピーを作成します。</value></data><data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>フレームを抽出</value></data><data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>選択した動画から1秒ごとに1フレームをJPEG画像として新しいフォルダに保存します。</value></data><data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>GIF形式に変換</value></data><data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>選択した動画の最初の10秒間を無音のGIFアニメーションに変換します。</value></data><data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>{0}を{1}に変換します。</value></data><data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>{0}を{1}に変換します。</value></data><data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>{0}から音声トラックをMP3形式で抽出します。</value></data><data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>{0}の音声トラックなしのコピーを作成します。</value></data><data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>{0} から1秒ごとに1フレームをJPEG画像として新しいフォルダーに保存します。</value></data><data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>{0}の最初の10秒間を無音のGIFアニメーションに変換します。</value></data><data name="Media_AudioFile" xml:space="preserve"><value>音声ファイル</value></data><data name="Media_AudioFiles" xml:space="preserve"><value>音声ファイル</value></data><data name="Media_Video" xml:space="preserve"><value>ビデオ</value></data><data name="Media_Videos" xml:space="preserve"><value>ビデオ</value></data><data name="Media_Progress_Converting" xml:space="preserve"><value>変換中</value></data><data name="Media_Progress_Extracting" xml:space="preserve"><value>抽出中</value></data><data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>メディア変換がタイムアウトしました。</value></data><data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>メディア変換に失敗しました (終了コード {0})。</value></data><data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>オーディオトラックを置き換える</value></data>
+<data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>選択した動画の音声トラックを、選択した音声ファイルで置き換えます。</value></data>
+<data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>ビデオのオーディオトラックを置き換えます。</value></data>
+<data name="Media_RequiresFFmpeg" xml:space="preserve"><value>FFmpegが必要です</value></data>
+<data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>字幕を追加</value></data>
+<data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>再エンコードせずに動画に字幕トラックを追加します。</value></data>
+<data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>動画に字幕を追加します。</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>メディアの詳細を表示</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>タイトル、アーティスト、その他のタグなしで技術プロパティを表示します。</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>音声または動画のトリミング</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>選択した時間範囲を新しいファイルとして保存します。</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>動画を圧縮</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>アップスケーリングなしでより小さなMP4ファイルを作成します。サイズが小さくならない結果はスキップされます。</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>動画または音声ファイルの結合</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>同じ種類のファイルをファイル名の自然な順序で結合し、新しいMP4またはM4Aファイルを作成します。</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>動画ファイルをGIFに変換</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>最大600フレームの短い動画からアニメーションGIFを作成します。</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>動画フレームを画像として保存</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>1フレームまたはフルサイズのフレームシーケンスを新しいフォルダに保存します。</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>ボリュームの正規化</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>2パス解析を使用して-16 LUFSに正規化されたコピーを作成します。FFmpegが必要です。</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>動画の回転</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>動画を新しいコピーとして回転させます。FFmpegが必要です。</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>開始 (時間)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>終了（空欄＝最後まで）</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>再エンコードによる精密トリミング</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>品質プリセット</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>音声を保持</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>再生時間（秒）</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>1秒あたりのフレーム数</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>GIFの幅（ピクセル）</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>フレーム選択</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>（時間）</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>間隔（0.5～3600秒）</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>画像フォーマット</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>時計回り回転</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>回転メタデータのみの変更</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>高解像度（最大1080p、5Mbps）</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>中サイズ（最大720p、2.5Mbps）</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>小サイズ · 最大480p、1Mbps</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>単一フレーム</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>間隔</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° 時計回り</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° 時計回り</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° 時計回り</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>メディアファイル</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>音声ファイル</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>ビデオファイル</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>ローカルメディアインスペクターが利用できません。Windowsではメディアコンポーネントを使用するか、FFmpegの横にFFprobeをインストールしてください。</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>メディアプロパティを読み取れなかったか、サポートされている制限を超えています。</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>ローカルメディアエンジンでこのファイルを処理できませんでした。</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>選択範囲に対して、インストールされているメディアエンジンがこの操作をサポートしていません。FFmpegをインストールすると、多くのフォーマットが動作するようになります。設定 &gt; FFmpegを使用するか、ターミナルで `winget install Gyan.FFmpeg` を実行してください。</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>秒はmm:ssまたはhh:mm:ssで指定してください。終了は開始の後に指定する必要があります。</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>有効な時間を入力してください。間隔は0.5～3600秒で、小数点を使用してください。</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>要求された範囲がこのファイルの再生時間を超えています。</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>ファイルに使用可能なビデオトラックがありません。</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>選択したGIFの範囲が600フレームまたはサポートされているサイズを超えています。再生時間、フレームレート、または幅を小さくしてください。</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>FFmpegによる高速トリミングはキーフレームに沿って行われます。Windowsメディア処理と精密トリミングにより再エンコードされます。</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>間隔抽出では、開始位置から最大500フレームが保存されます。</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>メタデータのみの回転はロスレスですが、一部のプレーヤーでは無視されます。</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>結合する音声ファイルのみ、または動画ファイルのみを選択します。</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>動画は最初の動画のサイズに合わせて拡大縮小され、レターボックス形式で表示されます。</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>不明／該当なし</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>再生時間：{0}
+解像度：{1}
+フレームレート：{2} fps
+ビデオコーデック：{3}
+オーディオコーデック：{4}
+ビットレート：{5} kbit/s
+オーディオチャンネル数：{6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>音量を正確に測定できませんでした。無音または無効な音声は正規化できません。</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>メタデータのみの回転にはMP4/MOVコンテナが必要です。ピクセルを回転させるには、コンテナを無効にしてください。</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>画像と音声からビデオを作成</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>画像と音声からビデオを作成</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>画像と音声から動画を作成します。</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>音声とビデオツール</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>音声の変換</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>ビデオを処理しています</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>WebM変換にはFFmpegが必要です。設定 &gt; FFmpegでインストールするか、ターミナルで `winget install Gyan.FFmpeg` を実行してください。</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>このシステム上のメディアエンジンは、この変換をサポートしていません。Windows Nエディションでは、メディア機能パックをインストールしてください。</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>{0}個の音声ファイルを{1}に変換します。</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>{0}個の音声ファイルを{1}に変換します。</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>{0}個の動画を{1}に変換します。動画の変換には時間がかかる場合があります。</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>{0}本の動画を{1}本に変換します。動画の変換には時間がかかる場合があります。</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>{0} ビデオの音声トラックを {1} として保存します。</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>{0} ビデオの音声トラックを {1} として保存します。</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>音声トラックを含まないコピーを{0}個作成します。</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>音声トラックなしで{0}枚のコピーを作成します。</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>可逆圧縮形式から非可逆圧縮形式に変換すると、音声品質が低下します。</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>非可逆圧縮形式から可逆圧縮形式に変換すると、ファイルサイズが増加しますが、品質は向上しません。</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>非可逆圧縮形式間で変換すると、音声品質が低下します（世代損失）。</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>ファイルに使用可能なオーディオトラックまたはビデオトラックがありません。</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>この変換はFFmpegでサポートされていません。</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>スライドショービデオを作成</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>選択した画像から、オプションで音声付きのビデオを作成します。</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>選択した画像とオプションの音声からスライドショー動画を作成します。</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>画像ごとの再生時間</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>動画サイズ</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>自動（音声の長さに合わせる）</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0}秒</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0}秒</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p 横向き</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p 横向き</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>正方形 (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>SRTファイルをVTTに変換</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>VTTファイルをSRTに変換</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>字幕タイミングのシフト</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>キューのタイミングと改行を保持して、SRT字幕のUTF-8 WebVTTコピーを作成します。</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>サポートされているWebVTTキューのUTF-8 SRTコピーを、サポートされていない書式設定をサイレントに失うことなく作成します。</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>すべてのSRTまたはVTTキューを正または負のオフセットでシフトし、新しいファイルを作成します。</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>オフセット（ミリ秒）</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1,000 ms = 1秒。負の値はキューを早めます。タイムゼロより前のシフトは拒否され、キューは削除されません。</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>字幕ファイル</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>{0} の字幕キューを処理します。</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>字幕が無効、サポートされている制限を超えている、サポートされていないメタデータまたは書式が含まれている、またはシフトによってキューがゼロより前に配置される可能性があります。7日以内のタイムスタンプ付きのUTF-8 SRTまたはWebVTTを使用してください。</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>字幕入力を読み取れませんでした。</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>動画ごとの最大サイズ (MB; 0 = プリセット)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1,000,000バイト。0は画質プリセットのみを使用します。正の値は、再生時間からビデオビットレートを予算化し、オーディオとコンテナ領域を確保してから、実際の出力サイズを確認します。</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>動画ごとの最大サイズは{0} MBです。想定される動画ビットレートは{1}～{2} kbit/sです​​。音声は保持する場合、最大128 kbit/sを使用します。最終的なファイルサイズは保存前にチェックされます。</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>要求されたサイズがこの再生時間と保持される音声に対して小さすぎるか、ビデオのサイズ/再生時間がサポートされていません。サイズを大きくするか、音声を削除してください。</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>エンコーダーが要求された最大サイズに対応できませんでした。出力は保存されませんでした。制限を増やすか、より低い品質プリセットを選択するか、音声を削除してください。</value></data>
+</root>

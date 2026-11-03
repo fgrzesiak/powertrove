@@ -33,6 +33,16 @@ public static class Strings
     public static string Badge_Favorite => GetString("Badge_Favorite");
     public static string Badge_Recommended => GetString("Badge_Recommended");
 
+    /// <summary>A <c>stem_One/_Other</c> family for a count; Polish may add <c>_Few</c> and <c>_Many</c>.</summary>
+    public static string Plural(string stem, int count, string separator = "_") =>
+        PowerTrove.Abstractions.Localization.PluralForms.Text(stem, count,
+            key => ResourceManager.GetString(key, System.Globalization.CultureInfo.CurrentUICulture), separator);
+
+    /// <summary>A singular/plural resource pair for a count; Polish may add <c>Few</c> and <c>Many</c> plural forms.</summary>
+    public static string Choose(int count, string singularKey, string pluralKey) =>
+        PowerTrove.Abstractions.Localization.PluralForms.Choose(count, singularKey, pluralKey,
+            key => ResourceManager.GetString(key, System.Globalization.CultureInfo.CurrentUICulture));
+
     public static string GetString(string name)
     {
         return ResourceManager.GetString(name, System.Globalization.CultureInfo.CurrentUICulture) ?? name;

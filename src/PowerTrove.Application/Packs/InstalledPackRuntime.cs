@@ -68,9 +68,9 @@ public sealed class InstalledPackRuntime
             {
                 var group = new PackWorkerGroup(pack.WorkerGroupId, [pack.Directory], [new(pack.Manifest.Id, pack.Manifest.Version)], [pack.ManifestSha256]);
                 var presentation = ManifestLocalization.ForCulture(pack.Manifest);
-                var englishTitles = pack.Manifest.Actions.ToDictionary(a => a.Id, a => a.Title, StringComparer.Ordinal);
+                var englishActions = pack.Manifest.Actions.ToDictionary(a => a.Id, StringComparer.Ordinal);
                 var actions = presentation.Actions.Select(a => (IAction)new RemoteAction(supervisor, group,
-                    Describe(a, presentation.DisplayName, englishTitles[a.Id]),
+                    Describe(a, presentation.DisplayName, englishActions[a.Id]),
                     a.Extensions, ct => installer.ConfirmStartedAsync(pack.Manifest.Id, pack.Manifest.Version, ct))).ToArray();
                 registry.RegisterPack(pack.Manifest.Id, actions);
                 _registered.Add(pack.Manifest.Id);
@@ -79,9 +79,10 @@ public sealed class InstalledPackRuntime
         }
         finally { _gate.Release(); }
     }
-    private static ActionDescriptor Describe(ManifestAction action, string packName, string englishTitle) => new(action.Id, action.Title,
+    private static ActionDescriptor Describe(ManifestAction action, string packName, ManifestAction english) => new(action.Id, action.Title,
         action.Description ?? string.Empty, action.InputKinds.Select(k => k switch { "files" => ContentKind.Files, "table" => ContentKind.Table, "text" => ContentKind.Text, _ => ContentKind.None }).ToFrozenSet(),
-        englishTitle == action.Title ? [packName] : [packName, englishTitle],
+        new[] { packName, english.Title }.Concat(english.SearchTerms ?? Array.Empty<string>())
+            .Concat(action.SearchTerms ?? Array.Empty<string>()).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
         action.RequiresPreview ?? true, action.ChangesFiles ?? true, action.RequiredCapabilities?.ToFrozenSet(StringComparer.Ordinal),
         Parameters: action.Parameters?.Select(Parameter).ToArray(), Selection: action.Selection?.ToRequirements(), CanRememberParameters: false);
     private static ActionParameterDefinition Parameter(ManifestParameter parameter) => new(parameter.Name, parameter.Type switch
@@ -94,5 +95,5 @@ public sealed class InstalledPackRuntime
         Choices: parameter.Choices?.Select(c => new ActionParameterChoice(c, parameter.ChoiceTitles?.GetValueOrDefault(c) ?? c)).ToArray(),
         Placeholder: parameter.Placeholder, FileTypes: parameter.FileTypes, MustExist: parameter.MustExist,
         VisibleWhenParameter: parameter.VisibleWhenParameter, VisibleWhenValue: parameter.VisibleWhenValue,
-        Editor: parameter.Editor == "multiSelect" ? ActionParameterEditor.MultiSelect : ActionParameterEditor.Default);
+        Editor: parameter.Editor switch { "multiSelect" => ActionParameterEditor.MultiSelect, "fileOrder" => ActionParameterEditor.FileOrder, _ => ActionParameterEditor.Default });
 }

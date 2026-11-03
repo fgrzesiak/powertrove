@@ -6,6 +6,9 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="MainWindowTitle" xml:space="preserve"><value>PowerTrove</value></data>
   <data name="StatusReady" xml:space="preserve"><value>Ready</value></data>
+  <data name="UseClipboardText" xml:space="preserve"><value>Paste text</value></data>
+  <data name="UseClipboardTooltip" xml:space="preserve"><value>Open a text input field, then paste or type text for text tools</value></data>
+  <data name="ClipboardTooLarge" xml:space="preserve"><value>Text exceeds the 65,536-character limit or contains unsupported characters.</value></data>
   <data name="SearchPlaceholder" xml:space="preserve"><value>Search actions…</value></data>
   <data name="SearchAutomationName" xml:space="preserve"><value>Search actions</value></data>
   <data name="SearchRetry" xml:space="preserve"><value>Retry</value></data>
@@ -170,6 +173,7 @@
   <data name="OptionsSelectionAdjusted" xml:space="preserve"><value>The available fields changed. Please check your selection.</value></data>
   <data name="OptionsSelectionTooLarge" xml:space="preserve"><value>Please select fewer fields for this export.</value></data>
   <data name="OptionsMoveUp" xml:space="preserve"><value>Move up</value></data>
+  <data name="OptionsDragToReorder" xml:space="preserve"><value>Drag to reorder</value></data>
   <data name="OptionsMoveDown" xml:space="preserve"><value>Move down</value></data>
   <data name="MediaTrimTitle" xml:space="preserve"><value>Trim audio or video</value></data>
   <data name="MediaTrimOpenVisual" xml:space="preserve"><value>Trim visually…</value></data>
@@ -213,6 +217,7 @@
   <data name="Installer_Data" xml:space="preserve"><value>Data Tools: convert CSV, JSON, Excel and contact files</value></data>
   <data name="Installer_Tables" xml:space="preserve"><value>Table Export: export Excel selections as CSV, JSON, Markdown or SQL</value></data>
   <data name="Installer_Invoice" xml:space="preserve"><value>E-Invoice Tools: view and convert XRechnung and ZUGFeRD invoices</value></data>
+  <data name="Installer_Markdown" xml:space="preserve"><value>Markdown Tools: view, edit and convert Markdown files to HTML or PDF</value></data>
   <data name="Installer_WindowsIntegration" xml:space="preserve"><value>Windows integration:</value></data>
   <data name="Installer_StartMenu" xml:space="preserve"><value>Create a Start menu shortcut</value></data>
   <data name="Installer_ExplorerMenu" xml:space="preserve"><value>Add Open in PowerTrove to File Explorer (Windows 11: Show more options)</value></data>
@@ -358,4 +363,135 @@
   <data name="RecipeProblemNotAFileAction" xml:space="preserve"><value>Step {0} does not work on files.</value></data>
   <data name="RecipeProblemStepCreatesNoFiles" xml:space="preserve"><value>Step {0} creates no files, so it can only be the last step.</value></data>
   <data name="RecipeProblemNested" xml:space="preserve"><value>Step {0} is a recipe. Recipes cannot contain other recipes.</value></data>
+  <data name="DocumentEditor_WindowTitle" xml:space="preserve"><value>{0} – Markdown</value></data>
+  <data name="DocumentEditor_Preview" xml:space="preserve"><value>Preview</value></data>
+  <data name="DocumentEditor_Split" xml:space="preserve"><value>Side by side</value></data>
+  <data name="DocumentEditor_Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="DocumentEditor_Modes" xml:space="preserve"><value>View</value></data>
+  <data name="DocumentEditor_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="DocumentEditor_SaveAs" xml:space="preserve"><value>Save as…</value></data>
+  <data name="DocumentEditor_EditorName" xml:space="preserve"><value>Markdown text</value></data>
+  <data name="DocumentEditor_PreviewName" xml:space="preserve"><value>Formatted preview</value></data>
+  <data name="DocumentEditor_Loading" xml:space="preserve"><value>Opening the file…</value></data>
+  <data name="DocumentEditor_Rendering" xml:space="preserve"><value>Updating the preview…</value></data>
+  <data name="DocumentEditor_Counts" xml:space="preserve"><value>{0} words · {1} characters</value></data>
+  <data name="DocumentEditor_Details" xml:space="preserve"><value>{0} · {1}</value></data>
+  <data name="DocumentEditor_LineEndingsWindows" xml:space="preserve"><value>Windows line breaks (CRLF)</value></data>
+  <data name="DocumentEditor_LineEndingsUnix" xml:space="preserve"><value>Unix line breaks (LF)</value></data>
+  <data name="DocumentEditor_Unsaved" xml:space="preserve"><value>{0} – unsaved changes</value></data>
+  <data name="DocumentEditor_Saved" xml:space="preserve"><value>Saved.</value></data>
+  <data name="DocumentEditor_SavedAsUtf8" xml:space="preserve"><value>Saved as UTF-8, because the file's original encoding cannot hold every character you typed.</value></data>
+  <data name="DocumentEditor_SaveFailed" xml:space="preserve"><value>The file could not be saved. Your text is still here; try Save as.</value></data>
+  <data name="DocumentEditor_ReadOnly" xml:space="preserve"><value>The file is read-only or protected. Use Save as to keep a copy.</value></data>
+  <data name="DocumentEditor_ChangedTitle" xml:space="preserve"><value>The file was changed outside PowerTrove</value></data>
+  <data name="DocumentEditor_ChangedText" xml:space="preserve"><value>Replacing it overwrites those changes with your text. Save as keeps both versions.</value></data>
+  <data name="DocumentEditor_Overwrite" xml:space="preserve"><value>Replace</value></data>
+  <data name="DocumentEditor_UnsavedTitle" xml:space="preserve"><value>Save changes to {0}?</value></data>
+  <data name="DocumentEditor_UnsavedText" xml:space="preserve"><value>Your changes are lost if you don't save them.</value></data>
+  <data name="DocumentEditor_DontSave" xml:space="preserve"><value>Don't save</value></data>
+  <data name="DocumentEditor_RecoveryText" xml:space="preserve"><value>Unsaved changes from {0} were kept when PowerTrove closed.</value></data>
+  <data name="DocumentEditor_Restore" xml:space="preserve"><value>Restore</value></data>
+  <data name="DocumentEditor_Discard" xml:space="preserve"><value>Discard</value></data>
+  <data name="DocumentEditor_OpenFailed" xml:space="preserve"><value>The file could not be opened.</value></data>
+  <data name="DocumentEditor_TooLarge" xml:space="preserve"><value>The file is larger than 2 MB and cannot be edited here.</value></data>
+  <data name="DocumentEditor_NotText" xml:space="preserve"><value>The file is not readable text.</value></data>
+  <data name="DocumentEditor_ViewOnly" xml:space="preserve"><value>This file is too long for live editing, so it opens in the preview only.</value></data>
+  <data name="DocumentEditor_PreviewTooLarge" xml:space="preserve"><value>The text is too long for the live preview.</value></data>
+  <data name="DocumentEditor_PreviewFailed" xml:space="preserve"><value>The preview could not be created.</value></data>
+  <data name="DocumentEditor_PackUnavailable" xml:space="preserve"><value>Markdown Tools are not installed anymore. Your text stays here; save it to keep it.</value></data>
+  <data name="DocumentEditor_PackTooOld" xml:space="preserve"><value>Update Markdown Tools in Settings &gt; Packs to see the preview.</value></data>
+  <data name="DocumentEditor_WebViewMissing" xml:space="preserve"><value>The preview needs the Microsoft Edge WebView2 Runtime, which is part of Windows 11.</value></data>
+  <data name="DocumentEditor_WebViewFailed" xml:space="preserve"><value>The preview could not start (step {0}, code 0x{1}). Close the view and open the file again; if it keeps failing, please report this code.</value></data>
+  <data name="DocumentEditor_LocalLink" xml:space="preserve"><value>Links to other files are not opened from the preview.</value></data>
+  <data name="DocumentEditor_LinkTitle" xml:space="preserve"><value>Open this link in your browser?</value></data>
+  <data name="DocumentEditor_LinkOpen" xml:space="preserve"><value>Open</value></data>
+  <data name="DocumentEditor_FileType" xml:space="preserve"><value>Markdown</value></data>
+  <data name="DocumentEditor_FormatBar" xml:space="preserve"><value>Formatting</value></data>
+  <data name="DocumentEditor_FormatHeading" xml:space="preserve"><value>Heading</value></data>
+  <data name="DocumentEditor_FormatHeadingTip" xml:space="preserve"><value>Paragraph style (Ctrl+0 to 3)</value></data>
+  <data name="DocumentEditor_FormatParagraph" xml:space="preserve"><value>Normal text</value></data>
+  <data name="DocumentEditor_FormatHeading1" xml:space="preserve"><value>Heading 1</value></data>
+  <data name="DocumentEditor_FormatHeading2" xml:space="preserve"><value>Heading 2</value></data>
+  <data name="DocumentEditor_FormatHeading3" xml:space="preserve"><value>Heading 3</value></data>
+  <data name="DocumentEditor_FormatBold" xml:space="preserve"><value>Bold</value></data>
+  <data name="DocumentEditor_FormatItalic" xml:space="preserve"><value>Italic</value></data>
+  <data name="DocumentEditor_FormatStrike" xml:space="preserve"><value>Strikethrough</value></data>
+  <data name="DocumentEditor_FormatCode" xml:space="preserve"><value>Code</value></data>
+  <data name="DocumentEditor_FormatBullets" xml:space="preserve"><value>Bulleted list</value></data>
+  <data name="DocumentEditor_FormatNumbers" xml:space="preserve"><value>Numbered list</value></data>
+  <data name="DocumentEditor_FormatTasks" xml:space="preserve"><value>Checklist</value></data>
+  <data name="DocumentEditor_FormatQuote" xml:space="preserve"><value>Quote</value></data>
+  <data name="DocumentEditor_FormatLink" xml:space="preserve"><value>Link</value></data>
+  <data name="DocumentEditor_FormatImage" xml:space="preserve"><value>Image from the document's folder</value></data>
+  <data name="DocumentEditor_FormatTable" xml:space="preserve"><value>Table</value></data>
+  <data name="DocumentEditor_FormatRule" xml:space="preserve"><value>Horizontal line</value></data>
+  <data name="DocumentEditor_FormatShortcut" xml:space="preserve"><value>{0} ({1})</value></data>
+  <data name="DocumentEditor_FormatPlaceholder" xml:space="preserve"><value>text</value></data>
+  <data name="DocumentEditor_FormatCodePlaceholder" xml:space="preserve"><value>code</value></data>
+  <data name="DocumentEditor_FormatLinkText" xml:space="preserve"><value>link text</value></data>
+  <data name="DocumentEditor_FormatImageText" xml:space="preserve"><value>description</value></data>
+  <data name="DocumentEditor_FormatTableColumn" xml:space="preserve"><value>Column</value></data>
+  <data name="DocumentEditor_FormatTableCell" xml:space="preserve"><value>Text</value></data>
+  <data name="DocumentEditor_FormatImageCopied" xml:space="preserve"><value>The image was copied to {0} next to this file, so it stays with the document when you share it.</value></data>
+  <data name="DocumentEditor_FormatImageNotAnImage" xml:space="preserve"><value>The file is not a supported image (PNG, JPEG, GIF, WebP, AVIF, BMP or SVG).</value></data>
+  <data name="DocumentEditor_FormatImageTooLarge" xml:space="preserve"><value>The image is larger than 25 MB.</value></data>
+  <data name="DocumentEditor_FormatImageUnreadable" xml:space="preserve"><value>The image could not be read.</value></data>
+  <data name="DocumentEditor_FormatImageCannotCopy" xml:space="preserve"><value>The image could not be copied next to this file. Check that the folder is writable.</value></data>
+  <data name="TextInputInstructions" xml:space="preserve"><value>Paste or type text here (up to 65,536 characters), then choose Use text.</value></data>
+  <data name="TextInputUse" xml:space="preserve"><value>Use text</value></data>
+  <data name="TextInputFailed" xml:space="preserve"><value>Could not accept the text. Try again.</value></data>
+  <data name="BrowserConnectTitle" xml:space="preserve"><value>Connect browser to PowerTrove</value></data>
+  <data name="BrowserConnectConsent" xml:space="preserve"><value>The extension {1} in {0} wants to connect locally to PowerTrove. Only allow this if you just clicked Connect to PowerTrove in that extension. You can disconnect it later in Settings.</value></data>
+  <data name="BrowserConnectConfirm" xml:space="preserve"><value>Connect</value></data>
+  <data name="BrowserConnectSuccess" xml:space="preserve"><value>Browser connected. You can now send selected text directly to PowerTrove.</value></data>
+  <data name="BrowserConnectFailed" xml:space="preserve"><value>Could not configure browser connection. Check your installation and try again.</value></data>
+  <data name="BrowserSettingsHeading" xml:space="preserve"><value>Browser integration</value></data>
+  <data name="BrowserSettingsDescription" xml:space="preserve"><value>1. Install the extension for Chrome or Edge. Until the store listing is available, follow the ZIP installation guide. 2. In the extension popup, click Connect to PowerTrove. 3. Confirm the connection in PowerTrove.</value></data>
+  <data name="BrowserSettingsConnected" xml:space="preserve"><value>Connected</value></data>
+  <data name="BrowserSettingsDisconnected" xml:space="preserve"><value>Extension not connected yet</value></data>
+  <data name="BrowserSettingsDisconnect" xml:space="preserve"><value>Disconnect</value></data>
+  <data name="BrowserSettingsDisconnectConfirm" xml:space="preserve"><value>Remove all PowerTrove browser connections for this Windows account?</value></data>
+  <data name="BrowserSettingsDisconnectFailed" xml:space="preserve"><value>Could not remove the browser connection.</value></data>
+  <data name="BrowserSettingsStatusFailed" xml:space="preserve"><value>Could not read the browser connection status.</value></data>
+  <data name="Installer_Text" xml:space="preserve"><value>Text Tools</value></data>
+  <data name="Installer_Browser" xml:space="preserve"><value>Browser Tools</value></data>
+  <data name="BrowserSettingsInstallerRequired" xml:space="preserve"><value>Browser integration currently requires the Windows installer version. MSIX support is not yet available.</value></data>
+  <data name="BrowserSettingsLiveSessions" xml:space="preserve"><value>Connected browsers: {0}</value></data>
+  <data name="ResultContinueWithFiles" xml:space="preserve"><value>Continue with output</value></data>
+  <data name="BrowserSettingsInstallChrome" xml:space="preserve"><value>Install for Chrome</value></data>
+  <data name="BrowserSettingsInstallEdge" xml:space="preserve"><value>Install for Edge</value></data>
+  <data name="BrowserPreviewLabel" xml:space="preserve"><value>Preview</value></data>
+  <data name="BrowserSettingsInstallFailed" xml:space="preserve"><value>Could not open the extension installation guide.</value></data>
+  <data name="BrowserPaletteHintTitle" xml:space="preserve"><value>Connect browser</value></data>
+  <data name="BrowserPaletteHintDescription" xml:space="preserve"><value>The Browser pack is installed, but no extension is connected. Install and connect it in Settings.</value></data>
+  <data name="BrowserPaletteSearchTerms" xml:space="preserve"><value>browser chrome edge extension connect</value></data>
+  <data name="DocumentEditor_WordsOne" xml:space="preserve"><value>{0} word</value></data>
+  <data name="DocumentEditor_WordsOther" xml:space="preserve"><value>{0} words</value></data>
+  <data name="DocumentEditor_CharactersOne" xml:space="preserve"><value>{0} character</value></data>
+  <data name="DocumentEditor_CharactersOther" xml:space="preserve"><value>{0} characters</value></data>
+  <data name="Installer_BrowserPreview" xml:space="preserve"><value>{0} (Preview)</value></data>
+  <data name="OcrReaderTitle" xml:space="preserve"><value>Recognize text visually</value></data>
+  <data name="OcrReaderLanguage" xml:space="preserve"><value>Language</value></data>
+  <data name="OcrReaderAuto" xml:space="preserve"><value>Detect automatically</value></data>
+  <data name="OcrReaderHelp" xml:space="preserve"><value>Drag across the image to select text, like in a document. Double-click selects a line, Ctrl+A everything, Ctrl+C copies. A click on a line on the right selects it too.</value></data>
+  <data name="OcrReaderSelectedText" xml:space="preserve"><value>Selected text</value></data>
+  <data name="OcrReaderZoomOut" xml:space="preserve"><value>Zoom out</value></data>
+  <data name="OcrReaderZoomIn" xml:space="preserve"><value>Zoom in</value></data>
+  <data name="OcrReaderCopySelected" xml:space="preserve"><value>Copy selection</value></data>
+  <data name="OcrReaderCopyAll" xml:space="preserve"><value>Copy all</value></data>
+  <data name="OcrReaderAllText" xml:space="preserve"><value>All recognized text</value></data>
+  <data name="OcrReaderLoading" xml:space="preserve"><value>Opening image…</value></data>
+  <data name="OcrReaderImageUnavailable" xml:space="preserve"><value>This image cannot be opened or exceeds the safe size limit.</value></data>
+  <data name="OcrReaderRecognizing" xml:space="preserve"><value>Recognizing text on this device…</value></data>
+  <data name="OcrReaderDetectedLanguage" xml:space="preserve"><value>Likely language: {0}</value></data>
+  <data name="OcrReaderRecognitionFailed" xml:space="preserve"><value>Text recognition failed. Try another installed language.</value></data>
+  <data name="OcrReaderNoText" xml:space="preserve"><value>No text found. Try choosing a language explicitly.</value></data>
+  <data name="OcrReaderFound" xml:space="preserve"><value>{0} lines recognized</value></data>
+  <data name="OcrReaderOverlayLimited" xml:space="preserve"><value>Only the first 2,400 word boxes are shown. Complete text is available below.</value></data>
+  <data name="OcrReaderCopied" xml:space="preserve"><value>Copied to clipboard</value></data>
+  <data name="OcrReaderCopyFailed" xml:space="preserve"><value>Could not copy text</value></data>
+  <data name="OcrReaderSaveTxt" xml:space="preserve"><value>Save as TXT</value></data>
+  <data name="OcrReaderSaving" xml:space="preserve"><value>Saving text file…</value></data>
+  <data name="OcrReaderSaved" xml:space="preserve"><value>Text file saved</value></data>
+  <data name="OcrReaderSaveFailed" xml:space="preserve"><value>Could not save the text file</value></data>
 </root>

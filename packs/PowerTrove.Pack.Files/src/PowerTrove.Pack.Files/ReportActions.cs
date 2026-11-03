@@ -67,7 +67,7 @@ public sealed class ScanReportAction : FileReportAction
                 sb.Append(FileTools.Escape(group.Key)).Append(',').Append(group.Count()).Append(',').Append(group.Sum(f => f.Size)).Append("\r\n");
             sb.Append("\r\nPath,Bytes\r\n");
             foreach (var file in files.OrderByDescending(f => f.Size).ThenBy(f => f.Path, StringComparer.Ordinal).Take(20)) sb.Append(FileTools.Escape(file.Path)).Append(',').Append(file.Size).Append("\r\n");
-            return new(sb.ToString(), SR.Format("FolderSummary" + (files.Count == 1 ? "_One" : "_Other"), files.Count, size, skipped, limited ? SR.GetString("ScanLimit") : ""));
+            return new(sb.ToString(), string.Format(SR.Plural("FolderSummary", files.Count), files.Count, size, skipped, limited ? SR.GetString("ScanLimit") : ""));
         }
         sb.Append("Group,Size,Path\r\n").Append(FileTools.Escape(SR.GetString("ReportNote"))).Append(",,\r\n");
         int groups = 0, processed = 0; long reclaimable = 0;
@@ -97,6 +97,6 @@ public sealed class ScanReportAction : FileReportAction
                 }
             }
         }
-        return new(sb.ToString(), SR.Format("DuplicateSummary" + (groups == 1 ? "_One" : "_Other"), groups, reclaimable, skipped, limited ? SR.GetString("ScanLimit") : ""));
+        return new(sb.ToString(), string.Format(SR.Plural("DuplicateSummary", groups), groups, reclaimable, skipped, limited ? SR.GetString("ScanLimit") : ""));
     }
 }

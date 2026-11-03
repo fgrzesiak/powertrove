@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Resources;
+using PowerTrove.Abstractions.Localization;
 
 namespace PowerTrove.Abstractions.Resources;
 
@@ -27,8 +28,8 @@ public static class SdkStrings
     public static string ContextUnavailable => Get("ContextUnavailable");
     public static string MissingRequiredCapabilities => Get("MissingRequiredCapabilities");
     public static string RequiresType(string typeList, string currentKind) => string.Format(System.Globalization.CultureInfo.CurrentCulture, Get("RequiresType"), typeList, currentKind);
-    public static string RequiresMinItems(int count, string familyName) => string.Format(System.Globalization.CultureInfo.CurrentCulture, Get(count == 1 ? "RequiresMinItems_One" : "RequiresMinItems_Other"), count, familyName);
-    public static string RequiresMaxItems(int count, string familyName) => string.Format(System.Globalization.CultureInfo.CurrentCulture, Get(count == 1 ? "RequiresMaxItems_One" : "RequiresMaxItems_Other"), count, familyName);
+    public static string RequiresMinItems(int count, string familyName) => string.Format(System.Globalization.CultureInfo.CurrentCulture, Count("RequiresMinItems", count), count, familyName);
+    public static string RequiresMaxItems(int count, string familyName) => string.Format(System.Globalization.CultureInfo.CurrentCulture, Count("RequiresMaxItems", count), count, familyName);
     public static string RemoveOtherItems => Get("RemoveOtherItems");
     public static string Error_SelectionExpired => Get("Error_SelectionExpired");
     public static string Error_NotAFileSelection => Get("Error_NotAFileSelection");
@@ -40,13 +41,11 @@ public static class SdkStrings
 
     public static string Summary_Canceled => Get("Summary_Canceled");
 
-    public static string Summary_CanceledOutputs(int count) => count == 1
-        ? Get("Summary_CanceledOutputs_One")
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_CanceledOutputs_Other"), count);
+    public static string Summary_CanceledOutputs(int count) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_CanceledOutputs", count), count);
 
-    public static string Summary_Created(int outputs) => outputs == 1
-        ? Get("Summary_Created_One")
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_Created_Other"), outputs);
+    public static string Summary_Created(int outputs) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_Created", outputs), outputs);
 
     public static string Summary_CreatedFailed(int outputs, int failed) => (outputs == 1, failed == 1) switch
     {
@@ -58,21 +57,17 @@ public static class SdkStrings
 
     public static string Summary_NoOutput => Get("Summary_NoOutput");
 
-    public static string Summary_Skipped(int count) => count == 1
-        ? Get("Summary_Skipped_One")
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_Skipped_Other"), count);
+    public static string Summary_Skipped(int count) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_Skipped", count), count);
 
-    public static string Summary_NeededNoChanges(int count) => count == 1
-        ? Get("Summary_NeededNoChanges_One")
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_NeededNoChanges_Other"), count);
+    public static string Summary_NeededNoChanges(int count) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_NeededNoChanges", count), count);
 
-    public static string Summary_Saved(int outputs, string diff, string input, string produced) => outputs == 1
-        ? string.Format(CultureInfo.CurrentCulture, Get("Summary_Saved_One"), outputs, diff, input, produced)
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_Saved_Other"), outputs, diff, input, produced);
+    public static string Summary_Saved(int outputs, string diff, string input, string produced) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_Saved", outputs), outputs, diff, input, produced);
 
-    public static string Summary_Larger(int outputs, string diff, string input, string produced) => outputs == 1
-        ? string.Format(CultureInfo.CurrentCulture, Get("Summary_Larger_One"), outputs, diff, input, produced)
-        : string.Format(CultureInfo.CurrentCulture, Get("Summary_Larger_Other"), outputs, diff, input, produced);
+    public static string Summary_Larger(int outputs, string diff, string input, string produced) =>
+        string.Format(CultureInfo.CurrentCulture, Count("Summary_Larger", outputs), outputs, diff, input, produced);
 
     public static string Progress_Starting => Get("Progress_Starting");
     public static string Progress_Processing => Get("Progress_Processing");
@@ -95,4 +90,7 @@ public static class SdkStrings
     public static string Error_ItemNeededNoChanges => Get("Error_ItemNeededNoChanges");
 
     private static string Get(string key) => Resources.GetString(key, CultureInfo.CurrentUICulture) ?? key;
+
+    private static string Count(string stem, int count) =>
+        PluralForms.Text(stem, count, key => Resources.GetString(key, CultureInfo.CurrentUICulture));
 }

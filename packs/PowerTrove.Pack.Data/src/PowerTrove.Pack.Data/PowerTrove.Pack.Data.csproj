@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\..\..\tools\FileKit.Tabular\src\FileKit.Tabular\FileKit.Tabular.csproj" />
     <ProjectReference Include="..\..\..\..\src\PowerTrove.Abstractions\PowerTrove.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\..\tools\FileKit.Xlsx\src\FileKit.Xlsx\FileKit.Xlsx.csproj" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Text\src\FileKit.Text\FileKit.Text.csproj" />
   </ItemGroup>
 
   <ItemGroup><InternalsVisibleTo Include="PowerTrove.Pack.Data.Composition" /></ItemGroup>

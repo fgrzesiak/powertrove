@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <VersionPrefix>0.1.0</VersionPrefix>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../../src/PowerTrove.Abstractions/PowerTrove.Abstractions.csproj" />
+    <ProjectReference Include="../../../../tools/FileKit.Html/src/FileKit.Html/FileKit.Html.csproj" />
+  </ItemGroup>
+  <ItemGroup><Using Include="PowerTrove.Abstractions" /></ItemGroup>
+  <ItemGroup><Compile Include="../../../PackReleaseVersion.cs" Link="PackReleaseVersion.cs" /></ItemGroup>
+  <Import Project="$(PowerTrovePackVersionsFile)" Condition="'$(PowerTrovePackVersionsFile)' != ''" />
+</Project>

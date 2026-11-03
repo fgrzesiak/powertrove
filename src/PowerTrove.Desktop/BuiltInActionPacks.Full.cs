@@ -9,6 +9,9 @@ using PowerTrove.Pack.Office;
 using PowerTrove.Pack.Tables;
 using PowerTrove.Pack.Data;
 using PowerTrove.Pack.EInvoice;
+using PowerTrove.Pack.Markdown;
+using PowerTrove.Pack.Text;
+using PowerTrove.Pack.Browser;
 
 namespace PowerTrove.Desktop;
 
@@ -29,5 +32,8 @@ public static partial class BuiltInActionPacks
         factories.Insert(5, new TablesPackFactory());
         factories.Insert(6, new DataPackFactory());
         factories.Insert(7, new EInvoicePackFactory());
+        factories.Insert(8, new MarkdownPackFactory());
+        factories.Add(new TextPackFactory());
+        factories.Add(new BrowserPackFactory());
     }
 }

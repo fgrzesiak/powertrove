@@ -1,4 +1,4 @@
-using BitMiracle.LibJpeg.Classic;
+using FileKit.Imaging.Jpeg;
 using PowerTrove.Pack.Images.Magick;
 using PowerTrove.Pack.Images;
 using FileKit.Imaging;
@@ -78,25 +78,28 @@ public class CoefficientJpegTests
     private sealed record State(int Width, int Height, int BlockWidth, int BlockHeight, short[][] FirstComponent, short[] Coefficients);
     private static State Read(byte[] bytes)
     {
-        var decoder = new jpeg_decompress_struct();
-        try
+        var image = JpegCoefficientCodec.Decode(bytes);
+        var all = new List<short>();
+        var first = new List<short[]>();
+        int firstW = 0, firstH = 0;
+        for (int i = 0; i < image.Components.Count; i++)
         {
-            decoder.jpeg_stdio_src(new MemoryStream(bytes)); decoder.jpeg_read_header(true); var arrays = decoder.jpeg_read_coefficients();
-            int maxH = decoder.Comp_info.Max(c => c.H_samp_factor), maxV = decoder.Comp_info.Max(c => c.V_samp_factor);
-            var all = new List<short>(); var first = new List<short[]>(); int firstW = 0, firstH = 0;
-            // jpeg_read_coefficients returns MAX_COMPONENTS slots; only Num_components are used.
-            for (int c = 0; c < decoder.Num_components; c++)
+            var component = image.Components[i];
+            if (i == 0)
             {
-                int w = (decoder.Image_width * decoder.Comp_info[c].H_samp_factor + maxH * 8 - 1) / (maxH * 8);
-                int h = (decoder.Image_height * decoder.Comp_info[c].V_samp_factor + maxV * 8 - 1) / (maxV * 8);
-                if (c == 0) { firstW = w; firstH = h; }
-                for (int y = 0; y < h; y++) foreach (var block in arrays[c].Access(y, 1)[0].Take(w))
-                {
-                    var values = Enumerable.Range(0, 64).Select(i => block[i]).ToArray(); all.AddRange(values); if (c == 0) first.Add(values);
-                }
+                firstW = component.BlockWidth;
+                firstH = component.BlockHeight;
             }
-            decoder.jpeg_finish_decompress(); return new(decoder.Image_width, decoder.Image_height, firstW, firstH, first.ToArray(), all.ToArray());
+            for (int y = 0; y < component.BlockHeight; y++)
+                for (int x = 0; x < component.BlockWidth; x++)
+                {
+                    short[] values = component.Coefficients.AsSpan(
+                        (y * component.BlockWidth + x) * 64, 64).ToArray();
+                    all.AddRange(values);
+                    if (i == 0) first.Add(values);
+                }
         }
-        finally { decoder.jpeg_destroy(); }
+        return new State(image.Width, image.Height, firstW, firstH,
+            first.ToArray(), all.ToArray());
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="OfficeMissingApplication" xml:space="preserve"><value>O aplicativo Microsoft Office necessário não está instalado.</value></data>
+  <data name="OfficePasswordProtected" xml:space="preserve"><value>O documento está protegido por senha.</value></data>
+  <data name="OfficeUnsafeMacros" xml:space="preserve"><value>Este documento contém macros ou fórmulas que não podem ser abertas com segurança para conversão.</value></data>
+  <data name="OfficeInvalidDocument" xml:space="preserve"><value>O formato do documento é inválido, não suportado ou excede os limites de conversão.</value></data>
+  <data name="OfficeBusy" xml:space="preserve"><value>Não foi possível obter uma instância separada do Office. Feche o aplicativo do Office e tente novamente.</value></data>
+  <data name="OfficeTimedOut" xml:space="preserve"><value>A conversão do Office expirou. Nenhum resultado foi salvo.</value></data>
+  <data name="OfficeConversionFailed" xml:space="preserve"><value>O Office não pôde converter este documento. Nenhum resultado foi salvo.</value></data>
+  <data name="OfficePreferenceRestoreFailed" xml:space="preserve"><value>A preferência temporária do Word não pôde ser restaurada. Verifique a configuração de aviso de conversão de PDF no Word.</value></data>
+  <data name="FileAccessDenied" xml:space="preserve"><value>O acesso foi negado.</value></data>
+  <data name="FileReadFailed" xml:space="preserve"><value>O arquivo não pôde ser lido.</value></data>
+  <data name="FileFormatNotRecognized" xml:space="preserve"><value>O conteúdo não está em um formato {0} reconhecido.</value></data>
+  <data name="FileFormatMismatch" xml:space="preserve"><value>O conteúdo não corresponde aos formatos {0} suportados.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Não foi possível decodificar a imagem.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>A imagem não pôde ser codificada.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Formato de imagem não suportado.</value></data>
+</root>

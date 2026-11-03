@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Appunti e testo</value></data>
+  <data name="Description" xml:space="preserve"><value>Trasforma localmente una selezione di testo acquisita esplicitamente e copia il risultato negli appunti.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Rivedi la trasformazione. Il risultato verrà copiato negli appunti solo dopo l&apos;esecuzione dell&apos;azione.</value></data>
+  <data name="Done" xml:space="preserve"><value>Testo copiato negli appunti.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Nessun testo disponibile per la selezione, oppure la selezione è scaduta o è troppo ampia.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Il testo supera il limite di 65.536 caratteri.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Impossibile elaborare il testo o il pattern.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Operazione di testo non supportata.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>Il contenuto codificato nell&apos;input non è valido.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>L&apos;espressione regolare ha superato il limite di tempo.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Inserisci un&apos;espressione regolare.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Motivo</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Sostituzione</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Espressione regolare .NET, timeout di 200 ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>Il risultato è vuoto; l&apos;esecuzione cancellerà il testo dagli appunti.</value></data>
+  <data name="trim" xml:space="preserve"><value>Ritaglia gli spazi bianchi</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Ritaglia ogni riga</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Comprimi gli spazi bianchi</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Rimuovere le righe vuote</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Rimuovere le righe duplicate</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Ordina righe</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Convertire in minuscolo</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Convertire in maiuscolo</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Convertire in maiuscolo con la prima lettera maiuscola</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Sostituisci il testo usando le espressioni regolari</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Codifica URL del testo</value></data>
+  <data name="url-decode" xml:space="preserve"><value>Decodifica URL del testo</value></data>
+  <data name="html-encode" xml:space="preserve"><value>Codifica HTML del testo</value></data>
+  <data name="html-decode" xml:space="preserve"><value>Decodifica HTML del testo</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Codifica testo in Base64</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Decodifica testo in Base64</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Testo in formato JSON escape</value></data>
+</root>

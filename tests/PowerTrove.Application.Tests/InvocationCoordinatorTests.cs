@@ -50,6 +50,84 @@ public class InvocationCoordinatorTests
         Assert.Empty(vm.SearchText);
     }
 
+    [Fact]
+    public async Task BrowserContextIsResolvedBeforeThePaletteTakesFocus()
+    {
+        var registry = new ActionRegistry();
+        var vm = new PaletteViewModel();
+        var resolver = new ContextResolver([new BrowserProbeProvider(available:true)]);
+        var coordinator = new InvocationCoordinator(null,new BrowserForegroundCapture(),resolver,
+            vm,registry,new ActionSearchEngine(registry));
+        bool shown = false;
+        coordinator.PaletteRequested += (_, _) =>
+        {
+            shown = true;
+            Assert.Equal(1, BrowserProbeProvider.TotalCalls);
+        };
+        BrowserProbeProvider.TotalCalls = 0;
+        await coordinator.InvokeAsync();
+        Assert.True(shown);
+        Assert.Equal("powertrove.provider.browser.explicit",vm.CurrentSnapshot?.ProviderId);
+        Assert.Equal("https://example.org/docs",vm.CurrentSnapshot?.BrowserPage?.Url);
+    }
+
+    [Fact]
+    public async Task BrowserWithoutLiveCompanionFallsBackToUiAutomationSelection()
+    {
+        BrowserProbeProvider.TotalCalls = 0;
+        var registry = new ActionRegistry();
+        var vm = new PaletteViewModel();
+        var probe = new BrowserUiAutomationFallback();
+        var coordinator = new InvocationCoordinator(null,new BrowserForegroundCapture(),
+            new ContextResolver([new BrowserProbeProvider(available:false)]),
+            vm,registry,new ActionSearchEngine(registry),probe);
+        await coordinator.InvokeAsync();
+        Assert.Equal(1,probe.Calls);
+        Assert.Equal("powertrove.provider.windows.uia-text",vm.CurrentSnapshot?.ProviderId);
+        Assert.Equal("selected without companion",Assert.IsType<TextSelection>(vm.CurrentSnapshot?.Content).Text);
+    }
+
+    private sealed class BrowserForegroundCapture : IForegroundWindowCapture
+    {
+        public ValueTask<ForegroundCaptureResult> CaptureForegroundAsync(CancellationToken cancellationToken = default)
+        {
+            var source = new SourceWindowIdentity((nint)1234,42,"chrome",DateTimeOffset.UtcNow,
+                "Documentation - Google Chrome");
+            return ValueTask.FromResult(new ForegroundCaptureResult(source,ForegroundCaptureError.None));
+        }
+    }
+
+    private sealed class BrowserProbeProvider(bool available) : IContextProvider
+    {
+        public static int TotalCalls;
+        public string Id => "powertrove.provider.browser.explicit";
+        public ValueTask<bool> CanCaptureAsync(SourceWindowIdentity source,CancellationToken token) =>
+            ValueTask.FromResult(true);
+        public ValueTask<ContextSnapshot> CaptureAsync(Guid invocationId,SourceWindowIdentity source,CancellationToken token)
+        {
+            Interlocked.Increment(ref TotalCalls);
+            var now=DateTimeOffset.UtcNow;
+            return ValueTask.FromResult(new ContextSnapshot(invocationId,source,
+                available?ContextStatus.Available:ContextStatus.Unsupported,
+                available?new TextSelection("selected"):new NoContent(),now,now.AddMinutes(2),
+                Id,available?"https://example.org/docs":null)
+            {
+                BrowserPage=available?new BrowserPageInfo("https://example.org/docs","Docs",
+                    "example.org",true,8,true,1,2,3,5,2,"en",100):null
+            });
+        }
+    }
+
+    private sealed class BrowserUiAutomationFallback : IForegroundTextSelectionCapture
+    {
+        public int Calls;
+        public ValueTask<string?> CaptureAsync(SourceWindowIdentity source,CancellationToken token)
+        {
+            Calls++;
+            return ValueTask.FromResult<string?>("selected without companion");
+        }
+    }
+
     private sealed class ForbiddenCapture : IForegroundWindowCapture
     {
         public ValueTask<ForegroundCaptureResult> CaptureForegroundAsync(CancellationToken cancellationToken = default) =>

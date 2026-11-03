@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Área de transferência e texto</value></data>
+  <data name="Description" xml:space="preserve"><value>Transforma uma seleção de texto capturada explicitamente localmente e copia o resultado para a área de transferência.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Revise a transformação. O resultado será copiado para a área de transferência somente após a execução da ação.</value></data>
+  <data name="Done" xml:space="preserve"><value>Texto copiado para a área de transferência.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Nenhuma seleção de texto disponível, ou a seleção expirou ou é muito grande.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>O texto excede o limite de 65.536 caracteres.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>O texto ou padrão não pode ser processado.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Operação de texto não suportada.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>A entrada contém conteúdo codificado inválido.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>A expressão regular excedeu o limite de tempo.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Digite um padrão de expressão regular.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Padrão</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Substituição</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Expressão regular .NET, tempo limite de 200 ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>O resultado está vazio; executar o comando limpará o texto da área de transferência.</value></data>
+  <data name="trim" xml:space="preserve"><value>Cortar espaços em branco</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Cortar cada linha</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Recolher espaços em branco</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Remover linhas vazias</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Remover linhas duplicadas</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Classificar linhas</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Converter para minúsculas</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Converter para maiúsculas</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Converter para maiúsculas e minúsculas (título original)</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Substituir texto usando regex</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Codificar texto de URL</value></data>
+  <data name="url-decode" xml:space="preserve"><value>Decodificar texto de URL</value></data>
+  <data name="html-encode" xml:space="preserve"><value>Codificar texto HTML</value></data>
+  <data name="html-decode" xml:space="preserve"><value>Decodificar texto HTML</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Codificação Base64 do texto</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Decodificar texto em Base64</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Escape de texto JSON</value></data>
+</root>

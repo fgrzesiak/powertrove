@@ -56,9 +56,9 @@ public sealed class MediaAction : PerFileAction<MediaOptions>
 
     protected override string DescribeOperation(int inputCount, MediaOptions options) => _operation switch
     {
-        MediaOperation.ConvertAudio => SR.Format("MediaConvertAudio" + (inputCount == 1 ? "_One" : "_Other"), inputCount, _target.ToUpperInvariant()),
-        MediaOperation.ConvertVideo => SR.Format("MediaConvertVideo" + (inputCount == 1 ? "_One" : "_Other"), inputCount, _target.ToUpperInvariant()),
-        MediaOperation.ExtractAudio => SR.Format("MediaExtractAudio" + (inputCount == 1 ? "_One" : "_Other"), inputCount, _target.ToUpperInvariant()),
+        MediaOperation.ConvertAudio => string.Format(CultureInfo.CurrentCulture, SR.Plural("MediaConvertAudio", inputCount), inputCount, _target.ToUpperInvariant()),
+        MediaOperation.ConvertVideo => string.Format(CultureInfo.CurrentCulture, SR.Plural("MediaConvertVideo", inputCount), inputCount, _target.ToUpperInvariant()),
+        MediaOperation.ExtractAudio => string.Format(CultureInfo.CurrentCulture, SR.Plural("MediaExtractAudio", inputCount), inputCount, _target.ToUpperInvariant()),
         _ => SR.Count("MediaRemoveAudio", inputCount)
     };
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>クリップボードとテキスト</value></data>
+  <data name="Description" xml:space="preserve"><value>明示的にキャプチャしたテキスト選択範囲をローカルで変換し、結果をクリップボードにコピーします。</value></data>
+  <data name="Preview" xml:space="preserve"><value>変換内容を確認してください。結果は、アクションを実行した後にのみクリップボードにコピーされます。</value></data>
+  <data name="Done" xml:space="preserve"><value>テキストがクリップボードにコピーされました。</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>選択可能なテキストがありません。または、選択期間が終了しているか、選択範囲が大きすぎます。</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>テキストが65,536文字の制限を超えています。</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>テキストまたはパターンを処理できません。</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>サポートされていないテキスト操作です。</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>入力されたエンコードされたコンテンツが無効です。</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>正規表現が時間制限を超えました。</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>正規表現パターンを入力してください。</value></data>
+  <data name="Pattern" xml:space="preserve"><value>パターン</value></data>
+  <data name="Replacement" xml:space="preserve"><value>置換</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>.NET正規表現、タイムアウト200ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>結果は空です。実行するとクリップボードのテキストがクリアされます。</value></data>
+  <data name="trim" xml:space="preserve"><value>空白をトリミング</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>各行をトリミング</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>空白を折りたたむ</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>空行を削除</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>重複行を削除</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>行の並べ替え</value></data>
+  <data name="lowercase" xml:space="preserve"><value>小文字に変換</value></data>
+  <data name="uppercase" xml:space="preserve"><value>大文字に変換</value></data>
+  <data name="titlecase" xml:space="preserve"><value>タイトルケースに変換</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>正規表現を使用してテキストを置換します</value></data>
+  <data name="url-encode" xml:space="preserve"><value>URLエンコードテキスト</value></data>
+  <data name="url-decode" xml:space="preserve"><value>URLデコードテキスト</value></data>
+  <data name="html-encode" xml:space="preserve"><value>HTMLエンコードテキスト</value></data>
+  <data name="html-decode" xml:space="preserve"><value>HTMLデコードテキスト</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Base64エンコードテキスト</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Base64デコードテキスト</value></data>
+  <data name="json-escape" xml:space="preserve"><value>JSONエスケープテキスト</value></data>
+</root>

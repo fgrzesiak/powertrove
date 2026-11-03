@@ -67,13 +67,37 @@ public class HostedView : UserControl
     public event EventHandler? Closed;
 
     private bool _closed;
+    private bool _closeConfirmed;
 
     internal bool IsClosed => _closed;
+
+    /// <summary>
+    /// True while closing would lose work the user has not saved. <see cref="Close"/> then calls
+    /// <see cref="ConfirmClose"/> instead, and the view closes later through <see cref="CloseConfirmed"/>.
+    /// Never consulted while the application exits.
+    /// </summary>
+    protected virtual bool NeedsCloseConfirmation => false;
+
+    /// <summary>Asks the user (for example to save) and then calls <see cref="CloseConfirmed"/> or keeps the view.</summary>
+    protected virtual void ConfirmClose() { }
+
+    /// <summary>Closes after <see cref="ConfirmClose"/> without asking again.</summary>
+    protected void CloseConfirmed()
+    {
+        _closeConfirmed = true;
+        Close();
+    }
 
     /// <summary>Asks the window to close this view.</summary>
     public void Close()
     {
-        if (!_closed) CloseRequested?.Invoke(this, EventArgs.Empty);
+        if (_closed) return;
+        if (!_closeConfirmed && NeedsCloseConfirmation && (App.Current as App)?.Shell?.AllowClose != true)
+        {
+            ConfirmClose();
+            return;
+        }
+        CloseRequested?.Invoke(this, EventArgs.Empty);
     }
 
     internal void NotifyClosed()

@@ -25,7 +25,8 @@ public class PaletteViewModelLocalizationTests
         ["PackSizeKilobytes"] = "{0:N1} KB",
         ["PackVersion"] = "Version {0}",
         ["PackVersionUpdate"] = "Version {0} → {1}",
-        ["PackRowAutomationName"] = "{0}, {1}, {2}"
+        ["PackRowAutomationName"] = "{0}, {1}, {2}",
+        ["Context_BrowserPage"] = "{0} · {1}"
     };
 
     [Theory]

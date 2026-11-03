@@ -1,0 +1,10 @@
+<root>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Un codec necessario non è installato su questo sistema.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Conversione multimediale non riuscita.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>Impossibile convertire il file multimediale.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Questa conversione non è supportata per il file.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>Il file non contiene tracce video.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>Impossibile aprire il file multimediale.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Formato audio non supportato.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Operazione multimediale non supportata.</value></data>
+</root>

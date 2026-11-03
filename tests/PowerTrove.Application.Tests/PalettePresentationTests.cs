@@ -46,6 +46,32 @@ public class PalettePresentationTests
     }
 
     [Fact]
+    public async Task TypedQueryShowsUnavailableMatchesWithoutRequiringAnOptIn()
+    {
+        var missing = Result("pdf.merge", available: false);
+        var vm = await Create([Result("image.resize"), missing]);
+        Assert.DoesNotContain(missing, vm.FilteredActions);
+        vm.SearchText = "PDFs zusammenführen";
+        await vm.SearchTask;
+        Assert.Contains(missing, vm.FilteredActions);
+        Assert.Equal("Unavailable for this selection", vm.Groups[^1].Title);
+        Assert.False(vm.HasNoResults);
+        Assert.False(vm.HasUnavailableActions); // No redundant "show unavailable" toggle while searching.
+        Assert.False(missing.IsCompatible);
+    }
+
+    [Fact]
+    public async Task ConnectBrowserIsNeverListedOrCountedAsUnavailable()
+    {
+        var connect = new PowerTrove.Application.Commands.ConnectBrowserAction("Connect browser", "Connect it.", "",
+            (_, _) => ValueTask.FromResult(false), () => { });
+        var vm = await Create([Result("image.resize"), new ActionSearchResult(connect, false, "Unavailable", 100, ActionHighlight.None)]);
+        Assert.False(vm.HasUnavailableActions);
+        vm.IncludeUnavailableActions = true;
+        Assert.DoesNotContain(vm.FilteredActions, r => r.Action == connect);
+    }
+
+    [Fact]
     public async Task EveryResultNotificationExposesAnAtomicSnapshotAndTheFirstResult()
     {
         var engine = new ScriptedEngine(Result("image.resize"), Result("image.rotate-right"));

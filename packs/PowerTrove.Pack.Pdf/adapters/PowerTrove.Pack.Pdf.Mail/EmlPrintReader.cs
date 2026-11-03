@@ -3,7 +3,7 @@ using System.Net;
 using System.Text;
 using AngleSharp.Html.Parser;
 using FileKit.Html;
-using MimeKit;
+using FileKit.Mail;
 
 namespace PowerTrove.Pack.Pdf.Mail;
 
@@ -11,85 +11,106 @@ namespace PowerTrove.Pack.Pdf.Mail;
 public sealed class EmlPrintReader : IEmailPrintReader
 {
     public const int MaxMailBytes = 25 * 1024 * 1024;
+
     public async Task<EmailPrintDocument> ReadAsync(Stream source, EmailPrintLabels labels, bool exportAttachments, CancellationToken cancellationToken)
     {
-        using var memory = new MemoryStream(); byte[] buffer = new byte[81920]; int count;
+        using var memory = new MemoryStream();
+        byte[] buffer = new byte[81920];
+        int count;
         while ((count = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) != 0)
         {
             if (memory.Length + count > MaxMailBytes) throw new EmailPrintException("EML input exceeds 25 MiB.");
             await memory.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
         }
-        return await Task.Run(() => Parse(memory, labels, exportAttachments, cancellationToken), cancellationToken).ConfigureAwait(false);
+
+        return await Task.Run(() => Parse(memory.ToArray(), labels, exportAttachments, cancellationToken),
+            cancellationToken).ConfigureAwait(false);
     }
-    private static EmailPrintDocument Parse(MemoryStream input, EmailPrintLabels labels, bool exportAttachments, CancellationToken ct)
+
+    private static EmailPrintDocument Parse(byte[] input, EmailPrintLabels labels, bool exportAttachments, CancellationToken ct)
     {
         try
         {
-            input.Position = 0;
-            int delimiters = 0;
-            var raw = input.GetBuffer().AsSpan(0, (int)input.Length);
-            for (int i = 0; i + 2 < raw.Length; i++)
-                if ((i == 0 || raw[i - 1] == '\n') && raw[i] == '-' && raw[i + 1] == '-' && ++delimiters > 2200)
-                    throw new EmailPrintException("EML MIME delimiter limit exceeded.");
-            using var message = MimeMessage.Load(new ParserOptions { MaxMimeDepth = 32, MaxAddressGroupDepth = 3, AddressParserComplianceMode = RfcComplianceMode.Strict, ParameterComplianceMode = RfcComplianceMode.Strict, Rfc2047ComplianceMode = RfcComplianceMode.Strict }, input, ct);
-            if (message.Body is null || message.Headers.Count > 256 || message.Headers.Any(h => h.RawValue.Length > 32768) || message.From.Count == 0 || !MimeKit.Utils.DateUtils.TryParse(message.Headers[HeaderId.Date], out _)) throw new EmailPrintException("EML requires bounded valid headers, sender, date and a body.");
-            var leaves = new List<MimeEntity>(); int parts = 0;
-            Visit(message.Body, 0);
-            var attachments = new List<EmailAttachment>(); var images = new Dictionary<string, string>(StringComparer.Ordinal);
-            int attachmentCount = 0; long decoded = 0;
-            foreach (var entity in leaves)
+            ct.ThrowIfCancellationRequested();
+            MimeMailMessage message = MimeMailReader.Parse(input, new MimeMailLimits
+            {
+                MaxInputBytes = MaxMailBytes,
+                MaxDepth = 32,
+                MaxParts = 1000,
+                MaxHeaders = 256,
+                MaxHeaderValueBytes = 32768,
+                MaxDelimiters = 2200,
+                MaxAttachmentCount = 100,
+                MaxAttachmentBytes = 10 * 1024 * 1024,
+                MaxInlineImageBytes = 2 * 1024 * 1024,
+                MaxBodyBytes = HtmlPrintDocument.MaxBytes,
+                MaxTotalDecodedBytes = MaxMailBytes
+            }, ct);
+
+            var attachments = new List<EmailAttachment>();
+            var images = new Dictionary<string, string>(StringComparer.Ordinal);
+            int attachmentCount = 0;
+            foreach (var part in message.Parts)
             {
                 ct.ThrowIfCancellationRequested();
-                if (entity is MimePart { Content: null } || entity is MessagePart { Message: null }) throw new EmailPrintException("A MIME part has no content.");
-                if (entity.ContentType.MimeType is "application/pkcs7-mime" or "application/x-pkcs7-mime" or "application/pgp-encrypted" || entity.ContentType.MediaType.Equals("multipart", StringComparison.OrdinalIgnoreCase)) throw new EmailPrintException("Encrypted or excessively nested MIME is unsupported.");
-                bool inlineImage = entity is MimePart image && IsImage(image.ContentType.MimeType) && !string.IsNullOrWhiteSpace(entity.ContentId);
-                if (entity.IsAttachment || entity is MessagePart || entity is MimePart partWithName && !string.IsNullOrWhiteSpace(partWithName.FileName) && !inlineImage)
+                bool inlineImage = IsImage(part.MediaType) && part.ContentId is not null;
+                if (part.IsAttachment)
                 {
                     if (++attachmentCount > 100) throw new EmailPrintException("EML attachment limit exceeded.");
                     if (exportAttachments)
                     {
-                        using var content = new LimitedStream(10 * 1024 * 1024);
-                        if (entity is MessagePart { Message: { } nestedMessage }) nestedMessage.WriteTo(content, ct);
-                        else if (entity is MimePart { Content: { } attachmentContent }) attachmentContent.DecodeTo(content, ct);
-                        else throw new EmailPrintException("Unsupported attachment content.");
-                        if ((decoded += content.Length) > MaxMailBytes) throw new EmailPrintException("Decoded mail resources exceed 25 MiB.");
-                        string name = entity is MimePart named ? named.FileName ?? "attachment.bin" : "message.eml";
-                        attachments.Add(new(name, content.Bytes));
+                        string name = part.FileName ?? (part.IsMessageAttachment ? "message.eml" : "attachment.bin");
+                        attachments.Add(new EmailAttachment(name, part.Content));
                     }
                 }
+
                 if (inlineImage)
                 {
-                    var imageContent = ((MimePart)entity).Content ?? throw new EmailPrintException("Missing inline image data.");
-                    string cid = entity.ContentId ?? throw new EmailPrintException("Missing inline image identifier.");
-                    using var content = new LimitedStream(2 * 1024 * 1024); imageContent.DecodeTo(content, ct);
-                    if ((decoded += content.Length) > MaxMailBytes || !images.TryAdd(cid, "data:" + entity.ContentType.MimeType.ToLowerInvariant() + ";base64," + Convert.ToBase64String(content.Bytes.Span))) throw new EmailPrintException("Ambiguous or oversized inline mail images.");
+                    string cid = part.ContentId!;
+                    string encoded = "data:" + part.MediaType.ToLowerInvariant() + ";base64," +
+                                     Convert.ToBase64String(part.Content.Span);
+                    if (!images.TryAdd(cid, encoded))
+                        throw new EmailPrintException("Ambiguous inline mail image identifiers.");
                 }
             }
-            string? html = message.HtmlBody; string? plain = message.TextBody;
-            if (html is null && plain is null) throw new EmailPrintException("No supported plain-text or HTML mail body is available.");
-            string body = html is not null ? Sanitize(html, images, ct) : "<pre style='white-space:pre-wrap;overflow-wrap:anywhere'>" + Encode(plain!) + "</pre>";
+
+            string body = message.HtmlBody is not null
+                ? Sanitize(message.HtmlBody, images, ct)
+                : "<pre style='white-space:pre-wrap;overflow-wrap:anywhere'>" +
+                  Encode(message.TextBody!) + "</pre>";
+
             var result = new StringBuilder("<html><head><meta charset='utf-8'><style>body{font:11pt sans-serif;overflow-wrap:anywhere}table{border-collapse:collapse}th{text-align:left;vertical-align:top;padding-right:1em}img{max-width:100%;height:auto}.mail-notice{font-size:9pt;border-block:1px solid #999;padding:.5em 0}</style></head><body><table>");
-            Header(labels.From, message.From.ToString()); Header(labels.To, message.To.ToString()); Header(labels.Cc, message.Cc.ToString()); Header(labels.Subject, message.Subject ?? "");
-            Header(labels.Date, message.Headers[HeaderId.Date] ?? ""); Header(labels.Attachments, attachmentCount.ToString(CultureInfo.InvariantCulture));
-            result.Append("</table><p class='mail-notice'>").Append(Encode(labels.Notice)).Append("</p><article>").Append(body).Append("</article></body></html>");
-            string prepared = result.ToString(); if (Encoding.UTF8.GetByteCount(prepared) > HtmlPrintDocument.MaxBytes) throw new EmailPrintException("Prepared mail exceeds 5 MiB.");
-            return new(prepared, attachmentCount, attachments.AsReadOnly());
+            Header(labels.From, message.From);
+            Header(labels.To, message.To);
+            Header(labels.Cc, message.Cc);
+            Header(labels.Subject, message.Subject);
+            Header(labels.Date, message.Date);
+            Header(labels.Attachments, attachmentCount.ToString(CultureInfo.InvariantCulture));
+            result.Append("</table><p class='mail-notice'>").Append(Encode(labels.Notice))
+                  .Append("</p><article>").Append(body).Append("</article></body></html>");
+
+            string prepared = result.ToString();
+            if (Encoding.UTF8.GetByteCount(prepared) > HtmlPrintDocument.MaxBytes)
+                throw new EmailPrintException("Prepared mail exceeds 5 MiB.");
+            return new EmailPrintDocument(prepared, attachmentCount, attachments.AsReadOnly());
+
             void Header(string label, string value)
-            { if (value.Length > 32768) throw new EmailPrintException("Decoded mail header limit exceeded."); result.Append("<tr><th>").Append(Encode(label)).Append("</th><td>").Append(Encode(value)).Append("</td></tr>"); }
-            void Visit(MimeEntity entity, int depth)
             {
-                ct.ThrowIfCancellationRequested(); if (++parts > 1000 || depth >= 32) throw new EmailPrintException("MIME structure limit exceeded.");
-                if (entity is Multipart multi)
-                {
-                    if (multi.ContentType.MimeType.Equals("multipart/encrypted", StringComparison.OrdinalIgnoreCase)) throw new EmailPrintException("Encrypted mail is unsupported.");
-                    foreach (var child in multi) Visit(child, depth + 1);
-                }
-                else leaves.Add(entity);
+                if (value.Length > 32768) throw new EmailPrintException("Decoded mail header limit exceeded.");
+                result.Append("<tr><th>").Append(Encode(label)).Append("</th><td>")
+                      .Append(Encode(value)).Append("</td></tr>");
             }
         }
+        catch (MimeMailException ex)
+        {
+            throw new EmailPrintException("The EML message is invalid or unsupported.", ex);
+        }
         catch (Exception ex) when (ex is FormatException or ArgumentException or NotSupportedException or InvalidOperationException)
-        { throw new EmailPrintException("The EML message is invalid or unsupported.", ex); }
+        {
+            throw new EmailPrintException("The EML message is invalid or unsupported.", ex);
+        }
     }
+
     private static readonly HashSet<string> Passive = new("html head body title style div p span br hr h1 h2 h3 h4 h5 h6 table thead tbody tfoot tr th td caption colgroup col a img ol ul li dl dt dd pre code blockquote b strong i em u s strike small sub sup center font address section article header footer main nav figure figcaption details summary".Split(' '), StringComparer.Ordinal);
     private static readonly HashSet<string> Attributes = new("class id style lang dir title alt width height colspan rowspan align valign border cellpadding cellspacing bgcolor color face size".Split(' '), StringComparer.Ordinal);
     private static string Sanitize(string html, Dictionary<string, string> images, CancellationToken ct)

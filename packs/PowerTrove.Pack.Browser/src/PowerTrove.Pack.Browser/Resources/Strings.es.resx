@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Navegador</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>Copiar selección del navegador</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>Copiar selección como cita Markdown</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>Copiar enlace de página como Markdown</value></data>
+  <data name="Description" xml:space="preserve"><value>Procesa una selección del navegador enviada explícitamente y copia el resultado al portapapeles.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Vista previa: ejecutar para copiar al portapapeles:</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>La selección del navegador no está disponible o ha caducado.</value></data>
+  <data name="Done" xml:space="preserve"><value>Copiado al portapapeles.</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>Copiar URL de la página</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>Copiar enlace de la página como HTML</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>Citar selección con fuente</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>Copiar artículo como Markdown</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>Copiar página web como Markdown</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>Copiar enlaces de la página como Markdown</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>Copiar imágenes de la página como Markdown</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>Copiar la primera tabla HTML como CSV</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>Lee la pestaña del navegador vinculada al confirmar y copia el resultado sin modificar archivos.</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>El contenido de la página se lee solo cuando se ejecuta esta acción.</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>Contenido de la página no disponible. Puede haber cambiado, requerir permiso o superar el límite de tamaño.</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>Guardar artículo como Markdown</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>Guardar página web como Markdown</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>Guardar enlaces de la página como Markdown</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>Guardar enlaces de la página como CSV</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>Guardar la primera tabla como CSV</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>Guarda los datos de la pestaña autorizada del navegador en un archivo nuevo sin sobrescribir nada.</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>La pestaña actual se lee solo después de confirmar y se guarda como archivo nuevo en el escritorio.</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>Página del navegador exportada a un archivo nuevo.</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>Guardar la vista visible del navegador como PNG</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>Guardar la página completa del navegador como PNG</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>Guardar la página del navegador como MHTML</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>Guardar la página del navegador como PDF (sin cuadro de impresión)</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>artículo</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>enlaces</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>tabla</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>captura</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>página completa</value></data>
+</root>

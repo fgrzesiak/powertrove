@@ -37,9 +37,35 @@ public class FuzzyMatcherTests
     }
 
     [Theory]
+    [InlineData("convert-to-webp", "Convert to WebP")]
+    [InlineData("convert_to_webp", "Convert to WebP")]
+    [InlineData("webp convert", "Convert to WebP")]
+    [InlineData("große", "GROSSE")]
+    [InlineData("café", "Cafe")]
+    [InlineData("ＰＤＦ", "PDF")]
+    [InlineData("ｶﾀｶﾅ", "カタカナ")]
+    [InlineData("datei-namen", "Dateinamen ändern")]
+    [InlineData("namen", "Dateinamen ändern")]
+    [InlineData("conevrt", "Convert")]
+    public void NormalizationReorderingCompoundWordsAndTranspositions_AreMatched(string query, string title)
+    {
+        Assert.True(FuzzyMatcher.CalculateScore(query, title) > 0, $"Missing: {query} -> {title}");
+    }
+
+    [Fact]
+    public void NormalizationDoesNotEraseUnrelatedWords()
+    {
+        Assert.Equal(0, FuzzyMatcher.CalculateScore("pdf unknown operation", "PDF merge"));
+        Assert.Equal("grosse", FuzzyMatcher.Normalize("Größe"));
+        Assert.Equal("cafe", FuzzyMatcher.Normalize("CAFÉ"));
+    }
+
+    [Theory]
     [InlineData("completelyunrelated", "Convert to WebP")]
     [InlineData("apple banana", "Compress images")]
     [InlineData("cnvrt", "Convert to WebP")] // Too many missing letters for a short word
+    [InlineData("webp", "Convert to WebM")] // Short format names must match exactly
+    [InlineData("tiff", "Convert to TIF")]
     public void CalculateScore_ReturnsZeroForNoMatch(string query, string target)
     {
         int score = FuzzyMatcher.CalculateScore(query, target);

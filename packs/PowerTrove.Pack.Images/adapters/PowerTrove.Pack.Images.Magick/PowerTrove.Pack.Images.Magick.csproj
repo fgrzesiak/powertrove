@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\PowerTrove.Pack.Images\PowerTrove.Pack.Images.csproj" />
     <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.17.2" />
-    <PackageReference Include="BitMiracle.LibJpeg.NET" Version="1.5.324" />
+    <ProjectReference Include="..\..\..\..\tools\FileKit.Imaging\src\FileKit.Imaging\FileKit.Imaging.csproj" />
     <Using Include="PowerTrove.Abstractions" />
     <Using Include="PowerTrove.Abstractions.Files" />
   </ItemGroup>

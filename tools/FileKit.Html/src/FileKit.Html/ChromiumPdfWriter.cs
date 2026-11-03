@@ -9,10 +9,37 @@ namespace FileKit.Html;
 public sealed class ChromiumPdfWriter(IHtmlBrowserLauncher launcher)
 {
     public const long MaxPdfBytes = 100L * 1024 * 1024;
+    public const long MaxArchiveBytes = 64L * 1024 * 1024;
     public bool IsAvailable => launcher.IsAvailable;
     public Task WriteAsync(HtmlPrintDocument document, string outputPath, HtmlPrintOptions options, CancellationToken ct = default) =>
-        Task.Run(() => WriteCoreAsync(document, outputPath, options, ct), ct);
-    private async Task WriteCoreAsync(HtmlPrintDocument document, string outputPath, HtmlPrintOptions options, CancellationToken ct)
+        Task.Run(() => WriteCoreAsync(document, null, outputPath, options, ct), ct);
+
+    /// <summary>Prints a saved MHTML web page archive, keeping its layout, styles and images.
+    /// Chromium serves an archive's resources only from the archive itself; network schemes are
+    /// blocked, scripts stay disabled, and the page must not navigate anywhere else.</summary>
+    public Task WriteArchiveAsync(string archivePath, string outputPath, HtmlPrintOptions options, CancellationToken ct = default)
+    {
+        Uri archive = ValidateArchive(archivePath);
+        return Task.Run(() => WriteCoreAsync(null, archive, outputPath, options, ct), ct);
+    }
+
+    private static Uri ValidateArchive(string archivePath)
+    {
+        if (string.IsNullOrWhiteSpace(archivePath) || !Path.IsPathFullyQualified(archivePath))
+            throw new HtmlPrintException("Invalid web page archive path.");
+        var file = new FileInfo(Path.GetFullPath(archivePath));
+        if (!file.Exists || (file.Attributes & FileAttributes.ReparsePoint) != 0 ||
+            !file.Extension.Equals(".mhtml", StringComparison.OrdinalIgnoreCase) ||
+            file.Length is < 16 or > MaxArchiveBytes)
+            throw new HtmlPrintException("Invalid web page archive.");
+        byte[] head = new byte[(int)Math.Min(4096, file.Length)];
+        using (var stream = file.OpenRead()) stream.ReadExactly(head);
+        if (!System.Text.Encoding.ASCII.GetString(head).Contains("MIME-Version:", StringComparison.OrdinalIgnoreCase))
+            throw new HtmlPrintException("Invalid web page archive.");
+        return new Uri(file.FullName);
+    }
+
+    private async Task WriteCoreAsync(HtmlPrintDocument? document, Uri? archive, string outputPath, HtmlPrintOptions options, CancellationToken ct)
     {
         options.Validate(); ct.ThrowIfCancellationRequested();
         if (!launcher.IsAvailable) throw new HtmlPrintException("A supported local browser is unavailable.");
@@ -31,16 +58,29 @@ public sealed class ChromiumPdfWriter(IHtmlBrowserLauncher launcher)
             await using var cdp = new CdpConnection(); await cdp.ConnectAsync(target, timeout.Token).ConfigureAwait(false);
             await cdp.CommandAsync("Page.enable", new { }, timeout.Token).ConfigureAwait(false);
             await cdp.CommandAsync("Network.enable", new { }, timeout.Token).ConfigureAwait(false);
-            await cdp.CommandAsync("Network.setBlockedURLs", new { urls = new[] { "http://*", "https://*", "file://*", "ftp://*", "ws://*", "wss://*" } }, timeout.Token).ConfigureAwait(false);
+            // An archive itself is a local file; everything it references comes from inside the archive.
+            string[] blocked = archive is null
+                ? ["http://*", "https://*", "file://*", "ftp://*", "ws://*", "wss://*"]
+                : ["http://*", "https://*", "ftp://*", "ws://*", "wss://*"];
+            await cdp.CommandAsync("Network.setBlockedURLs", new { urls = blocked }, timeout.Token).ConfigureAwait(false);
             await cdp.CommandAsync("Network.setBypassServiceWorker", new { bypass = true }, timeout.Token).ConfigureAwait(false);
             await cdp.CommandAsync("Network.setCacheDisabled", new { cacheDisabled = true }, timeout.Token).ConfigureAwait(false);
             await cdp.CommandAsync("Emulation.setScriptExecutionDisabled", new { value = true }, timeout.Token).ConfigureAwait(false);
             var frames = await cdp.CommandAsync("Page.getFrameTree", new { }, timeout.Token).ConfigureAwait(false);
             string frame = frames.GetProperty("frameTree").GetProperty("frame").GetProperty("id").GetString()!;
             Task loaded = cdp.WaitForLoadAsync(timeout.Token);
-            await cdp.CommandAsync("Page.setDocumentContent", new { frameId = frame, html = document.Html }, timeout.Token).ConfigureAwait(false);
+            if (archive is null)
+                await cdp.CommandAsync("Page.setDocumentContent", new { frameId = frame, html = document!.Html }, timeout.Token).ConfigureAwait(false);
+            else
+                await cdp.CommandAsync("Page.navigate", new { url = archive.AbsoluteUri }, timeout.Token).ConfigureAwait(false);
             await loaded.ConfigureAwait(false);
             if (cdp.AttemptedNavigation) throw new HtmlPrintException("Automatic HTML navigation is unsupported.");
+            if (archive is not null)
+            {
+                var loadedTree = await cdp.CommandAsync("Page.getFrameTree", new { }, timeout.Token).ConfigureAwait(false);
+                if (loadedTree.GetProperty("frameTree").GetProperty("frame").GetProperty("url").GetString() != archive.AbsoluteUri)
+                    throw new HtmlPrintException("The web page archive navigated elsewhere.");
+            }
             var size = options.Inches;
             var printed = await cdp.CommandAsync("Page.printToPDF", new {
                 landscape = options.Landscape, displayHeaderFooter = false, printBackground = true,

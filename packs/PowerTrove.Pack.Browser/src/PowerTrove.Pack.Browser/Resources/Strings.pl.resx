@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Przeglądarka</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>Kopiuj wybór z przeglądarki</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>Kopiuj wybór jako cytat Markdown</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>Kopiuj link do strony jako Markdown</value></data>
+  <data name="Description" xml:space="preserve"><value>Przetwarza jawnie wysłany wybór przeglądarki i kopiuje wynik do schowka.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Podgląd — wykonaj, aby skopiować do schowka:</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Wybór przeglądarki jest niedostępny lub wygasł.</value></data>
+  <data name="Done" xml:space="preserve"><value>Skopiowano do schowka.</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>Kopiuj adres URL strony</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>Kopiuj link do strony jako HTML</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>Cytuj zaznaczenie ze źródłem</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>Kopiuj artykuł jako Markdown</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>Kopiuj stronę internetową jako Markdown</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>Kopiuj linki ze strony jako Markdown</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>Kopiuj obrazy ze strony jako Markdown</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>Kopiuj pierwszą tabelę HTML jako CSV</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>Odczytuje autoryzowaną kartę przeglądarki dopiero po potwierdzeniu i kopiuje wynik bez zmieniania plików.</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>Zawartość strony jest odczytywana wyłącznie podczas wykonywania tej akcji.</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>Zawartość strony jest niedostępna. Strona mogła się zmienić, wymagać uprawnień lub przekraczać limit rozmiaru.</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>Zapisz artykuł jako Markdown</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>Zapisz stronę internetową jako Markdown</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>Zapisz linki ze strony jako Markdown</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>Zapisz linki ze strony jako CSV</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>Zapisz pierwszą tabelę HTML jako CSV</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>Zapisuje dane z autoryzowanej karty przeglądarki w nowym pliku bez nadpisywania istniejących.</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>Bieżąca karta jest odczytywana dopiero po potwierdzeniu, a wynik trafia do nowego pliku na pulpicie.</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>Wyeksportowano stronę przeglądarki do nowego pliku.</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>Zapisz widok przeglądarki jako PNG</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>Zapisz całą stronę przeglądarki jako PNG</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>Zapisz stronę przeglądarki jako MHTML</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>Zapisz stronę przeglądarki jako PDF (bez okna drukowania)</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>artykuł</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>linki</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>tabela</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>zrzut</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>cała strona</value></data>
+</root>

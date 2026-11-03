@@ -3,6 +3,7 @@ using System.Globalization;
 using PowerTrove.Abstractions.Office;
 using PowerTrove.Abstractions.Ocr;
 using PowerTrove.Abstractions.Packs;
+using PowerTrove.Application.Localization;
 using PowerTrove.Infrastructure.Files;
 using PowerTrove.Platform.Windows.Imaging;
 
@@ -111,7 +112,7 @@ public static class Program
                 case "--pack-dir": directories.Add(value); break;
                 case "--manifest-sha256" when value.Length == 64 && value.All(Uri.IsHexDigit): hashes.Add(value); break;
                 case "--parent-pid" when pid is null && int.TryParse(value, out int parsed) && parsed > 0: pid = parsed; break;
-                case "--ui-language" when language is null && value is "en" or "de": language = value; break;
+                case "--ui-language" when language is null && UiLanguages.Normalize(value) is { } supported: language = supported; break;
                 case "--work-root" when work is null: work = value; break;
                 default: return null;
             }

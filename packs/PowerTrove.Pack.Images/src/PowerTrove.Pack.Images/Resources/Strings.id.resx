@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ImageExportAction_Title_Convert" xml:space="preserve">
+    <value>Konversi ke {0}</value>
+  </data>
+  <data name="ImageExportAction_Desc_Convert" xml:space="preserve">
+    <value>Mengonversi gambar yang dipilih ke {0}.</value>
+  </data>
+  <data name="ImageExportAction_Operation_Convert" xml:space="preserve">
+    <value>Akan mengkonversi {0} menjadi {1}.</value>
+  </data>
+  <data name="ImageExportAction_Title_Resize" xml:space="preserve">
+    <value>Mengubah Ukuran Gambar</value>
+  </data>
+  <data name="ImageExportAction_Desc_Resize" xml:space="preserve">
+    <value>Mengubah ukuran gambar yang dipilih ke lebar atau tinggi maksimum.</value>
+  </data>
+  <data name="ImageExportAction_ParamTitle_Size" xml:space="preserve">
+    <value>Ukuran maksimum (piksel)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1920" xml:space="preserve">
+    <value>1920x1080 (HD)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1280" xml:space="preserve">
+    <value>1280x720 (Web)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_800" xml:space="preserve">
+    <value>800x600 (Email)</value>
+  </data>
+  <data name="ImageExportAction_Operation_Resize" xml:space="preserve">
+    <value>Akan mengubah ukuran {0} agar sesuai dengan {1}x{1} piksel.</value>
+  </data>
+  <data name="ImageExportAction_Title_RemoveMeta" xml:space="preserve">
+    <value>Hapus Metadata Gambar</value>
+  </data>
+  <data name="ImageExportAction_Desc_RemoveMeta" xml:space="preserve">
+    <value>Membuat salinan gambar yang dipilih tanpa data EXIF ​​(seperti lokasi GPS).</value>
+  </data>
+  <data name="ImageExportAction_Operation_RemoveMeta" xml:space="preserve">
+    <value>Akan membuat salinan {0} tanpa metadata.</value>
+  </data>
+  <data name="Image_File" xml:space="preserve">
+    <value>gambar</value>
+  </data>
+  <data name="Image_Files" xml:space="preserve">
+    <value>gambar</value>
+  </data>
+  <data name="Image_Operation_Progress" xml:space="preserve">
+    <value>Ekspor</value>
+  </data>
+  <data name="ImagesPack_Title" xml:space="preserve">
+    <value>Alat Gambar</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertWebP" xml:space="preserve">
+    <value>Konversi ke WebP</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertWebP" xml:space="preserve">
+    <value>Mengonversi gambar yang dipilih ke WebP, format ringkas untuk web.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertAvif" xml:space="preserve">
+    <value>Konversi ke AVIF</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertAvif" xml:space="preserve">
+    <value>Mengonversi gambar yang dipilih ke AVIF, format modern yang sangat terkompresi.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertJpeg" xml:space="preserve">
+    <value>Konversi ke JPEG</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertJpeg" xml:space="preserve">
+    <value>Mengonversi gambar yang dipilih (termasuk foto HEIC) ke file JPEG yang kompatibel secara luas.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertPng" xml:space="preserve">
+    <value>Konversi ke PNG</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertPng" xml:space="preserve">
+    <value>Mengonversi gambar yang dipilih ke file PNG tanpa kehilangan kualitas.</value>
+  </data>
+  <data name="ImagesPack_Title_Resize" xml:space="preserve">
+    <value>Mengubah Ukuran Gambar</value>
+  </data>
+  <data name="ImagesPack_Desc_Resize" xml:space="preserve">
+    <value>Membuat salinan yang diubah ukurannya agar sesuai dengan lebar dan tinggi maksimum, dengan tetap mempertahankan rasio aspek.</value>
+  </data>
+  <data name="ImagesPack_Title_Compress" xml:space="preserve">
+    <value>Kompres Gambar</value>
+  </data>
+  <data name="ImagesPack_Desc_Compress" xml:space="preserve">
+    <value>Membuat salinan yang lebih kecil dengan menurunkan kualitas dan membatasi ukuran; aslinya tetap tidak berubah.</value>
+  </data>
+  <data name="ImagesPack_Title_RemoveMetadata" xml:space="preserve">
+    <value>Hapus Metadata Gambar</value>
+  </data>
+  <data name="ImagesPack_Desc_RemoveMetadata" xml:space="preserve">
+    <value>Membuat salinan tanpa metadata yang sensitif terhadap privasi seperti detail kamera dan lokasi.</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Title" xml:space="preserve">
+    <value>Kualitas</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Desc" xml:space="preserve">
+    <value>Nilai yang lebih tinggi mempertahankan lebih banyak detail dan menghasilkan file yang lebih besar.</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxWidth_Title" xml:space="preserve">
+    <value>Lebar maksimum (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxHeight_Title" xml:space="preserve">
+    <value>Tinggi maksimum (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_AllowUpscale_Title" xml:space="preserve">
+    <value>Perbesar gambar yang lebih kecil</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxDimension_Title" xml:space="preserve">
+    <value>Lebar/tinggi maksimum (px, 0 = pertahankan ukuran)</value>
+  </data>
+  <data name="ImageExportAction_Param_StripMetadata_Title" xml:space="preserve">
+    <value>Hapus metadata (kamera, lokasi)</value>
+  </data>
+  <data name="ImageExportAction_Op_WillProcess" xml:space="preserve">
+    <value>Akan memproses</value>
+  </data>
+  <data name="ImageExportAction_Op_WillConvert" xml:space="preserve">
+    <value>Akan mengkonversi</value>
+  </data>
+  <data name="ImageExportAction_Op_To" xml:space="preserve">
+    <value> ke {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_FitWithin" xml:space="preserve">
+    <value>muat dalam {0} x {1} px</value>
+  </data>
+  <data name="ImageExportAction_Op_NoEnlargement" xml:space="preserve">
+    <value> (tidak ada pembesaran)</value>
+  </data>
+  <data name="ImageExportAction_Op_Quality" xml:space="preserve">
+    <value>kualitas {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_RemoveMeta" xml:space="preserve">
+    <value>hapus metadata seperti lokasi</value>
+  </data>
+  <data name="ImageExportAction_Op_KeepMeta" xml:space="preserve">
+    <value>pertahankan metadata</value>
+  </data>
+  <data name="ImageExportAction_Warn_Animation" xml:space="preserve">
+    <value>Gambar animasi dikonversi menjadi gambar diam (bingkai pertama).</value>
+  </data>
+  <data name="ImageExportAction_Warn_Transparency" xml:space="preserve">
+    <value>JPEG tidak memiliki transparansi; area transparan menjadi putih atau hitam tergantung pada codec.</value>
+  </data>
+  <data name="ImageExportAction_Warn_PreserveMetadata" xml:space="preserve">
+    <value>Metadata tidak dapat dipertahankan oleh codec yang terpasang.</value>
+  </data>
+  <data name="ImageExportAction_Err_TooLarge" xml:space="preserve">
+    <value>File gambar terlalu besar.</value>
+  </data>
+  <data name="ImageExportAction_Err_Dimensions" xml:space="preserve">
+    <value>Dimensi gambar melebihi batas yang didukung.</value>
+  </data>
+  <data name="ImageExportAction_Err_UnknownFormat" xml:space="preserve">
+    <value>Format gambar tidak dapat ditentukan.</value>
+  </data>
+  <data name="ImageExportAction_Err_NoCodec" xml:space="preserve">
+    <value>Tidak ada codec terpasang yang dapat mengkonversi gambar {0} ini menjadi {1}.</value>
+  </data>
+  <data name="ImageTarget_Original" xml:space="preserve">
+    <value>format asli</value>
+  </data>
+  <data name="ImageExportAction_Unavailable" xml:space="preserve">
+    <value>{0} pengkodean tidak tersedia pada sistem ini.</value>
+  </data>
+  <data name="Raster_DecodeFailed" xml:space="preserve"><value>Gambar tidak dapat didekode atau melebihi batas raster.</value></data>
+  <data name="Raster_EncodeFailed" xml:space="preserve"><value>Gambar tidak dapat dienkode.</value></data>
+  <data name="Raster_NoCodec" xml:space="preserve"><value>Tidak ada codec raster terinstal yang mendukung operasi ini.</value></data>
+  <data name="Raster_TooManyPixels" xml:space="preserve"><value>Gambar atau kanvas melebihi 60 juta piksel atau 30.000 piksel per sisi.</value></data>
+  <data name="Raster_InvalidRatio" xml:space="preserve"><value>Masukkan rasio aspek positif sebagai L:T.</value></data>
+  <data name="Raster_ProcessCount" xml:space="preserve"><value>Akan membuat salinan gambar {0} yang telah diubah.</value></data>
+  <data name="Raster_MetadataRemoved" xml:space="preserve"><value>Metadata dihapus. File asli tetap tidak berubah.</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>Format output</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>Dengan [Ekstensi Video HEVC dari Microsoft Store](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7), Windows dapat menyimpan HEIC. Anda juga dapat memilih format lain di bawah “Format output”.</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} tidak dapat disimpan di sini, jadi hasil ini disimpan sebagai {1}.</value></data>
+  <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>Padding transparan hanya tersedia untuk PNG dan WebP; format lain menggunakan warna putih.</value></data>
+  <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>PNG sudah lebih kecil dari hasil yang dioptimalkan.</value></data>
+  <data name="Raster_AlreadySmall" xml:space="preserve"><value>Gambar sudah berada di bawah ukuran target.</value></data>
+  <data name="Raster_TargetUnreachable" xml:space="preserve"><value>Ukuran target tidak dapat dicapai dalam batas kualitas dan pengubahan ukuran.</value></data>
+  <data name="Raster_TargetPreview" xml:space="preserve"><value>Akan mengompres {0} gambar hingga maksimal {1} ​​KB masing-masing. Kualitas atau dimensi mungkin dikurangi.</value></data>
+  <data name="Raster_TargetResult" xml:space="preserve"><value>{0} gambar berada dalam batas ukuran yang diminta.</value></data>
+  <data name="Raster_CombineCount" xml:space="preserve"><value>Akan menggabungkan {0} gambar sesuai urutan nama file.</value></data>
+  <data name="Raster_CombineExtension" xml:space="preserve"><value>Hasilnya menggunakan PNG untuk sumber dengan alpha, jika tidak, JPEG.</value></data>
+  <data name="Raster_MetadataFailed" xml:space="preserve"><value>Metadata gambar rusak atau melebihi batas yang didukung.</value></data>
+  <data name="Raster_InfoPreview" xml:space="preserve"><value>Akan menampilkan detail non-identifikasi untuk gambar {0}.</value></data>
+  <data name="Raster_InfoLine" xml:space="preserve"><value>Gambar {0}: {1}, {2} × {3} px, {4:0.##} MP; DPI {5} × {6}; orientasi {7}; lokasi: {8}; profil warna: {9}; bingkai: {10}.</value></data>
+  <data name="Raster_Unknown" xml:space="preserve"><value>Tidak tersedia</value></data>
+  <data name="Raster_Yes" xml:space="preserve"><value>Ya</value></data>
+  <data name="Raster_No" xml:space="preserve"><value>Tidak ada</value></data>
+  <data name="Raster_Ratio" xml:space="preserve"><value>Rasio aspek</value></data>
+  <data name="Raster_CustomRatio" xml:space="preserve"><value>Rasio kustom (L:T)</value></data>
+  <data name="Raster_Anchor" xml:space="preserve"><value>Alamat Pangkas</value></data>
+  <data name="Raster_Mode" xml:space="preserve"><value>Mode padding</value></data>
+  <data name="Raster_BorderPx" xml:space="preserve"><value>Lebar batas (px)</value></data>
+  <data name="Raster_Color" xml:space="preserve"><value>Warna batas</value></data>
+  <data name="Raster_Transparent" xml:space="preserve"><value>Padding transparan</value></data>
+  <data name="Raster_Colors" xml:space="preserve"><value>Warna palet</value></data>
+  <data name="Raster_Dither" xml:space="preserve"><value>Gradien Dither</value></data>
+  <data name="Raster_Sizes" xml:space="preserve"><value>Ukuran ikon</value></data>
+  <data name="Raster_Format" xml:space="preserve"><value>Format output</value></data>
+  <data name="Raster_TargetKb" xml:space="preserve"><value>Ukuran maksimum (KB)</value></data>
+  <data name="Raster_Gap" xml:space="preserve"><value>Jarak (px)</value></data>
+  <data name="Raster_Background" xml:space="preserve"><value>Warna latar belakang</value></data>
+  <data name="Raster_Columns" xml:space="preserve"><value>Kolom (0 = otomatis)</value></data>
+  <data name="Raster_CellSize" xml:space="preserve"><value>Ukuran sel (px)</value></data>
+  <data name="Raster_Fit" xml:space="preserve"><value>Sesuaikan gambar</value></data>
+  <data name="Raster_Direction" xml:space="preserve"><value>Arah</value></data>
+  <data name="Raster_Align" xml:space="preserve"><value>Penyelarasan</value></data>
+  <data name="Raster_Title_Crop" xml:space="preserve"><value>Pangkas ke Rasio Aspek</value></data>
+  <data name="Raster_Title_Pad" xml:space="preserve"><value>Tambahkan Batas atau Buat Persegi</value></data>
+  <data name="Raster_Title_Grayscale" xml:space="preserve"><value>Konversi ke Hitam Putih</value></data>
+  <data name="Raster_Title_OptimizePng" xml:space="preserve"><value>Optimalkan PNG (Warna Lebih Kecil)</value></data>
+  <data name="Raster_Title_Icon" xml:space="preserve"><value>Buat Ikon (ICO)</value></data>
+  <data name="Raster_Title_ConvertOther" xml:space="preserve"><value>Konversi ke Format Lain</value></data>
+  <data name="Raster_Title_TargetSize" xml:space="preserve"><value>Kompres ke Ukuran File</value></data>
+  <data name="Raster_Title_Stitch" xml:space="preserve"><value>Gabungkan Gambar Berdampingan</value></data>
+  <data name="Raster_Title_Collage" xml:space="preserve"><value>Buat Kisi Foto</value></data>
+  <data name="Raster_Title_Info" xml:space="preserve"><value>Tampilkan Detail Gambar</value></data>
+  <data name="Raster_Description_Crop" xml:space="preserve"><value>Membuat salinan yang dipangkas menggunakan rasio dan jangkar yang dipilih.</value></data>
+  <data name="Raster_Description_Pad" xml:space="preserve"><value>Menambahkan batas atau menambahkan padding pada gambar agar berbentuk persegi.</value></data>
+  <data name="Raster_Description_Grayscale" xml:space="preserve"><value>Membuat salinan skala abu-abu sambil mempertahankan format gambar.</value></data>
+  <data name="Raster_Description_OptimizePng" xml:space="preserve"><value>Membuat salinan PNG yang lebih kecil menggunakan palet yang peka terhadap alfa.</value></data>
+  <data name="Raster_Description_Icon" xml:space="preserve"><value>Membuat ikon berbasis PNG dalam ukuran favicon atau Windows.</value></data>
+  <data name="Raster_Description_ConvertOther" xml:space="preserve"><value>Mengekspor gambar diam sebagai TIFF, BMP, GIF, atau ICO.</value></data>
+  <data name="Raster_Description_TargetSize" xml:space="preserve"><value>Menemukan kualitas dan dimensi gambar yang sesuai dengan batas ukuran.</value></data>
+  <data name="Raster_Description_Stitch" xml:space="preserve"><value>Mengubah ukuran gambar ke sisi yang sama dan menggabungkannya.</value></data>
+  <data name="Raster_Description_Collage" xml:space="preserve"><value>Menata gambar dalam grid dengan pemotongan atau penambahan ruang.</value></data>
+  <data name="Raster_Description_Info" xml:space="preserve"><value>Menampilkan dimensi dan bendera privasi tanpa mengekspos nilai metadata.</value></data>
+  <data name="Raster_Choice_1_1" xml:space="preserve"><value>1:1</value></data>
+  <data name="Raster_Choice_4_3" xml:space="preserve"><value>4:3</value></data>
+  <data name="Raster_Choice_3_2" xml:space="preserve"><value>3:2</value></data>
+  <data name="Raster_Choice_16_9" xml:space="preserve"><value>16:9</value></data>
+  <data name="Raster_Choice_9_16" xml:space="preserve"><value>9:16</value></data>
+  <data name="Raster_Choice_4_5" xml:space="preserve"><value>4:5</value></data>
+  <data name="Raster_Choice_custom" xml:space="preserve"><value>Kustom</value></data>
+  <data name="Raster_Choice_center" xml:space="preserve"><value>Pusatkan</value></data>
+  <data name="Raster_Choice_top" xml:space="preserve"><value>Atas</value></data>
+  <data name="Raster_Choice_bottom" xml:space="preserve"><value>Bawah</value></data>
+  <data name="Raster_Choice_left" xml:space="preserve"><value>Kiri</value></data>
+  <data name="Raster_Choice_right" xml:space="preserve"><value>Kanan</value></data>
+  <data name="Raster_Choice_square" xml:space="preserve"><value>Kotak</value></data>
+  <data name="Raster_Choice_border" xml:space="preserve"><value>Batas</value></data>
+  <data name="Raster_Choice_favicon" xml:space="preserve"><value>Favicon (16, 32, 48)</value></data>
+  <data name="Raster_Choice_windows" xml:space="preserve"><value>Windows (16–256)</value></data>
+  <data name="Raster_Choice_tiff" xml:space="preserve"><value>TIFF</value></data>
+  <data name="Raster_Choice_bmp" xml:space="preserve"><value>BMP</value></data>
+  <data name="Raster_Choice_gif" xml:space="preserve"><value>GIF (bingkai tunggal)</value></data>
+  <data name="Raster_Choice_ico" xml:space="preserve"><value>ICO</value></data>
+  <data name="Raster_Choice_same" xml:space="preserve"><value>Format asli</value></data>
+  <data name="Raster_Choice_jpeg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="Raster_Choice_webp" xml:space="preserve"><value>WebP</value></data>
+  <data name="Raster_Choice_cover" xml:space="preserve"><value>Isi dan pangkas</value></data>
+  <data name="Raster_Choice_contain" xml:space="preserve"><value>Sesuaikan dengan padding</value></data>
+  <data name="Raster_Choice_horizontal" xml:space="preserve"><value>Horizontal</value></data>
+  <data name="Raster_Choice_vertical" xml:space="preserve"><value>Vertikal</value></data>
+  <data name="Raster_Choice_start" xml:space="preserve"><value>Mulai</value></data>
+  <data name="Raster_Choice_end" xml:space="preserve"><value>Akhir</value></data>
+  <data name="Extra_JpegMetadataKept" xml:space="preserve"><value>Kualitas gambar JPEG dan metadata, termasuk lokasi, dipertahankan. Beberapa ukuran gambar tidak didukung tanpa pemotongan. Pratinjau yang disematkan mempertahankan orientasi sebelumnya.</value></data>
+  <data name="Extra_RotationUnavailable" xml:space="preserve"><value>Codec rotasi gambar yang diperlukan tidak tersedia.</value></data>
+  <data name="Extra_AlreadyUpright" xml:space="preserve"><value>Sudah tegak.</value></data>
+  <data name="Extra_JpegFailed" xml:space="preserve"><value>JPEG tidak dapat ditransformasikan dengan aman.</value></data>
+  <data name="Extra_JpegUnsupported" xml:space="preserve"><value>Format atau ukuran JPEG tidak didukung untuk transformasi tanpa kehilangan data.</value></data>
+  <data name="Extra_JpegPartialMcu" xml:space="preserve"><value>Dimensi JPEG ini tidak dapat diubah tanpa kehilangan kualitas tanpa pemotongan. Aslinya tidak berubah.</value></data>
+  <data name="Extra_GpsFailed" xml:space="preserve"><value>Metadata lokasi tidak dapat dihapus dengan aman.</value></data>
+  <data name="Extra_NoGps" xml:space="preserve"><value>Tidak ditemukan data GPS.</value></data>
+  <data name="Extra_GpsUnavailable" xml:space="preserve"><value>Tidak ada codec terpasang yang dapat menghapus data GPS sambil mempertahankan metadata lainnya.</value></data>
+  <data name="Extra_GpsResave" xml:space="preserve"><value>Gambar disimpan ulang dengan kualitas asli yang terdeteksi. Metadata lainnya tetap dipertahankan; ini menghapus bidang EXIF ​​GPS dan XMP exif:GPS, bukan semua referensi lokasi yang mungkin.</value></data>
+  <data name="Extra_WatermarkUnavailable" xml:space="preserve"><value>Mesin watermark gambar tidak tersedia.</value></data>
+  <data name="Extra_WatermarkTextInvalid" xml:space="preserve"><value>Masukkan teks watermark 1–500 karakter tanpa karakter kontrol.</value></data>
+  <data name="Extra_WatermarkImageInvalid" xml:space="preserve"><value>Pilih gambar watermark yang valid dan didukung dalam batas gambar.</value></data>
+  <data name="Extra_WatermarkFailed" xml:space="preserve"><value>Tanda air tidak dapat diterapkan.</value></data>
+  <data name="Extra_FontUnavailable" xml:space="preserve"><value>Tidak ada font watermark yang didukung yang terinstal.</value></data>
+  <data name="Extra_GifUnavailable" xml:space="preserve"><value>Encoder GIF animasi tidak tersedia.</value></data>
+  <data name="Extra_GifColors" xml:space="preserve"><value>GIF menggunakan palet terbatas. Transparansi diratakan ke warna putih; penundaan dibulatkan ke 10 ms berikutnya.</value></data>
+  <data name="Extra_GifFailed" xml:space="preserve"><value>Animasi tidak dapat dienkode dalam batas yang didukung.</value></data>
+  <data name="Extra_FaceUnavailable" xml:space="preserve"><value>Deteksi wajah lokal tidak tersedia di perangkat ini.</value></data>
+  <data name="Extra_FaceWarning" xml:space="preserve"><value>Deteksi tidak dijamin. Periksa setiap hasil sebelum berbagi; keberhasilan eksekusi tidak menjamin bahwa setiap wajah tersembunyi.</value></data>
+  <data name="Extra_NoFaces" xml:space="preserve"><value>Tidak ditemukan wajah.</value></data>
+  <data name="Extra_FaceFailed" xml:space="preserve"><value>Wajah tidak dapat diproses dengan aman.</value></data>
+  <data name="Extra_OcrUnavailable" xml:space="preserve"><value>OCR lokal tidak tersedia. Instal bahasa OCR di Pengaturan Windows &gt; Waktu &amp; bahasa.</value></data>
+  <data name="Extra_OcrFailed" xml:space="preserve"><value>Teks tidak dapat dikenali.</value></data>
+  <data name="Extra_OcrTooLarge" xml:space="preserve"><value>Teks yang dikenali melebihi batas yang didukung.</value></data>
+  <data name="Extra_NoText" xml:space="preserve"><value>Tidak ada teks yang ditemukan.</value></data>
+  <data name="Extra_Position" xml:space="preserve"><value>Posisi</value></data>
+  <data name="Extra_Opacity" xml:space="preserve"><value>Opasitas (%)</value></data>
+  <data name="Extra_Image" xml:space="preserve"><value>Gambar watermark</value></data>
+  <data name="Extra_WidthPercent" xml:space="preserve"><value>Lebar watermark (%)</value></data>
+  <data name="Extra_Text" xml:space="preserve"><value>Teks watermark</value></data>
+  <data name="Extra_FontSizePercent" xml:space="preserve"><value>Ukuran font (% dari lebar gambar)</value></data>
+  <data name="Extra_Color" xml:space="preserve"><value>Warna teks</value></data>
+  <data name="Extra_DelayMs" xml:space="preserve"><value>Penundaan bingkai (ms)</value></data>
+  <data name="Extra_Loop" xml:space="preserve"><value>Ulangi animasi</value></data>
+  <data name="Extra_MaxSize" xml:space="preserve"><value>Panjang sisi maksimum (px)</value></data>
+  <data name="Extra_Strength" xml:space="preserve"><value>Kekuatan pikselasi</value></data>
+  <data name="Extra_Output" xml:space="preserve"><value>Output teks</value></data>
+  <data name="Extra_Language" xml:space="preserve"><value>Bahasa pengenalan</value></data>
+  <data name="Extra_Title_rotate-right" xml:space="preserve"><value>Putar Kanan (90°)</value></data>
+  <data name="Extra_Description_rotate-right" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_rotate-left" xml:space="preserve"><value>Putar Kiri (90°)</value></data>
+  <data name="Extra_Description_rotate-left" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_rotate-180" xml:space="preserve"><value>Putar 180°</value></data>
+  <data name="Extra_Description_rotate-180" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_flip-horizontal" xml:space="preserve"><value>Balik secara horizontal</value></data>
+  <data name="Extra_Description_flip-horizontal" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_flip-vertical" xml:space="preserve"><value>Balik secara vertikal</value></data>
+  <data name="Extra_Description_flip-vertical" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_auto-rotate" xml:space="preserve"><value>Luruskan Menggunakan Orientasi Kamera</value></data>
+  <data name="Extra_Description_auto-rotate" xml:space="preserve"><value>Membuat salinan yang diputar atau dicerminkan dengan orientasi yang dinormalisasi.</value></data>
+  <data name="Extra_Title_WatermarkText" xml:space="preserve"><value>Tambahkan Tanda Air Teks</value></data>
+  <data name="Extra_Description_WatermarkText" xml:space="preserve"><value>Membuat salinan dengan tanda air tanpa mengubah aslinya.</value></data>
+  <data name="Extra_Title_WatermarkImage" xml:space="preserve"><value>Tambahkan Tanda Air Gambar</value></data>
+  <data name="Extra_Description_WatermarkImage" xml:space="preserve"><value>Membuat salinan dengan tanda air tanpa mengubah aslinya.</value></data>
+  <data name="Extra_Title_AnimatedGif" xml:space="preserve"><value>Buat GIF Animasi</value></data>
+  <data name="Extra_Description_AnimatedGif" xml:space="preserve"><value>Membangun animasi dari gambar diam yang dipilih.</value></data>
+  <data name="Extra_Title_Ocr" xml:space="preserve"><value>Salin Teks dari Gambar (OCR)</value></data>
+  <data name="Extra_Description_Ocr" xml:space="preserve"><value>Mengenali teks gambar secara lokal untuk file atau clipboard.</value></data>
+  <data name="Extra_Title_BlurFaces" xml:space="preserve"><value>Buramkan wajah</value></data>
+  <data name="Extra_Description_BlurFaces" xml:space="preserve"><value>Membuat salinan berpiksel menggunakan deteksi wajah lokal.</value></data>
+  <data name="Extra_Title_RemoveLocation" xml:space="preserve"><value>Hapus Lokasi (GPS) Saja</value></data>
+  <data name="Extra_Description_RemoveLocation" xml:space="preserve"><value>Menghapus kolom GPS EXIF/XMP sambil mempertahankan metadata lainnya.</value></data>
+  <data name="Extra_Choice_top-left" xml:space="preserve"><value>Kiri atas</value></data>
+  <data name="Extra_Choice_top" xml:space="preserve"><value>Atas</value></data>
+  <data name="Extra_Choice_top-right" xml:space="preserve"><value>Kanan atas</value></data>
+  <data name="Extra_Choice_left" xml:space="preserve"><value>Kiri</value></data>
+  <data name="Extra_Choice_center" xml:space="preserve"><value>Pusatkan</value></data>
+  <data name="Extra_Choice_right" xml:space="preserve"><value>Kanan</value></data>
+  <data name="Extra_Choice_bottom-left" xml:space="preserve"><value>Kiri bawah</value></data>
+  <data name="Extra_Choice_bottom" xml:space="preserve"><value>Bawah</value></data>
+  <data name="Extra_Choice_bottom-right" xml:space="preserve"><value>Kanan bawah</value></data>
+  <data name="Extra_Choice_tiled" xml:space="preserve"><value>Bertingkat</value></data>
+  <data name="Extra_Choice_light" xml:space="preserve"><value>Terang</value></data>
+  <data name="Extra_Choice_strong" xml:space="preserve"><value>Kuat</value></data>
+  <data name="Extra_Choice_clipboard" xml:space="preserve"><value>Clipboard</value></data>
+  <data name="Extra_Choice_file" xml:space="preserve"><value>Berkas teks UTF-8</value></data>
+  <data name="Extra_Choice_auto" xml:space="preserve"><value>Pengaturan Bahasa Windows</value></data>
+  <data name="Extra_RotateCount_One" xml:space="preserve"><value>Akan membuat salinan gambar {0} yang diputar atau dicerminkan.</value></data>
+  <data name="Extra_RotateCount_Other" xml:space="preserve"><value>Akan membuat salinan gambar {0} yang diputar atau dicerminkan.</value></data>
+  <data name="Extra_RemoveGpsCount_One" xml:space="preserve"><value>Akan menghapus metadata GPS dari gambar {0}.</value></data>
+  <data name="Extra_RemoveGpsCount_Other" xml:space="preserve"><value>Akan menghapus metadata GPS dari gambar {0}.</value></data>
+  <data name="Extra_WatermarkCount_One" xml:space="preserve"><value>Akan menambahkan watermark ke {0} salinan gambar.</value></data>
+  <data name="Extra_WatermarkCount_Other" xml:space="preserve"><value>Akan menambahkan watermark ke {0} salinan gambar.</value></data>
+  <data name="Extra_GifCount_One" xml:space="preserve"><value>Akan membuat animasi dari gambar {0}.</value></data>
+  <data name="Extra_GifCount_Other" xml:space="preserve"><value>Akan membuat animasi dari gambar {0} sesuai urutan nama file.</value></data>
+  <data name="Extra_FaceCount_One" xml:space="preserve"><value>Akan mendeteksi dan memikselkan wajah pada {0} salinan gambar.</value></data>
+  <data name="Extra_FaceCount_Other" xml:space="preserve"><value>Akan mendeteksi dan memikselkan wajah pada {0} salinan gambar.</value></data>
+  <data name="Extra_OcrFileCount_One" xml:space="preserve"><value>Akan mengenali teks dalam gambar {0} dan menyimpan file teks UTF-8.</value></data>
+  <data name="Extra_OcrFileCount_Other" xml:space="preserve"><value>Akan mengenali teks dalam gambar {0} dan menyimpan file teks UTF-8.</value></data>
+  <data name="Extra_OcrClipboardCount_One" xml:space="preserve"><value>Akan mengenali teks dalam gambar {0} untuk clipboard.</value></data>
+  <data name="Extra_OcrClipboardCount_Other" xml:space="preserve"><value>Akan mengenali teks dalam gambar {0} untuk clipboard.</value></data>
+  <data name="Extra_OcrResult_One" xml:space="preserve"><value>Teks yang dikenali dari gambar {0} siap untuk clipboard.</value></data>
+  <data name="Extra_OcrResult_Other" xml:space="preserve"><value>Teks yang dikenali dari gambar {0} siap untuk clipboard.</value></data>
+  <data name="ImagesPack_Title_Compare" xml:space="preserve"><value>Bandingkan Gambar</value></data>
+  <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>Membuat perbandingan berdampingan dengan gambar perbedaan yang menyoroti piksel yang berubah.</value></data>
+  <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>Gambar memiliki dimensi yang berbeda. Gambar kedua akan diskalakan agar sesuai dengan gambar pertama.</value></data>
+  <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % piksel yang berubah</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>Konversi SVG ke PNG</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>Menampilkan grafik SVG statis yang didukung sebagai gambar PNG transparan baru, yang disesuaikan dengan resolusi yang Anda pilih.</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Lebar target (piksel)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Tinggi target (piksel)</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>Gunakan ukuran kanvas yang tepat</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>Membuat PNG dengan lebar dan tinggi yang tepat sesuai target. Memusatkan gambar dengan padding transparan, tanpa peregangan atau pemotongan. Saat dimatikan, lebar dan tinggi adalah batas maksimum.</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>Akan membuat gambar PNG dengan ukuran tepat {0} × {1} piksel, dengan gambar yang terpusat dan proporsional serta padding transparan.</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>Berkas SVG</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>Renderer SVG tidak tersedia.</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>SVG tidak valid, melebihi batas, atau berisi konten yang tidak didukung. Gunakan bentuk statis, teks, dan gradien dengan dimensi viewBox atau piksel; sumber daya eksternal dan konten aktif ditolak.</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>Mempertahankan rasio aspek dan transparansi. Hanya mendukung bentuk statis, teks, dan gradien. Skrip, stylesheet, animasi, gambar tersemat, referensi penggunaan, dan sumber daya eksternal ditolak. Batas input: 1 MiB dan 5.000 elemen; batas output: 40 juta piksel.</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>Input SVG tidak dapat dibaca.</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>SVG statis tidak dapat dirender.</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>Vektorisasi PNG ke SVG</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>Menjiplak wilayah warna PNG terkuantisasi ke dalam jalur poligon SVG tertutup untuk logo dan ilustrasi sederhana.</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>Mode warna</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>Warna</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>Hitam dan putih</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>Tingkat Detail</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>Rendah (hingga 256 px, 8 warna)</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>Sedang (hingga 512 px, 16 warna)</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>Tinggi (hingga 1024 px, 32 warna)</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>Ambang batas kecerahan hitam/putih</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>Gambar PNG</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>Membuat jalur poligon asli, bukan bitmap yang disematkan. Terbaik untuk logo datar dan ilustrasi sederhana; foto, gradien, teks halus, dan kurva halus kehilangan detail. Mode warna mengkuantisasi warna dan alfa; mode hitam/putih mengatur ambang batas kecerahan dan alfa. Pemrosesan menggunakan grid kerja 256/512/1024 px sambil mempertahankan ukuran tampilan asli. Batas sumber: 16 juta piksel; kompleksitas: 250.000 tepi batas; SVG: 5 MiB. Input yang hanya transparan atau terlalu kompleks akan gagal.</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>PNG tidak dapat divetorisasi: tidak ada bentuk yang terlihat, dimensi tidak didukung, atau kompleksitas kontur yang berlebihan. Coba detail yang lebih rendah atau logo yang lebih sederhana.</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0 mempertahankan ukuran asli.</value>
+  </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>Edit Gambar Secara Visual</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>Ubah ukuran, putar, dan posisikan satu gambar pada kanvas transparan, lalu simpan sebagai PNG baru.</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>Lebar kanvas (piksel)</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>Tinggi kanvas (piksel)</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>Lebar Gambar (piksel)</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>Tinggi Gambar (piksel)</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>Offset horizontal dari tengah kanvas (piksel)</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>Offset vertikal dari tengah kanvas (piksel)</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>Rotasi searah jarum jam (derajat)</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0 menggunakan ukuran sumber atau menyesuaikan gambar secara proporsional di dalam kanvas.</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>Kanvas atau gambar melebihi ukuran yang didukung: 10.000 piksel per sisi dan 40 juta piksel.</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>Gambar tidak dapat dimuat atau tata letaknya melebihi batas yang didukung.</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>Akan membuat PNG baru berukuran {0} × {1} piksel dengan tata letak gambar ini.</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>Mempertahankan transparansi dan file sumber; menghapus metadata. Gambar animasi menggunakan frame pertamanya. Ini adalah ekspor PNG raster.</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>Konten gambar di luar kanvas akan dipotong. Gunakan Sesuaikan gambar atau Kanvas ke gambar untuk mempertahankan gambar lengkap.</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>Metode penskalaan</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>Skala Standar</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>Kualitas Tinggi (Lanczos)</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>Resampling Lanczos lokal dengan penajaman ringan saat memperbesar. Dapat meningkatkan kejernihan tepi; tidak dapat merekonstruksi detail yang hilang.</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>Metode penskalaan berkualitas tinggi tidak tersedia di host ini.</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>Pratinjau pengubahan ukuran tidak dapat dibuat. Periksa dimensi gambar dan output, atau gunakan opsi normal.</value></data>
+</root>

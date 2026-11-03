@@ -1,0 +1,6 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>L&apos;image n&apos;a pas pu être décodée.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>L&apos;image n&apos;a pas pu être encodée.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Format de sortie non pris en charge.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>L&apos;imagerie Windows ne peut pas conserver les métadonnées.</value></data>
+</root>

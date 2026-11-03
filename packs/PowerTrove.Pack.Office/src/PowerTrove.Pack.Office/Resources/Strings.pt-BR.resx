@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Ferramentas do Office</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Documentos do Office</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Converter Word para PDF</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Cria novos PDFs usando o Microsoft Word instalado.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Converter Excel para PDF</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Cria novos PDFs usando o Microsoft Excel instalado e seu layout de impressão.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>Converter PowerPoint para PDF</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Cria novos PDFs usando o Microsoft PowerPoint instalado.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>Converter PDF para Word</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Cria cópias editáveis ​​em DOCX usando o Word PDF Reflow instalado.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>O Microsoft Word é necessário.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>O Microsoft Excel é necessário.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>O Microsoft PowerPoint é necessário.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Convertendo</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Exportará um documento do Office para um novo PDF.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>Will export {0} Office documents to new PDFs.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Converterá um PDF em um novo documento do Word.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>Converterá {0} PDFs em novos documentos do Word.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Requer o Office instalado localmente. O layout depende do Office, das fontes e das configurações de impressão. Conteúdo de macro não compatível e arquivos CSV com fórmulas serão rejeitados; documentos com mais de 64 MiB e alguns contêineres legados não são compatíveis.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>O recurso Reflow do Word para PDF pode alterar o layout, as fontes, as tabelas e as quebras de página. As páginas digitalizadas podem permanecer como imagens. A preferência de aviso de conversão do Word 16.0 é alterada temporariamente e restaurada posteriormente.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>O aplicativo Microsoft Office necessário não está instalado.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>O documento está protegido por senha.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>Este documento contém macros ou fórmulas que não podem ser abertas com segurança para conversão.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>O formato do documento é inválido, não suportado ou excede os limites de conversão.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>Não foi possível obter uma instância separada do Office. Feche o aplicativo do Office e tente novamente.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>A conversão do Office expirou. Nenhum resultado foi salvo.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>O Office não conseguiu converter este documento. Nenhum resultado foi salvo.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>A preferência temporária do Word não pôde ser restaurada. Verifique a configuração de aviso de conversão de PDF no Word.</value></data>
+</root>

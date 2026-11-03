@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ImageExportAction_Title_Convert" xml:space="preserve">
+    <value>{0}形式に変換</value>
+  </data>
+  <data name="ImageExportAction_Desc_Convert" xml:space="preserve">
+    <value>選択した画像を{0}に変換します。</value>
+  </data>
+  <data name="ImageExportAction_Operation_Convert" xml:space="preserve">
+    <value>{0}を{1}に変換します。</value>
+  </data>
+  <data name="ImageExportAction_Title_Resize" xml:space="preserve">
+    <value>画像のサイズ変更</value>
+  </data>
+  <data name="ImageExportAction_Desc_Resize" xml:space="preserve">
+    <value>選択した画像を最大幅または最大高さにサイズ変更します。</value>
+  </data>
+  <data name="ImageExportAction_ParamTitle_Size" xml:space="preserve">
+    <value>最大サイズ (ピクセル)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1920" xml:space="preserve">
+    <value>1920x1080 (HD)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1280" xml:space="preserve">
+    <value>1280x720 (Web)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_800" xml:space="preserve">
+    <value>800x600 (Eメール)</value>
+  </data>
+  <data name="ImageExportAction_Operation_Resize" xml:space="preserve">
+    <value>{0} を {1}x{1} ピクセルに収まるようにリサイズします。</value>
+  </data>
+  <data name="ImageExportAction_Title_RemoveMeta" xml:space="preserve">
+    <value>画像メタデータを削除</value>
+  </data>
+  <data name="ImageExportAction_Desc_RemoveMeta" xml:space="preserve">
+    <value>選択した画像からEXIFデータ（GPS位置情報など）を削除したコピーを作成します。</value>
+  </data>
+  <data name="ImageExportAction_Operation_RemoveMeta" xml:space="preserve">
+    <value>メタデータなしで{0}のコピーを作成します。</value>
+  </data>
+  <data name="Image_File" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="Image_Files" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="Image_Operation_Progress" xml:space="preserve">
+    <value>エクスポート</value>
+  </data>
+  <data name="ImagesPack_Title" xml:space="preserve">
+    <value>画像ツール</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertWebP" xml:space="preserve">
+    <value>WebP形式に変換</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertWebP" xml:space="preserve">
+    <value>選択した画像をWebP（Web用のコンパクトフォーマット）に変換します。</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertAvif" xml:space="preserve">
+    <value>AVIF形式に変換</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertAvif" xml:space="preserve">
+    <value>選択した画像を、高圧縮の最新フォーマットであるAVIFに変換します。</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertJpeg" xml:space="preserve">
+    <value>JPEG形式に変換</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertJpeg" xml:space="preserve">
+    <value>選択した画像（HEIC写真を含む）を、互換性の高いJPEGファイルに変換します。</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertPng" xml:space="preserve">
+    <value>PNG形式に変換</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertPng" xml:space="preserve">
+    <value>選択した画像をロスレスPNGファイルに変換します。</value>
+  </data>
+  <data name="ImagesPack_Title_Resize" xml:space="preserve">
+    <value>画像のサイズ変更</value>
+  </data>
+  <data name="ImagesPack_Desc_Resize" xml:space="preserve">
+    <value>最大幅と最大高さに収まるようにサイズ変更されたコピーを作成し、アスペクト比を維持します。</value>
+  </data>
+  <data name="ImagesPack_Title_Compress" xml:space="preserve">
+    <value>画像を圧縮</value>
+  </data>
+  <data name="ImagesPack_Desc_Compress" xml:space="preserve">
+    <value>品質を下げてサイズを制限することで、より小さなコピーを作成します。元の画像は変更されません。</value>
+  </data>
+  <data name="ImagesPack_Title_RemoveMetadata" xml:space="preserve">
+    <value>画像メタデータを削除</value>
+  </data>
+  <data name="ImagesPack_Desc_RemoveMetadata" xml:space="preserve">
+    <value>カメラの詳細や位置情報など、プライバシーに関わるメタデータを削除したコピーを作成します。</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Title" xml:space="preserve">
+    <value>品質</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Desc" xml:space="preserve">
+    <value>値が大きいほど詳細度が高くなり、ファイルサイズが大きくなります。</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxWidth_Title" xml:space="preserve">
+    <value>最大幅 (ピクセル)</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxHeight_Title" xml:space="preserve">
+    <value>最大高さ (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_AllowUpscale_Title" xml:space="preserve">
+    <value>小さい画像を拡大する</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxDimension_Title" xml:space="preserve">
+    <value>最大幅/高さ (ピクセル、0 = サイズ保持)</value>
+  </data>
+  <data name="ImageExportAction_Param_StripMetadata_Title" xml:space="preserve">
+    <value>メタデータ（カメラ、位置情報）を削除</value>
+  </data>
+  <data name="ImageExportAction_Op_WillProcess" xml:space="preserve">
+    <value>処理します</value>
+  </data>
+  <data name="ImageExportAction_Op_WillConvert" xml:space="preserve">
+    <value>変換します</value>
+  </data>
+  <data name="ImageExportAction_Op_To" xml:space="preserve">
+    <value> to {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_FitWithin" xml:space="preserve">
+    <value>{0} x {1} ピクセルに収まる</value>
+  </data>
+  <data name="ImageExportAction_Op_NoEnlargement" xml:space="preserve">
+    <value> （拡大なし）</value>
+  </data>
+  <data name="ImageExportAction_Op_Quality" xml:space="preserve">
+    <value>品質 {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_RemoveMeta" xml:space="preserve">
+    <value>場所などのメタデータを削除</value>
+  </data>
+  <data name="ImageExportAction_Op_KeepMeta" xml:space="preserve">
+    <value>メタデータを保持</value>
+  </data>
+  <data name="ImageExportAction_Warn_Animation" xml:space="preserve">
+    <value>アニメーション画像は静止画（最初のフレーム）に変換されます。</value>
+  </data>
+  <data name="ImageExportAction_Warn_Transparency" xml:space="preserve">
+    <value>JPEGには透明度がありません。透明な領域はコーデックによって白または黒になります。</value>
+  </data>
+  <data name="ImageExportAction_Warn_PreserveMetadata" xml:space="preserve">
+    <value>インストールされているコーデックではメタデータは保持されません。</value>
+  </data>
+  <data name="ImageExportAction_Err_TooLarge" xml:space="preserve">
+    <value>画像ファイルが大きすぎます。</value>
+  </data>
+  <data name="ImageExportAction_Err_Dimensions" xml:space="preserve">
+    <value>画像のサイズがサポートされている制限を超えています。</value>
+  </data>
+  <data name="ImageExportAction_Err_UnknownFormat" xml:space="preserve">
+    <value>画像形式を特定できませんでした。</value>
+  </data>
+  <data name="ImageExportAction_Err_NoCodec" xml:space="preserve">
+    <value>インストールされているコーデックでは、この{0}画像を{1}に変換できません。</value>
+  </data>
+  <data name="ImageTarget_Original" xml:space="preserve">
+    <value>元の形式</value>
+  </data>
+  <data name="ImageExportAction_Unavailable" xml:space="preserve">
+    <value>{0} 個のエンコーディングはこのシステムでは利用できません。</value>
+  </data>
+  <data name="Raster_DecodeFailed" xml:space="preserve"><value>画像をデコードできなかったか、ラスタの制限を超えています。</value></data>
+  <data name="Raster_EncodeFailed" xml:space="preserve"><value>画像をエンコードできませんでした。</value></data>
+  <data name="Raster_NoCodec" xml:space="preserve"><value>インストールされているラスターコーデックがこの操作をサポートしていません。</value></data>
+  <data name="Raster_TooManyPixels" xml:space="preserve"><value>画像またはキャンバスのサイズが6,000万ピクセル、または一辺30,000ピクセルを超えています。</value></data>
+  <data name="Raster_InvalidRatio" xml:space="preserve"><value>縦横比（W:H）を正の値で入力してください。</value></data>
+  <data name="Raster_ProcessCount" xml:space="preserve"><value>{0}枚の画像の変換済みコピーを作成します。</value></data>
+  <data name="Raster_MetadataRemoved" xml:space="preserve"><value>メタデータは削除されます。オリジナルファイルは変更されません。</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>出力形式</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>[Microsoft Store の HEVC ビデオ拡張機能](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7) を使用すると、Windows で HEIC 形式で保存できます。「出力形式」で別の形式を選択することもできます。</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} はここに保存できないため、結果は {1} として保存されます。</value></data>
+  <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>透明なパディングはPNGとWebPでのみ利用可能です。その他の形式では白が使用されます。</value></data>
+  <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>PNGファイルは既に最適化後のサイズよりも小さくなっています。</value></data>
+  <data name="Raster_AlreadySmall" xml:space="preserve"><value>画像は既に目標サイズを下回っています。</value></data>
+  <data name="Raster_TargetUnreachable" xml:space="preserve"><value>品質とサイズ変更の制限内で、目標サイズに到達できませんでした。</value></data>
+  <data name="Raster_TargetPreview" xml:space="preserve"><value>{0}個の画像をそれぞれ最大{1}KBに圧縮します。画質やサイズが縮小される場合があります。</value></data>
+  <data name="Raster_TargetResult" xml:space="preserve"><value>{0} 個の画像が要求されたサイズ制限内です。</value></data>
+  <data name="Raster_CombineCount" xml:space="preserve"><value>{0}個の画像をファイル名順に結合します。</value></data>
+  <data name="Raster_CombineExtension" xml:space="preserve"><value>アルファチャンネルを含むソースにはPNG、それ以外の場合はJPEGが使用されます。</value></data>
+  <data name="Raster_MetadataFailed" xml:space="preserve"><value>画像のメタデータが破損しているか、サポートされている制限を超えています。</value></data>
+  <data name="Raster_InfoPreview" xml:space="preserve"><value>{0} 画像に関する識別情報を含まない詳細情報を表示します。</value></data>
+  <data name="Raster_InfoLine" xml:space="preserve"><value>画像 {0}: {1}, {2} × {3} ピクセル、{4:0.##} MP; DPI {5} × {6}; 向き {7}; 位置: {8}; カラープロファイル: {9}; フレーム: {10}。</value></data>
+  <data name="Raster_Unknown" xml:space="preserve"><value>利用不可</value></data>
+  <data name="Raster_Yes" xml:space="preserve"><value>はい</value></data>
+  <data name="Raster_No" xml:space="preserve"><value>いいえ</value></data>
+  <data name="Raster_Ratio" xml:space="preserve"><value>アスペクト比</value></data>
+  <data name="Raster_CustomRatio" xml:space="preserve"><value>カスタム比率（幅：高さ）</value></data>
+  <data name="Raster_Anchor" xml:space="preserve"><value>トリミングアンカー</value></data>
+  <data name="Raster_Mode" xml:space="preserve"><value>パディングモード</value></data>
+  <data name="Raster_BorderPx" xml:space="preserve"><value>境界線の幅（ピクセル）</value></data>
+  <data name="Raster_Color" xml:space="preserve"><value>境界線の色</value></data>
+  <data name="Raster_Transparent" xml:space="preserve"><value>透明なパディング</value></data>
+  <data name="Raster_Colors" xml:space="preserve"><value>パレットカラー</value></data>
+  <data name="Raster_Dither" xml:space="preserve"><value>ディザリンググラデーション</value></data>
+  <data name="Raster_Sizes" xml:space="preserve"><value>アイコンサイズ</value></data>
+  <data name="Raster_Format" xml:space="preserve"><value>出力形式</value></data>
+  <data name="Raster_TargetKb" xml:space="preserve"><value>最大サイズ (KB)</value></data>
+  <data name="Raster_Gap" xml:space="preserve"><value>ギャップ（ピクセル）</value></data>
+  <data name="Raster_Background" xml:space="preserve"><value>背景色</value></data>
+  <data name="Raster_Columns" xml:space="preserve"><value>列数（0 = 自動）</value></data>
+  <data name="Raster_CellSize" xml:space="preserve"><value>セルサイズ（ピクセル）</value></data>
+  <data name="Raster_Fit" xml:space="preserve"><value>画像をフィットさせる</value></data>
+  <data name="Raster_Direction" xml:space="preserve"><value>方向</value></data>
+  <data name="Raster_Align" xml:space="preserve"><value>配置</value></data>
+  <data name="Raster_Title_Crop" xml:space="preserve"><value>アスペクト比に合わせてトリミング</value></data>
+  <data name="Raster_Title_Pad" xml:space="preserve"><value>枠線を追加または正方形にする</value></data>
+  <data name="Raster_Title_Grayscale" xml:space="preserve"><value>白黒に変換</value></data>
+  <data name="Raster_Title_OptimizePng" xml:space="preserve"><value>PNGを最適化（色数を減らす）</value></data>
+  <data name="Raster_Title_Icon" xml:space="preserve"><value>アイコン（ICO）を作成</value></data>
+  <data name="Raster_Title_ConvertOther" xml:space="preserve"><value>その他の形式に変換</value></data>
+  <data name="Raster_Title_TargetSize" xml:space="preserve"><value>ファイルサイズに合わせて圧縮</value></data>
+  <data name="Raster_Title_Stitch" xml:space="preserve"><value>画像を並べて結合</value></data>
+  <data name="Raster_Title_Collage" xml:space="preserve"><value>フォトグリッドを作成</value></data>
+  <data name="Raster_Title_Info" xml:space="preserve"><value>画像の詳細を表示</value></data>
+  <data name="Raster_Description_Crop" xml:space="preserve"><value>選択した比率とアンカーポイントを使用して、トリミングしたコピーを作成します。</value></data>
+  <data name="Raster_Description_Pad" xml:space="preserve"><value>枠線を追加するか、画像を正方形にパディングします。</value></data>
+  <data name="Raster_Description_Grayscale" xml:space="preserve"><value>画像形式を維持したまま、グレースケールコピーを作成します。</value></data>
+  <data name="Raster_Description_OptimizePng" xml:space="preserve"><value>アルファ値を考慮したパレットを使用して、より小さなPNGコピーを作成します。</value></data>
+  <data name="Raster_Description_Icon" xml:space="preserve"><value>ファビコンまたはWindowsサイズのPNGベースのアイコンを作成します。</value></data>
+  <data name="Raster_Description_ConvertOther" xml:space="preserve"><value>静止画像をTIFF、BMP、GIF、またはICO形式でエクスポートします。</value></data>
+  <data name="Raster_Description_TargetSize" xml:space="preserve"><value>サイズ制限に適合する画像品質と寸法を検索します。</value></data>
+  <data name="Raster_Description_Stitch" xml:space="preserve"><value>画像を共通の辺に拡大縮小して結合します。</value></data>
+  <data name="Raster_Description_Collage" xml:space="preserve"><value>画像をトリミングまたはパディングしてグリッド状に配置します。</value></data>
+  <data name="Raster_Description_Info" xml:space="preserve"><value>メタデータ値を公開せずに、寸法とプライバシーフラグを表示します。</value></data>
+  <data name="Raster_Choice_1_1" xml:space="preserve"><value>1:1</value></data>
+  <data name="Raster_Choice_4_3" xml:space="preserve"><value>4:3</value></data>
+  <data name="Raster_Choice_3_2" xml:space="preserve"><value>3:2</value></data>
+  <data name="Raster_Choice_16_9" xml:space="preserve"><value>16:9</value></data>
+  <data name="Raster_Choice_9_16" xml:space="preserve"><value>9:16</value></data>
+  <data name="Raster_Choice_4_5" xml:space="preserve"><value>4:5</value></data>
+  <data name="Raster_Choice_custom" xml:space="preserve"><value>カスタム</value></data>
+  <data name="Raster_Choice_center" xml:space="preserve"><value>中央揃え</value></data>
+  <data name="Raster_Choice_top" xml:space="preserve"><value>上部</value></data>
+  <data name="Raster_Choice_bottom" xml:space="preserve"><value>下</value></data>
+  <data name="Raster_Choice_left" xml:space="preserve"><value>左向き</value></data>
+  <data name="Raster_Choice_right" xml:space="preserve"><value>右</value></data>
+  <data name="Raster_Choice_square" xml:space="preserve"><value>正方形</value></data>
+  <data name="Raster_Choice_border" xml:space="preserve"><value>境界線</value></data>
+  <data name="Raster_Choice_favicon" xml:space="preserve"><value>ファビコン（16、32、48ビット）</value></data>
+  <data name="Raster_Choice_windows" xml:space="preserve"><value>Windows (16～256ビット)</value></data>
+  <data name="Raster_Choice_tiff" xml:space="preserve"><value>TIFF</value></data>
+  <data name="Raster_Choice_bmp" xml:space="preserve"><value>BMP</value></data>
+  <data name="Raster_Choice_gif" xml:space="preserve"><value>GIF（シングルフレーム）</value></data>
+  <data name="Raster_Choice_ico" xml:space="preserve"><value>ICO</value></data>
+  <data name="Raster_Choice_same" xml:space="preserve"><value>元の形式</value></data>
+  <data name="Raster_Choice_jpeg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="Raster_Choice_webp" xml:space="preserve"><value>WebP</value></data>
+  <data name="Raster_Choice_cover" xml:space="preserve"><value>塗りつぶしとトリミング</value></data>
+  <data name="Raster_Choice_contain" xml:space="preserve"><value>パディングを付けてフィットさせる</value></data>
+  <data name="Raster_Choice_horizontal" xml:space="preserve"><value>水平方向</value></data>
+  <data name="Raster_Choice_vertical" xml:space="preserve"><value>垂直方向</value></data>
+  <data name="Raster_Choice_start" xml:space="preserve"><value>開始</value></data>
+  <data name="Raster_Choice_end" xml:space="preserve"><value>終了</value></data>
+  <data name="Extra_JpegMetadataKept" xml:space="preserve"><value>JPEG画像の品質とメタデータ（位置情報を含む）は保持されます。一部の画像サイズはトリミングなしではサポートされません。埋め込みプレビューは以前の向きを保持します。</value></data>
+  <data name="Extra_RotationUnavailable" xml:space="preserve"><value>必要な画像回転コーデックが利用できません。</value></data>
+  <data name="Extra_AlreadyUpright" xml:space="preserve"><value>既に縦向きです。</value></data>
+  <data name="Extra_JpegFailed" xml:space="preserve"><value>JPEGを安全に変換できませんでした。</value></data>
+  <data name="Extra_JpegUnsupported" xml:space="preserve"><value>JPEG形式またはサイズが、ロスレス変換に対応していません。</value></data>
+  <data name="Extra_JpegPartialMcu" xml:space="preserve"><value>これらのJPEGサイズは、トリミングなしではロスレス変換できません。元のファイルは変更されません。</value></data>
+  <data name="Extra_GpsFailed" xml:space="preserve"><value>位置情報メタデータを安全に削除できませんでした。</value></data>
+  <data name="Extra_NoGps" xml:space="preserve"><value>GPSデータが見つかりませんでした。</value></data>
+  <data name="Extra_GpsUnavailable" xml:space="preserve"><value>インストールされているコーデックでは、他のメタデータを保持したままGPSデータを削除できません。</value></data>
+  <data name="Extra_GpsResave" xml:space="preserve"><value>画像は検出された元の品質で再保存されます。その他のメタデータは保持されます。これにより、EXIF GPSおよびXMP exif:GPSフィールドは削除されますが、すべての位置情報が削除されるわけではありません。</value></data>
+  <data name="Extra_WatermarkUnavailable" xml:space="preserve"><value>画像透かしエンジンが利用できません。</value></data>
+  <data name="Extra_WatermarkTextInvalid" xml:space="preserve"><value>透かしテキスト（1～500文字、制御文字なし）を入力してください。</value></data>
+  <data name="Extra_WatermarkImageInvalid" xml:space="preserve"><value>画像サイズ制限内で、有効なサポート対象の透かし画像を選択してください。</value></data>
+  <data name="Extra_WatermarkFailed" xml:space="preserve"><value>透かしを適用できませんでした。</value></data>
+  <data name="Extra_FontUnavailable" xml:space="preserve"><value>サポートされている透かしフォントがインストールされていません。</value></data>
+  <data name="Extra_GifUnavailable" xml:space="preserve"><value>アニメーションGIFエンコーダーが利用できません。</value></data>
+  <data name="Extra_GifColors" xml:space="preserve"><value>GIFは限られたパレットを使用します。透明度は白に統合されます。遅延は次の10ミリ秒単位に切り上げられます。</value></data>
+  <data name="Extra_GifFailed" xml:space="preserve"><value>アニメーションをサポートされている制限内でエンコードできませんでした。</value></data>
+  <data name="Extra_FaceUnavailable" xml:space="preserve"><value>このデバイスではローカル顔検出は利用できません。</value></data>
+  <data name="Extra_FaceWarning" xml:space="preserve"><value>検出は保証されません。共有する前にすべての結果を確認してください。正常に実行された場合でも、すべての顔が隠されているとは限りません。</value></data>
+  <data name="Extra_NoFaces" xml:space="preserve"><value>顔が見つかりませんでした。</value></data>
+  <data name="Extra_FaceFailed" xml:space="preserve"><value>顔認識は安全に処理できませんでした。</value></data>
+  <data name="Extra_OcrUnavailable" xml:space="preserve"><value>ローカルOCRは利用できません。Windowsの設定 &gt; 時刻と言語でOCR言語をインストールしてください。</value></data>
+  <data name="Extra_OcrFailed" xml:space="preserve"><value>テキストを認識できませんでした。</value></data>
+  <data name="Extra_OcrTooLarge" xml:space="preserve"><value>認識されたテキストがサポートされている制限を超えています。</value></data>
+  <data name="Extra_NoText" xml:space="preserve"><value>テキストが見つかりませんでした。</value></data>
+  <data name="Extra_Position" xml:space="preserve"><value>位置</value></data>
+  <data name="Extra_Opacity" xml:space="preserve"><value>不透明度（％）</value></data>
+  <data name="Extra_Image" xml:space="preserve"><value>透かし画像</value></data>
+  <data name="Extra_WidthPercent" xml:space="preserve"><value>透かし幅（%）</value></data>
+  <data name="Extra_Text" xml:space="preserve"><value>透かしテキスト</value></data>
+  <data name="Extra_FontSizePercent" xml:space="preserve"><value>フォントサイズ（画像幅に対する割合）</value></data>
+  <data name="Extra_Color" xml:space="preserve"><value>テキストの色</value></data>
+  <data name="Extra_DelayMs" xml:space="preserve"><value>フレーム遅延（ミリ秒）</value></data>
+  <data name="Extra_Loop" xml:space="preserve"><value>アニメーションを繰り返す</value></data>
+  <data name="Extra_MaxSize" xml:space="preserve"><value>最大辺長 (px)</value></data>
+  <data name="Extra_Strength" xml:space="preserve"><value>ピクセル強度</value></data>
+  <data name="Extra_Output" xml:space="preserve"><value>テキスト出力</value></data>
+  <data name="Extra_Language" xml:space="preserve"><value>認識言語</value></data>
+  <data name="Extra_Title_rotate-right" xml:space="preserve"><value>右回転（90°）</value></data>
+  <data name="Extra_Description_rotate-right" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_rotate-left" xml:space="preserve"><value>左回転（90°）</value></data>
+  <data name="Extra_Description_rotate-left" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_rotate-180" xml:space="preserve"><value>180°回転</value></data>
+  <data name="Extra_Description_rotate-180" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_flip-horizontal" xml:space="preserve"><value>水平方向に反転する</value></data>
+  <data name="Extra_Description_flip-horizontal" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_flip-vertical" xml:space="preserve"><value>垂直方向に反転する</value></data>
+  <data name="Extra_Description_flip-vertical" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_auto-rotate" xml:space="preserve"><value>カメラの向きに合わせてまっすぐにする</value></data>
+  <data name="Extra_Description_auto-rotate" xml:space="preserve"><value>回転またはミラーリングされたコピーを作成し、向きを正規化します。</value></data>
+  <data name="Extra_Title_WatermarkText" xml:space="preserve"><value>テキストに透かしを入れる</value></data>
+  <data name="Extra_Description_WatermarkText" xml:space="preserve"><value>元の画像を変更せずに、透かし入りのコピーを作成します。</value></data>
+  <data name="Extra_Title_WatermarkImage" xml:space="preserve"><value>画像に透かしを入れる</value></data>
+  <data name="Extra_Description_WatermarkImage" xml:space="preserve"><value>元の画像を変更せずに、透かし入りのコピーを作成します。</value></data>
+  <data name="Extra_Title_AnimatedGif" xml:space="preserve"><value>アニメーションGIFを作成</value></data>
+  <data name="Extra_Description_AnimatedGif" xml:space="preserve"><value>選択した静止画像からアニメーションを作成します。</value></data>
+  <data name="Extra_Title_Ocr" xml:space="preserve"><value>画像からテキストをコピー（OCR）</value></data>
+  <data name="Extra_Description_Ocr" xml:space="preserve"><value>画像テキストをローカルファイルまたはクリップボードに認識します。</value></data>
+  <data name="Extra_Title_BlurFaces" xml:space="preserve"><value>顔のぼかし</value></data>
+  <data name="Extra_Description_BlurFaces" xml:space="preserve"><value>ローカル顔検出を使用して、ピクセル化されたコピーを作成します。</value></data>
+  <data name="Extra_Title_RemoveLocation" xml:space="preserve"><value>位置情報（GPS）のみを削除</value></data>
+  <data name="Extra_Description_RemoveLocation" xml:space="preserve"><value>EXIF/XMP GPSフィールドを削除し、その他のメタデータは保持します。</value></data>
+  <data name="Extra_Choice_top-left" xml:space="preserve"><value>左上</value></data>
+  <data name="Extra_Choice_top" xml:space="preserve"><value>上部</value></data>
+  <data name="Extra_Choice_top-right" xml:space="preserve"><value>右上</value></data>
+  <data name="Extra_Choice_left" xml:space="preserve"><value>左向き</value></data>
+  <data name="Extra_Choice_center" xml:space="preserve"><value>中央揃え</value></data>
+  <data name="Extra_Choice_right" xml:space="preserve"><value>右</value></data>
+  <data name="Extra_Choice_bottom-left" xml:space="preserve"><value>左下</value></data>
+  <data name="Extra_Choice_bottom" xml:space="preserve"><value>下</value></data>
+  <data name="Extra_Choice_bottom-right" xml:space="preserve"><value>右下</value></data>
+  <data name="Extra_Choice_tiled" xml:space="preserve"><value>タイル表示</value></data>
+  <data name="Extra_Choice_light" xml:space="preserve"><value>ライト</value></data>
+  <data name="Extra_Choice_strong" xml:space="preserve"><value>強力</value></data>
+  <data name="Extra_Choice_clipboard" xml:space="preserve"><value>クリップボード</value></data>
+  <data name="Extra_Choice_file" xml:space="preserve"><value>UTF-8テキストファイル</value></data>
+  <data name="Extra_Choice_auto" xml:space="preserve"><value>Windows 言語設定</value></data>
+  <data name="Extra_RotateCount_One" xml:space="preserve"><value>回転または反転した画像コピーを{0}個作成します。</value></data>
+  <data name="Extra_RotateCount_Other" xml:space="preserve"><value>回転または反転した画像コピーを{0}個作成します。</value></data>
+  <data name="Extra_RemoveGpsCount_One" xml:space="preserve"><value>{0} 画像から GPS メタデータを削除します。</value></data>
+  <data name="Extra_RemoveGpsCount_Other" xml:space="preserve"><value>{0} 画像から GPS メタデータを削除します。</value></data>
+  <data name="Extra_WatermarkCount_One" xml:space="preserve"><value>{0}個の画像コピーに透かしを追加します。</value></data>
+  <data name="Extra_WatermarkCount_Other" xml:space="preserve"><value>{0}個の画像コピーに透かしを追加します。</value></data>
+  <data name="Extra_GifCount_One" xml:space="preserve"><value>{0}枚の画像からアニメーションを作成します。</value></data>
+  <data name="Extra_GifCount_Other" xml:space="preserve"><value>ファイル名順に{0}枚の画像からアニメーションを作成します。</value></data>
+  <data name="Extra_FaceCount_One" xml:space="preserve"><value>{0}個の画像コピー内の顔を検出し、ピクセル化します。</value></data>
+  <data name="Extra_FaceCount_Other" xml:space="preserve"><value>{0}個の画像コピー内の顔を検出し、ピクセル化します。</value></data>
+  <data name="Extra_OcrFileCount_One" xml:space="preserve"><value>{0} 画像内のテキストを認識し、UTF-8 テキストファイルとして保存します。</value></data>
+  <data name="Extra_OcrFileCount_Other" xml:space="preserve"><value>{0} 画像内のテキストを認識し、UTF-8 テキストファイルとして保存します。</value></data>
+  <data name="Extra_OcrClipboardCount_One" xml:space="preserve"><value>{0} 画像内のテキストを認識し、クリップボードにコピーします。</value></data>
+  <data name="Extra_OcrClipboardCount_Other" xml:space="preserve"><value>{0} 画像内のテキストを認識し、クリップボードにコピーします。</value></data>
+  <data name="Extra_OcrResult_One" xml:space="preserve"><value>{0}枚の画像から認識されたテキストがクリップボードにコピーされます。</value></data>
+  <data name="Extra_OcrResult_Other" xml:space="preserve"><value>{0}枚の画像から認識されたテキストがクリップボードにコピーされます。</value></data>
+  <data name="ImagesPack_Title_Compare" xml:space="preserve"><value>画像の比較</value></data>
+  <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>変更されたピクセルを強調表示する差分画像を用いて、並べて比較した画像を作成します。</value></data>
+  <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>画像のサイズが異なります。2番目の画像は1番目の画像に合わせて拡大縮小されます。</value></data>
+  <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % 変更されたピクセル数</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>SVGファイルをPNGに変換</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>サポートされている静的SVGグラフィックを、選択した解像度に合わせて新しい透明なPNG画像としてレンダリングします。</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>目標幅（ピクセル）</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>目標高さ（ピクセル）</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>キャンバスサイズを正確に指定してください。</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>指定された幅と高さでPNGを作成します。アートワークは、伸縮や切り抜きを行わずに、透明なパディングで中央に配置されます。オフの場合、幅と高さは最大値となります。</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>{0}×{1}ピクセルのPNG画像を作成します。中央揃えで、縦横比が維持され、透明なパディングが適用されます。</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>SVGファイル</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>SVGレンダラーが利用できません。</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>SVGファイルが無効、制限を超えている、またはサポートされていないコンテンツが含まれています。静的な図形、テキスト、グラデーションをviewBoxまたはピクセルサイズで使用してください。外部リソースとアクティブコンテンツは拒否されます。</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>アスペクト比と透明度を保持します。静的な図形、テキスト、グラデーションのみをサポートします。スクリプト、スタイルシート、アニメーション、埋め込み画像、参照、外部リソースは拒否されます。入力制限：1 MiB、要素数：5,000個。出力制限：4,000万ピクセル。</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>SVG入力ファイルを読み取れませんでした。</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>静的SVGをレンダリングできませんでした。</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>PNGをSVGにベクター化</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>量子化されたPNGカラー領域を、ロゴやシンプルなイラスト用の閉じたSVGポリゴンパスに変換します。</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>カラーモード</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>カラー</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>白黒</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>詳細レベル</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>低解像度（最大256ピクセル、8色）</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>中サイズ（最大512ピクセル、16色）​​</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>高解像度（最大1024ピクセル、32色）</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>白黒の明るさのしきい値</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>PNG画像</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>埋め込みビットマップではなく、実際のポリゴンパスを作成します。フラットなロゴやシンプルなイラストに最適です。写真、グラデーション、細かいテキスト、滑らかな曲線はディテールが失われます。カラーモードでは、色とアルファが量子化されます。白黒モードでは、輝度とアルファ値を閾値処理します。処理には、元の表示サイズを維持しながら、256/512/1024ピクセルの作業グリッドを使用します。ソースの制限：1600万ピクセル、複雑さ：境界エッジ数25万、SVGファイルサイズ：5MiB。透明のみの入力、または過度に複雑な入力は失敗します。</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>PNGファイルをベクター化できませんでした。図形が表示されない、サイズがサポートされていない、または輪郭が複雑すぎる可能性があります。ディテールを落とすか、よりシンプルなロゴをお試しください。</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0は元のサイズを維持します。</value>
+  </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>画像を視覚的に編集</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>透明なキャンバス上で画像1枚のサイズ変更、回転、位置調整を行い、新しいPNGファイルとして保存します。</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>キャンバスの幅（ピクセル）</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>キャンバスの高さ（ピクセル）</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>画像の幅（ピクセル）</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>画像の高さ（ピクセル）</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>キャンバス中心からの水平方向のオフセット（ピクセル）</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>キャンバス中心からの垂直方向のオフセット（ピクセル）</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>時計回り回転（度）</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0はソースサイズを使用するか、画像をキャンバス内に比例的にフィットさせます。</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>キャンバスまたは画像がサポートされているサイズ（一辺10,000ピクセル、4,000万ピクセル）を超えています。</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>画像を読み込めなかったか、レイアウトがサポートされている制限を超えています。</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>この画像レイアウトで、{0}×{1}ピクセルの新しいPNG画像を作成します。</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>透明度とソースファイルを保持し、メタデータを削除します。アニメーション画像は最初のフレームを使用します。これはラスターPNG形式でエクスポートされます。</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>キャンバス外の画像コンテンツは切り取られます。画像全体を表示するには、「画像を合わせる」または「キャンバスを画像に合わせる」を使用してください。</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>拡大縮小方法</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>標準スケーリング</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>高画質（Lanczos）</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>拡大時に、ローカルランチョスリサンプリングと軽度のシャープネス処理を行います。エッジの鮮明度は向上しますが、欠落したディテールを復元することはできません。</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>このホストでは、高画質スケーリング方法が利用できません。</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>サイズ変更プレビューを作成できませんでした。画像と出力サイズを確認するか、通常のオプションを使用してください。</value></data>
+</root>

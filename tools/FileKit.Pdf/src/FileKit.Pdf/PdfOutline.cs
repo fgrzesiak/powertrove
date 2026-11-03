@@ -2,7 +2,8 @@ using System.Text;
 
 namespace FileKit.Pdf;
 
-public sealed record PdfOutlineItem(string Title, int? PageIndex, IReadOnlyList<PdfOutlineItem> Children);
+/// <summary>An outline (bookmark) entry; <c>Top</c> is the top of its destination view in PDF units, when the destination names one.</summary>
+public sealed record PdfOutlineItem(string Title, int? PageIndex, IReadOnlyList<PdfOutlineItem> Children, double? Top = null);
 
 public static class PdfOutline
 {
@@ -73,7 +74,7 @@ public static class PdfOutline
             }
 
             string title = ExtractTitle(state.Document.Resolve(current["Title"]));
-            int? pageIndex = ResolveDest(state, current);
+            var target = state.Destinations.OfItem(current);
 
             IReadOnlyList<PdfOutlineItem> children = Array.Empty<PdfOutlineItem>();
             var firstChildObj = current["First"];
@@ -82,7 +83,7 @@ public static class PdfOutline
                 children = ReadLevel(state, firstChildObj, depth + 1, cancellationToken);
             }
 
-            items.Add(new PdfOutlineItem(title, pageIndex, children));
+            items.Add(new PdfOutlineItem(title, target?.PageIndex, children, target?.Top));
 
             currentObj = current["Next"];
         }
@@ -109,177 +110,6 @@ public static class PdfOutline
         return string.Empty;
     }
 
-    private static int? ResolveDest(ReaderState state, PdfDictionary outlineItem)
-    {
-        var dest = state.Document.Resolve(outlineItem["Dest"]);
-        if (dest != null)
-        {
-            return ResolveDestValue(state, dest);
-        }
-
-        var a = state.Document.ResolveDictionary(outlineItem["A"]);
-        if (a != null)
-        {
-            var s = state.Document.Resolve(a["S"]) as PdfName;
-            if (s != null && s.Value == "GoTo")
-            {
-                var d = state.Document.Resolve(a["D"]);
-                if (d != null)
-                {
-                    return ResolveDestValue(state, d);
-                }
-            }
-        }
-
-        return null;
-    }
-
-    private static int? ResolveDestValue(ReaderState state, PdfObject dest)
-    {
-        if (dest is PdfArray array)
-        {
-            if (array.Count > 0 && array[0] is PdfReference pr)
-            {
-                var pageDict = state.Document.ResolveDictionary(pr);
-                if (pageDict != null && pageDict.GetName("Type") == "Page")
-                {
-                    for (int i = 0; i < state.Document.PageCount; i++)
-                    {
-                        if (state.Document.Pages[i].Dictionary == pageDict)
-                        {
-                            return i;
-                        }
-                    }
-                }
-            }
-            else if (array.Count > 0 && array[0] is PdfInteger pi)
-            {
-                int p = (int)pi.Value;
-                if (p >= 0 && p < state.Document.PageCount) return p;
-            }
-        }
-        else if (dest is PdfName name)
-        {
-            return LookupDestByName(state, name.Value);
-        }
-        else if (dest is PdfString str)
-        {
-            return LookupDestByName(state, Encoding.GetEncoding("iso-8859-1").GetString(str.Value));
-        }
-
-        return null;
-    }
-
-    private static int? LookupDestByName(ReaderState state, string name)
-    {
-        // Check /Dests in catalog
-        if (state.DestsDictionary == null && state.Document.Catalog["Dests"] != null)
-        {
-            state.DestsDictionary = state.Document.ResolveDictionary(state.Document.Catalog["Dests"]);
-        }
-
-        if (state.DestsDictionary != null)
-        {
-            var val = state.Document.Resolve(state.DestsDictionary[name]);
-            if (val != null)
-            {
-                // It could be an array or a dict with /D
-                if (val is PdfDictionary dDict)
-                {
-                    val = state.Document.Resolve(dDict["D"]);
-                }
-                if (val is PdfArray arr)
-                {
-                    if (arr.Count > 0 && arr[0] is PdfReference pr)
-                    {
-                        var pageDict = state.Document.ResolveDictionary(pr);
-                        if (pageDict != null)
-                        {
-                            for (int i = 0; i < state.Document.PageCount; i++)
-                            {
-                                if (state.Document.Pages[i].Dictionary == pageDict) return i;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check /Names -> /Dests name tree
-        if (!state.NamesDestsAttempted)
-        {
-            state.NamesDestsAttempted = true;
-            var names = state.Document.ResolveDictionary(state.Document.Catalog["Names"]);
-            if (names != null)
-            {
-                state.NamesDestsTree = state.Document.ResolveDictionary(names["Dests"]);
-            }
-        }
-
-        if (state.NamesDestsTree != null)
-        {
-            var result = SearchNameTree(state, state.NamesDestsTree, name, 0);
-            if (result != null) return result;
-        }
-
-        return null;
-    }
-
-    private static int? SearchNameTree(ReaderState state, PdfDictionary node, string name, int depth)
-    {
-        if (depth > 50) return null; // protection
-
-        var names = state.Document.Resolve(node["Names"]) as PdfArray;
-        if (names != null)
-        {
-            for (int i = 0; i < names.Count; i += 2)
-            {
-                var keyStr = state.Document.Resolve(names[i]) as PdfString;
-                if (keyStr != null)
-                {
-                    // The PDF standard says name tree keys for Dests are text strings
-                    string key = ExtractTitle(keyStr);
-                    if (key == name)
-                    {
-                        var val = state.Document.Resolve(names[i + 1]);
-                        if (val is PdfDictionary dDict)
-                        {
-                            val = state.Document.Resolve(dDict["D"]);
-                        }
-                        if (val is PdfArray arr && arr.Count > 0 && arr[0] is PdfReference pr)
-                        {
-                            var pageDict = state.Document.ResolveDictionary(pr);
-                            if (pageDict != null)
-                            {
-                                for (int p = 0; p < state.Document.PageCount; p++)
-                                {
-                                    if (state.Document.Pages[p].Dictionary == pageDict) return p;
-                                }
-                            }
-                        }
-                        return null; // found key but no valid dest array
-                    }
-                }
-            }
-        }
-
-        var kids = state.Document.Resolve(node["Kids"]) as PdfArray;
-        if (kids != null)
-        {
-            foreach (var kid in kids.Items)
-            {
-                var kidNode = state.Document.ResolveDictionary(kid);
-                if (kidNode != null)
-                {
-                    var res = SearchNameTree(state, kidNode, name, depth + 1);
-                    if (res != null) return res;
-                }
-            }
-        }
-
-        return null;
-    }
-
     private sealed class ReaderState
     {
         public PdfDocument Document { get; }
@@ -287,13 +117,12 @@ public static class PdfOutline
         public HashSet<PdfDictionary> VisitedDicts { get; } = new(ReferenceEqualityComparer.Instance);
         public int ItemCount;
 
-        public PdfDictionary? DestsDictionary;
-        public bool NamesDestsAttempted;
-        public PdfDictionary? NamesDestsTree;
+        public PdfDestinations Destinations { get; }
 
         public ReaderState(PdfDocument document)
         {
             Document = document;
+            Destinations = new PdfDestinations(document);
         }
     }
     public static IReadOnlyList<PdfOutlineItem> Remap(IReadOnlyList<PdfOutlineItem> items, Func<int, int?> newIndex)
@@ -306,14 +135,14 @@ public static class PdfOutline
             if (!item.PageIndex.HasValue)
             {
                 // Items without a destination are kept if they still have meaning (or just unconditionally, to preserve structure)
-                result.Add(new PdfOutlineItem(item.Title, null, remappedChildren));
+                result.Add(new PdfOutlineItem(item.Title, null, remappedChildren, item.Top));
             }
             else
             {
                 int? mappedIndex = newIndex(item.PageIndex.Value);
                 if (mappedIndex.HasValue)
                 {
-                    result.Add(new PdfOutlineItem(item.Title, mappedIndex, remappedChildren));
+                    result.Add(new PdfOutlineItem(item.Title, mappedIndex, remappedChildren, item.Top));
                 }
                 else
                 {

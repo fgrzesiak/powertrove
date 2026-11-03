@@ -12,13 +12,26 @@ public sealed class ProgramArgumentsTests
         Assert.Equal("de", options.Language);
     }
 
+    [Theory]
+    [InlineData("fr", "fr")]
+    [InlineData("pt-BR", "pt-BR")]
+    [InlineData("PT-br", "pt-BR")]
+    [InlineData("ja", "ja")]
+    public void EverySupportedUiLanguageReachesPacks(string argument, string expected)
+    {
+        var options = Program.ParseArguments(["--pack-dir", "first", "--parent-pid", "42", "--ui-language", argument]);
+        Assert.Equal(expected, options!.Language);
+    }
+
     [Fact]
     public void InvalidOrAmbiguousArgumentsAreRejected()
     {
         string[][] cases = [[], ["--pack-dir", "first"], ["--parent-pid", "42"],
             ["--pack-dir", "first", "--parent-pid", "0"],
             ["--pack-dir", "first", "--parent-pid", "42", "--parent-pid", "43"],
-            ["--pack-dir", "first", "--parent-pid", "42", "--ui-language", "fr"],
+            ["--pack-dir", "first", "--parent-pid", "42", "--ui-language", "ko"],
+            ["--pack-dir", "first", "--parent-pid", "42", "--ui-language", "system"],
+            ["--pack-dir", "first", "--parent-pid", "42", "--ui-language", "de", "--ui-language", "fr"],
             ["--pack-dir", "first", "--parent-pid", "42", "--unknown", "value"],
             ["--pack-dir", "first", "--parent-pid"]];
         foreach (var args in cases) Assert.Null(Program.ParseArguments(args));

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>Berlaku untuk {0} dari {1} item.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>File baru dibuat di sebelah file asli; file asli tidak diubah.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>Berkas tidak lagi ada.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>Folder tidak lagi ada.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>Konten bukan format {0} yang didukung.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>Akses ditolak.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>File yang diperlukan tidak ditemukan.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>Folder yang diperlukan tidak ditemukan.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>Jalur terlalu panjang.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Terjadi kesalahan sistem file.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Operasi ini tidak didukung.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>Pemrosesan gagal secara tak terduga.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>Pilihan telah kedaluwarsa. Pilih file lagi.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Bukan pilihan file.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>Tidak ada {0} yang didukung dalam pilihan.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>Pilih setidaknya {0} {1}.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>Pilih paling banyak {0} {1}.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Pilih file {0} yang sudah ada.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Pilih file yang sudah ada.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>Dibatalkan.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>Dibatalkan. 1 output telah selesai sebelum pembatalan.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>Dibatalkan. {0} output telah selesai sebelum pembatalan.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>1 output berhasil dibuat.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>Membuat {0} output.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>1 output berhasil dibuat; 1 item gagal.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>1 output berhasil dibuat; {1} item gagal.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>Membuat {0} output; 1 item gagal.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>Membuat {0} output; {1} item gagal.</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>Tidak ada output yang dibuat.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>Melewati 1 item yang tidak didukung.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>Melewati {0} item yang tidak didukung.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 item diperlukan, tidak ada perubahan.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} item tidak memerlukan perubahan.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>1 output berhasil dibuat. {1} berhasil disimpan ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>Membuat {0} output. Menyimpan {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>1 output berhasil dibuat. Outputnya {1} lebih besar ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>Membuat {0} output. Output lebih besar {1} ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Memulai...</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>Pemrosesan</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} item {1} dari {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Selesai.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>Setidaknya {0} {1} yang valid diperlukan.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Sedang diproses...</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>Mesin pemrosesan tidak menghasilkan output.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>Output tidak dapat disimpan dengan nama yang tersedia.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>Folder output tidak tersedia.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>Folder output sudah tidak ada lagi.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Item tidak memerlukan perubahan.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>Konteks tidak tersedia.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Kemampuan yang dibutuhkan hilang.</value></data><data name="RequiresType" xml:space="preserve"><value>Membutuhkan {0}, tetapi pilihan saat ini adalah {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>Pilih setidaknya {0} {1} file.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>Pilih setidaknya {0} {1} file.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Pilih hanya {0} {1} file.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Pilih hanya {0} {1} file.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Hapus item terpilih lainnya.</value></data></root>

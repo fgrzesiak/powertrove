@@ -37,7 +37,9 @@ public static class ActionPackManifest
             pack.Info.Publisher,
             ProtocolVersion,
             pack.Actions.Select(ToManifestAction).ToList(),
-            permissions ?? new[] { "files.read:selected", "files.write:user-approved-output" },
+            permissions ?? (pack.Actions.All(a => a.Descriptor.Accepts.SetEquals(new[] { ContentKind.Text }))
+                ? new[] { "text.read:explicit", "clipboard.write:approved" }
+                : new[] { "files.read:selected", "files.write:user-approved-output" }),
             new PlatformConstraints(new[] { "windows" }, new[] { "x64", "arm64" }),
             (minHostVersion ?? new Version(0, 1, 0)).ToString(), payload,
             (capabilities ?? Array.Empty<string>()).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(s => s, StringComparer.Ordinal).ToArray());
@@ -78,7 +80,8 @@ public static class ActionPackManifest
             Parameters: d.Parameters?.Select(ToManifestParameter).ToList(),
             Selection: d.Selection is null ? null : ManifestSelection.FromRequirements(d.Selection),
             Extensions: (action as IFileActionMetadata)?.InputExtensions?.OrderBy(e => e, StringComparer.OrdinalIgnoreCase).ToArray(),
-            ChangesFiles: d.ChangesFiles);
+            ChangesFiles: d.ChangesFiles,
+            SearchTerms: d.SearchTerms is { Count: > 0 } ? d.SearchTerms.Distinct(StringComparer.OrdinalIgnoreCase).ToArray() : null);
     }
 
     private static void CheckDuplicateProperties(JsonElement element)
@@ -116,6 +119,7 @@ public static class ActionPackManifest
         {
             if (action is null || !ids.Add(action.Id)) throw new JsonException("Duplicate or missing action.");
             RequireText(action.Id); RequireText(action.Title);
+            ValidateSearchTerms(action.SearchTerms);
             if (action.InputKinds is null || action.InputKinds.Count == 0 || action.InputKinds.Any(k => k is not ("none" or "files" or "table" or "text")))
                 throw new JsonException("Invalid action input kinds.");
             if (manifest.SchemaVersion == "2.0" && (!action.ChangesFiles.HasValue || action.InputKinds.Contains("files") && action.Selection is null))
@@ -134,12 +138,21 @@ public static class ActionPackManifest
                         throw new JsonException("Invalid parameter constraints.");
                     if (parameter.Type is not ("string" or "boolean" or "number" or "choice" or "password" or "file" or "color") ||
                         parameter.Type == "password" && parameter.Default is not null ||
-                        parameter.Editor is not (null or "multiSelect") || parameter.Editor == "multiSelect" && parameter.Type != "string")
+                        parameter.Editor is not (null or "multiSelect" or "fileOrder") || parameter.Editor is not null && parameter.Type != "string")
                         throw new JsonException("Invalid action parameter metadata.");
                 }
             }
         }
         ManifestLocalization.Validate(manifest);
+    }
+
+    internal static void ValidateSearchTerms(IReadOnlyList<string>? terms)
+    {
+        if (terms is null) return;
+        if (terms.Count > 64) throw new JsonException("Too many search terms.");
+        foreach (string term in terms)
+            if (string.IsNullOrWhiteSpace(term) || term.Length > 128 || term.Any(char.IsControl))
+                throw new JsonException("Invalid search term.");
     }
 
     private static void ValidateSelection(ManifestSelection selection)
@@ -200,6 +213,14 @@ public static class ActionPackManifest
         if (string.IsNullOrWhiteSpace(value) || value.Length > 4096) throw new JsonException("Missing or oversized manifest text.");
     }
 
+    /// <summary>The manifest's name for a host editor hint; null for the default editor.</summary>
+    public static string? EditorName(ActionParameterEditor editor) => editor switch
+    {
+        ActionParameterEditor.MultiSelect => "multiSelect",
+        ActionParameterEditor.FileOrder => "fileOrder",
+        _ => null
+    };
+
     private static ManifestParameter ToManifestParameter(ActionParameterDefinition p) => new(
         p.Name,
         p.Kind switch
@@ -217,7 +238,7 @@ public static class ActionPackManifest
         Required: false,
         Choices: p.Choices?.Select(c => c.Value).ToList(),
         Default: p.Kind == ActionParameterKind.Password ? null : p.DefaultValue,
-        Editor: p.Editor == ActionParameterEditor.MultiSelect ? "multiSelect" : null,
+        Editor: EditorName(p.Editor),
         Minimum: p.Minimum, Maximum: p.Maximum, Placeholder: p.Placeholder, FileTypes: p.FileTypes,
         MustExist: p.MustExist, VisibleWhenParameter: p.VisibleWhenParameter, VisibleWhenValue: p.VisibleWhenValue,
         ChoiceTitles: p.Choices?.ToDictionary(c => c.Value, c => c.Title, StringComparer.Ordinal));

@@ -45,6 +45,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <FontIcon Glyph="&#xE721;" FontSize="18" VerticalAlignment="Center"
                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -88,16 +89,30 @@
                     VerticalAlignment="Center"
                     CornerRadius="12"
                     Padding="10,3,10,4"
-                    MaxWidth="240"
+                    MaxWidth="200"
                     Background="{ThemeResource ControlFillColorSecondaryBrush}"
                     BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
-                    BorderThickness="1">
+                    BorderThickness="1"
+                    ToolTipService.ToolTip="{x:Bind ViewModel.ContextSummary, Mode=OneWay}">
+                <!-- One line: a wrapping page title made the header two lines high and squeezed the search box. -->
                 <TextBlock Text="{x:Bind ViewModel.ContextSummary, Mode=OneWay}"
                            Style="{ThemeResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           TextWrapping="NoWrap"
+                           MaxLines="1"
                            TextTrimming="CharacterEllipsis" />
             </Border>
-            <Button Grid.Column="4"
+            <Button Grid.Column="4" x:Name="UseClipboardButton"
+                    Click="UseClipboardButton_Click"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="8"
+                    ToolTipService.ToolTip="{x:Bind local:UiText.UseClipboardTooltip}"
+                    AutomationProperties.Name="{x:Bind local:UiText.UseClipboardTooltip}">
+                <FontIcon Glyph="&#xE77F;" FontSize="16" />
+            </Button>
+            <Button Grid.Column="5"
                     x:Name="SettingsButton"
                     Click="SettingsButton_Click"
                     VerticalAlignment="Center"
@@ -113,6 +128,14 @@
         <!-- Divider and notices -->
         <StackPanel Grid.Row="1">
             <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            <InfoBar x:Name="BrowserFirstRunInfo" IsOpen="False" IsClosable="True"
+                     Severity="Informational" Margin="12,10,12,0"
+                     Title="{x:Bind local:UiText.BrowserPaletteHintTitle}"
+                     Message="{x:Bind local:UiText.BrowserPaletteHintDescription}">
+                <InfoBar.ActionButton>
+                    <Button Content="{x:Bind local:UiText.BrowserPaletteHintTitle}" Click="OpenBrowserSettings_Click" />
+                </InfoBar.ActionButton>
+            </InfoBar>
             <Border Style="{StaticResource NoticeCardStyle}" Margin="12,10,12,0"
                     Visibility="{Binding Text, ElementName=UpdateNoticeText, Converter={StaticResource StringToVisibilityConverter}}">
                 <StackPanel Spacing="8">
@@ -424,6 +447,9 @@
                     <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanOpenSingleOutput), Mode=OneWay}"
                             Content="{x:Bind local:UiText.ResultOpen}"
                             Click="OpenSingle_Click" />
+                    <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanContinueWithOutputs), Mode=OneWay}"
+                            Content="{x:Bind local:UiText.ResultContinueWithFiles}"
+                            Click="ContinueWithOutputs_Click" />
                     <Button Visibility="{x:Bind local:Converters.BoolToVisibility(ViewModel.CanUndoResult), Mode=OneWay}"
                             Content="{x:Bind local:UiText.ResultUndo}"
                             Click="UndoResult_Click" />

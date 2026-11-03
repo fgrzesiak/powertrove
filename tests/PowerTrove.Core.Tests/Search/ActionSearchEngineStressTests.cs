@@ -13,8 +13,9 @@ public class ActionSearchEngineStressTests
     {
         private static int _inFlight;
         public static int MaxInFlight;
+        public static int TotalMatches;
 
-        public static void Reset() { _inFlight = 0; MaxInFlight = 0; }
+        public static void Reset() { _inFlight = 0; MaxInFlight = 0; TotalMatches = 0; }
 
         public ActionDescriptor Descriptor { get; }
         public bool IsAvailable { get; set; } = true;
@@ -35,6 +36,7 @@ public class ActionSearchEngineStressTests
         public async ValueTask<ActionAvailability> MatchAsync(ContextSnapshot context, CancellationToken cancellationToken)
         {
             // Simulate a slow dynamic match and record how many overlap.
+            Interlocked.Increment(ref TotalMatches);
             var current = Interlocked.Increment(ref _inFlight);
             int seen;
             while (current > (seen = Volatile.Read(ref MaxInFlight)) &&
@@ -79,6 +81,7 @@ public class ActionSearchEngineStressTests
         }
         // Add one specific target we want to find
         registry.Register(new SlowMockAction("target.action", "Super specific target to find"));
+        registry.Register(new SlowMockAction("target.second", "Super specific second target"));
 
         var engine = new ActionSearchEngine(registry);
         var context = CreateSnapshot(ContentKind.None);
@@ -91,7 +94,8 @@ public class ActionSearchEngineStressTests
         // Matches must overlap. Asserting concurrency instead of a tight wall-clock budget
         // keeps the test stable on a loaded machine; sequential matching would take over
         // 20 s (1001 x 20 ms), far beyond the generous upper bound below.
-        Assert.True(SlowMockAction.MaxInFlight > 1, "MatchAsync calls ran sequentially");
+        Assert.True(SlowMockAction.MaxInFlight > 1, "Candidate MatchAsync calls ran sequentially");
+        Assert.Equal(2, SlowMockAction.TotalMatches); // 1000 unrelated actions are not probed.
         Assert.True(sw.ElapsedMilliseconds < 10_000, $"Search took too long: {sw.ElapsedMilliseconds} ms");
     }
 }

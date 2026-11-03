@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>Konversi ke {0}</value></data><data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>Mengonversi file audio yang dipilih ke {0}.</value></data><data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>Konversi ke {0}</value></data><data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>Mengonversi video yang dipilih ke {0} menggunakan preset yang kompatibel.</value></data><data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>Mengekstrak Audio dari Video</value></data><data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>Menyimpan trek audio dari video yang dipilih sebagai file MP3.</value></data><data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>Hapus Audio</value></data><data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>Membuat salinan video yang dipilih tanpa trek audio.</value></data><data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>Mengekstrak Bingkai</value></data><data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>Simpan satu bingkai setiap detik dari video yang dipilih sebagai gambar JPEG di folder baru.</value></data><data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>Konversi ke GIF</value></data><data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>Mengonversi 10 detik pertama video yang dipilih menjadi animasi GIF tanpa suara.</value></data><data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>Akan mengkonversi {0} menjadi {1}.</value></data><data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>Akan mengkonversi {0} menjadi {1}.</value></data><data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>Akan mengekstrak trek audio dari {0} sebagai MP3.</value></data><data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>Akan membuat salinan {0} tanpa trek audio.</value></data><data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>Akan menyimpan satu frame setiap detik dari {0} sebagai gambar JPEG di folder baru.</value></data><data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>Akan mengkonversi 10 detik pertama dari {0} menjadi animasi GIF tanpa suara.</value></data><data name="Media_AudioFile" xml:space="preserve"><value>file audio</value></data><data name="Media_AudioFiles" xml:space="preserve"><value>file audio</value></data><data name="Media_Video" xml:space="preserve"><value>video</value></data><data name="Media_Videos" xml:space="preserve"><value>video</value></data><data name="Media_Progress_Converting" xml:space="preserve"><value>Konversi</value></data><data name="Media_Progress_Extracting" xml:space="preserve"><value>Mengekstrak</value></data><data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>Konversi media habis waktu.</value></data><data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>Konversi media gagal (kode keluar {0}).</value></data><data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>Ganti Trek Audio</value></data>
+<data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>Mengganti trek audio video yang dipilih dengan file audio yang dipilih.</value></data>
+<data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>Akan mengganti trek audio video.</value></data>
+<data name="Media_RequiresFFmpeg" xml:space="preserve"><value>Membutuhkan FFmpeg</value></data>
+<data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>Tambahkan Subtitel</value></data>
+<data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>Menambahkan trek subtitel ke video tanpa pengkodean ulang.</value></data>
+<data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>Akan menambahkan subtitle ke video.</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>Tampilkan Detail Media</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>Tampilkan properti teknis tanpa judul, artis, atau tag lainnya.</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>Memangkas Audio atau Video</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>Simpan rentang waktu yang dipilih sebagai berkas baru.</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>Kompres Video</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>Buat MP4 yang lebih kecil tanpa peningkatan skala. Hasil yang tidak lebih kecil akan dilewati.</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>Gabungkan Video atau File Audio</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>Gabungkan file sejenis dalam urutan nama file alami ke dalam MP4 atau M4A baru.</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>Konversi Video ke GIF</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>Buat GIF animasi dari rentang video pendek, hingga 600 frame.</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>Simpan Bingkai Video sebagai Gambar</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>Simpan satu bingkai atau serangkaian bingkai ukuran penuh ke dalam folder baru.</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>Normalisasi Volume</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>Buat salinan yang dinormalisasi ke −16 LUFS menggunakan analisis dua tahap. Membutuhkan FFmpeg.</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>Putar Video</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>Putar video ke salinan baru. Membutuhkan FFmpeg.</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>Mulai (waktu)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>Akhir (kosong = sampai akhir)</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>Pemotongan presisi dengan pengkodean ulang</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>Preset kualitas</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>Pertahankan audio</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>Durasi (detik)</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>Bingkai per detik</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>Lebar GIF (piksel)</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>Pemilihan bingkai</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>Pada (waktu)</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>Interval (0,5–3600 detik)</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>Format Gambar</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>Rotasi searah jarum jam</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>Ubah metadata rotasi saja</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>Tinggi · hingga 1080p, 5 Mbps</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>Sedang · hingga 720p, 2,5 Mbps</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>Kecil · hingga 480p, 1 Mbps</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>Bingkai tunggal</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>Pada interval</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° searah jarum jam</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° searah jarum jam</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° searah jarum jam</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>file media</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>file audio</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>file video</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>Tidak ada pemeriksa media lokal yang tersedia. Di Windows, gunakan komponen media, atau instal FFprobe di samping FFmpeg.</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>Properti media tidak dapat dibaca atau melebihi batas yang didukung.</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>Mesin media lokal tidak dapat memproses berkas ini.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Tidak ada mesin media terinstal yang mendukung operasi ini untuk pemilihan. Banyak format berfungsi setelah menginstal FFmpeg: gunakan Pengaturan &gt; FFmpeg, atau jalankan winget install Gyan.FFmpeg di Terminal.</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>Gunakan detik, mm:ss atau hh:mm:ss. Akhir harus setelah awal.</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>Masukkan waktu yang valid. Interval harus 0,5–3600 detik; gunakan titik desimal.</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>Rentang yang diminta melampaui durasi file ini.</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>File tidak memiliki trek video yang dapat digunakan.</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>Rentang GIF yang dipilih melebihi 600 frame atau dimensi yang didukung. Kurangi durasi, kecepatan frame, atau lebar.</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Pemangkasan FFmpeg cepat mengikuti keyframe. Pemrosesan media Windows dan pemangkasan presisi melakukan pengkodean ulang.</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>Ekstraksi interval menyimpan paling banyak 500 frame, dimulai dari awal.</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>Rotasi hanya metadata tidak mengalami kehilangan kualitas, tetapi beberapa pemutar mengabaikannya.</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>Pilih hanya file audio atau hanya file video untuk menggabungkannya.</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>Video diskalakan dan diberi letterbox sesuai ukuran video pertama.</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>Tidak diketahui / tidak berlaku</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>Durasi: {0}
+Resolusi: {1}
+Kecepatan bingkai: {2} fps
+Codec video: {3}
+Codec audio: {4}
+Bitrate: {5} kbit/s
+Saluran audio: {6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>Kekerasan suara tidak dapat diukur dengan andal. Audio yang senyap atau tidak valid tidak dapat dinormalisasi.</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>Rotasi hanya metadata memerlukan kontainer MP4/MOV. Nonaktifkan fitur rotasi piksel.</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>Buat Video dari Gambar dan Audio</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>Buat Video dari Gambar dan Audio</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>Akan membuat video dari gambar dan audio.</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>Alat Audio dan Video</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>Konversi audio</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>Memproses video</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>Konversi WebM memerlukan FFmpeg. Instal di Pengaturan &gt; FFmpeg, atau jalankan winget install Gyan.FFmpeg di Terminal.</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>Tidak ada mesin media pada sistem ini yang mendukung konversi ini. Pada edisi Windows N, instal Paket Fitur Media.</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>Akan mengkonversi file audio {0} menjadi {1}.</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>Akan mengkonversi file audio {0} menjadi {1}.</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>Akan mengkonversi video {0} menjadi {1}. Konversi video mungkin membutuhkan waktu.</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>Akan mengkonversi video {0} menjadi {1}. Konversi video mungkin membutuhkan waktu.</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>Akan menyimpan trek audio video {0} sebagai {1}.</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>Akan menyimpan trek audio video {0} sebagai {1}.</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>Akan membuat salinan {0} tanpa trek audio.</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>Akan membuat salinan {0} tanpa trek audio.</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>Konversi dari format lossless ke format lossy mengurangi kualitas audio.</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>Konversi dari format lossy ke format lossless meningkatkan ukuran file tanpa meningkatkan kualitas.</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>Konversi antar format lossy mengurangi kualitas audio (penurunan kualitas).</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>File tidak memiliki trek audio atau video yang dapat digunakan.</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>Konversi ini tidak didukung oleh FFmpeg.</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>Buat Video Tayangan Slide</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>Buat video dari gambar yang dipilih dengan audio opsional.</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>Akan membuat video slideshow dari gambar yang dipilih dan audio opsional.</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>Durasi per gambar</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>Ukuran video</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>Otomatis (sesuaikan durasi audio)</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0} detik</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0} detik</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p lanskap</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p lanskap</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>Kotak (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>Konversi SRT ke VTT</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>Konversi VTT ke SRT</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Menggeser waktu subtitle</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>Membuat salinan UTF-8 WebVTT dari subtitle SRT, mempertahankan pengaturan waktu isyarat dan jeda baris.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Membuat salinan UTF-8 SRT dari isyarat WebVTT yang didukung tanpa kehilangan format yang tidak didukung secara diam-diam.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Menggeser setiap isyarat SRT atau VTT dengan offset positif atau negatif dan membuat file baru.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Offset dalam milidetik</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1.000 ms = 1 detik. Nilai negatif memindahkan isyarat lebih awal. Pergeseran sebelum waktu nol ditolak; tidak ada isyarat yang dihilangkan.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Subjudul berkas</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>Akan memproses isyarat subtitle {0}.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>Subtitle tidak valid, melebihi batas yang didukung, berisi metadata atau format yang tidak didukung, atau pergeseran akan menempatkan isyarat sebelum nol. Gunakan UTF-8 SRT atau WebVTT dengan stempel waktu dalam tujuh hari.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>Input subtitle tidak dapat dibaca.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Ukuran maksimum per video (MB; 0 = preset)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1.000.000 byte. Nol hanya menggunakan preset kualitas. Nilai positif mengalokasikan bitrate video dari durasi, memesan ruang audio dan kontainer, lalu memverifikasi ukuran output sebenarnya.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Maksimum {0} MB per video. Bitrate video yang direncanakan: {1}–{2} kbit/s. Audio menggunakan hingga 128 kbit/s saat dipertahankan. Ukuran file akhir diperiksa sebelum disimpan.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>Ukuran yang diminta terlalu kecil untuk durasi ini dan audio yang dipertahankan, atau dimensi/durasi video tidak didukung. Perbesar ukuran atau hapus audio.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>Encoder tidak dapat memenuhi ukuran maksimum yang diminta. Tidak ada output yang disimpan. Tingkatkan batas, pilih preset kualitas yang lebih kecil, atau hapus audio.</value></data>
+</root>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using PowerTrove.Application.Configuration;
@@ -39,11 +40,14 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
     public long ResultsRevision { get; private set; }
     /// <summary>Explicit selection changes invalidate Enter requests waiting for search completion.</summary>
     public long SelectionRevision { get; private set; }
-    private IReadOnlyList<ActionSearchResult> VisibleSearchResults => _settingsService?.Settings.ShowNotInstalledActions != false
-        ? _searchResults : _searchResults.Where(r => r.Action is not PowerTrove.Core.Catalog.CatalogAction).ToArray();
+    // "Connect browser" exists only while the setup is missing; it never counts as an unavailable action.
+    private IReadOnlyList<ActionSearchResult> VisibleSearchResults => _searchResults
+        .Where(r => (r.IsCompatible || r.Action is not Commands.ConnectBrowserAction) &&
+            (_settingsService?.Settings.ShowNotInstalledActions != false || r.Action is not PowerTrove.Core.Catalog.CatalogAction))
+        .ToArray();
     public int UnavailableActionCount => VisibleSearchResults.Count(r => !r.IsCompatible);
-    public bool HasUnavailableActions => UnavailableActionCount > 0;
-    public string ShowUnavailableLabel => string.Format(Strings.GetString(UnavailableActionCount == 1 ? "ShowUnavailable_One" : "ShowUnavailable_Other"), UnavailableActionCount);
+    public bool HasUnavailableActions => UnavailableActionCount > 0 && string.IsNullOrWhiteSpace(_searchText);
+    public string ShowUnavailableLabel => string.Format(Strings.Plural("ShowUnavailable", UnavailableActionCount), UnavailableActionCount);
     public bool HasNoResults => _currentSnapshot != null && !_isSearching && !IsExecuting && SearchError == null && _filteredActions.Count == 0;
 
     public bool IncludeUnavailableActions
@@ -81,11 +85,38 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 _currentOutputPaths = value;
                 OnPropertyChanged(nameof(CurrentOutputPaths));
                 OnPropertyChanged(nameof(HasOutputs));
+                OnPropertyChanged(nameof(CanContinueWithOutputs));
             }
         }
     }
 
     public bool HasOutputs => _currentOutputPaths != null && _currentOutputPaths.Count > 0;
+    public bool CanContinueWithOutputs => HasExecutionResult && ExecutionIsSuccess &&
+        !IsExecuting && CurrentOutputPaths.Count is > 0 and <= 100;
+
+    /// <summary>Use committed file outputs as a new, ordinary file selection.</summary>
+    public void ContinueWithOutputs()
+    {
+        if (!CanContinueWithOutputs || _actionRegistry is null || _searchEngine is null) return;
+        var selected = new List<SelectedFile>();
+        foreach (var path in CurrentOutputPaths)
+        {
+            if (!Path.IsPathFullyQualified(path) || path.Length > 4096 ||
+                (!File.Exists(path) && !Directory.Exists(path))) return;
+            string fullPath = Path.GetFullPath(path);
+            bool isDirectory = Directory.Exists(fullPath);
+            long? size = isDirectory ? null : new FileInfo(fullPath).Length;
+            selected.Add(new SelectedFile(fullPath, Path.GetFileName(fullPath),
+                Path.GetExtension(fullPath), null, size, true, true, null, isDirectory));
+        }
+        var now = DateTimeOffset.UtcNow;
+        var snapshot = new ContextSnapshot(Guid.NewGuid(),
+            new SourceWindowIdentity(IntPtr.Zero,0,"powertrove",now),
+            ContextStatus.Available,new FileSelection(selected),now,now.AddMinutes(5),
+            "powertrove.provider.completed-output",null);
+        Initialize(snapshot,_actionRegistry,_searchEngine,_settingsService);
+    }
+
 
 
     // Exposed so tests and embedding hosts can await search completion.
@@ -225,6 +256,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 _searchText = value;
                 ClearExecutionResultForBrowsing();
                 OnPropertyChanged(nameof(SearchText));
+                OnPropertyChanged(nameof(HasUnavailableActions));
                 if (!IsExecuting) SearchTask = UpdateFilteredActionsAsync();
             }
         }
@@ -440,6 +472,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                     OutputNavigationMessage = null;
                 }
                 OnPropertyChanged(nameof(HasExecutionResult));
+                OnPropertyChanged(nameof(CanContinueWithOutputs));
             }
         }
     }
@@ -453,6 +486,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
             {
                 _executionIsSuccess = value;
                 OnPropertyChanged(nameof(ExecutionIsSuccess));
+                OnPropertyChanged(nameof(CanContinueWithOutputs));
             }
         }
     }
@@ -686,7 +720,7 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                 {
                     if (OutputCount > 0)
                     {
-                        ExecutionResultMessage = string.Format(Strings.GetString(OutputCount == 1 ? "Execution_Completed_Outputs_One" : "Execution_Completed_Outputs_Other"), OutputCount);
+                        ExecutionResultMessage = string.Format(Strings.Plural("Execution_Completed_Outputs", OutputCount), OutputCount);
                     }
                     else
                     {
@@ -699,11 +733,11 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
                     {
                         if (OutputCount > 0)
                         {
-                            ExecutionResultMessage = string.Format(Strings.GetString(OutputCount == 1 ? "Execution_CompletedPartially_Outputs_One" : "Execution_CompletedPartially_Outputs_Other"), OutputCount, FailureCount);
+                            ExecutionResultMessage = string.Format(Strings.Plural("Execution_CompletedPartially_Outputs", OutputCount), OutputCount, FailureCount);
                         }
                         else
                         {
-                            ExecutionResultMessage = string.Format(Strings.GetString(FailureCount == 1 ? "Execution_Failed_Items_One" : "Execution_Failed_Items_Other"), FailureCount);
+                            ExecutionResultMessage = string.Format(Strings.Plural("Execution_Failed_Items", FailureCount), FailureCount);
                         }
                     }
                     else
@@ -889,6 +923,15 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
         if (snapshot.Status != ContextStatus.Available)
             return Strings.Context_Unavailable;
 
+        if (snapshot.BrowserPage is { } browser)
+        {
+            // The existing header pill is intentionally bounded and does not expose
+            // the full URL or selected text.
+            var title = browser.Title.Length > 55 ? browser.Title[..55] + "…" : browser.Title;
+            return string.Format(System.Globalization.CultureInfo.CurrentUICulture,
+                Strings.GetString("Context_BrowserPage"), browser.Domain, title);
+        }
+
         return snapshot.Content switch
         {
             FileSelection fs => GenerateFileSelectionSummary(fs),
@@ -940,22 +983,22 @@ public sealed class PaletteViewModel : INotifyPropertyChanged
 
         if (images > 0)
         {
-            parts.Add(images == 1 ? PowerTrove.Application.Resources.Strings.Summary_ImagesSingular : string.Format(PowerTrove.Application.Resources.Strings.Summary_ImagesPlural, images));
+            parts.Add(string.Format(Strings.Choose(images, "Summary_ImagesSingular", "Summary_ImagesPlural"), images));
         }
 
         if (folders > 0)
         {
-            parts.Add(folders == 1 ? PowerTrove.Application.Resources.Strings.Summary_FoldersSingular : string.Format(PowerTrove.Application.Resources.Strings.Summary_FoldersPlural, folders));
+            parts.Add(string.Format(Strings.Choose(folders, "Summary_FoldersSingular", "Summary_FoldersPlural"), folders));
         }
 
         if (other > 0)
         {
-            parts.Add(other == 1 ? PowerTrove.Application.Resources.Strings.Summary_FilesSingular : string.Format(PowerTrove.Application.Resources.Strings.Summary_FilesPlural, other));
+            parts.Add(string.Format(Strings.Choose(other, "Summary_FilesSingular", "Summary_FilesPlural"), other));
         }
 
         if (parts.Count == 0)
         {
-            parts.Add(string.Format(PowerTrove.Application.Resources.Strings.Summary_FilesPlural, 0));
+            parts.Add(string.Format(Strings.Choose(0, "Summary_FilesSingular", "Summary_FilesPlural"), 0));
         }
 
         var summary = string.Join(", ", parts);

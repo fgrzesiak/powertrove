@@ -10,6 +10,10 @@
     <ApplicationIcon>Assets\PowerTrove.ico</ApplicationIcon>
     <Platforms>x86;x64;ARM64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <!-- Local AnyCPU builds (scripts\run-desktop.ps1) run as a 64-bit process, but WebView2 copies its x86 native
+         component for AnyCPU; the document viewer then fails with "module not found". Target the machine instead. -->
+    <PlatformTarget Condition="'$(PlatformTarget)' == '' and '$(RuntimeIdentifier)' == '' and ('$(Platform)' == 'AnyCPU' or '$(Platform)' == '') and '$(PROCESSOR_ARCHITECTURE)' == 'ARM64'">ARM64</PlatformTarget>
+    <PlatformTarget Condition="'$(PlatformTarget)' == '' and '$(RuntimeIdentifier)' == '' and ('$(Platform)' == 'AnyCPU' or '$(Platform)' == '')">x64</PlatformTarget>
     <UseWinUI>true</UseWinUI>
     <!-- Launch as an unpackaged WinUI desktop EXE; enable Windows App Runtime bootstrapper. -->
     <WindowsPackageType>None</WindowsPackageType>
@@ -45,6 +49,7 @@
     <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
     <ProjectReference Include="..\PowerTrove.Platform.Windows\PowerTrove.Platform.Windows.csproj" />
     <ProjectReference Include="..\PowerTrove.Infrastructure\PowerTrove.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Browser\composition\PowerTrove.Pack.Browser.Composition\PowerTrove.Pack.Browser.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Files\composition\PowerTrove.Pack.Files.Composition\PowerTrove.Pack.Files.Composition.csproj" Condition="'$(PowerTroveProfile)' != 'Core'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Images\composition\PowerTrove.Pack.Images.Composition\PowerTrove.Pack.Images.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Media\composition\PowerTrove.Pack.Media.Composition\PowerTrove.Pack.Media.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
@@ -52,6 +57,7 @@
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Office\composition\PowerTrove.Pack.Office.Composition\PowerTrove.Pack.Office.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
     <ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
+    <ProjectReference Include="..\..\packs\PowerTrove.Pack.Text\composition\PowerTrove.Pack.Text.Composition\PowerTrove.Pack.Text.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +89,7 @@
     </ItemGroup>
   </Target>
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.EInvoice\composition\PowerTrove.Pack.EInvoice.Composition\PowerTrove.Pack.EInvoice.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Markdown\composition\PowerTrove.Pack.Markdown.Composition\PowerTrove.Pack.Markdown.Composition.csproj" Condition="'$(PowerTroveProfile)' == 'Full'" /></ItemGroup>
   <Target Name="ValidatePowerTroveProfile" BeforeTargets="BeforeBuild">
     <Error Condition="'$(PowerTroveProfile)' != 'Core' and '$(PowerTroveProfile)' != 'Base' and '$(PowerTroveProfile)' != 'Full'" Text="PowerTroveProfile must be Core, Base or Full." />
   </Target>

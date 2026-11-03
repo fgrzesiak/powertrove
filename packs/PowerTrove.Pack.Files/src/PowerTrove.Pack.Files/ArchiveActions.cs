@@ -57,7 +57,7 @@ public sealed class CompressToZipAction : CombineFilesAction<ZipOptions>
     });
 
     protected override string DescribeOperation(int inputCount, ZipOptions options) =>
-        SR.Format("CompressToZipAction_Operation_Description", Plural(inputCount, SR.GetString("CompressToZipAction_Operation_Item"), SR.GetString("CompressToZipAction_Operation_Items")));
+        SR.Format("CompressToZipAction_Operation_Description", SR.Noun(inputCount, "CompressToZipAction_Operation_Item", "CompressToZipAction_Operation_Items"));
 
     protected override PlannedOutput PlanOutput(IReadOnlyList<SelectedFile> inputs, ZipOptions options)
     {
@@ -112,7 +112,7 @@ public sealed class ExtractZipAction : PerFileAction<ExtractOptions>
     protected override ExtractOptions ReadOptions(ActionParameterValues values) => new();
 
     protected override string DescribeOperation(int inputCount, ExtractOptions options) =>
-        SR.Format("ExtractZipAction_Operation_Description", Plural(inputCount, SR.GetString("ExtractZipAction_Operation_Archive"), SR.GetString("ExtractZipAction_Operation_Archives")));
+        SR.Format("ExtractZipAction_Operation_Description", SR.Noun(inputCount, "ExtractZipAction_Operation_Archive", "ExtractZipAction_Operation_Archives"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, ExtractOptions options)
     {
