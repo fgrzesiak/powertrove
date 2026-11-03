@@ -48,6 +48,19 @@ public sealed class SetupStartupCommandTests
         Assert.Contains("'--setup-startup disable'", script[uninstall..], StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void Installer_CodeSectionUsesPascalComments()
+    {
+        // ';' starts a comment only outside [Code]; inside Pascal Script it breaks compilation.
+        string script = File.ReadAllText(Path.Combine(FindRepositoryRoot(), "packaging", "windows", "PowerTrove.iss"));
+        int code = script.IndexOf("[Code]", StringComparison.Ordinal);
+        Assert.True(code >= 0);
+        var semicolonLines = script[code..].Split('\n')
+            .Where(line => line.TrimStart().StartsWith(';'))
+            .ToArray();
+        Assert.Empty(semicolonLines);
+    }
+
     private static string FindRepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);

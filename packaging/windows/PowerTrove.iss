@@ -136,7 +136,7 @@ begin
   PackPage.Add(CustomMessage('Installer_Invoice'));
   PackPage.Add(CustomMessage('Installer_Markdown'));
   PackPage.Add(CustomMessage('Installer_Text'));
-  ; InstallerMessages generates this localized title with Preview only while store IDs are unset.
+  // InstallerMessages generates this localized title with Preview only while store IDs are unset.
   PackPage.Add(CustomMessage('Installer_Browser'));
   for I := 0 to 10 do
     PackPage.Values[I] := (FreshInstall and (I < 3)) or
