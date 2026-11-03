@@ -143,6 +143,7 @@
   <data name="Group_Archives" xml:space="preserve"><value>Files · Archives</value></data>
   <data name="Group_Files" xml:space="preserve"><value>Files · Organize and inspect</value></data>
   <data name="Group_Data" xml:space="preserve"><value>Tables and data</value></data>
+  <data name="Group_Markdown" xml:space="preserve"><value>Markdown</value></data>
   <data name="Group_Unavailable" xml:space="preserve"><value>Unavailable for this selection</value></data>
   <data name="ShowUnavailable_One" xml:space="preserve"><value>Show {0} unavailable action</value></data>
   <data name="ShowUnavailable_Other" xml:space="preserve"><value>Show {0} unavailable actions</value></data>
@@ -256,6 +257,7 @@
   <data name="PackSummary_data" xml:space="preserve"><value>Convert CSV, JSON, Excel and contact files.</value></data>
   <data name="PackSummary_tables" xml:space="preserve"><value>Export Excel selections as CSV, JSON, Markdown or SQL.</value></data>
   <data name="PackSummary_einvoice" xml:space="preserve"><value>View and convert XRechnung and ZUGFeRD invoices.</value></data>
+  <data name="PackSummary_markdown" xml:space="preserve"><value>View and edit Markdown with a live preview, and convert it to HTML or PDF.</value></data>
   <data name="PackWebsiteLink" xml:space="preserve"><value>All actions on the website</value></data>
   <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: all actions on the website</value></data>
   <data name="PacksUpdateAll" xml:space="preserve"><value>Update all ({0})</value></data>
@@ -301,4 +303,5 @@
   <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Create Recipe</value></data>
   <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Combine several actions into one recipe that runs them in order.</value></data>
   <data name="UserRecipeDescription" xml:space="preserve"><value>Your recipe: {0}</value></data>
+  <data name="Context_BrowserPage" xml:space="preserve"><value>{0} · {1}</value></data>
 </root>

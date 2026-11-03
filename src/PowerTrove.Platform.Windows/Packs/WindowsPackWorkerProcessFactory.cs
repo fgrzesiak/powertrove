@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using PowerTrove.Application.Localization;
 using PowerTrove.Application.Packs;
 using Microsoft.Win32.SafeHandles;
 
@@ -26,7 +27,7 @@ public sealed class WindowsPackWorkerProcessFactory : IPackWorkerProcessFactory
         foreach (string hash in group.ManifestHashes ?? []) { info.ArgumentList.Add("--manifest-sha256"); info.ArgumentList.Add(hash); }
         info.ArgumentList.Add("--parent-pid"); info.ArgumentList.Add(_parentPid.ToString(CultureInfo.InvariantCulture));
         info.ArgumentList.Add("--work-root"); info.ArgumentList.Add(workDirectory);
-        info.ArgumentList.Add("--ui-language"); info.ArgumentList.Add(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "de" ? "de" : "en");
+        info.ArgumentList.Add("--ui-language"); info.ArgumentList.Add(UiLanguages.Normalize(CultureInfo.CurrentUICulture.Name) ?? UiLanguages.English);
         SafeFileHandle? job = null; Process? process = null;
         try
         {

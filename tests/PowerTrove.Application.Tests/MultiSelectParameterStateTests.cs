@@ -63,4 +63,19 @@ public sealed class MultiSelectParameterStateTests
         Assert.True(state.IsWithinLimit); state.SetUseAll(false); Assert.False(state.IsWithinLimit);
         state.Clear(); state.SetSelected(fields[0], true); Assert.True(state.IsWithinLimit);
     }
+
+    [Fact]
+    public void DraggedOrderKeepsTheSelectionAndRejectsAnIncompleteList()
+    {
+        var state = new MultiSelectParameterState("");
+        state.UpdateChoices(Fields("a", "b", "c"));
+        state.Reorder(["c", "a", "b"]);
+        Assert.False(state.UseAll);
+        Assert.Equal("[\"c\",\"a\",\"b\"]", state.Value);
+        Assert.Throws<ArgumentException>(() => state.Reorder(["c", "a"]));
+        Assert.Throws<ArgumentException>(() => state.Reorder(["c", "a", "x"]));
+        state.SetUseAll(true);
+        state.Reorder(["a", "b", "c"]);
+        Assert.True(state.UseAll);
+    }
 }

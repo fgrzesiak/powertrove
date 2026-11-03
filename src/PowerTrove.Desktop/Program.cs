@@ -15,6 +15,17 @@ public static class Program
         if (args is [SetupPackCommand.Argument]) return SetupPackCommand.Run();
         if (args is [SetupShellCommand.Argument, var operation, var language]) return SetupShellCommand.Run(operation, language);
         if (args is [SetupStartupCommand.Argument, var startup]) return SetupStartupCommand.Run(startup);
+        if (args is ["--browser-disconnect"])
+        {
+            try
+            {
+                PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.DisconnectIfOwnedBy(
+                    Path.Combine(AppContext.BaseDirectory, "PowerTrove.exe"));
+                return 0;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException
+                or ArgumentException or System.Security.SecurityException) { return 3; }
+        }
         // Sign-in start only hosts the tray and shortcut. It never opens or forwards to a palette.
         bool background = args is [PowerTrove.Platform.Windows.Shell.StartupRegistration.BackgroundArgument];
         var message = background ? new ActivatePaletteMessage() : ActivationProtocol.ParseArguments(args);

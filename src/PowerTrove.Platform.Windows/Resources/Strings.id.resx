@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>Beberapa output tidak dapat ditampilkan di Explorer. Coba lagi.</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excel tidak tersedia.</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>Jendela Excel berubah.</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>Jendela Excel tidak tersedia.</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>Item yang dipilih bukan rentang (misalnya, bagan atau bentuk).</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>Pilihan yang terpisah tidak didukung.</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>Rentang yang dipilih terlalu besar.</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>Excel mengembalikan dimensi rentang yang tidak konsisten.</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>Excel mengembalikan nilai rentang yang tidak valid.</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>Akses ke Excel ditolak.</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>Terjadi kesalahan saat berkomunikasi dengan Excel.</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>Pengambilan data Excel masih sibuk.</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>Excel tidak mengembalikan data rentang.</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Pengambilan data Excel tidak dapat dimulai.</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Pengambilan data Excel habis waktu.</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>Pengambilan data Explorer masih sibuk.</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>Tidak ada file atau folder yang saat ini dipilih.</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>Tampilan tidak didukung atau tidak dapat mengakses pilihan.</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>Pilihan Explorer tidak dapat diambil.</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>Pengambilan data Explorer tidak dapat dimulai.</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>Pengambilan data Explorer habis waktu.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows Imaging tidak dapat mempertahankan metadata.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Gambar tidak dapat didekode.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Gambar tidak dapat dienkode.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Format output tidak didukung.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>File media tidak dapat dibuka.</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Codec yang diperlukan tidak terpasang pada sistem ini.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Konversi ini tidak didukung untuk file tersebut.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>File media tidak dapat dikonversi.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Konversi media gagal.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Format audio tidak didukung.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>File tidak memiliki trek video.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Operasi media tidak didukung.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>PDF yang dilindungi kata sandi belum didukung.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>PDF tidak dapat dibuka.</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>OCR lokal tidak tersedia. Instal bahasa OCR di Pengaturan Windows &gt; Waktu &amp; bahasa.</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>Teks tidak dapat dikenali.</value></data>
+</root>

@@ -88,6 +88,25 @@ public static class PackageCommand
         if (!File.Exists(Path.Combine(stagingDir, "PowerTrove.PackHost.exe")))
             throw new InvalidDataException("Published worker executable is missing.");
 
+        // The local native messaging host is mandatory for this desktop version.
+        // Browser extensions have their own store distribution and must NOT be shipped
+        // inside the desktop ZIP, nor should manual registration scripts be installed.
+        // Like the worker, the host sits next to the app and shares its runtime instead of carrying a second one.
+        string browserHostProject = Path.Combine(repoRoot, "src", "PowerTrove.BrowserHost", "PowerTrove.BrowserHost.csproj");
+        if (!File.Exists(browserHostProject))
+            throw new InvalidDataException("Required browser native host project is missing.");
+        string browserHostDirectory = Path.Combine(outputDir, $"PowerTrove-v{version}-browser-host");
+        if (Directory.Exists(browserHostDirectory) || File.Exists(browserHostDirectory)) throw new IOException("Release output already exists. Use a fresh directory.");
+        Directory.CreateDirectory(browserHostDirectory);
+        try
+        {
+            await PublishProjectAsync(browserHostProject, browserHostDirectory, version, releaseVersion, gitRevision, processRunner, null, null);
+            if (!File.Exists(Path.Combine(browserHostDirectory, "PowerTrove.BrowserHost.exe")))
+                throw new InvalidDataException("Published native browser host executable is missing.");
+            MergeSharedRuntime(browserHostDirectory, stagingDir);
+        }
+        finally { Directory.Delete(browserHostDirectory, recursive: true); }
+
         // Step 3: Copy root notices
         Console.WriteLine("Copying license and notices...");
         CopyRootNotices(repoRoot, stagingDir);

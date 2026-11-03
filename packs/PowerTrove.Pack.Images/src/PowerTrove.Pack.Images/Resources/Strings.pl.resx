@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ImageExportAction_Title_Convert" xml:space="preserve">
+    <value>Konwersja do {0}</value>
+  </data>
+  <data name="ImageExportAction_Desc_Convert" xml:space="preserve">
+    <value>Konwertuje wybrane obrazy do formatu {0}.</value>
+  </data>
+  <data name="ImageExportAction_Operation_Convert" xml:space="preserve">
+    <value>Skonwertuje plik {0} na {1}.</value>
+  </data>
+  <data name="ImageExportAction_Title_Resize" xml:space="preserve">
+    <value>Zmiana rozmiaru obrazów</value>
+  </data>
+  <data name="ImageExportAction_Desc_Resize" xml:space="preserve">
+    <value>Zmienia rozmiar wybranych obrazów do maksymalnej szerokości lub wysokości.</value>
+  </data>
+  <data name="ImageExportAction_ParamTitle_Size" xml:space="preserve">
+    <value>Maksymalny rozmiar (piksele)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1920" xml:space="preserve">
+    <value>1920x1080 (HD)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_1280" xml:space="preserve">
+    <value>1280x720 (Internet)</value>
+  </data>
+  <data name="ImageExportAction_ParamChoice_800" xml:space="preserve">
+    <value>800x600 (E-mail)</value>
+  </data>
+  <data name="ImageExportAction_Operation_Resize" xml:space="preserve">
+    <value>Zmieni rozmiar pliku {0} tak, aby mieścił się w zakresie {1}x{1} pikseli.</value>
+  </data>
+  <data name="ImageExportAction_Title_RemoveMeta" xml:space="preserve">
+    <value>Usuń metadane obrazu</value>
+  </data>
+  <data name="ImageExportAction_Desc_RemoveMeta" xml:space="preserve">
+    <value>Tworzy kopie wybranych obrazów bez danych EXIF ​​(takich jak lokalizacja GPS).</value>
+  </data>
+  <data name="ImageExportAction_Operation_RemoveMeta" xml:space="preserve">
+    <value>Utworzy kopie pliku {0} bez metadanych.</value>
+  </data>
+  <data name="Image_File" xml:space="preserve">
+    <value>obraz</value>
+  </data>
+  <data name="Image_Files" xml:space="preserve">
+    <value>obrazy</value>
+  </data>
+  <data name="Image_Operation_Progress" xml:space="preserve">
+    <value>Eksportowanie</value>
+  </data>
+  <data name="ImagesPack_Title" xml:space="preserve">
+    <value>Narzędzia do obrazów</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertWebP" xml:space="preserve">
+    <value>Konwersja do WebP</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertWebP" xml:space="preserve">
+    <value>Konwertuje wybrane obrazy do formatu WebP, kompaktowego formatu dla sieci Web.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertAvif" xml:space="preserve">
+    <value>Konwersja do AVIF</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertAvif" xml:space="preserve">
+    <value>Konwertuje wybrane obrazy do formatu AVIF, wysoce skompresowanego, nowoczesnego formatu.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertJpeg" xml:space="preserve">
+    <value>Konwersja do JPEG</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertJpeg" xml:space="preserve">
+    <value>Konwertuje wybrane obrazy (w tym zdjęcia HEIC) do powszechnie kompatybilnych plików JPEG.</value>
+  </data>
+  <data name="ImagesPack_Title_ConvertPng" xml:space="preserve">
+    <value>Konwersja do PNG</value>
+  </data>
+  <data name="ImagesPack_Desc_ConvertPng" xml:space="preserve">
+    <value>Konwertuje wybrane obrazy do bezstratnych plików PNG.</value>
+  </data>
+  <data name="ImagesPack_Title_Resize" xml:space="preserve">
+    <value>Zmiana rozmiaru obrazów</value>
+  </data>
+  <data name="ImagesPack_Desc_Resize" xml:space="preserve">
+    <value>Tworzy zmienione rozmiary kopii, które mieszczą się w maksymalnej szerokości i wysokości, zachowując proporcje obrazu.</value>
+  </data>
+  <data name="ImagesPack_Title_Compress" xml:space="preserve">
+    <value>Kompresja obrazów</value>
+  </data>
+  <data name="ImagesPack_Desc_Compress" xml:space="preserve">
+    <value>Tworzy mniejsze kopie, obniżając jakość i ograniczając rozmiar; oryginały pozostają niezmienione.</value>
+  </data>
+  <data name="ImagesPack_Title_RemoveMetadata" xml:space="preserve">
+    <value>Usuń metadane obrazu</value>
+  </data>
+  <data name="ImagesPack_Desc_RemoveMetadata" xml:space="preserve">
+    <value>Tworzy kopie bez metadanych chroniących prywatność, takich jak dane kamery i lokalizacja.</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Title" xml:space="preserve">
+    <value>Jakość</value>
+  </data>
+  <data name="ImageExportAction_Param_Quality_Desc" xml:space="preserve">
+    <value>Wyższe wartości zachowują więcej szczegółów i powodują większe pliki.</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxWidth_Title" xml:space="preserve">
+    <value>Maksymalna szerokość (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxHeight_Title" xml:space="preserve">
+    <value>Maksymalna wysokość (px)</value>
+  </data>
+  <data name="ImageExportAction_Param_AllowUpscale_Title" xml:space="preserve">
+    <value>Powiększ mniejsze obrazy</value>
+  </data>
+  <data name="ImageExportAction_Param_MaxDimension_Title" xml:space="preserve">
+    <value>Maksymalna szerokość/wysokość (px, 0 = zachowaj rozmiar)</value>
+  </data>
+  <data name="ImageExportAction_Param_StripMetadata_Title" xml:space="preserve">
+    <value>Usuń metadane (aparat, lokalizacja)</value>
+  </data>
+  <data name="ImageExportAction_Op_WillProcess" xml:space="preserve">
+    <value>Przetworzy</value>
+  </data>
+  <data name="ImageExportAction_Op_WillConvert" xml:space="preserve">
+    <value>Konwertuje</value>
+  </data>
+  <data name="ImageExportAction_Op_To" xml:space="preserve">
+    <value> do {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_FitWithin" xml:space="preserve">
+    <value>mieszczą się w {0} x {1} px</value>
+  </data>
+  <data name="ImageExportAction_Op_NoEnlargement" xml:space="preserve">
+    <value> (brak powiększenia)</value>
+  </data>
+  <data name="ImageExportAction_Op_Quality" xml:space="preserve">
+    <value>jakość {0}</value>
+  </data>
+  <data name="ImageExportAction_Op_RemoveMeta" xml:space="preserve">
+    <value>usuń metadane, takie jak lokalizacja</value>
+  </data>
+  <data name="ImageExportAction_Op_KeepMeta" xml:space="preserve">
+    <value>zachowaj metadane</value>
+  </data>
+  <data name="ImageExportAction_Warn_Animation" xml:space="preserve">
+    <value>Obrazy animowane są konwertowane jako obrazy statyczne (pierwsza klatka).</value>
+  </data>
+  <data name="ImageExportAction_Warn_Transparency" xml:space="preserve">
+    <value>Plik JPEG nie ma przezroczystości; obszary przezroczyste stają się białe lub czarne w zależności od kodeka.</value>
+  </data>
+  <data name="ImageExportAction_Warn_PreserveMetadata" xml:space="preserve">
+    <value>Zainstalowane kodeki nie mogą zachować metadanych.</value>
+  </data>
+  <data name="ImageExportAction_Err_TooLarge" xml:space="preserve">
+    <value>Plik obrazu jest zbyt duży.</value>
+  </data>
+  <data name="ImageExportAction_Err_Dimensions" xml:space="preserve">
+    <value>Wymiary obrazu przekraczają obsługiwany limit.</value>
+  </data>
+  <data name="ImageExportAction_Err_UnknownFormat" xml:space="preserve">
+    <value>Nie można określić formatu obrazu.</value>
+  </data>
+  <data name="ImageExportAction_Err_NoCodec" xml:space="preserve">
+    <value>Żaden zainstalowany kodek nie może przekonwertować tego obrazu {0} na {1}.</value>
+  </data>
+  <data name="ImageTarget_Original" xml:space="preserve">
+    <value>oryginalny format</value>
+  </data>
+  <data name="ImageExportAction_Unavailable" xml:space="preserve">
+    <value>Kodowanie {0} nie jest dostępne w tym systemie.</value>
+  </data>
+  <data name="Raster_DecodeFailed" xml:space="preserve"><value>Nie można zdekodować obrazu lub przekracza on limit rastra.</value></data>
+  <data name="Raster_EncodeFailed" xml:space="preserve"><value>Nie można zakodować obrazu.</value></data>
+  <data name="Raster_NoCodec" xml:space="preserve"><value>Żaden zainstalowany kodek rastrowy nie obsługuje tej operacji.</value></data>
+  <data name="Raster_TooManyPixels" xml:space="preserve"><value>Obraz lub płótno przekracza 60 milionów pikseli lub 30 000 pikseli na stronę.</value></data>
+  <data name="Raster_InvalidRatio" xml:space="preserve"><value>Wprowadź dodatni współczynnik proporcji jako szer.:wys.</value></data>
+  <data name="Raster_ProcessCount" xml:space="preserve"><value>Utworzy przekształcone kopie obrazu(ów) {0}.</value></data>
+  <data name="Raster_MetadataRemoved" xml:space="preserve"><value>Metadane są usuwane. Oryginały pozostają niezmienione.</value></data>
+  <data name="Raster_OutputFormat" xml:space="preserve"><value>Format wyjściowy</value></data>
+  <data name="Raster_Choice_png" xml:space="preserve"><value>PNG</value></data>
+  <data name="Raster_Choice_avif" xml:space="preserve"><value>AVIF</value></data>
+  <data name="Raster_Choice_heic" xml:space="preserve"><value>HEIC</value></data>
+  <data name="Raster_HeicNeedsExtension" xml:space="preserve"><value>Dzięki [rozszerzeniom wideo HEVC ze sklepu Microsoft Store](ms-windows-store://pdp/?ProductId=9NMZLZ57R3T7) system Windows może zapisywać pliki HEIC. Możesz również wybrać inny format w sekcji „Format wyjściowy”.</value></data>
+  <data name="Raster_SavedAsOtherFormat" xml:space="preserve"><value>{0} nie można zapisać tutaj, więc te wyniki są zapisywane jako {1}.</value></data>
+  <data name="Raster_TransparencyIgnored" xml:space="preserve"><value>Przezroczyste wypełnienie jest dostępne tylko dla plików PNG i WebP; inne formaty używają bieli.</value></data>
+  <data name="Raster_AlreadyOptimal" xml:space="preserve"><value>Plik PNG jest już mniejszy niż zoptymalizowany wynik.</value></data>
+  <data name="Raster_AlreadySmall" xml:space="preserve"><value>Rozmiar obrazu jest już mniejszy niż docelowy.</value></data>
+  <data name="Raster_TargetUnreachable" xml:space="preserve"><value>Nie można osiągnąć rozmiaru docelowego w ramach limitów jakości i zmiany rozmiaru.</value></data>
+  <data name="Raster_TargetPreview" xml:space="preserve"><value>Skompresuje {0} obrazów do maksymalnie {1} KB każdy. Jakość lub wymiary mogą ulec pogorszeniu.</value></data>
+  <data name="Raster_TargetResult" xml:space="preserve"><value>{0} obrazów mieści się w wymaganym limicie rozmiaru.</value></data>
+  <data name="Raster_CombineCount" xml:space="preserve"><value>Połączy {0} obrazów w kolejności nazw plików.</value></data>
+  <data name="Raster_CombineExtension" xml:space="preserve"><value>Wynik używa PNG dla źródeł z kanałem alfa, w przeciwnym razie JPEG.</value></data>
+  <data name="Raster_MetadataFailed" xml:space="preserve"><value>Metadane obrazu są uszkodzone lub przekraczają obsługiwany limit.</value></data>
+  <data name="Raster_InfoPreview" xml:space="preserve"><value>Wyświetla nieidentyfikujące szczegóły dla obrazu(-ów) {0}.</value></data>
+  <data name="Raster_InfoLine" xml:space="preserve"><value>Obraz {0}: {1}, {2} × {3} px, {4:0.##} MP; DPI {5} × {6}; orientacja {7}; lokalizacja: {8}; profil kolorów: {9}; klatki: {10}.</value></data>
+  <data name="Raster_Unknown" xml:space="preserve"><value>Niedostępne</value></data>
+  <data name="Raster_Yes" xml:space="preserve"><value>Tak</value></data>
+  <data name="Raster_No" xml:space="preserve"><value>Nie</value></data>
+  <data name="Raster_Ratio" xml:space="preserve"><value>Proporcje obrazu</value></data>
+  <data name="Raster_CustomRatio" xml:space="preserve"><value>Niestandardowe proporcje (szer.:wys.)</value></data>
+  <data name="Raster_Anchor" xml:space="preserve"><value>Przytnij kotwicę</value></data>
+  <data name="Raster_Mode" xml:space="preserve"><value>Tryb wypełniania</value></data>
+  <data name="Raster_BorderPx" xml:space="preserve"><value>Szerokość obramowania (px)</value></data>
+  <data name="Raster_Color" xml:space="preserve"><value>Kolor obramowania</value></data>
+  <data name="Raster_Transparent" xml:space="preserve"><value>Przezroczyste wypełnienie</value></data>
+  <data name="Raster_Colors" xml:space="preserve"><value>Kolory palety</value></data>
+  <data name="Raster_Dither" xml:space="preserve"><value>Gradienty ditheringu</value></data>
+  <data name="Raster_Sizes" xml:space="preserve"><value>Rozmiary ikon</value></data>
+  <data name="Raster_Format" xml:space="preserve"><value>Format wyjściowy</value></data>
+  <data name="Raster_TargetKb" xml:space="preserve"><value>Maksymalny rozmiar (KB)</value></data>
+  <data name="Raster_Gap" xml:space="preserve"><value>Odstęp (px)</value></data>
+  <data name="Raster_Background" xml:space="preserve"><value>Kolor tła</value></data>
+  <data name="Raster_Columns" xml:space="preserve"><value>Kolumny (0 = automatycznie)</value></data>
+  <data name="Raster_CellSize" xml:space="preserve"><value>Rozmiar komórki (piksele)</value></data>
+  <data name="Raster_Fit" xml:space="preserve"><value>Dopasuj obrazy</value></data>
+  <data name="Raster_Direction" xml:space="preserve"><value>Kierunek</value></data>
+  <data name="Raster_Align" xml:space="preserve"><value>Wyrównanie</value></data>
+  <data name="Raster_Title_Crop" xml:space="preserve"><value>Przytnij do proporcji obrazu</value></data>
+  <data name="Raster_Title_Pad" xml:space="preserve"><value>Dodaj obramowanie lub utwórz kwadrat</value></data>
+  <data name="Raster_Title_Grayscale" xml:space="preserve"><value>Konwersja do czarno-białego</value></data>
+  <data name="Raster_Title_OptimizePng" xml:space="preserve"><value>Optymalizacja PNG (mniej kolorów)</value></data>
+  <data name="Raster_Title_Icon" xml:space="preserve"><value>Utwórz ikonę (ICO)</value></data>
+  <data name="Raster_Title_ConvertOther" xml:space="preserve"><value>Konwersja do innego formatu</value></data>
+  <data name="Raster_Title_TargetSize" xml:space="preserve"><value>Kompresja do rozmiaru pliku</value></data>
+  <data name="Raster_Title_Stitch" xml:space="preserve"><value>Połącz obrazy obok siebie</value></data>
+  <data name="Raster_Title_Collage" xml:space="preserve"><value>Utwórz siatkę zdjęć</value></data>
+  <data name="Raster_Title_Info" xml:space="preserve"><value>Pokaż szczegóły obrazu</value></data>
+  <data name="Raster_Description_Crop" xml:space="preserve"><value>Tworzy przycięte kopie z użyciem wybranego współczynnika proporcji i zakotwiczenia.</value></data>
+  <data name="Raster_Description_Pad" xml:space="preserve"><value>Dodaje obramowanie lub wypełnia kwadrat obrazami.</value></data>
+  <data name="Raster_Description_Grayscale" xml:space="preserve"><value>Tworzy kopie w skali szarości, zachowując format obrazu.</value></data>
+  <data name="Raster_Description_OptimizePng" xml:space="preserve"><value>Tworzy mniejsze kopie PNG przy użyciu palety uwzględniającej alfa.</value></data>
+  <data name="Raster_Description_Icon" xml:space="preserve"><value>Tworzenie ikon opartych na formacie PNG w rozmiarach favicon lub Windows.</value></data>
+  <data name="Raster_Description_ConvertOther" xml:space="preserve"><value>Eksportuje nieruchomy obraz w formacie TIFF, BMP, GIF lub ICO.</value></data>
+  <data name="Raster_Description_TargetSize" xml:space="preserve"><value>Znajduje jakość i wymiary obrazu, które mieszczą się w limicie rozmiaru.</value></data>
+  <data name="Raster_Description_Stitch" xml:space="preserve"><value>Skaluje obrazy do wspólnej strony i łączy je.</value></data>
+  <data name="Raster_Description_Collage" xml:space="preserve"><value>Układa obrazy w siatce z kadrowaniem lub dopełnieniem.</value></data>
+  <data name="Raster_Description_Info" xml:space="preserve"><value>Wyświetla wymiary i flagi prywatności bez ujawniania wartości metadanych.</value></data>
+  <data name="Raster_Choice_1_1" xml:space="preserve"><value>1:1</value></data>
+  <data name="Raster_Choice_4_3" xml:space="preserve"><value>4:3</value></data>
+  <data name="Raster_Choice_3_2" xml:space="preserve"><value>3:2</value></data>
+  <data name="Raster_Choice_16_9" xml:space="preserve"><value>16:9</value></data>
+  <data name="Raster_Choice_9_16" xml:space="preserve"><value>9:16</value></data>
+  <data name="Raster_Choice_4_5" xml:space="preserve"><value>4:5</value></data>
+  <data name="Raster_Choice_custom" xml:space="preserve"><value>Niestandardowe</value></data>
+  <data name="Raster_Choice_center" xml:space="preserve"><value>Środek</value></data>
+  <data name="Raster_Choice_top" xml:space="preserve"><value>Góra</value></data>
+  <data name="Raster_Choice_bottom" xml:space="preserve"><value>Dół</value></data>
+  <data name="Raster_Choice_left" xml:space="preserve"><value>Lewa</value></data>
+  <data name="Raster_Choice_right" xml:space="preserve"><value>Prawo</value></data>
+  <data name="Raster_Choice_square" xml:space="preserve"><value>Kwadrat</value></data>
+  <data name="Raster_Choice_border" xml:space="preserve"><value>Obramowanie</value></data>
+  <data name="Raster_Choice_favicon" xml:space="preserve"><value>Favicon (16, 32, 48)</value></data>
+  <data name="Raster_Choice_windows" xml:space="preserve"><value>Windows (16–256)</value></data>
+  <data name="Raster_Choice_tiff" xml:space="preserve"><value>TIFF</value></data>
+  <data name="Raster_Choice_bmp" xml:space="preserve"><value>BMP</value></data>
+  <data name="Raster_Choice_gif" xml:space="preserve"><value>GIF (pojedyncza klatka)</value></data>
+  <data name="Raster_Choice_ico" xml:space="preserve"><value>ICO</value></data>
+  <data name="Raster_Choice_same" xml:space="preserve"><value>Format oryginalny</value></data>
+  <data name="Raster_Choice_jpeg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="Raster_Choice_webp" xml:space="preserve"><value>WebP</value></data>
+  <data name="Raster_Choice_cover" xml:space="preserve"><value>Wypełnianie i kadrowanie</value></data>
+  <data name="Raster_Choice_contain" xml:space="preserve"><value>Dopasuj z odstępem</value></data>
+  <data name="Raster_Choice_horizontal" xml:space="preserve"><value>Poziomo</value></data>
+  <data name="Raster_Choice_vertical" xml:space="preserve"><value>Pionowo</value></data>
+  <data name="Raster_Choice_start" xml:space="preserve"><value>Początek</value></data>
+  <data name="Raster_Choice_end" xml:space="preserve"><value>Koniec</value></data>
+  <data name="Extra_JpegMetadataKept" xml:space="preserve"><value>Jakość obrazu JPEG i metadane, w tym lokalizacja, są zachowane. Niektóre rozmiary obrazów nie są obsługiwane bez przycinania. Osadzone podglądy zachowują swoją poprzednią orientację.</value></data>
+  <data name="Extra_RotationUnavailable" xml:space="preserve"><value>Wymagany kodek obrotu obrazu jest niedostępny.</value></data>
+  <data name="Extra_AlreadyUpright" xml:space="preserve"><value>Już pionowo.</value></data>
+  <data name="Extra_JpegFailed" xml:space="preserve"><value>Nie można bezpiecznie przekształcić pliku JPEG.</value></data>
+  <data name="Extra_JpegUnsupported" xml:space="preserve"><value>Format lub rozmiar pliku JPEG nie są obsługiwane w przypadku transformacji bezstratnej.</value></data>
+  <data name="Extra_JpegPartialMcu" xml:space="preserve"><value>Tych wymiarów JPEG nie można przekształcić bezstratnie bez przycinania. Oryginał pozostaje niezmieniony.</value></data>
+  <data name="Extra_GpsFailed" xml:space="preserve"><value>Nie można bezpiecznie usunąć metadanych lokalizacji.</value></data>
+  <data name="Extra_NoGps" xml:space="preserve"><value>Nie znaleziono danych GPS.</value></data>
+  <data name="Extra_GpsUnavailable" xml:space="preserve"><value>Żaden zainstalowany kodek nie może usunąć danych GPS, zachowując jednocześnie inne metadane.</value></data>
+  <data name="Extra_GpsResave" xml:space="preserve"><value>Obraz jest ponownie zapisywany w wykrytej oryginalnej jakości. Pozostałe metadane są zachowywane; usuwane są pola EXIF ​​GPS i XMP exif:GPS, a nie wszystkie możliwe odniesienia do lokalizacji.</value></data>
+  <data name="Extra_WatermarkUnavailable" xml:space="preserve"><value>Silnik znaku wodnego obrazu jest niedostępny.</value></data>
+  <data name="Extra_WatermarkTextInvalid" xml:space="preserve"><value>Wprowadź tekst znaku wodnego o długości od 1 do 500 znaków bez znaków kontrolnych.</value></data>
+  <data name="Extra_WatermarkImageInvalid" xml:space="preserve"><value>Wybierz prawidłowy, obsługiwany obraz znaku wodnego, mieszczący się w limicie.</value></data>
+  <data name="Extra_WatermarkFailed" xml:space="preserve"><value>Nie można zastosować znaku wodnego.</value></data>
+  <data name="Extra_FontUnavailable" xml:space="preserve"><value>Brak zainstalowanej obsługiwanej czcionki znaku wodnego.</value></data>
+  <data name="Extra_GifUnavailable" xml:space="preserve"><value>Koder animowanego GIF-a jest niedostępny.</value></data>
+  <data name="Extra_GifColors" xml:space="preserve"><value>GIF używa ograniczonej palety kolorów. Przezroczystość jest spłaszczana do bieli; opóźnienia są zaokrąglane do następnych 10 ms.</value></data>
+  <data name="Extra_GifFailed" xml:space="preserve"><value>Animacji nie można zakodować w ramach obsługiwanych limitów.</value></data>
+  <data name="Extra_FaceUnavailable" xml:space="preserve"><value>Lokalne wykrywanie twarzy jest niedostępne na tym urządzeniu.</value></data>
+  <data name="Extra_FaceWarning" xml:space="preserve"><value>Wykrycie nie jest gwarantowane. Sprawdź każdy wynik przed udostępnieniem; pomyślne uruchomienie nie gwarantuje, że każda twarz jest ukryta.</value></data>
+  <data name="Extra_NoFaces" xml:space="preserve"><value>Nie znaleziono twarzy.</value></data>
+  <data name="Extra_FaceFailed" xml:space="preserve"><value>Nie udało się bezpiecznie przetworzyć twarzy.</value></data>
+  <data name="Extra_OcrUnavailable" xml:space="preserve"><value>Lokalne OCR jest niedostępne. Zainstaluj język OCR w Ustawieniach systemu Windows &gt; Czas i język.</value></data>
+  <data name="Extra_OcrFailed" xml:space="preserve"><value>Nie można rozpoznać tekstu.</value></data>
+  <data name="Extra_OcrTooLarge" xml:space="preserve"><value>Rozpoznany tekst przekracza dozwolone limity.</value></data>
+  <data name="Extra_NoText" xml:space="preserve"><value>Nie znaleziono tekstu.</value></data>
+  <data name="Extra_Position" xml:space="preserve"><value>Pozycja</value></data>
+  <data name="Extra_Opacity" xml:space="preserve"><value>Krycie (%)</value></data>
+  <data name="Extra_Image" xml:space="preserve"><value>Obraz znaku wodnego</value></data>
+  <data name="Extra_WidthPercent" xml:space="preserve"><value>Szerokość znaku wodnego (%)</value></data>
+  <data name="Extra_Text" xml:space="preserve"><value>Tekst znaku wodnego</value></data>
+  <data name="Extra_FontSizePercent" xml:space="preserve"><value>Rozmiar czcionki (% szerokości obrazu)</value></data>
+  <data name="Extra_Color" xml:space="preserve"><value>Kolor tekstu</value></data>
+  <data name="Extra_DelayMs" xml:space="preserve"><value>Opóźnienie klatki (ms)</value></data>
+  <data name="Extra_Loop" xml:space="preserve"><value>Powtórz animację</value></data>
+  <data name="Extra_MaxSize" xml:space="preserve"><value>Maksymalna długość boku (px)</value></data>
+  <data name="Extra_Strength" xml:space="preserve"><value>Siła pikselizacji</value></data>
+  <data name="Extra_Output" xml:space="preserve"><value>Dane wyjściowe w formacie tekstowym</value></data>
+  <data name="Extra_Language" xml:space="preserve"><value>Język rozpoznawania</value></data>
+  <data name="Extra_Title_rotate-right" xml:space="preserve"><value>Obrót w prawo (90°)</value></data>
+  <data name="Extra_Description_rotate-right" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_rotate-left" xml:space="preserve"><value>Obrót w lewo (90°)</value></data>
+  <data name="Extra_Description_rotate-left" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_rotate-180" xml:space="preserve"><value>Obrót o 180°</value></data>
+  <data name="Extra_Description_rotate-180" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_flip-horizontal" xml:space="preserve"><value>Odwróć w poziomie</value></data>
+  <data name="Extra_Description_flip-horizontal" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_flip-vertical" xml:space="preserve"><value>Odwróć w pionie</value></data>
+  <data name="Extra_Description_flip-vertical" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_auto-rotate" xml:space="preserve"><value>Wyprostuj za pomocą aparatu Orientacja</value></data>
+  <data name="Extra_Description_auto-rotate" xml:space="preserve"><value>Tworzy obrócone lub lustrzane kopie o znormalizowanej orientacji.</value></data>
+  <data name="Extra_Title_WatermarkText" xml:space="preserve"><value>Dodaj tekstowy znak wodny</value></data>
+  <data name="Extra_Description_WatermarkText" xml:space="preserve"><value>Tworzy kopie ze znakiem wodnym bez zmiany oryginałów.</value></data>
+  <data name="Extra_Title_WatermarkImage" xml:space="preserve"><value>Dodaj znak wodny do obrazu</value></data>
+  <data name="Extra_Description_WatermarkImage" xml:space="preserve"><value>Tworzy kopie ze znakiem wodnym bez zmiany oryginałów.</value></data>
+  <data name="Extra_Title_AnimatedGif" xml:space="preserve"><value>Utwórz animowany GIF</value></data>
+  <data name="Extra_Description_AnimatedGif" xml:space="preserve"><value>Buduje animację z wybranych nieruchomych obrazów.</value></data>
+  <data name="Extra_Title_Ocr" xml:space="preserve"><value>Kopiuj tekst z obrazu (OCR)</value></data>
+  <data name="Extra_Description_Ocr" xml:space="preserve"><value>Rozpoznaje tekst z obrazka lokalnie dla pliku lub schowka.</value></data>
+  <data name="Extra_Title_BlurFaces" xml:space="preserve"><value>Rozmycie twarzy</value></data>
+  <data name="Extra_Description_BlurFaces" xml:space="preserve"><value>Tworzy pikselowate kopie za pomocą lokalnego wykrywania twarzy.</value></data>
+  <data name="Extra_Title_RemoveLocation" xml:space="preserve"><value>Usuń tylko lokalizację (GPS)</value></data>
+  <data name="Extra_Description_RemoveLocation" xml:space="preserve"><value>Usuwa pola GPS EXIF/XMP, zachowując inne metadane.</value></data>
+  <data name="Extra_Choice_top-left" xml:space="preserve"><value>Lewy górny róg</value></data>
+  <data name="Extra_Choice_top" xml:space="preserve"><value>Góra</value></data>
+  <data name="Extra_Choice_top-right" xml:space="preserve"><value>Prawy górny róg</value></data>
+  <data name="Extra_Choice_left" xml:space="preserve"><value>Lewa</value></data>
+  <data name="Extra_Choice_center" xml:space="preserve"><value>Środek</value></data>
+  <data name="Extra_Choice_right" xml:space="preserve"><value>Prawo</value></data>
+  <data name="Extra_Choice_bottom-left" xml:space="preserve"><value>Lewy dolny róg</value></data>
+  <data name="Extra_Choice_bottom" xml:space="preserve"><value>Dół</value></data>
+  <data name="Extra_Choice_bottom-right" xml:space="preserve"><value>Prawy dolny róg</value></data>
+  <data name="Extra_Choice_tiled" xml:space="preserve"><value>Kafelkowanie</value></data>
+  <data name="Extra_Choice_light" xml:space="preserve"><value>Jasny</value></data>
+  <data name="Extra_Choice_strong" xml:space="preserve"><value>Silna</value></data>
+  <data name="Extra_Choice_clipboard" xml:space="preserve"><value>Schowek</value></data>
+  <data name="Extra_Choice_file" xml:space="preserve"><value>Plik tekstowy UTF-8</value></data>
+  <data name="Extra_Choice_auto" xml:space="preserve"><value>Preferencje językowe systemu Windows</value></data>
+  <data name="Extra_RotateCount_One" xml:space="preserve"><value>Utworzy obróconą lub lustrzaną kopię obrazu {0}.</value></data>
+  <data name="Extra_RotateCount_Other" xml:space="preserve"><value>Utworzy obróconą lub lustrzaną kopię obrazu {0}.</value></data>
+  <data name="Extra_RemoveGpsCount_One" xml:space="preserve"><value>Usunie metadane GPS z obrazka {0}.</value></data>
+  <data name="Extra_RemoveGpsCount_Other" xml:space="preserve"><value>Usunie metadane GPS z obrazków {0}.</value></data>
+  <data name="Extra_WatermarkCount_One" xml:space="preserve"><value>Doda znak wodny do kopii obrazu {0}.</value></data>
+  <data name="Extra_WatermarkCount_Other" xml:space="preserve"><value>Doda znak wodny do {0} kopii obrazu.</value></data>
+  <data name="Extra_GifCount_One" xml:space="preserve"><value>Utworzy animację z obrazu {0}.</value></data>
+  <data name="Extra_GifCount_Other" xml:space="preserve"><value>Utworzy animację z obrazów {0} w kolejności zgodnej z nazwami plików.</value></data>
+  <data name="Extra_FaceCount_One" xml:space="preserve"><value>Wykryje i pikseluje twarze w kopiach obrazu {0}.</value></data>
+  <data name="Extra_FaceCount_Other" xml:space="preserve"><value>Wykryje i pikseluje twarze w kopiach obrazu {0}.</value></data>
+  <data name="Extra_OcrFileCount_One" xml:space="preserve"><value>Rozpozna tekst na obrazku {0} i zapisze plik tekstowy UTF-8.</value></data>
+  <data name="Extra_OcrFileCount_Other" xml:space="preserve"><value>Rozpozna tekst na obrazkach {0} i zapisze pliki tekstowe UTF-8.</value></data>
+  <data name="Extra_OcrClipboardCount_One" xml:space="preserve"><value>Rozpozna tekst na obrazku {0} do schowka.</value></data>
+  <data name="Extra_OcrClipboardCount_Other" xml:space="preserve"><value>Rozpozna tekst na obrazkach {0} do schowka.</value></data>
+  <data name="Extra_OcrResult_One" xml:space="preserve"><value>Rozpoznany tekst z obrazka {0} jest gotowy do umieszczenia w schowku.</value></data>
+  <data name="Extra_OcrResult_Other" xml:space="preserve"><value>Rozpoznany tekst z obrazka {0} jest gotowy do umieszczenia w schowku.</value></data>
+  <data name="ImagesPack_Title_Compare" xml:space="preserve"><value>Porównaj obrazy</value></data>
+  <data name="ImagesPack_Desc_Compare" xml:space="preserve"><value>Tworzy porównanie obok siebie z obrazem różnicowym, podświetlającym zmienione piksele.</value></data>
+  <data name="ImagesPack_Warn_CompareSizeMismatch" xml:space="preserve"><value>Obrazy mają różne wymiary. Drugi obraz zostanie przeskalowany tak, aby pasował do pierwszego.</value></data>
+  <data name="ImagesPack_CompareReceipt" xml:space="preserve"><value>{0:0.##} % zmienionych pikseli</value></data>
+  <data name="SvgTitle" xml:space="preserve"><value>Konwertuj SVG na PNG</value></data>
+  <data name="SvgDescription" xml:space="preserve"><value>Obsługiwane statyczne grafiki SVG są renderowane jako nowe, przezroczyste obrazy PNG, dopasowane do wybranej rozdzielczości.</value></data>
+  <data name="SvgWidth" xml:space="preserve"><value>Szerokość docelowa (piksele)</value></data>
+  <data name="SvgHeight" xml:space="preserve"><value>Wysokość docelowa (piksele)</value></data>
+  <data name="SvgExactCanvas" xml:space="preserve"><value>Użyj dokładnego rozmiaru płótna</value></data>
+  <data name="SvgExactCanvasDescription" xml:space="preserve"><value>Tworzy plik PNG o dokładnie docelowej szerokości i wysokości. Wyśrodkowuje grafikę z przezroczystym wypełnieniem, bez rozciągania ani przycinania. Po wyłączeniu, szerokość i wysokość są wartościami maksymalnymi.</value></data>
+  <data name="SvgExactCanvasPreview" xml:space="preserve"><value>Skonwertuje obrazy PNG o rozmiarze dokładnie {0} × {1} pikseli, z wyśrodkowaną, proporcjonalną grafiką i przezroczystym wypełnieniem.</value></data>
+  <data name="SvgFiles" xml:space="preserve"><value>Pliki SVG</value></data>
+  <data name="SvgUnavailable" xml:space="preserve"><value>Renderer SVG jest niedostępny.</value></data>
+  <data name="SvgInvalid" xml:space="preserve"><value>Plik SVG jest nieprawidłowy, przekracza limity lub zawiera nieobsługiwaną treść. Użyj statycznych kształtów, tekstu i gradientów z polem widoku lub wymiarami pikseli; zasoby zewnętrzne i aktywna zawartość zostaną odrzucone.</value></data>
+  <data name="SvgLimits" xml:space="preserve"><value>Zachowuje proporcje obrazu i przezroczystość. Obsługuje tylko statyczne kształty, tekst i gradienty. Skrypty, arkusze stylów, animacje, osadzone obrazy, odniesienia do użycia i zasoby zewnętrzne są odrzucane. Limit danych wejściowych: 1 MiB i 5000 elementów; limit danych wyjściowych: 40 milionów pikseli.</value></data>
+  <data name="SvgReadError" xml:space="preserve"><value>Nie można odczytać danych wejściowych SVG.</value></data>
+  <data name="Extra_SvgRenderFailed" xml:space="preserve"><value>Nie można wyrenderować statycznego pliku SVG.</value></data>
+  <data name="VectorTitle" xml:space="preserve"><value>Wektoryzacja PNG do SVG</value></data>
+  <data name="VectorDescription" xml:space="preserve"><value>Zapisuje skwantyzowane obszary kolorów PNG w zamknięte ścieżki wielokątne SVG dla logo i prostych ilustracji.</value></data>
+  <data name="VectorMode" xml:space="preserve"><value>Tryb kolorów</value></data>
+  <data name="VectorColor" xml:space="preserve"><value>Kolor</value></data>
+  <data name="VectorMono" xml:space="preserve"><value>Czarno-biały</value></data>
+  <data name="VectorDetail" xml:space="preserve"><value>Poziom szczegółowości</value></data>
+  <data name="VectorLow" xml:space="preserve"><value>Niska (do 256 px, 8 kolorów)</value></data>
+  <data name="VectorMedium" xml:space="preserve"><value>Średnia (do 512 px, 16 kolorów)</value></data>
+  <data name="VectorHigh" xml:space="preserve"><value>Wysoka (do 1024 px, 32 kolory)</value></data>
+  <data name="VectorThreshold" xml:space="preserve"><value>Próg jasności czerni/bieli</value></data>
+  <data name="VectorFiles" xml:space="preserve"><value>Obrazy PNG</value></data>
+  <data name="VectorLimits" xml:space="preserve"><value>Tworzy rzeczywiste ścieżki wielokątne, a nie osadzone bitmapy. Najlepiej nadaje się do płaskich logo i prostych ilustracji; zdjęcia, gradienty, drobny tekst i gładkie krzywe tracą detale. Tryb kolorów kwantuje kolory i alfa; tryb czarno-biały proguje jasność i alfa. Przetwarzanie wykorzystuje siatkę roboczą 256/512/1024 pikseli, zachowując oryginalny rozmiar ekranu. Limit źródła: 16 milionów pikseli; złożoność: 250 000 krawędzi granicznych; SVG: 5 MiB. Tylko przezroczyste lub nadmiernie złożone dane wejściowe nie są tworzone.</value></data>
+  <data name="VectorFailed" xml:space="preserve"><value>Nie można zwektoryzować pliku PNG: brak widocznych kształtów, nieobsługiwane wymiary lub nadmierna złożoność konturów. Spróbuj zastosować mniejszą liczbę szczegółów lub prostsze logo.</value></data>
+  <data name="ImageExportAction_Param_OptionalSize_Desc" xml:space="preserve">
+    <value>0 zachowuje oryginalny rozmiar.</value>
+  </data>
+  <data name="Canvas_Title" xml:space="preserve"><value>Edycja obrazu wizualnie</value></data>
+  <data name="Canvas_Description" xml:space="preserve"><value>Zmień rozmiar, obróć i umieść jeden obraz na przezroczystym płótnie, a następnie zapisz nowy plik PNG.</value></data>
+  <data name="Canvas_CanvasWidth" xml:space="preserve"><value>Szerokość obszaru roboczego (piksele)</value></data>
+  <data name="Canvas_CanvasHeight" xml:space="preserve"><value>Wysokość obszaru roboczego (piksele)</value></data>
+  <data name="Canvas_ImageWidth" xml:space="preserve"><value>Szerokość obrazu (piksele)</value></data>
+  <data name="Canvas_ImageHeight" xml:space="preserve"><value>Wysokość obrazu (piksele)</value></data>
+  <data name="Canvas_OffsetX" xml:space="preserve"><value>Poziome przesunięcie od środka płótna (piksele)</value></data>
+  <data name="Canvas_OffsetY" xml:space="preserve"><value>Przesunięcie w pionie od środka obszaru roboczego (piksele)</value></data>
+  <data name="Canvas_Angle" xml:space="preserve"><value>Obrót zgodnie z ruchem wskazówek zegara (w stopniach)</value></data>
+  <data name="Canvas_Auto" xml:space="preserve"><value>0 używa rozmiaru źródłowego lub proporcjonalnie dopasowuje obraz do obszaru roboczego.</value></data>
+  <data name="Canvas_Invalid" xml:space="preserve"><value>Obszar roboczy lub obraz przekracza obsługiwany rozmiar: 10 000 pikseli na bok i 40 milionów pikseli.</value></data>
+  <data name="Canvas_LoadFailed" xml:space="preserve"><value>Nie można załadować obrazu lub jego układ przekracza obsługiwane limity.</value></data>
+  <data name="Canvas_Preview" xml:space="preserve"><value>Utworzy nowy plik PNG o rozdzielczości {0} × {1} pikseli z tym układem obrazu.</value></data>
+  <data name="Canvas_OutputNote" xml:space="preserve"><value>Zachowuje przezroczystość i pliki źródłowe; usuwa metadane. Animowane obrazy używają swojej pierwszej klatki. To jest eksport rastrowy PNG.</value></data>
+  <data name="Canvas_Clipped" xml:space="preserve"><value>Zawartość obrazu poza obszarem płótna zostanie przycięta. Użyj opcji Dopasuj obraz lub Płótno do obrazu, aby zachować cały obraz.</value></data>
+  <data name="ResizeQuality" xml:space="preserve"><value>Metoda skalowania</value></data>
+  <data name="ResizeStandard" xml:space="preserve"><value>Skalowanie standardowe</value></data>
+  <data name="ResizeSmart" xml:space="preserve"><value>Wysoka jakość (Lanczos)</value></data>
+  <data name="ResizeSmartDescription" xml:space="preserve"><value>Lokalne resamplingowanie Lanczosa z delikatnym wyostrzaniem podczas powiększania. Może poprawić ostrość krawędzi; brakujące szczegóły nie są odtwarzane.</value></data>
+  <data name="ResizeSmartUnavailable" xml:space="preserve"><value>Metoda skalowania wysokiej jakości jest niedostępna na tym hoście.</value></data>
+  <data name="ResizePreviewFailed" xml:space="preserve"><value>Nie można utworzyć podglądu zmiany rozmiaru. Sprawdź wymiary obrazu i dane wyjściowe lub użyj standardowych opcji.</value></data>
+  <data name="Extra_RotateCount_Few" xml:space="preserve"><value>Utworzy obrócone lub lustrzane kopie {0} obrazów.</value></data>
+  <data name="Extra_RotateCount_Many" xml:space="preserve"><value>Utworzy obrócone lub lustrzane kopie {0} obrazów.</value></data>
+  <data name="Extra_RemoveGpsCount_Few" xml:space="preserve"><value>Usunie metadane GPS z {0} obrazów.</value></data>
+  <data name="Extra_RemoveGpsCount_Many" xml:space="preserve"><value>Usunie metadane GPS z {0} obrazów.</value></data>
+  <data name="Extra_WatermarkCount_Few" xml:space="preserve"><value>Doda znak wodny do {0} kopii obrazu.</value></data>
+  <data name="Extra_WatermarkCount_Many" xml:space="preserve"><value>Doda znak wodny do {0} kopii obrazu.</value></data>
+  <data name="Extra_GifCount_Few" xml:space="preserve"><value>Utworzy animację z {0} obrazów w kolejności nazw plików.</value></data>
+  <data name="Extra_GifCount_Many" xml:space="preserve"><value>Utworzy animację z {0} obrazów w kolejności nazw plików.</value></data>
+  <data name="Extra_FaceCount_Few" xml:space="preserve"><value>Wykryje i rozpikseluje twarze w {0} kopiach obrazów.</value></data>
+  <data name="Extra_FaceCount_Many" xml:space="preserve"><value>Wykryje i rozpikseluje twarze w {0} kopiach obrazów.</value></data>
+  <data name="Extra_OcrFileCount_Few" xml:space="preserve"><value>Rozpozna tekst na {0} obrazach i zapisze pliki UTF-8.</value></data>
+  <data name="Extra_OcrFileCount_Many" xml:space="preserve"><value>Rozpozna tekst na {0} obrazach i zapisze pliki UTF-8.</value></data>
+  <data name="Extra_OcrClipboardCount_Few" xml:space="preserve"><value>Rozpozna tekst na {0} obrazach i skopiuje go do schowka.</value></data>
+  <data name="Extra_OcrClipboardCount_Many" xml:space="preserve"><value>Rozpozna tekst na {0} obrazach i skopiuje go do schowka.</value></data>
+  <data name="Extra_OcrResult_Few" xml:space="preserve"><value>Rozpoznany tekst z {0} obrazów jest gotowy do skopiowania do schowka.</value></data>
+  <data name="Extra_OcrResult_Many" xml:space="preserve"><value>Rozpoznany tekst z {0} obrazów jest gotowy do skopiowania do schowka.</value></data>
+  <data name="Image_FilesMany" xml:space="preserve"><value>obrazów</value></data>
+</root>

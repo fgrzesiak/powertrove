@@ -21,7 +21,7 @@
     <Using Include="PowerTrove.Abstractions" />
   </ItemGroup>
 
-  <ItemGroup><ProjectReference Include="..\..\tools\FileKit.Text\src\FileKit.Text\FileKit.Text.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\tools\FileKit.Text\src\FileKit.Text\FileKit.Text.csproj" /><ProjectReference Include="..\..\tools\FileKit.Detection\src\FileKit.Detection\FileKit.Detection.csproj" /></ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\PackDistribution.json" LogicalName="PowerTrove.PackDistribution.json" Condition="'$(PowerTrovePackDistributionFile)' == ''" />
     <EmbeddedResource Include="$(PowerTrovePackDistributionFile)" LogicalName="PowerTrove.PackDistribution.json" Condition="'$(PowerTrovePackDistributionFile)' != ''" />

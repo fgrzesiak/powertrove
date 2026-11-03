@@ -59,7 +59,7 @@ public sealed class RecipeEditorView : HostedView
         _choices = actions.GetAllActions()
             .Where(UserRecipes.CanBeStep)
             // Multi-select options depend on a concrete selection, which a recipe does not have yet.
-            .Where(action => action.Descriptor.Parameters?.All(p => p.Editor != ActionParameterEditor.MultiSelect) != false)
+            .Where(action => action.Descriptor.Parameters?.All(p => p.Editor == ActionParameterEditor.Default) != false)
             .Select(action => new StepChoice(action.Descriptor.Id, action.Descriptor.Title))
             .OrderBy(choice => choice.Title, StringComparer.CurrentCultureIgnoreCase)
             .ToArray();

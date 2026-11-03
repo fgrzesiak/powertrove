@@ -59,11 +59,11 @@ public sealed class SanitizePdfAction : PerFileAction<SanitizePdfOptions>
                 else
                 {
                     var items = new List<string>();
-                    if (counts.Scripts > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.GetString(counts.Scripts == 1 ? "PdfSanitize_Scripts_One" : "PdfSanitize_Scripts_Other"), counts.Scripts));
-                    if (counts.Attachments > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.GetString(counts.Attachments == 1 ? "PdfSanitize_Attachments_One" : "PdfSanitize_Attachments_Other"), counts.Attachments));
-                    if (counts.LaunchActions > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.GetString(counts.LaunchActions == 1 ? "PdfSanitize_LaunchActions_One" : "PdfSanitize_LaunchActions_Other"), counts.LaunchActions));
-                    if (!options.KeepLinks && counts.UriActions > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.GetString(counts.UriActions == 1 ? "PdfSanitize_UriActions_One" : "PdfSanitize_UriActions_Other"), counts.UriActions));
-                    if (counts.MetadataItems > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.GetString(counts.MetadataItems == 1 ? "PdfSanitize_Metadata_One" : "PdfSanitize_Metadata_Other"), counts.MetadataItems));
+                    if (counts.Scripts > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.Plural("PdfSanitize_Scripts", counts.Scripts), counts.Scripts));
+                    if (counts.Attachments > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.Plural("PdfSanitize_Attachments", counts.Attachments), counts.Attachments));
+                    if (counts.LaunchActions > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.Plural("PdfSanitize_LaunchActions", counts.LaunchActions), counts.LaunchActions));
+                    if (!options.KeepLinks && counts.UriActions > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.Plural("PdfSanitize_UriActions", counts.UriActions), counts.UriActions));
+                    if (counts.MetadataItems > 0) items.Add(string.Format(CultureInfo.CurrentCulture, SR.Plural("PdfSanitize_Metadata", counts.MetadataItems), counts.MetadataItems));
 
                     if (items.Count > 0)
                     {
@@ -83,7 +83,7 @@ public sealed class SanitizePdfAction : PerFileAction<SanitizePdfOptions>
     }
 
     protected override string DescribeOperation(int inputCount, SanitizePdfOptions options) =>
-        string.Format(CultureInfo.CurrentCulture, SR.GetString("SanitizePdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_Copy"), SR.GetString("Pdf_Copies")));
+        string.Format(CultureInfo.CurrentCulture, SR.GetString("SanitizePdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_Copy", "Pdf_Copies"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, SanitizePdfOptions options)
     {

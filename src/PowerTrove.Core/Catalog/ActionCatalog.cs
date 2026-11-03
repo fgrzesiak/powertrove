@@ -73,7 +73,7 @@ public sealed class ActionCatalog : IActionCatalog
                 long bytes = selected.Bytes;
                 string fingerprint = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest))));
                 var presentation = ManifestLocalization.ForCulture(manifest);
-                var englishTitles = manifest.Actions.ToDictionary(a => a.Id, a => a.Title, StringComparer.Ordinal);
+                var englishActions = manifest.Actions.ToDictionary(a => a.Id, StringComparer.Ordinal);
                 var info = new ActionPackInfo(manifest.Id, presentation.DisplayName, manifest.Version, manifest.Publisher);
                 if (!Version.TryParse(info.Version, out var version)) throw new CatalogFormatException();
                 PackInstallState state;
@@ -87,7 +87,7 @@ public sealed class ActionCatalog : IActionCatalog
                 {
                     if (!actionIds.Add(action.Id) || entries.Count == MaximumActions) throw new CatalogFormatException();
                     entries.Add(new CatalogEntry(action, info, state, bytes, fingerprint)
-                    { EnglishTitle = englishTitles[action.Id] });
+                    { EnglishTitle = englishActions[action.Id].Title, EnglishSearchTerms = englishActions[action.Id].SearchTerms });
                 }
             }
             return new ActionCatalog(entries.AsReadOnly());

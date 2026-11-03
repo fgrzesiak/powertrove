@@ -16,6 +16,8 @@ public sealed class PackProtocolTests
         yield return new object[] { new ReadyMessage(new[] { new WorkerPack("powertrove.pack.pdf", "1.0.0") }) };
         yield return new object[] { new PreviewMessage(Id, "powertrove.pdf.rotate", Selection, Parameters, Expiry) };
         yield return new object[] { new ExecuteMessage(Id, "powertrove.pdf.rotate", Selection, Parameters, Expiry, @"C:\staging\request") };
+        yield return new object[] { new PreviewMessage(Id, "powertrove.text.trim", new FileSelectionPayload([]), new Dictionary<string, string>(), Expiry, TextInput: " selected text ") };
+        yield return new object[] { new ExecuteMessage(Id, "powertrove.text.trim", new FileSelectionPayload([]), new Dictionary<string, string>(), Expiry, @"C:\staging\request", TextInput: " selected text ") };
         yield return new object[] { PreviewResultMessage.FromPreview(Id, new ActionPreview(true, "Preview", new[] { "synthetic (copy).pdf" },
             new[] { "Warning" }, false, new[] { new RenamePreviewRow("before.pdf", "after.pdf") }, new ActionConfirmation("Confirm", "confirm", "token"))) };
         yield return new object[] { new ProgressMessage(Id, 0.25, "Processing") };
@@ -43,6 +45,62 @@ public sealed class PackProtocolTests
         Assert.DoesNotContain("synthetic", message.ToString());
         Assert.DoesNotContain("token", message.ToString());
         Assert.DoesNotContain("Derived text", message.ToString());
+    }
+
+    [Fact]
+    public void BrowserWorkerRequestsAndRepliesAreStrictlyTyped()
+    {
+        var id=Guid.NewGuid();
+        var operation=Guid.NewGuid();
+        var request=new BrowserServiceRequestMessage(id,operation,
+            BrowserPageOperation.ArticleMarkdown);
+        var decoded=Assert.IsType<BrowserServiceRequestMessage>(
+            PackMessageSerializer.DeserializeLine(PackMessageSerializer.SerializeLine(request)));
+        Assert.Equal(request.Operation,decoded.Operation);
+
+        var reply=new BrowserServiceResultMessage(id,operation,
+            new BrowserPageContent(BrowserPageOperation.ArticleMarkdown,Markdown:"# Page"));
+        var roundTrip=Assert.IsType<BrowserServiceResultMessage>(
+            PackMessageSerializer.DeserializeLine(PackMessageSerializer.SerializeLine(reply)));
+        Assert.Equal("# Page",roundTrip.Content?.Markdown);
+        Assert.DoesNotContain("Page",reply.ToString());
+        Assert.Throws<PackProtocolException>(()=>PackMessageSerializer.SerializeLine(
+            new BrowserServiceRequestMessage(Guid.Empty,operation,BrowserPageOperation.ArticleMarkdown)));
+    }
+
+    [Fact]
+    public void BrowserMetadataRoundTripsAndDoesNotLeakThroughDiagnostics()
+    {
+        var browser = new BrowserTextContextPayload("https://example.org/docs", "PRIVATE-TITLE");
+        var request = new PreviewMessage(Id, "powertrove.browser.copy-page-link",
+            new FileSelectionPayload([]), new Dictionary<string, string>(), Expiry,
+            TextInput: "PRIVATE-SELECTION", BrowserContext: browser);
+        var decoded = Assert.IsType<PreviewMessage>(PackMessageSerializer.DeserializeLine(
+            PackMessageSerializer.SerializeLine(request)));
+        Assert.Equal(browser, decoded.BrowserContext);
+        Assert.DoesNotContain("PRIVATE-TITLE", browser.ToString());
+        Assert.DoesNotContain("PRIVATE-SELECTION", request.ToString());
+        Assert.Equal(PackMessageSerializer.SerializeLine(request), PackMessageSerializer.SerializeLine(decoded));
+    }
+
+    [Fact]
+    public void BrowserMetadataCannotElevateFilesOrOtherTextSources()
+    {
+        var metadata = new BrowserTextContextPayload("https://example.org/docs", "Docs");
+        var request = new PreviewMessage(Id, "powertrove.browser.copy-selection",
+            new FileSelectionPayload([]), new Dictionary<string, string>(), Expiry,
+            TextInput: "sample", BrowserContext: metadata);
+        var invalid = new[]
+        {
+            request with { TextInput = null },
+            request with { Selection = Selection },
+            request with { BrowserContext = metadata with { Url = "file:///private" } },
+            request with { BrowserContext = metadata with { Url = "https://user:pass@example.org" } },
+            request with { BrowserContext = metadata with { Title = new string('x', 301) } },
+            request with { BrowserContext = metadata with { Url = new string('x', 2049) } }
+        };
+        foreach (var message in invalid)
+            Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(message));
     }
 
     [Fact]
@@ -93,6 +151,27 @@ public sealed class PackProtocolTests
         }
         Assert.Throws<PackProtocolException>(() => FileSelectionPayload.FromSnapshot(snapshot with { Status = ContextStatus.Denied }));
         Assert.Throws<PackProtocolException>(() => FileSelectionPayload.FromSnapshot(Snapshot(new FileSelection(new[] { new SelectedFile(null, "synthetic", "", null, null, false, false, null) }))));
+    }
+
+    [Fact]
+    public void ExplicitTextPayload_ValidatesLengthAndRejectsMixedFileContent()
+    {
+        var emptyFiles = new FileSelectionPayload([]);
+        var valid = new PreviewMessage(Id, "powertrove.text.trim", emptyFiles, new Dictionary<string, string>(), Expiry, TextInput: new string('x', 5000));
+        var decoded = Assert.IsType<PreviewMessage>(PackMessageSerializer.DeserializeLine(PackMessageSerializer.SerializeLine(valid)));
+        Assert.Equal(5000, decoded.TextInput?.Length);
+        Assert.Equal(PackProtocolError.InvalidMessage, Assert.Throws<PackProtocolException>(() =>
+            PackMessageSerializer.SerializeLine(valid with { Selection = Selection })).Code);
+        Assert.Equal(PackProtocolError.InvalidMessage, Assert.Throws<PackProtocolException>(() =>
+            PackMessageSerializer.SerializeLine(valid with { TextInput = "" })).Code);
+        Assert.Equal(PackProtocolError.InvalidMessage, Assert.Throws<PackProtocolException>(() =>
+            PackMessageSerializer.SerializeLine(valid with { TextInput = new string('x', PackProtocolLimits.MaximumTextInputLength + 1) })).Code);
+        Assert.Equal(PackProtocolError.InvalidMessage, Assert.Throws<PackProtocolException>(() =>
+            PackMessageSerializer.SerializeLine(valid with { TextInput = "a\0b" })).Code);
+        var receipt = new ResultMessage(Id, new ActionReceipt(true, false, [], [], false,
+            ClipboardText: new string('x', 5000)), []);
+        Assert.Equal(5000, Assert.IsType<ResultMessage>(PackMessageSerializer.DeserializeLine(
+            PackMessageSerializer.SerializeLine(receipt))).Receipt.ClipboardText?.Length);
     }
 
     [Fact]
@@ -284,4 +363,26 @@ public sealed class PackProtocolTests
         ContextStatus.Available, content, Expiry.AddMinutes(-5), Expiry, "private-provider-marker", null);
     private static ResultMessage Result(string path) => new(Id, new ActionReceipt(true, false, new[] { path }, Array.Empty<ActionFailure>(), false, "Completed"),
         new[] { new StagedOutput(path, @"C:\outputs", "result.pdf") });
+    [Fact]
+    public void BrowserBinaryChunksAreTypedBoundedAndCanonical()
+    {
+        var operation = Guid.NewGuid();
+        var bytes = "%PDF-1.7\\n%%EOF"u8.ToArray();
+        var chunk = new BrowserServiceBinaryChunkMessage(Id, operation, 0, true,
+            "pdf", Convert.ToBase64String(bytes));
+        var encoded = PackMessageSerializer.SerializeLine(chunk);
+        var decoded = Assert.IsType<BrowserServiceBinaryChunkMessage>(
+            PackMessageSerializer.DeserializeLine(encoded));
+        Assert.Equal(operation, decoded.OperationId);
+        Assert.Equal(chunk.Base64, decoded.Base64);
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(
+            chunk with { Kind = "executable" }));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(
+            chunk with { Sequence = 2048 }));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(
+            chunk with { Base64 = "!!!" }));
+        Assert.Throws<PackProtocolException>(() => PackMessageSerializer.SerializeLine(
+            chunk with { Base64 = Convert.ToBase64String(new byte[128 * 1024 + 1]) }));
+    }
+
 }

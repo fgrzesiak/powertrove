@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Generated COM definitions for UIAutomationCore.dll only; unlike FlaUI it brings no WinForms runtime. -->
+    <PackageReference Include="Interop.UIAutomationClient" Version="10.19041.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PowerTrove.Application\PowerTrove.Application.csproj" />
     <ProjectReference Include="..\PowerTrove.Core\PowerTrove.Core.csproj" />
 

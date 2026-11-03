@@ -1,0 +1,6 @@
+<root>
+  <data name="Busy" xml:space="preserve"><value>Araç hala bir isteği işliyor.</value></data>
+  <data name="InvalidRequest" xml:space="preserve"><value>Seçilen dosyalar veya istek artık kullanılamıyor.</value></data>
+  <data name="UnknownAction" xml:space="preserve"><value>Bu işlem, seçilen pakette mevcut değil.</value></data>
+  <data name="Failed" xml:space="preserve"><value>Araç isteği tamamlayamadı.</value></data>
+</root>

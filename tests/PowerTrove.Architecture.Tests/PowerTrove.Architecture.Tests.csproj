@@ -27,6 +27,9 @@
     <Compile Include="..\..\src\PowerTrove.Desktop\SetupShellCommand.cs" Link="Desktop\SetupShellCommand.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\SetupStartupCommand.cs" Link="Desktop\SetupStartupCommand.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageEditorInput.cs" Link="Desktop\ImageEditorInput.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\OcrReaderInput.cs" Link="Desktop\OcrReaderInput.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\OcrTextLayout.cs" Link="Desktop\OcrTextLayout.cs" />
+    <Compile Include="..\..\src\PowerTrove.Desktop\DocumentEditorInput.cs" Link="Desktop\DocumentEditorInput.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageEffectsInput.cs" Link="Desktop\ImageEffectsInput.cs" />
     <Compile Include="..\..\src\PowerTrove.Desktop\ImageResizeDimensions.cs" Link="Desktop\ImageResizeDimensions.cs" />
     <EmbeddedResource Include="..\..\src\PowerTrove.Desktop\Resources\Strings.resx" Link="Resources\DesktopStrings.resx" LogicalName="PowerTrove.Desktop.Resources.Strings.resources" />
@@ -55,4 +58,7 @@
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Tables\composition\PowerTrove.Pack.Tables.Composition\PowerTrove.Pack.Tables.Composition.csproj" /></ItemGroup>
   <ItemGroup><ProjectReference Include="..\..\packs\PowerTrove.Pack.Data\composition\PowerTrove.Pack.Data.Composition\PowerTrove.Pack.Data.Composition.csproj" /></ItemGroup>
   <ItemGroup><ProjectReference Include="../../packs/PowerTrove.Pack.EInvoice/composition/PowerTrove.Pack.EInvoice.Composition/PowerTrove.Pack.EInvoice.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../packs/PowerTrove.Pack.Markdown/composition/PowerTrove.Pack.Markdown.Composition/PowerTrove.Pack.Markdown.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../packs/PowerTrove.Pack.Text/composition/PowerTrove.Pack.Text.Composition/PowerTrove.Pack.Text.Composition.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../packs/PowerTrove.Pack.Browser/composition/PowerTrove.Pack.Browser.Composition/PowerTrove.Pack.Browser.Composition.csproj" /></ItemGroup>
 </Project>

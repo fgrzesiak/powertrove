@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Clipboard &amp; Text</value></data>
+  <data name="Description" xml:space="preserve"><value>Transforms an explicitly captured text selection locally and copies the result to the clipboard.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Review the transformation. The result will be copied to the clipboard only after you run the action.</value></data>
+  <data name="Done" xml:space="preserve"><value>Text copied to clipboard.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>No available text selection, or the selection expired or is too large.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Text exceeds the 65,536-character limit.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>The text or pattern cannot be processed.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Unsupported text operation.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>The input has invalid encoded content.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>The regular expression exceeded its time limit.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Enter a regular expression pattern.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Pattern</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Replacement</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>.NET regular expression, 200 ms timeout</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>The result is empty; running will clear text from the clipboard.</value></data>
+  <data name="trim" xml:space="preserve"><value>Trim whitespace</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Trim each line</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Collapse whitespace</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Remove empty lines</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Remove duplicate lines</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Sort lines</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Convert to lowercase</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Convert to uppercase</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Convert to title case</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Replace text using regex</value></data>
+  <data name="url-encode" xml:space="preserve"><value>URL encode text</value></data>
+  <data name="url-decode" xml:space="preserve"><value>URL decode text</value></data>
+  <data name="html-encode" xml:space="preserve"><value>HTML encode text</value></data>
+  <data name="html-decode" xml:space="preserve"><value>HTML decode text</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Base64 encode text</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Base64 decode text</value></data>
+  <data name="json-escape" xml:space="preserve"><value>JSON escape text</value></data>
+</root>

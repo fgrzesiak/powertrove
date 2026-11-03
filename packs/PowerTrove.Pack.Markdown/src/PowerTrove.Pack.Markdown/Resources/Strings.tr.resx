@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="PackTitle" xml:space="preserve">
+    <value>Markdown Araçları</value>
+  </data>
+  <data name="ViewTitle" xml:space="preserve">
+    <value>Markdown&apos;ı Görüntüle</value>
+  </data>
+  <data name="ViewDescription" xml:space="preserve">
+    <value>Bir Markdown dosyasını tablolar, kod, görev listeleri ve yerel resimlerle biçimlendirilmiş bir sayfa olarak gösterir.</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Markdown&apos;u Düzenle</value>
+  </data>
+  <data name="EditDescription" xml:space="preserve">
+    <value>Markdown dosyasını yan yana canlı önizleme ile düzenler. Değişiklikler yalnızca Kaydet&apos;i seçtiğinizde kaydedilir.</value>
+  </data>
+  <data name="MarkdownFiles" xml:space="preserve">
+    <value>Markdown Dosyaları</value>
+  </data>
+  <data name="EngineUnavailable" xml:space="preserve">
+    <value>Markdown motoru kullanılamıyor.</value>
+  </data>
+  <data name="ViewOperation" xml:space="preserve">
+    <value>Markdown dosyasını görüntüleyicide açar.</value>
+  </data>
+  <data name="EditOperation" xml:space="preserve">
+    <value>Markdown dosyasını düzenleyicide açar.</value>
+  </data>
+  <data name="RemovedContent" xml:space="preserve">
+    <value>{0} etkin veya desteklenmeyen HTML bölümü görüntüden kaldırıldı.</value>
+  </data>
+  <data name="RemoteImagesBlocked" xml:space="preserve">
+    <value>İnternetten {0} resim yüklenmedi.</value>
+  </data>
+  <data name="UnsupportedImages" xml:space="preserve">
+    <value>{0} resim dosya klasörünün dışında veya desteklenmeyen bir kaynaktan alındığı için gösterilmiyor.</value>
+  </data>
+  <data name="PreviewTooLarge" xml:space="preserve">
+    <value>Belge önizleme için çok büyük.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Markdown dosyası okunamadı.</value>
+  </data>
+  <data name="ViewerOnly" xml:space="preserve">
+    <value>Bu işlemi PowerTrove paletinden açın; dosyayı görüntüleyicide gösterir.</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>Dosya desteklenen boyutu aşıyor.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>Dosya okunabilir metin değil.</value>
+  </data>
+  <data name="TooComplex" xml:space="preserve">
+    <value>Belge çok büyük veya çok derin iç içe geçmiş.</value>
+  </data>
+  <data name="Converting" xml:space="preserve">
+    <value>Dönüştürülüyor</value>
+  </data>
+  <data name="ToHtmlTitle" xml:space="preserve">
+    <value>Markdown&apos;dan HTML&apos;ye</value>
+  </data>
+  <data name="ToHtmlDescription" xml:space="preserve">
+    <value>Her Markdown dosyasından, yerel resimlerin yerleştirildiği veya bağlantı verildiği, biçimlendirilmiş bir HTML sayfası oluşturur.</value>
+  </data>
+  <data name="ImagesOption" xml:space="preserve">
+    <value>Yerel görüntüler</value>
+  </data>
+  <data name="ImagesEmbed" xml:space="preserve">
+    <value>Sayfaya yerleştir</value>
+  </data>
+  <data name="ImagesLink" xml:space="preserve">
+    <value>Resim dosyalarına bağlantı</value>
+  </data>
+  <data name="ToHtmlOperation_One" xml:space="preserve">
+    <value>{0} HTML sayfası oluşturur.</value>
+  </data>
+  <data name="ToHtmlOperation_Other" xml:space="preserve">
+    <value>{0} HTML sayfası oluşturur.</value>
+  </data>
+  <data name="SanitizedNotice" xml:space="preserve">
+    <value>Markdown&apos;da yazılan HTML, statik biçimlendirmeye indirgenir: komut dosyaları, formlar, çerçeveler ve stiller kaldırılır.</value>
+  </data>
+  <data name="HtmlEmbedNotice" xml:space="preserve">
+    <value>Dosya klasöründeki görüntüler gömülüdür, bu nedenle sayfa kendi başına çalışır. İnternet görüntüleri bağlantı olarak kalır.</value>
+  </data>
+  <data name="HtmlLinkNotice" xml:space="preserve">
+    <value>Görüntüler dosyalarına bağlantı olarak kalır; Sayfayı resim klasörünün yanına yerleştirin.</value>
+  </data>
+  <data name="ToPdfTitle" xml:space="preserve">
+    <value>Markdown&apos;dan PDF&apos;ye</value>
+  </data>
+  <data name="ToPdfDescription" xml:space="preserve">
+    <value>Her Markdown dosyasını, bu bilgisayardaki Microsoft Edge kullanarak tablolar, kod ve yerel resimlerle biçimlendirilmiş bir PDF olarak yazdırır.</value>
+  </data>
+  <data name="Paper" xml:space="preserve">
+    <value>Kağıt</value>
+  </data>
+  <data name="PaperA4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="PaperLetter" xml:space="preserve">
+    <value>ABD Mektup formatı</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Yatay</value>
+  </data>
+  <data name="Margin" xml:space="preserve">
+    <value>Kenar Boşluğu (mm)</value>
+  </data>
+  <data name="PrinterUnavailable" xml:space="preserve">
+    <value>PDF oluşturmak için Microsoft Edge gereklidir.</value>
+  </data>
+  <data name="ToPdfOperation_One" xml:space="preserve">
+    <value>{0} PDF oluşturur.</value>
+  </data>
+  <data name="ToPdfOperation_Other" xml:space="preserve">
+    <value>{0} PDF oluşturur.</value>
+  </data>
+  <data name="PdfNotice" xml:space="preserve">
+    <value>Dosya klasöründeki görüntüler, belge başına yaklaşık 3 MB&apos;a kadar gömülüdür; internetten alınan görüntüler indirilmez ve açıklamalarıyla birlikte görünür.</value>
+  </data>
+  <data name="PdfFailed" xml:space="preserve">
+    <value>PDF oluşturulamadı.</value>
+  </data>
+  <data name="PdfCleanupFailed" xml:space="preserve">
+    <value>PDF oluşturuldu, ancak geçici tarayıcı dosyaları kaldırılamadı.</value>
+  </data>
+  <data name="NoContent" xml:space="preserve">
+    <value>Dosya dönüştürülebilecek metin içermiyor.</value>
+  </data>
+  <data name="MergeTitle" xml:space="preserve">
+    <value>Markdown Dosyalarını Birleştir</value>
+  </data>
+  <data name="MergeDescription" xml:space="preserve">
+    <value>Seçtiğiniz Markdown dosyalarını, belirlediğiniz sırayla tek bir Markdown, HTML veya PDF dosyasına birleştirir.</value>
+  </data>
+  <data name="MergeFormat" xml:space="preserve">
+    <value>Sonuç</value>
+  </data>
+  <data name="MergeFormatMarkdown" xml:space="preserve">
+    <value>Bir Markdown dosyası</value>
+  </data>
+  <data name="MergeFormatHtml" xml:space="preserve">
+    <value>Bir HTML sayfası</value>
+  </data>
+  <data name="MergeFormatPdf" xml:space="preserve">
+    <value>Bir PDF</value>
+  </data>
+  <data name="MergeOrder" xml:space="preserve">
+    <value>Dosyalar ve sıralama</value>
+  </data>
+  <data name="MergeOrderHelp" xml:space="preserve">
+    <value>Dosyaları sürükleyip bırakın veya sırayı değiştirmek için okları kullanın. Bir dosyayı dışarıda bırakmak için onay kutusunu işaretini kaldırın.</value>
+  </data>
+  <data name="MergeOrderInvalid" xml:space="preserve">
+    <value>Dosya sırası geçerli değil. Dosyaları tekrar seçin.</value>
+  </data>
+  <data name="MergeNeedsTwo" xml:space="preserve">
+    <value>Birleştirmek için en az iki dosya seçin.</value>
+  </data>
+  <data name="MergeDivider" xml:space="preserve">
+    <value>Dosyalar arasında yatay çizgi</value>
+  </data>
+  <data name="MergePageBreaks" xml:space="preserve">
+    <value>Her dosyayı yeni bir sayfada başlat</value>
+  </data>
+  <data name="MergeOperation_Markdown" xml:space="preserve">
+    <value>Seçilen dosyaları ilk dosyanın yanına tek bir Markdown dosyasına birleştirir.</value>
+  </data>
+  <data name="MergeOperation_Html" xml:space="preserve">
+    <value>Seçilen dosyaları ilk dosyanın yanına tek bir HTML sayfasına birleştirir.</value>
+  </data>
+  <data name="MergeOperation_Pdf" xml:space="preserve">
+    <value>Seçilen dosyaları ilk dosyanın yanına tek bir PDF dosyasına birleştirir.</value>
+  </data>
+  <data name="MergeMarkdownNotice" xml:space="preserve">
+    <value>Metin yazıldığı gibi kalır. Göreceli bağlantılar ve resimler yeni dosyanın klasörüne göre ayarlanır, dipnotlar benzersiz kalacak şekilde yeniden adlandırılır ve yalnızca ilk dosyanın ön kısmı korunur.</value>
+  </data>
+  <data name="MergeTooLarge" xml:space="preserve">
+    <value>Dosyalar birleştirilemeyecek kadar büyük.</value>
+  </data>
+  <data name="MergeTip" xml:space="preserve">
+    <value>Markdown dosyası başına bir dosya oluşturur. Tek bir dosya elde etmek için &quot;Tüm dosyaları tek bir dosyada birleştir&quot; seçeneğini açın.</value>
+  </data>
+  <data name="CombineOption" xml:space="preserve">
+    <value>Tüm dosyaları tek bir dosyada birleştir</value>
+  </data>
+  <data name="CombineHelp" xml:space="preserve">
+    <value>Birden fazla dosya seçildiğinde, her dosya için ayrı bir dosya oluşturmak yerine, seçtiğiniz sırayla tek bir dosya oluşturur.</value>
+  </data>
+  <data name="MergeTooMany" xml:space="preserve">
+    <value>Birleştirmek için en fazla 100 dosya seçin.</value>
+  </data>
+  <data name="ToMarkdownTitle" xml:space="preserve">
+    <value>Markdown&apos;a Dönüştür</value>
+  </data>
+  <data name="ToMarkdownDescription" xml:space="preserve">
+    <value>Word, PowerPoint, Excel, PDF, EPUB, Jupyter ve HTML dosyalarını başlıklar, listeler, tablolar, bağlantılar ve resimler içeren Markdown&apos;a dönüştürür.</value>
+  </data>
+  <data name="ToMarkdownFiles" xml:space="preserve">
+    <value>belgeler</value>
+  </data>
+  <data name="ToMarkdownImages" xml:space="preserve">
+    <value>Resimleri koru</value>
+  </data>
+  <data name="ToMarkdownImagesHelp" xml:space="preserve">
+    <value>Belgedeki resimleri, Markdown dosyasının adıyla adlandırılmış bir klasöre, onun yanına kaydeder.</value>
+  </data>
+  <data name="ToMarkdownNotesOption" xml:space="preserve">
+    <value>Konuşmacı notlarını dahil et (PowerPoint)</value>
+  </data>
+  <data name="ToMarkdownOutputsOption" xml:space="preserve">
+    <value>Kaydedilen hücre çıktılarını dahil et (Jupyter)</value>
+  </data>
+  <data name="ToMarkdownOperation_One" xml:space="preserve">
+    <value>{0} Markdown dosyası oluşturur.</value>
+  </data>
+  <data name="ToMarkdownOperation_Other" xml:space="preserve">
+    <value>{0} Markdown dosyası oluşturur.</value>
+  </data>
+  <data name="ToMarkdownNotice" xml:space="preserve">
+    <value>Başlıklar, listeler, vurgular, bağlantılar, tablolar, kod ve resimler korunur. Düzen, renkler, yorumlar, izlenen değişiklikler ve komut dosyaları dışarıda bırakılır.</value>
+  </data>
+  <data name="ToMarkdownImagesNotice" xml:space="preserve">
+    <value>Resimler, Markdown dosyasının yanına, dosya adıyla adlandırılmış yeni bir klasöre kaydedilir; mevcut dosyaların üzerine asla yazılmaz.</value>
+  </data>
+  <data name="ToMarkdownPdfNotice" xml:space="preserve">
+    <value>PDF&apos;ler metin katmanından okunur: Etiketli PDF&apos;ler başlıklarını, tablolarını ve listelerini korur; aksi takdirde başlıklar yer işaretlerinden veya yazı tipi boyutlarından gelir. İçindekiler tablosu bağlantılı bir listeye dönüşür, bağlantılar bağlantı olarak kalır, dipnotlar dipnot olur, tablolar kenarlıksız bile sütunlarıyla tanınır, tekrarlanan başlıklar, sayfa numaraları ve logolar kaldırılır ve resimler göründükleri yere yerleştirilir. Taranmış PDF&apos;lerin önce metin tanıma işlemine ihtiyacı vardır.</value>
+  </data>
+  <data name="ToMarkdownTooLarge" xml:space="preserve">
+    <value>Dönüştürülen belge desteklenen boyutu aşıyor.</value>
+  </data>
+  <data name="ToMarkdownInvalid" xml:space="preserve">
+    <value>Dosya hasarlı veya desteklenen bir formatta değil.</value>
+  </data>
+  <data name="ToMarkdownNoContent" xml:space="preserve">
+    <value>Dosya dönüştürülebilecek içerik içermiyor.</value>
+  </data>
+  <data name="ToMarkdownSlide" xml:space="preserve">
+    <value>Slayt {0}</value>
+  </data>
+  <data name="ToMarkdownNotes" xml:space="preserve">
+    <value>Notlar</value>
+  </data>
+  <data name="ToMarkdownProtected" xml:space="preserve">
+    <value>E-kitap kopyalama korumalı ve dönüştürülemiyor.</value>
+  </data>
+  <data name="ToMarkdownPdfNoText" xml:space="preserve">
+    <value>PDF&apos;de metin katmanı yok, örneğin tarandığı için. Öncelikle metin tanıma ile aranabilir hale getirin.</value>
+  </data>
+  <data name="ToMarkdownPdfEncrypted" xml:space="preserve">
+    <value>PDF şifre korumalı. Önce korumayı kaldırın.</value>
+  </data>
+</root>

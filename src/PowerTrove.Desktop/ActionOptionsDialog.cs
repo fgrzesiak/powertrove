@@ -36,7 +36,7 @@ public static class ActionOptionsDialog
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
         {
             values[parameter.Name] = initialValues != null && initialValues.TryGetValue(parameter.Name, out var draft) ? draft :
-                descriptor.CanRememberParameters && savedValues != null && savedValues.TryGetValue(parameter.Name, out var saved)
+                descriptor.CanRememberParameters && parameter.Editor != ActionParameterEditor.FileOrder && savedValues != null && savedValues.TryGetValue(parameter.Name, out var saved)
                 ? saved
                 : parameter.DefaultValue ?? string.Empty;
         }
@@ -77,7 +77,7 @@ public static class ActionOptionsDialog
         var selectionEditors = new Dictionary<string, MultiSelectParameterEditor>(StringComparer.OrdinalIgnoreCase);
         foreach (var parameter in descriptor.Parameters ?? Array.Empty<ActionParameterDefinition>())
         {
-            if (parameter.Editor == ActionParameterEditor.MultiSelect)
+            if (parameter.Editor is ActionParameterEditor.MultiSelect or ActionParameterEditor.FileOrder)
             {
                 var editor = new MultiSelectParameterEditor(parameter, values);
                 selectionEditors.Add(parameter.Name, editor); panel.Children.Add(editor.Root);
@@ -133,7 +133,7 @@ public static class ActionOptionsDialog
                 {
                     0 => string.Empty,
                     1 => " " + UiText.OptionsOneOutput,
-                    var n => " " + UiText.Format(UiText.OptionsManyOutputs, n)
+                    var n => " " + UiText.Format(UiText.PluralString("OptionsManyOutputs", n), n)
                 };
                 previewText.Text = (result.PreviewText ?? string.Empty) + (result.IsBlocked ? string.Empty : outputs);
                 LinkText.Set(warningsText, string.Join(Environment.NewLine, result.Warnings));

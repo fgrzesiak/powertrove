@@ -49,7 +49,9 @@ public sealed class CatalogAction : IAction, IFileActionMetadata
                 "none" => ContentKind.None, "files" => ContentKind.Files, "table" => ContentKind.Table,
                 "text" => ContentKind.Text, _ => throw new ArgumentException("Invalid catalog input kind.", nameof(entry))
             }).ToFrozenSet(),
-            entry.EnglishTitle is { } english && english != action.Title ? new[] { entry.Pack.DisplayName, english } : new[] { entry.Pack.DisplayName },
+            new[] { entry.Pack.DisplayName }.Concat(entry.EnglishTitle is { } english ? new[] { english } : Array.Empty<string>())
+                .Concat(entry.EnglishSearchTerms ?? Array.Empty<string>()).Concat(action.SearchTerms ?? Array.Empty<string>())
+                .Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
             RequiresPreview: true, ChangesFiles: action.ChangesFiles ?? true,
             RequiredCapabilities: action.RequiredCapabilities?.ToFrozenSet(StringComparer.Ordinal),
             Selection: selection, CanRememberParameters: false);

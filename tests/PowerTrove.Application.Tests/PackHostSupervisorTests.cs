@@ -111,6 +111,23 @@ public sealed class PackHostSupervisorTests
     }
 
     [Fact]
+    public async Task ExplicitTextCanRoundTripThroughRealWorkerWithoutFileOutputs()
+    {
+        await using var fixture = new Fixture("text");
+        var snapshot = fixture.Snapshot with { Content = new TextSelection("hello clipboard") };
+        var preview = await fixture.Host.PreviewAsync(fixture.Group, "powertrove.fixture.text", snapshot,
+            new EmptyParameters(), fixture.Token);
+        Assert.False(preview.IsBlocked);
+        var receipt = await fixture.Host.ExecuteAsync(fixture.Group, "powertrove.fixture.text", snapshot,
+            new EmptyParameters(), null, fixture.Token);
+        Assert.True(receipt.IsSuccess);
+        Assert.Empty(receipt.OutputPaths);
+        Assert.Equal("HELLO CLIPBOARD", receipt.ClipboardText);
+        Assert.Equal("original", File.ReadAllText(fixture.Input));
+        fixture.AssertCleanStaging();
+    }
+
+    [Fact]
     public async Task CrashReportsNoChangedFilesAndRestartWaitsForBackoff()
     {
         var clock = new TestClock();

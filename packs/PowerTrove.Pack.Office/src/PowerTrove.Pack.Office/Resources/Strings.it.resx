@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Strumenti di Office</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Documenti di Office</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Converti Word in PDF</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Crea nuovi PDF utilizzando Microsoft Word installato.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Converti Excel in PDF</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Crea nuovi PDF utilizzando Microsoft Excel installato e il suo layout di stampa.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>Converti PowerPoint in PDF</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Crea nuovi PDF utilizzando Microsoft PowerPoint installato.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>Converti PDF in Word</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Crea copie DOCX modificabili utilizzando Word PDF Reflow installato.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>È necessario Microsoft Word.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>È necessario Microsoft Excel.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>È necessario Microsoft PowerPoint.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Conversione</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Esporta un documento di Office in un nuovo PDF.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>Esporta {0} documenti di Office in nuovi PDF.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Convertirà un PDF in un nuovo documento Word.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>Convertirà {0} file PDF in nuovi documenti Word.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Richiede Office installato localmente. Il layout dipende da Office, dai caratteri e dalle impostazioni di stampa. I contenuti macro non supportati e i file CSV con formule vengono rifiutati; i documenti di dimensioni superiori a 64 MiB e alcuni contenitori legacy non sono supportati.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>La funzione &quot;Ridimensiona PDF&quot; di Word può modificare layout, caratteri, tabelle e interruzioni di pagina. Le pagine scansionate potrebbero rimanere immagini. La preferenza di avviso di conversione di Word 16.0 viene modificata temporaneamente e ripristinata successivamente.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>L&apos;applicazione Microsoft Office necessaria non è installata.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>Il documento è protetto da password.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>Questo documento contiene macro o formule che non possono essere aperte in modo sicuro per la conversione.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>Il formato del documento non è valido, non è supportato o supera i limiti di conversione.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>Non è stato possibile ottenere un&apos;istanza separata di Office. Chiudere l&apos;applicazione di Office e riprovare.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>La conversione di Office è andata in timeout. Nessun output è stato salvato.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Office non è riuscito a convertire questo documento. Nessun output è stato salvato.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>Impossibile ripristinare le preferenze temporanee di Word. Verificare l&apos;impostazione di avviso per la conversione in PDF in Word.</value></data>
+</root>

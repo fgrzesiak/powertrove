@@ -43,7 +43,7 @@ public sealed class ChecksumAction : CombineFilesAction<ChecksumOptions>
     protected override ChecksumOptions ReadOptions(ActionParameterValues values) => new(values.GetChoice("Algorithm"));
 
     protected override string DescribeOperation(int inputCount, ChecksumOptions options) =>
-        SR.Format("ChecksumAction_Operation_Description", options.Algorithm == "sha512" ? "SHA-512" : "SHA-256", Plural(inputCount, SR.GetString("ChecksumAction_Operation_File"), SR.GetString("ChecksumAction_Operation_Files")));
+        SR.Format("ChecksumAction_Operation_Description", options.Algorithm == "sha512" ? "SHA-512" : "SHA-256", SR.Noun(inputCount, "ChecksumAction_Operation_File", "ChecksumAction_Operation_Files"));
 
     protected override PlannedOutput PlanOutput(IReadOnlyList<SelectedFile> inputs, ChecksumOptions options) =>
         inputs.Count == 1

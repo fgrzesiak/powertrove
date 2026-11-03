@@ -16,4 +16,7 @@ namespace PowerTrove.Core.Extensibility.PackProtocol;
 [JsonSerializable(typeof(ErrorMessage))]
 [JsonSerializable(typeof(HeartbeatMessage))]
 [JsonSerializable(typeof(ShutdownMessage))]
+[JsonSerializable(typeof(BrowserServiceRequestMessage))]
+[JsonSerializable(typeof(BrowserServiceResultMessage))]
+[JsonSerializable(typeof(BrowserServiceBinaryChunkMessage))]
 internal partial class PackJsonContext : JsonSerializerContext { }

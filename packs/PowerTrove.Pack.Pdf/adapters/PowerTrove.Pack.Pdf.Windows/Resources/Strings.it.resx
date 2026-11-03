@@ -1,0 +1,5 @@
+<root>
+  <data name="ImageConversionFailed" xml:space="preserve"><value>Impossibile convertire l&apos;immagine.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>Impossibile aprire il PDF.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>I PDF protetti da password non sono ancora supportati.</value></data>
+</root>

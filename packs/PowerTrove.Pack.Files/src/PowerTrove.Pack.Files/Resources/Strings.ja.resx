@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CountFilesAction_Title" xml:space="preserve">
+    <value>ディレクトリ内のファイル数をカウント</value>
+  </data>
+  <data name="CountFilesAction_Description" xml:space="preserve">
+    <value>選択したディレクトリ内のファイル数をカウントします。</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>ファイル選択ではありません。</value>
+  </data>
+  <data name="CountFilesAction_Error_NoDirectories" xml:space="preserve">
+    <value>ディレクトリが選択されていません。</value>
+  </data>
+  <data name="CountFilesAction_Preview_LimitReachedNote" xml:space="preserve">
+    <value> （上限に達しました。実際のカウント数はこれより多い場合があります）</value>
+  </data>
+  <data name="CountFilesAction_Preview_FoundItems" xml:space="preserve">
+    <value>選択したディレクトリ{1}に{0}個のアイテムが見つかりました。</value>
+  </data>
+  <data name="CountFilesAction_Preview_ScanLimitWarning" xml:space="preserve">
+    <value>スキャン制限に達しました。カウントが不完全な場合があります。</value>
+  </data>
+  <data name="Error_ContextExpired" xml:space="preserve">
+    <value>コンテキストの有効期限が切れました。再度選択してください。</value>
+  </data>
+  <data name="CountFilesAction_Execute_Result" xml:space="preserve">
+    <value>{1}個のフォルダ{2}に{0}個のファイルが見つかりました。</value>
+  </data>
+  <data name="CountFilesAction_Execute_LimitNote" xml:space="preserve">
+    <value> （スキャン上限に達しました。実際のカウント数はこれより多い場合があります）</value>
+  </data>
+  <data name="CompressToZipAction_ParamTitle_Compression" xml:space="preserve">
+    <value>圧縮</value>
+  </data>
+  <data name="CompressToZipAction_ParamDesc_Compression" xml:space="preserve">
+    <value>圧縮</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Optimal" xml:space="preserve">
+    <value>より小さなアーカイブ</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Fastest" xml:space="preserve">
+    <value>高速化</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Store" xml:space="preserve">
+    <value>圧縮なし</value>
+  </data>
+  <data name="CompressToZipAction_FilterDescription" xml:space="preserve">
+    <value>ファイルまたはフォルダ</value>
+  </data>
+  <data name="CompressToZipAction_Title" xml:space="preserve">
+    <value>ZIP形式で圧縮</value>
+  </data>
+  <data name="CompressToZipAction_Description" xml:space="preserve">
+    <value>選択したファイルとフォルダのZIPアーカイブを作成します。</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Item" xml:space="preserve">
+    <value>アイテム</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Items" xml:space="preserve">
+    <value>アイテム</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Description" xml:space="preserve">
+    <value>{0}個の画像を1つのZIPアーカイブに圧縮します。リンクとジャンクションはスキップされます。</value>
+  </data>
+  <data name="CompressToZipAction_DefaultOutput_Archive" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="ExtractZipAction_FilterDescription" xml:space="preserve">
+    <value>ZIPアーカイブ</value>
+  </data>
+  <data name="ExtractZipAction_Title" xml:space="preserve">
+    <value>ZIPを抽出</value>
+  </data>
+  <data name="ExtractZipAction_Description" xml:space="preserve">
+    <value>選択した各ZIPアーカイブを新しいフォルダに抽出します。</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archive" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archives" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Description" xml:space="preserve">
+    <value>{0} をそれぞれ新しいフォルダに抽出します。安全でないエントリ（絶対パス、&apos;:&apos;、リンク）およびサイズが大きすぎるアーカイブは拒否されます。</value>
+  </data>
+  <data name="ExtractZipAction_ProgressVerb" xml:space="preserve">
+    <value>抽出中</value>
+  </data>
+  <data name="ChecksumAction_ParamTitle_Algorithm" xml:space="preserve">
+    <value>アルゴリズム</value>
+  </data>
+  <data name="ChecksumAction_ParamDesc_Algorithm" xml:space="preserve">
+    <value>アルゴリズム</value>
+  </data>
+  <data name="ChecksumAction_Title" xml:space="preserve">
+    <value>チェックサムファイルを作成</value>
+  </data>
+  <data name="ChecksumAction_Description" xml:space="preserve">
+    <value>選択したファイルのSHA-256（またはSHA-512）チェックサムを計算し、チェックサムファイルに保存します。</value>
+  </data>
+  <data name="ChecksumAction_FilterDescription" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="ChecksumAction_Operation_File" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="ChecksumAction_Operation_Files" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="ChecksumAction_Operation_Description" xml:space="preserve">
+    <value>{1}の{0}個のチェックサムを計算し、1つのチェックサムファイルに保存します。</value>
+  </data>
+  <data name="ChecksumAction_DefaultOutput" xml:space="preserve">
+    <value>チェックサム</value>
+  </data>
+  <data name="ChecksumAction_ProgressVerb" xml:space="preserve">
+    <value>計算中</value>
+  </data>
+  <data name="FilesPack_Title" xml:space="preserve">
+    <value>ファイルツール</value>
+  </data>
+  <data name="CopyNames" xml:space="preserve">
+    <value>ファイル名をコピー</value>
+  </data>
+  <data name="CopyPaths" xml:space="preserve">
+    <value>パスをコピー</value>
+  </data>
+  <data name="CopyDescription" xml:space="preserve">
+    <value>明示的に選択したパスまたはファイル名のみをクリップボードにコピーします。</value>
+  </data>
+  <data name="SelectionUnavailable" xml:space="preserve">
+    <value>アクセス可能なローカルアイテムを1～10,000個選択します。</value>
+  </data>
+  <data name="CopiedNames" xml:space="preserve">
+    <value>{0}個のファイル名をコピーしました。</value>
+  </data>
+  <data name="CopiedPaths" xml:space="preserve">
+    <value>{0}個のパスをコピーしました。</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>フォーマット</value>
+  </data>
+  <data name="lines" xml:space="preserve">
+    <value>1行に1文字</value>
+  </data>
+  <data name="quoted" xml:space="preserve">
+    <value>Windowsコマンドラインでの表示</value>
+  </data>
+  <data name="semicolon" xml:space="preserve">
+    <value>セミコロン区切り</value>
+  </data>
+  <data name="json-array" xml:space="preserve">
+    <value>JSON配列</value>
+  </data>
+  <data name="FileItems" xml:space="preserve">
+    <value>ファイルまたはフォルダ</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>フォルダ</value>
+  </data>
+  <data name="ToolsDescription" xml:space="preserve">
+    <value>選択されたローカルアイテムを、元のアイテムを上書きせずに処理します。</value>
+  </data>
+  <data name="LinksUnsupported" xml:space="preserve">
+    <value>リンクと再解析ポイントはサポートされていません。</value>
+  </data>
+  <data name="Base64Decode" xml:space="preserve">
+    <value>Base64デコード</value>
+  </data>
+  <data name="Base64Encode" xml:space="preserve">
+    <value>Base64でエンコードする</value>
+  </data>
+  <data name="ProcessItems" xml:space="preserve">
+    <value>{0}個のアイテムを処理します。</value>
+  </data>
+  <data name="InvalidBase64" xml:space="preserve">
+    <value>Base64入力が無効です。</value>
+  </data>
+  <data name="FindDuplicates" xml:space="preserve">
+    <value>重複ファイルの検索</value>
+  </data>
+  <data name="FolderReport" xml:space="preserve">
+    <value>フォルダサイズレポートを作成</value>
+  </data>
+  <data name="FolderSummary" xml:space="preserve">
+    <value>{0} 個のファイル、{1} バイト、{2} 個がスキップされました。{3}</value>
+  </data>
+  <data name="DuplicateSummary" xml:space="preserve">
+    <value>{0} 個の重複グループ、{1} 個の再利用可能なバイト、{2} 個がスキップされました。{3}</value>
+  </data>
+  <data name="ScanLimit" xml:space="preserve">
+    <value>スキャン制限に達しました。このレポートは部分的なものです。</value>
+  </data>
+  <data name="ReportNote" xml:space="preserve">
+    <value>レポートのみ。ファイルは削除されません。</value>
+  </data>
+  <data name="InputChanged" xml:space="preserve">
+    <value>処理中に入力が変更されました。</value>
+  </data>
+  <data name="VerifyChecksums" xml:space="preserve">
+    <value>チェックサムの検証</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>出力</value>
+  </data>
+  <data name="summary" xml:space="preserve">
+    <value>概要のみ</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>レポートファイル</value>
+  </data>
+  <data name="ManifestLimit" xml:space="preserve">
+    <value>チェックサムマニフェストが制限を超えています。</value>
+  </data>
+  <data name="InvalidChecksums" xml:space="preserve">
+    <value>チェックサムマニフェストが無効です。</value>
+  </data>
+  <data name="RemoteUnsupported" xml:space="preserve">
+    <value>リモートパスはサポートされていません。</value>
+  </data>
+  <data name="VerifySummary" xml:space="preserve">
+    <value>{0} OK、{1} 不一致{2} が見つかりません。</value>
+  </data>
+  <data name="SplitFile" xml:space="preserve">
+    <value>ファイルを分割する</value>
+  </data>
+  <data name="JoinFiles" xml:space="preserve">
+    <value>ファイルパーツの結合</value>
+  </data>
+  <data name="JoinDescription" xml:space="preserve">
+    <value>連続する兄弟パーツを結合し、元のチェックサムが存在する場合は検証します。</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>分割モード</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>パートサイズ</value>
+  </data>
+  <data name="parts" xml:space="preserve">
+    <value>パーツ数</value>
+  </data>
+  <data name="PartSizeMb" xml:space="preserve">
+    <value>パートサイズ（MiB）</value>
+  </data>
+  <data name="PartsCount" xml:space="preserve">
+    <value>パーツ数</value>
+  </data>
+  <data name="PartLimit" xml:space="preserve">
+    <value>1,000個以上の部品が必要です。</value>
+  </data>
+  <data name="PartMismatch" xml:space="preserve">
+    <value>同じフォルダ内の1つのファイルの一部を選択します。</value>
+  </data>
+  <data name="MissingPart" xml:space="preserve">
+    <value>連続したファイルの一部が見つかりません。</value>
+  </data>
+  <data name="HashMismatch" xml:space="preserve">
+    <value>結合されたファイルのチェックサムが一致しません。</value>
+  </data>
+  <data name="TarCreate" xml:space="preserve">
+    <value>TAR.GZ形式で圧縮</value>
+  </data>
+  <data name="TarExtract" xml:space="preserve">
+    <value>TAR/GZアーカイブを抽出</value>
+  </data>
+  <data name="Archives" xml:space="preserve">
+    <value>TAR/GZipアーカイブ</value>
+  </data>
+  <data name="ArchiveError" xml:space="preserve">
+    <value>アーカイブが無効、安全でない、または制限を超えています。</value>
+  </data>
+  <data name="AddToZip" xml:space="preserve"><value>ZIPファイルに追加</value></data>
+  <data name="AddToZipDescription" xml:space="preserve"><value>アーカイブエントリと追加の選択範囲を新しいZIPファイルにコピーします。</value></data>
+  <data name="ZipRoleSelection" xml:space="preserve"><value>ZIPアーカイブを1つと、少なくとも1つの追加のファイルまたはフォルダを選択します。</value></data>
+  <data name="UnsafeZip" xml:space="preserve"><value>アーカイブが安全でない、破損している、またはサポートされている制限を超えています。</value></data>
+  <data name="CompareText" xml:space="preserve"><value>比較</value></data>
+  <data name="CompareTextDescription" xml:space="preserve"><value>最大5MBまでの2つのテキストファイルのHTML行比較を作成します。</value></data>
+  <data name="IgnoreLineEndings" xml:space="preserve"><value>行末の違いは無視</value></data>
+  <data name="TextFiles" xml:space="preserve"><value>テキストファイル</value></data>
+  <data name="AddedLines" xml:space="preserve"><value>追加済み</value></data>
+  <data name="RemovedLines" xml:space="preserve"><value>削除済み</value></data>
+  <data name="UnchangedLines" xml:space="preserve"><value>変更なし</value></data>
+  <data name="DiffCounts" xml:space="preserve"><value>追加済み: {0}; 削除済み: {1}; 変更なし: {2}。</value></data>
+  <data name="ComparisonLimit" xml:space="preserve"><value>比較は、1ファイルあたり5MB、100,000行までに制限されています。非常に複雑な差異はサポートされていません。</value></data>
+  <data name="ComparisonEncoding" xml:space="preserve"><value>UTF-8テキストファイル、またはバイトオーダーマーク付きのUnicodeファイルを使用してください。</value></data>
+  <data name="SortByType" xml:space="preserve"><value>コピーを種類別に並べ替える</value></data>
+  <data name="SortByTypeDescription" xml:space="preserve"><value>複数のファイルを、ファイルの種類ごとにグループ化された新しいフォルダにコピーします。</value></data>
+  <data name="SortByTypeOperation" xml:space="preserve"><value>選択範囲を種類別に新しいフォルダにコピーします。</value></data>
+  <data name="MixedTypesRequired" xml:space="preserve"><value>少なくとも2種類の異なるファイルから、少なくとも2つのファイルを選択します。</value></data>
+  <data name="SortedFolder" xml:space="preserve"><value>並べ替え済み</value></data>
+  <data name="SortedImages" xml:space="preserve"><value>画像</value></data>
+  <data name="SortedPdfs" xml:space="preserve"><value>PDF</value></data>
+  <data name="SortedDocuments" xml:space="preserve"><value>ドキュメント</value></data>
+  <data name="SortedSpreadsheets" xml:space="preserve"><value>スプレッドシート</value></data>
+  <data name="SortedVideos" xml:space="preserve"><value>動画</value></data>
+  <data name="SortedAudio" xml:space="preserve"><value>音声</value></data>
+  <data name="SortedArchives" xml:space="preserve"><value>アーカイブ</value></data>
+  <data name="SortedText" xml:space="preserve"><value>テキスト</value></data>
+  <data name="SortedOther" xml:space="preserve"><value>その他</value></data>
+  <data name="RenameFiles" xml:space="preserve"><value>ファイル名を変更</value></data>
+  <data name="RenameDescription" xml:space="preserve"><value>プレビューを確認しながら、10分間の元に戻す機能を使って元のファイルの名前を変更します。</value></data>
+  <data name="RenameUnavailable" xml:space="preserve"><value>名前変更サービスが利用できません。</value></data>
+  <data name="RenamePattern" xml:space="preserve"><value>名前パターン</value></data>
+  <data name="RenameTokens" xml:space="preserve"><value>Tokens: {name}, {ext}, {n}, {n:000}, {date}, {exifdate}. An explicit {ext} token controls extension placement.</value></data>
+  <data name="RenameFind" xml:space="preserve"><value>ベース名で検索</value></data>
+  <data name="RenameReplace" xml:space="preserve"><value>置換</value></data>
+  <data name="Case" xml:space="preserve"><value>大文字小文字</value></data>
+  <data name="keep" xml:space="preserve"><value>大文字・小文字を保持</value></data>
+  <data name="lower" xml:space="preserve"><value>小文字</value></data>
+  <data name="upper" xml:space="preserve"><value>大文字</value></data>
+  <data name="title" xml:space="preserve"><value>タイトルケース</value></data>
+  <data name="RenameStartAt" xml:space="preserve"><value>開始番号を次の位置から付ける</value></data>
+  <data name="RenameKeepExtension" xml:space="preserve"><value>ファイル拡張子を保持</value></data>
+  <data name="RenameOperation" xml:space="preserve"><value>プレビューに従って元のファイルの名前を変更します。</value></data>
+  <data name="RenameInvalid" xml:space="preserve"><value>名前変更プランに無効な名前、重複、使用できない入力、または使用中の宛先が含まれています。</value></data>
+  <data name="RenameUnchanged" xml:space="preserve"><value>パターンまたはオプションを変更して選択範囲の名前を変更します。</value></data>
+  <data name="RenameConsent" xml:space="preserve"><value>この設定により元のファイル名が変更されることを理解しています。</value></data>
+  <data name="RenameUndoWindow" xml:space="preserve"><value>この結果が表示されている間、10分間は元に戻すことができます。名前はこのダイアログでのみ表示されます。</value></data>
+  <data name="RenameReviewAgain" xml:space="preserve"><value>選択内容またはオプションが変更されました。プレビューを確認して再度確定してください。</value></data>
+  <data name="RenameCompleted_One" xml:space="preserve"><value>1つのファイルの名前を変更しました。</value></data>
+  <data name="RenameCompleted_Other" xml:space="preserve"><value>{0}個のファイルの名前を変更しました。</value></data>
+  <data name="RenameFailed" xml:space="preserve"><value>名前の変更に失敗しました。完了した変更はロールバックされました。</value></data>
+  <data name="RenameRecovery" xml:space="preserve"><value>一部の変更は元に戻せませんでした。ファイルロックを解除し、すぐに元に戻す操作を行ってください。</value></data>
+<data name="ArchiveLimitExceeded" xml:space="preserve"><value>アーカイブがサポートされている安全制限を超えています。</value></data>
+<data name="ArchiveUnsafeEntry" xml:space="preserve"><value>アーカイブに安全でないエントリが含まれているため、展開できません。</value></data>
+<data name="ArchiveInvalid" xml:space="preserve"><value>アーカイブが破損しているか、暗号化されているか、またはサポートされていません。</value></data>
+<data name="CopiedNames_One" xml:space="preserve"><value>{0}個のファイル名をコピーしました。</value></data>
+<data name="CopiedNames_Other" xml:space="preserve"><value>{0}個のファイル名をコピーしました。</value></data>
+<data name="CopiedPaths_One" xml:space="preserve"><value>{0}個のパスをコピーしました。</value></data>
+<data name="CopiedPaths_Other" xml:space="preserve"><value>{0}個のパスをコピーしました。</value></data>
+<data name="ProcessItems_One" xml:space="preserve"><value>{0}個のアイテムを処理します。</value></data>
+<data name="ProcessItems_Other" xml:space="preserve"><value>{0}個のアイテムを処理します。</value></data>
+<data name="FoundItems_One" xml:space="preserve"><value>選択したディレクトリ{1}に{0}個のアイテムが見つかりました。</value></data>
+<data name="FoundItems_Other" xml:space="preserve"><value>選択したディレクトリ{1}に{0}個のアイテムが見つかりました。</value></data>
+<data name="CountFiles_One" xml:space="preserve"><value>{0} 個のファイル</value></data>
+<data name="CountFiles_Other" xml:space="preserve"><value>{0} 個のファイル</value></data>
+<data name="CountFolders_One" xml:space="preserve"><value>{0} 個のフォルダ</value></data>
+<data name="CountFolders_Other" xml:space="preserve"><value>{0} 個のフォルダ</value></data>
+<data name="CountFilesResult" xml:space="preserve"><value>{1}{2}に{0}個のファイルが見つかりました。</value></data>
+<data name="FolderSummary_One" xml:space="preserve"><value>{0} 個のファイル、{1} バイト、{2} 個がスキップされました。{3}</value></data>
+<data name="FolderSummary_Other" xml:space="preserve"><value>{0} 個のファイル、{1} バイト、{2} 個がスキップされました。{3}</value></data>
+<data name="DuplicateSummary_One" xml:space="preserve"><value>{0} 個の重複グループ、{1} 個の再利用可能なバイト、{2} 個がスキップされました。{3}</value></data>
+<data name="DuplicateSummary_Other" xml:space="preserve"><value>{0} 個の重複グループ、{1} 個の再利用可能なバイト、{2} 個がスキップされました。{3}</value></data>
+</root>

@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Summary_ImagesSingular" xml:space="preserve">
+    <value>画像1件</value>
+  </data>
+  <data name="Summary_ImagesPlural" xml:space="preserve">
+    <value>{0} 画像</value>
+  </data>
+  <data name="Summary_FoldersSingular" xml:space="preserve">
+    <value>フォルダ1件</value>
+  </data>
+  <data name="Summary_FoldersPlural" xml:space="preserve">
+    <value>{0} フォルダー</value>
+  </data>
+  <data name="Summary_FilesSingular" xml:space="preserve">
+    <value>ファイル1件</value>
+  </data>
+  <data name="Summary_FilesPlural" xml:space="preserve">
+    <value>{0} ファイル</value>
+  </data>
+  <data name="Summary_OfflineStatus" xml:space="preserve">
+    <value> （{0} オフライン）</value>
+  </data>
+  <data name="Summary_TableDimensions" xml:space="preserve">
+    <value>選択されたテーブル（{0}行、{1}列）</value>
+  </data>
+  <data name="Search_ErrorDefault" xml:space="preserve">
+    <value>アクションの検索は一時的に利用できません。</value>
+  </data>
+  <data name="Context_None" xml:space="preserve">
+    <value>選択範囲がありません。</value>
+  </data>
+  <data name="Context_Unavailable" xml:space="preserve">
+    <value>選択範囲は使用できません。</value>
+  </data>
+  <data name="Notice_Unsupported" xml:space="preserve">
+    <value>このアプリケーションはまだサポートされていません。一般的な操作が表示されます。</value>
+  </data>
+  <data name="Notice_Denied" xml:space="preserve">
+    <value>PowerTroveはこの選択範囲にアクセスできません。一般的な操作が表示されます。</value>
+  </data>
+  <data name="Notice_TimedOut" xml:space="preserve">
+    <value>アプリケーションが時間内に応答しませんでした。一般的な操作手順が表示されます。</value>
+  </data>
+  <data name="Notice_Failed" xml:space="preserve">
+    <value>選択したファイルを読み取ることができませんでした。一般的な操作が表示されます。</value>
+  </data>
+  <data name="Action_OpenSettings_Title" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Action_OpenSettings_Description" xml:space="preserve">
+    <value>言語、ショートカット、および提案</value>
+  </data>
+  <data name="Group_Suggested" xml:space="preserve">
+    <value>この選択に対する提案</value>
+  </data>
+  <data name="Group_All" xml:space="preserve">
+    <value>すべての操作</value>
+  </data>
+  <data name="Badge_Favorite" xml:space="preserve">
+    <value>お気に入り</value>
+  </data>
+  <data name="Badge_Recommended" xml:space="preserve">
+    <value>推奨</value>
+  </data>
+  <data name="Family_Document_One" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="Family_Document_Other" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="Family_Spreadsheet_One" xml:space="preserve">
+    <value>スプレッドシート</value>
+  </data>
+  <data name="Family_Spreadsheet_Other" xml:space="preserve">
+    <value>スプレッドシート</value>
+  </data>
+  <data name="Family_Archive_One" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="Family_Archive_Other" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="Group_General" xml:space="preserve"><value>一般情報</value></data>
+  <data name="Group_Workflows" xml:space="preserve"><value>ワークフロー</value></data>
+  <data name="Group_Archives" xml:space="preserve"><value>ファイル · アーカイブ</value></data>
+  <data name="Group_Files" xml:space="preserve"><value>ファイル · 整理と検査</value></data>
+  <data name="Group_Data" xml:space="preserve"><value>テーブルとデータ</value></data>
+  <data name="Group_Markdown" xml:space="preserve"><value>Markdown</value></data>
+  <data name="Group_Unavailable" xml:space="preserve"><value>この選択範囲では利用できません</value></data>
+  <data name="ShowUnavailable_One" xml:space="preserve"><value>利用できないアクションを{0}件表示</value></data>
+  <data name="ShowUnavailable_Other" xml:space="preserve"><value>利用できないアクションを{0}件表示</value></data>
+  <data name="Group_Image_Convert" xml:space="preserve"><value>画像 · 変換</value></data>
+  <data name="Group_Image_Edit" xml:space="preserve"><value>画像 · 編集</value></data>
+  <data name="Group_Image_Combine" xml:space="preserve"><value>画像 · 結合</value></data>
+  <data name="Group_Image_Optimize" xml:space="preserve"><value>画像 · 最適化と圧縮</value></data>
+  <data name="Group_Image_Privacy" xml:space="preserve"><value>画像 · プライバシーと保護</value></data>
+  <data name="Group_Image_Inspect" xml:space="preserve"><value>画像 · テキストと詳細</value></data>
+  <data name="Group_Image_Layout" xml:space="preserve"><value>画像 · サイズとレイアウト</value></data>
+  <data name="Group_Image_Orientation" xml:space="preserve"><value>画像 · 回転と反転</value></data>
+  <data name="Group_Pdf_Convert" xml:space="preserve"><value>PDF · 変換</value></data>
+  <data name="Group_Pdf_Edit" xml:space="preserve"><value>PDF · 編集</value></data>
+  <data name="Group_Pdf_Combine" xml:space="preserve"><value>PDF · 結合</value></data>
+  <data name="Group_Pdf_Optimize" xml:space="preserve"><value>PDF · 最適化と圧縮</value></data>
+  <data name="Group_Pdf_Privacy" xml:space="preserve"><value>PDF · プライバシーと保護</value></data>
+  <data name="Group_Pdf_Inspect" xml:space="preserve"><value>PDF · テキストと詳細</value></data>
+  <data name="Group_Pdf_Pages" xml:space="preserve"><value>PDF · ページと順序</value></data>
+  <data name="Group_Media_Convert" xml:space="preserve"><value>オーディオとビデオ · 変換</value></data>
+  <data name="Group_Media_Edit" xml:space="preserve"><value>オーディオとビデオ · 編集</value></data>
+  <data name="Group_Media_Combine" xml:space="preserve"><value>オーディオとビデオ · 結合</value></data>
+  <data name="Group_Media_Optimize" xml:space="preserve"><value>オーディオとビデオ · 最適化と圧縮</value></data>
+  <data name="Group_Media_Privacy" xml:space="preserve"><value>オーディオとビデオ · プライバシーと保護</value></data>
+  <data name="Group_Media_Inspect" xml:space="preserve"><value>オーディオとビデオ · テキストと詳細</value></data>
+  <data name="RenameUndoCompleted" xml:space="preserve"><value>元のファイル名が復元されました。</value></data>
+  <data name="RenameUndoUnavailable" xml:space="preserve"><value>元に戻す操作を完了できませんでした。制限時間が経過したか、ファイルが変更されたか、またはファイル名が既に使用されている可能性があります。</value></data>
+  <data name="ResultRevealFailed" xml:space="preserve"><value>一部の出力はエクスプローラーに表示できませんでした。もう一度お試しください。</value></data>
+  <data name="Execution_Canceled" xml:space="preserve"><value>実行がキャンセルされました。</value></data>
+  <data name="Execution_Error_Generic" xml:space="preserve"><value>エラーが発生しました。</value></data>
+  <data name="Execution_CopiedToClipboard" xml:space="preserve"><value>クリップボードにコピーしました。</value></data>
+  <data name="Execution_ClipboardCopyFailed" xml:space="preserve"><value>クリップボードにコピーできませんでした。もう一度お試しください。</value></data>
+  <data name="Execution_ClipboardLimitExceeded" xml:space="preserve"><value>（クリップボードのテキストが10MBの制限を超えたため、コピーされませんでした。）</value></data>
+  <data name="Execution_Completed_Outputs_One" xml:space="preserve"><value>正常に完了しました。出力数：1。</value></data>
+  <data name="Execution_Completed_Outputs_Other" xml:space="preserve"><value>正常に完了しました。出力数：{0}。</value></data>
+  <data name="Execution_Completed" xml:space="preserve"><value>正常に完了しました。</value></data>
+  <data name="Execution_CompletedPartially_Outputs_One" xml:space="preserve"><value>一部完了しました。出力1件、{1}件が失敗しました。</value></data>
+  <data name="Execution_CompletedPartially_Outputs_Other" xml:space="preserve"><value>一部完了しました。出力数：{0}、失敗数：{1}。</value></data>
+  <data name="Execution_Failed_Items_One" xml:space="preserve"><value>実行に失敗しました。1項目が失敗しました。</value></data>
+  <data name="Execution_Failed_Items_Other" xml:space="preserve"><value>実行に失敗しました。{0}項目が失敗しました。</value></data>
+  <data name="Execution_Failed" xml:space="preserve"><value>実行に失敗しました。</value></data>
+  <data name="Execution_Starting" xml:space="preserve"><value>開始中…</value></data>
+  <data name="Preview_NotAvailable" xml:space="preserve"><value>このアクションのプレビューは利用できません。</value></data>
+  <data name="Context_UnknownSelection" xml:space="preserve"><value>不明な選択範囲</value></data>
+  <data name="Context_TextSelected" xml:space="preserve"><value>選択されたテキスト</value></data>
+  <data name="Context_Loading" xml:space="preserve"><value>コンテキストを読み込んでいます…</value></data>
+  <data name="Context_CaptureFailed" xml:space="preserve"><value>キャプチャに失敗しました。</value></data>
+  <data name="Context_ResolutionFailed" xml:space="preserve"><value>解像度設定に失敗しました。</value></data>
+  <data name="Badge_LastUsedFor_File_One" xml:space="preserve"><value>最終使用：ファイル 1件</value></data>
+  <data name="Badge_LastUsedFor_File_Other" xml:space="preserve"><value>最終使用：ファイル {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Image_One" xml:space="preserve"><value>最終使用：画像 1件</value></data>
+  <data name="Badge_LastUsedFor_Image_Other" xml:space="preserve"><value>最終使用：画像 {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Folder_One" xml:space="preserve"><value>最終使用：フォルダ 1件</value></data>
+  <data name="Badge_LastUsedFor_Folder_Other" xml:space="preserve"><value>最終使用：フォルダ {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Video_One" xml:space="preserve"><value>最終使用：動画 1 件</value></data>
+  <data name="Badge_LastUsedFor_Video_Other" xml:space="preserve"><value>最終使用：動画 {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Audio_One" xml:space="preserve"><value>最終使用：音声ファイル 1件</value></data>
+  <data name="Badge_LastUsedFor_Audio_Other" xml:space="preserve"><value>最終使用：音声ファイル {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Pdf_One" xml:space="preserve"><value>最終使用：PDFファイル 1件</value></data>
+  <data name="Badge_LastUsedFor_Pdf_Other" xml:space="preserve"><value>最終使用：PDF ファイル {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Table_One" xml:space="preserve"><value>最終使用：表 1件</value></data>
+  <data name="Badge_LastUsedFor_Table_Other" xml:space="preserve"><value>最終使用：表 {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Text_One" xml:space="preserve"><value>最終使用：テキスト 1 件</value></data>
+  <data name="Badge_LastUsedFor_Text_Other" xml:space="preserve"><value>最終使用：テキスト {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Other_One" xml:space="preserve"><value>最終使用：アイテム 1件</value></data>
+  <data name="Badge_LastUsedFor_Other_Other" xml:space="preserve"><value>最終使用：アイテム {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Item_One" xml:space="preserve"><value>最終使用：アイテム 1件</value></data>
+  <data name="Badge_LastUsedFor_Item_Other" xml:space="preserve"><value>最終使用：アイテム {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Archive_One" xml:space="preserve"><value>最終使用：アーカイブファイル 1件</value></data>
+  <data name="Badge_LastUsedFor_Archive_Other" xml:space="preserve"><value>最終使用：アーカイブ {0} 件</value></data>
+  <data name="Badge_LastUsedFor_Document_One" xml:space="preserve"><value>最終使用：文書 1件</value></data>
+  <data name="Badge_LastUsedFor_Document_Other" xml:space="preserve"><value>最終使用：ドキュメント {0} 件</value></data>
+
+  <data name="UpdatesVersionUnknown" xml:space="preserve"><value>インストールされているバージョンを特定できませんでした。</value></data>
+  <data name="UpdatesInstalledVersion" xml:space="preserve"><value>インストール済みバージョン: {0}</value></data>
+  <data name="UpdatesNotChecked" xml:space="preserve"><value>更新チェックは要求されていません。</value></data>
+  <data name="UpdatesChecking" xml:space="preserve"><value>GitHub リリースを確認中…</value></data>
+  <data name="UpdatesAvailable" xml:space="preserve"><value>バージョン {0} が利用可能です。</value></data>
+  <data name="UpdatesUpToDate" xml:space="preserve"><value>より新しい互換性のあるリリースが見つかりませんでした。</value></data>
+  <data name="UpdatesNoReleases" xml:space="preserve"><value>公開されているリリースはまだありません。</value></data>
+  <data name="UpdatesOffline" xml:space="preserve"><value>GitHubに接続できませんでした。ローカル操作は引き続きご利用いただけます。</value></data>
+  <data name="UpdatesTimedOut" xml:space="preserve"><value>更新チェックがタイムアウトしました。しばらくしてからもう一度お試しください。</value></data>
+  <data name="UpdatesRateLimited" xml:space="preserve"><value>GitHubのリクエスト数に制限があります。しばらくしてからもう一度お試しください。</value></data>
+  <data name="UpdatesInvalidData" xml:space="preserve"><value>リリース情報を検証できませんでした。後でもう一度お試しください。</value></data>
+  <data name="UpdatesUnavailable" xml:space="preserve"><value>リリースチャネルが利用できません。ローカル操作は引き続きご利用いただけます。</value></data>
+  <data name="UpdatesCanceled" xml:space="preserve"><value>更新操作がキャンセルされました。</value></data>
+  <data name="UpdatesOpenFailed" xml:space="preserve"><value>リリースページを開けませんでした。もう一度お試しください。</value></data>
+  <data name="PackWorkerStopped" xml:space="preserve"><value>ツールが予期せず停止しました。ファイルは変更されていません。</value></data>
+  <data name="PackOutputFailed" xml:space="preserve"><value>一部の出力は保存できませんでした。完了した出力は以下に一覧表示されます。</value></data>
+  <data name="PackInvalidSelection" xml:space="preserve"><value>ファイルを再度選択してください。</value></data>
+  <data name="PackImagePresetNeedsImages" xml:space="preserve"><value>このプリセットを使用するには、Image Toolsパックをインストールしてください。</value></data>
+  <data name="PackTableTooLarge" xml:space="preserve"><value>この表の選択範囲は、ダウンロードパックのサイズを超えています。より小さい範囲を選択してください。</value></data>
+  <data name="PackStateInstalled" xml:space="preserve"><value>インストール済み</value></data>
+  <data name="PackStateNotInstalled" xml:space="preserve"><value>インストールされていません</value></data>
+  <data name="PackStateUpdateAvailable" xml:space="preserve"><value>更新が利用可能です</value></data>
+  <data name="PackStateIncompatible" xml:space="preserve"><value>このバージョンとは互換性がありません</value></data>
+  <data name="PackSizeMegabytes" xml:space="preserve"><value>{0:N1} MB</value></data>
+  <data name="PackSizeUnknown" xml:space="preserve"><value>サイズ不明</value></data>
+  <data name="PackVersion" xml:space="preserve"><value>バージョン {0}</value></data>
+  <data name="PackActionCountOne" xml:space="preserve"><value>{0:N0} アクション</value></data>
+  <data name="PackActionCountOther" xml:space="preserve"><value>{0:N0} アクション</value></data>
+  <data name="PackRowAutomationName" xml:space="preserve"><value>{0}、{1}、{2}</value></data>
+  <data name="PackActionAutomationName" xml:space="preserve"><value>{0} {1}</value></data>
+  <data name="PackRemoveAutomationName" xml:space="preserve"><value>{0}を削除</value></data>
+  <data name="PackInstall" xml:space="preserve"><value>インストール</value></data>
+  <data name="PackUpdate" xml:space="preserve"><value>更新</value></data>
+  <data name="PackSummary_files" xml:space="preserve"><value>ファイルの名前変更、圧縮、比較、並べ替え。</value></data>
+  <data name="PackSummary_pdf" xml:space="preserve"><value>テキスト認識（OCR）を含む、PDFの結合、分割、圧縮、変換、整理を行います。</value></data>
+  <data name="PackSummary_images" xml:space="preserve"><value>HEIC画像を含む画像を変換、サイズ変更、圧縮、編集します。</value></data>
+  <data name="PackSummary_media" xml:space="preserve"><value>音声と動画を変換、トリミング、圧縮します。</value></data>
+  <data name="PackSummary_office" xml:space="preserve"><value>Word、Excel、PowerPointファイルをPDFに、PDFをWordに変換します。</value></data>
+  <data name="PackSummary_data" xml:space="preserve"><value>CSV、JSON、Excel、連絡先ファイルを変換します。</value></data>
+  <data name="PackSummary_tables" xml:space="preserve"><value>Excelの選択範囲をCSV、JSON、Markdown、またはSQL形式でエクスポートします。</value></data>
+  <data name="PackSummary_einvoice" xml:space="preserve"><value>XRechnung および ZUGFeRD 請求書の表示と変換。</value></data>
+  <data name="PackSummary_markdown" xml:space="preserve"><value>ライブプレビューで Markdown を表示および編集し、HTML または PDF に変換します。</value></data>
+  <data name="PackWebsiteLink" xml:space="preserve"><value>Webサイト上のすべての操作</value></data>
+  <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: ウェブサイト上のすべての操作</value></data>
+  <data name="PacksUpdateAll" xml:space="preserve"><value>すべて更新 ({0})</value></data>
+  <data name="PacksNotOpened" xml:space="preserve"><value>オーナーカタログを確認するには、このセクションを開いてください。</value></data>
+  <data name="PacksRefreshing" xml:space="preserve"><value>パックカタログを確認中…</value></data>
+  <data name="PacksReady" xml:space="preserve"><value>パックリストは最新です。</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>パックを確認してインストール中…</value></data>
+  <data name="PacksRemoving" xml:space="preserve"><value>パックを削除しています…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>パックがインストールされています。そのアクションはパレットで使用できます。</value></data>
+  <data name="PacksNotConfigured" xml:space="preserve"><value>この開発バージョンでは、パックのダウンロードはできません。同梱ツールを表示し、署名済みのローカルファイルをインストールできます。</value></data>
+  <data name="PacksOffline" xml:space="preserve"><value>カタログはオフラインでは利用できません。インストール済みのツールは引き続きご利用いただけます。</value></data>
+  <data name="PacksTimedOut" xml:space="preserve"><value>リクエストがタイムアウトしました。準備ができたらもう一度お試しください。</value></data>
+  <data name="PacksInvalidData" xml:space="preserve"><value>パックまたはカタログを検証できませんでした。既存のツールは引き続きご利用いただけます。</value></data>
+  <data name="PacksIncompatible" xml:space="preserve"><value>このパックには、互換性のあるアプリケーションのバージョンまたはプラットフォームが必要です。</value></data>
+  <data name="PacksBusy" xml:space="preserve"><value>別のパック操作がまだ実行中です。</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>パック操作はキャンセルされました。</value></data>
+  <data name="PacksOperationFailed" xml:space="preserve"><value>パック操作を完了できませんでした。既存のツールは引き続き使用できます。</value></data>
+  <data name="PackProgressBytes" xml:space="preserve"><value>{0:N0} バイトがダウンロードされました</value></data>
+  <data name="PackSizeKilobytes" xml:space="preserve"><value>{0:N1} KB</value></data>
+  <data name="PackSizeBytes" xml:space="preserve"><value>{0:N0} バイト</value></data>
+  <data name="PackVersionUpdate" xml:space="preserve"><value>バージョン {0} → {1}</value></data>
+  <data name="UpdatesDownloading" xml:space="preserve"><value>アップデートをダウンロードして検証しています…</value></data>
+  <data name="UpdatesDownloadProgress" xml:space="preserve"><value>アップデートをダウンロード中: {0}%</value></data>
+  <data name="UpdatesInstallerStarted" xml:space="preserve"><value>インストーラーが開始されました。PowerTroveはアップデート後に終了し、再起動します。</value></data>
+  <data name="UpdatesIntegrityFailed" xml:space="preserve"><value>更新を検証できませんでした。何もインストールされませんでした。しばらくしてからもう一度お試しください。</value></data>
+  <data name="UpdatesDownloadTimedOut" xml:space="preserve"><value>更新のダウンロードがタイムアウトしました。何もインストールされませんでした。</value></data>
+  <data name="UpdatesFinishWork" xml:space="preserve"><value>更新する前に、実行中の操作を完了し、エディターまたはダイアログを閉じてください。</value></data>
+  <data name="UpdatesInstallFailed" xml:space="preserve"><value>更新を開始できませんでした。何もインストールされませんでした。もう一度お試しください。</value></data>
+  <data name="UpdatesManualDownload" xml:space="preserve"><value>バージョン {0} が利用可能です。このリリースには、アプリ内アップデート用の検証済みインストーラーがありません。リリースぺージを開いてください。</value></data>
+  <data name="ContextPackOfficial" xml:space="preserve"><value>公式パック：{0}</value></data>
+  <data name="ContextPackActions" xml:space="preserve"><value>{0} の追加アクションがこの選択に一致します。</value></data>
+  <data name="ContextPackDownload" xml:space="preserve"><value>{0} ({1}) をダウンロード</value></data>
+  <data name="ContextPackUpdate" xml:space="preserve"><value>{0} ({1}) を更新</value></data>
+  <data name="ContextPackOfferChanged" xml:space="preserve"><value>利用可能なパッケージが変更されました。更新されたサイズをご確認の上、再度ダウンロードをクリックしてください。</value></data>
+  <data name="ContextPackProgress" xml:space="preserve"><value>パックをダウンロード中: {0:0}%</value></data>
+  <data name="ContextPackReady" xml:space="preserve"><value>パックがインストールされました。PowerTrove を再起動せずに、パックの機能をご利用いただけます。</value></data>
+  <data name="PackHostRequired" xml:space="preserve"><value>PowerTrove {0}以降が必要です。既存のインストール済みアクションは引き続き使用できます。</value></data>
+  <data name="ContextPackIncompatible" xml:space="preserve"><value>対応アプリが必要です</value></data>
+  <data name="PackNewerHostRequired" xml:space="preserve"><value>パックバージョン {0} は PowerTrove {1} が必要です。バージョン {2} はお使いのインストール環境と互換性があります。</value></data>
+  <data name="UpdatesStoreManaged" xml:space="preserve"><value>アプリの更新はMicrosoft Storeによって管理されます。</value></data>
+  <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>インストール済みのツールパックのアップデートが利用可能です。</value></data>
+  <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>インストール済みのツールパック{0}個に更新が利用可能です。</value></data>
+  <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>レシピを作成</value></data>
+  <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>複数のアクションを1つのレシピにまとめて、順番に実行します。</value></data>
+  <data name="UserRecipeDescription" xml:space="preserve"><value>あなたのレシピ: {0}</value></data>
+  <data name="Context_BrowserPage" xml:space="preserve"><value>{0} · {1}</value></data>
+</root>

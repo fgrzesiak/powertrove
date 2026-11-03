@@ -1,6 +1,8 @@
 using System.ComponentModel;
 using System.Globalization;
 using PowerTrove.Application.Configuration;
+using PowerTrove.Application.Localization;
+using PowerTrove.Abstractions.Localization;
 using PowerTrove.Application.Packs;
 using PowerTrove.Application.Resources;
 using PowerTrove.Core.Catalog;
@@ -13,6 +15,7 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
     public PackListItem Item { get; } = item;
     public string Id => Item.Id;
     public string Name => Item.Name;
+    public bool IsBrowserPreview => Item.Id == BrowserExtensionSetup.PackId && BrowserExtensionSetup.IsPreview;
     public string Publisher => Item.Publisher;
     /// <summary>Host-provided summary for official packs; signed catalogs carry no description.</summary>
     public string Summary => OfficialSlug(Item.Id) is { } slug ? Strings.GetString("PackSummary_" + slug) : string.Empty;
@@ -23,7 +26,7 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
     public string WebsiteText => Strings.GetString("PackWebsiteLink");
     public string WebsiteAutomationName => string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackWebsiteAutomationName"), Name);
     public bool IsUpdate => Item.State == PackInstallState.UpdateAvailable;
-    private static readonly string[] OfficialSlugs = ["files", "pdf", "images", "media", "office", "data", "tables", "einvoice"];
+    private static readonly string[] OfficialSlugs = ["files", "pdf", "images", "media", "office", "data", "tables", "einvoice", "markdown"];
     private static string? OfficialSlug(string id) =>
         id.StartsWith("powertrove.", StringComparison.Ordinal) && Array.IndexOf(OfficialSlugs, id["powertrove.".Length..]) >= 0
             ? id["powertrove.".Length..] : null;
@@ -35,7 +38,7 @@ public sealed class ActionPackRow(PackListItem item) : INotifyPropertyChanged
     public string Details => string.Join(" · ", Item.State == PackInstallState.UpdateAvailable
         ? string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackVersionUpdate"), Item.InstalledVersion, Item.AvailableVersion)
         : string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackVersion"), Item.InstalledVersion ?? Item.AvailableVersion),
-        SizeText, string.Format(CultureInfo.CurrentCulture, Strings.GetString(Item.ActionCount == 1 ? "PackActionCountOne" : "PackActionCountOther"), Item.ActionCount));
+        SizeText, string.Format(CultureInfo.CurrentCulture, Strings.GetString(PluralForms.ResourceKey("PackActionCount", Item.ActionCount, CultureInfo.CurrentUICulture, key => Strings.GetString(key) != key)), Item.ActionCount));
     public string CompatibilityText => Item.RequiredHostVersion is null ? string.Empty :
         Item.LatestVersion is { } newest && newest != Item.AvailableVersion
             ? string.Format(CultureInfo.CurrentCulture, Strings.GetString("PackNewerHostRequired"), newest, Item.RequiredHostVersion, Item.AvailableVersion)

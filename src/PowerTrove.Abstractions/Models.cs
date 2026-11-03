@@ -11,7 +11,11 @@ public sealed record SourceWindowIdentity(
     int ProcessId,
     string? ProcessName,
     DateTimeOffset CapturedAt,
-    string? Title = null);
+    string? Title = null)
+{
+    // Window captions may contain private document names and visited pages.
+    public override string ToString() => $"SourceWindowIdentity {{ ProcessId = {ProcessId}, ProcessName = {ProcessName}, Redacted }}";
+}
 
 public abstract record ContextContent;
 public sealed record NoContent() : ContextContent;
@@ -20,7 +24,11 @@ public sealed record FileSelection(
 {
     public override string ToString() => $"FileSelection {{ Count = {Files.Count} }}";
 }
-public sealed record TextSelection(string Text) : ContextContent;
+public sealed record TextSelection(string Text) : ContextContent
+{
+    // Clipboard content must never be included in the default record/debug representation.
+    public override string ToString() => $"TextSelection {{ Length = {Text?.Length ?? 0} }}";
+}
 public sealed record TableData(
     IReadOnlyList<IReadOnlyList<CellValue>> Rows,
     string? SourceApplication,
@@ -60,4 +68,6 @@ public sealed record ContextSnapshot(
     IReadOnlySet<string>? ProvidedCapabilities = null)
 {
     public bool IsStale => DateTimeOffset.UtcNow > ExpiresAt;
+    public BrowserPageInfo? BrowserPage { get; init; }
+    public override string ToString() => $"ContextSnapshot {{ ProviderId = {ProviderId}, Status = {Status}, Redacted }}";
 }

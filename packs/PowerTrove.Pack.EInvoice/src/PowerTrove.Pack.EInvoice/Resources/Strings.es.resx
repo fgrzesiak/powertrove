@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve"><value>Herramientas de facturación electrónica</value></data>
+  <data name="ViewTitle" xml:space="preserve"><value>Ver XRechnung</value></data>
+  <data name="PdfTitle" xml:space="preserve"><value>Convertir XRechnung a PDF</value></data>
+  <data name="CsvTitle" xml:space="preserve"><value>Exportar líneas de cálculo XRechnung a CSV</value></data>
+  <data name="ExcelTitle" xml:space="preserve"><value>Exportar XRechnung a Excel</value></data>
+  <data name="ExtractTitle" xml:space="preserve"><value>Extraer XML de factura Factur-X / ZUGFeRD</value></data>
+  <data name="EmbeddedTitle" xml:space="preserve"><value>Ver datos de factura incrustados</value></data>
+  <data name="Description" xml:space="preserve"><value>Proyecta los campos de factura UBL/CII compatibles en nuevas vistas locales y exportaciones sin modificar ni validar la factura original.</value></data>
+  <data name="EmbeddedDescription" xml:space="preserve"><value>Lee un XML de factura incrustado compatible desde un PDF local sin extraer las rutas de los archivos adjuntos ni validar la conformidad con PDF/A.</value></data>
+  <data name="Visualization" xml:space="preserve"><value>Visualización de factura</value></data>
+  <data name="Notice" xml:space="preserve"><value>Visualización/exportación únicamente de los campos de origen seleccionados. Esta no es la factura electrónica original. El análisis XML no valida XRechnung, EN16931, PDF/A, firmas ni reglas comerciales. Los totales se copian sin recálculo; los campos omitidos y los archivos adjuntos permanecen en el original. Conserve y revise la factura original.</value></data>
+  <data name="Limits" xml:space="preserve"><value>Admite un subconjunto de factura/nota de crédito UBL delimitado y CII 100 con partidas individuales. XML: 5 MiB, profundidad 64, 100 000 elementos y 10 000 líneas; texto individual: 32 767 caracteres. Contenedores PDF: 25 MiB y 200 páginas; se requiere exactamente un archivo llamado factur-x.xml, zugferd-invoice.xml o xrechnung.xml. Se rechazan los contenedores cifrados, los campos ambiguos, las monedas de importe mixto y la precisión decimal no compatible. El texto con formato de fórmula CSV se antepone a un apóstrofo; utilice XLSX para identificadores literales.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Los datos de factura compatibles se pueden proyectar localmente. No se muestra el contenido de la factura; no se realizó ninguna validación de estándares.</value></data>
+  <data name="Invalid" xml:space="preserve"><value>La factura está mal formada, es ambigua, no es compatible o supera sus límites, o la renderización de salida local falló. Utilice XML UBL/CII compatible con partidas individuales o una factura integrada compatible sin cifrar. No hay resultados de conformidad disponibles.</value></data>
+  <data name="ReadError" xml:space="preserve"><value>No se pudo leer la factura.</value></data>
+  <data name="CleanupError" xml:space="preserve"><value>No se pudieron eliminar los datos temporales del navegador. Compruebe el acceso a la carpeta temporal e inténtelo de nuevo.</value></data>
+  <data name="PrinterUnavailable" xml:space="preserve"><value>La visualización de PDF requiere una impresora de documentos local y el navegador Microsoft Edge instalado.</value></data>
+  <data name="XmlFiles" xml:space="preserve"><value>Archivos XML de factura</value></data>
+  <data name="PdfFiles" xml:space="preserve"><value>Contenedores de facturas PDF</value></data>
+  <data name="Paper" xml:space="preserve"><value>Tamaño del papel</value></data>
+  <data name="A4" xml:space="preserve"><value>A4</value></data>
+  <data name="Letter" xml:space="preserve"><value>Carta</value></data>
+  <data name="Margin" xml:space="preserve"><value>Márgenes (milímetros)</value></data>
+  <data name="Invoice" xml:space="preserve"><value>Factura</value></data>
+  <data name="InvoiceId" xml:space="preserve"><value>ID de factura</value></data>
+  <data name="IssueDate" xml:space="preserve"><value>Fecha de emisión</value></data>
+  <data name="Syntax" xml:space="preserve"><value>Sintaxis</value></data>
+  <data name="Profile" xml:space="preserve"><value>Perfil declarado</value></data>
+  <data name="TypeCode" xml:space="preserve"><value>Código de tipo</value></data>
+  <data name="Currency" xml:space="preserve"><value>Moneda</value></data>
+  <data name="BuyerReference" xml:space="preserve"><value>Referencia del comprador</value></data>
+  <data name="Seller" xml:space="preserve"><value>Vendedor</value></data>
+  <data name="SellerAddress" xml:space="preserve"><value>Dirección del vendedor</value></data>
+  <data name="SellerTaxId" xml:space="preserve"><value>Identificador fiscal del vendedor</value></data>
+  <data name="SellerRegistration" xml:space="preserve"><value>Registro del vendedor</value></data>
+  <data name="SellerEmail" xml:space="preserve"><value>Correo electrónico del vendedor</value></data>
+  <data name="Buyer" xml:space="preserve"><value>Comprador</value></data>
+  <data name="BuyerAddress" xml:space="preserve"><value>Dirección del comprador</value></data>
+  <data name="BuyerTaxId" xml:space="preserve"><value>Número de identificación fiscal del comprador</value></data>
+  <data name="BuyerRegistration" xml:space="preserve"><value>Registro del comprador</value></data>
+  <data name="BuyerEmail" xml:space="preserve"><value>Correo electrónico del comprador</value></data>
+  <data name="Lines" xml:space="preserve"><value>Elementos de línea</value></data>
+  <data name="LineId" xml:space="preserve"><value>ID de línea</value></data>
+  <data name="DescriptionColumn" xml:space="preserve"><value>Descripción</value></data>
+  <data name="Quantity" xml:space="preserve"><value>Cantidad</value></data>
+  <data name="Unit" xml:space="preserve"><value>Código de unidad</value></data>
+  <data name="UnitPrice" xml:space="preserve"><value>Precio unitario</value></data>
+  <data name="PriceBase" xml:space="preserve"><value>Precio base por cantidad</value></data>
+  <data name="LineNet" xml:space="preserve"><value>Importe neto de la línea</value></data>
+  <data name="TaxCategory" xml:space="preserve"><value>Categoría del impuesto</value></data>
+  <data name="TaxRate" xml:space="preserve"><value>Tasa impositiva (%)</value></data>
+  <data name="Taxable" xml:space="preserve"><value>Importe imponible</value></data>
+  <data name="Taxes" xml:space="preserve"><value>Desglose del impuesto</value></data>
+  <data name="Tax" xml:space="preserve"><value>Importe del impuesto</value></data>
+  <data name="Exemption" xml:space="preserve"><value>Motivo de la exención</value></data>
+  <data name="Allowances" xml:space="preserve"><value>Total permitido</value></data>
+  <data name="Charges" xml:space="preserve"><value>Total del cargo</value></data>
+  <data name="Net" xml:space="preserve"><value>Importe neto</value></data>
+  <data name="Gross" xml:space="preserve"><value>Cantidad total</value></data>
+  <data name="Prepaid" xml:space="preserve"><value>Importe prepagado</value></data>
+  <data name="Rounding" xml:space="preserve"><value>Redondeo de importe</value></data>
+  <data name="Payable" xml:space="preserve"><value>Importe a pagar</value></data>
+  <data name="Notes" xml:space="preserve"><value>Notas</value></data>
+  <data name="Payments" xml:space="preserve"><value>Detalles del pago</value></data>
+  <data name="PaymentCode" xml:space="preserve"><value>Código del método de pago</value></data>
+  <data name="Account" xml:space="preserve"><value>Cuenta de pago</value></data>
+  <data name="Reference" xml:space="preserve"><value>Referencia del pago</value></data>
+  <data name="Terms" xml:space="preserve"><value>Condiciones de pago</value></data>
+  <data name="Field" xml:space="preserve"><value>Campo</value></data>
+  <data name="Value" xml:space="preserve"><value>Valor</value></data>
+  <data name="ViewDescription" xml:space="preserve"><value>Crea una nueva vista HTML independiente de los proveedores, líneas, impuestos y totales de origen de la factura compatibles.</value></data>
+  <data name="PdfDescription" xml:space="preserve"><value>Crea una nueva visualización en PDF de los campos de factura compatibles mediante la impresora de documentos local.</value></data>
+  <data name="CsvDescription" xml:space="preserve"><value>Exporta las líneas de factura con su identificador y totales de origen a un nuevo archivo CSV UTF-8.</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Exporta los encabezados, líneas, desglose de impuestos y pagos de factura compatibles a cuatro nuevas hojas de cálculo de Excel.</value></data>
+  <data name="ExtractDescription" xml:space="preserve"><value>Extrae un XML de factura incrustado reconocido como un nuevo archivo, conservando sus bytes decodificados y el PDF original.</value></data>
+</root>

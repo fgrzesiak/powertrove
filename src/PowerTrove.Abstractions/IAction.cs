@@ -48,6 +48,8 @@ public sealed record ActionPreview(
 {
     // Non-positional to preserve the constructor used by already published packs.
     public ImagePreviewData? ImagePreview { get; init; }
+    /// <summary>Rendered document for the host's viewer and editor, answered to a <see cref="DocumentPreviewRequest"/>.</summary>
+    public DocumentPreviewData? DocumentPreview { get; init; }
 }
 
 /// <summary>Input-derived labels for an options dialog only. Never log or persist the discovered list.</summary>

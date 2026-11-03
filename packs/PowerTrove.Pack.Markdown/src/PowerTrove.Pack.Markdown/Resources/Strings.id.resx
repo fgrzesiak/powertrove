@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="PackTitle" xml:space="preserve">
+    <value>Alat Markdown</value>
+  </data>
+  <data name="ViewTitle" xml:space="preserve">
+    <value>Lihat Markdown</value>
+  </data>
+  <data name="ViewDescription" xml:space="preserve">
+    <value>Menampilkan file Markdown sebagai halaman berformat dengan tabel, kode, daftar tugas, dan gambar lokal.</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Edit Markdown</value>
+  </data>
+  <data name="EditDescription" xml:space="preserve">
+    <value>Mengedit file Markdown dengan pratinjau langsung berdampingan. Perubahan hanya disimpan saat Anda memilih Simpan.</value>
+  </data>
+  <data name="MarkdownFiles" xml:space="preserve">
+    <value>File Markdown</value>
+  </data>
+  <data name="EngineUnavailable" xml:space="preserve">
+    <value>Mesin Markdown tidak tersedia.</value>
+  </data>
+  <data name="ViewOperation" xml:space="preserve">
+    <value>Membuka file Markdown di penampil.</value>
+  </data>
+  <data name="EditOperation" xml:space="preserve">
+    <value>Membuka file Markdown di editor.</value>
+  </data>
+  <data name="RemovedContent" xml:space="preserve">
+    <value>{0} bagian HTML aktif atau tidak didukung telah dihapus dari tampilan.</value>
+  </data>
+  <data name="RemoteImagesBlocked" xml:space="preserve">
+    <value>{0} gambar dari internet tidak dimuat.</value>
+  </data>
+  <data name="UnsupportedImages" xml:space="preserve">
+    <value>{0} gambar berada di luar folder file atau menggunakan sumber yang tidak didukung dan tidak ditampilkan.</value>
+  </data>
+  <data name="PreviewTooLarge" xml:space="preserve">
+    <value>Dokumen terlalu besar untuk pratinjau.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>File Markdown tidak dapat dibaca.</value>
+  </data>
+  <data name="ViewerOnly" xml:space="preserve">
+    <value>Buka tindakan ini dari palet PowerTrove; ini menampilkan file di penampil.</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>File melebihi ukuran yang didukung.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>File bukan teks yang dapat dibaca.</value>
+  </data>
+  <data name="TooComplex" xml:space="preserve">
+    <value>Dokumen terlalu besar atau terlalu dalam bersarang.</value>
+  </data>
+  <data name="Converting" xml:space="preserve">
+    <value>Konversi</value>
+  </data>
+  <data name="ToHtmlTitle" xml:space="preserve">
+    <value>Markdown ke HTML</value>
+  </data>
+  <data name="ToHtmlDescription" xml:space="preserve">
+    <value>Membuat halaman HTML bergaya dari setiap file Markdown, dengan gambar lokal yang disematkan atau ditautkan.</value>
+  </data>
+  <data name="ImagesOption" xml:space="preserve">
+    <value>Gambar lokal</value>
+  </data>
+  <data name="ImagesEmbed" xml:space="preserve">
+    <value>Sematkan di halaman</value>
+  </data>
+  <data name="ImagesLink" xml:space="preserve">
+    <value>Tautan ke file gambar</value>
+  </data>
+  <data name="ToHtmlOperation_One" xml:space="preserve">
+    <value>Membuat {0} halaman HTML.</value>
+  </data>
+  <data name="ToHtmlOperation_Other" xml:space="preserve">
+    <value>Membuat {0} halaman HTML.</value>
+  </data>
+  <data name="SanitizedNotice" xml:space="preserve">
+    <value>HTML yang ditulis dalam Markdown direduksi menjadi format statis: skrip, formulir, frame, dan gaya dihilangkan.</value>
+  </data>
+  <data name="HtmlEmbedNotice" xml:space="preserve">
+    <value>Gambar dari folder file disematkan, sehingga halaman berfungsi dengan sendirinya. Gambar internet tetap berupa tautan.</value>
+  </data>
+  <data name="HtmlLinkNotice" xml:space="preserve">
+    <value>Gambar tetap berupa tautan ke file-nya; simpan halaman di samping folder gambar.</value>
+  </data>
+  <data name="ToPdfTitle" xml:space="preserve">
+    <value>Markdown ke PDF</value>
+  </data>
+  <data name="ToPdfDescription" xml:space="preserve">
+    <value>Mencetak setiap file Markdown sebagai PDF yang diformat dengan tabel, kode, dan gambar lokal, menggunakan Microsoft Edge di PC ini.</value>
+  </data>
+  <data name="Paper" xml:space="preserve">
+    <value>Kertas</value>
+  </data>
+  <data name="PaperA4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="PaperLetter" xml:space="preserve">
+    <value>Surat AS</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Lanskap</value>
+  </data>
+  <data name="Margin" xml:space="preserve">
+    <value>Margin (mm)</value>
+  </data>
+  <data name="PrinterUnavailable" xml:space="preserve">
+    <value>Microsoft Edge diperlukan untuk membuat PDF.</value>
+  </data>
+  <data name="ToPdfOperation_One" xml:space="preserve">
+    <value>Membuat {0} PDF.</value>
+  </data>
+  <data name="ToPdfOperation_Other" xml:space="preserve">
+    <value>Membuat {0} PDF.</value>
+  </data>
+  <data name="PdfNotice" xml:space="preserve">
+    <value>Gambar dari folder file disematkan hingga sekitar 3 MB per dokumen; gambar internet tidak diunduh dan muncul sebagai deskripsinya.</value>
+  </data>
+  <data name="PdfFailed" xml:space="preserve">
+    <value>PDF tidak dapat dibuat.</value>
+  </data>
+  <data name="PdfCleanupFailed" xml:space="preserve">
+    <value>PDF telah dibuat, tetapi file sementara browser tidak dapat dihapus.</value>
+  </data>
+  <data name="NoContent" xml:space="preserve">
+    <value>File tidak berisi teks yang dapat dikonversi.</value>
+  </data>
+  <data name="MergeTitle" xml:space="preserve">
+    <value>Gabungkan file Markdown</value>
+  </data>
+  <data name="MergeDescription" xml:space="preserve">
+    <value>Menggabungkan file Markdown yang dipilih sesuai urutan yang Anda pilih menjadi satu file Markdown, HTML, atau PDF.</value>
+  </data>
+  <data name="MergeFormat" xml:space="preserve">
+    <value>Hasil</value>
+  </data>
+  <data name="MergeFormatMarkdown" xml:space="preserve">
+    <value>Satu file Markdown</value>
+  </data>
+  <data name="MergeFormatHtml" xml:space="preserve">
+    <value>Satu halaman HTML</value>
+  </data>
+  <data name="MergeFormatPdf" xml:space="preserve">
+    <value>Satu PDF</value>
+  </data>
+  <data name="MergeOrder" xml:space="preserve">
+    <value>File dan urutan</value>
+  </data>
+  <data name="MergeOrderHelp" xml:space="preserve">
+    <value>Seret file atau gunakan panah untuk mengubah urutan. Hapus centang pada kotak centang untuk mengeluarkan file.</value>
+  </data>
+  <data name="MergeOrderInvalid" xml:space="preserve">
+    <value>Urutan file tidak valid. Pilih file lagi.</value>
+  </data>
+  <data name="MergeNeedsTwo" xml:space="preserve">
+    <value>Pilih minimal dua file untuk digabungkan.</value>
+  </data>
+  <data name="MergeDivider" xml:space="preserve">
+    <value>Garis horizontal antar file</value>
+  </data>
+  <data name="MergePageBreaks" xml:space="preserve">
+    <value>Mulai setiap file di halaman baru</value>
+  </data>
+  <data name="MergeOperation_Markdown" xml:space="preserve">
+    <value>Gabungkan file yang dipilih ke dalam satu file Markdown di samping file pertama.</value>
+  </data>
+  <data name="MergeOperation_Html" xml:space="preserve">
+    <value>Gabungkan file yang dipilih ke dalam satu halaman HTML di samping file pertama.</value>
+  </data>
+  <data name="MergeOperation_Pdf" xml:space="preserve">
+    <value>Gabungkan file yang dipilih ke dalam satu PDF di samping file pertama.</value>
+  </data>
+  <data name="MergeMarkdownNotice" xml:space="preserve">
+    <value>Teks tetap seperti yang tertulis. Tautan relatif dan gambar disesuaikan ke folder file baru, catatan kaki diganti namanya agar tetap unik, dan hanya bagian pendahuluan file pertama yang dipertahankan.</value>
+  </data>
+  <data name="MergeTooLarge" xml:space="preserve">
+    <value>File terlalu besar untuk digabungkan.</value>
+  </data>
+  <data name="MergeTip" xml:space="preserve">
+    <value>Membuat satu file per file Markdown. Untuk mendapatkan satu file, aktifkan “Gabungkan semua file menjadi satu”.</value>
+  </data>
+  <data name="CombineOption" xml:space="preserve">
+    <value>Gabungkan semua file menjadi satu</value>
+  </data>
+  <data name="CombineHelp" xml:space="preserve">
+    <value>Dengan beberapa file yang dipilih, akan dibuat satu file tunggal sesuai urutan yang Anda pilih, bukan satu file per file.</value>
+  </data>
+  <data name="MergeTooMany" xml:space="preserve">
+    <value>Pilih maksimal 100 file untuk digabungkan.</value>
+  </data>
+  <data name="ToMarkdownTitle" xml:space="preserve">
+    <value>Konversi ke Markdown</value>
+  </data>
+  <data name="ToMarkdownDescription" xml:space="preserve">
+    <value>Mengubah file Word, PowerPoint, Excel, PDF, EPUB, Jupyter, dan HTML menjadi Markdown dengan judul, daftar, tabel, tautan, dan gambar.</value>
+  </data>
+  <data name="ToMarkdownFiles" xml:space="preserve">
+    <value>dokumen</value>
+  </data>
+  <data name="ToMarkdownImages" xml:space="preserve">
+    <value>Pertahankan gambar</value>
+  </data>
+  <data name="ToMarkdownImagesHelp" xml:space="preserve">
+    <value>Simpan gambar dari dokumen di folder yang diberi nama sesuai dengan berkas Markdown, di sebelahnya.</value>
+  </data>
+  <data name="ToMarkdownNotesOption" xml:space="preserve">
+    <value>Sertakan catatan pembicara (PowerPoint)</value>
+  </data>
+  <data name="ToMarkdownOutputsOption" xml:space="preserve">
+    <value>Sertakan output sel yang tersimpan (Jupyter)</value>
+  </data>
+  <data name="ToMarkdownOperation_One" xml:space="preserve">
+    <value>Membuat {0} berkas Markdown.</value>
+  </data>
+  <data name="ToMarkdownOperation_Other" xml:space="preserve">
+    <value>Membuat {0} berkas Markdown.</value>
+  </data>
+  <data name="ToMarkdownNotice" xml:space="preserve">
+    <value>Judul, daftar, penekanan, tautan, tabel, kode, dan gambar dipertahankan. Tata letak, warna, komentar, perubahan yang dilacak, dan skrip dihilangkan.</value>
+  </data>
+  <data name="ToMarkdownImagesNotice" xml:space="preserve">
+    <value>Gambar disimpan dalam folder baru yang diberi nama sesuai dengan file Markdown, di sebelahnya; file yang sudah ada tidak akan pernah ditimpa.</value>
+  </data>
+  <data name="ToMarkdownPdfNotice" xml:space="preserve">
+    <value>PDF dibaca dari lapisan teksnya: PDF yang diberi tag mempertahankan judul, tabel, dan daftarnya; jika tidak, judul berasal dari bookmark atau ukuran font. Daftar isi menjadi daftar berantai, tautan tetap menjadi tautan, catatan kaki tetap menjadi catatan kaki, tabel dikenali berdasarkan kolomnya meskipun tanpa batas, judul, nomor halaman, dan logo yang berulang dihilangkan, dan gambar ditempatkan di tempatnya. PDF hasil pemindaian memerlukan pengenalan teks terlebih dahulu.</value>
+  </data>
+  <data name="ToMarkdownTooLarge" xml:space="preserve">
+    <value>Dokumen yang dikonversi melebihi ukuran yang didukung.</value>
+  </data>
+  <data name="ToMarkdownInvalid" xml:space="preserve">
+    <value>File rusak atau tidak dalam format yang didukung.</value>
+  </data>
+  <data name="ToMarkdownNoContent" xml:space="preserve">
+    <value>File tidak berisi konten yang dapat dikonversi.</value>
+  </data>
+  <data name="ToMarkdownSlide" xml:space="preserve">
+    <value>Slide {0}</value>
+  </data>
+  <data name="ToMarkdownNotes" xml:space="preserve">
+    <value>Catatan</value>
+  </data>
+  <data name="ToMarkdownProtected" xml:space="preserve">
+    <value>E-book dilindungi hak cipta dan tidak dapat dikonversi.</value>
+  </data>
+  <data name="ToMarkdownPdfNoText" xml:space="preserve">
+    <value>PDF tidak memiliki lapisan teks, misalnya karena dipindai. Buat agar dapat dicari dengan pengenalan teks terlebih dahulu.</value>
+  </data>
+  <data name="ToMarkdownPdfEncrypted" xml:space="preserve">
+    <value>PDF dilindungi kata sandi. Hapus perlindungan terlebih dahulu.</value>
+  </data>
+</root>

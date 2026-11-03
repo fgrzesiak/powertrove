@@ -69,5 +69,14 @@ public sealed class MultiSelectParameterState
         UseAll = false;
         (_order[index], _order[next]) = (_order[next], _order[index]);
     }
+    /// <summary>Applies an order the user dragged into place; the values must be exactly the current choices.</summary>
+    public void Reorder(IReadOnlyList<string> values)
+    {
+        if (values.Count != _order.Count || !values.ToHashSet(StringComparer.Ordinal).SetEquals(_order))
+            throw new ArgumentException("The order must contain every choice once.", nameof(values));
+        if (values.SequenceEqual(_order, StringComparer.Ordinal)) return;
+        UseAll = false;
+        _order = values.ToList();
+    }
     public override string ToString() => "MultiSelectParameterState { Payload = redacted }";
 }

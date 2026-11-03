@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>ブラウザ</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>ブラウザの選択範囲をコピー</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>選択範囲をMarkdown形式の引用としてコピー</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>ページリンクをMarkdown形式でコピー</value></data>
+  <data name="Description" xml:space="preserve"><value>明示的に送信されたブラウザの選択項目を処理し、結果をクリップボードにコピーします。</value></data>
+  <data name="Preview" xml:space="preserve"><value>プレビュー — クリップボードにコピーするには、以下を実行してください。</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>ブラウザの選択は利用できないか、期限切れです。</value></data>
+  <data name="Done" xml:space="preserve"><value>クリップボードにコピーしました。</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>ページのURLをコピー</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>ページのリンクをHTMLとしてコピー</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>選択範囲を出典付きで引用</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>記事をMarkdownとしてコピー</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>WebページをMarkdownとしてコピー</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>ページ内のリンクをMarkdownとしてコピー</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>ページ内の画像をMarkdownとしてコピー</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>最初のHTMLテーブルをCSVとしてコピー</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>確定時に許可されたブラウザータブを読み取り、ファイルを変更せずに結果をコピーします。</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>この操作を実行したときだけページの内容を読み取ります。</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>ページの内容を取得できません。ページの変更、権限の不足、サイズ上限の超過が考えられます。</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>記事をMarkdownとして保存</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>WebページをMarkdownとして保存</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>ページ内のリンクをMarkdownとして保存</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>ページ内のリンクをCSVとして保存</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>最初のHTMLテーブルをCSVとして保存</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>許可されたブラウザータブのデータを既存のファイルを上書きせずに新しいファイルへ保存します。</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>現在のタブは確定後にのみ読み取られ、新しいファイルとしてデスクトップに保存されます。</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>ブラウザーページを新しいファイルに書き出しました。</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>ブラウザーの表示領域をPNGとして保存</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>ブラウザーのページ全体をPNGとして保存</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>ブラウザーページをMHTMLとして保存</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>ブラウザーページをPDFとして保存（印刷ダイアログなし）</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>記事</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>リンク</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>テーブル</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>画面</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>全体</value></data>
+</root>

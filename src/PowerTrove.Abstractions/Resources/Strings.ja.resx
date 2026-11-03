@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>{1}個のアイテムのうち{0}個に適用されます。</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>新しいファイルは元のファイルの横に作成されます。元のファイルは変更されません。</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>ファイルが存在しません。</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>フォルダが存在しません。</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>コンテンツがサポートされている{0}形式ではありません。</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>アクセスが拒否されました。</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>必要なファイルが見つかりませんでした。</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>必要なフォルダーが見つかりませんでした。</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>パスが長すぎます。</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>ファイルシステムエラーが発生しました。</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>この操作はサポートされていません。</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>処理が予期せず失敗しました。</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>選択したファイルの有効期限が切れました。ファイルを再度選択してください。</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>ファイル選択ではありません。</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>選択範囲にサポートされている{0}がありません。</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>少なくとも{0} {1}個のファイルを選択してください。</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>最大{0} {1}個のファイルを選択してください。</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>既存の {0} ファイルを選択</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>既存のファイルを選択</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>キャンセルされました。</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>キャンセルされました。キャンセル前に1件の出力が完了しました。</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>キャンセルされました。キャンセル前に{0}件の出力が完了しました。</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>出力を1件作成しました。</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>出力ファイルを{0}個作成しました。</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>出力ファイルを1つ作成しました。1つの項目でエラーが発生しました。</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>出力ファイルを1つ作成しました。{1}の項目でエラーが発生しました。</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>出力ファイルを{0}個作成しました。1つの項目でエラーが発生しました。</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>出力ファイルを{0}個作成しました。{1}の項目でエラーが発生しました。</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>出力は作成されませんでした。</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>サポートされていないアイテムを1つスキップしました。</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>サポートされていない項目が{0}個スキップされました。</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>変更が必要な項目は1件です。</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} アイテムは変更不要です。</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>出力ファイルを1つ作成しました。{1}を保存しました（{2}→{3}）。</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>出力ファイルを{0}個作成しました。{1}を保存しました（{2}→{3}）。</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>出力ファイルを1つ作成しました。出力ファイルは{1}サイズ大きくなりました（{2}→{3}）。</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>出力ファイルを{0}個作成しました。出力ファイルは{1}サイズ大きくなりました（{2}→{3}）。</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>開始中…</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>処理中</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} アイテム {1} / {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>完了。</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>有効な{1}が少なくとも{0}個必要です。</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>処理中…</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>処理エンジンが出力を生成しませんでした。</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>出力を任意の名前で保存できませんでした。</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>出力フォルダが利用できません。</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>出力フォルダが存在しません。</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>必要な項目：変更なし</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>コンテキストが利用できません。</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>必要な機能が不足しています。</value></data><data name="RequiresType" xml:space="preserve"><value>{0}が必要ですが、現在の選択範囲は{1}です。</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>少なくとも{0} {1}個のファイルを選択してください。</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>少なくとも{0} {1}個のファイルを選択してください。</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>{0} {1}個のファイルのみを選択してください。</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>{0} {1}個のファイルのみを選択してください。</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>選択した他の項目を削除</value></data></root>

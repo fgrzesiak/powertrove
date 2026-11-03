@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Summary_ImagesSingular" xml:space="preserve">
+    <value>1 imagen</value>
+  </data>
+  <data name="Summary_ImagesPlural" xml:space="preserve">
+    <value>{0} imágenes</value>
+  </data>
+  <data name="Summary_FoldersSingular" xml:space="preserve">
+    <value>1 carpeta</value>
+  </data>
+  <data name="Summary_FoldersPlural" xml:space="preserve">
+    <value>{0} carpetas</value>
+  </data>
+  <data name="Summary_FilesSingular" xml:space="preserve">
+    <value>1 archivo</value>
+  </data>
+  <data name="Summary_FilesPlural" xml:space="preserve">
+    <value>{0} archivos</value>
+  </data>
+  <data name="Summary_OfflineStatus" xml:space="preserve">
+    <value> ({0} sin conexión)</value>
+  </data>
+  <data name="Summary_TableDimensions" xml:space="preserve">
+    <value>Tabla seleccionada ({0} filas, {1} columnas)</value>
+  </data>
+  <data name="Search_ErrorDefault" xml:space="preserve">
+    <value>La búsqueda de acciones no está disponible temporalmente.</value>
+  </data>
+  <data name="Context_None" xml:space="preserve">
+    <value>Sin selección</value>
+  </data>
+  <data name="Context_Unavailable" xml:space="preserve">
+    <value>Selección no disponible</value>
+  </data>
+  <data name="Notice_Unsupported" xml:space="preserve">
+    <value>Esta aplicación aún no es compatible. Se muestran las acciones generales.</value>
+  </data>
+  <data name="Notice_Denied" xml:space="preserve">
+    <value>PowerTrove no tiene acceso a esta selección. Se muestran acciones generales.</value>
+  </data>
+  <data name="Notice_TimedOut" xml:space="preserve">
+    <value>La aplicación no respondió a tiempo. Se muestran acciones generales.</value>
+  </data>
+  <data name="Notice_Failed" xml:space="preserve">
+    <value>No se pudo leer la selección. Se muestran acciones generales.</value>
+  </data>
+  <data name="Action_OpenSettings_Title" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="Action_OpenSettings_Description" xml:space="preserve">
+    <value>Idioma, acceso directo y sugerencias.</value>
+  </data>
+  <data name="Group_Suggested" xml:space="preserve">
+    <value>Sugerencias para esta selección</value>
+  </data>
+  <data name="Group_All" xml:space="preserve">
+    <value>Todas las acciones</value>
+  </data>
+  <data name="Badge_Favorite" xml:space="preserve">
+    <value>Favorito</value>
+  </data>
+  <data name="Badge_Recommended" xml:space="preserve">
+    <value>Recomendado</value>
+  </data>
+  <data name="Family_Document_One" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="Family_Document_Other" xml:space="preserve">
+    <value>Documentos</value>
+  </data>
+  <data name="Family_Spreadsheet_One" xml:space="preserve">
+    <value>Hoja de cálculo</value>
+  </data>
+  <data name="Family_Spreadsheet_Other" xml:space="preserve">
+    <value>Hojas de cálculo</value>
+  </data>
+  <data name="Family_Archive_One" xml:space="preserve">
+    <value>Archivar</value>
+  </data>
+  <data name="Family_Archive_Other" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="Group_General" xml:space="preserve"><value>General</value></data>
+  <data name="Group_Workflows" xml:space="preserve"><value>Flujos de trabajo</value></data>
+  <data name="Group_Archives" xml:space="preserve"><value>Archivos · Archivos comprimidos</value></data>
+  <data name="Group_Files" xml:space="preserve"><value>Archivos · Organizar e inspeccionar</value></data>
+  <data name="Group_Data" xml:space="preserve"><value>Tablas y datos</value></data>
+  <data name="Group_Markdown" xml:space="preserve"><value>Markdown</value></data>
+  <data name="Group_Unavailable" xml:space="preserve"><value>No disponible para esta selección</value></data>
+  <data name="ShowUnavailable_One" xml:space="preserve"><value>Mostrar {0} acciones no disponibles</value></data>
+  <data name="ShowUnavailable_Other" xml:space="preserve"><value>Mostrar {0} acciones no disponibles</value></data>
+  <data name="Group_Image_Convert" xml:space="preserve"><value>Imágenes · Convertir</value></data>
+  <data name="Group_Image_Edit" xml:space="preserve"><value>Imágenes · Editar</value></data>
+  <data name="Group_Image_Combine" xml:space="preserve"><value>Imágenes · Combinar</value></data>
+  <data name="Group_Image_Optimize" xml:space="preserve"><value>Imágenes · Optimizar y comprimir</value></data>
+  <data name="Group_Image_Privacy" xml:space="preserve"><value>Imágenes · Privacidad y protección</value></data>
+  <data name="Group_Image_Inspect" xml:space="preserve"><value>Imágenes · Texto y detalles</value></data>
+  <data name="Group_Image_Layout" xml:space="preserve"><value>Imágenes · Tamaño y diseño</value></data>
+  <data name="Group_Image_Orientation" xml:space="preserve"><value>Imágenes · Rotar y reflejar</value></data>
+  <data name="Group_Pdf_Convert" xml:space="preserve"><value>PDF · Convertir</value></data>
+  <data name="Group_Pdf_Edit" xml:space="preserve"><value>PDF · Editar</value></data>
+  <data name="Group_Pdf_Combine" xml:space="preserve"><value>PDF · Combinar</value></data>
+  <data name="Group_Pdf_Optimize" xml:space="preserve"><value>PDF · Optimizar y comprimir</value></data>
+  <data name="Group_Pdf_Privacy" xml:space="preserve"><value>PDF · Privacidad y protección</value></data>
+  <data name="Group_Pdf_Inspect" xml:space="preserve"><value>PDF · Texto y detalles</value></data>
+  <data name="Group_Pdf_Pages" xml:space="preserve"><value>PDF · Páginas y orden</value></data>
+  <data name="Group_Media_Convert" xml:space="preserve"><value>Audio y vídeo · Convertir</value></data>
+  <data name="Group_Media_Edit" xml:space="preserve"><value>Audio y vídeo · Editar</value></data>
+  <data name="Group_Media_Combine" xml:space="preserve"><value>Audio y vídeo · Combinar</value></data>
+  <data name="Group_Media_Optimize" xml:space="preserve"><value>Audio y vídeo · Optimizar y comprimir</value></data>
+  <data name="Group_Media_Privacy" xml:space="preserve"><value>Audio y vídeo · Privacidad y protección</value></data>
+  <data name="Group_Media_Inspect" xml:space="preserve"><value>Audio y vídeo · Texto y detalles</value></data>
+  <data name="RenameUndoCompleted" xml:space="preserve"><value>Se restauraron los nombres de archivo originales.</value></data>
+  <data name="RenameUndoUnavailable" xml:space="preserve"><value>No se pudo completar la acción de deshacer. Es posible que el límite de tiempo haya expirado, que los archivos hayan cambiado o que los nombres ya estén en uso.</value></data>
+  <data name="ResultRevealFailed" xml:space="preserve"><value>No se pudieron mostrar algunos resultados en el Explorador de archivos. Inténtelo de nuevo.</value></data>
+  <data name="Execution_Canceled" xml:space="preserve"><value>Ejecución cancelada.</value></data>
+  <data name="Execution_Error_Generic" xml:space="preserve"><value>Se produjo un error.</value></data>
+  <data name="Execution_CopiedToClipboard" xml:space="preserve"><value>Copiado al portapapeles.</value></data>
+  <data name="Execution_ClipboardCopyFailed" xml:space="preserve"><value>No se pudo copiar al portapapeles. Inténtelo de nuevo.</value></data>
+  <data name="Execution_ClipboardLimitExceeded" xml:space="preserve"><value>(El texto del portapapeles superó el límite de 10 MB y no se copió.)</value></data>
+  <data name="Execution_Completed_Outputs_One" xml:space="preserve"><value>Completado correctamente. 1 resultado.</value></data>
+  <data name="Execution_Completed_Outputs_Other" xml:space="preserve"><value>Completado correctamente. {0} resultados.</value></data>
+  <data name="Execution_Completed" xml:space="preserve"><value>Completado correctamente.</value></data>
+  <data name="Execution_CompletedPartially_Outputs_One" xml:space="preserve"><value>Completado parcialmente. 1 resultado, {1} error.</value></data>
+  <data name="Execution_CompletedPartially_Outputs_Other" xml:space="preserve"><value>Completado parcialmente. {0} resultados, {1} error.</value></data>
+  <data name="Execution_Failed_Items_One" xml:space="preserve"><value>Error de ejecución. 1 elemento falló.</value></data>
+  <data name="Execution_Failed_Items_Other" xml:space="preserve"><value>Error de ejecución. {0} elemento(s) fallaron.</value></data>
+  <data name="Execution_Failed" xml:space="preserve"><value>Error de ejecución.</value></data>
+  <data name="Execution_Starting" xml:space="preserve"><value>Iniciando...</value></data>
+  <data name="Preview_NotAvailable" xml:space="preserve"><value>No hay vista previa disponible para esta acción.</value></data>
+  <data name="Context_UnknownSelection" xml:space="preserve"><value>Selección desconocida</value></data>
+  <data name="Context_TextSelected" xml:space="preserve"><value>Texto seleccionado.</value></data>
+  <data name="Context_Loading" xml:space="preserve"><value>Cargando contexto...</value></data>
+  <data name="Context_CaptureFailed" xml:space="preserve"><value>Captura fallida.</value></data>
+  <data name="Context_ResolutionFailed" xml:space="preserve"><value>Error al calcular la resolución.</value></data>
+  <data name="Badge_LastUsedFor_File_One" xml:space="preserve"><value>Último uso: 1 archivo</value></data>
+  <data name="Badge_LastUsedFor_File_Other" xml:space="preserve"><value>Último uso: {0} archivos</value></data>
+  <data name="Badge_LastUsedFor_Image_One" xml:space="preserve"><value>Último uso: 1 imagen</value></data>
+  <data name="Badge_LastUsedFor_Image_Other" xml:space="preserve"><value>Último uso: {0} imágenes</value></data>
+  <data name="Badge_LastUsedFor_Folder_One" xml:space="preserve"><value>Último uso: 1 carpeta</value></data>
+  <data name="Badge_LastUsedFor_Folder_Other" xml:space="preserve"><value>Último uso: {0} carpetas</value></data>
+  <data name="Badge_LastUsedFor_Video_One" xml:space="preserve"><value>Último uso: 1 vídeo</value></data>
+  <data name="Badge_LastUsedFor_Video_Other" xml:space="preserve"><value>Último uso: {0} Vídeos</value></data>
+  <data name="Badge_LastUsedFor_Audio_One" xml:space="preserve"><value>Último uso: 1 archivo de audio</value></data>
+  <data name="Badge_LastUsedFor_Audio_Other" xml:space="preserve"><value>Último uso: {0} archivos de audio</value></data>
+  <data name="Badge_LastUsedFor_Pdf_One" xml:space="preserve"><value>Último uso: 1 PDF</value></data>
+  <data name="Badge_LastUsedFor_Pdf_Other" xml:space="preserve"><value>Último uso: {0} PDF</value></data>
+  <data name="Badge_LastUsedFor_Table_One" xml:space="preserve"><value>Último uso: 1 tabla</value></data>
+  <data name="Badge_LastUsedFor_Table_Other" xml:space="preserve"><value>Último uso: {0} tablas</value></data>
+  <data name="Badge_LastUsedFor_Text_One" xml:space="preserve"><value>Último uso: 1 texto</value></data>
+  <data name="Badge_LastUsedFor_Text_Other" xml:space="preserve"><value>Último uso: {0} textos</value></data>
+  <data name="Badge_LastUsedFor_Other_One" xml:space="preserve"><value>Último uso: 1 elemento</value></data>
+  <data name="Badge_LastUsedFor_Other_Other" xml:space="preserve"><value>Último uso: {0} elementos</value></data>
+  <data name="Badge_LastUsedFor_Item_One" xml:space="preserve"><value>Último uso: 1 elemento</value></data>
+  <data name="Badge_LastUsedFor_Item_Other" xml:space="preserve"><value>Último uso: {0} elementos</value></data>
+  <data name="Badge_LastUsedFor_Archive_One" xml:space="preserve"><value>Último uso: 1 archivo comprimido</value></data>
+  <data name="Badge_LastUsedFor_Archive_Other" xml:space="preserve"><value>Último uso: {0} archivos</value></data>
+  <data name="Badge_LastUsedFor_Document_One" xml:space="preserve"><value>Último uso: 1 documento</value></data>
+  <data name="Badge_LastUsedFor_Document_Other" xml:space="preserve"><value>Último uso: {0} documentos</value></data>
+
+  <data name="UpdatesVersionUnknown" xml:space="preserve"><value>No se pudo determinar la versión instalada.</value></data>
+  <data name="UpdatesInstalledVersion" xml:space="preserve"><value>Versión instalada: {0}</value></data>
+  <data name="UpdatesNotChecked" xml:space="preserve"><value>No se ha solicitado ninguna comprobación de actualización.</value></data>
+  <data name="UpdatesChecking" xml:space="preserve"><value>Comprobando las versiones de GitHub…</value></data>
+  <data name="UpdatesAvailable" xml:space="preserve"><value>La versión {0} está disponible.</value></data>
+  <data name="UpdatesUpToDate" xml:space="preserve"><value>No se encontró una versión compatible más reciente.</value></data>
+  <data name="UpdatesNoReleases" xml:space="preserve"><value>Aún no hay versiones publicadas disponibles.</value></data>
+  <data name="UpdatesOffline" xml:space="preserve"><value>No se pudo acceder a GitHub. Las acciones locales siguen disponibles.</value></data>
+  <data name="UpdatesTimedOut" xml:space="preserve"><value>La comprobación de actualización ha expirado. Inténtelo de nuevo más tarde.</value></data>
+  <data name="UpdatesRateLimited" xml:space="preserve"><value>GitHub tiene un límite de solicitudes. Inténtalo de nuevo más tarde.</value></data>
+  <data name="UpdatesInvalidData" xml:space="preserve"><value>No se pudo verificar la información de lanzamiento. Inténtelo de nuevo más tarde.</value></data>
+  <data name="UpdatesUnavailable" xml:space="preserve"><value>El canal de lanzamiento no está disponible. Las acciones locales siguen disponibles.</value></data>
+  <data name="UpdatesCanceled" xml:space="preserve"><value>La operación de actualización se ha cancelado.</value></data>
+  <data name="UpdatesOpenFailed" xml:space="preserve"><value>No se pudo abrir la página de lanzamiento. Inténtelo de nuevo.</value></data>
+  <data name="PackWorkerStopped" xml:space="preserve"><value>La herramienta se detuvo inesperadamente. No se modificó ningún archivo.</value></data>
+  <data name="PackOutputFailed" xml:space="preserve"><value>No se pudieron guardar algunos resultados. Los resultados completados se muestran a continuación.</value></data>
+  <data name="PackInvalidSelection" xml:space="preserve"><value>Seleccione los archivos nuevamente.</value></data>
+  <data name="PackImagePresetNeedsImages" xml:space="preserve"><value>Instala el paquete Herramientas de imagen para usar este preajuste.</value></data>
+  <data name="PackTableTooLarge" xml:space="preserve"><value>Esta selección de tabla es demasiado grande para un paquete descargado. Seleccione un rango menor.</value></data>
+  <data name="PackStateInstalled" xml:space="preserve"><value>Instalado</value></data>
+  <data name="PackStateNotInstalled" xml:space="preserve"><value>No instalado</value></data>
+  <data name="PackStateUpdateAvailable" xml:space="preserve"><value>Actualización disponible</value></data>
+  <data name="PackStateIncompatible" xml:space="preserve"><value>Incompatible con esta versión</value></data>
+  <data name="PackSizeMegabytes" xml:space="preserve"><value>{0:N1} MB</value></data>
+  <data name="PackSizeUnknown" xml:space="preserve"><value>Tamaño desconocido</value></data>
+  <data name="PackVersion" xml:space="preserve"><value>Versión {0}</value></data>
+  <data name="PackActionCountOne" xml:space="preserve"><value>{0:N0} acciones</value></data>
+  <data name="PackActionCountOther" xml:space="preserve"><value>{0:N0} acciones</value></data>
+  <data name="PackRowAutomationName" xml:space="preserve"><value>{0}, {1}, {2}</value></data>
+  <data name="PackActionAutomationName" xml:space="preserve"><value>{0} {1}</value></data>
+  <data name="PackRemoveAutomationName" xml:space="preserve"><value>Eliminar {0}</value></data>
+  <data name="PackInstall" xml:space="preserve"><value>Instalar</value></data>
+  <data name="PackUpdate" xml:space="preserve"><value>Actualizar</value></data>
+  <data name="PackSummary_files" xml:space="preserve"><value>Renombrar, comprimir, comparar y ordenar archivos.</value></data>
+  <data name="PackSummary_pdf" xml:space="preserve"><value>Combina, divide, comprime, convierte y organiza archivos PDF, incluyendo el reconocimiento óptico de caracteres (OCR).</value></data>
+  <data name="PackSummary_images" xml:space="preserve"><value>Convertir, redimensionar, comprimir y editar imágenes, incluidas fotos HEIC.</value></data>
+  <data name="PackSummary_media" xml:space="preserve"><value>Convertir, recortar y comprimir audio y vídeo.</value></data>
+  <data name="PackSummary_office" xml:space="preserve"><value>Convertir archivos de Word, Excel y PowerPoint a PDF, y PDF a Word.</value></data>
+  <data name="PackSummary_data" xml:space="preserve"><value>Convertir archivos CSV, JSON, Excel y de contactos.</value></data>
+  <data name="PackSummary_tables" xml:space="preserve"><value>Exportar selecciones de Excel como CSV, JSON, Markdown o SQL.</value></data>
+  <data name="PackSummary_einvoice" xml:space="preserve"><value>Visualiza y convierte facturas XRechnung y ZUGFeRD.</value></data>
+  <data name="PackSummary_markdown" xml:space="preserve"><value>Visualiza y edita Markdown con una vista previa en tiempo real y conviértelo a HTML o PDF.</value></data>
+  <data name="PackWebsiteLink" xml:space="preserve"><value>Todas las acciones en el sitio web</value></data>
+  <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: todas las acciones en el sitio web</value></data>
+  <data name="PacksUpdateAll" xml:space="preserve"><value>Actualizar todo ({0})</value></data>
+  <data name="PacksNotOpened" xml:space="preserve"><value>Abra esta sección para consultar el catálogo del propietario.</value></data>
+  <data name="PacksRefreshing" xml:space="preserve"><value>Comprobando el catálogo de paquetes…</value></data>
+  <data name="PacksReady" xml:space="preserve"><value>La lista de paquetes está actualizada.</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>Verificando e instalando el paquete…</value></data>
+  <data name="PacksRemoving" xml:space="preserve"><value>Eliminar el paquete…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>El paquete está instalado. Sus acciones están disponibles en la paleta.</value></data>
+  <data name="PacksNotConfigured" xml:space="preserve"><value>Las descargas de paquetes no están disponibles en esta versión de desarrollo. Puede ver las herramientas incluidas e instalar archivos locales firmados.</value></data>
+  <data name="PacksOffline" xml:space="preserve"><value>El catálogo no está disponible sin conexión. Las herramientas instaladas siguen disponibles.</value></data>
+  <data name="PacksTimedOut" xml:space="preserve"><value>La solicitud ha caducado. Inténtelo de nuevo cuando esté listo.</value></data>
+  <data name="PacksInvalidData" xml:space="preserve"><value>No se pudo verificar el paquete o el catálogo. Las herramientas existentes siguen disponibles.</value></data>
+  <data name="PacksIncompatible" xml:space="preserve"><value>Este paquete requiere una versión o plataforma de aplicación compatible.</value></data>
+  <data name="PacksBusy" xml:space="preserve"><value>Otra operación de empaquetado sigue en curso.</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>La operación de empaquetado se canceló.</value></data>
+  <data name="PacksOperationFailed" xml:space="preserve"><value>No se pudo completar la operación de empaquetado. Las herramientas existentes siguen disponibles.</value></data>
+  <data name="PackProgressBytes" xml:space="preserve"><value>{0:N0} bytes descargados</value></data>
+  <data name="PackSizeKilobytes" xml:space="preserve"><value>{0:N1} KB</value></data>
+  <data name="PackSizeBytes" xml:space="preserve"><value>{0:N0} bytes</value></data>
+  <data name="PackVersionUpdate" xml:space="preserve"><value>Versión {0} → {1}</value></data>
+  <data name="UpdatesDownloading" xml:space="preserve"><value>Descargando y verificando la actualización...</value></data>
+  <data name="UpdatesDownloadProgress" xml:space="preserve"><value>Descargando actualización: {0}%</value></data>
+  <data name="UpdatesInstallerStarted" xml:space="preserve"><value>El instalador se ha iniciado. PowerTrove se cerrará y reiniciará después de la actualización.</value></data>
+  <data name="UpdatesIntegrityFailed" xml:space="preserve"><value>No se pudo verificar la actualización. No se instaló nada. Inténtelo de nuevo más tarde.</value></data>
+  <data name="UpdatesDownloadTimedOut" xml:space="preserve"><value>La descarga de la actualización ha caducado. No se instaló nada.</value></data>
+  <data name="UpdatesFinishWork" xml:space="preserve"><value>Finalice las acciones en ejecución y cierre los editores o cuadros de diálogo antes de actualizar.</value></data>
+  <data name="UpdatesInstallFailed" xml:space="preserve"><value>No se pudo iniciar la actualización. No se instaló nada. Inténtelo de nuevo.</value></data>
+  <data name="UpdatesManualDownload" xml:space="preserve"><value>La versión {0} está disponible. Esta versión no tiene un instalador verificado para una actualización dentro de la aplicación. Abra la página de la versión.</value></data>
+  <data name="ContextPackOfficial" xml:space="preserve"><value>Paquete oficial: {0}</value></data>
+  <data name="ContextPackActions" xml:space="preserve"><value>{0} acciones adicionales coinciden con esta selección.</value></data>
+  <data name="ContextPackDownload" xml:space="preserve"><value>Descargar {0} ({1})</value></data>
+  <data name="ContextPackUpdate" xml:space="preserve"><value>Actualizar {0} ({1})</value></data>
+  <data name="ContextPackOfferChanged" xml:space="preserve"><value>El paquete disponible ha cambiado. Revise el tamaño actualizado y haga clic de nuevo para descargar.</value></data>
+  <data name="ContextPackProgress" xml:space="preserve"><value>Descargando paquete: {0:0}%</value></data>
+  <data name="ContextPackReady" xml:space="preserve"><value>Paquete instalado. Sus acciones están listas sin necesidad de reiniciar PowerTrove.</value></data>
+  <data name="PackHostRequired" xml:space="preserve"><value>Requiere PowerTrove {0} o posterior. Las acciones instaladas existentes seguirán estando disponibles.</value></data>
+  <data name="ContextPackIncompatible" xml:space="preserve"><value>Se requiere una aplicación compatible.</value></data>
+  <data name="PackNewerHostRequired" xml:space="preserve"><value>La versión {0} del paquete requiere PowerTrove {1}. La versión {2} es compatible con su instalación.</value></data>
+  <data name="UpdatesStoreManaged" xml:space="preserve"><value>Las actualizaciones de la aplicación son gestionadas por Microsoft Store.</value></data>
+  <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>Hay una actualización disponible para un paquete de herramientas instalado.</value></data>
+  <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>Hay actualizaciones disponibles para {0} paquetes de herramientas instalados.</value></data>
+  <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Crear receta</value></data>
+  <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Combina varias acciones en una sola receta que las ejecuta en orden.</value></data>
+  <data name="UserRecipeDescription" xml:space="preserve"><value>Tu receta: {0}</value></data>
+  <data name="Context_BrowserPage" xml:space="preserve"><value>{0} · {1}</value></data>
+</root>

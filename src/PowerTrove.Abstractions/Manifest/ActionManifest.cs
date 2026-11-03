@@ -45,7 +45,9 @@ public sealed record ManifestAction(
     [property: JsonPropertyName("parameters")] IReadOnlyList<ManifestParameter>? Parameters = null,
     [property: JsonPropertyName("selection")] ManifestSelection? Selection = null,
     [property: JsonPropertyName("extensions")] IReadOnlyList<string>? Extensions = null,
-    [property: JsonPropertyName("changesFiles")] bool? ChangesFiles = null
+    [property: JsonPropertyName("changesFiles")] bool? ChangesFiles = null,
+    // Additive search-only metadata. Older published bundles omit it and remain valid.
+    [property: JsonPropertyName("searchTerms")] IReadOnlyList<string>? SearchTerms = null
 );
 
 public sealed record ManifestPayload(

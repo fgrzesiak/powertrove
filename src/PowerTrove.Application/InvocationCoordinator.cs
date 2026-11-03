@@ -18,6 +18,7 @@ public class InvocationCoordinator
     private readonly IActionRegistry _actionRegistry;
     private readonly IActionSearchEngine _actionSearchEngine;
     private readonly ISettingsService? _settingsService;
+    private readonly IForegroundTextSelectionCapture? _foregroundText;
 
     private int _invocationVersion;
     private CancellationTokenSource? _currentInvocationCts;
@@ -31,7 +32,8 @@ public class InvocationCoordinator
         IContextResolver contextResolver,
         PaletteViewModel paletteViewModel,
         IActionRegistry actionRegistry,
-        IActionSearchEngine actionSearchEngine)
+        IActionSearchEngine actionSearchEngine,
+        IForegroundTextSelectionCapture? foregroundText = null)
     {
         _foregroundCapture = foregroundCapture ?? throw new ArgumentNullException(nameof(foregroundCapture));
         _contextResolver = contextResolver ?? throw new ArgumentNullException(nameof(contextResolver));
@@ -39,6 +41,7 @@ public class InvocationCoordinator
         _actionRegistry = actionRegistry ?? throw new ArgumentNullException(nameof(actionRegistry));
         _actionSearchEngine = actionSearchEngine ?? throw new ArgumentNullException(nameof(actionSearchEngine));
         _settingsService = settingsService;
+        _foregroundText = foregroundText;
     }
 
     public async Task InvokeAsync()
@@ -70,8 +73,54 @@ public class InvocationCoordinator
 
         if (version != _invocationVersion || token.IsCancellationRequested) return;
 
+        // Browser extension context must be captured while the original window is
+        // still focused, before the palette appears. Bound the extra latency.
+        ContextSnapshot? browserSnapshot = null;
+        bool foregroundBrowser = captureResult.Identity is { ProcessName: { } process } &&
+            (process.Equals("chrome", StringComparison.OrdinalIgnoreCase) ||
+             process.Equals("msedge", StringComparison.OrdinalIgnoreCase));
+        if (foregroundBrowser && captureResult.Identity is { } browserSource)
+        {
+            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(token);
+            deadline.CancelAfter(TimeSpan.FromMilliseconds(550));
+            try
+            {
+                browserSnapshot = await _contextResolver.ResolveContextAsync(
+                    Guid.NewGuid(), browserSource, deadline.Token)
+                    .AsTask().WaitAsync(deadline.Token).ConfigureAwait(true);
+            }
+            catch (OperationCanceledException) when (!token.IsCancellationRequested) { }
+            catch (Exception) when (!token.IsCancellationRequested) { }
+        }
+        if (version != _invocationVersion || token.IsCancellationRequested) return;
+
+        // UI Automation focus is lost when the palette appears. Query it first, with
+        // a strict deadline; a stuck accessibility provider must not block the launcher.
+        string? selectedText = null;
+        if (captureResult.Identity is { } source && _foregroundText is not null &&
+            (browserSnapshot?.Status != ContextStatus.Available) &&
+            ForegroundTextSelectionPolicy.ShouldCapture(source))
+        {
+            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(token);
+            deadline.CancelAfter(ForegroundTextSelectionPolicy.MaximumWait);
+            try
+            {
+                var selection = await _foregroundText.CaptureAsync(source, deadline.Token)
+                    .AsTask().WaitAsync(deadline.Token).ConfigureAwait(true);
+                if (ForegroundTextSelectionPolicy.IsValid(selection)) selectedText = selection;
+            }
+            catch (OperationCanceledException) when (!token.IsCancellationRequested) { /* Probe timed out. */ }
+            catch (Exception) when (!token.IsCancellationRequested) { /* Unsupported UIA source. */ }
+        }
+        if (version != _invocationVersion || token.IsCancellationRequested) return;
+
         _paletteViewModel.Clear();
         PaletteRequested?.Invoke(this, captureResult.Identity?.WindowHandle ?? IntPtr.Zero);
+        if (browserSnapshot is { Status: ContextStatus.Available })
+        {
+            _paletteViewModel.Initialize(browserSnapshot, _actionRegistry, _actionSearchEngine, _settingsService);
+            return;
+        }
 
         if (captureResult.Identity == null)
         {
@@ -99,6 +148,26 @@ public class InvocationCoordinator
             "coordinator",
             PowerTrove.Application.Resources.Strings.GetString("Context_Loading"));
 
+        if (selectedText is not null)
+        {
+            // Copy only this selection into the invocation. No clipboard mutation or polling.
+            var now = DateTimeOffset.UtcNow;
+            var textSnapshot = new ContextSnapshot(loadingSnapshot.InvocationId,
+                captureResult.Identity, ContextStatus.Available, new TextSelection(selectedText),
+                now, now.AddMinutes(2), "powertrove.provider.windows.uia-text", null);
+            _paletteViewModel.Initialize(textSnapshot, _actionRegistry, _actionSearchEngine, _settingsService);
+            PowerTrove.Core.Diagnostics.InvocationMetrics.InvocationLatency.Record(
+                System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds);
+            return;
+        }
+
+        if (browserSnapshot is not null)
+        {
+            // No live/unique browser context, and UIA found no selection either.
+            // Avoid a second extension request after the palette has taken focus.
+            _paletteViewModel.Initialize(browserSnapshot, _actionRegistry, _actionSearchEngine, _settingsService);
+            return;
+        }
         _paletteViewModel.Initialize(loadingSnapshot, _actionRegistry, _actionSearchEngine, _settingsService);
 
         try

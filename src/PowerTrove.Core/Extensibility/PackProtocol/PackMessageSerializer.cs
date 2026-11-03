@@ -29,6 +29,9 @@ public static class PackMessageSerializer
                 ErrorMessage m => Write(m, PackJsonContext.Default.ErrorMessage),
                 HeartbeatMessage m => Write(m, PackJsonContext.Default.HeartbeatMessage),
                 ShutdownMessage m => Write(m, PackJsonContext.Default.ShutdownMessage),
+                BrowserServiceRequestMessage m => Write(m, PackJsonContext.Default.BrowserServiceRequestMessage),
+                BrowserServiceResultMessage m => Write(m, PackJsonContext.Default.BrowserServiceResultMessage),
+                BrowserServiceBinaryChunkMessage m => Write(m, PackJsonContext.Default.BrowserServiceBinaryChunkMessage),
                 _ => throw new PackProtocolException(PackProtocolError.InvalidMessage)
             };
             if (json.Length > PackProtocolLimits.MaximumLineBytes) throw new PackProtocolException(PackProtocolError.LineTooLarge);
@@ -84,6 +87,9 @@ public static class PackMessageSerializer
                     "error" => Read(line, PackJsonContext.Default.ErrorMessage),
                     "heartbeat" => Read(line, PackJsonContext.Default.HeartbeatMessage),
                     "shutdown" => Read(line, PackJsonContext.Default.ShutdownMessage),
+                    "browserServiceRequest" => Read(line, PackJsonContext.Default.BrowserServiceRequestMessage),
+                    "browserServiceResult" => Read(line, PackJsonContext.Default.BrowserServiceResultMessage),
+                    "browserServiceBinaryChunk" => Read(line, PackJsonContext.Default.BrowserServiceBinaryChunkMessage),
                     _ => null
                 };
                 if (message is not null) PackMessageValidation.Validate(message);

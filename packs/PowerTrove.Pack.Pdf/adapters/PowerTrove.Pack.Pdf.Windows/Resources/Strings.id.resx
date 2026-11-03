@@ -1,0 +1,5 @@
+<root>
+  <data name="ImageConversionFailed" xml:space="preserve"><value>Gambar tidak dapat dikonversi.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>PDF tidak dapat dibuka.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>PDF yang dilindungi kata sandi belum didukung.</value></data>
+</root>

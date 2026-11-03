@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="FileKit.Pdf.Tests" />
+    <EmbeddedResource Include="Resources/*.txt" Exclude="Resources/LICENSE-*.txt" />
   </ItemGroup>
 
 </Project>

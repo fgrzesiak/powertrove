@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve">
+    <value>データツール</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>選択した入力を保持したまま、別のコピーを作成します。</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>テキストファイル</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>データがサポートサイズ制限を超えています。</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>テキストエンコーディングが無効です。</value>
+  </data>
+  <data name="InvalidTable" xml:space="preserve">
+    <value>CSVデータが無効であるか、制限を超えています。</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>選択したデータを読み取れませんでした。</value>
+  </data>
+  <data name="InvalidJson" xml:space="preserve">
+    <value>{0}行、{1}列に無効なJSONがあります。</value>
+  </data>
+  <data name="JsonArray" xml:space="preserve">
+    <value>オブジェクトを含むJSON配列を選択します。</value>
+  </data>
+  <data name="JsonDuplicate" xml:space="preserve">
+    <value>JSONオブジェクトに重複するキーが含まれています。</value>
+  </data>
+  <data name="InvalidTableName" xml:space="preserve">
+    <value>テーブル名を入力してください。</value>
+  </data>
+  <data name="HeaderMismatch" xml:space="preserve">
+    <value>CSVヘッダーが異なります。列を結合するには、結合モードを選択してください。</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>選択内容が利用できないか、期限切れです。</value>
+  </data>
+  <data name="ValidJson" xml:space="preserve">
+    <value>{0}個の有効なJSONファイル。</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>{0}個のファイルを処理します。</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>{0}行、{1}列。</value>
+  </data>
+  <data name="merge-text" xml:space="preserve">
+    <value>テキストファイルの結合</value>
+  </data>
+  <data name="to-utf8" xml:space="preserve">
+    <value>UTF-8形式に変換</value>
+  </data>
+  <data name="line-endings" xml:space="preserve">
+    <value>行末の変更</value>
+  </data>
+  <data name="csv-to-json" xml:space="preserve">
+    <value>CSVファイルをJSONに変換</value>
+  </data>
+  <data name="csv-to-markdown" xml:space="preserve">
+    <value>CSVファイルをMarkdownに変換</value>
+  </data>
+  <data name="csv-to-sql" xml:space="preserve">
+    <value>CSVファイルをSQLに変換</value>
+  </data>
+  <data name="merge-csv" xml:space="preserve">
+    <value>CSVファイルの結合</value>
+  </data>
+  <data name="json-format" xml:space="preserve">
+    <value>フォーマット JSON</value>
+  </data>
+  <data name="json-minify" xml:space="preserve">
+    <value>JSONを圧縮</value>
+  </data>
+  <data name="json-validate" xml:space="preserve">
+    <value>JSONの検証</value>
+  </data>
+  <data name="json-to-csv" xml:space="preserve">
+    <value>JSONファイルをCSVに変換</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>バイトオーダーマークを含める</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>行末スタイル</value>
+  </data>
+  <data name="HeaderMode" xml:space="preserve">
+    <value>ヘッダー行</value>
+  </data>
+  <data name="Dialect" xml:space="preserve">
+    <value>SQL方言</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>テーブル名</value>
+  </data>
+  <data name="Indent" xml:space="preserve">
+    <value>インデント</value>
+  </data>
+  <data name="Separator" xml:space="preserve">
+    <value>区切り文字</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>結合モード</value>
+  </data>
+  <data name="windows" xml:space="preserve">
+    <value>Windows (CRLF)</value>
+  </data>
+  <data name="unix" xml:space="preserve">
+    <value>Unix (LF)</value>
+  </data>
+  <data name="first-row" xml:space="preserve">
+    <value>最初の行にはヘッダーが含まれています</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="2" xml:space="preserve">
+    <value>2スペース</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>4スペース</value>
+  </data>
+  <data name="tabs" xml:space="preserve">
+    <value>タブ</value>
+  </data>
+  <data name="blank-line" xml:space="preserve">
+    <value>空白行</value>
+  </data>
+  <data name="header" xml:space="preserve">
+    <value>ファイル名の見出し</value>
+  </data>
+  <data name="identical" xml:space="preserve">
+    <value>ヘッダーは同一</value>
+  </data>
+  <data name="union" xml:space="preserve">
+    <value>列の結合</value>
+  </data>
+  <data name="postgresql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="mysql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="sqlite" xml:space="preserve">
+    <value>SQLite</value>
+  </data>
+  <data name="sqlserver" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="xlsx-to-csv" xml:space="preserve"><value>ExcelファイルをCSVに変換</value></data>
+  <data name="xlsx-to-json" xml:space="preserve"><value>ExcelファイルをJSONに変換</value></data>
+  <data name="csv-to-xlsx" xml:space="preserve"><value>CSVファイルをExcelファイルに変換</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Excelを使わずにスプレッドシートを新しいファイルに変換</value></data>
+  <data name="Sheet" xml:space="preserve"><value>ワークシート</value></data>
+  <data name="first" xml:space="preserve"><value>最初のワークシート</value></data>
+  <data name="all" xml:space="preserve"><value>すべてのワークシート</value></data>
+  <data name="CachedFormulas" xml:space="preserve"><value>保存済みの数式結果が使用されます。数式は再計算されません。</value></data>
+  <data name="InvalidWorkbook" xml:space="preserve"><value>ワークブックが無効であるか、サポートされている制限を超えています。</value></data>
+  <data name="json-to-xlsx" xml:space="preserve"><value>JSONファイルをExcelに変換</value></data>
+  <data name="JsonExcelDescription" xml:space="preserve"><value>JSONオブジェクトの配列を、型付きセルとオプションのネストされた列を含む新しいXLSXワークブックとしてエクスポートします。</value></data>
+  <data name="JsonExcelFlatten" xml:space="preserve"><value>ネストされたフィールドを別々の列に配置します</value></data>
+  <data name="JsonExcelColumns" xml:space="preserve"><value>列数</value></data>
+  <data name="JsonExcelColumnsHelp" xml:space="preserve"><value>含める列にチェックを入れてください。矢印を使って順序を変更できます。</value></data>
+  <data name="JsonExcelInvalidColumns" xml:space="preserve"><value>利用可能な列を少なくとも1つ選択するか、すべての列を選択します。</value></data>
+  <data name="JsonExcelInvalid" xml:space="preserve"><value>JSONは、ワークブックの制限内で有効かつ明確な列を持つ、空でないオブジェクトの配列である必要があります。選択した列名とネストされたオブジェクトを確認してください。</value></data>
+  <data name="JsonExcelTypes" xml:space="preserve"><value>元のファイルは保持されます。長い数字や識別子はテキストとして保持されるため、桁が失われることはありません。</value></data>
+  <data name="vcf-to-csv" xml:space="preserve"><value>連絡先をCSVに変換</value></data>
+  <data name="csv-to-vcf" xml:space="preserve"><value>CSVファイルをvCardに変換</value></data>
+  <data name="vcf-to-xlsx" xml:space="preserve"><value>連絡先をExcelに変換</value></data>
+  <data name="xlsx-to-vcf" xml:space="preserve"><value>ExcelファイルをvCardに変換</value></data>
+  <data name="merge-vcf" xml:space="preserve"><value>連絡先ファイルの結合</value></data>
+  <data name="MergeContactsDescription" xml:space="preserve"><value>重複する連絡先を削除せずに、UTF-8 vCard 3.0/4.0ファイルを新しい連絡先ファイルに結合する。</value></data>
+  <data name="ContactPreview" xml:space="preserve"><value>処理対象連絡先：{0}</value></data>
+  <data name="ContactInvalid" xml:space="preserve"><value>連絡先が無効、制限を超えている、またはサポートされていないエンコーディングまたは列を使用しています。UTF-8 vCard 3.0/4.0、またはサポートされているヘッダーとテキスト値を持つ連絡先テーブルを使用してください。不明な空でないインポート列は拒否されます。</value></data>
+  <data name="ContactLimits" xml:space="preserve"><value>テーブルには、写真やベンダーごとのフィールドではなく、一般的な名前、組織名、役職、メモ、電話番号、メールアドレス、住所のフィールドが含まれます。Excelをインポートする場合は、テキストセルを含むワークシートを1つ使用してください。vCard 2.1、quoted-printable、埋め込みバイナリエンコーディングはサポートされていません。オリジナルは保持されます。</value></data>
+  <data name="ContactDesc_vcf-to-csv" xml:space="preserve"><value>一般的なvCard連絡先フィールドを、重複する電話番号やメールアドレスを含む新しいCSVテーブルにエクスポートします。</value></data>
+  <data name="ContactDesc_vcf-to-xlsx" xml:space="preserve"><value>一般的なvCard連絡先フィールドを、テキストセルを含む新しいXLSXワークブックにエクスポートします。Excelのインストールは不要です。</value></data>
+  <data name="ContactDesc_csv-to-vcf" xml:space="preserve"><value>サポートされているヘッダーを持つUTF-8形式のCSVまたはTSV形式の連絡先テーブルを、新しいvCard 3.0ファイルに変換します。</value></data>
+  <data name="ContactDesc_xlsx-to-vcf" xml:space="preserve"><value>テキスト値を含む単一シートのXLSX連絡先表を、Excelを起動せずに新しいvCard 3.0ファイルに変換します。</value></data>
+  <data name="JsonExcelCommonColumns" xml:space="preserve"><value>リストには、選択したすべてのファイルで共有される列が表示されます。すべての列は、各ファイル固有の列を保持します。</value></data>
+  <data name="JsonExcelNoCommonColumns" xml:space="preserve"><value>これらのファイルには共有列がありません。各ファイルを独自の列でエクスポートするには、すべての列を選択してください。</value></data>
+  <data name="JsonExcelColumnsTooLarge" xml:space="preserve"><value>この列リストは大きすぎて表示できません。ファイルをエクスポートするには、すべての列を選択してください。</value></data>
+</root>

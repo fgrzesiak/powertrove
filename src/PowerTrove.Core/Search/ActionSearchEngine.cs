@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using PowerTrove.Abstractions.Files;
 using PowerTrove.Core.Catalog;
 
 namespace PowerTrove.Core.Search;
@@ -60,10 +61,15 @@ public class ActionSearchEngine : IActionSearchEngine
         string? lastUsedId = _usageSignals?.LastUsedAction(signatureKey);
 
         var actions = _registry.GetAllActions();
+        bool searching = !string.IsNullOrWhiteSpace(query);
 
         var tasks = actions.Select(async action =>
         {
             cancellationToken.ThrowIfCancellationRequested();
+            IReadOnlyList<string>? aliases = null;
+            if (_actionAliases is not null) _actionAliases.TryGetValue(action.Descriptor.Id, out aliases);
+            int textMatchScore = searching ? ActionTextMatcher.Score(query, action.Descriptor, aliases) : 0;
+            if (searching && textMatchScore == 0) return null; // Do not invoke potentially slow pack matchers for unrelated actions.
 
             var staticAvailability = ActionContextCompatibility.Check(context, action.Descriptor);
             bool isCompatible = staticAvailability.IsAvailable;
@@ -94,7 +100,7 @@ public class ActionSearchEngine : IActionSearchEngine
                 }
             }
 
-            int rank = CalculateRank(action, query, isCompatible, context, signatureKey, lastUsedId, out var fit, out var highlight, out int textMatchScore);
+            int rank = CalculateRank(action, query, isCompatible, context, signatureKey, lastUsedId, textMatchScore, out var fit, out var highlight);
 
             // Partial fits (where dynamic MatchAsync returned a reason but is still compatible)
             // must never be Ideal, and should lose the Ideal rank bonus.
@@ -102,12 +108,6 @@ public class ActionSearchEngine : IActionSearchEngine
             {
                 fit = PowerTrove.Abstractions.SelectionFit.Acceptable;
                 rank -= 140; // Remove Ideal bonus (200) and add Acceptable bonus (60)
-            }
-
-            // If there's a query and rank is low (no real match), we skip unless it's a very broad search
-            if (!string.IsNullOrWhiteSpace(query) && rank < 10)
-            {
-                return null;
             }
 
             // Apply after query filtering so the discovery penalty never hides a weak text match.
@@ -121,14 +121,14 @@ public class ActionSearchEngine : IActionSearchEngine
         var results = taskResults.Where(r => r != null).Select(r => r!).ToList();
 
         // Best fit assignment logic
-        bool searching = !string.IsNullOrWhiteSpace(query);
         var bestFitAction = results
             .Where(r => r.Action is not CatalogAction && r.IsCompatible && r.Fit == PowerTrove.Abstractions.SelectionFit.Ideal && r.Highlight == ActionHighlight.None)
-            .OrderByDescending(r => searching ? r.TextMatchScore : 0)
-            .ThenByDescending(r => searching && IsTypeSpecific(r))
+            .OrderByDescending(r => searching ? TextTier(r.TextMatchScore) : 0)
+            .ThenByDescending(r => IsTypeSpecific(r))
             .ThenByDescending(r => searching ? TitleCoverage(query, r.Action.Descriptor.Title) : 0)
             .ThenByDescending(r => r.Rank)
             .ThenByDescending(r => string.IsNullOrWhiteSpace(query) ? BrowsePriority.For(r.Action.Descriptor, signature) : 0)
+            .ThenBy(r => searching ? 0 : Narrowness(r))
             .ThenBy(r => r.Action.Descriptor.Title)
             .ThenBy(r => r.Action.Descriptor.Id)
             .FirstOrDefault();
@@ -141,15 +141,19 @@ public class ActionSearchEngine : IActionSearchEngine
 
         // Compatibility is a hard boundary. While typing, text tiers lead; within a tier, actions made for the
         // selected file type beat generic file actions, and titles the query covers more fully come first,
-        // before context and history. Without a query, local usage and fit lead, with common tasks breaking ties.
+        // before context and history. Without a query, tiers lead: the action last used for this kind of selection
+        // and pinned actions, then actions made for the selected file types, then general file actions, then actions
+        // of packs that are not installed. Within a tier, fit and local usage lead, then common tasks, then the narrower
+        // input set. Global recency can therefore never lift "Compress to ZIP" above a Markdown viewer.
         bool hasQuery = searching;
         var sorted = results
             .OrderByDescending(r => r.IsCompatible)
-            .ThenByDescending(r => hasQuery ? r.TextMatchScore : 0)
+            .ThenByDescending(r => hasQuery ? TextTier(r.TextMatchScore) : BrowseTier(r))
             .ThenByDescending(r => hasQuery && IsTypeSpecific(r))
             .ThenByDescending(r => hasQuery ? TitleCoverage(query, r.Action.Descriptor.Title) : 0)
             .ThenByDescending(r => r.Rank)
             .ThenByDescending(r => hasQuery ? 0 : BrowsePriority.For(r.Action.Descriptor, signature))
+            .ThenBy(r => hasQuery ? 0 : Narrowness(r))
             .ThenBy(r => r.Action.Descriptor.Title)
             .ThenBy(r => r.Action.Descriptor.Id)
             .ToList();
@@ -160,36 +164,46 @@ public class ActionSearchEngine : IActionSearchEngine
         return sorted;
     }
 
-    /// <summary>An action that fits the selection through specific file families (images, PDFs), not any file.</summary>
+    /// <summary>
+    /// An action made for the selected kinds of files: it names file families (images, PDFs, folders) or a finite set
+    /// of extensions, and it applies to the whole selection. Actions for any file (ZIP, rename) and actions that only
+    /// handle part of a mixed selection are general file actions.
+    /// </summary>
     private static bool IsTypeSpecific(ActionSearchResult result) =>
-        result.Fit != PowerTrove.Abstractions.SelectionFit.None && result.Action.Descriptor.Selection is { Families.Count: > 0 };
+        result.IsCompatible && result.Action is not CatalogAction && result.Fit == PowerTrove.Abstractions.SelectionFit.Ideal
+        && (result.Action.Descriptor.Selection is { Families.Count: > 0 } || result.Action is IFileActionMetadata { InputExtensions.Count: > 0 });
+
+    /// <summary>
+    /// Strong matches (exact title 110, title prefix 100, exact word 95+) stay distinct; weaker fuzzy
+    /// scores share tiers of ten, so the selected file type decides instead of a one-point difference,
+    /// and the order does not jump while the user types.
+    /// </summary>
+    private static int TextTier(int score) => score >= 95 ? score : score / 10 * 10;
+
+    private static int BrowseTier(ActionSearchResult result) =>
+        result.Action is CatalogAction ? 0
+        : result.Highlight is ActionHighlight.LastUsedForSelection or ActionHighlight.Favorite ? 3
+        : IsTypeSpecific(result) ? 2 : 1;
+
+    /// <summary>Accepted extensions: a Markdown viewer (5) is more specific than a text converter for 16 formats.</summary>
+    private static int Narrowness(ActionSearchResult result) =>
+        result.Action is IFileActionMetadata { InputExtensions.Count: > 0 } metadata ? metadata.InputExtensions.Count : int.MaxValue;
 
     /// <summary>The share of the title's words that the query matches: "Compress Images" before "Compress to File Size".</summary>
     private static double TitleCoverage(string query, string title)
     {
-        var titleWords = title.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var titleWords = FuzzyMatcher.Normalize(title).Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (titleWords.Length == 0) return 0;
-        var queryWords = query.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var queryWords = FuzzyMatcher.Normalize(query).Split(' ', StringSplitOptions.RemoveEmptyEntries);
         int matched = titleWords.Count(t => queryWords.Any(q => FuzzyMatcher.CalculateScore(q, t) >= 90));
         return (double)matched / titleWords.Length;
     }
 
-    // Keywords and aliases are hidden synonyms; the same word in the visible title counts a little more.
-    private const int KeywordPenalty = 5;
-
-    private static int KeywordScore(string query, string term)
-    {
-        int score = FuzzyMatcher.CalculateScore(query, term);
-        return score == 0 ? 0 : Math.Max(1, score - KeywordPenalty);
-    }
-
-    private int CalculateRank(IAction action, string query, bool isCompatible, ContextSnapshot context, string signatureKey, string? lastUsedId, out PowerTrove.Abstractions.SelectionFit fit, out ActionHighlight highlight, out int textMatchScore)
+    private int CalculateRank(IAction action, string query, bool isCompatible, ContextSnapshot context, string signatureKey, string? lastUsedId, int textMatchScore, out PowerTrove.Abstractions.SelectionFit fit, out ActionHighlight highlight)
     {
         int rank = 0;
         fit = PowerTrove.Abstractions.SelectionFit.None;
         highlight = ActionHighlight.None;
-        textMatchScore = 0;
-
         // Base score for compatibility
         if (isCompatible)
         {
@@ -261,6 +275,21 @@ public class ActionSearchEngine : IActionSearchEngine
             rank += 125;
         }
 
+        // Browser-specific suggestions are small default boosts, never compatibility
+        // overrides. A user's existing last-used/history weights remain stronger.
+        if (isCompatible && context.BrowserPage is { } page && string.IsNullOrWhiteSpace(query))
+        {
+            string id = action.Descriptor.Id;
+            if (page.HasSelection && id.StartsWith("powertrove.text.", StringComparison.Ordinal))
+                rank += 65;
+            if (id.StartsWith("powertrove.browser.", StringComparison.Ordinal))
+                rank += page.HasSelection ? 50 : 80;
+            if (page.IsArticle && id.Contains("markdown", StringComparison.OrdinalIgnoreCase))
+                rank += 30;
+            if (page.TableCount > 0 && id.StartsWith("powertrove.tables.", StringComparison.Ordinal))
+                rank += 40;
+        }
+
         // Explicit Weight
         rank += action.Descriptor.ExplicitWeight;
 
@@ -270,54 +299,9 @@ public class ActionSearchEngine : IActionSearchEngine
             return rank;
         }
 
-        // Text matching score (0-100)
-        int matchScore = 0;
-
-        // Match against title
-        matchScore = Math.Max(matchScore, FuzzyMatcher.CalculateScore(query, action.Descriptor.Title));
-
-        // Match against search terms / aliases
-        if (action.Descriptor.SearchTerms != null)
-        {
-            foreach (var term in action.Descriptor.SearchTerms)
-            {
-                matchScore = Math.Max(matchScore, KeywordScore(query, term));
-            }
-        }
-
-        // Match against description (lower weight)
-        if (!string.IsNullOrWhiteSpace(action.Descriptor.Description))
-        {
-            int descScore = FuzzyMatcher.CalculateScore(query, action.Descriptor.Description);
-            matchScore = Math.Max(matchScore, descScore / 2);
-        }
-
-        // Match against configured aliases
-        if (_actionAliases != null && _actionAliases.TryGetValue(action.Descriptor.Id, out var aliases))
-        {
-            if (aliases != null)
-            {
-                foreach (var alias in aliases)
-                {
-                    matchScore = Math.Max(matchScore, KeywordScore(query, alias));
-                }
-            }
-        }
-
-        // If it didn't match the query well at all, remove compatibility score to effectively filter it out
-        if (matchScore == 0)
-        {
-            return 0;
-        }
-
-        // Stable Reordering: Bucket match scores into tiers of 10 to prevent unstable reordering during live typing
-        int bucketedMatchScore = (matchScore / 10) * 10;
-        if (matchScore == 100) bucketedMatchScore = 100;
-        // An exact visible title is stronger than an exact keyword/word match inside a longer title.
-        textMatchScore = bucketedMatchScore + (string.Equals(query.Trim(), action.Descriptor.Title.Trim(), StringComparison.OrdinalIgnoreCase) ? 10 : 0);
-
-        rank += bucketedMatchScore;
-
+        // Rank text only after compatibility and contextual boosts; TextMatchScore separately
+        // determines relevance tiers before history, context or explicit weights.
+        rank += textMatchScore;
         return rank;
     }
 }

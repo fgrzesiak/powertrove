@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve"><value>電子請求書ツール</value></data>
+  <data name="ViewTitle" xml:space="preserve"><value>XRechnungの表示</value></data>
+  <data name="PdfTitle" xml:space="preserve"><value>XRechnungファイルをPDFに変換</value></data>
+  <data name="CsvTitle" xml:space="preserve"><value>XRechnung明細をCSVにエクスポートする</value></data>
+  <data name="ExcelTitle" xml:space="preserve"><value>XRechnungをExcelにエクスポートする</value></data>
+  <data name="ExtractTitle" xml:space="preserve"><value>Factur-X / ZUGFeRD請求書XMLを抽出</value></data>
+  <data name="EmbeddedTitle" xml:space="preserve"><value>埋め込み請求書データの表示</value></data>
+  <data name="Description" xml:space="preserve"><value>サポートされているUBL/CII請求書フィールドを、元の請求書を変更または検証することなく、新しいローカルビューに投影し、エクスポートします。</value></data>
+  <data name="EmbeddedDescription" xml:space="preserve"><value>添付ファイルパスの抽出やPDF/A準拠の検証を行わずに、ローカルPDFからサポートされている埋め込み請求書XMLを1つ読み取ります。</value></data>
+  <data name="Visualization" xml:space="preserve"><value>請求書の視覚化</value></data>
+  <data name="Notice" xml:space="preserve"><value>選択したソースフィールドのみを可視化/エクスポートします。これは元の電子請求書ではありません。XML解析では、XRechnung、EN16931、PDF/A、署名、ビジネスルールは検証されません。合計金額は再計算されずにコピーされます。省略されたフィールドと添付ファイルは元の請求書に残ります。元の請求書を保存して確認してください。</value></data>
+  <data name="Limits" xml:space="preserve"><value>境界付きUBL請求書/クレジットノートおよび明細項目を含むCII 100サブセットをサポートします。XML：5 MiB、深度64、要素数100,000、行数10,000。個々のテキスト：32,767文字。PDFコンテナ：25 MiB、200ページ。factur-x.xml、zugferd-invoice.xml、またはxrechnung.xmlという名前のファイルが1つだけ必要です。暗号化されたコンテナ、曖昧なフィールド、複数の通貨が混在する金額、およびサポートされていない小数点以下の精度は拒否されます。CSV形式の数式のようなテキストはアポストロフィで始まります。リテラル識別子にはXLSXを使用してください。</value></data>
+  <data name="Preview" xml:space="preserve"><value>サポートされている請求書データはローカルで投影できます。請求書の内容は表示されません。標準規格の検証は行われていません。</value></data>
+  <data name="Invalid" xml:space="preserve"><value>請求書の形式が不正、不明瞭、サポートされていない、または制限を超えているか、ローカル出力のレンダリングに失敗しました。明細項目を含むサポートされているUBL/CII XML、または暗号化されていないサポートされている埋め込み請求書を使用してください。適合性判定結果は得られません。</value></data>
+  <data name="ReadError" xml:space="preserve"><value>請求書の入力が読み取れませんでした。</value></data>
+  <data name="CleanupError" xml:space="preserve"><value>ブラウザの一時データを削除できませんでした。一時フォルダへのアクセス権限を確認して、再度お試しください。</value></data>
+  <data name="PrinterUnavailable" xml:space="preserve"><value>PDFの表示には、ローカルのドキュメントプリンターとMicrosoft Edgeブラウザのインス​​トールが必要です。</value></data>
+  <data name="XmlFiles" xml:space="preserve"><value>請求書XMLファイル</value></data>
+  <data name="PdfFiles" xml:space="preserve"><value>PDF請求書コンテナ</value></data>
+  <data name="Paper" xml:space="preserve"><value>用紙サイズ</value></data>
+  <data name="A4" xml:space="preserve"><value>A4</value></data>
+  <data name="Letter" xml:space="preserve"><value>レターサイズ</value></data>
+  <data name="Margin" xml:space="preserve"><value>余白 (ミリメートル)</value></data>
+  <data name="Invoice" xml:space="preserve"><value>請求書</value></data>
+  <data name="InvoiceId" xml:space="preserve"><value>請求書ID</value></data>
+  <data name="IssueDate" xml:space="preserve"><value>発行日</value></data>
+  <data name="Syntax" xml:space="preserve"><value>構文</value></data>
+  <data name="Profile" xml:space="preserve"><value>宣言されたプロファイル</value></data>
+  <data name="TypeCode" xml:space="preserve"><value>コードを入力してください</value></data>
+  <data name="Currency" xml:space="preserve"><value>通貨</value></data>
+  <data name="BuyerReference" xml:space="preserve"><value>購入者参照番号</value></data>
+  <data name="Seller" xml:space="preserve"><value>販売者</value></data>
+  <data name="SellerAddress" xml:space="preserve"><value>販売者の住所</value></data>
+  <data name="SellerTaxId" xml:space="preserve"><value>販売者の納税者番号</value></data>
+  <data name="SellerRegistration" xml:space="preserve"><value>販売者登録情報</value></data>
+  <data name="SellerEmail" xml:space="preserve"><value>販売者のメールアドレス</value></data>
+  <data name="Buyer" xml:space="preserve"><value>購入者</value></data>
+  <data name="BuyerAddress" xml:space="preserve"><value>購入者住所</value></data>
+  <data name="BuyerTaxId" xml:space="preserve"><value>購入者納税者番号</value></data>
+  <data name="BuyerRegistration" xml:space="preserve"><value>購入者登録情報</value></data>
+  <data name="BuyerEmail" xml:space="preserve"><value>購入者メールアドレス</value></data>
+  <data name="Lines" xml:space="preserve"><value>明細項目</value></data>
+  <data name="LineId" xml:space="preserve"><value>行ID</value></data>
+  <data name="DescriptionColumn" xml:space="preserve"><value>説明</value></data>
+  <data name="Quantity" xml:space="preserve"><value>数量</value></data>
+  <data name="Unit" xml:space="preserve"><value>単位コード</value></data>
+  <data name="UnitPrice" xml:space="preserve"><value>単価</value></data>
+  <data name="PriceBase" xml:space="preserve"><value>基本数量の価格</value></data>
+  <data name="LineNet" xml:space="preserve"><value>行の正味金額</value></data>
+  <data name="TaxCategory" xml:space="preserve"><value>税区分</value></data>
+  <data name="TaxRate" xml:space="preserve"><value>税率（%）</value></data>
+  <data name="Taxable" xml:space="preserve"><value>課税対象額</value></data>
+  <data name="Taxes" xml:space="preserve"><value>税内訳</value></data>
+  <data name="Tax" xml:space="preserve"><value>税額</value></data>
+  <data name="Exemption" xml:space="preserve"><value>免除理由</value></data>
+  <data name="Allowances" xml:space="preserve"><value>合計許容範囲</value></data>
+  <data name="Charges" xml:space="preserve"><value>合計金額</value></data>
+  <data name="Net" xml:space="preserve"><value>正味金額</value></data>
+  <data name="Gross" xml:space="preserve"><value>総額</value></data>
+  <data name="Prepaid" xml:space="preserve"><value>前払い金額</value></data>
+  <data name="Rounding" xml:space="preserve"><value>丸め処理</value></data>
+  <data name="Payable" xml:space="preserve"><value>支払金額</value></data>
+  <data name="Notes" xml:space="preserve"><value>注記</value></data>
+  <data name="Payments" xml:space="preserve"><value>支払詳細</value></data>
+  <data name="PaymentCode" xml:space="preserve"><value>支払方法コード</value></data>
+  <data name="Account" xml:space="preserve"><value>支払口座</value></data>
+  <data name="Reference" xml:space="preserve"><value>支払参照番号</value></data>
+  <data name="Terms" xml:space="preserve"><value>支払条件</value></data>
+  <data name="Field" xml:space="preserve"><value>フィールド</value></data>
+  <data name="Value" xml:space="preserve"><value>値</value></data>
+  <data name="ViewDescription" xml:space="preserve"><value>サポートされている請求書の取引先、明細、税金、およびソース合計の新しい自己完結型HTMLビューを作成します。</value></data>
+  <data name="PdfDescription" xml:space="preserve"><value>ローカルのドキュメントプリンタを使用して、サポートされている請求書フィールドの新しいPDFビジュアライゼーションを作成します。</value></data>
+  <data name="CsvDescription" xml:space="preserve"><value>請求書IDとソース合計を含む請求書明細項目を、新しいUTF-8 CSVファイルにエクスポートします。</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>サポートされている請求書ヘッダー、明細、税内訳、および支払情報を、4つの新しいExcelワークシートにエクスポートします。</value></data>
+  <data name="ExtractDescription" xml:space="preserve"><value>認識された埋め込み請求書XMLを1つ抽出し、デコードされたバイト列と元のPDFを保持したまま、新しいファイルとして保存します。</value></data>
+</root>

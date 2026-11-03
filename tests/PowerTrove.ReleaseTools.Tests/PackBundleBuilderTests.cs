@@ -11,6 +11,15 @@ public sealed class PackBundleBuilderTests : IDisposable
     private readonly string _directory = Path.Combine(Path.GetTempPath(), "PowerTrove-PackBundle-Test-" + Guid.NewGuid().ToString("N"));
 
     [Fact]
+    public void TranslatedLanguages_MatchEveryNonEnglishDesktopLanguage()
+    {
+        // A desktop language without bundle translations would show English pack actions.
+        var desktop = PowerTrove.Application.Localization.UiLanguages.Supported
+            .Where(language => language != PowerTrove.Application.Localization.UiLanguages.English);
+        Assert.Equal(desktop, PackBundleBuilder.TranslatedLanguages);
+    }
+
+    [Fact]
     public void Inventory_ExcludesSharedSdkAndTracksExactBytes()
     {
         Directory.CreateDirectory(_directory);

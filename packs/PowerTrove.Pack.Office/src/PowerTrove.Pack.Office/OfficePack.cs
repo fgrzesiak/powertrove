@@ -51,7 +51,7 @@ public sealed class OfficeConvertAction : PerFileAction<OfficeOptions>
     protected override OfficeOptions ReadOptions(ActionParameterValues values) => new();
     protected override string ProgressVerb => SR.Get("Progress");
     protected override string DescribeOperation(int count, OfficeOptions options) => string.Format(CultureInfo.CurrentCulture,
-        SR.Get((_pdfToWord ? "Reflow" : "Export") + (count == 1 ? "_One" : "_Other")), count);
+        SR.Plural(_pdfToWord ? "Reflow" : "Export", count), count);
     protected override IEnumerable<string> GetWarnings(IReadOnlyList<SelectedFile> inputs, OfficeOptions options)
     {
         yield return SR.Get(_pdfToWord ? "ReflowWarning" : "ExportWarning");

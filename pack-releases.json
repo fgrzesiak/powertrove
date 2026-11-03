@@ -6,28 +6,28 @@
       "id": "powertrove.files",
       "assemblyName": "PowerTrove.Pack.Files",
       "initialVersion": "0.1.0",
-      "minimumHostVersion": "0.2.0",
+      "minimumHostVersion": "0.4.0",
       "project": "packs/PowerTrove.Pack.Files/composition/PowerTrove.Pack.Files.Composition/PowerTrove.Pack.Files.Composition.csproj"
     },
     {
       "id": "powertrove.images",
       "assemblyName": "PowerTrove.Pack.Images",
       "initialVersion": "0.1.0",
-      "minimumHostVersion": "0.3.2",
+      "minimumHostVersion": "0.4.0",
       "project": "packs/PowerTrove.Pack.Images/composition/PowerTrove.Pack.Images.Composition/PowerTrove.Pack.Images.Composition.csproj"
     },
     {
       "id": "powertrove.pdf",
       "assemblyName": "PowerTrove.Pack.Pdf",
       "initialVersion": "0.1.0",
-      "minimumHostVersion": "0.2.0",
+      "minimumHostVersion": "0.4.0",
       "project": "packs/PowerTrove.Pack.Pdf/composition/PowerTrove.Pack.Pdf.Composition/PowerTrove.Pack.Pdf.Composition.csproj"
     },
     {
       "id": "powertrove.media",
       "assemblyName": "PowerTrove.Pack.Media",
       "initialVersion": "0.1.0",
-      "minimumHostVersion": "0.2.0",
+      "minimumHostVersion": "0.4.0",
       "project": "packs/PowerTrove.Pack.Media/composition/PowerTrove.Pack.Media.Composition/PowerTrove.Pack.Media.Composition.csproj"
     },
     {
@@ -41,7 +41,7 @@
       "id": "powertrove.office",
       "assemblyName": "PowerTrove.Pack.Office",
       "initialVersion": "0.1.0",
-      "minimumHostVersion": "0.2.0",
+      "minimumHostVersion": "0.4.0",
       "project": "packs/PowerTrove.Pack.Office/composition/PowerTrove.Pack.Office.Composition/PowerTrove.Pack.Office.Composition.csproj"
     },
     {
@@ -52,11 +52,32 @@
       "project": "packs/PowerTrove.Pack.EInvoice/composition/PowerTrove.Pack.EInvoice.Composition/PowerTrove.Pack.EInvoice.Composition.csproj"
     },
     {
+      "id": "powertrove.markdown",
+      "assemblyName": "PowerTrove.Pack.Markdown",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.4.0",
+      "project": "packs/PowerTrove.Pack.Markdown/composition/PowerTrove.Pack.Markdown.Composition/PowerTrove.Pack.Markdown.Composition.csproj"
+    },
+    {
       "id": "powertrove.tables",
       "assemblyName": "PowerTrove.Pack.Tables",
       "initialVersion": "0.1.0",
       "minimumHostVersion": "0.3.0",
       "project": "packs/PowerTrove.Pack.Tables/composition/PowerTrove.Pack.Tables.Composition/PowerTrove.Pack.Tables.Composition.csproj"
+    },
+    {
+      "id": "powertrove.text",
+      "assemblyName": "PowerTrove.Pack.Text",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.4.0",
+      "project": "packs/PowerTrove.Pack.Text/composition/PowerTrove.Pack.Text.Composition/PowerTrove.Pack.Text.Composition.csproj"
+    },
+    {
+      "id": "powertrove.browser",
+      "assemblyName": "PowerTrove.Pack.Browser",
+      "initialVersion": "0.1.0",
+      "minimumHostVersion": "0.4.0",
+      "project": "packs/PowerTrove.Pack.Browser/composition/PowerTrove.Pack.Browser.Composition/PowerTrove.Pack.Browser.Composition.csproj"
     }
   ],
   "toolchainRevision": "dotnet10-v2-localized-metadata"

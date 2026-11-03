@@ -32,6 +32,9 @@ public static class PackBundleBuilder
         "WinRT.Runtime.dll"
     ];
 
+    /// <summary>Manifest translations stored in every bundle; must equal the desktop's non-English UI languages.</summary>
+    public static IReadOnlyList<string> TranslatedLanguages { get; } = ["de", "es", "pt-BR", "fr", "ja", "pl", "it", "tr", "id"];
+
     public static async Task BuildAsync(string publishedRoot, string outputDirectory, string? keyFile,
         bool dryRun, CancellationToken cancellationToken = default, Version? minimumHostVersion = null, string? releasePlanFile = null)
     {
@@ -81,9 +84,12 @@ public static class PackBundleBuilder
                 ActionManifest manifest = ActionPackManifest.Create(pack, minHostVersion: hostVersion, payload: payload);
                 try
                 {
-                    CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("de");
-                    var translated = ActionPackManifest.Create(factory.Create(services), minHostVersion: hostVersion, payload: payload);
-                    manifest = ManifestLocalization.WithTranslation(manifest, "de", translated);
+                    foreach (string language in TranslatedLanguages)
+                    {
+                        CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(language);
+                        var translated = ActionPackManifest.Create(factory.Create(services), minHostVersion: hostVersion, payload: payload);
+                        manifest = ManifestLocalization.WithTranslation(manifest, language, translated);
+                    }
                 }
                 finally { CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en"); }
                 if (plan is not null)
@@ -98,9 +104,9 @@ public static class PackBundleBuilder
                 _ = ActionPackManifest.ToJson(manifest);
                 if (!ids.Add(manifest.Id) || manifest.Actions.Any(a => !actionIds.Add(a.Id)))
                     throw new InvalidDataException("Duplicate pack or action identifier.");
-                // Worker protocol v1 carries file selections or table snapshots. Signing another
+                // Worker protocol v1 carries file selections, table snapshots or explicit text. Signing another
                 // kind would make an apparently installable bundle that the installer refuses.
-                if (manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] is not ("files" or "table")))
+                if (manifest.Actions.Any(a => a.InputKinds.Count != 1 || a.InputKinds[0] is not ("files" or "table" or "text")))
                     throw new InvalidDataException("A composition uses selection kinds unsupported by worker protocol v1.");
 
                 byte[] manifestBytes = Encoding.UTF8.GetBytes(ActionPackManifest.ToJson(manifest));

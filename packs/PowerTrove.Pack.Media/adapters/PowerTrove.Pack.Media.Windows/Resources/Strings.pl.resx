@@ -1,0 +1,10 @@
+<root>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Wymagany kodek nie jest zainstalowany w tym systemie.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Konwersja multimediów nie powiodła się.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>Nie można przekonwertować pliku multimedialnego.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Ta konwersja nie jest obsługiwana dla tego pliku.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>Plik nie zawiera ścieżki wideo.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>Nie można otworzyć pliku multimedialnego.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Nieobsługiwany format audio.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Nieobsługiwana operacja multimedialna.</value></data>
+</root>

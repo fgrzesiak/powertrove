@@ -1,0 +1,200 @@
+{
+  "appName": {
+    "message": "PowerTrove Browser Pack"
+  },
+  "subtitle": {
+    "message": "Browser tools"
+  },
+  "website": {
+    "message": "Website"
+  },
+  "sectionContext": {
+    "message": "PowerTrove context"
+  },
+  "sendSelection": {
+    "message": "Send selection to PowerTrove"
+  },
+  "sendPageUrl": {
+    "message": "Send page URL to PowerTrove"
+  },
+  "copyLinkMarkdown": {
+    "message": "Copy link as Markdown"
+  },
+  "sectionExport": {
+    "message": "Save page"
+  },
+  "saveArticleMarkdown": {
+    "message": "Article → Markdown"
+  },
+  "savePageMarkdown": {
+    "message": "Webpage → Markdown"
+  },
+  "saveSelectionMarkdown": {
+    "message": "Selected text → Markdown"
+  },
+  "saveMhtml": {
+    "message": "Save offline page (MHTML)"
+  },
+  "printPdf": {
+    "message": "Print / Save as PDF"
+  },
+  "sectionCapture": {
+    "message": "Screenshots and images"
+  },
+  "visibleScreenshot": {
+    "message": "Capture visible tab"
+  },
+  "areaScreenshot": {
+    "message": "Capture selected area"
+  },
+  "fullScreenshot": {
+    "message": "Capture full page"
+  },
+  "downloadImages": {
+    "message": "Download page images (max 25)"
+  },
+  "working": {
+    "message": "Processing…"
+  },
+  "done": {
+    "message": "Done."
+  },
+  "failed": {
+    "message": "Action failed. This page may be restricted."
+  },
+  "connectDesktop": {
+    "message": "Connect to PowerTrove"
+  },
+  "connectHint": {
+    "message": "Optional: Connect PowerTrove Desktop for additional handoff actions. File exports and screenshots work without it."
+  },
+  "connectOpened": {
+    "message": "Confirm the connection in PowerTrove."
+  },
+  "sectionPageData": {
+    "message": "Page data"
+  },
+  "exportTablesCsv": {
+    "message": "Tables → CSV"
+  },
+  "exportTablesJson": {
+    "message": "Tables → JSON"
+  },
+  "exportTablesMarkdown": {
+    "message": "Tables → Markdown"
+  },
+  "exportLinksCsv": {
+    "message": "Page links → CSV"
+  },
+  "exportLinksMarkdown": {
+    "message": "Page links → Markdown"
+  },
+  "sendLargestTable": {
+    "message": "Choose table for PowerTrove"
+  },
+  "openLastDownload": {
+    "message": "Open recent download in PowerTrove"
+  },
+  "visibleScreenshotToPowerTrove": {
+    "message": "Screenshot → PowerTrove"
+  },
+  "fullScreenshotToPowerTrove": {
+    "message": "Full page → PowerTrove"
+  },
+  "openImageFromContext": {
+    "message": "Open image in PowerTrove"
+  },
+  "openLinkFromContext": {
+    "message": "Open file link in PowerTrove"
+  },
+  "tablePickerTitle": {
+    "message": "Choose a table"
+  },
+  "tablePickerItem": {
+    "message": "Table {0} · {1} rows × {2} columns"
+  },
+  "tablePickerCancel": {
+    "message": "Cancel"
+  },
+  "tablePickerConfirm": {
+    "message": "Send to PowerTrove"
+  },
+  "noTables": {
+    "message": "No HTML tables on this page"
+  },
+  "openPdfInPowerTrove": {
+    "message": "Open current PDF in PowerTrove"
+  },
+  "tablePickerExport": {
+    "message": "Export selected table"
+  },
+  "disconnectHint": {
+    "message": "Turn off the live browser companion and revoke optional page access."
+  },
+  "disconnectDesktop": {
+    "message": "Disconnect"
+  },
+  "disconnectedDone": {
+    "message": "Browser companion disconnected."
+  },
+  "openEmbeddedPdfInPowerTrove": {
+    "message": "Open embedded PDF in PowerTrove"
+  },
+  "connectionConnected": {
+    "message": "Connected"
+  },
+  "connectionConfigured": {
+    "message": "Waiting for PowerTrove"
+  },
+  "connectionDisconnected": {
+    "message": "Not connected"
+  },
+  "searchPlaceholder": {
+    "message": "Search actions"
+  },
+  "footerHint": {
+    "message": "Browser exports work on their own. With PowerTrove Desktop connected, Alt+Space opens more actions."
+  },
+  "allowAllPagesHint": {
+    "message": "Screenshots started from PowerTrove need access to all pages."
+  },
+  "allowAllPages": {
+    "message": "Allow access to all pages"
+  },
+  "fastFullPageLabel": {
+    "message": "Fast full-page screenshots"
+  },
+  "fastFullPageHint": {
+    "message": "Fast capture uses Chrome/Edge's debugger permission, granted when you install or update the extension. It briefly displays the browser's debugging warning bar. Turn this off to use normal scrolling screenshots."
+  },
+  "fastFullPageDenied": {
+    "message": "The extension's debugger permission is unavailable. Use the normal screenshot mode."
+  },
+  "fastFullPageEnabled": {
+    "message": "Fast screenshots enabled."
+  },
+  "fastFullPageDisabled": {
+    "message": "Fast screenshots disabled."
+  },
+  "fastFullPageCanceled": {
+    "message": "Fast screenshot canceled from the browser debugging bar. No screenshot was created."
+  },
+  "saveModeLabel": {
+    "message": "Save exported files"
+  },
+  "saveModeAsk": {
+    "message": "Ask where to save"
+  },
+  "saveModeDownloads": {
+    "message": "Save to the download folder"
+  },
+  "saveModeHint": {
+    "message": "Applies to single files. Page images and files for PowerTrove always go to the browser's download folder."
+  },
+  "saveModeChanged": {
+    "message": "Save preference updated."
+  },
+  "saveModeFailure": {
+    "message": "Could not save the destination preference."
+  }
+}

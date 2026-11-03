@@ -29,6 +29,7 @@ public sealed partial class SettingsWindow : HostedView
     private System.Threading.CancellationTokenSource? _packInstallCancellation;
     private bool _packsClosed;
     private bool _packDialogOpen;
+    private readonly DispatcherTimer _browserStatusPoll = new() { Interval = TimeSpan.FromSeconds(3) };
     public ActionPacksViewModel? Packs { get; }
     // Settings hold no edits of their own; only running pack, Explorer or FFmpeg work keeps them on screen.
     public override bool KeepsWindow => !CanCloseForUpdate;
@@ -43,13 +44,15 @@ public sealed partial class SettingsWindow : HostedView
     public string ExplorerDescription => IsPackaged ? UiText.StoreExplorerDescription : UiText.ExplorerDescription;
     public string FFmpegDescription => IsPackaged ? UiText.StoreFFmpegDescription : UiText.FFmpegDescription;
 
-    public SettingsWindow(bool selectPacks = false)
+    public SettingsWindow(bool selectPacks = false, bool selectBrowser = false)
     {
         Updates = ((App)App.Current).Updates;
         if (App.Current is App { PackManagement: { } management, SettingsService: { } settings } owner)
             Packs = new ActionPacksViewModel(management, settings, owner.RefreshPackVisibility);
         this.InitializeComponent();
-        Closed += (_, _) => { _packsClosed = true; _packInstallCancellation?.Cancel(); _ffmpegInstall?.Cancel(); Packs?.Dispose(); };
+        Closed += (_, _) => { _browserStatusPoll.Stop(); _packsClosed = true; _packInstallCancellation?.Cancel(); _ffmpegInstall?.Cancel(); Packs?.Dispose(); };
+        _browserStatusPoll.Tick += (_, _) => RefreshBrowserStatus();
+        _browserStatusPoll.Start();
         Title = UiText.SettingsWindowTitle;
         TitleBar = AppTitleBar;
         TitleBarIcon.Source = AppIconImage.Create(32);
@@ -62,11 +65,15 @@ public sealed partial class SettingsWindow : HostedView
             GitHubUpdatesCard.Visibility = Visibility.Collapsed;
             StoreUpdatesCard.Visibility = Visibility.Visible;
             StartupCard.Visibility = Visibility.Collapsed;
+            BrowserInstallButtons.Visibility = Visibility.Collapsed;
         }
+        RefreshBrowserStatus();
+        _ = ShowBrowserPackSetupInfoOnceAsync();
         _ = RefreshExplorerRegistrationAsync();
         _ = ChangeStartupAsync(enable: null);
         _ = RefreshFFmpegAsync();
         if (selectPacks) PackSelectionExpander.IsExpanded = true;
+        if (selectBrowser) Loaded += (_, _) => FocusBrowserSection();
 
         if (App.Current is App app && app.SettingsService != null)
         {
@@ -88,6 +95,95 @@ public sealed partial class SettingsWindow : HostedView
                 ReadOnlyWarning.Visibility = Visibility.Visible;
                 MainSettingsPanel.IsEnabled = false;
             }
+        }
+    }
+
+    public void FocusBrowserSection() => BrowserSectionHeading.StartBringIntoView();
+
+    private void BrowserSetupInfo_Click(object sender, RoutedEventArgs e)
+    {
+        FocusBrowserSection();
+        BrowserPackSetupInfo.IsOpen = false;
+    }
+
+    private async System.Threading.Tasks.Task ShowBrowserPackSetupInfoOnceAsync()
+    {
+        if (IsPackaged || App.Current is not App { PackInstaller: { } installer } app) return;
+        try
+        {
+            var installed = await installer.GetInstalledAsync();
+            if (_packsClosed || !installed.Any(pack => pack.Manifest.Id == BrowserExtensionSetup.PackId)) return;
+            // Users who already connected a browser need no setup education.
+            bool connected = app.BrowserSessionCount > 0 ||
+                PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.IsConnected();
+            if (BrowserSetupHintState.TryMarkShown(app.Distribution.UserRoot) && !connected)
+                BrowserPackSetupInfo.IsOpen = true;
+        }
+        catch (Exception ex) when (ex is System.IO.IOException or UnauthorizedAccessException
+            or System.Security.SecurityException or InvalidOperationException) { }
+    }
+
+    private void RefreshBrowserStatus()
+    {
+        try
+        {
+            if (IsPackaged)
+            {
+                BrowserConnectionStatus.Text = UiText.BrowserSettingsInstallerRequired;
+                BrowserDisconnectButton.IsEnabled = false;
+                return;
+            }
+            bool configured = PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.IsConnected();
+            int live = ((App)App.Current).BrowserSessionCount;
+            BrowserConnectionStatus.Text = live > 0
+                ? string.Format(UiText.PluralString("BrowserSettingsLiveSessions", live), live)
+                : configured ? UiText.BrowserSettingsConnected : UiText.BrowserSettingsDisconnected;
+            BrowserDisconnectButton.IsEnabled = configured;
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or System.IO.IOException or System.Security.SecurityException)
+        {
+            BrowserConnectionStatus.Text = UiText.BrowserSettingsStatusFailed;
+            BrowserDisconnectButton.IsEnabled = false;
+        }
+    }
+
+    private void InstallBrowserExtension_Click(object sender, RoutedEventArgs e)
+    {
+        if (IsPackaged || sender is not FrameworkElement { Tag: string browser }) return;
+        try
+        {
+            var url = BrowserExtensionSetup.InstallUri(browser, System.Globalization.CultureInfo.CurrentUICulture);
+            PowerTrove.Platform.Windows.Browser.BrowserExtensionLauncher.Open(browser, url);
+            BrowserInstallError.Visibility = Visibility.Collapsed;
+        }
+        catch (Exception ex) when (ex is InvalidOperationException or System.ComponentModel.Win32Exception
+            or System.IO.IOException or UnauthorizedAccessException or System.Security.SecurityException)
+        {
+            BrowserInstallError.Visibility = Visibility.Visible;
+        }
+    }
+
+    private async void BrowserDisconnect_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ContentDialog
+        {
+            Title = UiText.BrowserSettingsDisconnect,
+            Content = UiText.BrowserSettingsDisconnectConfirm,
+            PrimaryButtonText = UiText.BrowserSettingsDisconnect,
+            CloseButtonText = UiText.CommonCancel,
+            DefaultButton = ContentDialogButton.Close,
+            XamlRoot = Content.XamlRoot
+        };
+        if (await dialog.ShowAsync() != ContentDialogResult.Primary) return;
+        try
+        {
+            PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.Disconnect();
+            ((App)App.Current).DisconnectBrowserSessions();
+            RefreshBrowserStatus();
+        }
+        catch (Exception ex) when (ex is System.IO.IOException or UnauthorizedAccessException or InvalidOperationException or System.Security.SecurityException)
+        {
+            BrowserConnectionStatus.Text = UiText.BrowserSettingsDisconnectFailed;
         }
     }
 
@@ -116,12 +212,9 @@ public sealed partial class SettingsWindow : HostedView
     {
         _loadingLanguage = true;
         // Language names are shown in their own language, so users can always find theirs.
-        var choices = new (string? Code, string Text)[]
-        {
-            (null, UiText.SettingsLanguageSystem),
-            (UiLanguages.English, UiText.SettingsLanguageEnglish),
-            (UiLanguages.German, UiText.SettingsLanguageGerman),
-        };
+        var choices = new[] { (Code: (string?)null, Text: UiText.SettingsLanguageSystem) }
+            .Concat(UiLanguages.Supported.Select(code =>
+                (Code: (string?)code, Text: UiLanguages.DisplayName(code))));
         foreach (var (code, text) in choices)
         {
             var item = new ComboBoxItem { Content = text, Tag = code ?? UiLanguages.System };
@@ -611,6 +704,7 @@ public sealed partial class SettingsWindow : HostedView
             cancel.Token.ThrowIfCancellationRequested();
             if (file is null) return;
             await Packs.InstallFileAsync(file.Path, cancel.Token);
+            await ShowBrowserPackSetupInfoOnceAsync();
         }
         catch (OperationCanceledException) { }
         catch (Exception) { if (!_packsClosed) PackInstallStatus.Text = UiText.PacksInstallFailed; }
@@ -636,7 +730,11 @@ public sealed partial class SettingsWindow : HostedView
             if (offer is null || _packsClosed) return;
             var dialog = new ContentDialog { Title = offer.Name, Content = UiText.PackDownloadConsent(UiText.PackNameVersion(offer.Name, offer.Version), ActionPackRow.FormatSize(offer.DownloadBytes), offer.Publisher),
                 PrimaryButtonText = row.PrimaryText, CloseButtonText = UiText.CommonCancel, DefaultButton = ContentDialogButton.Close, XamlRoot = Content.XamlRoot };
-            if (await dialog.ShowAsync() == ContentDialogResult.Primary && !_packsClosed) await Packs.InstallAsync(offer);
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary && !_packsClosed)
+            {
+                await Packs.InstallAsync(offer);
+                if (id == BrowserExtensionSetup.PackId) await ShowBrowserPackSetupInfoOnceAsync();
+            }
         }
         catch (Exception) { if (!_packsClosed) PackInstallStatus.Text = UiText.PacksInstallFailed; }
         finally { _packDialogOpen = false; }

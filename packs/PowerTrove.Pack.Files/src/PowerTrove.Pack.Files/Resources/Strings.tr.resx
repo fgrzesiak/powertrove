@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CountFilesAction_Title" xml:space="preserve">
+    <value>Dizin İçindeki Dosyaları Say</value>
+  </data>
+  <data name="CountFilesAction_Description" xml:space="preserve">
+    <value>Seçilen dizinlerdeki dosya sayısını sayar.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Dosya seçimi değil.</value>
+  </data>
+  <data name="CountFilesAction_Error_NoDirectories" xml:space="preserve">
+    <value>Hiçbir dizin seçilmedi.</value>
+  </data>
+  <data name="CountFilesAction_Preview_LimitReachedNote" xml:space="preserve">
+    <value> (Sınır aşıldı, gerçek sayı daha yüksek olabilir)</value>
+  </data>
+  <data name="CountFilesAction_Preview_FoundItems" xml:space="preserve">
+    <value>Seçilen dizinlerde {1} {0} öğe bulundu.</value>
+  </data>
+  <data name="CountFilesAction_Preview_ScanLimitWarning" xml:space="preserve">
+    <value>Tarama sınırına ulaşıldı. Sayım eksik olabilir.</value>
+  </data>
+  <data name="Error_ContextExpired" xml:space="preserve">
+    <value>Bağlamın süresi doldu. Lütfen tekrar seçin.</value>
+  </data>
+  <data name="CountFilesAction_Execute_Result" xml:space="preserve">
+    <value>{1} klasörde {2} {0} dosya bulundu.</value>
+  </data>
+  <data name="CountFilesAction_Execute_LimitNote" xml:space="preserve">
+    <value> (Tarama sınırı aşıldı; gerçek sayı daha yüksek olabilir)</value>
+  </data>
+  <data name="CompressToZipAction_ParamTitle_Compression" xml:space="preserve">
+    <value>Sıkıştırma</value>
+  </data>
+  <data name="CompressToZipAction_ParamDesc_Compression" xml:space="preserve">
+    <value>Sıkıştırma</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Optimal" xml:space="preserve">
+    <value>Daha küçük arşiv</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Fastest" xml:space="preserve">
+    <value>Daha Hızlı</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Store" xml:space="preserve">
+    <value>Sıkıştırma yok</value>
+  </data>
+  <data name="CompressToZipAction_FilterDescription" xml:space="preserve">
+    <value>dosyalar veya klasörler</value>
+  </data>
+  <data name="CompressToZipAction_Title" xml:space="preserve">
+    <value>ZIP&apos;e Sıkıştır</value>
+  </data>
+  <data name="CompressToZipAction_Description" xml:space="preserve">
+    <value>Seçilen dosya ve klasörlerin ZIP arşivini oluşturur.</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Item" xml:space="preserve">
+    <value>öğe</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Items" xml:space="preserve">
+    <value>öğeler</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Description" xml:space="preserve">
+    <value>{0} tek bir ZIP arşivine sıkıştırılacaktır. Bağlantılar ve birleşim noktaları atlanacaktır.</value>
+  </data>
+  <data name="CompressToZipAction_DefaultOutput_Archive" xml:space="preserve">
+    <value>Arşiv</value>
+  </data>
+  <data name="ExtractZipAction_FilterDescription" xml:space="preserve">
+    <value>ZIP arşivleri</value>
+  </data>
+  <data name="ExtractZipAction_Title" xml:space="preserve">
+    <value>ZIP Çıkarma</value>
+  </data>
+  <data name="ExtractZipAction_Description" xml:space="preserve">
+    <value>Seçilen her ZIP arşivini yeni bir klasöre çıkarır.</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archive" xml:space="preserve">
+    <value>arşiv</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archives" xml:space="preserve">
+    <value>arşivler</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Description" xml:space="preserve">
+    <value>{0} dosyalarının her birini yeni bir klasöre çıkaracağız. Güvenli olmayan girişler (mutlak yollar, &apos;: &apos;, bağlantılar) ve aşırı büyük arşivler reddedilecektir.</value>
+  </data>
+  <data name="ExtractZipAction_ProgressVerb" xml:space="preserve">
+    <value>Çıkarma</value>
+  </data>
+  <data name="ChecksumAction_ParamTitle_Algorithm" xml:space="preserve">
+    <value>Algoritma</value>
+  </data>
+  <data name="ChecksumAction_ParamDesc_Algorithm" xml:space="preserve">
+    <value>Algoritma</value>
+  </data>
+  <data name="ChecksumAction_Title" xml:space="preserve">
+    <value>Sağlama Toplamı Dosyası Oluştur</value>
+  </data>
+  <data name="ChecksumAction_Description" xml:space="preserve">
+    <value>Seçilen dosyaların SHA-256 (veya SHA-512) sağlama toplamlarını hesaplar ve bunları bir sağlama toplamı dosyasına kaydeder.</value>
+  </data>
+  <data name="ChecksumAction_FilterDescription" xml:space="preserve">
+    <value>dosyalar</value>
+  </data>
+  <data name="ChecksumAction_Operation_File" xml:space="preserve">
+    <value>dosya</value>
+  </data>
+  <data name="ChecksumAction_Operation_Files" xml:space="preserve">
+    <value>dosyalar</value>
+  </data>
+  <data name="ChecksumAction_Operation_Description" xml:space="preserve">
+    <value>{1} için {0} sağlama toplamı hesaplanacak ve bunlar tek bir sağlama toplamı dosyasına kaydedilecektir.</value>
+  </data>
+  <data name="ChecksumAction_DefaultOutput" xml:space="preserve">
+    <value>sağlama toplamları</value>
+  </data>
+  <data name="ChecksumAction_ProgressVerb" xml:space="preserve">
+    <value>Hesaplanıyor</value>
+  </data>
+  <data name="FilesPack_Title" xml:space="preserve">
+    <value>Dosya Araçları</value>
+  </data>
+  <data name="CopyNames" xml:space="preserve">
+    <value>Dosya Adlarını Kopyala</value>
+  </data>
+  <data name="CopyPaths" xml:space="preserve">
+    <value>Yolları Kopyala</value>
+  </data>
+  <data name="CopyDescription" xml:space="preserve">
+    <value>Yalnızca açıkça seçilen yolları veya adları panoya kopyalar.</value>
+  </data>
+  <data name="SelectionUnavailable" xml:space="preserve">
+    <value>1 ila 10.000 arasında erişilebilir yerel öğe seçin.</value>
+  </data>
+  <data name="CopiedNames" xml:space="preserve">
+    <value>{0} adları kopyalandı.</value>
+  </data>
+  <data name="CopiedPaths" xml:space="preserve">
+    <value>{0} yolları kopyalandı.</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Biçim</value>
+  </data>
+  <data name="lines" xml:space="preserve">
+    <value>Satır başına bir tane</value>
+  </data>
+  <data name="quoted" xml:space="preserve">
+    <value>Windows komut satırları için alıntılandı</value>
+  </data>
+  <data name="semicolon" xml:space="preserve">
+    <value>Noktalı virgülle ayrılmış</value>
+  </data>
+  <data name="json-array" xml:space="preserve">
+    <value>JSON dizisi</value>
+  </data>
+  <data name="FileItems" xml:space="preserve">
+    <value>dosyalar veya klasörler</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>klasörler</value>
+  </data>
+  <data name="ToolsDescription" xml:space="preserve">
+    <value>Seçilen yerel öğeleri orijinallerini değiştirmeden işler.</value>
+  </data>
+  <data name="LinksUnsupported" xml:space="preserve">
+    <value>Bağlantılar ve yeniden ayrıştırma noktaları desteklenmez.</value>
+  </data>
+  <data name="Base64Decode" xml:space="preserve">
+    <value>Base64 kod çözme</value>
+  </data>
+  <data name="Base64Encode" xml:space="preserve">
+    <value>Base64 olarak kodla</value>
+  </data>
+  <data name="ProcessItems" xml:space="preserve">
+    <value>{0} öğe işleniyor.</value>
+  </data>
+  <data name="InvalidBase64" xml:space="preserve">
+    <value>Base64 girişi geçersiz.</value>
+  </data>
+  <data name="FindDuplicates" xml:space="preserve">
+    <value>Yinelenen Dosyaları Bul</value>
+  </data>
+  <data name="FolderReport" xml:space="preserve">
+    <value>Klasör Boyutu Raporu Oluştur</value>
+  </data>
+  <data name="FolderSummary" xml:space="preserve">
+    <value>{0} dosyalar, {1} bayt, {2} atlandı. {3}</value>
+  </data>
+  <data name="DuplicateSummary" xml:space="preserve">
+    <value>{0} yinelenen gruplar, {1} geri kazanılabilir bayt, {2} atlandı. {3}</value>
+  </data>
+  <data name="ScanLimit" xml:space="preserve">
+    <value>Tarama sınırı aşıldı; bu rapor kısmi.</value>
+  </data>
+  <data name="ReportNote" xml:space="preserve">
+    <value>Sadece rapor. Hiçbir dosya silinmedi.</value>
+  </data>
+  <data name="InputChanged" xml:space="preserve">
+    <value>İşlem sırasında bir giriş değişti.</value>
+  </data>
+  <data name="VerifyChecksums" xml:space="preserve">
+    <value>Sağlama Toplamlarını Doğrula</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Çıktı</value>
+  </data>
+  <data name="summary" xml:space="preserve">
+    <value>Sadece özet</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>Rapor dosyası</value>
+  </data>
+  <data name="ManifestLimit" xml:space="preserve">
+    <value>Sağlama toplamı bildirimi sınırlarını aşıyor.</value>
+  </data>
+  <data name="InvalidChecksums" xml:space="preserve">
+    <value>Sağlama toplamı bildirimi geçersiz.</value>
+  </data>
+  <data name="RemoteUnsupported" xml:space="preserve">
+    <value>Uzak yollar desteklenmiyor.</value>
+  </data>
+  <data name="VerifySummary" xml:space="preserve">
+    <value>{0} Tamam, {1} uyuşmuyor, {2} eksik.</value>
+  </data>
+  <data name="SplitFile" xml:space="preserve">
+    <value>Dosyayı Parçalara Böl</value>
+  </data>
+  <data name="JoinFiles" xml:space="preserve">
+    <value>Dosya Parçalarını Birleştir</value>
+  </data>
+  <data name="JoinDescription" xml:space="preserve">
+    <value>Ardışık kardeş parçaları birleştirir ve varsa orijinal sağlama toplamını doğrular.</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Bölme modu</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Parça boyutu</value>
+  </data>
+  <data name="parts" xml:space="preserve">
+    <value>Parça sayısı</value>
+  </data>
+  <data name="PartSizeMb" xml:space="preserve">
+    <value>Parça boyutu (MiB)</value>
+  </data>
+  <data name="PartsCount" xml:space="preserve">
+    <value>Parça sayısı</value>
+  </data>
+  <data name="PartLimit" xml:space="preserve">
+    <value>1.000&apos;den fazla parça gerekecektir.</value>
+  </data>
+  <data name="PartMismatch" xml:space="preserve">
+    <value>Aynı klasördeki bir dosyanın parçalarını seçin.</value>
+  </data>
+  <data name="MissingPart" xml:space="preserve">
+    <value>Ardışık bir dosya parçası eksik.</value>
+  </data>
+  <data name="HashMismatch" xml:space="preserve">
+    <value>Birleştirilen dosyanın sağlama toplamı eşleşmiyor.</value>
+  </data>
+  <data name="TarCreate" xml:space="preserve">
+    <value>TAR.GZ&apos;ye Sıkıştır</value>
+  </data>
+  <data name="TarExtract" xml:space="preserve">
+    <value>TAR/GZ Arşivini Çıkarma</value>
+  </data>
+  <data name="Archives" xml:space="preserve">
+    <value>TAR/GZip arşivleri</value>
+  </data>
+  <data name="ArchiveError" xml:space="preserve">
+    <value>Arşiv geçersiz, güvenli değil veya sınırlarını aşıyor.</value>
+  </data>
+  <data name="AddToZip" xml:space="preserve"><value>ZIP&apos;e Ekle</value></data>
+  <data name="AddToZipDescription" xml:space="preserve"><value>Arşiv girdilerini ve ek seçimi yeni bir ZIP dosyasına kopyala.</value></data>
+  <data name="ZipRoleSelection" xml:space="preserve"><value>Tam olarak bir ZIP arşivi ve en az bir ek dosya veya klasör seçin.</value></data>
+  <data name="UnsafeZip" xml:space="preserve"><value>Arşiv güvenli değil, hasarlı veya desteklenen sınırları aşıyor.</value></data>
+  <data name="CompareText" xml:space="preserve"><value>Karşılaştır</value></data>
+  <data name="CompareTextDescription" xml:space="preserve"><value>Her biri 5 MB&apos;a kadar olan iki metin dosyasının HTML satır karşılaştırmasını oluşturun.</value></data>
+  <data name="IgnoreLineEndings" xml:space="preserve"><value>Satır sonlarındaki farklılıkları göz ardı et</value></data>
+  <data name="TextFiles" xml:space="preserve"><value>metin dosyaları</value></data>
+  <data name="AddedLines" xml:space="preserve"><value>Eklendi</value></data>
+  <data name="RemovedLines" xml:space="preserve"><value>Kaldırıldı</value></data>
+  <data name="UnchangedLines" xml:space="preserve"><value>Değiştirilmedi</value></data>
+  <data name="DiffCounts" xml:space="preserve"><value>Eklenen: {0}; kaldırılan: {1}; değiştirilmeyen: {2}.</value></data>
+  <data name="ComparisonLimit" xml:space="preserve"><value>Karşılaştırma, dosya başına 5 MB ve 100.000 satırla sınırlıdır. Çok karmaşık farklılıklar desteklenmez.</value></data>
+  <data name="ComparisonEncoding" xml:space="preserve"><value>UTF-8 metin dosyası veya bayt sıralama işareti içeren bir Unicode dosyası kullanın.</value></data>
+  <data name="SortByType" xml:space="preserve"><value>Kopyaları Türüne Göre Sırala</value></data>
+  <data name="SortByTypeDescription" xml:space="preserve"><value>Karışık bir seçimi dosya türüne göre gruplandırılmış yeni bir klasöre kopyala.</value></data>
+  <data name="SortByTypeOperation" xml:space="preserve"><value>Seçimi türe göre yeni klasörlere kopyala.</value></data>
+  <data name="MixedTypesRequired" xml:space="preserve"><value>En az iki farklı türden en az iki dosya seçin.</value></data>
+  <data name="SortedFolder" xml:space="preserve"><value>Sıralanmış</value></data>
+  <data name="SortedImages" xml:space="preserve"><value>Görüntüler</value></data>
+  <data name="SortedPdfs" xml:space="preserve"><value>PDF&apos;ler</value></data>
+  <data name="SortedDocuments" xml:space="preserve"><value>Belgeler</value></data>
+  <data name="SortedSpreadsheets" xml:space="preserve"><value>Elektronik Tablolar</value></data>
+  <data name="SortedVideos" xml:space="preserve"><value>Videolar</value></data>
+  <data name="SortedAudio" xml:space="preserve"><value>Ses</value></data>
+  <data name="SortedArchives" xml:space="preserve"><value>Arşivler</value></data>
+  <data name="SortedText" xml:space="preserve"><value>Metin</value></data>
+  <data name="SortedOther" xml:space="preserve"><value>Diğer</value></data>
+  <data name="RenameFiles" xml:space="preserve"><value>Dosyaları Yeniden Adlandır</value></data>
+  <data name="RenameDescription" xml:space="preserve"><value>Orijinal dosyaları, gözden geçirilmiş bir önizleme ve on dakikalık geri alma özelliğiyle yeniden adlandırın.</value></data>
+  <data name="RenameUnavailable" xml:space="preserve"><value>Yeniden adlandırma hizmeti kullanılamıyor.</value></data>
+  <data name="RenamePattern" xml:space="preserve"><value>İsim kalıbı</value></data>
+  <data name="RenameTokens" xml:space="preserve"><value>Tokens: {name}, {ext}, {n}, {n:000}, {date}, {exifdate}. An explicit {ext} token controls extension placement.</value></data>
+  <data name="RenameFind" xml:space="preserve"><value>Temel adda ara</value></data>
+  <data name="RenameReplace" xml:space="preserve"><value>Şununla değiştir</value></data>
+  <data name="Case" xml:space="preserve"><value>Harf büyük/küçük harf duyarlılığı</value></data>
+  <data name="keep" xml:space="preserve"><value>Büyük/küçük harf duyarlılığını koru</value></data>
+  <data name="lower" xml:space="preserve"><value>Küçük Harf</value></data>
+  <data name="upper" xml:space="preserve"><value>Büyük harf</value></data>
+  <data name="title" xml:space="preserve"><value>Başlık büyük harfle yazılmış</value></data>
+  <data name="RenameStartAt" xml:space="preserve"><value>Numaralandırmaya başla</value></data>
+  <data name="RenameKeepExtension" xml:space="preserve"><value>Dosya uzantısını koru</value></data>
+  <data name="RenameOperation" xml:space="preserve"><value>Orijinal dosyaları önizlemeye göre yeniden adlandırın.</value></data>
+  <data name="RenameInvalid" xml:space="preserve"><value>Yeniden adlandırma planında geçersiz adlar, yinelenenler, kullanılamayan girişler veya dolu hedefler var.</value></data>
+  <data name="RenameUnchanged" xml:space="preserve"><value>Seçimi yeniden adlandırmak için deseni veya seçenekleri değiştirin.</value></data>
+  <data name="RenameConsent" xml:space="preserve"><value>Orijinal dosyaların yeniden adlandırıldığını anlıyorum.</value></data>
+  <data name="RenameUndoWindow" xml:space="preserve"><value>Bu sonuç görünür kaldığı sürece 10 dakika boyunca geri alma işlemi kullanılabilir. İsimler yalnızca bu iletişim kutusunda gösterilir.</value></data>
+  <data name="RenameReviewAgain" xml:space="preserve"><value>Seçim veya seçenekler değişti. Önizlemeyi inceleyin ve tekrar onaylayın.</value></data>
+  <data name="RenameCompleted_One" xml:space="preserve"><value>Bir dosya yeniden adlandırıldı.</value></data>
+  <data name="RenameCompleted_Other" xml:space="preserve"><value>{0} dosya yeniden adlandırıldı.</value></data>
+  <data name="RenameFailed" xml:space="preserve"><value>Yeniden adlandırma başarısız oldu. Tamamlanan değişiklikler geri alındı.</value></data>
+  <data name="RenameRecovery" xml:space="preserve"><value>Bazı değişiklikler geri alınamadı. Dosya kilitlerini serbest bırakın ve hemen Geri Al&apos;ı kullanın.</value></data>
+<data name="ArchiveLimitExceeded" xml:space="preserve"><value>Arşiv, desteklenen güvenlik sınırlarını aşıyor.</value></data>
+<data name="ArchiveUnsafeEntry" xml:space="preserve"><value>Arşiv güvenli olmayan bir giriş içeriyor ve çıkarılamıyor.</value></data>
+<data name="ArchiveInvalid" xml:space="preserve"><value>Arşiv hasarlı, şifrelenmiş veya desteklenmiyor.</value></data>
+<data name="CopiedNames_One" xml:space="preserve"><value>{0} adı kopyalandı.</value></data>
+<data name="CopiedNames_Other" xml:space="preserve"><value>{0} adları kopyalandı.</value></data>
+<data name="CopiedPaths_One" xml:space="preserve"><value>{0} yolu kopyalandı.</value></data>
+<data name="CopiedPaths_Other" xml:space="preserve"><value>{0} yolları kopyalandı.</value></data>
+<data name="ProcessItems_One" xml:space="preserve"><value>{0} öğeyi işleyin.</value></data>
+<data name="ProcessItems_Other" xml:space="preserve"><value>{0} öğeyi işleyin.</value></data>
+<data name="FoundItems_One" xml:space="preserve"><value>Seçilen dizinlerde {1} {0} öğe bulundu.</value></data>
+<data name="FoundItems_Other" xml:space="preserve"><value>Seçilen dizinlerde {1} {0} öğe bulundu.</value></data>
+<data name="CountFiles_One" xml:space="preserve"><value>{0} dosya</value></data>
+<data name="CountFiles_Other" xml:space="preserve"><value>{0} dosyalar</value></data>
+<data name="CountFolders_One" xml:space="preserve"><value>{0} klasör</value></data>
+<data name="CountFolders_Other" xml:space="preserve"><value>{0} klasör</value></data>
+<data name="CountFilesResult" xml:space="preserve"><value>{1}{2} içinde {0} bulundu.</value></data>
+<data name="FolderSummary_One" xml:space="preserve"><value>{0} dosya, {1} bayt, {2} atlandı. {3}</value></data>
+<data name="FolderSummary_Other" xml:space="preserve"><value>{0} dosyalar, {1} bayt, {2} atlandı. {3}</value></data>
+<data name="DuplicateSummary_One" xml:space="preserve"><value>{0} yinelenen grup, {1} geri kazanılabilir bayt, {2} atlandı. {3}</value></data>
+<data name="DuplicateSummary_Other" xml:space="preserve"><value>{0} yinelenen gruplar, {1} geri kazanılabilir bayt, {2} atlandı. {3}</value></data>
+</root>

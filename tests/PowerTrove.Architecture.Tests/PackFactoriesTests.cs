@@ -4,9 +4,12 @@ using PowerTrove.Abstractions.Manifest;
 using PowerTrove.Abstractions.Packs;
 using PowerTrove.Abstractions.Testing;
 using PowerTrove.Pack.Data;
+using PowerTrove.Pack.Text;
+using PowerTrove.Pack.Browser;
 using PowerTrove.Pack.EInvoice;
 using PowerTrove.Pack.Files;
 using PowerTrove.Pack.Images;
+using PowerTrove.Pack.Markdown;
 using PowerTrove.Pack.Media;
 using PowerTrove.Pack.Office;
 using PowerTrove.Pack.Pdf;
@@ -19,7 +22,8 @@ public sealed class PackFactoriesTests
     internal static IPackFactory[] Factories() => new IPackFactory[]
     {
         new FilesPackFactory(), new ImagesPackFactory(), new PdfPackFactory(), new OfficePackFactory(),
-        new MediaPackFactory(), new TablesPackFactory(), new DataPackFactory(), new EInvoicePackFactory()
+        new MediaPackFactory(), new TablesPackFactory(), new DataPackFactory(), new EInvoicePackFactory(), new MarkdownPackFactory(),
+        new TextPackFactory(), new BrowserPackFactory()
     };
     internal static PackHostServices Host() => new(new Version(0, 1, 0), FileActionServices.CreatePhysical(new ExtensionOnlyTypeVerifier()));
 
@@ -60,7 +64,8 @@ public sealed class PackFactoriesTests
         IActionPack[] before =
         {
             new FilesPack(host.Files), new ImagesPack(image, host.Files), new PdfPack(host.Files), new OfficePack(host.Files),
-            new MediaPack(media, host.Files), new TablesPack(host.Files.Planner, host.Files.FileSystem, host.Files), new DataPack(host.Files), new EInvoicePack(host.Files)
+            new MediaPack(media, host.Files), new TablesPack(host.Files.Planner, host.Files.FileSystem, host.Files), new DataPack(host.Files), new EInvoicePack(host.Files),
+            new MarkdownPack(host.Files, new PowerTrove.Pack.Markdown.Markdig.MarkdigMarkdownEngine()), new TextPack(), new BrowserPack()
         };
         var after = Factories().Select(f => f.Create(host)).ToArray();
         Assert.Equal(before.Select(p => p.Info), after.Select(p => p.Info));

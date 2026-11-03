@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Papan Klip &amp; Teks</value></data>
+  <data name="Description" xml:space="preserve"><value>Mengubah pilihan teks yang diambil secara eksplisit secara lokal dan menyalin hasilnya ke clipboard.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Tinjau transformasinya. Hasilnya akan disalin ke clipboard hanya setelah Anda menjalankan tindakan tersebut.</value></data>
+  <data name="Done" xml:space="preserve"><value>Teks disalin ke clipboard.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Tidak ada pilihan teks yang tersedia, atau pilihan telah kedaluwarsa atau terlalu besar.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>Teks melebihi batas 65.536 karakter.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>Teks atau pola tidak dapat diproses.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Operasi teks tidak didukung.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>Input memiliki konten terenkode yang tidak valid.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>Ekspresi reguler telah melampaui batas waktunya.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Masukkan pola ekspresi reguler.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Pola</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Penggantian</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Ekspresi reguler .NET, batas waktu 200 ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>Hasilnya kosong; menjalankan perintah ini akan menghapus teks dari clipboard.</value></data>
+  <data name="trim" xml:space="preserve"><value>Pangkas spasi kosong</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Pangkas setiap baris</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Ciutkan spasi</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Hapus baris kosong</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Hapus baris duplikat</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Urutkan baris</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Konversi ke huruf kecil</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Konversi ke huruf besar</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Konversi ke huruf kapital di awal setiap kata</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Mengganti teks menggunakan regex</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Enkode teks URL</value></data>
+  <data name="url-decode" xml:space="preserve"><value>Dekode teks URL</value></data>
+  <data name="html-encode" xml:space="preserve"><value>Enkode teks HTML</value></data>
+  <data name="html-decode" xml:space="preserve"><value>Dekode teks HTML</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Enkode teks Base64</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Dekode teks Base64</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Teks escape JSON</value></data>
+</root>

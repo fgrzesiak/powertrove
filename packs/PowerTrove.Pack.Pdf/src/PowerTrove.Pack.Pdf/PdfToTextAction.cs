@@ -33,7 +33,7 @@ public sealed class PdfToTextAction : PerFileAction<PdfToTextOptions>
     }
 
     protected override string DescribeOperation(int inputCount, PdfToTextOptions options) =>
-        string.Format(SR.GetString("PdfToTextAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("PdfToTextAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override Task ProcessAsync(FileWorkItem item, PdfToTextOptions options, FileOutputWriter output, CancellationToken cancellationToken)
     {

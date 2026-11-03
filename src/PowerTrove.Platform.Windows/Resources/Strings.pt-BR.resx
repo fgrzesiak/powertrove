@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>Algumas saídas não puderam ser exibidas no Explorador de Arquivos. Tente novamente.</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excel indisponível.</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>A janela do Excel foi alterada.</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>A janela do Excel está indisponível.</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>O item selecionado não é um intervalo (por exemplo, um gráfico ou forma).</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>Seleções disjuntas não são suportadas.</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>O intervalo selecionado é muito grande.</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>O Excel retornou dimensões de intervalo inconsistentes.</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>O Excel retornou valores de intervalo inválidos.</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>O acesso ao Excel foi negado.</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>Ocorreu um erro ao comunicar com o Excel.</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>A captura do Excel ainda está em andamento.</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>O Excel não retornou dados de intervalo.</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Não foi possível iniciar a captura do Excel.</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Tempo limite da captura do Excel excedido.</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>A captura do Explorer ainda está em andamento.</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>Nenhum arquivo ou pasta está selecionado no momento.</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>Visualização não suportada ou não foi possível acessar a seleção.</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>Não foi possível capturar a seleção do Explorer.</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>Não foi possível iniciar a captura do Explorer.</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>Tempo limite da captura do Explorer excedido.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>O Windows Imaging não pode preservar metadados.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Não foi possível decodificar a imagem.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>A imagem não pôde ser codificada.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Formato de saída não suportado.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>O arquivo de mídia não pôde ser aberto.</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Um codec necessário não está instalado neste sistema.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Esta conversão não é compatível com o arquivo.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>O arquivo de mídia não pôde ser convertido.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Falha na conversão de mídia.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Formato de áudio não suportado.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>O arquivo não possui faixa de vídeo.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Operação de mídia não suportada.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>PDFs protegidos por senha ainda não são suportados.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>Não foi possível abrir o PDF.</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>O OCR local não está disponível. Instale um idioma de OCR em Configurações do Windows &gt; Hora e idioma.</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>O texto não pôde ser reconhecido.</value></data>
+</root>

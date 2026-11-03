@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Browser</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>Copy browser selection</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>Copy selection as Markdown quote</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>Copy page link as Markdown</value></data>
+  <data name="Description" xml:space="preserve"><value>Processes an explicitly sent browser selection and copies the result to the clipboard.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Preview — execute to copy to clipboard:</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Browser selection is unavailable or expired.</value></data>
+  <data name="Done" xml:space="preserve"><value>Copied to clipboard.</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>Copy page URL</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>Copy page link as HTML</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>Quote selection with source</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>Copy article as Markdown</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>Copy webpage as Markdown</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>Copy page links as Markdown</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>Copy page images as Markdown</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>Copy first HTML table as CSV</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>Reads the paired browser tab on confirmation and copies the result without changing files.</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>Page content will be read only when this action runs.</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>Page content unavailable. It may have changed, require permission or exceed the size limit.</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>Save article as Markdown</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>Save webpage as Markdown</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>Save page links as Markdown</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>Save page links as CSV</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>Save first table as CSV</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>Saves the current authorized browser tab data as a collision-free output file.</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>The current tab will be read only after confirmation and saved as a new file on your Desktop.</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>Browser page exported to a new file.</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>Save visible browser view as PNG</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>Save full browser page as PNG</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>Save browser page as MHTML</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>Save browser page as PDF (without print dialog)</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>article</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>links</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>table</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>screenshot</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>full page</value></data>
+</root>

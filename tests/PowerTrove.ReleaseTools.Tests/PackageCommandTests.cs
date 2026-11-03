@@ -25,6 +25,7 @@ public class PackageCommandTests : IDisposable
     private class FakeProcessRunner : IProcessRunner
     {
         public bool ShouldFailPublish { get; set; }
+        public bool OmitBrowserHostExecutable { get; set; }
         /// <summary>Runtime bytes the worker publish produces; the app publishes "shared runtime".</summary>
         public string WorkerRuntime { get; set; } = "shared runtime";
         public bool IsGitDirty { get; set; }
@@ -66,6 +67,12 @@ public class PackageCommandTests : IDisposable
                     File.WriteAllText(Path.Combine(outputDir, "PowerTrove.PackHost.exe"), "dummy worker");
                     File.WriteAllText(Path.Combine(outputDir, "System.Private.CoreLib.dll"), WorkerRuntime);
                 }
+                else if (arguments.Contains("PowerTrove.BrowserHost.csproj", StringComparison.Ordinal))
+                {
+                    if (!OmitBrowserHostExecutable)
+                        File.WriteAllText(Path.Combine(outputDir, "PowerTrove.BrowserHost.exe"), "synthetic native host");
+                    File.WriteAllText(Path.Combine(outputDir, "System.Private.CoreLib.dll"), WorkerRuntime);
+                }
                 else
                 {
                     foreach (string name in new[] { "PowerTrove.exe", "PowerTrove.pri", "App.xbf", "MainWindow.xbf",
@@ -81,6 +88,81 @@ public class PackageCommandTests : IDisposable
 
             return Task.FromResult((0, "", ""));
         }
+    }
+
+    private void CreateDummyBrowserIntegration()
+    {
+        string projectDirectory = Path.Combine(_repoRoot, "src", "PowerTrove.BrowserHost");
+        string extensionDirectory = Path.Combine(_repoRoot, "extensions", "chromium");
+        string scriptsDirectory = Path.Combine(_repoRoot, "scripts", "browser");
+        Directory.CreateDirectory(projectDirectory);
+        Directory.CreateDirectory(extensionDirectory);
+        Directory.CreateDirectory(scriptsDirectory);
+        File.WriteAllText(Path.Combine(projectDirectory, "PowerTrove.BrowserHost.csproj"), "<Project />");
+        File.WriteAllText(Path.Combine(extensionDirectory, "manifest.json"), "{\"manifest_version\":3}");
+        File.WriteAllText(Path.Combine(extensionDirectory, "background.js"), "// synthetic extension");
+        foreach (string locale in new[] { "en", "de" })
+        {
+            string localeDirectory = Path.Combine(extensionDirectory, "_locales", locale);
+            Directory.CreateDirectory(localeDirectory);
+            File.WriteAllText(Path.Combine(localeDirectory, "messages.json"), "{}");
+        }
+        foreach (string script in new[] { "register-native-host.ps1", "unregister-native-host.ps1" })
+            File.WriteAllText(Path.Combine(scriptsDirectory, script), "# synthetic registration script");
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_RequiresNativeHostButDoesNotBundleUnpackedBrowserExtension()
+    {
+        CreateDummyDesktopProject();
+        CreateDummyBrowserIntegration(); // Present in private source, never shipped in the desktop ZIP.
+        var runner = new FakeProcessRunner();
+        await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.2.3", runner);
+
+        Assert.Equal(3, runner.PublishArguments.Count);
+        string browserPublish = Assert.Single(runner.PublishArguments,
+            args => args.Contains("PowerTrove.BrowserHost.csproj", StringComparison.Ordinal));
+        Assert.Contains("-p:Version=1.2.3", browserPublish);
+        using var archive = ZipFile.OpenRead(Path.Combine(_outputDir, "PowerTrove-v1.2.3-win-x64.zip"));
+        Assert.NotNull(archive.GetEntry("PowerTrove.BrowserHost.exe"));
+        Assert.DoesNotContain(archive.Entries, entry => entry.FullName.StartsWith("browser-extension/", StringComparison.Ordinal));
+        Assert.DoesNotContain(archive.Entries, entry => entry.FullName.EndsWith("register-native-host.ps1", StringComparison.Ordinal));
+        Assert.DoesNotContain(archive.Entries, entry => entry.FullName.EndsWith("unregister-native-host.ps1", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_RejectsMissingPublishedBrowserHostBeforeCreatingZip()
+    {
+        CreateDummyDesktopProject();
+        CreateDummyBrowserIntegration();
+        await Assert.ThrowsAsync<InvalidDataException>(() => PackageCommand.ExecuteAsync(
+            _repoRoot, _outputDir, "1.2.3", new FakeProcessRunner { OmitBrowserHostExecutable = true }));
+        Assert.False(File.Exists(Path.Combine(_outputDir, "PowerTrove-v1.2.3-win-x64.zip")));
+    }
+
+    [Theory]
+    [InlineData("extensions/chromium/manifest.json")]
+    [InlineData("scripts/browser/register-native-host.ps1")]
+    [InlineData("scripts/browser/unregister-native-host.ps1")]
+    public async Task ExecuteAsync_DoesNotDependOnDeveloperExtensionAssets(string missing)
+    {
+        CreateDummyDesktopProject();
+        CreateDummyBrowserIntegration();
+        File.Delete(Path.Combine(_repoRoot, missing));
+        await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.2.3", new FakeProcessRunner());
+        using var archive = ZipFile.OpenRead(Path.Combine(_outputDir, "PowerTrove-v1.2.3-win-x64.zip"));
+        Assert.NotNull(archive.GetEntry("PowerTrove.BrowserHost.exe"));
+        Assert.DoesNotContain(archive.Entries, entry => entry.FullName.StartsWith("browser-extension/", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_RejectsMissingBrowserHostProjectBeforeCreatingZip()
+    {
+        CreateDummyDesktopProject();
+        File.Delete(Path.Combine(_repoRoot, "src", "PowerTrove.BrowserHost", "PowerTrove.BrowserHost.csproj"));
+        await Assert.ThrowsAsync<InvalidDataException>(() =>
+            PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.2.3", new FakeProcessRunner()));
+        Assert.False(File.Exists(Path.Combine(_outputDir, "PowerTrove-v1.2.3-win-x64.zip")));
     }
 
     [Fact]
@@ -186,7 +268,7 @@ public class PackageCommandTests : IDisposable
 
         await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.2.3", runner);
 
-        Assert.Equal(2, runner.PublishArguments.Count);
+        Assert.Equal(3, runner.PublishArguments.Count);
         Assert.All(runner.PublishArguments, arguments =>
         {
             Assert.Contains("-p:Version=1.2.3", arguments);
@@ -216,8 +298,10 @@ public class PackageCommandTests : IDisposable
         // Assert components array exists
         var components = manifest.GetProperty("Components");
         Assert.Equal(JsonValueKind.Array, components.ValueKind);
-        // Desktop EXE/DLL, the worker EXE next to them, and one copy of the runtime both share.
-        Assert.Equal(4, components.GetArrayLength());
+        // Desktop EXE/DLL, the worker and browser host EXEs next to them, and one copy of the runtime all share.
+        Assert.Equal(5, components.GetArrayLength());
+        Assert.Contains(components.EnumerateArray(), c => c.GetProperty("RelativePath").GetString() == "PowerTrove.BrowserHost.exe");
+        Assert.DoesNotContain(archive.Entries, e => e.FullName.StartsWith("browser-host/", StringComparison.Ordinal));
         Assert.Single(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "System.Private.CoreLib.dll");
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.dll" && c.GetProperty("Sha256").GetString()?.Length == 64);
         Assert.Contains(components.EnumerateArray(), c => c.GetProperty("FileName").GetString() == "PowerTrove.PackHost.exe");
@@ -295,7 +379,7 @@ public class PackageCommandTests : IDisposable
         CreateDummyDesktopProject();
         var runner = new FakeProcessRunner();
         await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "0.1.0", runner, alphaSequence: 12);
-        Assert.Equal(2, runner.PublishArguments.Count);
+        Assert.Equal(3, runner.PublishArguments.Count);
         Assert.All(runner.PublishArguments, arguments =>
         {
             Assert.Contains("-p:Version=0.1.0 ", arguments);
@@ -329,9 +413,12 @@ public class PackageCommandTests : IDisposable
         var workerDir = Path.Combine(_repoRoot, "src", "PowerTrove.PackHost");
         Directory.CreateDirectory(workerDir);
         File.WriteAllText(Path.Combine(workerDir, "PowerTrove.PackHost.csproj"), "<Project></Project>");
+        var browserHostDir = Path.Combine(_repoRoot, "src", "PowerTrove.BrowserHost");
+        Directory.CreateDirectory(browserHostDir);
+        File.WriteAllText(Path.Combine(browserHostDir, "PowerTrove.BrowserHost.csproj"), "<Project></Project>");
         string packages = Path.Combine(_testBaseDir, "packages");
         Directory.CreateDirectory(packages);
-        foreach (string project in new[] { desktopProjectDir, workerDir })
+        foreach (string project in new[] { desktopProjectDir, workerDir, browserHostDir })
         {
             Directory.CreateDirectory(Path.Combine(project, "obj"));
             File.WriteAllText(Path.Combine(project, "obj", "project.assets.json"), JsonSerializer.Serialize(new
@@ -355,8 +442,10 @@ public class PackageCommandTests : IDisposable
         await PackDistributionCommand.ExecuteAsync(pem, "https://github.com/fgrzesiak/powertrove/releases/download/packs-v1/", config);
         var runner = new FakeProcessRunner();
         await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "1.0.0", runner, packDistributionFile: config);
-        Assert.Equal(2, runner.PublishArguments.Count);
-        Assert.All(runner.PublishArguments, arguments => Assert.Contains("-p:PowerTrovePackDistributionFile=\"" + config + "\"", arguments));
+        Assert.Equal(3, runner.PublishArguments.Count);
+        // The browser host neither loads packs nor needs their distribution settings.
+        Assert.All(runner.PublishArguments.Where(a => !a.Contains("PowerTrove.BrowserHost.csproj")),
+            arguments => Assert.Contains("-p:PowerTrovePackDistributionFile=\"" + config + "\"", arguments));
         using var archive = ZipFile.OpenRead(Path.Combine(_outputDir, "PowerTrove-v1.0.0-win-x64.zip"));
         Assert.DoesNotContain(archive.Entries, e => e.FullName.EndsWith(".pem") || e.FullName.EndsWith("public-config.json"));
     }
@@ -368,7 +457,8 @@ public class PackageCommandTests : IDisposable
         string plan = CreatePackPlan(new string('c', 40));
         var runner = new FakeProcessRunner { FakeRevision = new string('c', 40) };
         await PackageCommand.ExecuteAsync(_repoRoot, _outputDir, "0.2.0", runner, packPlanFile: plan);
-        Assert.All(runner.PublishArguments, arguments => Assert.Contains("-p:PowerTrovePackVersionsFile=\"" + Path.Combine(Path.GetDirectoryName(plan)!, "pack-versions.props") + "\"", arguments));
+        Assert.All(runner.PublishArguments.Where(a => !a.Contains("PowerTrove.BrowserHost.csproj")),
+            arguments => Assert.Contains("-p:PowerTrovePackVersionsFile=\"" + Path.Combine(Path.GetDirectoryName(plan)!, "pack-versions.props") + "\"", arguments));
         string zip = Path.Combine(_outputDir, "PowerTrove-v0.2.0-win-x64.zip");
         await PackPlanBinding.VerifyCandidateAsync(zip, plan);
         await File.AppendAllTextAsync(plan, " ");

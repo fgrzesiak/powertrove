@@ -1,3 +1,4 @@
+using PowerTrove.Abstractions.Localization;
 using System.Globalization;
 using System.Resources;
 
@@ -13,5 +14,8 @@ internal static class SR
     }
 
     public static string Format(string name, params object?[] values) => string.Format(CultureInfo.CurrentCulture, GetString(name), values);
-    public static string Count(string name, int count) => Format(name + (count == 1 ? "_One" : "_Other"), count);
+    public static string Count(string name, int count) => string.Format(CultureInfo.CurrentCulture, Plural(name, count), count);
+    public static string Plural(string stem, int count) =>
+        GetString(PluralForms.ResourceKey(stem, count, CultureInfo.CurrentUICulture,
+            key => GetString(key) != key, "_"));
 }

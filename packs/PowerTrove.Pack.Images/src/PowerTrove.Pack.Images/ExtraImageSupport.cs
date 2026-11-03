@@ -3,7 +3,7 @@ namespace PowerTrove.Pack.Images;
 internal static class ExtraImageSupport
 {
     public static string Text(string key) => ExtendedImageMessages.Get(key);
-    public static string Count(string key, int count) => string.Format(Text(key + (count == 1 ? "_One" : "_Other")), count);
+    public static string Count(string key, int count) => string.Format(SR.Plural("Extra_" + key, count), count);
     public static ActionParameterDefinition Choice(string key, string defaultValue, params string[] values) => ActionParameterDefinition.Choice(key, Text(key), defaultValue,
         values.Select(v => new ActionParameterChoice(v, Text("Choice_" + v))).ToArray());
     public static ActionDescriptor Descriptor(string id, string key, IReadOnlyList<ActionParameterDefinition>? parameters = null, int min = 1, int max = 1000) => new(

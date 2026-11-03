@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
@@ -8,7 +9,7 @@ using PowerTrove.Application.ViewModels;
 
 namespace PowerTrove.Desktop;
 
-/// <summary>A reusable checkbox editor for choices supplied by an action preview.</summary>
+/// <summary>A reusable checkbox editor for choices supplied by an action preview; rows reorder by drag and drop or the arrow buttons.</summary>
 internal sealed class MultiSelectParameterEditor
 {
     private readonly ActionParameterDefinition _parameter;
@@ -16,7 +17,8 @@ internal sealed class MultiSelectParameterEditor
     private readonly MultiSelectParameterState _state;
     private readonly CheckBox _all = new() { Content = UiText.OptionsSelectAll };
     private readonly Button _none = new() { Content = UiText.OptionsSelectNone };
-    private readonly StackPanel _items = new() { Spacing = 4 };
+    private readonly ListView _items = new() { SelectionMode = ListViewSelectionMode.None, CanDragItems = true, CanReorderItems = true, AllowDrop = true, MaxHeight = 240 };
+    private readonly ObservableCollection<FrameworkElement> _rows = [];
     private readonly TextBlock _description = new() { TextWrapping = TextWrapping.Wrap };
     private readonly TextBlock _adjustment = new() { Text = UiText.OptionsSelectionAdjusted, TextWrapping = TextWrapping.Wrap };
     private readonly Dictionary<string, CheckBox> _checks = new(StringComparer.Ordinal);
@@ -35,7 +37,13 @@ internal sealed class MultiSelectParameterEditor
         var commands = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12 };
         commands.Children.Add(_all); commands.Children.Add(_none); Root.Children.Add(commands);
         Root.Children.Add(_description);
-        Root.Children.Add(new ScrollViewer { Content = _items, MaxHeight = 210, HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled });
+        _items.ItemsSource = _rows;
+        _items.DragItemsCompleted += (_, args) =>
+        {
+            if (args.DropResult != Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move) return;
+            _state.Reorder(_rows.Select(row => (string)row.Tag).ToArray()); Rebuild(); Changed();
+        };
+        Root.Children.Add(_items);
         Root.Children.Add(_adjustment);
         Root.Tag = new Tuple<Action<Action>, ActionParameterDefinition>(callback => _changed = callback, parameter);
         AutomationProperties.SetName(Root, parameter.Title);
@@ -61,10 +69,11 @@ internal sealed class MultiSelectParameterEditor
 
     private void Rebuild()
     {
-        _updating = true; _checks.Clear(); _moves.Clear(); _items.Children.Clear();
+        _updating = true; _checks.Clear(); _moves.Clear(); _rows.Clear();
         foreach (var choice in _state.Choices)
         {
-            var row = new Grid { ColumnSpacing = 4 };
+            var row = new Grid { ColumnSpacing = 4, Tag = choice.Value };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -72,16 +81,18 @@ internal sealed class MultiSelectParameterEditor
             AutomationProperties.SetName(check, choice.Title);
             check.Checked += (_, _) => { if (!_updating) { _state.SetSelected(choice.Value, true); Changed(); } };
             check.Unchecked += (_, _) => { if (!_updating) { _state.SetSelected(choice.Value, false); Changed(); } };
-            _checks.Add(choice.Value, check); row.Children.Add(check);
+            var grip = new FontIcon { Glyph = "", FontSize = 12, Opacity = 0.6, VerticalAlignment = VerticalAlignment.Center };
+            ToolTipService.SetToolTip(grip, UiText.OptionsDragToReorder); row.Children.Add(grip);
+            Grid.SetColumn(check, 1); _checks.Add(choice.Value, check); row.Children.Add(check);
             foreach (int direction in new[] { -1, 1 })
             {
                 string label = direction < 0 ? UiText.OptionsMoveUp : UiText.OptionsMoveDown;
                 var button = new Button { Content = new FontIcon { Glyph = direction < 0 ? "\uE70E" : "\uE70D", FontSize = 12 }, Padding = new Thickness(6), VerticalAlignment = VerticalAlignment.Center };
                 AutomationProperties.SetName(button, label); ToolTipService.SetToolTip(button, label);
                 button.Click += (_, _) => { _state.Move(choice.Value, direction); Rebuild(); Changed(); };
-                Grid.SetColumn(button, direction < 0 ? 1 : 2); row.Children.Add(button); _moves.Add((button, choice.Value, direction));
+                Grid.SetColumn(button, direction < 0 ? 2 : 3); row.Children.Add(button); _moves.Add((button, choice.Value, direction));
             }
-            _items.Children.Add(row);
+            _rows.Add(row);
         }
         _updating = false; Synchronize();
     }

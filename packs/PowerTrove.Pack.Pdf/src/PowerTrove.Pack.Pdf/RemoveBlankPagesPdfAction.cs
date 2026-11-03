@@ -41,7 +41,7 @@ public sealed class RemoveBlankPagesPdfAction : PerFileAction<RemoveBlankPagesOp
         new(values.GetChoice("Sensitivity"));
 
     protected override string DescribeOperation(int inputCount, RemoveBlankPagesOptions options) =>
-        string.Format(SR.GetString("RemoveBlankPagesPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("RemoveBlankPagesPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, RemoveBlankPagesOptions options)
     {

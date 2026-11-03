@@ -1,0 +1,6 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Görüntü kodlanamadı.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Görüntü kodlanamadı.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Desteklenmeyen çıktı formatı.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows Görüntüleme meta verilerini koruyamaz.</value></data>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="OfficeMissingApplication" xml:space="preserve"><value>必要な Microsoft Office アプリケーションがインストールされていません。</value></data>
+  <data name="OfficePasswordProtected" xml:space="preserve"><value>ドキュメントはパスワードで保護されています。</value></data>
+  <data name="OfficeUnsafeMacros" xml:space="preserve"><value>このドキュメントには、安全に変換のために開くことができないマクロまたは数式が含まれています。</value></data>
+  <data name="OfficeInvalidDocument" xml:space="preserve"><value>ドキュメント形式が無効、サポートされていない、または変換制限を超えています。</value></data>
+  <data name="OfficeBusy" xml:space="preserve"><value>別の Office インスタンスを取得できませんでした。Office アプリケーションを閉じて、もう一度お試しください。</value></data>
+  <data name="OfficeTimedOut" xml:space="preserve"><value>Officeの変換がタイムアウトしました。出力は保存されませんでした。</value></data>
+  <data name="OfficeConversionFailed" xml:space="preserve"><value>Officeはこの文書を変換できませんでした。出力は保存されませんでした。</value></data>
+  <data name="OfficePreferenceRestoreFailed" xml:space="preserve"><value>一時的なWordの設定を復元できませんでした。WordのPDF変換警告設定を確認してください。</value></data>
+  <data name="FileAccessDenied" xml:space="preserve"><value>アクセスが拒否されました。</value></data>
+  <data name="FileReadFailed" xml:space="preserve"><value>ファイルを読み取れませんでした。</value></data>
+  <data name="FileFormatNotRecognized" xml:space="preserve"><value>コンテンツが認識される{0}形式ではありません。</value></data>
+  <data name="FileFormatMismatch" xml:space="preserve"><value>コンテンツがサポートされている{0}形式と一致しません。</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>画像をデコードできませんでした。</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>画像をエンコードできませんでした。</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>サポートされていない画像形式です。</value></data>
+</root>

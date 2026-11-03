@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>Niektórych danych wyjściowych nie można wyświetlić w Eksploratorze. Spróbuj ponownie.</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excel niedostępny.</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>Okno programu Excel zostało zmienione.</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>Okno programu Excel jest niedostępne.</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>Wybrany element nie jest zakresem (np. wykresem lub kształtem).</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>Rozłączne zaznaczenia nie są obsługiwane.</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>Wybrany zakres jest zbyt duży.</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>Excel zwrócił niespójne wymiary zakresu.</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>Excel zwrócił nieprawidłowe wartości zakresu.</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>Dostęp do programu Excel został zablokowany.</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>Wystąpił błąd podczas komunikacji z programem Excel.</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>Przechwytywanie w programie Excel jest nadal zajęte.</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>Program Excel nie zwrócił danych zakresu.</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Nie można uruchomić przechwytywania w programie Excel.</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Przekroczono limit czasu przechwytywania w programie Excel.</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>Przechwytywanie Eksploratora jest nadal zajęte.</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>Aktualnie nie wybrano żadnych plików ani folderów.</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>Nieobsługiwany widok lub brak dostępu do wyboru.</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>Nie można przechwycić zaznaczenia Eksploratora.</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>Nie można rozpocząć przechwytywania Eksploratora.</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>Przekroczono limit czasu przechwytywania Eksploratora.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Obrazowanie systemu Windows nie może zachować metadanych.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Nie można zdekodować obrazu.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Nie można zakodować obrazu.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Nieobsługiwany format wyjściowy.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>Nie można otworzyć pliku multimedialnego.</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Wymagany kodek nie jest zainstalowany w tym systemie.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Ta konwersja nie jest obsługiwana dla tego pliku.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>Nie można przekonwertować pliku multimedialnego.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Konwersja multimediów nie powiodła się.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Nieobsługiwany format audio.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>Plik nie zawiera ścieżki wideo.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Nieobsługiwana operacja na multimediach.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>Pliki PDF chronione hasłem nie są jeszcze obsługiwane.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>Plik PDF nie został otwarty.</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>Lokalne OCR jest niedostępne. Zainstaluj język OCR w Ustawieniach systemu Windows &gt; Czas i język.</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>Nie można rozpoznać tekstu.</value></data>
+</root>

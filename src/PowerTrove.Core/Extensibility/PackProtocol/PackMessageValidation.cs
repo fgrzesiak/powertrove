@@ -1,4 +1,5 @@
 using System.Text;
+using PowerTrove.Abstractions;
 using System.Diagnostics.CodeAnalysis;
 
 namespace PowerTrove.Core.Extensibility.PackProtocol;
@@ -27,9 +28,11 @@ internal sealed class PackMessageValidation
                 }
                 break;
             case PreviewMessage m:
-                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.Parameters, m.ExpiresAt); break;
+                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.TextInput, m.BrowserContext,
+                    m.Parameters, m.ExpiresAt, preview: true); break;
             case ExecuteMessage m:
-                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.Parameters, m.ExpiresAt); AbsolutePath(m.StagingDirectory); break;
+                Request(m.RequestId, m.ActionId, m.Selection, m.Table, m.TextInput, m.BrowserContext,
+                    m.Parameters, m.ExpiresAt, preview: false); AbsolutePath(m.StagingDirectory); break;
             case PreviewResultMessage m:
                 Id(m.RequestId); Text(m.PreviewText, optional: true);
                 Texts(m.ExpectedOutputs); Texts(m.Warnings);
@@ -37,6 +40,11 @@ internal sealed class PackMessageValidation
                 {
                     Text(image.PngBase64, ImagePreviewData.MaximumEncodedLength);
                     Require(image.TryDecodePng(out _));
+                }
+                if (m.DocumentPreview is { } document)
+                {
+                    Require(document.IsValid);
+                    Text(document.Html, DocumentPreviewData.MaximumHtmlLength); Text(document.Title, DocumentPreviewData.MaximumTitleLength, optional: true);
                 }
                 if (m.RenameRows is not null)
                 {
@@ -80,6 +88,27 @@ internal sealed class PackMessageValidation
                 Require(m.Code is "unknownAction" or "invalidRequest" or "internal"); Text(m.Message); break;
             case HeartbeatMessage m:
                 Id(m.RequestId); break;
+            case BrowserServiceRequestMessage m:
+                Id(m.RequestId); Id(m.OperationId);
+                Require(Enum.IsDefined(m.Operation));
+                break;
+            case BrowserServiceResultMessage m:
+                Id(m.RequestId); Id(m.OperationId);
+                if (m.Content is not null) BrowserResponse(m.Content);
+                break;
+            case BrowserServiceBinaryChunkMessage m:
+                Id(m.RequestId); Id(m.OperationId);
+                Require(m.Sequence is >= 0 and <= 1024);
+                Require(m.Kind is "image" or "mhtml" or "pdf");
+                Text(m.Base64, 180000);
+                try
+                {
+                    byte[] bytes = Convert.FromBase64String(m.Base64);
+                    Require(bytes.Length is > 0 and <= 128 * 1024 &&
+                        Convert.ToBase64String(bytes) == m.Base64);
+                }
+                catch (FormatException) { throw Invalid(); }
+                break;
             case ShutdownMessage:
                 break;
             default:
@@ -87,28 +116,51 @@ internal sealed class PackMessageValidation
         }
     }
 
-    private void Request(Guid id, string actionId, FileSelectionPayload selection, TableSelectionPayload? table,
-        IReadOnlyDictionary<string, string> parameters, DateTimeOffset expiresAt)
+    private void Request(Guid id, string actionId, FileSelectionPayload selection, TableSelectionPayload? table, string? textInput,
+        BrowserTextContextPayload? browserContext,
+        IReadOnlyDictionary<string, string> parameters, DateTimeOffset expiresAt, bool preview)
     {
         Id(id); Text(actionId, 256); Require(expiresAt != default);
-        if (table is null) Selection(selection);
+        // Exactly one input kind: a table or text request never also authorizes file access.
+        Require(table is null || textInput is null);
+        Require(browserContext is null || (textInput is not null && table is null));
+        if (browserContext is not null)
+        {
+            if (browserContext.Tab is { } tab)
+            {
+                Id(tab.SessionId);
+                Require(tab.WindowId > 0 && tab.TabId >= 0);
+                Text(tab.DocumentId, 128);
+            }
+            Text(browserContext.Url, 2048);
+            Text(browserContext.Title, 300, allowEmpty: true);
+            Require(Uri.TryCreate(browserContext.Url, UriKind.Absolute, out var parsed) &&
+                parsed.Scheme is ("https" or "http") && parsed.UserInfo.Length == 0);
+        }
+        if (table is null && textInput is null) Selection(selection);
+        else if (table is not null)
+        {
+            Require(selection?.Files is { Count: 0 }); Table(table);
+        }
         else
         {
-            // A table request never also authorizes file access.
-            Require(selection?.Files is { Count: 0 }); Table(table);
+            Require(selection?.Files is { Count: 0 } && textInput!.Length > 0); TextPayload(textInput);
         }
         Count(parameters, PackProtocolLimits.MaximumParameters);
         foreach (var parameter in parameters)
         {
-            Text(parameter.Key, 256); Text(parameter.Value, allowEmpty: true);
+            // Only a preview may carry an editor's unsaved text; it never authorizes writing it anywhere.
+            bool draft = parameter.Key == DocumentPreviewRequest.DraftParameterName;
+            Require(!draft || preview);
+            Text(parameter.Key, 256); Text(parameter.Value, draft ? DocumentPreviewRequest.MaximumDraftLength : PackProtocolLimits.MaximumTextLength, allowEmpty: true);
         }
     }
 
-    private void Selection(FileSelectionPayload selection)
+    private void Selection(FileSelectionPayload selection, bool allowEmpty = false)
     {
         Require(selection is not null);
         Count(selection.Files, PackProtocolLimits.MaximumFiles);
-        Require(selection.Files.Count > 0);
+        Require(allowEmpty || selection.Files.Count > 0);
         foreach (var file in selection.Files)
         {
             Require(file is not null); AbsolutePath(file.Path); Leaf(file.Name);
@@ -156,7 +208,7 @@ internal sealed class PackMessageValidation
         Require(receipt is not null);
         Require(!(receipt.IsSuccess && receipt.IsCanceled));
         Text(receipt.Message, optional: true);
-        Text(receipt.ClipboardText, optional: true, allowEmpty: true);
+        if (receipt.ClipboardText is not null) TextPayload(receipt.ClipboardText, allowEmpty: true);
         if (receipt.UndoOperationId.HasValue) Id(receipt.UndoOperationId.Value);
         Require(!receipt.UndoUntil.HasValue || receipt.UndoUntil.Value != default);
         Count(receipt.Failures, PackProtocolLimits.MaximumFiles);
@@ -177,6 +229,55 @@ internal sealed class PackMessageValidation
             AbsolutePath(output.IntendedDirectory); Leaf(output.IntendedName);
             Require(destinations.Add(output.IntendedDirectory.Replace('\\', '/').TrimEnd('/') + "/" + output.IntendedName));
         }
+    }
+
+    private void BrowserResponse(BrowserPageContent value)
+    {
+        Require(Enum.IsDefined(value.Operation));
+        if (value.Markdown is { } markdown) Text(markdown, 250000);
+        if (value.Tables is { } tables)
+        {
+            Count(tables, 30);
+            long cells = 0;
+            foreach (var table in tables)
+            {
+                Require(table is not null);
+                Count(table.Rows, 5000);
+                foreach (var row in table.Rows)
+                {
+                    Count(row, 200);
+                    cells += row.Count;
+                    Require(cells <= 100000);
+                    foreach (var cell in row) Text(cell, 4096, allowEmpty: true);
+                }
+            }
+        }
+        if (value.Links is { } links)
+        {
+            Count(links, 200);
+            foreach (var link in links)
+            {
+                Text(link.Title, 150, allowEmpty: true);
+                Text(link.Url, 2048);
+            }
+        }
+        if (value.Images is { } images)
+        {
+            Count(images, 100);
+            foreach (var image in images)
+            {
+                Text(image.Url, 2048); Text(image.Alt, 120, allowEmpty: true);
+                Require(image.Width > 0 && image.Height > 0);
+            }
+        }
+    }
+
+    private void TextPayload(string text, bool allowEmpty = false)
+    {
+        Require(text.Length <= PackProtocolLimits.MaximumTextInputLength && (allowEmpty || text.Length > 0) && !text.Contains('\0'));
+        try { _textBytes += StrictUtf8.GetByteCount(text); }
+        catch (EncoderFallbackException) { throw Invalid(); }
+        if (_textBytes > PackProtocolLimits.MaximumLineBytes) throw new PackProtocolException(PackProtocolError.LineTooLarge);
     }
 
     private void Texts(IReadOnlyList<string> values)

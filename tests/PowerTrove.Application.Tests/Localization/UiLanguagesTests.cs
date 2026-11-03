@@ -13,7 +13,13 @@ public class UiLanguagesTests
     [InlineData(null, "de-DE", "de")]
     [InlineData("system", "de-AT", "de")]
     [InlineData(null, "en-GB", "en")]
-    [InlineData(null, "fr-FR", "en")]
+    [InlineData(null, "fr-FR", "fr")]
+    [InlineData(null, "es-MX", "es")]
+    [InlineData(null, "pt-BR", "pt-BR")]
+    [InlineData(null, "pt-PT", "pt-BR")]
+    [InlineData(null, "ja-JP", "ja")]
+    [InlineData("PL", "en-US", "pl")]
+    [InlineData("PT-br", "en-US", "pt-BR")]
     [InlineData(null, "", "en")]
     [InlineData("en", "de-DE", "en")]
     [InlineData("de", "en-US", "de")]
@@ -31,7 +37,15 @@ public class UiLanguagesTests
     [InlineData("system", null)]
     [InlineData(" de ", "de")]
     [InlineData("EN", "en")]
-    [InlineData("fr", null)]
+    [InlineData("fr", "fr")]
+    [InlineData("pt-BR", "pt-BR")]
+    [InlineData("PT-br", "pt-BR")]
+    [InlineData("ja", "ja")]
+    [InlineData("pl", "pl")]
+    [InlineData("it", "it")]
+    [InlineData("tr", "tr")]
+    [InlineData("id", "id")]
+    [InlineData("es", "es")]
     public void Normalize_KeepsOnlySupportedLanguages(string? input, string? expected)
     {
         Assert.Equal(expected, UiLanguages.Normalize(input));
@@ -97,5 +111,23 @@ public class UiLanguagesTests
             foreach (var file in Directory.GetFiles(Path.GetDirectoryName(path)!, Path.GetFileName(path) + "*"))
                 File.Delete(file);
         }
+    }
+
+    [Theory]
+    [InlineData("es", "Español")]
+    [InlineData("fr", "Français")]
+    [InlineData("pl", "Polski")]
+    [InlineData("it", "Italiano")]
+    [InlineData("pt-BR", "Português (Brasil)")]
+    [InlineData("tr", "Türkçe")]
+    [InlineData("ja", "日本語")]
+    public void LanguagePickerNamesStartWithACapital(string code, string expected) =>
+        Assert.Equal(expected, UiLanguages.DisplayName(code));
+
+    [Fact]
+    public void EveryShippedLanguageHasAPickerName()
+    {
+        foreach (string code in UiLanguages.Supported)
+            Assert.False(string.IsNullOrWhiteSpace(UiLanguages.DisplayName(code)), code);
     }
 }

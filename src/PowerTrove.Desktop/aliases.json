@@ -3,77 +3,154 @@
     "bild",
     "konvertieren",
     "umwandeln",
-    "picture"
+    "picture",
+    "jpg zu webp",
+    "png zu webp",
+    "bilder in webp umwandeln",
+    "webp bilder",
+    "webp converter",
+    "convert image to webp"
   ],
   "powertrove.image.convert-avif": [
-    "avif"
+    "avif",
+    "avif converter",
+    "bild zu avif",
+    "jpg zu avif",
+    "png zu avif"
   ],
   "powertrove.image.resize": [
     "verkleinern",
     "komprimieren",
     "shrink",
-    "skalieren"
+    "skalieren",
+    "bildgröße ändern",
+    "bild groesse",
+    "bild skalieren",
+    "bilder verkleinern",
+    "image resize",
+    "change image dimensions",
+    "foto größe ändern"
   ],
   "powertrove.general.settings": [
     "einstellungen",
     "optionen",
     "options",
-    "setup"
+    "setup",
+    "settings",
+    "preferences",
+    "configure powertrove"
   ],
   "powertrove.image.convert-jpeg": [
     "jpg",
     "heic",
     "iphone",
-    "foto"
+    "foto",
+    "jpeg converter",
+    "bild zu jpg",
+    "png zu jpg",
+    "convert jpeg",
+    "convert image to jpg"
   ],
   "powertrove.image.compress": [
     "verkleinern",
     "optimieren",
-    "kleiner"
+    "kleiner",
+    "bild komprimieren",
+    "bilder komprimieren",
+    "dateigröße reduzieren",
+    "compress image",
+    "smaller photo",
+    "bild optimieren"
   ],
   "powertrove.pdf.merge": [
     "zusammenfügen",
     "zusammenführen",
-    "kombinieren"
+    "kombinieren",
+    "pdf verbinden",
+    "pdfs zusammenfügen",
+    "pdf dateien zusammenführen",
+    "pdf merge",
+    "combine pdf files",
+    "pdf zusammenführen"
   ],
   "powertrove.pdf.split": [
     "aufteilen",
     "trennen",
-    "seiten"
+    "seiten",
+    "pdf teilen",
+    "pdf seiten trennen",
+    "split pdf",
+    "pdf aufsplitten",
+    "split pdf pages"
   ],
   "powertrove.pdf.extract-pages": [
     "seiten extrahieren",
-    "auswählen"
+    "auswählen",
+    "pdf seiten extrahieren",
+    "pdf seiten speichern",
+    "extract pdf pages",
+    "seiten aus pdf"
   ],
   "powertrove.pdf.remove-pages": [
     "seiten löschen",
-    "entfernen"
+    "entfernen",
+    "pdf seiten entfernen",
+    "pdf seiten löschen",
+    "delete pdf pages"
   ],
   "powertrove.pdf.rotate": [
     "drehen",
-    "rotieren"
+    "rotieren",
+    "pdf seiten drehen",
+    "rotate pdf",
+    "pdf drehen"
   ],
   "powertrove.pdf.images-to-pdf": [
     "bilder zu pdf",
     "scan",
-    "fotos"
+    "fotos",
+    "bilder als pdf",
+    "jpg zu pdf",
+    "png zu pdf",
+    "images to pdf",
+    "photos to pdf",
+    "bilder zu pdf konvertieren"
   ],
   "powertrove.pdf.to-images": [
     "pdf zu bild",
     "png",
-    "jpg"
+    "jpg",
+    "pdf in bilder",
+    "pdf zu jpg",
+    "pdf zu png",
+    "pdf in png",
+    "export pdf pages as images"
   ],
   "powertrove.files.zip": [
     "zippen",
     "packen",
-    "archiv"
+    "archiv",
+    "zip erstellen",
+    "dateien zippen",
+    "create zip",
+    "compress files",
+    "archive files"
   ],
   "powertrove.files.unzip": [
     "entpacken",
-    "auspacken"
+    "auspacken",
+    "zip entpacken",
+    "zip datei öffnen",
+    "extract zip",
+    "unpack archive",
+    "unzip file"
   ],
   "powertrove.files.checksum": [
     "prüfsumme",
-    "hashwert"
+    "hashwert",
+    "sha256",
+    "hash berechnen",
+    "checksum",
+    "file hash"
   ]
 }

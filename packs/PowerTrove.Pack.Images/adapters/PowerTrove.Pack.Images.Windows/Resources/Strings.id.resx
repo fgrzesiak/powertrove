@@ -1,0 +1,6 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Gambar tidak dapat didekode.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Gambar tidak dapat dienkode.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Format keluaran tidak didukung.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows Imaging tidak dapat menyimpan metadata.</value></data>
+</root>

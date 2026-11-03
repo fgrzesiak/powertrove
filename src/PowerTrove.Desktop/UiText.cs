@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Resources;
+using PowerTrove.Abstractions.Localization;
 
 namespace PowerTrove.Desktop;
 
@@ -10,6 +11,28 @@ namespace PowerTrove.Desktop;
 /// </summary>
 public static class UiText
 {
+    public static string BrowserSettingsInstallerRequired => Get(nameof(BrowserSettingsInstallerRequired));
+    public static string BrowserSettingsLiveSessions => Get(nameof(BrowserSettingsLiveSessions));
+    public static string BrowserSettingsInstallChrome => Get(nameof(BrowserSettingsInstallChrome));
+    public static string BrowserSettingsInstallEdge => Get(nameof(BrowserSettingsInstallEdge));
+    public static string BrowserSettingsInstallFailed => Get(nameof(BrowserSettingsInstallFailed));
+    public static string BrowserPreviewLabel => Get(nameof(BrowserPreviewLabel));
+    public static string BrowserPaletteHintTitle => Get(nameof(BrowserPaletteHintTitle));
+    public static string BrowserPaletteHintDescription => Get(nameof(BrowserPaletteHintDescription));
+    public static string BrowserPaletteSearchTerms => Get(nameof(BrowserPaletteSearchTerms));
+    public static string BrowserSettingsHeading => Get(nameof(BrowserSettingsHeading));
+    public static string BrowserSettingsDescription => Get(nameof(BrowserSettingsDescription));
+    public static string BrowserSettingsConnected => Get(nameof(BrowserSettingsConnected));
+    public static string BrowserSettingsDisconnected => Get(nameof(BrowserSettingsDisconnected));
+    public static string BrowserSettingsDisconnect => Get(nameof(BrowserSettingsDisconnect));
+    public static string BrowserSettingsDisconnectConfirm => Get(nameof(BrowserSettingsDisconnectConfirm));
+    public static string BrowserSettingsDisconnectFailed => Get(nameof(BrowserSettingsDisconnectFailed));
+    public static string BrowserSettingsStatusFailed => Get(nameof(BrowserSettingsStatusFailed));
+    public static string BrowserConnectTitle => Get(nameof(BrowserConnectTitle));
+    public static string BrowserConnectConsent => Get(nameof(BrowserConnectConsent));
+    public static string BrowserConnectConfirm => Get(nameof(BrowserConnectConfirm));
+    public static string BrowserConnectSuccess => Get(nameof(BrowserConnectSuccess));
+    public static string BrowserConnectFailed => Get(nameof(BrowserConnectFailed));
     public static string StoreExplorerDescription => Get(nameof(StoreExplorerDescription));
     public static string StoreUpdatesDescription => Get(nameof(StoreUpdatesDescription));
     public static string StoreUpdatesOpen => Get(nameof(StoreUpdatesOpen));
@@ -18,6 +41,13 @@ public static class UiText
     public static string PackUpdatesReview => Get(nameof(PackUpdatesReview));
     public static string PackUpdatesAutomatic => Get(nameof(PackUpdatesAutomatic));
     public static string ImageEditor(string key) => Get("ImageEditor_" + key);
+    public static string DocumentEditor(string key) => Get("DocumentEditor_" + key);
+    public static string UseClipboardText => Get(nameof(UseClipboardText));
+    public static string UseClipboardTooltip => Get(nameof(UseClipboardTooltip));
+    public static string TextInputInstructions => Get(nameof(TextInputInstructions));
+    public static string TextInputUse => Get(nameof(TextInputUse));
+    public static string ClipboardTooLarge => Get(nameof(ClipboardTooLarge));
+    public static string TextInputFailed => Get(nameof(TextInputFailed));
     public static string RecipePackTitle => Get(nameof(RecipePackTitle));
     public static string HotkeyUseSuggestion(string shortcut) => Format(Get("HotkeyUseSuggestion"), shortcut);
     public static string HotkeyKeepShortcut => Get(nameof(HotkeyKeepShortcut));
@@ -93,7 +123,7 @@ public static class UiText
     public static string PacksBundled => Get(nameof(PacksBundled));
     public static string PackDownloadConsent(string name, string size, string publisher) => Format(Get("PackDownloadConsent"), name, size, publisher);
     public static string PackUpdateAllConsent(int count, string nameOrCount, string size, string publishers) =>
-        Format(Get(count == 1 ? "PackUpdateAllConsentOne" : "PackUpdateAllConsentOther"), nameOrCount, size, publishers);
+        Format(PluralString("PackUpdateAllConsent", count), nameOrCount, size, publishers);
     public static string PacksUpdateAllTitle => Get(nameof(PacksUpdateAllTitle));
     public static string PackRemoveConsent(string name) => Format(Get("PackRemoveConsent"), name);
     public static string PackRemoveConsentNoBundled(string name) => Format(Get("PackRemoveConsentNoBundled"), name);
@@ -152,6 +182,7 @@ public static class UiText
     public static string ExplorerUnavailable => Get(nameof(ExplorerUnavailable));
     public static string ResultShowInExplorer => Get(nameof(ResultShowInExplorer));
     public static string ResultOpen => Get(nameof(ResultOpen));
+    public static string ResultContinueWithFiles => Get(nameof(ResultContinueWithFiles));
     public static string ResultDone => Get(nameof(ResultDone));
     public static string FirstRunTitle => Get(nameof(FirstRunTitle));
     public static string FirstRunShortcut => Get(nameof(FirstRunShortcut));
@@ -226,6 +257,7 @@ public static class UiText
     public static string OptionsSelectionAdjusted => Get(nameof(OptionsSelectionAdjusted));
     public static string OptionsSelectionTooLarge => Get(nameof(OptionsSelectionTooLarge));
     public static string OptionsMoveUp => Get(nameof(OptionsMoveUp));
+    public static string OptionsDragToReorder => Get(nameof(OptionsDragToReorder));
     public static string OptionsMoveDown => Get(nameof(OptionsMoveDown));
     public static string OptionsRemember => Get(nameof(OptionsRemember));
     public static string OptionsRun => Get(nameof(OptionsRun));
@@ -272,6 +304,18 @@ public static class UiText
     public static string OrganizerProtected => Get(nameof(OrganizerProtected));
     public static string OrganizerOpenFailed => Get(nameof(OrganizerOpenFailed));
     public static string OrganizerTooLarge => Get(nameof(OrganizerTooLarge));
+
+    public static string PluralString(string key, int count)
+    {
+        string category = PluralForms.Category(count, CultureInfo.CurrentUICulture);
+        return Resources.GetString(key + category, CultureInfo.CurrentUICulture)
+            ?? Resources.GetString(key, CultureInfo.CurrentUICulture)
+            ?? Resources.GetString(key + "Other", CultureInfo.CurrentUICulture)
+            ?? key;
+    }
+
+    /// <summary>Localized, native OCR reader text; keys are OcrReader + the supplied semantic name.</summary>
+    public static string OcrReader(string key) => Get("OcrReader" + key);
 
     public static string Format(string format, params object[] arguments) =>
         string.Format(CultureInfo.CurrentCulture, format, arguments);

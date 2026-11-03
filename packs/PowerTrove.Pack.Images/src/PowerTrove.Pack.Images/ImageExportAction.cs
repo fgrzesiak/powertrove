@@ -174,7 +174,7 @@ public sealed class ImageExportAction : PerFileAction<ImageExportOptions>
         var parts = new List<string>();
         string verb = _profile.Target == ImageTarget.SameAsSource ? SR.GetString("ImageExportAction_Op_WillProcess") : SR.GetString("ImageExportAction_Op_WillConvert");
         string target = _profile.Target == ImageTarget.SameAsSource ? string.Empty : string.Format(SR.GetString("ImageExportAction_Op_To"), TargetName(_profile.Target));
-        parts.Add($"{verb} {Plural(inputCount, SR.GetString("Image_File"), SR.GetString("Image_Files"))}{target}");
+        parts.Add($"{verb} {SR.Noun(inputCount, "Image_File", "Image_Files")}{target}");
         if (options.MaxWidth is int w && options.MaxHeight is int h) parts.Add(string.Format(SR.GetString("ImageExportAction_Op_FitWithin"), w, h) + (options.AllowUpscale ? string.Empty : SR.GetString("ImageExportAction_Op_NoEnlargement")));
         if (options.Quality > 0 && IsLossyTarget()) parts.Add(string.Format(SR.GetString("ImageExportAction_Op_Quality"), options.Quality));
         parts.Add(options.StripMetadata ? SR.GetString("ImageExportAction_Op_RemoveMeta") : SR.GetString("ImageExportAction_Op_KeepMeta"));

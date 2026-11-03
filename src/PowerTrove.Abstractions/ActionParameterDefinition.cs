@@ -19,7 +19,13 @@ public enum ActionParameterKind
 public sealed record ActionParameterChoice(string Value, string Title);
 
 /// <summary>Host editor hint; the stored/wire value retains its existing parameter type.</summary>
-public enum ActionParameterEditor { Default, MultiSelect }
+public enum ActionParameterEditor
+{
+    Default,
+    MultiSelect,
+    /// <summary>A <see cref="MultiSelect"/> list of the selected files; describes this run only and is never remembered.</summary>
+    FileOrder
+}
 
 /// <summary>
 /// Declarative description of one user-adjustable action option. The host renders
@@ -63,6 +69,13 @@ public sealed record ActionParameterDefinition(
     /// <summary>Choices arrive with the preview. Empty text means all; an array means an explicit selection.</summary>
     public static ActionParameterDefinition MultiSelect(string name, string title, string? description = null) =>
         Text(name, title, string.Empty, description) with { Editor = ActionParameterEditor.MultiSelect };
+
+    /// <summary>
+    /// Which selected files to use, in which order. Choices come from <see cref="Files.FileOrderParameter.Choices"/>
+    /// with the preview; empty text means all files in the default order.
+    /// </summary>
+    public static ActionParameterDefinition FileOrder(string name, string title, string? description = null) =>
+        Text(name, title, string.Empty, description) with { Editor = ActionParameterEditor.FileOrder };
 
     public static ActionParameterDefinition Password(string name, string title, string? description = null) =>
         new(name, ActionParameterKind.Password, title, description);

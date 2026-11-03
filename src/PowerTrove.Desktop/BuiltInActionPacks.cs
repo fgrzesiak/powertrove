@@ -17,11 +17,14 @@ public static partial class BuiltInActionPacks
 {
     public static IReadOnlyList<IActionPack> Create(
         IWorkflowRunner workflowRunner,
-        IFileRenameService? renamer = null)
+        IFileRenameService? renamer = null,
+        PowerTrove.Abstractions.IBrowserPageService? browserPages = null)
     {
         var services = FileActionServices.CreatePhysical(new FileSignatureVerifier());
         var host = new PackHostServices(typeof(BuiltInActionPacks).Assembly.GetName().Version ?? new Version(0, 1, 0), services);
         if (renamer is not null) host.Add<IFileRenameService>(renamer);
+        // Compiled-in Browser pack actions read the page through the app, as the worker's proxy does.
+        if (browserPages is not null) host.Add<PowerTrove.Abstractions.IBrowserPageService>(browserPages);
         var factories = new List<IPackFactory> { new RecipePackFactory(workflowRunner) };
         AddBasePackFactories(factories, host);
         AddOptionalPackFactories(factories, host);

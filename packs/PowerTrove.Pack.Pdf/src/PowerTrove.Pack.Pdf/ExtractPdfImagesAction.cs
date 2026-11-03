@@ -24,7 +24,7 @@ internal sealed class ImageExtractionReport
     }
 
     private static string Count(string key, int count) => string.Format(CultureInfo.CurrentCulture,
-        SR.GetString("ExtractPdfImages_" + key + (count == 1 ? "_One" : "_Other")), count);
+        SR.Plural("ExtractPdfImages_" + key, count), count);
 }
 
 /// <summary>Extracts embedded image XObjects into one transactional folder per input PDF.</summary>
@@ -47,7 +47,7 @@ public sealed class ExtractPdfImagesAction : PerFileAction<ExtractPdfImagesOptio
     protected override ExtractPdfImagesOptions ReadOptions(ActionParameterValues values) => new(values.GetInt32("MinSize"));
 
     protected override string DescribeOperation(int inputCount, ExtractPdfImagesOptions options) => string.Format(
-        CultureInfo.CurrentCulture, SR.GetString(inputCount == 1 ? "ExtractPdfImages_Preview_One" : "ExtractPdfImages_Preview_Other"),
+        CultureInfo.CurrentCulture, SR.Plural("ExtractPdfImages_Preview", inputCount),
         inputCount, options.MinSize);
 
     protected override IEnumerable<string> GetWarnings(IReadOnlyList<SelectedFile> inputs, ExtractPdfImagesOptions options)

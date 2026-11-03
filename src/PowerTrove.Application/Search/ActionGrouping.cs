@@ -25,7 +25,9 @@ internal static class ActionGrouping
             foreach (var group in available.Where(r => !ids.Contains(r.Action.Descriptor.Id)).GroupBy(r => Key(r.Action.Descriptor.Id)))
                 groups.Add(new ActionGroup(Title(group.Key), group.ToArray()));
         }
-        if (includeUnavailable)
+        // A typed query is a discovery request: show matching actions even when the
+        // current selection cannot execute them. The browse view remains opt-in.
+        if (includeUnavailable || searching)
         {
             var unavailable = results.Where(r => !r.IsCompatible).ToArray();
             if (unavailable.Length > 0) groups.Add(new ActionGroup(Strings.GetString("Group_Unavailable"), unavailable));
@@ -59,6 +61,7 @@ internal static class ActionGrouping
             "audio" or "video" => "Media_" + (category is "Layout" or "Orientation" or "Pages" ? "Edit" : category),
             "files" => op.Contains("zip", StringComparison.Ordinal) || op.Contains("tar", StringComparison.Ordinal) || op.StartsWith("extract", StringComparison.Ordinal) ? "Archives" : "Files",
             "data" or "table" => "Data",
+            "markdown" => "Markdown",
             _ => "All"
         };
     }

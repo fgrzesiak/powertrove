@@ -1,5 +1,10 @@
 # FileKit.Text
 
+`TextDecoding` reads bounded text with explicit BOM precedence (UTF-32, UTF-8, UTF-16), then strict
+UTF-8, then Windows-1252. The returned encoding's preamble is the source's BOM, so writing with it
+keeps the original choice. Oversized input raises `TextLimitException`; undecodable input raises
+`DecoderFallbackException`.
+
 `MediaTimeText` parses bounded nonnegative media times (seconds, minutes:seconds
 or hours:minutes:seconds, up to seven days) and formats invariant second values.
 It can be shared by a parameter form and a visual timeline without a platform or

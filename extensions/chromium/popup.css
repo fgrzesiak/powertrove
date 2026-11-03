@@ -1,0 +1,84 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --bg: #f3f3f3; --card:#ffffff; --stroke:rgba(0,0,0,.09);
+  --fg:#1a1a1a; --muted:#626872; --accent:#006bff; --accent-fg:#fff;
+  --focus:#006bff;
+}
+@media(prefers-color-scheme:dark) {
+  :root {--bg:#202020; --card:#2b2b2b; --stroke:rgba(255,255,255,.1);
+    --fg:#f9f9f9; --muted:#b6bac2; --accent:#62b5ff; --accent-fg:#00163a;--focus:#62b5ff}
+}
+*{box-sizing:border-box}
+body {width:350px;max-height:590px;margin:0;overflow-y:auto;background:var(--bg);color:var(--fg);font-size:13px;line-height:1.4}
+header {display:flex;align-items:center;gap:11px;padding:17px 17px 13px}
+.brandmark {display:block;width:36px;height:36px;flex:none}
+.header-info {min-width:0;flex:1} h1{font-size:17px;letter-spacing:-.35px;line-height:1.2;margin:0}
+.subtitle {display:block;color:var(--muted);font-size:11px;margin-top:3px}
+#connection {display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);
+  background:var(--card);border:1px solid var(--stroke);padding:5px 7px;border-radius:20px}
+#connection::before {content:"";width:7px;height:7px;border-radius:50%;background:#a0a3ab}
+#connection.connected::before{background:#27b764}
+#connection.configured::before{background:#ecab3f}
+main {padding:0 12px 12px}
+.search {display:flex;align-items:center;padding:0 10px;gap:8px;height:38px;
+  background:var(--card);border:1px solid var(--stroke);border-radius:8px}
+.search input {width:100%;border:0;background:none;outline:0;color:var(--fg);font:inherit}
+.search input::placeholder{color:var(--muted)}
+section {margin-top:12px} h2 {font-size:11px;letter-spacing:.045em;color:var(--muted);
+  font-weight:600;margin:0 4px 7px}
+.actions {background:var(--card);border:1px solid var(--stroke);border-radius:9px;padding:4px}
+button[data-action]{width:100%;display:flex;align-items:center;min-height:35px;
+  text-align:left;background:transparent;color:var(--fg);font:inherit;border:0;border-radius:5px;
+  padding:7px 9px;cursor:pointer;gap:10px}
+button[data-action]:hover{background:color-mix(in srgb,var(--accent) 11%,transparent)}
+button[data-action]:disabled{opacity:.55;cursor:wait}
+button[data-action][hidden],section[hidden]{display:none}
+button[data-action].keyboard-selected{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.glyph {font:16px "Segoe Fluent Icons","Segoe MDL2 Assets",system-ui;opacity:.85;width:20px;text-align:center}
+.connect-card{margin-top:4px;padding:10px;background:var(--card);border:1px solid var(--stroke);
+  border-radius:9px;display:flex;align-items:center;gap:10px}
+.connect-card[hidden]{display:none}
+.connect-card p{flex:1;color:var(--muted);font-size:11px;margin:0}
+.connect-card button{background:var(--accent);color:var(--accent-fg);border:0;
+  padding:8px 11px;font:inherit;font-weight:600;border-radius:6px;cursor:pointer;
+  width:auto;min-height:0;flex:none;justify-content:center;white-space:nowrap}
+.connect-card button:hover{background:color-mix(in srgb,var(--accent) 88%,var(--fg))}
+/* Disconnecting is a secondary choice, never the most prominent control. */
+#disconnectCard button{background:transparent;color:var(--fg);border:1px solid var(--stroke);font-weight:500}
+#disconnectCard button:hover{background:color-mix(in srgb,var(--fg) 8%,transparent)}
+#status {min-height:19px;margin:12px 4px 5px;color:var(--muted);font-size:12px}
+#status.error{color:#c1344b}
+footer{display:flex;justify-content:space-between;gap:10px;padding:8px 4px 0;
+  border-top:1px solid var(--stroke);font-size:11px;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+#tablePicker{width:min(300px,90vw);padding:16px;border:1px solid var(--stroke);
+  border-radius:12px;background:var(--card);color:var(--fg);box-shadow:0 8px 30px #0005}
+#tablePicker::backdrop{background:#0007}
+#tablePicker h2{color:var(--fg);font-size:14px;margin:0 0 12px}
+#tablePicker select{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--stroke);
+  border-radius:6px;padding:8px;font:inherit}
+.picker-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.picker-buttons button{padding:7px 12px;border-radius:6px;border:1px solid var(--stroke);
+  background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+.picker-buttons button[value="confirm"]{background:var(--accent);color:var(--accent-fg)}
+
+/* This switch is separate from executable actions: no debugger grant on mere popup opening. */
+.fast-screenshot-setting{padding:10px 12px;margin-top:6px;border:1px solid var(--stroke);
+  border-radius:9px;background:var(--card)}
+.fast-screenshot-setting label{display:flex;align-items:center;gap:9px;font-weight:600;cursor:pointer}
+.fast-screenshot-setting input{width:17px;height:17px;margin:0;flex:none;accent-color:var(--accent)}
+.fast-screenshot-setting input:disabled{cursor:wait}
+.fast-screenshot-setting p{margin:6px 0 0 26px;font-size:11px;color:var(--muted)}
+
+
+/* Explicit local destination choice for browser-only exports. */
+.save-destination-setting{margin-top:9px;padding:10px 12px;background:var(--card);
+  border:1px solid var(--stroke);border-radius:9px}
+.save-destination-setting label{display:block;font-weight:600;margin-bottom:6px}
+.save-destination-setting select{display:block;width:100%;padding:7px 9px;font:inherit;
+  color:var(--fg);background:var(--bg);border:1px solid var(--stroke);border-radius:6px}
+.save-destination-setting p{color:var(--muted);font-size:11px;line-height:1.4;margin:6px 0 0}

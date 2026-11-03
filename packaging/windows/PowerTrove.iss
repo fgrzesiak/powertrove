@@ -58,12 +58,23 @@ Name: "explorermenu"; Description: "{cm:Installer_ExplorerMenu}"; GroupDescripti
 ; Preselected on a new installation; Settings turns it off. Updates show the current registration instead (CurPageChanged).
 Name: "startup"; Description: "{cm:Installer_Startup}"; GroupDescription: "{cm:Installer_WindowsIntegration}"
 
+[Registry]
+; Browser-initiated pairing. The browser opens this protocol only after the user clicks Connect;
+; PowerTrove asks for explicit confirmation before registering the exact extension ID.
+Root: HKCU; Subkey: "Software\Classes\powertrove"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\powertrove"; ValueType: string; ValueName: ""; ValueData: "URL:PowerTrove Browser Connection"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Classes\powertrove\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\PowerTrove.exe"" --browser-connect ""%1"""; Flags: uninsdeletekey
+
 [Icons]
 Name: "{autoprograms}\PowerTrove"; Filename: "{app}\PowerTrove.exe"; WorkingDir: "{app}"; Tasks: startmenu
 
 [Run]
 Filename: "{app}\PowerTrove.exe"; Description: "{cm:Installer_Launch}"; Flags: nowait postinstall skipifsilent unchecked; Check: not IsInAppUpdate
 Filename: "{app}\PowerTrove.exe"; Flags: nowait; Check: IsInAppUpdate
+
+[UninstallRun]
+; Remove only browser registrations owned by this exact installation.
+Filename: "{app}\PowerTrove.exe"; Parameters: "--browser-disconnect"; Flags: runhidden; RunOnceId: "PowerTroveBrowserDisconnect"
 
 [Code]
 var
@@ -87,6 +98,9 @@ begin
     5: Result := 'powertrove.data';
     6: Result := 'powertrove.tables';
     7: Result := 'powertrove.einvoice';
+    8: Result := 'powertrove.markdown';
+    9: Result := 'powertrove.text';
+    10: Result := 'powertrove.browser';
   else
     Result := '';
   end;
@@ -120,7 +134,11 @@ begin
   PackPage.Add(CustomMessage('Installer_Data'));
   PackPage.Add(CustomMessage('Installer_Tables'));
   PackPage.Add(CustomMessage('Installer_Invoice'));
-  for I := 0 to 7 do
+  PackPage.Add(CustomMessage('Installer_Markdown'));
+  PackPage.Add(CustomMessage('Installer_Text'));
+  ; InstallerMessages generates this localized title with Preview only while store IDs are unset.
+  PackPage.Add(CustomMessage('Installer_Browser'));
+  for I := 0 to 10 do
     PackPage.Values[I] := (FreshInstall and (I < 3)) or
       FileExists(ExpandConstant('{localappdata}\PowerTrove\packs\' + PackId(I) + '\active.json'));
 end;
@@ -178,7 +196,7 @@ begin
     Exec(ExpandConstant('{app}\PowerTrove.exe'), '--setup-startup disable', ExpandConstant('{app}'), SW_HIDE,
       ewWaitUntilTerminated, ResultCode);
   Selection := '';
-  for I := 0 to 7 do
+  for I := 0 to 10 do
     if PackPage.Values[I] then
     begin
       if Selection <> '' then Selection := Selection + ',';

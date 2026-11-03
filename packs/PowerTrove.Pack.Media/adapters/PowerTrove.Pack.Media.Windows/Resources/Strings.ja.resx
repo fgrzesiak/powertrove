@@ -1,0 +1,10 @@
+<root>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>必要なコーデックがこのシステムにインストールされていません。</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>メディア変換に失敗しました。</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>メディアファイルを変換できません。</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>このファイルはこの変換をサポートしていません。</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>ファイルにビデオトラックがありません。</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>メディアファイルを開けませんでした。</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>サポートされていないオーディオ形式です。</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>サポートされていないメディア操作です。</value></data>
+</root>

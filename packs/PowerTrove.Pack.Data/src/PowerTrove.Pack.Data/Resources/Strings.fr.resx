@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Pack" xml:space="preserve">
+    <value>Outils de données</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Crée une copie distincte tout en conservant les entrées sélectionnées.</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Fichiers texte</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>Les données dépassent la limite de taille autorisée.</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>L&apos;encodage du texte est invalide.</value>
+  </data>
+  <data name="InvalidTable" xml:space="preserve">
+    <value>Les données CSV sont invalides ou dépassent leurs limites.</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Les données sélectionnées n&apos;ont pas pu être lues.</value>
+  </data>
+  <data name="InvalidJson" xml:space="preserve">
+    <value>Invalid JSON at line {0}, column {1}.</value>
+  </data>
+  <data name="JsonArray" xml:space="preserve">
+    <value>Sélectionnez un tableau JSON contenant des objets.</value>
+  </data>
+  <data name="JsonDuplicate" xml:space="preserve">
+    <value>Les objets JSON contiennent des clés dupliquées.</value>
+  </data>
+  <data name="InvalidTableName" xml:space="preserve">
+    <value>Saisir un nom de tableau.</value>
+  </data>
+  <data name="HeaderMismatch" xml:space="preserve">
+    <value>Les en-têtes CSV diffèrent. Choisissez le mode union pour combiner les colonnes.</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>La sélection est indisponible ou a expiré.</value>
+  </data>
+  <data name="ValidJson" xml:space="preserve">
+    <value>{0} fichier(s) JSON valide(s).</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Traitement de {0} fichier(s).</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>{0} lignes, {1} colonnes.</value>
+  </data>
+  <data name="merge-text" xml:space="preserve">
+    <value>Fusionner les fichiers texte</value>
+  </data>
+  <data name="to-utf8" xml:space="preserve">
+    <value>Convertir en UTF-8</value>
+  </data>
+  <data name="line-endings" xml:space="preserve">
+    <value>Modifier les fins de ligne</value>
+  </data>
+  <data name="csv-to-json" xml:space="preserve">
+    <value>Convertir un fichier CSV en JSON</value>
+  </data>
+  <data name="csv-to-markdown" xml:space="preserve">
+    <value>Convertir un fichier CSV en Markdown</value>
+  </data>
+  <data name="csv-to-sql" xml:space="preserve">
+    <value>Convertir un fichier CSV en SQL</value>
+  </data>
+  <data name="merge-csv" xml:space="preserve">
+    <value>Fusionner les fichiers CSV</value>
+  </data>
+  <data name="json-format" xml:space="preserve">
+    <value>Format JSON</value>
+  </data>
+  <data name="json-minify" xml:space="preserve">
+    <value>Minifier le JSON</value>
+  </data>
+  <data name="json-validate" xml:space="preserve">
+    <value>Valider le JSON</value>
+  </data>
+  <data name="json-to-csv" xml:space="preserve">
+    <value>Convertir un fichier JSON en CSV</value>
+  </data>
+  <data name="Bom" xml:space="preserve">
+    <value>Inclure la marque d&apos;ordre des octets</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Style de fin de ligne</value>
+  </data>
+  <data name="HeaderMode" xml:space="preserve">
+    <value>Ligne d&apos;en-tête</value>
+  </data>
+  <data name="Dialect" xml:space="preserve">
+    <value>Dialogue SQL</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Nom du tableau</value>
+  </data>
+  <data name="Indent" xml:space="preserve">
+    <value>Indentation</value>
+  </data>
+  <data name="Separator" xml:space="preserve">
+    <value>Séparateur</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Mode de fusion</value>
+  </data>
+  <data name="windows" xml:space="preserve">
+    <value>Windows (CRLF)</value>
+  </data>
+  <data name="unix" xml:space="preserve">
+    <value>Unix (LF)</value>
+  </data>
+  <data name="first-row" xml:space="preserve">
+    <value>La première ligne contient les en-têtes</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="2" xml:space="preserve">
+    <value>2 espaces</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>4 espaces</value>
+  </data>
+  <data name="tabs" xml:space="preserve">
+    <value>Onglets</value>
+  </data>
+  <data name="blank-line" xml:space="preserve">
+    <value>Ligne blanche</value>
+  </data>
+  <data name="header" xml:space="preserve">
+    <value>En-tête du nom de fichier</value>
+  </data>
+  <data name="identical" xml:space="preserve">
+    <value>En-têtes identiques</value>
+  </data>
+  <data name="union" xml:space="preserve">
+    <value>Union des colonnes</value>
+  </data>
+  <data name="postgresql" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="mysql" xml:space="preserve">
+    <value>MySQL</value>
+  </data>
+  <data name="sqlite" xml:space="preserve">
+    <value>SQLite</value>
+  </data>
+  <data name="sqlserver" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="xlsx-to-csv" xml:space="preserve"><value>Convertir un fichier Excel en CSV</value></data>
+  <data name="xlsx-to-json" xml:space="preserve"><value>Convertir un fichier Excel en JSON</value></data>
+  <data name="csv-to-xlsx" xml:space="preserve"><value>Convertir un fichier CSV en Excel</value></data>
+  <data name="ExcelDescription" xml:space="preserve"><value>Convertir des feuilles de calcul en de nouveaux fichiers sans Excel.</value></data>
+  <data name="Sheet" xml:space="preserve"><value>Feuilles de calcul</value></data>
+  <data name="first" xml:space="preserve"><value>Première feuille de calcul</value></data>
+  <data name="all" xml:space="preserve"><value>Toutes les feuilles de calcul</value></data>
+  <data name="CachedFormulas" xml:space="preserve"><value>Les résultats des formules enregistrées sont utilisés. Les formules ne sont pas recalculées.</value></data>
+  <data name="InvalidWorkbook" xml:space="preserve"><value>Le classeur est invalide ou dépasse les limites autorisées.</value></data>
+  <data name="json-to-xlsx" xml:space="preserve"><value>Convertir un fichier JSON en Excel</value></data>
+  <data name="JsonExcelDescription" xml:space="preserve"><value>Exporte des tableaux d&apos;objets JSON dans de nouveaux classeurs XLSX avec des cellules typées et des colonnes imbriquées (facultatives).</value></data>
+  <data name="JsonExcelFlatten" xml:space="preserve"><value>Placer les champs imbriqués dans des colonnes séparées</value></data>
+  <data name="JsonExcelColumns" xml:space="preserve"><value>Colonnes</value></data>
+  <data name="JsonExcelColumnsHelp" xml:space="preserve"><value>Cochez les colonnes à inclure. Utilisez les flèches pour modifier leur ordre.</value></data>
+  <data name="JsonExcelInvalidColumns" xml:space="preserve"><value>Sélectionnez au moins une colonne disponible, ou sélectionnez toutes les colonnes.</value></data>
+  <data name="JsonExcelInvalid" xml:space="preserve"><value>Le JSON doit être un tableau non vide d&apos;objets avec des colonnes valides et non ambiguës, dans les limites du classeur. Vérifiez les noms de colonnes sélectionnés et les objets imbriqués.</value></data>
+  <data name="JsonExcelTypes" xml:space="preserve"><value>Les fichiers originaux sont conservés. Les longs nombres et identifiants restent sous forme de texte, évitant ainsi toute perte de chiffres.</value></data>
+  <data name="vcf-to-csv" xml:space="preserve"><value>Convertir contacts en CSV</value></data>
+  <data name="csv-to-vcf" xml:space="preserve"><value>Convertir un fichier CSV en vCard</value></data>
+  <data name="vcf-to-xlsx" xml:space="preserve"><value>Convertir contacts en Excel</value></data>
+  <data name="xlsx-to-vcf" xml:space="preserve"><value>Convertir un fichier Excel en vCard</value></data>
+  <data name="merge-vcf" xml:space="preserve"><value>Fusionner les fichiers de contacts</value></data>
+  <data name="MergeContactsDescription" xml:space="preserve"><value>Combine les fichiers vCard UTF-8 3.0/4.0 dans un nouveau fichier de contacts sans supprimer les doublons.</value></data>
+  <data name="ContactPreview" xml:space="preserve"><value>Contacts à traiter : {0}</value></data>
+  <data name="ContactInvalid" xml:space="preserve"><value>Les contacts sont invalides, dépassent les limites ou utilisent un encodage ou des colonnes non pris en charge. Utilisez UTF-8 vCard 3.0/4.0 ou une table de contacts avec des en-têtes et des valeurs textuelles pris en charge ; les colonnes d&apos;importation non vides inconnues sont rejetées.</value></data>
+  <data name="ContactLimits" xml:space="preserve"><value>Les tableaux contiennent les champs communs nom, organisation, titre, notes, téléphone, courriel et adresse, mais pas les photos ni tous les champs des fournisseurs. Utilisez une feuille de calcul avec des cellules de texte lors de l&apos;importation depuis Excel. Les formats vCard 2.1, quoted-printable et binaire intégré ne sont pas pris en charge. Les originaux sont conservés.</value></data>
+  <data name="ContactDesc_vcf-to-csv" xml:space="preserve"><value>Exporte les champs de contact vCard courants dans de nouveaux tableaux CSV, y compris les numéros de téléphone et adresses e-mail répétés.</value></data>
+  <data name="ContactDesc_vcf-to-xlsx" xml:space="preserve"><value>Exporte les champs de contact vCard courants dans de nouveaux classeurs XLSX avec des cellules de texte ; Excel n&apos;a pas besoin d&apos;être installé.</value></data>
+  <data name="ContactDesc_csv-to-vcf" xml:space="preserve"><value>Convertit les tableaux de contacts UTF-8 CSV ou TSV avec en-têtes compatibles en nouveaux fichiers vCard 3.0.</value></data>
+  <data name="ContactDesc_xlsx-to-vcf" xml:space="preserve"><value>Convertit les tableaux de contacts XLSX à une seule feuille contenant des valeurs textuelles en nouveaux fichiers vCard 3.0 sans exécuter Excel.</value></data>
+  <data name="JsonExcelCommonColumns" xml:space="preserve"><value>La liste affiche les colonnes communes à tous les fichiers sélectionnés. Chaque fichier conserve ses propres colonnes.</value></data>
+  <data name="JsonExcelNoCommonColumns" xml:space="preserve"><value>Ces fichiers ne partagent aucune colonne. Sélectionnez « Toutes les colonnes » pour exporter chaque fichier avec ses propres colonnes.</value></data>
+  <data name="JsonExcelColumnsTooLarge" xml:space="preserve"><value>Cette liste de colonnes est trop longue pour être affichée. Sélectionnez « Toutes les colonnes » pour exporter les fichiers.</value></data>
+</root>

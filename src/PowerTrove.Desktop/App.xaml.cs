@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using PowerTrove.Core.Input;
 using PowerTrove.Core;
 using PowerTrove.Core.Search;
@@ -45,6 +46,33 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     private readonly bool _startInBackground;
     private readonly CancellationTokenSource _activationLifetime = new();
     private Task? _activationListener;
+    private PowerTrove.Platform.Windows.Browser.BrowserSessionServer? _browserSessions;
+    private Task? _browserSessionListener;
+    /// <summary>Live Browser Companion sessions, for the Settings status.</summary>
+    public int BrowserSessionCount => _browserSessions?.ConnectedSessions ?? 0;
+    public void DisconnectBrowserSessions() => _browserSessions?.DisconnectSessions();
+
+    /// <summary>Browser pack actions are loaded (installed or built in), not only listed by the catalog.</summary>
+    public bool HasBrowserPackActions => Actions?.GetAllActions().Any(action =>
+        action is not PowerTrove.Core.Catalog.CatalogAction &&
+        action.Descriptor.Id.StartsWith(BrowserExtensionSetup.PackId + ".", StringComparison.Ordinal)) == true;
+
+    /// <summary>A paired extension only needs to reconnect, which it does on its own.</summary>
+    public static bool IsBrowserPaired()
+    {
+        try { return PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.IsConnected(); }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException
+            or System.Security.SecurityException) { return false; }
+    }
+
+    /// <summary>
+    /// The palette offers "Connect browser" for a Chrome or Edge window captured before the palette
+    /// took focus, while the Browser pack is loaded but no extension is paired or connected.
+    /// </summary>
+    public bool BrowserSetupMissing(ContextSnapshot context) =>
+        !Distribution.IsPackaged &&
+        PowerTrove.Platform.Windows.Browser.BrowserTabContextProvider.IsBrowser(context.Source) &&
+        BrowserSessionCount == 0 && HasBrowserPackActions && !IsBrowserPaired();
     private PackRegistryBinding? _packRegistryBinding;
 
     private readonly IRunningProcessProbe _processProbe = new WindowsRunningProcessProbe();
@@ -120,7 +148,12 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         var foregroundCapture = new WindowsForegroundCapture();
 
-        var providers = BuiltInContextProviders.Create();
+        _browserSessions = new PowerTrove.Platform.Windows.Browser.BrowserSessionServer(AppContext.BaseDirectory);
+        _browserSessionListener = _browserSessions.ListenAsync(_activationLifetime.Token);
+        var browserPages = new PowerTrove.Platform.Windows.Browser.BrowserPageService(_browserSessions);
+        PackHosts?.ConfigureBrowserService(browserPages);
+        var providers = new IContextProvider[] { new PowerTrove.Platform.Windows.Browser.BrowserTabContextProvider(_browserSessions) }
+            .Concat(BuiltInContextProviders.Create()).ToArray();
         var contextResolver = new ContextResolver(providers);
 
         var actionRegistry = new ActionRegistry();
@@ -129,7 +162,7 @@ public partial class App : global::Microsoft.UI.Xaml.Application
 
         var undoService = new PowerTrove.Core.UndoService(new PowerTrove.Abstractions.Files.PhysicalOutputFileSystem());
         m_window.ViewModel.UndoService = undoService;
-        var installedPacks = BuiltInActionPacks.Create(workflowRunner, undoService).ToArray();
+        var installedPacks = BuiltInActionPacks.Create(workflowRunner, undoService, browserPages).ToArray();
         bool isolationUnavailable = false;
         if (SettingsService.Settings.RunFileToolsInSeparateProcess)
         {
@@ -146,6 +179,10 @@ public partial class App : global::Microsoft.UI.Xaml.Application
         actionRegistry.RegisterPack("powertrove.image-presets", (SettingsService.Settings.ImageExportPresets ?? [])
             .Select(p => (IAction)new PowerTrove.Application.Packs.ImagePresetAction(p, actionRegistry.GetAction)).ToArray());
         actionRegistry.Register(new PowerTrove.Application.Commands.OpenSettingsAction(() => OpenSettings()));
+        actionRegistry.Register(new PowerTrove.Application.Commands.ConnectBrowserAction(
+            UiText.BrowserPaletteHintTitle, UiText.BrowserPaletteHintDescription, UiText.BrowserPaletteSearchTerms,
+            (context, _) => System.Threading.Tasks.ValueTask.FromResult(BrowserSetupMissing(context)),
+            () => OpenSettings(selectBrowser: true)));
         if (Features.UserRecipes)
             actionRegistry.Register(new PowerTrove.Application.Commands.CreateRecipeAction(() => OpenRecipeEditor()));
         var catalog = await ActionCatalogFile.LoadAsync(Path.Combine(AppContext.BaseDirectory, "catalog.json"),
@@ -194,7 +231,8 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             contextResolver,
             m_window.ViewModel,
             actionRegistry,
-            SearchEngine);
+            SearchEngine,
+            new PowerTrove.Platform.Windows.Capture.WindowsUiAutomationTextSelectionCapture());
 
         var monitorService = new PowerTrove.Platform.Windows.Displays.WindowsMonitorService();
 
@@ -266,6 +304,23 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             if (!TryShowExplicitSelection(selection)) ExitApplication();
             return;
         }
+        if (_startupMessage is BrowserPairingMessage pairing)
+        {
+            m_window.ShowPalette();
+            _ = ShowBrowserPairingAsync(pairing);
+            return;
+        }
+        // A browser selection handed over at start is shown even when the app otherwise starts in the background.
+        if (_startupMessage is BrowserTableMessage browserTable)
+        {
+            if (!ShowBrowserTable(browserTable)) ExitApplication();
+            return;
+        }
+        if (_startupMessage is BrowserSelectionMessage browser)
+        {
+            if (!ShowBrowserSelection(browser)) ExitApplication();
+            return;
+        }
         if (_startInBackground) return;
         m_window.PositionPalette(IntPtr.Zero, monitorService);
         m_window.ShowPalette();
@@ -282,6 +337,18 @@ public partial class App : global::Microsoft.UI.Xaml.Application
                 selection.ActionId != ActivationProtocol.OrganizePagesActionId))
                 return Task.FromResult(false);
         }
+        else if (message is BrowserSelectionMessage browser)
+        {
+            if (!ActivationProtocol.IsBrowserSelection(browser)) return Task.FromResult(false);
+        }
+        else if (message is BrowserTableMessage table)
+        {
+            if (!ActivationProtocol.IsBrowserTable(table)) return Task.FromResult(false);
+        }
+        else if (message is BrowserPairingMessage pairing)
+        {
+            if (!ActivationProtocol.IsBrowserPairing(pairing)) return Task.FromResult(false);
+        }
         else if (message is not ActivatePaletteMessage) return Task.FromResult(false);
 
         if (message is ExplicitSelectionMessage { ActionId: not null } &&
@@ -293,10 +360,84 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             if (_activationLifetime.IsCancellationRequested || m_window is null) return;
             if (message is ExplicitSelectionMessage explicitMessage && snapshot is not null)
                 ShowExplicitSelection(explicitMessage, snapshot);
+            else if (message is BrowserSelectionMessage browser)
+                ShowBrowserSelection(browser);
+            else if (message is BrowserTableMessage table)
+                ShowBrowserTable(table);
+            else if (message is BrowserPairingMessage pairing)
+            {
+                m_window.ShowPalette();
+                _ = ShowBrowserPairingAsync(pairing);
+            }
             else
                 ShowGenericActivation();
         });
         return Task.FromResult(queued);
+    }
+
+    private async Task ShowBrowserPairingAsync(BrowserPairingMessage pairing)
+    {
+        if (m_window is null || !ActivationProtocol.IsBrowserPairing(pairing)) return;
+        var dialog = new ContentDialog
+        {
+            Title = UiText.BrowserConnectTitle,
+            // The ID lets the user tell their own extension from one named by a website-opened link.
+            Content = string.Format(UiText.BrowserConnectConsent,
+                pairing.Browser == "edge" ? "Microsoft Edge" : "Google Chrome", pairing.ExtensionId),
+            PrimaryButtonText = UiText.BrowserConnectConfirm,
+            CloseButtonText = UiText.CommonCancel,
+            DefaultButton = ContentDialogButton.Close,
+            XamlRoot = m_window.Content.XamlRoot
+        };
+        try
+        {
+            if (await dialog.ShowAsync() != ContentDialogResult.Primary) return;
+            PowerTrove.Platform.Windows.Browser.BrowserNativeHostRegistration.Connect(pairing,
+                AppContext.BaseDirectory);
+            m_window.ViewModel.ShowPackNotice(UiText.BrowserConnectSuccess);
+        }
+        // InvalidDataException is not an IOException; COMException covers a second dialog already being open.
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException
+            or InvalidOperationException or ArgumentException or System.Security.SecurityException
+            or System.Runtime.InteropServices.COMException)
+        {
+            m_window.ViewModel.ShowPackNotice(UiText.BrowserConnectFailed);
+        }
+    }
+
+    private bool ShowBrowserTable(BrowserTableMessage table)
+    {
+        if (!ActivationProtocol.IsBrowserTable(table) || m_window is null ||
+            m_window.ViewModel.IsExecuting || Actions is null || SearchEngine is null ||
+            SettingsService is null) return false;
+        _invocationCoordinator?.Dismiss();
+        var now = DateTimeOffset.UtcNow;
+        var rows = table.Rows.Select(row => (IReadOnlyList<CellValue>)row
+            .Select(value => (CellValue)(value.Length == 0 ? new EmptyCell() : new TextCell(value)))
+            .ToArray()).ToArray();
+        var snapshot = new ContextSnapshot(Guid.NewGuid(),
+            new SourceWindowIdentity(IntPtr.Zero,0,"browser",now,table.Title),
+            ContextStatus.Available,new TableData(rows,"Browser",null),
+            now,now.AddMinutes(2),"powertrove.provider.browser.table",null);
+        m_window.ViewModel.Initialize(snapshot, Actions, SearchEngine, SettingsService);
+        m_window.ShowPalette();
+        return true;
+    }
+
+    private bool ShowBrowserSelection(BrowserSelectionMessage browser)
+    {
+        if (!ActivationProtocol.IsBrowserSelection(browser) || m_window is null || m_window.ViewModel.IsExecuting ||
+            Actions is null || SearchEngine is null || SettingsService is null) return false;
+        _invocationCoordinator?.Dismiss();
+        var now = DateTimeOffset.UtcNow;
+        var snapshot = new ContextSnapshot(Guid.NewGuid(),
+            new SourceWindowIdentity(IntPtr.Zero, 0, "browser", now, browser.Title),
+            ContextStatus.Available, new TextSelection(browser.Text), now, now.AddMinutes(2),
+            "powertrove.provider.browser.explicit", browser.Url,
+            new HashSet<string> { "browser.selection.read.v1" });
+        m_window.ViewModel.Initialize(snapshot, Actions, SearchEngine, SettingsService);
+        m_window.ShowPalette();
+        return true;
     }
 
     private void ShowGenericActivation()
@@ -373,6 +514,12 @@ public partial class App : global::Microsoft.UI.Xaml.Application
     public async void ExitApplication()
     {
         _activationLifetime.Cancel();
+        if (_browserSessions is not null) await _browserSessions.DisposeAsync();
+        if (_browserSessionListener is not null)
+        {
+            try { await _browserSessionListener; }
+            catch (OperationCanceledException) { }
+        }
         PackUpdates.Dispose();
         if (_packUpdateMonitoring is not null) await _packUpdateMonitoring;
         _packRegistryBinding?.Dispose();
@@ -528,14 +675,19 @@ public partial class App : global::Microsoft.UI.Xaml.Application
             m_window.ShowView(new RecipeEditorView(Actions, draft, changed: true));
     }
 
-    public void OpenSettings(bool selectPacks = false)
+    public void OpenSettings(bool selectPacks = false, bool selectBrowser = false)
     {
         if (m_window is null) return;
-        // An editor with unsaved work keeps the window; open settings already just come to the front.
+        if (m_window.HostedView is SettingsWindow settings)
+        {
+            m_window.BringHostedViewToFront();
+            if (selectBrowser) settings.FocusBrowserSection();
+            return;
+        }
+        // An editor with unsaved work keeps the window.
         if (m_window.TryResurfaceHostedView()) return;
-        if (m_window.HostedView is SettingsWindow) { m_window.BringHostedViewToFront(); return; }
         // The invocation stays alive so the back arrow can return to the palette; hiding ends it.
-        m_window.ShowView(new SettingsWindow(selectPacks));
+        m_window.ShowView(new SettingsWindow(selectPacks, selectBrowser));
     }
 
     private void OnHotkeyTriggered(object? sender, EventArgs e)

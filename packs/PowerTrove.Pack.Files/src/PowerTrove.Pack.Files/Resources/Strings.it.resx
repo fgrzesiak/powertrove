@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CountFilesAction_Title" xml:space="preserve">
+    <value>Conta i file nella directory</value>
+  </data>
+  <data name="CountFilesAction_Description" xml:space="preserve">
+    <value>Conta il numero di file presenti nelle directory selezionate.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Non è una selezione di file.</value>
+  </data>
+  <data name="CountFilesAction_Error_NoDirectories" xml:space="preserve">
+    <value>Nessuna directory selezionata.</value>
+  </data>
+  <data name="CountFilesAction_Preview_LimitReachedNote" xml:space="preserve">
+    <value> (Limite raggiunto, il conteggio effettivo potrebbe essere superiore)</value>
+  </data>
+  <data name="CountFilesAction_Preview_FoundItems" xml:space="preserve">
+    <value>Trovati {0} elementi nelle directory selezionate {1}.</value>
+  </data>
+  <data name="CountFilesAction_Preview_ScanLimitWarning" xml:space="preserve">
+    <value>Limite di scansione raggiunto. Il conteggio potrebbe essere incompleto.</value>
+  </data>
+  <data name="Error_ContextExpired" xml:space="preserve">
+    <value>Il contesto è scaduto. Seleziona nuovamente l&apos;opzione desiderata.</value>
+  </data>
+  <data name="CountFilesAction_Execute_Result" xml:space="preserve">
+    <value>Trovati {0} file nella/e cartella/e {1} {2}.</value>
+  </data>
+  <data name="CountFilesAction_Execute_LimitNote" xml:space="preserve">
+    <value> (Limite di scansione raggiunto; il conteggio effettivo potrebbe essere superiore)</value>
+  </data>
+  <data name="CompressToZipAction_ParamTitle_Compression" xml:space="preserve">
+    <value>Compressione</value>
+  </data>
+  <data name="CompressToZipAction_ParamDesc_Compression" xml:space="preserve">
+    <value>Compressione</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Optimal" xml:space="preserve">
+    <value>Archivio più piccolo</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Fastest" xml:space="preserve">
+    <value>Più veloce</value>
+  </data>
+  <data name="CompressToZipAction_ParamChoice_Store" xml:space="preserve">
+    <value>Nessuna compressione</value>
+  </data>
+  <data name="CompressToZipAction_FilterDescription" xml:space="preserve">
+    <value>file o cartelle</value>
+  </data>
+  <data name="CompressToZipAction_Title" xml:space="preserve">
+    <value>Comprimi in ZIP</value>
+  </data>
+  <data name="CompressToZipAction_Description" xml:space="preserve">
+    <value>Crea un archivio ZIP dei file e delle cartelle selezionati.</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Item" xml:space="preserve">
+    <value>elemento</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Items" xml:space="preserve">
+    <value>elementi</value>
+  </data>
+  <data name="CompressToZipAction_Operation_Description" xml:space="preserve">
+    <value>Comprimerà {0} in un unico archivio ZIP. I collegamenti e le giunzioni verranno ignorati.</value>
+  </data>
+  <data name="CompressToZipAction_DefaultOutput_Archive" xml:space="preserve">
+    <value>Archivio</value>
+  </data>
+  <data name="ExtractZipAction_FilterDescription" xml:space="preserve">
+    <value>Archivi ZIP</value>
+  </data>
+  <data name="ExtractZipAction_Title" xml:space="preserve">
+    <value>Estrae il file ZIP</value>
+  </data>
+  <data name="ExtractZipAction_Description" xml:space="preserve">
+    <value>Estrae ciascun archivio ZIP selezionato in una nuova cartella.</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archive" xml:space="preserve">
+    <value>archivio</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Archives" xml:space="preserve">
+    <value>archivi</value>
+  </data>
+  <data name="ExtractZipAction_Operation_Description" xml:space="preserve">
+    <value>Verranno estratti {0} elementi, ciascuno in una nuova cartella. Le voci non sicure (percorsi assoluti, &quot;:&quot;, collegamenti) e gli archivi di grandi dimensioni verranno rifiutati.</value>
+  </data>
+  <data name="ExtractZipAction_ProgressVerb" xml:space="preserve">
+    <value>Estrazione in corso</value>
+  </data>
+  <data name="ChecksumAction_ParamTitle_Algorithm" xml:space="preserve">
+    <value>Algoritmo</value>
+  </data>
+  <data name="ChecksumAction_ParamDesc_Algorithm" xml:space="preserve">
+    <value>Algoritmo</value>
+  </data>
+  <data name="ChecksumAction_Title" xml:space="preserve">
+    <value>Crea file di checksum</value>
+  </data>
+  <data name="ChecksumAction_Description" xml:space="preserve">
+    <value>Calcola i checksum SHA-256 (o SHA-512) dei file selezionati e li salva in un file di checksum.</value>
+  </data>
+  <data name="ChecksumAction_FilterDescription" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="ChecksumAction_Operation_File" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="ChecksumAction_Operation_Files" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="ChecksumAction_Operation_Description" xml:space="preserve">
+    <value>Calcolerà {0} checksum per {1} e li salverà in un unico file di checksum.</value>
+  </data>
+  <data name="ChecksumAction_DefaultOutput" xml:space="preserve">
+    <value>checksum</value>
+  </data>
+  <data name="ChecksumAction_ProgressVerb" xml:space="preserve">
+    <value>Calcolo</value>
+  </data>
+  <data name="FilesPack_Title" xml:space="preserve">
+    <value>Strumenti file</value>
+  </data>
+  <data name="CopyNames" xml:space="preserve">
+    <value>Copia nomi file</value>
+  </data>
+  <data name="CopyPaths" xml:space="preserve">
+    <value>Copia percorsi</value>
+  </data>
+  <data name="CopyDescription" xml:space="preserve">
+    <value>Copia negli appunti solo i percorsi o i nomi selezionati esplicitamente.</value>
+  </data>
+  <data name="SelectionUnavailable" xml:space="preserve">
+    <value>Seleziona da 1 a 10.000 elementi locali accessibili.</value>
+  </data>
+  <data name="CopiedNames" xml:space="preserve">
+    <value>Copiati i nomi {0}.</value>
+  </data>
+  <data name="CopiedPaths" xml:space="preserve">
+    <value>Copiati i percorsi {0}.</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Formato</value>
+  </data>
+  <data name="lines" xml:space="preserve">
+    <value>Uno per riga</value>
+  </data>
+  <data name="quoted" xml:space="preserve">
+    <value>Preventivo per riga di comando Windows</value>
+  </data>
+  <data name="semicolon" xml:space="preserve">
+    <value>Separato da punto e virgola</value>
+  </data>
+  <data name="json-array" xml:space="preserve">
+    <value>Array JSON</value>
+  </data>
+  <data name="FileItems" xml:space="preserve">
+    <value>file o cartelle</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>cartelle</value>
+  </data>
+  <data name="ToolsDescription" xml:space="preserve">
+    <value>Elabora gli elementi locali selezionati senza sostituire gli originali.</value>
+  </data>
+  <data name="LinksUnsupported" xml:space="preserve">
+    <value>I collegamenti e i punti di reparse non sono supportati.</value>
+  </data>
+  <data name="Base64Decode" xml:space="preserve">
+    <value>Decodifica Base64</value>
+  </data>
+  <data name="Base64Encode" xml:space="preserve">
+    <value>Codifica in Base64</value>
+  </data>
+  <data name="ProcessItems" xml:space="preserve">
+    <value>Elabora {0} elementi(s).</value>
+  </data>
+  <data name="InvalidBase64" xml:space="preserve">
+    <value>L&apos;input Base64 non è valido.</value>
+  </data>
+  <data name="FindDuplicates" xml:space="preserve">
+    <value>Trova file duplicati</value>
+  </data>
+  <data name="FolderReport" xml:space="preserve">
+    <value>Crea report sulle dimensioni delle cartelle</value>
+  </data>
+  <data name="FolderSummary" xml:space="preserve">
+    <value>{0} file, {1} byte, {2} saltati. {3}</value>
+  </data>
+  <data name="DuplicateSummary" xml:space="preserve">
+    <value>{0} gruppi duplicati, {1} byte recuperabili, {2} ignorati. {3}</value>
+  </data>
+  <data name="ScanLimit" xml:space="preserve">
+    <value>È stato raggiunto il limite di scansione; questo report è parziale.</value>
+  </data>
+  <data name="ReportNote" xml:space="preserve">
+    <value>Solo report. Nessun file è stato eliminato.</value>
+  </data>
+  <data name="InputChanged" xml:space="preserve">
+    <value>Un input è cambiato durante l&apos;elaborazione.</value>
+  </data>
+  <data name="VerifyChecksums" xml:space="preserve">
+    <value>Verifica checksum</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="summary" xml:space="preserve">
+    <value>Solo riepilogo</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>Genera report</value>
+  </data>
+  <data name="ManifestLimit" xml:space="preserve">
+    <value>Il manifesto del checksum supera i suoi limiti.</value>
+  </data>
+  <data name="InvalidChecksums" xml:space="preserve">
+    <value>Il manifesto del checksum non è valido.</value>
+  </data>
+  <data name="RemoteUnsupported" xml:space="preserve">
+    <value>I percorsi remoti non sono supportati.</value>
+  </data>
+  <data name="VerifySummary" xml:space="preserve">
+    <value>{0} OK, {1} non corrispondente, {2} mancante.</value>
+  </data>
+  <data name="SplitFile" xml:space="preserve">
+    <value>Dividi file in parti</value>
+  </data>
+  <data name="JoinFiles" xml:space="preserve">
+    <value>Unisci parti di file</value>
+  </data>
+  <data name="JoinDescription" xml:space="preserve">
+    <value>Unisci parti consecutive di file fratelli e verifica il checksum originale, se presente.</value>
+  </data>
+  <data name="Mode" xml:space="preserve">
+    <value>Modalità di divisione</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Dimensione parte</value>
+  </data>
+  <data name="parts" xml:space="preserve">
+    <value>Numero di parti</value>
+  </data>
+  <data name="PartSizeMb" xml:space="preserve">
+    <value>Dimensione parte (MiB)</value>
+  </data>
+  <data name="PartsCount" xml:space="preserve">
+    <value>Numero di parti</value>
+  </data>
+  <data name="PartLimit" xml:space="preserve">
+    <value>Sono necessarie più di 1.000 parti.</value>
+  </data>
+  <data name="PartMismatch" xml:space="preserve">
+    <value>Seleziona parti di un file dalla stessa cartella.</value>
+  </data>
+  <data name="MissingPart" xml:space="preserve">
+    <value>Manca una parte consecutiva del file.</value>
+  </data>
+  <data name="HashMismatch" xml:space="preserve">
+    <value>Il checksum del file unito non corrisponde.</value>
+  </data>
+  <data name="TarCreate" xml:space="preserve">
+    <value>Comprimi in TAR.GZ</value>
+  </data>
+  <data name="TarExtract" xml:space="preserve">
+    <value>Estrae l&apos;archivio TAR/GZ</value>
+  </data>
+  <data name="Archives" xml:space="preserve">
+    <value>Archivi TAR/GZip</value>
+  </data>
+  <data name="ArchiveError" xml:space="preserve">
+    <value>L&apos;archivio non è valido, non sicuro o supera i suoi limiti.</value>
+  </data>
+  <data name="AddToZip" xml:space="preserve"><value>Aggiungi a ZIP</value></data>
+  <data name="AddToZipDescription" xml:space="preserve"><value>Copia le voci dell&apos;archivio e la selezione aggiuntiva in un nuovo file ZIP.</value></data>
+  <data name="ZipRoleSelection" xml:space="preserve"><value>Seleziona esattamente un archivio ZIP e almeno un file o una cartella aggiuntiva.</value></data>
+  <data name="UnsafeZip" xml:space="preserve"><value>L&apos;archivio non è sicuro, è danneggiato o supera i limiti supportati.</value></data>
+  <data name="CompareText" xml:space="preserve"><value>Confronta</value></data>
+  <data name="CompareTextDescription" xml:space="preserve"><value>Crea un confronto riga per riga HTML di due file di testo, fino a 5 MB ciascuno.</value></data>
+  <data name="IgnoreLineEndings" xml:space="preserve"><value>Ignora le differenze nelle terminazioni di riga</value></data>
+  <data name="TextFiles" xml:space="preserve"><value>file di testo</value></data>
+  <data name="AddedLines" xml:space="preserve"><value>Aggiunti</value></data>
+  <data name="RemovedLines" xml:space="preserve"><value>Rimosso</value></data>
+  <data name="UnchangedLines" xml:space="preserve"><value>Invariato</value></data>
+  <data name="DiffCounts" xml:space="preserve"><value>Aggiunti: {0}; rimossi: {1}; invariati: {2}.</value></data>
+  <data name="ComparisonLimit" xml:space="preserve"><value>Il confronto è limitato a 5 MB e 100.000 righe per file. Differenze molto complesse non sono supportate.</value></data>
+  <data name="ComparisonEncoding" xml:space="preserve"><value>Utilizzare un file di testo UTF-8 o un file Unicode con un indicatore di ordine dei byte (BOM).</value></data>
+  <data name="SortByType" xml:space="preserve"><value>Ordina copie per tipo</value></data>
+  <data name="SortByTypeDescription" xml:space="preserve"><value>Copia una selezione mista in una nuova cartella, raggruppata per tipo di file.</value></data>
+  <data name="SortByTypeOperation" xml:space="preserve"><value>Copia la selezione in nuove cartelle, una per tipo di file.</value></data>
+  <data name="MixedTypesRequired" xml:space="preserve"><value>Seleziona almeno due file di almeno due tipi diversi.</value></data>
+  <data name="SortedFolder" xml:space="preserve"><value>Ordinate</value></data>
+  <data name="SortedImages" xml:space="preserve"><value>Immagini</value></data>
+  <data name="SortedPdfs" xml:space="preserve"><value>PDF</value></data>
+  <data name="SortedDocuments" xml:space="preserve"><value>Documenti</value></data>
+  <data name="SortedSpreadsheets" xml:space="preserve"><value>Fogli di calcolo</value></data>
+  <data name="SortedVideos" xml:space="preserve"><value>Video</value></data>
+  <data name="SortedAudio" xml:space="preserve"><value>Audio</value></data>
+  <data name="SortedArchives" xml:space="preserve"><value>Archivi</value></data>
+  <data name="SortedText" xml:space="preserve"><value>Testo</value></data>
+  <data name="SortedOther" xml:space="preserve"><value>Altro</value></data>
+  <data name="RenameFiles" xml:space="preserve"><value>Rinomina file</value></data>
+  <data name="RenameDescription" xml:space="preserve"><value>Rinomina i file originali con un&apos;anteprima e annullamento entro dieci minuti.</value></data>
+  <data name="RenameUnavailable" xml:space="preserve"><value>Il servizio di rinomina non è disponibile.</value></data>
+  <data name="RenamePattern" xml:space="preserve"><value>Modello nome</value></data>
+  <data name="RenameTokens" xml:space="preserve"><value>Tokens: {name}, {ext}, {n}, {n:000}, {date}, {exifdate}. An explicit {ext} token controls extension placement.</value></data>
+  <data name="RenameFind" xml:space="preserve"><value>Cerca nel nome base</value></data>
+  <data name="RenameReplace" xml:space="preserve"><value>Sostituisci con</value></data>
+  <data name="Case" xml:space="preserve"><value>Maiuscole/minuscole</value></data>
+  <data name="keep" xml:space="preserve"><value>Mantieni maiuscole/minuscole</value></data>
+  <data name="lower" xml:space="preserve"><value>Minuto</value></data>
+  <data name="upper" xml:space="preserve"><value>Maiuscolo</value></data>
+  <data name="title" xml:space="preserve"><value>Maiuscole/minuscole</value></data>
+  <data name="RenameStartAt" xml:space="preserve"><value>Inizia la numerazione da</value></data>
+  <data name="RenameKeepExtension" xml:space="preserve"><value>Mantieni l&apos;estensione del file</value></data>
+  <data name="RenameOperation" xml:space="preserve"><value>Rinomina i file originali in base all&apos;anteprima.</value></data>
+  <data name="RenameInvalid" xml:space="preserve"><value>Il piano di rinomina presenta nomi non validi, duplicati, input non disponibili o destinazioni occupate.</value></data>
+  <data name="RenameUnchanged" xml:space="preserve"><value>Modifica il pattern o le opzioni per rinominare la selezione.</value></data>
+  <data name="RenameConsent" xml:space="preserve"><value>Ho capito che questa operazione rinomina i file originali.</value></data>
+  <data name="RenameUndoWindow" xml:space="preserve"><value>La funzione Annulla è disponibile per 10 minuti finché questo risultato rimane visibile. I nomi vengono visualizzati solo in questa finestra di dialogo.</value></data>
+  <data name="RenameReviewAgain" xml:space="preserve"><value>La selezione o le opzioni sono cambiate. Rivedi l&apos;anteprima e conferma nuovamente.</value></data>
+  <data name="RenameCompleted_One" xml:space="preserve"><value>Rinominato un file.</value></data>
+  <data name="RenameCompleted_Other" xml:space="preserve"><value>Rinominati {0} file.</value></data>
+  <data name="RenameFailed" xml:space="preserve"><value>Rinominazione non riuscita. Le modifiche completate sono state annullate.</value></data>
+  <data name="RenameRecovery" xml:space="preserve"><value>Alcune modifiche non possono essere annullate. Rilasciare i blocchi del file e utilizzare Annulla immediatamente.</value></data>
+<data name="ArchiveLimitExceeded" xml:space="preserve"><value>L&apos;archivio supera i limiti di sicurezza supportati.</value></data>
+<data name="ArchiveUnsafeEntry" xml:space="preserve"><value>L&apos;archivio contiene una voce non sicura e non può essere estratto.</value></data>
+<data name="ArchiveInvalid" xml:space="preserve"><value>L&apos;archivio è danneggiato, crittografato o non supportato.</value></data>
+<data name="CopiedNames_One" xml:space="preserve"><value>Copiato il nome {0}.</value></data>
+<data name="CopiedNames_Other" xml:space="preserve"><value>Copiati i nomi {0}.</value></data>
+<data name="CopiedPaths_One" xml:space="preserve"><value>Copiato il percorso {0}.</value></data>
+<data name="CopiedPaths_Other" xml:space="preserve"><value>Copiati i percorsi {0}.</value></data>
+<data name="ProcessItems_One" xml:space="preserve"><value>Elabora {0} elementi.</value></data>
+<data name="ProcessItems_Other" xml:space="preserve"><value>Elabora {0} elementi.</value></data>
+<data name="FoundItems_One" xml:space="preserve"><value>Trovati {0} elementi nelle directory selezionate {1}.</value></data>
+<data name="FoundItems_Other" xml:space="preserve"><value>Trovati {0} elementi nelle directory selezionate {1}.</value></data>
+<data name="CountFiles_One" xml:space="preserve"><value>{0} file</value></data>
+<data name="CountFiles_Other" xml:space="preserve"><value>{0} file</value></data>
+<data name="CountFolders_One" xml:space="preserve"><value>{0} cartella</value></data>
+<data name="CountFolders_Other" xml:space="preserve"><value>{0} cartelle</value></data>
+<data name="CountFilesResult" xml:space="preserve"><value>Trovati {0} in {1}{2}.</value></data>
+<data name="FolderSummary_One" xml:space="preserve"><value>{0} file, {1} byte, {2} ignorati. {3}</value></data>
+<data name="FolderSummary_Other" xml:space="preserve"><value>{0} file, {1} byte, {2} saltati. {3}</value></data>
+<data name="DuplicateSummary_One" xml:space="preserve"><value>{0} gruppo duplicato, {1} byte recuperabili, {2} ignorati. {3}</value></data>
+<data name="DuplicateSummary_Other" xml:space="preserve"><value>{0} gruppi duplicati, {1} byte recuperabili, {2} ignorati. {3}</value></data>
+</root>

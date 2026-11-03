@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>{0}&apos;a Dönüştür</value></data><data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>Seçilen ses dosyalarını {0} formatına dönüştürür.</value></data><data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>{0}&apos;a Dönüştür</value></data><data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>Seçilen videoları uyumlu bir ön ayar kullanarak {0} formatına dönüştürür.</value></data><data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>Videodan Ses Çıkarma</value></data><data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>Seçilen videoların ses parçalarını MP3 dosyaları olarak kaydeder.</value></data><data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>Sesi Kaldır</value></data><data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>Seçilen videoların ses parçası olmadan kopyalarını oluşturur.</value></data><data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>Kareleri Çıkarma</value></data><data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>Seçilen videolardan her saniye bir kareyi JPEG resim olarak yeni bir klasöre kaydeder.</value></data><data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>GIF&apos;e Dönüştür</value></data><data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>Seçilen videoların ilk 10 saniyesini sessiz bir GIF animasyonuna dönüştürür.</value></data><data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>{0} dosyasını {1} dosyasına dönüştürecektir.</value></data><data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>{0} dosyasını {1} dosyasına dönüştürecektir.</value></data><data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>{0} adet belgeden ses parçasını MP3 olarak çıkaracaktır.</value></data><data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>Ses parçası olmadan {0} dosyasının bir kopyasını oluşturacaktır.</value></data><data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>{0} görüntüsünden her saniye bir kareyi JPEG resim olarak yeni bir klasöre kaydedecektir.</value></data><data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>{0}&apos;ın ilk 10 saniyesi sessiz bir GIF animasyonuna dönüştürülecektir.</value></data><data name="Media_AudioFile" xml:space="preserve"><value>ses dosyası</value></data><data name="Media_AudioFiles" xml:space="preserve"><value>ses dosyaları</value></data><data name="Media_Video" xml:space="preserve"><value>video</value></data><data name="Media_Videos" xml:space="preserve"><value>videolar</value></data><data name="Media_Progress_Converting" xml:space="preserve"><value>Dönüştürülüyor</value></data><data name="Media_Progress_Extracting" xml:space="preserve"><value>Çıkarma</value></data><data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>Medya dönüştürme zaman aşımına uğradı.</value></data><data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>Medya dönüştürme başarısız oldu (çıkış kodu {0}).</value></data><data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>Ses parçasını değiştir</value></data>
+<data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>Seçilen videonun ses parçasını seçilen ses dosyasıyla değiştirir.</value></data>
+<data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>Videonun ses parçasını değiştirecektir.</value></data>
+<data name="Media_RequiresFFmpeg" xml:space="preserve"><value>FFmpeg gerektirir</value></data>
+<data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>Altyazı Ekle</value></data>
+<data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>Yeniden kodlama yapmadan videoya altyazı parçaları ekler.</value></data>
+<data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>Videoya altyazı eklenecektir.</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>Medya Ayrıntılarını Göster</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>Başlıklar, sanatçılar veya diğer etiketler olmadan teknik özellikleri göster.</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>Ses veya Video Kırpma</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>Seçilen zaman aralığını yeni bir dosya olarak kaydedin.</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>Videoları Sıkıştır</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>Büyütme yapmadan daha küçük bir MP4 dosyası oluşturun. Daha küçük olmayan sonuçlar atlanır.</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>Video veya Ses Dosyalarını Birleştir</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>Dosyaları doğal dosya adı sırasına göre yeni bir MP4 veya M4A dosyasına birleştirir.</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>Videoyu GIF&apos;e dönüştür</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>600 kareye kadar kısa bir video aralığından animasyonlu GIF oluşturun.</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>Video Karelerini Resim Olarak Kaydet</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>Tek bir kareyi veya tam boyutlu karelerden oluşan bir diziyi yeni bir klasöre kaydedin.</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>Sesi Normalleştir</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>İki geçişli analiz kullanarak -16 LUFS&apos;ye normalize edilmiş bir kopya oluşturun. FFmpeg gerektirir.</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>Videoyu Döndür</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>Bir videoyu yeni bir kopyaya döndürür. FFmpeg gerektirir.</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>Başlangıç ​​(zaman)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>Son (boş = sona)</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>Yeniden kodlama ile hassas kırpma</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>Kalite ön ayarı</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>Ses dosyalarını koru</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>Süre (saniye)</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>Saniyedeki kare sayısı</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>GIF genişliği (piksel)</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>Kare seçimi</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>(Zaman)da</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>Aralık (0,5–3600 saniye)</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>Görüntü formatı</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>Saat yönünde döndürme</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>Yalnızca döndürme meta verilerini değiştir</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>Yüksek · 1080p&apos;ye kadar, 5 Mbps</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>Orta · 720p&apos;ye kadar, 2,5 Mbps</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>Küçük · 480p&apos;ye kadar, 1 Mbps</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>Tek kare</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>Aralıklarda</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° saat yönünde</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° saat yönünde</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° saat yönünde</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>medya dosyaları</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>ses dosyaları</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>video dosyaları</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>Yerel medya denetleyicisi mevcut değil. Windows&apos;ta medya bileşenlerini kullanın veya FFmpeg&apos;in yanına FFprobe&apos;u kurun.</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>Medya özellikleri okunamadı veya desteklenen sınırları aştı.</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>Yerel medya motoru bu dosyayı işleyemedi.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Yüklü medya motorlarından hiçbiri bu işlemi desteklemiyor. FFmpeg&apos;i kurduktan sonra birçok format çalışır: Ayarlar &gt; FFmpeg&apos;i kullanın veya Terminal&apos;de winget install Gyan.FFmpeg komutunu çalıştırın.</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>Saniye, mm:ss veya hh:mm:ss kullanın. Bitiş başlangıçtan sonra olmalıdır.</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>Geçerli bir zaman girin. Aralıklar 0,5–3600 saniye arasında olmalıdır; ondalık nokta kullanın.</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>İstenen aralık, bu dosyanın süresini aşıyor.</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>Dosyada kullanılabilir video parçası yok.</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>Seçilen GIF aralığı 600 kareyi veya desteklenen boyutları aşıyor. Süreyi, kare hızını veya genişliği azaltın.</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Hızlı FFmpeg kırpma işlemi anahtar kareleri takip eder. Windows medya işleme ve hassas kırpma yeniden kodlama.</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>Aralık çıkarma, baştan başlayarak en fazla 500 kare kaydeder.</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>Sadece meta verilerin döndürülmesi kayıpsızdır, ancak bazı oynatıcılar bunu göz ardı eder.</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>Sadece ses dosyalarını veya sadece video dosyalarını seçerek birleştirin.</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>Videolar, ilk videonun boyutuna göre ölçeklendirilir ve kenarları siyah bantlarla çevrilir.</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>Bilinmiyor / uygulanamaz</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>Süre: {0}
+Çözünürlük: {1}
+Kare hızı: {2} fps
+Video kodeği: {3}
+Ses kodeği: {4}
+Bit hızı: {5} kbit/s
+Ses kanalları: {6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>Ses yüksekliği güvenilir bir şekilde ölçülemedi. Sessiz veya geçersiz ses normalleştirilemez.</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>Sadece meta veri döndürme için MP4/MOV kapsayıcısı gereklidir. Piksel döndürmeyi devre dışı bırakın.</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>Görüntü ve Sesten Video Oluştur</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>Görüntü ve Sesten Video Oluştur</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>Resim ve sesten bir video oluşturulacaktır.</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>Ses ve Video Araçları</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>Ses Dönüştürülüyor</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>Video işleniyor</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>WebM dönüştürmesi FFmpeg gerektirir. Ayarlar &gt; FFmpeg&apos;den yükleyin veya Terminal&apos;de winget install Gyan.FFmpeg komutunu çalıştırın.</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>Bu sistemde hiçbir medya motoru bu dönüştürmeyi desteklemiyor. Windows N sürümlerinde Medya Özellik Paketi&apos;ni kurun.</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>{0} ses dosyasını {1} dosyasına dönüştürecektir.</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>{0} ses dosyasını {1} dosyasına dönüştürecektir.</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>{0} video dosyasını {1} dosyasına dönüştürecektir. Video dönüştürme işlemi biraz zaman alabilir.</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>{0} video dosyasını {1} dosyasına dönüştürecektir. Video dönüştürme işlemi biraz zaman alabilir.</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>{0} videosunun ses parçasını {1} olarak kaydedecektir.</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>{0} videosunun ses parçasını {1} olarak kaydedecektir.</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>Ses parçası içermeyen {0} kopyası oluşturulacaktır.</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>Ses parçası içermeyen {0} kopyaları oluşturulacaktır.</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>Kayıpsız bir formattan kayıplı bir formata dönüştürme, ses kalitesini düşürür.</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>Kayıplı bir formatı kayıpsız bir formata dönüştürmek, kaliteyi iyileştirmeden dosya boyutunu artırır.</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>Kayıplı formatlar arasında dönüştürme, ses kalitesini düşürür (üretim kaybı).</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>Dosyada kullanılabilir ses veya video parçası yok.</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>Bu dönüştürme FFmpeg tarafından desteklenmiyor.</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>Slayt Gösterisi Videosu Oluştur</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>İsteğe bağlı ses ile seçilen görüntülerden video oluşturun.</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>Seçilen resimlerden ve isteğe bağlı sesten bir slayt gösterisi videosu oluşturulacaktır.</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>Görüntü başına süre</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>Video boyutu</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>Otomatik (ses süresine uyacak şekilde)</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0} saniye</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0} saniye</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p yatay</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p yatay</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>Kare (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>SRT&apos;yi Dönüştür VTT</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>VTT&apos;yi SRT&apos;ye dönüştür</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Altyazı zamanlamasını kaydır</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>SRT altyazılarının UTF-8 WebVTT kopyalarını oluşturur, işaret zamanlamasını ve satır sonlarını korur.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Desteklenen WebVTT ipuçlarının UTF-8 SRT kopyalarını, desteklenmeyen biçimlendirmeyi sessizce kaybetmeden oluşturun.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Her SRT veya VTT işaretini pozitif veya negatif bir ofsetle kaydırır ve yeni bir dosya oluşturur.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Milisaniye cinsinden ofset</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1.000 ms = 1 saniye. Negatif değerler ipuçlarını daha erkene taşır. Sıfır zamanından önceki bir kaydırma reddedilir; hiçbir ipucu atılmaz.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Altyazı dosyaları</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>{0} altyazı ipucu işlenecektir.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>Altyazılar geçersiz, desteklenen sınırları aşıyor, desteklenmeyen meta veriler veya biçimlendirme içeriyor veya kaydırma işlemi sıfırdan önce bir işaret yerleştiriyor. Yedi gün içinde zaman damgalı UTF-8 SRT veya WebVTT kullanın.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>Altyazı girişi okunamadı.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Video Başına Maksimum Boyut (MB; 0 = (ön ayar)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1.000.000 bayt. Sıfır yalnızca kalite ön ayarını kullanır. Pozitif bir değer, video bit hızını süreden bütçeler, ses ve konteyner alanı ayırır ve ardından gerçek çıktı boyutunu doğrular.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Video başına maksimum {0} MB. Planlanan video bit hızı: {1}–{2} kbit/s. Ses, saklandığında 128 kbit/s&apos;ye kadar kullanır. Son dosya boyutu kaydedilmeden önce kontrol edilir.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>İstenen boyut, bu süre ve korunan ses için çok küçük veya video boyutları/süresi desteklenmiyor. Boyutu artırın veya sesi kaldırın.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>Kodlayıcı istenen maksimum boyutu karşılayamadı. Hiçbir çıktı kaydedilmedi. Sınırı artırın, daha düşük bir kalite ön ayarı seçin veya sesi kaldırın.</value></data>
+</root>

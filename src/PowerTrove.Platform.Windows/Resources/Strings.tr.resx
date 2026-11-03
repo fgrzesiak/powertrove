@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShellRevealFailed" xml:space="preserve"><value>Bazı çıktılar Explorer&apos;da gösterilemedi. Tekrar deneyin.</value></data>
+  <data name="ExcelNotAvailable" xml:space="preserve"><value>Excel kullanılamıyor.</value></data>
+  <data name="ExcelWindowChanged" xml:space="preserve"><value>Excel penceresi değiştirildi.</value></data>
+  <data name="ExcelWindowUnavailable" xml:space="preserve"><value>Excel penceresi kullanılamıyor.</value></data>
+  <data name="ExcelItemNotRange" xml:space="preserve"><value>Seçilen öğe bir aralık değil (örneğin, bir grafik veya şekil).</value></data>
+  <data name="ExcelDisjointSelection" xml:space="preserve"><value>Ayrı seçimler desteklenmiyor.</value></data>
+  <data name="ExcelRangeTooLarge" xml:space="preserve"><value>Seçilen aralık çok büyük.</value></data>
+  <data name="ExcelInconsistentDimensions" xml:space="preserve"><value>Excel tutarsız aralık boyutları döndürdü.</value></data>
+  <data name="ExcelInvalidRangeValues" xml:space="preserve"><value>Excel geçersiz aralık değerleri döndürdü.</value></data>
+  <data name="ExcelAccessDenied" xml:space="preserve"><value>Excel&apos;e erişim reddedildi.</value></data>
+  <data name="ExcelError" xml:space="preserve"><value>Excel ile iletişimde bir hata oluştu.</value></data>
+  <data name="ExcelCaptureBusy" xml:space="preserve"><value>Excel yakalama hala meşgul.</value></data>
+  <data name="ExcelCaptureNoData" xml:space="preserve"><value>Excel aralık verisi döndürmedi.</value></data>
+  <data name="ExcelCaptureStartFailed" xml:space="preserve"><value>Excel yakalama başlatılamadı.</value></data>
+  <data name="ExcelCaptureTimedOut" xml:space="preserve"><value>Excel yakalama zaman aşımına uğradı.</value></data>
+  <data name="ExplorerCaptureBusy" xml:space="preserve"><value>Explorer yakalama hala meşgul.</value></data>
+  <data name="ExplorerNoSelection" xml:space="preserve"><value>Şu anda hiçbir dosya veya klasör seçili değil.</value></data>
+  <data name="ExplorerUnsupportedView" xml:space="preserve"><value>Desteklenmeyen görünüm veya seçime erişilemedi.</value></data>
+  <data name="ExplorerError" xml:space="preserve"><value>Explorer seçimi yakalanamadı.</value></data>
+  <data name="ExplorerCaptureStartFailed" xml:space="preserve"><value>Explorer yakalama başlatılamadı.</value></data>
+  <data name="ExplorerCaptureTimedOut" xml:space="preserve"><value>Explorer yakalama zaman aşımına uğradı.</value></data>
+  <data name="ImagingCannotPreserveMetadata" xml:space="preserve"><value>Windows Görüntüleme meta verilerini koruyamaz.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Resim çözülemedi.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Resim kodlanamadı.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Desteklenmeyen çıktı formatı.</value></data>
+  <data name="MediaOpenFailed" xml:space="preserve"><value>Medya dosyası açılamadı.</value></data>
+  <data name="MediaCodecNotFound" xml:space="preserve"><value>Bu sistemde gerekli bir codec yüklü değil.</value></data>
+  <data name="MediaInvalidProfile" xml:space="preserve"><value>Bu dönüştürme, dosya için desteklenmiyor.</value></data>
+  <data name="MediaConversionNotSupported" xml:space="preserve"><value>Medya dosyası dönüştürülemiyor.</value></data>
+  <data name="MediaConversionFailed" xml:space="preserve"><value>Medya dönüştürme başarısız oldu.</value></data>
+  <data name="MediaUnsupportedAudio" xml:space="preserve"><value>Desteklenmeyen ses formatı.</value></data>
+  <data name="MediaNoVideoTrack" xml:space="preserve"><value>Dosyada video parçası yok.</value></data>
+  <data name="MediaUnsupportedOperation" xml:space="preserve"><value>Desteklenmeyen medya işlemi.</value></data>
+  <data name="PdfPasswordProtected" xml:space="preserve"><value>Şifre korumalı PDF&apos;ler henüz desteklenmiyor.</value></data>
+  <data name="PdfOpenFailed" xml:space="preserve"><value>PDF açılamadı.</value></data>
+  <data name="OcrUnavailable" xml:space="preserve"><value>Yerel OCR kullanılamıyor. Windows Ayarları &gt; Zaman ve dil bölümünden bir OCR dili yükleyin.</value></data>
+  <data name="OcrFailed" xml:space="preserve"><value>Metin tanınamadı.</value></data>
+</root>

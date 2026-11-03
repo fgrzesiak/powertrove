@@ -5,6 +5,8 @@ using PowerTrove.Abstractions.Packs;
 using PowerTrove.Abstractions.Testing;
 using PowerTrove.Core;
 using PowerTrove.Core.Workflows;
+using PowerTrove.Core.Search;
+using PowerTrove.Application.Localization;
 using PowerTrove.Desktop;
 using PowerTrove.Pack.Images;
 using PowerTrove.Pack.Media;
@@ -30,6 +32,63 @@ public sealed class LocalizedCatalogTests
     {
         var problems = LocalizedActionCatalog.FindProblems(CreatePacks);
         Assert.True(problems.Count == 0, "Catalog localization failures:" + Environment.NewLine + string.Join(Environment.NewLine, problems));
+    }
+
+    [Fact]
+    public async Task EveryBuiltInEnglishActionTitle_IsDiscoverableRegardlessOfSelection()
+    {
+        var original = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            var packs = CreatePacks();
+            var registry = new ActionRegistry();
+            foreach (var pack in packs) registry.RegisterPack(pack.Info.Id, pack.Actions);
+            var engine = new ActionSearchEngine(registry);
+            var snapshot = new ContextSnapshot(Guid.NewGuid(),
+                new SourceWindowIdentity(IntPtr.Zero, 1, "test", DateTimeOffset.UtcNow),
+                ContextStatus.Available, new NoContent(), DateTimeOffset.UtcNow,
+                DateTimeOffset.UtcNow.AddMinutes(5), "test", null);
+
+            foreach (var action in packs.SelectMany(pack => pack.Actions))
+            {
+                var hits = await engine.SearchAsync(action.Descriptor.Title, snapshot);
+                Assert.Contains(hits, hit => hit.Action.Descriptor.Id == action.Descriptor.Id
+                    && hit.TextMatchScore >= 100);
+            }
+        }
+        finally { CultureInfo.CurrentUICulture = original; }
+    }
+
+    [Fact]
+    public async Task EverySupportedUiLanguage_FindsRepresentativeActionTitlesWithoutCompatibleSelection()
+    {
+        var original = CultureInfo.CurrentUICulture;
+        try
+        {
+            var snapshot = new ContextSnapshot(Guid.NewGuid(),
+                new SourceWindowIdentity(IntPtr.Zero, 1, "test", DateTimeOffset.UtcNow),
+                ContextStatus.Available, new NoContent(), DateTimeOffset.UtcNow,
+                DateTimeOffset.UtcNow.AddMinutes(5), "test", null);
+
+            foreach (string locale in UiLanguages.Supported)
+            {
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
+                var packs = CreatePacks();
+                var registry = new ActionRegistry();
+                foreach (var pack in packs) registry.RegisterPack(pack.Info.Id, pack.Actions);
+                var engine = new ActionSearchEngine(registry);
+                // Representative title per pack; every locale is tested through the real registry and search engine.
+                foreach (var pack in packs)
+                {
+                    var action = pack.Actions[0];
+                    var results = await engine.SearchAsync(action.Descriptor.Title, snapshot);
+                    Assert.Contains(results, r => r.Action.Descriptor.Id == action.Descriptor.Id
+                        && r.TextMatchScore >= 100);
+                }
+            }
+        }
+        finally { CultureInfo.CurrentUICulture = original; }
     }
 
     [Fact]

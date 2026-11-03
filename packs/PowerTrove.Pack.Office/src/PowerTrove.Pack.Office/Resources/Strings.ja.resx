@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>オフィスツール</value></data>
+  <data name="Inputs" xml:space="preserve"><value>オフィス文書</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>WordファイルをPDFに変換</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>インストール済みのMicrosoft Wordを使用して、新しいPDFを作成します。</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>ExcelファイルをPDFに変換</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>インストール済みのMicrosoft Excelとその印刷レイアウトを使用して、新しいPDFを作成します。</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>PowerPointファイルをPDFに変換</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>インストール済みのMicrosoft PowerPointを使用して、新しいPDFを作成します。</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>PDFファイルをWordに変換</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>インストール済みのWord PDF Reflowを使用して、編集可能なDOCXコピーを作成します。</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>Microsoft Wordが必要です。</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>Microsoft Excelが必要です。</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>Microsoft PowerPointが必要です。</value></data>
+  <data name="Progress" xml:space="preserve"><value>変換中</value></data>
+  <data name="Export_One" xml:space="preserve"><value>1つのOfficeドキュメントを新しいPDFファイルにエクスポートします。</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>{0}個のOfficeドキュメントを新しいPDFファイルにエクスポートします。</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>1つのPDFファイルを新しいWord文書に変換します。</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>{0}個のPDFファイルを新しいWord文書に変換します。</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>ローカルにOfficeがインストールされている必要があります。レイアウトはOffice、フォント、印刷設定によって異なります。サポートされていないマクロコンテンツと数式を含むCSVファイルは拒否されます。64MiBを超えるドキュメントと一部の旧コンテナはサポートされていません。</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>WordのPDFリフロー機能は、レイアウト、フォント、表、改ページを変更する場合があります。スキャンされたページは画像として残る可能性があります。Word 16.0の変換警告設定は一時的に変更され、その後元に戻ります。</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>必要なMicrosoft Officeアプリケーションがインストールされていません。</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>ドキュメントがパスワードで保護されています。</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>このドキュメントには、安全に変換のために開くことができないマクロまたは数式が含まれています。</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>ドキュメント形式が無効、サポートされていない、または変換制限を超えています。</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>別の Office インスタンスを取得できませんでした。Office アプリケーションを閉じて、もう一度お試しください。</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>Office変換がタイムアウトしました。出力は保存されませんでした。</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Officeはこのドキュメントを変換できませんでした。出力は保存されませんでした。</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>一時的に設定したWordの設定を復元できませんでした。WordのPDF変換に関する警告設定を確認してください。</value></data>
+</root>

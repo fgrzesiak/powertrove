@@ -106,6 +106,52 @@ public sealed class ManifestV2MetadataTests
         }));
     }
 
+    [Fact]
+    public void SearchTerms_RoundTripInV2AndRemainOptionalForLegacyBundles()
+    {
+        var baseManifest = Valid();
+        Assert.Null(Assert.Single(ActionPackManifest.Read(ActionPackManifest.ToJson(baseManifest)).Actions).SearchTerms);
+        var action = Assert.Single(baseManifest.Actions) with { SearchTerms = new[] { "zip", "archive", "entpacken" } };
+        var changed = baseManifest with { Actions = new[] { action } };
+        var read = ActionPackManifest.Read(ActionPackManifest.ToJson(changed));
+        Assert.Equal(new[] { "zip", "archive", "entpacken" }, Assert.Single(read.Actions).SearchTerms);
+        Assert.Contains("searchTerms", ActionPackManifest.ToJson(read));
+    }
+
+    [Fact]
+    public void SearchTerms_RejectUnboundedAndControlCharacterInputs()
+    {
+        var action = Assert.Single(Valid().Actions);
+        foreach (var invalid in new IReadOnlyList<string>[]
+        {
+            Enumerable.Range(0, 65).Select(i => "alias-" + i).ToArray(),
+            new[] { "" }, new[] { new string('x', 129) }, new[] { "unsafe\u0001value" }
+        })
+        {
+            var invalidManifest = Valid() with { Actions = new[] { action with { SearchTerms = invalid } } };
+            Assert.Throws<JsonException>(() => ActionPackManifest.ToJson(invalidManifest));
+        }
+    }
+
+    [Fact]
+    public void LocalizedSearchTerms_PreserveEnglishAndCanAddGermanSynonyms()
+    {
+        var english = Valid() with { Actions = new[]
+        {
+            Assert.Single(Valid().Actions) with { Title = "Merge PDFs", SearchTerms = new[] { "combine", "merge pdf" } }
+        } };
+        var german = english with { DisplayName = "PDF-Werkzeuge", Actions = new[]
+        {
+            Assert.Single(english.Actions) with { Title = "PDFs zusammenführen", SearchTerms = new[] { "pdf verbinden", "zusammenfügen" } }
+        } };
+        var localized = ManifestLocalization.WithTranslation(english, "de", german);
+        var restored = ActionPackManifest.Read(ActionPackManifest.ToJson(localized));
+        Assert.Equal(new[] { "combine", "merge pdf" }, restored.Actions[0].SearchTerms);
+        Assert.Equal(new[] { "pdf verbinden", "zusammenfügen" },
+            ManifestLocalization.ForCulture(restored, System.Globalization.CultureInfo.GetCultureInfo("de")).Actions[0].SearchTerms);
+        Assert.Equal("Merge PDFs", ManifestLocalization.ForCulture(restored, System.Globalization.CultureInfo.GetCultureInfo("en")).Actions[0].Title);
+    }
+
     private static ActionManifest Valid() => new("2.0", "powertrove.test", "0.1.0", "Test", "PowerTrove", "1",
         new[] { new ManifestAction("powertrove.test.action", "Action", new[] { "none" }, ChangesFiles: false) },
         MinHostVersion: "0.1.0", Capabilities: Array.Empty<string>());

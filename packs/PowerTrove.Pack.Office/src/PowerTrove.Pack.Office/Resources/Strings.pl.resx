@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="PackTitle" xml:space="preserve"><value>Narzędzia pakietu Office</value></data>
+  <data name="Inputs" xml:space="preserve"><value>Dokumenty pakietu Office</value></data>
+  <data name="TitleWord" xml:space="preserve"><value>Konwertuj Word na PDF</value></data>
+  <data name="DescriptionWord" xml:space="preserve"><value>Tworzenie nowych plików PDF za pomocą zainstalowanego programu Microsoft Word.</value></data>
+  <data name="TitleExcel" xml:space="preserve"><value>Konwersja pliku Excel do PDF</value></data>
+  <data name="DescriptionExcel" xml:space="preserve"><value>Tworzenie nowych plików PDF za pomocą zainstalowanego programu Microsoft Excel i jego układu wydruku.</value></data>
+  <data name="TitlePowerPoint" xml:space="preserve"><value>Konwersja pliku PowerPoint do PDF</value></data>
+  <data name="DescriptionPowerPoint" xml:space="preserve"><value>Tworzenie nowych plików PDF za pomocą zainstalowanego programu Microsoft PowerPoint.</value></data>
+  <data name="TitlePdfToWord" xml:space="preserve"><value>Konwersja pliku PDF do Worda</value></data>
+  <data name="DescriptionPdfToWord" xml:space="preserve"><value>Tworzenie edytowalnych kopii DOCX za pomocą zainstalowanego programu Word PDF Reflow.</value></data>
+  <data name="MissingWord" xml:space="preserve"><value>Wymagany jest program Microsoft Word.</value></data>
+  <data name="MissingExcel" xml:space="preserve"><value>Wymagany jest program Microsoft Excel.</value></data>
+  <data name="MissingPowerPoint" xml:space="preserve"><value>Wymagany jest program Microsoft PowerPoint.</value></data>
+  <data name="Progress" xml:space="preserve"><value>Konwersja</value></data>
+  <data name="Export_One" xml:space="preserve"><value>Wyeksportuje jeden dokument pakietu Office do nowego pliku PDF.</value></data>
+  <data name="Export_Other" xml:space="preserve"><value>Wyeksportuje dokumenty pakietu Office {0} do nowych plików PDF.</value></data>
+  <data name="Reflow_One" xml:space="preserve"><value>Konwertuje jeden plik PDF na nowy dokument Word.</value></data>
+  <data name="Reflow_Other" xml:space="preserve"><value>Skonwertuje pliki PDF {0} na nowe dokumenty Word.</value></data>
+  <data name="ExportWarning" xml:space="preserve"><value>Wymaga lokalnie zainstalowanego pakietu Office. Układ zależy od pakietu Office, czcionek i ustawień drukowania. Nieobsługiwana zawartość makr i pliki CSV obsługujące formuły są odrzucane; dokumenty o rozmiarze większym niż 64 MiB i niektóre starsze kontenery nie są obsługiwane.</value></data>
+  <data name="ReflowWarning" xml:space="preserve"><value>Funkcja Word PDF Reflow może zmieniać układ, czcionki, tabele i podziały stron. Zeskanowane strony mogą pozostać obrazami. Preferencje dotyczące ostrzeżeń o konwersji w programie Word 16.0 są tymczasowo zmieniane i przywracane później.</value></data>
+  <data name="ErrorMissingApplication" xml:space="preserve"><value>Wymagana aplikacja Microsoft Office nie jest zainstalowana.</value></data>
+  <data name="ErrorPasswordProtected" xml:space="preserve"><value>Dokument jest chroniony hasłem.</value></data>
+  <data name="ErrorUnsafeMacros" xml:space="preserve"><value>Ten dokument zawiera makra lub formuły, których nie można bezpiecznie otworzyć w celu konwersji.</value></data>
+  <data name="ErrorInvalidDocument" xml:space="preserve"><value>Format dokumentu jest nieprawidłowy, nieobsługiwany lub przekracza limity konwersji.</value></data>
+  <data name="ErrorBusy" xml:space="preserve"><value>Nie można uzyskać oddzielnej instancji pakietu Office. Zamknij tę aplikację pakietu Office i spróbuj ponownie.</value></data>
+  <data name="ErrorTimedOut" xml:space="preserve"><value>Przekroczono limit czasu konwersji pakietu Office. Nie zapisano żadnego pliku wyjściowego.</value></data>
+  <data name="ErrorConversionFailed" xml:space="preserve"><value>Program Office nie mógł przekonwertować tego dokumentu. Nie zapisano żadnego pliku wyjściowego.</value></data>
+  <data name="ErrorPreferenceRestoreFailed" xml:space="preserve"><value>Nie można przywrócić tymczasowej preferencji programu Word. Sprawdź ustawienie ostrzeżenia dotyczącego konwersji PDF w programie Word.</value></data>
+  <data name="Export_Few" xml:space="preserve"><value>Wyeksportuje {0} dokumenty pakietu Office do nowych plików PDF.</value></data>
+  <data name="Export_Many" xml:space="preserve"><value>Wyeksportuje {0} dokumentów pakietu Office do nowych plików PDF.</value></data>
+  <data name="Reflow_Few" xml:space="preserve"><value>Skonwertuje {0} pliki PDF na nowe dokumenty Word.</value></data>
+  <data name="Reflow_Many" xml:space="preserve"><value>Skonwertuje {0} plików PDF na nowe dokumenty Word.</value></data>
+</root>

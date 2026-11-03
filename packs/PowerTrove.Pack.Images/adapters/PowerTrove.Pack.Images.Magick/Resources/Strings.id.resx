@@ -1,0 +1,5 @@
+<root>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Gambar tidak dapat didekode.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Gambar tidak dapat dienkode.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Format gambar tidak didukung.</value></data>
+</root>

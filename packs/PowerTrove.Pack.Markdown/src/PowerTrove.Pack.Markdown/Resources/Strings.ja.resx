@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="PackTitle" xml:space="preserve">
+    <value>Markdownツール</value>
+  </data>
+  <data name="ViewTitle" xml:space="preserve">
+    <value>Markdownの表示</value>
+  </data>
+  <data name="ViewDescription" xml:space="preserve">
+    <value>Markdownファイルを、表、コード、タスクリスト、ローカル画像を含むフォーマット済みページとして表示します。</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Markdownを編集</value>
+  </data>
+  <data name="EditDescription" xml:space="preserve">
+    <value>Markdownファイルをライブプレビューで並べて編集します。変更は「保存」を選択した場合のみ保存されます。</value>
+  </data>
+  <data name="MarkdownFiles" xml:space="preserve">
+    <value>Markdownファイル</value>
+  </data>
+  <data name="EngineUnavailable" xml:space="preserve">
+    <value>Markdownエンジンが利用できません。</value>
+  </data>
+  <data name="ViewOperation" xml:space="preserve">
+    <value>Markdownファイルをビューアで開きます。</value>
+  </data>
+  <data name="EditOperation" xml:space="preserve">
+    <value>Markdownファイルをエディターで開きます。</value>
+  </data>
+  <data name="RemovedContent" xml:space="preserve">
+    <value>{0} 個のアクティブまたはサポートされていない HTML パーツが表示から削除されました。</value>
+  </data>
+  <data name="RemoteImagesBlocked" xml:space="preserve">
+    <value>インターネット上の{0}個の画像は読み込まれませんでした。</value>
+  </data>
+  <data name="UnsupportedImages" xml:space="preserve">
+    <value>{0}個の画像はファイルのフォルダ外にあるか、サポートされていないソースを使用しているため表示されません。</value>
+  </data>
+  <data name="PreviewTooLarge" xml:space="preserve">
+    <value>ドキュメントが大きすぎてプレビューできません。</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Markdownファイルを読み取れませんでした。</value>
+  </data>
+  <data name="ViewerOnly" xml:space="preserve">
+    <value>PowerTroveパレットからこのアクションを開くと、ビューアでファイルが表示されます。</value>
+  </data>
+  <data name="TooLarge" xml:space="preserve">
+    <value>ファイルがサポートサイズを超えています。</value>
+  </data>
+  <data name="InvalidText" xml:space="preserve">
+    <value>ファイルは読み取り可能なテキストではありません。</value>
+  </data>
+  <data name="TooComplex" xml:space="preserve">
+    <value>ドキュメントが大きすぎるか、ネストが深すぎます。</value>
+  </data>
+  <data name="Converting" xml:space="preserve">
+    <value>変換中</value>
+  </data>
+  <data name="ToHtmlTitle" xml:space="preserve">
+    <value>MarkdownからHTMLへ</value>
+  </data>
+  <data name="ToHtmlDescription" xml:space="preserve">
+    <value>各Markdownファイルから、ローカル画像を埋め込んだりリンクしたりしたスタイル付きHTMLページを作成します。</value>
+  </data>
+  <data name="ImagesOption" xml:space="preserve">
+    <value>ローカル画像</value>
+  </data>
+  <data name="ImagesEmbed" xml:space="preserve">
+    <value>ページに埋め込む</value>
+  </data>
+  <data name="ImagesLink" xml:space="preserve">
+    <value>画像ファイルへのリンク</value>
+  </data>
+  <data name="ToHtmlOperation_One" xml:space="preserve">
+    <value>HTMLページを{0}個作成します。</value>
+  </data>
+  <data name="ToHtmlOperation_Other" xml:space="preserve">
+    <value>HTMLページを{0}個作成します。</value>
+  </data>
+  <data name="SanitizedNotice" xml:space="preserve">
+    <value>Markdownで記述されたHTMLは静的フォーマットに変換されます。スクリプト、フォーム、フレーム、スタイルは削除されます。</value>
+  </data>
+  <data name="HtmlEmbedNotice" xml:space="preserve">
+    <value>ファイルフォルダ内の画像は埋め込まれているため、ページは単独で機能します。インターネット上の画像はリンクのままです。</value>
+  </data>
+  <data name="HtmlLinkNotice" xml:space="preserve">
+    <value>画像はファイルへのリンクとして保持されます。画像フォルダの隣にページを保持してください。</value>
+  </data>
+  <data name="ToPdfTitle" xml:space="preserve">
+    <value>MarkdownからPDFへ</value>
+  </data>
+  <data name="ToPdfDescription" xml:space="preserve">
+    <value>このPCのMicrosoft Edgeを使用して、各Markdownファイルを表、コード、ローカル画像を含むフォーマット済みPDFとして印刷します。</value>
+  </data>
+  <data name="Paper" xml:space="preserve">
+    <value>用紙</value>
+  </data>
+  <data name="PaperA4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="PaperLetter" xml:space="preserve">
+    <value>USレターサイズ</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>横向き</value>
+  </data>
+  <data name="Margin" xml:space="preserve">
+    <value>余白 (mm)</value>
+  </data>
+  <data name="PrinterUnavailable" xml:space="preserve">
+    <value>PDFを作成するにはMicrosoft Edgeが必要です。</value>
+  </data>
+  <data name="ToPdfOperation_One" xml:space="preserve">
+    <value>{0}個のPDFを作成します。</value>
+  </data>
+  <data name="ToPdfOperation_Other" xml:space="preserve">
+    <value>{0}個のPDFを作成します。</value>
+  </data>
+  <data name="PdfNotice" xml:space="preserve">
+    <value>ファイルフォルダ内の画像は、ドキュメントごとに約3MBまで埋め込まれます。インターネット上の画像はダウンロードされず、説明文として表示されます。</value>
+  </data>
+  <data name="PdfFailed" xml:space="preserve">
+    <value>PDFを作成できませんでした。</value>
+  </data>
+  <data name="PdfCleanupFailed" xml:space="preserve">
+    <value>PDFは作成されましたが、ブラウザの一時ファイルを削除できませんでした。</value>
+  </data>
+  <data name="NoContent" xml:space="preserve">
+    <value>ファイルに変換可能なテキストが含まれていません。</value>
+  </data>
+  <data name="MergeTitle" xml:space="preserve">
+    <value>Markdownファイルの結合</value>
+  </data>
+  <data name="MergeDescription" xml:space="preserve">
+    <value>選択したMarkdownファイルを、指定した順序で結合し、1つのMarkdown、HTML、またはPDFファイルを作成します。</value>
+  </data>
+  <data name="MergeFormat" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="MergeFormatMarkdown" xml:space="preserve">
+    <value>Markdownファイル1つ</value>
+  </data>
+  <data name="MergeFormatHtml" xml:space="preserve">
+    <value>HTMLページ1ページ</value>
+  </data>
+  <data name="MergeFormatPdf" xml:space="preserve">
+    <value>PDFファイル1つ</value>
+  </data>
+  <data name="MergeOrder" xml:space="preserve">
+    <value>ファイルと順序</value>
+  </data>
+  <data name="MergeOrderHelp" xml:space="preserve">
+    <value>ファイルをドラッグするか、矢印を使用して順序を変更します。チェックボックスをオフにすると、ファイルを除外できます。</value>
+  </data>
+  <data name="MergeOrderInvalid" xml:space="preserve">
+    <value>ファイルの順序が無効です。ファイルを再度選択してください。</value>
+  </data>
+  <data name="MergeNeedsTwo" xml:space="preserve">
+    <value>結合するファイルは2つ以上選択してください。</value>
+  </data>
+  <data name="MergeDivider" xml:space="preserve">
+    <value>ファイル間の水平線</value>
+  </data>
+  <data name="MergePageBreaks" xml:space="preserve">
+    <value>各ファイルを新しいページから開始する</value>
+  </data>
+  <data name="MergeOperation_Markdown" xml:space="preserve">
+    <value>選択したファイルを最初のファイルの隣にある1つのMarkdownファイルに結合する。</value>
+  </data>
+  <data name="MergeOperation_Html" xml:space="preserve">
+    <value>選択したファイルを最初のファイルの隣にある1つのHTMLページに結合する。</value>
+  </data>
+  <data name="MergeOperation_Pdf" xml:space="preserve">
+    <value>選択したファイルを最初のファイルの隣にある1つのPDFファイルに結合する。</value>
+  </data>
+  <data name="MergeMarkdownNotice" xml:space="preserve">
+    <value>テキストは原文のまま保持されます。相対リンクと画像は新しいファイルのフォルダに合わせて調整され、脚注は一意になるように名前が変更され、最初のファイルの前書きのみが保持されます。</value>
+  </data>
+  <data name="MergeTooLarge" xml:space="preserve">
+    <value>ファイルが大きすぎて結合できません。</value>
+  </data>
+  <data name="MergeTip" xml:space="preserve">
+    <value>Markdownファイルごとに1つのファイルを作成します。1つのファイルを作成するには、「すべてのファイルを1つに結合する」をオンにしてください。</value>
+  </data>
+  <data name="CombineOption" xml:space="preserve">
+    <value>すべてのファイルを1つに結合する</value>
+  </data>
+  <data name="CombineHelp" xml:space="preserve">
+    <value>複数のファイルを選択した場合、ファイルごとに1つのファイルを作成するのではなく、選択した順序で1つのファイルを作成します。</value>
+  </data>
+  <data name="MergeTooMany" xml:space="preserve">
+    <value>結合するファイルは最大100個まで選択できます。</value>
+  </data>
+  <data name="ToMarkdownTitle" xml:space="preserve">
+    <value>Markdown形式に変換</value>
+  </data>
+  <data name="ToMarkdownDescription" xml:space="preserve">
+    <value>Word、PowerPoint、Excel、PDF、EPUB、Jupyter、HTMLファイルを、見出し、リスト、表、リンク、画像を含むMarkdown形式に変換します。</value>
+  </data>
+  <data name="ToMarkdownFiles" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="ToMarkdownImages" xml:space="preserve">
+    <value>画像を保持</value>
+  </data>
+  <data name="ToMarkdownImagesHelp" xml:space="preserve">
+    <value>ドキュメント内の画像を、Markdownファイルと同じ名前のフォルダに保存します。</value>
+  </data>
+  <data name="ToMarkdownNotesOption" xml:space="preserve">
+    <value>スピーカーノートを含める（PowerPoint）</value>
+  </data>
+  <data name="ToMarkdownOutputsOption" xml:space="preserve">
+    <value>保存されたセル出力を含める（Jupyter）</value>
+  </data>
+  <data name="ToMarkdownOperation_One" xml:space="preserve">
+    <value>Markdownファイルを{0}個作成します。</value>
+  </data>
+  <data name="ToMarkdownOperation_Other" xml:space="preserve">
+    <value>Markdownファイルを{0}個作成します。</value>
+  </data>
+  <data name="ToMarkdownNotice" xml:space="preserve">
+    <value>見出し、リスト、強調表示、リンク、表、コード、画像は保持されます。レイアウト、色、コメント、変更履歴、スクリプトは除外されます。</value>
+  </data>
+  <data name="ToMarkdownImagesNotice" xml:space="preserve">
+    <value>画像はMarkdownファイルと同じ名前の新しいフォルダに保存されます。既存のファイルは上書きされません。</value>
+  </data>
+  <data name="ToMarkdownPdfNotice" xml:space="preserve">
+    <value>PDFはテキストレイヤーから読み込まれます。タグ付きPDFは見出し、表、リストを保持します。タグなしPDFは、ブックマークまたはフォントサイズから見出しを取得します。目次はリンクリストになり、リンクはリンクのまま、脚注は脚注のまま、表は枠線がなくても列で認識されます。重複する見出し、ページ番号、ロゴは削除され、画像は元の位置に配置されます。スキャンされたPDFは、まずテキスト認識が必要です。</value>
+  </data>
+  <data name="ToMarkdownTooLarge" xml:space="preserve">
+    <value>変換後のドキュメントがサポートサイズを超えています。</value>
+  </data>
+  <data name="ToMarkdownInvalid" xml:space="preserve">
+    <value>ファイルが破損しているか、サポートされていない形式です。</value>
+  </data>
+  <data name="ToMarkdownNoContent" xml:space="preserve">
+    <value>ファイルに変換可能なコンテンツが含まれていません。</value>
+  </data>
+  <data name="ToMarkdownSlide" xml:space="preserve">
+    <value>スライド {0}</value>
+  </data>
+  <data name="ToMarkdownNotes" xml:space="preserve">
+    <value>注記</value>
+  </data>
+  <data name="ToMarkdownProtected" xml:space="preserve">
+    <value>電子書籍がコピープロテクトされているため、変換できません。</value>
+  </data>
+  <data name="ToMarkdownPdfNoText" xml:space="preserve">
+    <value>PDFにテキストレイヤーがありません（スキャンされたファイルなど）。まず、テキスト認識機能を使って検索可能にしてください。</value>
+  </data>
+  <data name="ToMarkdownPdfEncrypted" xml:space="preserve">
+    <value>PDFはパスワードで保護されています。まず、保護を解除してください。</value>
+  </data>
+</root>

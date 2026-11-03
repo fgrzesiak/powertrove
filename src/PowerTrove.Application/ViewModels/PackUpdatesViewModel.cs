@@ -33,7 +33,7 @@ public sealed class PackUpdatesViewModel(TimeProvider? clock = null) : INotifyPr
         {
             lock (_gate)
                 return _closed || _dismissed || _count == 0 ? string.Empty : string.Format(CultureInfo.CurrentCulture,
-                    Strings.GetString(_count == 1 ? "PackUpdatesNoticeOne" : "PackUpdatesNoticeOther"), _count);
+                    Strings.Plural("PackUpdatesNotice", _count, separator: ""), _count);
         }
     }
 

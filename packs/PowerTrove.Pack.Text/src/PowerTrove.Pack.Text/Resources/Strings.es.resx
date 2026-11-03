@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Portapapeles y texto</value></data>
+  <data name="Description" xml:space="preserve"><value>Transforma localmente una selección de texto capturada explícitamente y copia el resultado al portapapeles.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Revise la transformación. El resultado se copiará al portapapeles solo después de ejecutar la acción.</value></data>
+  <data name="Done" xml:space="preserve"><value>Texto copiado al portapapeles.</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>No hay texto disponible para seleccionar, o la selección ha caducado o es demasiado extensa.</value></data>
+  <data name="TooLarge" xml:space="preserve"><value>El texto supera el límite de 65 536 caracteres.</value></data>
+  <data name="InvalidInput" xml:space="preserve"><value>No se puede procesar el texto o el patrón.</value></data>
+  <data name="InvalidOperation" xml:space="preserve"><value>Operación de texto no compatible.</value></data>
+  <data name="InvalidEncoding" xml:space="preserve"><value>El contenido de entrada no es válido.</value></data>
+  <data name="RegexTimeout" xml:space="preserve"><value>La expresión regular superó su límite de tiempo.</value></data>
+  <data name="PatternRequired" xml:space="preserve"><value>Introduzca un patrón de expresión regular.</value></data>
+  <data name="Pattern" xml:space="preserve"><value>Patrón</value></data>
+  <data name="Replacement" xml:space="preserve"><value>Reemplazo</value></data>
+  <data name="RegexHint" xml:space="preserve"><value>Expresión regular de .NET, tiempo de espera de 200 ms</value></data>
+  <data name="EmptyResult" xml:space="preserve"><value>El resultado está vacío; al ejecutarlo se borrará el texto del portapapeles.</value></data>
+  <data name="trim" xml:space="preserve"><value>Recortar espacios en blanco</value></data>
+  <data name="trim-lines" xml:space="preserve"><value>Recortar cada línea</value></data>
+  <data name="collapse-whitespace" xml:space="preserve"><value>Ocultar espacios en blanco</value></data>
+  <data name="remove-empty-lines" xml:space="preserve"><value>Eliminar líneas vacías</value></data>
+  <data name="unique-lines" xml:space="preserve"><value>Eliminar líneas duplicadas</value></data>
+  <data name="sort-lines" xml:space="preserve"><value>Ordenar líneas</value></data>
+  <data name="lowercase" xml:space="preserve"><value>Convertir a minúsculas</value></data>
+  <data name="uppercase" xml:space="preserve"><value>Convertir a mayúsculas</value></data>
+  <data name="titlecase" xml:space="preserve"><value>Convertir a mayúsculas iniciales</value></data>
+  <data name="regex-replace" xml:space="preserve"><value>Reemplazar texto usando expresiones regulares</value></data>
+  <data name="url-encode" xml:space="preserve"><value>Texto codificado de URL</value></data>
+  <data name="url-decode" xml:space="preserve"><value>Texto decodificado de URL</value></data>
+  <data name="html-encode" xml:space="preserve"><value>Codificación de texto HTML</value></data>
+  <data name="html-decode" xml:space="preserve"><value>Decodificación de texto HTML</value></data>
+  <data name="base64-encode" xml:space="preserve"><value>Codificar texto en Base64</value></data>
+  <data name="base64-decode" xml:space="preserve"><value>Decodificar texto en Base64</value></data>
+  <data name="json-escape" xml:space="preserve"><value>Texto de escape JSON</value></data>
+</root>

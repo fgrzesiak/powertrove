@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <data name="OfficeMissingApplication" xml:space="preserve"><value>Wymagana aplikacja pakietu Microsoft Office nie jest zainstalowana.</value></data>
+  <data name="OfficePasswordProtected" xml:space="preserve"><value>Dokument jest chroniony hasłem.</value></data>
+  <data name="OfficeUnsafeMacros" xml:space="preserve"><value>Ten dokument zawiera makra lub formuły, których nie można bezpiecznie otworzyć w celu konwersji.</value></data>
+  <data name="OfficeInvalidDocument" xml:space="preserve"><value>Format dokumentu jest nieprawidłowy, nieobsługiwany lub przekracza limity konwersji.</value></data>
+  <data name="OfficeBusy" xml:space="preserve"><value>Nie można uzyskać oddzielnej instancji pakietu Office. Zamknij tę aplikację pakietu Office i spróbuj ponownie.</value></data>
+  <data name="OfficeTimedOut" xml:space="preserve"><value>Przekroczono limit czasu konwersji pakietu Office. Nie zapisano żadnych danych wyjściowych.</value></data>
+  <data name="OfficeConversionFailed" xml:space="preserve"><value>Program Office nie mógł przekonwertować tego dokumentu. Nie zapisano żadnych danych wyjściowych.</value></data>
+  <data name="OfficePreferenceRestoreFailed" xml:space="preserve"><value>Nie można przywrócić tymczasowych preferencji programu Word. Sprawdź ustawienia ostrzeżenia dotyczącego konwersji PDF w programie Word.</value></data>
+  <data name="FileAccessDenied" xml:space="preserve"><value>Dostęp został zablokowany.</value></data>
+  <data name="FileReadFailed" xml:space="preserve"><value>Nie można odczytać pliku.</value></data>
+  <data name="FileFormatNotRecognized" xml:space="preserve"><value>Treść nie jest rozpoznawanym formatem {0}.</value></data>
+  <data name="FileFormatMismatch" xml:space="preserve"><value>Treść nie pasuje do obsługiwanych formatów {0}.</value></data>
+  <data name="ImageDecodeFailed" xml:space="preserve"><value>Nie można zdekodować obrazu.</value></data>
+  <data name="ImageEncodeFailed" xml:space="preserve"><value>Nie można zakodować obrazu.</value></data>
+  <data name="ImageUnsupportedFormat" xml:space="preserve"><value>Nieobsługiwany format obrazu.</value></data>
+</root>

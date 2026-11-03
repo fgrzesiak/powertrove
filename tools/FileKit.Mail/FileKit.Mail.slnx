@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/FileKit.Mail/FileKit.Mail.csproj" />
+  <Project Path="tests/FileKit.Mail.Tests/FileKit.Mail.Tests.csproj" />
+</Solution>

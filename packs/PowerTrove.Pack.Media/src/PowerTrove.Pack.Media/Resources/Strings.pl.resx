@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="MediaActions_Title_ConvertAudio" xml:space="preserve"><value>Konwersja do {0}</value></data><data name="MediaActions_Desc_ConvertAudio" xml:space="preserve"><value>Konwertuje wybrane pliki audio do formatu {0}.</value></data><data name="MediaActions_Title_ConvertVideo" xml:space="preserve"><value>Konwersja do {0}</value></data><data name="MediaActions_Desc_ConvertVideo" xml:space="preserve"><value>Konwertuje wybrane filmy do formatu {0} przy użyciu zgodnego ustawienia wstępnego.</value></data><data name="MediaActions_Title_ExtractAudio" xml:space="preserve"><value>Wyodrębnianie dźwięku z wideo</value></data><data name="MediaActions_Desc_ExtractAudio" xml:space="preserve"><value>Zapisuje ścieżkę audio wybranych filmów jako pliki MP3.</value></data><data name="MediaActions_Title_RemoveAudio" xml:space="preserve"><value>Usuń dźwięk</value></data><data name="MediaActions_Desc_RemoveAudio" xml:space="preserve"><value>Tworzy kopie wybranych filmów bez ścieżki dźwiękowej.</value></data><data name="MediaActions_Title_ExtractFrames" xml:space="preserve"><value>Wyodrębnianie ramek</value></data><data name="MediaActions_Desc_ExtractFrames" xml:space="preserve"><value>Zapisywanie klatki co sekundę z wybranych filmów jako obrazów JPEG w nowym folderze.</value></data><data name="MediaActions_Title_VideoToGif" xml:space="preserve"><value>Konwersja do GIF</value></data><data name="MediaActions_Desc_VideoToGif" xml:space="preserve"><value>Konwertuje pierwsze 10 sekund wybranych filmów na cichą animację GIF.</value></data><data name="MediaActions_Operation_ConvertAudio" xml:space="preserve"><value>Skonwertuje plik {0} na {1}.</value></data><data name="MediaActions_Operation_ConvertVideo" xml:space="preserve"><value>Skonwertuje plik {0} na {1}.</value></data><data name="MediaActions_Operation_ExtractAudio" xml:space="preserve"><value>Wyodrębni ścieżkę audio z pliku {0} w formacie MP3.</value></data><data name="MediaActions_Operation_RemoveAudio" xml:space="preserve"><value>Utworzy kopię pliku {0} bez ścieżki dźwiękowej.</value></data><data name="MediaActions_Operation_ExtractFrames" xml:space="preserve"><value>Zapisuje klatkę co sekundę z pliku {0} jako obrazy JPEG w nowym folderze.</value></data><data name="MediaActions_Operation_VideoToGif" xml:space="preserve"><value>Skonwertuje pierwsze 10 sekund filmu {0} na niemą animację GIF.</value></data><data name="Media_AudioFile" xml:space="preserve"><value>plik audio</value></data><data name="Media_AudioFiles" xml:space="preserve"><value>pliki audio</value></data><data name="Media_Video" xml:space="preserve"><value>wideo</value></data><data name="Media_Videos" xml:space="preserve"><value>filmy</value></data><data name="Media_Progress_Converting" xml:space="preserve"><value>Konwersja</value></data><data name="Media_Progress_Extracting" xml:space="preserve"><value>Wyodrębnianie</value></data><data name="FFmpeg_Error_Timeout" xml:space="preserve"><value>Przekroczono limit czasu konwersji multimediów.</value></data><data name="FFmpeg_Error_ProcessFailed" xml:space="preserve"><value>Konwersja multimediów nie powiodła się (kod wyjścia {0}).</value></data><data name="MediaActions_Title_ReplaceAudio" xml:space="preserve"><value>Zamień ścieżkę audio</value></data>
+<data name="MediaActions_Desc_ReplaceAudio" xml:space="preserve"><value>Zastępuje ścieżkę audio wybranego filmu wybranym plikiem audio.</value></data>
+<data name="MediaActions_Operation_ReplaceAudio" xml:space="preserve"><value>Zastąpi ścieżkę audio wideo.</value></data>
+<data name="Media_RequiresFFmpeg" xml:space="preserve"><value>Wymaga FFmpeg</value></data>
+<data name="MediaActions_Title_EmbedSubtitles" xml:space="preserve"><value>Dodaj napisy</value></data>
+<data name="MediaActions_Desc_EmbedSubtitles" xml:space="preserve"><value>Dodaje ścieżki napisów do filmu bez ponownego kodowania.</value></data>
+<data name="MediaActions_Operation_EmbedSubtitles" xml:space="preserve"><value>Doda napisy do filmu.</value></data>
+  <data name="MediaTitleinfo" xml:space="preserve"><value>Pokaż szczegóły multimediów</value></data>
+  <data name="MediaDescinfo" xml:space="preserve"><value>Pokaż właściwości techniczne bez tytułów, artystów ani innych tagów.</value></data>
+  <data name="MediaTitletrim" xml:space="preserve"><value>Przycinanie audio lub wideo</value></data>
+  <data name="MediaDesctrim" xml:space="preserve"><value>Zapisywanie wybranego zakresu czasu jako nowego pliku.</value></data>
+  <data name="MediaTitlecompress" xml:space="preserve"><value>Kompresja wideo</value></data>
+  <data name="MediaDesccompress" xml:space="preserve"><value>Utwórz mniejszy plik MP4 bez skalowania w górę. Wyniki, które nie są mniejsze, są pomijane.</value></data>
+  <data name="MediaTitlemerge" xml:space="preserve"><value>Połącz pliki wideo lub audio</value></data>
+  <data name="MediaDescmerge" xml:space="preserve"><value>Połącz pliki tego samego rodzaju w naturalnej kolejności nazw plików w nowy plik MP4 lub M4A.</value></data>
+  <data name="MediaTitleto-gif" xml:space="preserve"><value>Konwertuj wideo na GIF</value></data>
+  <data name="MediaDescto-gif" xml:space="preserve"><value>Tworzenie animowanego pliku GIF z krótkiego fragmentu wideo, do 600 klatek.</value></data>
+  <data name="MediaTitleextract-frames" xml:space="preserve"><value>Zapisywanie klatek wideo jako obrazów</value></data>
+  <data name="MediaDescextract-frames" xml:space="preserve"><value>Zapisywanie jednej klatki lub sekwencji klatek w pełnym rozmiarze w nowym folderze.</value></data>
+  <data name="MediaTitlenormalize" xml:space="preserve"><value>Normalizuj głośność</value></data>
+  <data name="MediaDescnormalize" xml:space="preserve"><value>Utwórz kopię znormalizowaną do −16 LUFS za pomocą analizy dwuprzebiegowej. Wymaga FFmpeg.</value></data>
+  <data name="MediaTitlerotate" xml:space="preserve"><value>Obrót wideo</value></data>
+  <data name="MediaDescrotate" xml:space="preserve"><value>Obróć wideo do nowej kopii. Wymaga FFmpeg.</value></data>
+  <data name="MediaParamStart" xml:space="preserve"><value>Początek (czas)</value></data>
+  <data name="MediaParamEnd" xml:space="preserve"><value>Koniec (pusty = do końca)</value></data>
+  <data name="MediaParamPrecise" xml:space="preserve"><value>Precyzyjne przycinanie z ponownym kodowaniem</value></data>
+  <data name="MediaParamQuality" xml:space="preserve"><value>Jakość wstępnie ustawiona</value></data>
+  <data name="MediaParamKeepAudio" xml:space="preserve"><value>Zachowaj dźwięk</value></data>
+  <data name="MediaParamDuration" xml:space="preserve"><value>Czas trwania (sekundy)</value></data>
+  <data name="MediaParamFps" xml:space="preserve"><value>Klatki na sekundę</value></data>
+  <data name="MediaParamWidth" xml:space="preserve"><value>Szerokość GIF (piksele)</value></data>
+  <data name="MediaParamMode" xml:space="preserve"><value>Wybór klatki</value></data>
+  <data name="MediaParamAt" xml:space="preserve"><value>O (czas)</value></data>
+  <data name="MediaParamEverySeconds" xml:space="preserve"><value>Interwał (0,5–3600 sekund)</value></data>
+  <data name="MediaParamFormat" xml:space="preserve"><value>Format obrazu</value></data>
+  <data name="MediaParamAngle" xml:space="preserve"><value>Obrót zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="MediaParamMetadataOnly" xml:space="preserve"><value>Zmień tylko metadane obrotu</value></data>
+  <data name="MediaChoicehigh" xml:space="preserve"><value>Wysoka · do 1080p, 5 Mb/s</value></data>
+  <data name="MediaChoicemedium" xml:space="preserve"><value>Średnia · do 720p, 2,5 Mb/s</value></data>
+  <data name="MediaChoicesmall" xml:space="preserve"><value>Mały · do 480p, 1 Mb/s</value></data>
+  <data name="MediaChoicesingle" xml:space="preserve"><value>Pojedyncza klatka</value></data>
+  <data name="MediaChoiceinterval" xml:space="preserve"><value>W odstępach czasu</value></data>
+  <data name="MediaChoicejpg" xml:space="preserve"><value>JPEG</value></data>
+  <data name="MediaChoicepng" xml:space="preserve"><value>PNG</value></data>
+  <data name="MediaChoice90" xml:space="preserve"><value>90° zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="MediaChoice180" xml:space="preserve"><value>180° zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="MediaChoice270" xml:space="preserve"><value>270° zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="MediaFiles" xml:space="preserve"><value>pliki multimedialne</value></data>
+  <data name="MediaAudioFiles" xml:space="preserve"><value>pliki audio</value></data>
+  <data name="MediaVideoFiles" xml:space="preserve"><value>pliki wideo</value></data>
+  <data name="MediaInspectUnavailable" xml:space="preserve"><value>Brak lokalnego inspektora multimediów. W systemie Windows użyj komponentów multimediów lub zainstaluj FFprobe obok FFmpeg.</value></data>
+  <data name="MediaInspectFailed" xml:space="preserve"><value>Nie można odczytać właściwości multimediów lub ich rozmiar przekracza dozwolone limity.</value></data>
+  <data name="MediaProcessingFailed" xml:space="preserve"><value>Lokalny moduł multimediów nie mógł przetworzyć tego pliku.</value></data>
+  <data name="MediaNoEngine" xml:space="preserve"><value>Żaden zainstalowany silnik multimediów nie obsługuje tej operacji dla zaznaczenia. Wiele formatów działa po zainstalowaniu FFmpeg: użyj Ustawienia &gt; FFmpeg lub uruchom polecenie winget install Gyan.FFmpeg w terminalu.</value></data>
+  <data name="MediaInvalidRange" xml:space="preserve"><value>Użyj sekund, mm:ss lub gg:mm:ss. Koniec musi być po początku.</value></data>
+  <data name="MediaInvalidTime" xml:space="preserve"><value>Wprowadź prawidłowy czas. Interwały muszą wynosić od 0,5 do 3600 sekund; użyj kropki dziesiętnej.</value></data>
+  <data name="MediaRangeBeyondDuration" xml:space="preserve"><value>Żądany zakres wykracza poza czas trwania tego pliku.</value></data>
+  <data name="MediaNoVideo" xml:space="preserve"><value>Plik nie zawiera użytecznej ścieżki wideo.</value></data>
+  <data name="MediaGifLimit" xml:space="preserve"><value>Wybrany zakres GIF przekracza 600 klatek lub obsługiwane wymiary. Zmniejsz czas trwania, liczbę klatek na sekundę lub szerokość.</value></data>
+  <data name="MediaTrimAccuracy" xml:space="preserve"><value>Szybkie przycinanie FFmpeg następuje po klatkach kluczowych. Przetwarzanie multimediów Windows i precyzyjne przycinanie ponownie kodują.</value></data>
+  <data name="MediaFrameCap" xml:space="preserve"><value>Ekstrakcja interwałowa zapisuje maksymalnie 500 klatek, zaczynając od początku.</value></data>
+  <data name="MediaRotationWarning" xml:space="preserve"><value>Obrót samych metadanych jest bezstratny, ale niektóre odtwarzacze go ignorują.</value></data>
+  <data name="MediaMixedMerge" xml:space="preserve"><value>Wybierz tylko pliki audio lub tylko pliki wideo, aby je połączyć.</value></data>
+  <data name="MediaMergeScaleWarning" xml:space="preserve"><value>Filmy są skalowane i dopasowywane do rozmiaru pierwszego filmu.</value></data>
+  <data name="MediaUnknown" xml:space="preserve"><value>Nieznany / nie dotyczy</value></data>
+  <data name="MediaDetailsFormat" xml:space="preserve"><value>Czas trwania: {0}
+Rozdzielczość: {1}
+Szybkość klatek: {2} kl./s
+Kodek wideo: {3}
+Kodek audio: {4}
+Prędkość transmisji: {5} kbit/s
+Kanały audio: {6}</value></data>
+  <data name="MediaLoudnessFailed" xml:space="preserve"><value>Nie można było wiarygodnie zmierzyć głośności. Cichego lub nieprawidłowego dźwięku nie można znormalizować.</value></data>
+  <data name="MediaMetadataContainer" xml:space="preserve"><value>Obrót samych metadanych wymaga kontenera MP4/MOV. Wyłącz, aby obrócić piksele.</value></data>
+  <data name="MediaActions_Title_StillImageVideo" xml:space="preserve"><value>Utwórz wideo z obrazu i dźwięku</value></data>
+  <data name="MediaActions_Desc_StillImageVideo" xml:space="preserve"><value>Utwórz wideo z obrazu i dźwięku</value></data>
+  <data name="MediaActions_Operation_StillImageVideo" xml:space="preserve"><value>Utworzy wideo z obrazu i dźwięku.</value></data>
+<data name="MediaPack_Title" xml:space="preserve"><value>Narzędzia audio i wideo</value></data>
+<data name="MediaProgressAudio" xml:space="preserve"><value>Konwersja audio</value></data>
+<data name="MediaProgressVideo" xml:space="preserve"><value>Przetwarzanie wideo</value></data>
+<data name="MediaWebMUnavailable" xml:space="preserve"><value>Konwersja do formatu WebM wymaga FFmpeg. Zainstaluj go w Ustawieniach &gt; FFmpeg lub uruchom polecenie winget install Gyan.FFmpeg w terminalu.</value></data>
+<data name="MediaConversionUnavailable" xml:space="preserve"><value>Żaden silnik multimediów w tym systemie nie obsługuje tej konwersji. W wersjach Windows N zainstaluj pakiet Media Feature Pack.</value></data>
+<data name="MediaConvertAudio_One" xml:space="preserve"><value>Skonwertuje plik audio {0} na {1}.</value></data>
+<data name="MediaConvertAudio_Other" xml:space="preserve"><value>Skonwertuje pliki audio {0} na {1}.</value></data>
+<data name="MediaConvertVideo_One" xml:space="preserve"><value>Skonwertuje plik wideo {0} na {1}. Konwersja wideo może chwilę potrwać.</value></data>
+<data name="MediaConvertVideo_Other" xml:space="preserve"><value>Skonwertuje filmy {0} na {1}. Konwersja wideo może chwilę potrwać.</value></data>
+<data name="MediaExtractAudio_One" xml:space="preserve"><value>Zapisuje ścieżkę audio wideo {0} jako {1}.</value></data>
+<data name="MediaExtractAudio_Other" xml:space="preserve"><value>Zapisuje ścieżkę audio wideo {0} jako {1}.</value></data>
+<data name="MediaRemoveAudio_One" xml:space="preserve"><value>Utworzy kopię {0} bez ścieżki audio.</value></data>
+<data name="MediaRemoveAudio_Other" xml:space="preserve"><value>Utworzy kopie pliku {0} bez ścieżki dźwiękowej.</value></data>
+<data name="MediaLosslessToLossy" xml:space="preserve"><value>Konwersja z formatu bezstratnego na stratny powoduje obniżenie jakości dźwięku.</value></data>
+<data name="MediaLossyToLossless" xml:space="preserve"><value>Konwersja z formatu stratnego na bezstratny powoduje zwiększenie rozmiaru pliku bez poprawy jakości.</value></data>
+<data name="MediaLossyToLossy" xml:space="preserve"><value>Konwersja między formatami stratnymi obniża jakość dźwięku (strata generacji).</value></data>
+<data name="MediaNoUsableTracks" xml:space="preserve"><value>Plik nie zawiera użytecznej ścieżki audio ani wideo.</value></data>
+<data name="MediaFfmpegUnsupported" xml:space="preserve"><value>Ta konwersja nie jest obsługiwana przez FFmpeg.</value></data>
+<data name="MediaActions_Title_SlideshowVideo" xml:space="preserve"><value>Utwórz pokaz slajdów</value></data>
+<data name="MediaActions_Desc_SlideshowVideo" xml:space="preserve"><value>Utwórz wideo z wybranych obrazów z opcjonalnym dźwiękiem.</value></data>
+<data name="MediaActions_Operation_SlideshowVideo" xml:space="preserve"><value>Utworzy pokaz slajdów z wybranych obrazów i opcjonalnego dźwięku.</value></data>
+<data name="MediaParamSecondsPerImage" xml:space="preserve"><value>Czas trwania obrazu</value></data>
+<data name="MediaParamSize" xml:space="preserve"><value>Rozmiar filmu</value></data>
+<data name="MediaChoiceauto" xml:space="preserve"><value>Automatyczne (dopasowanie czasu trwania dźwięku)</value></data>
+<data name="MediaSeconds_One" xml:space="preserve"><value>{0} sekund</value></data>
+<data name="MediaSeconds_Other" xml:space="preserve"><value>{0} sekund</value></data>
+<data name="MediaChoice1080p" xml:space="preserve"><value>1080p poziomo</value></data>
+<data name="MediaChoice720p" xml:space="preserve"><value>720p poziomo</value></data>
+<data name="MediaChoicesquare" xml:space="preserve"><value>Kwadrat (1080 × 1080)</value></data>
+  <data name="SubtitleTitle_srt-to-vtt" xml:space="preserve"><value>Konwersja pliku SRT do VTT</value></data>
+  <data name="SubtitleTitle_vtt-to-srt" xml:space="preserve"><value>Konwertuj VTT na SRT</value></data>
+  <data name="SubtitleTitle_shift" xml:space="preserve"><value>Przesuń czas wyświetlania napisów</value></data>
+  <data name="SubtitleDesc_srt-to-vtt" xml:space="preserve"><value>Tworzy kopie napisów SRT w formacie UTF-8 WebVTT, zachowując synchronizację i podział wiersza.</value></data>
+  <data name="SubtitleDesc_vtt-to-srt" xml:space="preserve"><value>Tworzenie kopii UTF-8 SRT obsługiwanych znaków WebVTT bez utraty nieobsługiwanego formatowania.</value></data>
+  <data name="SubtitleDesc_shift" xml:space="preserve"><value>Przesuń każdy sygnał SRT lub VTT o dodatnie lub ujemne przesunięcie i utwórz nowy plik.</value></data>
+  <data name="SubtitleOffset" xml:space="preserve"><value>Przesunięcie w milisekundach</value></data>
+  <data name="SubtitleOffsetHelp" xml:space="preserve"><value>1000 ms = 1 sekunda. Wartości ujemne przesuwają sygnały wcześniej. Przesunięcie przed czasem zerowym jest odrzucane; żadne sygnały nie są usuwane.</value></data>
+  <data name="SubtitleFiles" xml:space="preserve"><value>Pliki napisów</value></data>
+  <data name="SubtitlePreview" xml:space="preserve"><value>Przetworzy {0} znaczniki napisów.</value></data>
+  <data name="SubtitleInvalid" xml:space="preserve"><value>Napisy są nieprawidłowe, przekraczają obsługiwane limity, zawierają nieobsługiwane metadane lub formatowanie albo przesunięcie spowodowałoby umieszczenie znacznika przed zerem. Użyj kodowania UTF-8 SRT lub WebVTT ze znacznikami czasu z siedmiu dni.</value></data>
+  <data name="SubtitleReadError" xml:space="preserve"><value>Nie można odczytać danych wejściowych napisów.</value></data>
+  <data name="MediaTargetSize" xml:space="preserve"><value>Maksymalny rozmiar na film (MB; 0 = (ustawienie wstępne)</value></data>
+  <data name="MediaTargetSizeHelp" xml:space="preserve"><value>1 MB = 1 000 000 bajtów. Zero używa wyłącznie ustawienia jakości. Wartość dodatnia budżetuje przepływność wideo na podstawie czasu trwania, rezerwuje przestrzeń audio i kontenera, a następnie weryfikuje rzeczywisty rozmiar wyjściowy.</value></data>
+  <data name="MediaTargetPreview" xml:space="preserve"><value>Maksymalny rozmiar pliku wideo: {0} MB. Planowana szybkość transmisji wideo: {1}–{2} kbit/s. Dźwięk wykorzystuje do 128 kbit/s po zachowaniu. Przed zapisaniem sprawdzany jest końcowy rozmiar pliku.</value></data>
+  <data name="MediaTargetImpossible" xml:space="preserve"><value>Żądany rozmiar jest zbyt mały dla tego czasu trwania, a zachowany dźwięk lub wymiary/czas trwania wideo nie są obsługiwane. Zwiększ rozmiar lub usuń dźwięk.</value></data>
+  <data name="MediaTargetExceeded" xml:space="preserve"><value>Koder nie mógł osiągnąć żądanego maksymalnego rozmiaru. Nie zapisano żadnego pliku wyjściowego. Zwiększ limit, wybierz niższe ustawienie jakości lub usuń dźwięk.</value></data>
+  <data name="MediaConvertAudio_Few" xml:space="preserve"><value>Skonwertuje {0} pliki audio na {1}.</value></data>
+  <data name="MediaConvertAudio_Many" xml:space="preserve"><value>Skonwertuje {0} plików audio na {1}.</value></data>
+  <data name="MediaConvertVideo_Few" xml:space="preserve"><value>Skonwertuje {0} filmy na {1}. Konwersja wideo może chwilę potrwać.</value></data>
+  <data name="MediaConvertVideo_Many" xml:space="preserve"><value>Skonwertuje {0} filmów na {1}. Konwersja wideo może chwilę potrwać.</value></data>
+  <data name="MediaExtractAudio_Few" xml:space="preserve"><value>Zapisze ścieżki audio z {0} filmów jako {1}.</value></data>
+  <data name="MediaExtractAudio_Many" xml:space="preserve"><value>Zapisze ścieżki audio z {0} filmów jako {1}.</value></data>
+  <data name="MediaRemoveAudio_Few" xml:space="preserve"><value>Utworzy {0} kopie bez ścieżki dźwiękowej.</value></data>
+  <data name="MediaRemoveAudio_Many" xml:space="preserve"><value>Utworzy {0} kopii bez ścieżki dźwiękowej.</value></data>
+  <data name="MediaSeconds_Few" xml:space="preserve"><value>{0} sekundy</value></data>
+  <data name="MediaSeconds_Many" xml:space="preserve"><value>{0} sekund</value></data>
+</root>

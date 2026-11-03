@@ -72,6 +72,7 @@
   <data name="Group_Archives" xml:space="preserve"><value>Dateien · Archive</value></data>
   <data name="Group_Files" xml:space="preserve"><value>Dateien · Ordnen und prüfen</value></data>
   <data name="Group_Data" xml:space="preserve"><value>Tabellen und Daten</value></data>
+  <data name="Group_Markdown" xml:space="preserve"><value>Markdown</value></data>
   <data name="Group_Unavailable" xml:space="preserve"><value>Für diese Auswahl nicht verfügbar</value></data>
   <data name="ShowUnavailable_One" xml:space="preserve"><value>{0} nicht verfügbare Aktion anzeigen</value></data>
   <data name="ShowUnavailable_Other" xml:space="preserve"><value>{0} nicht verfügbare Aktionen anzeigen</value></data>
@@ -185,6 +186,7 @@
   <data name="PackSummary_data" xml:space="preserve"><value>CSV-, JSON-, Excel- und Kontaktdateien umwandeln.</value></data>
   <data name="PackSummary_tables" xml:space="preserve"><value>Excel-Auswahl als CSV, JSON, Markdown oder SQL exportieren.</value></data>
   <data name="PackSummary_einvoice" xml:space="preserve"><value>XRechnung- und ZUGFeRD-Rechnungen anzeigen und umwandeln.</value></data>
+  <data name="PackSummary_markdown" xml:space="preserve"><value>Markdown mit Live-Vorschau anzeigen und bearbeiten sowie in HTML oder PDF umwandeln.</value></data>
   <data name="PackWebsiteLink" xml:space="preserve"><value>Alle Aktionen auf der Website</value></data>
   <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: alle Aktionen auf der Website</value></data>
   <data name="PacksUpdateAll" xml:space="preserve"><value>Alle aktualisieren ({0})</value></data>
@@ -230,4 +232,5 @@
   <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Rezept erstellen</value></data>
   <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Mehrere Aktionen zu einem Rezept verbinden, das sie nacheinander ausführt.</value></data>
   <data name="UserRecipeDescription" xml:space="preserve"><value>Ihr Rezept: {0}</value></data>
+  <data name="Context_BrowserPage" xml:space="preserve"><value>{0} · {1}</value></data>
 </root>

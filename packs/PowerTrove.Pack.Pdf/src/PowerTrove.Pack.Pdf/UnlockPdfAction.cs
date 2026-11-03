@@ -32,7 +32,7 @@ public sealed class UnlockPdfAction : PerFileAction<UnlockPdfOptions>
     protected override string? ValidateOptions(UnlockPdfOptions options) => null;
 
     protected override string DescribeOperation(int inputCount, UnlockPdfOptions options) =>
-        string.Format(SR.GetString("UnlockPdfAction_Operation_Description"), Plural(inputCount, SR.GetString("Pdf_File"), SR.GetString("Pdf_Files")));
+        string.Format(SR.GetString("UnlockPdfAction_Operation_Description"), SR.Noun(inputCount, "Pdf_File", "Pdf_Files"));
 
     protected override IEnumerable<PlannedOutput> PlanOutputs(SelectedFile input, UnlockPdfOptions options)
     {

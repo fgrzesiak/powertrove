@@ -2,6 +2,7 @@ using System.Threading.Channels;
 using PowerTrove.Abstractions.Packs;
 using PowerTrove.Core.Extensibility.PackProtocol;
 using PowerTrove.PackHost.TestPack;
+using PowerTrove.Pack.Text;
 
 namespace PowerTrove.PackHost.Tests;
 
@@ -33,6 +34,56 @@ public sealed class WorkerSessionTests
         Assert.False(File.Exists(host.OutputPath));
         Assert.Equal("original", File.ReadAllText(host.InputPath));
         Assert.All(host.Progress, p => Assert.Null(p.Message));
+    }
+
+    [Fact]
+    public async Task TextActionRunsInPackWorkerAndReturnsOnlyClipboardOutput()
+    {
+        await using var host = new Harness(textPack: true);
+        await host.StartAsync();
+        var selection = new FileSelectionPayload([]);
+        var preview = new PreviewMessage(Guid.NewGuid(), "powertrove.text.trim", selection,
+            new Dictionary<string, string>(), host.Expires, TextInput: "  sample  ");
+        await host.Send(preview);
+        Assert.False((await host.Receive<PreviewResultMessage>()).IsBlocked);
+        var execute = new ExecuteMessage(Guid.NewGuid(), "powertrove.text.trim", selection,
+            new Dictionary<string, string>(), host.Expires,
+            Directory.CreateDirectory(Path.Combine(host.StagingPath, Guid.NewGuid().ToString("N"))).FullName,
+            TextInput: "  sample  ");
+        await host.Send(execute);
+        var result = await host.Receive<ResultMessage>();
+        Assert.True(result.Receipt.IsSuccess);
+        Assert.Equal("sample", result.Receipt.ClipboardText);
+        Assert.Empty(result.Outputs);
+        Assert.Empty(result.Receipt.OutputPaths);
+        Assert.Equal("original", File.ReadAllText(host.InputPath));
+    }
+
+    [Fact]
+    public async Task SignedBrowserPackUsesOnlyExplicitValidatedMetadataForPageLinks()
+    {
+        await using var host = new Harness(factories: [new PowerTrove.Pack.Browser.BrowserPackFactory()]);
+        await host.Send(new HelloMessage(1, "0.3.5"));
+        Assert.Contains(host.Receive<ReadyMessage>().Result.Packs, p => p.Id == "powertrove.browser");
+        var selection = new FileSelectionPayload([]);
+        var browser = new BrowserTextContextPayload("https://example.org/docs", "Documentation");
+        await host.Send(new PreviewMessage(Guid.NewGuid(), "powertrove.browser.copy-page-link",
+            selection, new Dictionary<string, string>(), host.Expires, TextInput: "selected", BrowserContext: browser));
+        var preview = await host.Receive<PreviewResultMessage>();
+        Assert.False(preview.IsBlocked);
+
+        var execute = host.Execute("powertrove.browser.copy-page-link") with
+        {
+            Selection = selection,
+            TextInput = "selected",
+            BrowserContext = browser
+        };
+        await host.Send(execute);
+        var result = await host.Receive<ResultMessage>();
+        Assert.True(result.Receipt.IsSuccess);
+        Assert.Equal("[Documentation](https://example.org/docs)", result.Receipt.ClipboardText);
+        Assert.Empty(result.Outputs);
+        Assert.Equal("original", File.ReadAllText(host.InputPath));
     }
 
     [Fact]
@@ -126,6 +177,35 @@ public sealed class WorkerSessionTests
         Assert.Empty(Directory.EnumerateFileSystemEntries(exports));
     }
 
+    [Fact]
+    public async Task RealMarkdownPackRendersDraftsAndEmbedsOnlyImagesBesideTheDocument()
+    {
+        await using var host = new Harness(factories: [new PowerTrove.Pack.Markdown.MarkdownPackFactory()]);
+        await host.Send(new HelloMessage(1, "0.3.5"));
+        Assert.Contains(host.Receive<ReadyMessage>().Result.Packs, p => p.Id == "powertrove.markdown");
+        byte[] png = Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC");
+        host.Write("docs/img/dot.png", png);
+        host.Write("private.png", png);
+        string document = host.Write("docs/readme.md", System.Text.Encoding.UTF8.GetBytes("# Saved\n"));
+        var selection = FileSelectionPayload.FromSnapshot(Snapshots.ForPaths(document));
+        var draft = DocumentPreviewRequest.Create(draft: "# Draft\n\n![dot](img/dot.png) ![private](../private.png)");
+        await host.Send(new PreviewMessage(Guid.NewGuid(), "powertrove.markdown.edit", selection, draft.Values, host.Expires));
+        var preview = (await host.Receive<PreviewResultMessage>()).ToPreview();
+        Assert.False(preview.IsBlocked);
+        Assert.Equal("Draft", preview.DocumentPreview!.Title);
+        Assert.Contains("src=\"https://document.powertrove.example/img/dot.png\"", preview.DocumentPreview.Html);
+        Assert.DoesNotContain("private.png", preview.DocumentPreview.Html);
+        host.Write("docs/page.md", System.Text.Encoding.UTF8.GetBytes("![dot](img/dot.png) ![private](../private.png)"));
+        var page = FileSelectionPayload.FromSnapshot(Snapshots.ForPaths(Path.GetFullPath(Path.Combine(Path.GetDirectoryName(document)!, "page.md"))));
+        var execute = host.Execute("powertrove.markdown.to-html") with { Selection = page };
+        await host.Send(execute);
+        var result = await host.Receive<ResultMessage>();
+        Assert.True(result.Receipt.IsSuccess);
+        string html = File.ReadAllText(Path.Combine(execute.StagingDirectory, Assert.Single(result.Outputs).Path));
+        Assert.Contains("src=\"data:image/png;base64,", html);
+        Assert.Contains("<span class=\"image-missing\">private</span>", html);
+    }
+
     private sealed class Harness : IAsyncDisposable
     {
         private readonly TempDirectory _temp = new();
@@ -138,28 +218,33 @@ public sealed class WorkerSessionTests
         public string InputPath { get; }
         public string OutputPath => Path.Combine(Path.GetDirectoryName(InputPath)!, "fixture-copy.txt");
         public FileSelectionPayload Selection { get; }
+        public string StagingPath => _staging;
+        private readonly bool _textPack;
         public DateTimeOffset Expires => _clock.GetUtcNow().AddMinutes(1);
         public CancellationToken Token => _deadline.Token;
         public List<ProgressMessage> Progress { get; } = new();
         public Task Completion { get; }
-        public Harness(TimeProvider? clock = null, IReadOnlySet<string>? declaredIds = null, IPackFactory[]? factories = null)
+        public Harness(TimeProvider? clock = null, IReadOnlySet<string>? declaredIds = null, IPackFactory[]? factories = null, bool textPack = false)
         {
+            _textPack = textPack;
             _clock = clock ?? TimeProvider.System;
             InputPath = _temp.Write("source.txt", "original");
             Selection = FileSelectionPayload.FromSnapshot(Snapshots.ForPaths(InputPath));
             _staging = Directory.CreateDirectory(_temp.File("staging")).FullName;
-            var worker = new WorkerSession(factories ?? [new TinyPackFactory()], files => new PackHostServices(new Version(0, 1, 0), files),
+            factories ??= textPack ? [new TextPackFactory()] : [new TinyPackFactory()];
+            var worker = new WorkerSession(factories, files => new PackHostServices(new Version(0, 1, 0), files),
                 new ExtensionOnlyTypeVerifier(), _staging, _clock, declaredIds);
             _writer = new PackMessageWriter(_input);
             _reader = PackMessageStream.ReadAsync(_output, Token).GetAsyncEnumerator(Token);
             Completion = worker.RunAsync(_input, _output, Token);
         }
         public string CreateFolder(string name) => Directory.CreateDirectory(_temp.File(name)).FullName;
+        public string Write(string name, byte[] content) => Path.GetFullPath(_temp.Write(name, content));
         public async Task StartAsync()
         {
             await Send(new HelloMessage(1, "0.1.0"));
             var ready = await Receive<ReadyMessage>();
-            Assert.Equal("powertrove.fixture", Assert.Single(ready.Packs).Id);
+            Assert.Equal(_textPack ? "powertrove.text" : "powertrove.fixture", Assert.Single(ready.Packs).Id);
         }
         public ExecuteMessage Execute(string action = "powertrove.fixture.copy") => new(Guid.NewGuid(), action, Selection,
             new Dictionary<string, string>(), Expires, Directory.CreateDirectory(Path.Combine(_staging, Guid.NewGuid().ToString("N"))).FullName);

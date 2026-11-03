@@ -38,4 +38,26 @@ public sealed class WebsiteConversionCatalogTests
             }
         }
     }
+
+    [Fact]
+    public void WebsiteActionRecords_DeclareTheSelectionLimitOfTheirAction()
+    {
+        // The website reader needs every key and rejects the whole catalog otherwise; null means unbounded.
+        var actions = PackFactoriesTests.Factories().SelectMany(f => f.Create(PackFactoriesTests.Host()
+            .Add(new CompositeImageEngine(Array.Empty<IImageEngine>()))
+            .Add(new CompositeMediaEngine(Array.Empty<IMediaEngine>()))).Actions).ToDictionary(a => a.Descriptor.Id);
+        using var document = JsonDocument.Parse(File.ReadAllText(Path.Combine(PackFactoriesTests.FindRoot(), "docs/catalog/actions.json")));
+        var problems = new List<string>();
+        foreach (var record in document.RootElement.GetProperty("packs").EnumerateArray().SelectMany(p => p.GetProperty("actions").EnumerateArray()))
+        {
+            string id = record.GetProperty("id").GetString()!;
+            if (!record.TryGetProperty("maxItems", out var max)) { problems.Add(id + ": maxItems missing"); continue; }
+            int? declared = max.ValueKind == JsonValueKind.Null ? null : max.GetInt32();
+            // Some file actions cap inputs in code (MaximumInputs) instead of the selection rule.
+            int? selectionLimit = actions.TryGetValue(id, out var action) ? action.Descriptor.Selection?.MaxItems : null;
+            if (selectionLimit is not null && declared != selectionLimit)
+                problems.Add($"{id}: maxItems {declared?.ToString() ?? "null"}, action {selectionLimit}");
+        }
+        Assert.Empty(problems);
+    }
 }

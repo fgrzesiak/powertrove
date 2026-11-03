@@ -125,6 +125,7 @@
       "properties": {
         "title": { "type": "string", "minLength": 1, "maxLength": 4096 },
         "description": { "$ref": "#/$defs/localizedText" },
+        "searchTerms": { "type": "array", "maxItems": 64, "items": { "type": "string", "minLength": 1, "maxLength": 128 } },
         "parameters": {
           "type": "object", "maxProperties": 1000,
           "description": "Keys must name existing parameters.",
@@ -211,6 +212,12 @@
         },
         "changesFiles": {
           "type": "boolean"
+        },
+        "searchTerms": {
+          "type": "array",
+          "maxItems": 64,
+          "description": "Optional offline discovery aliases; older bundles omit this field.",
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 }
         }
       },
       "required": [
@@ -265,7 +272,8 @@
         "editor": {
           "type": "string",
           "enum": [
-            "multiSelect"
+            "multiSelect",
+            "fileOrder"
           ],
           "description": "Optional host editor for a string parameter. Preview supplies bounded choices; stored values retain their string representation."
         },

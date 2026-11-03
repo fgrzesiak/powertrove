@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/browser/generate-protocol-fixtures.mjs",
+  "valid": [
+    "{\"type\":\"hello\",\"browser\":\"chrome\",\"extensionVersion\":\"0.1.0\",\"minProtocol\":1,\"maxProtocol\":1,\"capabilities\":[\"context.fast\"]}",
+    "{\"type\":\"ready\",\"minProtocol\":1,\"maxProtocol\":1,\"capabilities\":[\"context.fast\"]}",
+    "{\"type\":\"request\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"action\":\"getContext\",\"deadlineMs\":350,\"windowTitle\":\"Documentation\"}",
+    "{\"type\":\"request\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"action\":\"extractTables\",\"deadlineMs\":3000,\"tab\":{\"sessionId\":\"e1258cb9-2ba3-4c8c-9dfa-ced921b1ae12\",\"windowId\":42,\"tabId\":7,\"documentId\":\"document-1\"}}",
+    "{\"type\":\"response\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"ok\":true,\"result\":{\"state\":\"ready\"}}",
+    "{\"type\":\"response\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"ok\":false,\"error\":\"navigated\"}",
+    "{\"type\":\"cancel\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\"}",
+    "{\"type\":\"chunk\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"seq\":0,\"last\":true,\"kind\":\"text\",\"base64\":\"SGVsbG8=\"}"
+  ],
+  "invalid": [
+    "{\"type\":\"hello\",\"browser\":\"firefox\",\"extensionVersion\":\"0.1.0\",\"minProtocol\":1,\"maxProtocol\":1,\"capabilities\":[]}",
+    "{\"type\":\"hello\",\"browser\":\"chrome\",\"extensionVersion\":\"0.1.0\",\"minProtocol\":1,\"maxProtocol\":1,\"capabilities\":[],\"secret\":true}",
+    "{\"type\":\"hello\",\"browser\":\"chrome\",\"extensionVersion\":\"0.1.0\",\"minProtocol\":1,\"maxProtocol\":1,\"capabilities\":[\"context.fast\",\"context.fast\"]}",
+    "{\"type\":\"ready\",\"minProtocol\":3,\"maxProtocol\":2,\"capabilities\":[]}",
+    "{\"type\":\"request\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"action\":\"shellExecute\",\"deadlineMs\":350}",
+    "{\"type\":\"request\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"action\":\"getContext\",\"deadlineMs\":45000}",
+    "{\"type\":\"request\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"action\":\"getContext\",\"deadlineMs\":350,\"tab\":{\"sessionId\":\"e1258cb9-2ba3-4c8c-9dfa-ced921b1ae12\",\"windowId\":42,\"tabId\":7,\"documentId\":\"document-1\",\"extra\":\"x\"}}",
+    "{\"type\":\"response\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"ok\":false,\"error\":\"shell\"}",
+    "{\"type\":\"response\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"ok\":true,\"error\":\"failed\"}",
+    "{\"type\":\"chunk\",\"id\":\"f1e841c0-01f0-4ad0-8052-10a222619d1f\",\"seq\":0,\"last\":true,\"kind\":\"text\",\"base64\":\"invalid!\"}"
+  ]
+}

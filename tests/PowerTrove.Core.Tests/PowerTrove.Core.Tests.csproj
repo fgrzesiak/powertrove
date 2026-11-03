@@ -30,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="../fixtures/browser-protocol/frames.json" Link="BrowserProtocol/frames.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="PowerTrove.Abstractions" />
   </ItemGroup>
 

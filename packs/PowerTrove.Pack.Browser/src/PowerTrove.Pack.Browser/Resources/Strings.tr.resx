@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Pack" xml:space="preserve"><value>Tarayıcı</value></data>
+  <data name="CopySelection" xml:space="preserve"><value>Tarayıcı Seçimini Kopyala</value></data>
+  <data name="QuoteSelection" xml:space="preserve"><value>Seçimi Markdown alıntısı olarak kopyala</value></data>
+  <data name="CopyPageLink" xml:space="preserve"><value>Sayfa bağlantısını Markdown olarak kopyala</value></data>
+  <data name="Description" xml:space="preserve"><value>Açıkça gönderilen bir tarayıcı seçimini işler ve sonucu panoya kopyalar.</value></data>
+  <data name="Preview" xml:space="preserve"><value>Önizleme — panoya kopyalamak için yürütün:</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Tarayıcı seçimi kullanılamıyor veya süresi dolmuş.</value></data>
+  <data name="Done" xml:space="preserve"><value>Panoya kopyalandı.</value></data>
+  <data name="CopyPageUrl" xml:space="preserve"><value>Sayfa URL'sini kopyala</value></data>
+  <data name="CopyPageLinkHtml" xml:space="preserve"><value>Sayfa bağlantısını HTML olarak kopyala</value></data>
+  <data name="QuoteWithSource" xml:space="preserve"><value>Seçimi kaynağıyla alıntıla</value></data>
+  <data name="ArticleMarkdown" xml:space="preserve"><value>Makaleyi Markdown olarak kopyala</value></data>
+  <data name="PageMarkdown" xml:space="preserve"><value>Web sayfasını Markdown olarak kopyala</value></data>
+  <data name="LinksMarkdown" xml:space="preserve"><value>Sayfa bağlantılarını Markdown olarak kopyala</value></data>
+  <data name="ImagesMarkdown" xml:space="preserve"><value>Sayfa görsellerini Markdown olarak kopyala</value></data>
+  <data name="TableCsv" xml:space="preserve"><value>İlk HTML tablosunu CSV olarak kopyala</value></data>
+  <data name="DataDescription" xml:space="preserve"><value>Onay sırasında izin verilen tarayıcı sekmesini okur ve dosyaları değiştirmeden sonucu kopyalar.</value></data>
+  <data name="ReadOnConfirm" xml:space="preserve"><value>Sayfa içeriği yalnızca bu işlem çalıştırıldığında okunur.</value></data>
+  <data name="DataUnavailable" xml:space="preserve"><value>Sayfa içeriğine erişilemiyor. Sayfa değişmiş olabilir, izin gerektirebilir veya boyut sınırını aşmış olabilir.</value></data>
+  <data name="SaveArticleMarkdown" xml:space="preserve"><value>Makaleyi Markdown olarak kaydet</value></data>
+  <data name="SavePageMarkdown" xml:space="preserve"><value>Web sayfasını Markdown olarak kaydet</value></data>
+  <data name="SaveLinksMarkdown" xml:space="preserve"><value>Sayfa bağlantılarını Markdown olarak kaydet</value></data>
+  <data name="SaveLinksCsv" xml:space="preserve"><value>Sayfa bağlantılarını CSV olarak kaydet</value></data>
+  <data name="SaveTableCsv" xml:space="preserve"><value>İlk HTML tablosunu CSV olarak kaydet</value></data>
+  <data name="FileExportDescription" xml:space="preserve"><value>İzin verilen tarayıcı sekmesindeki verileri mevcut dosyaların üzerine yazmadan yeni bir dosyaya kaydeder.</value></data>
+  <data name="FileExportPreview" xml:space="preserve"><value>Geçerli sekme yalnızca onaydan sonra okunur ve masaüstüne yeni bir dosya olarak kaydedilir.</value></data>
+  <data name="FileExportDone" xml:space="preserve"><value>Tarayıcı sayfası yeni bir dosyaya aktarıldı.</value></data>
+  <data name="CaptureVisiblePng" xml:space="preserve"><value>Tarayıcının görünen bölümünü PNG olarak kaydet</value></data>
+  <data name="CaptureFullPng" xml:space="preserve"><value>Tarayıcı sayfasının tamamını PNG olarak kaydet</value></data>
+  <data name="CapturePageMhtml" xml:space="preserve"><value>Tarayıcı sayfasını MHTML olarak kaydet</value></data>
+  <data name="CapturePagePdf" xml:space="preserve"><value>Tarayıcı sayfasını PDF olarak kaydet (yazdırma penceresi olmadan)</value></data>
+  <data name="FileSuffixArticle" xml:space="preserve"><value>makale</value></data>
+  <data name="FileSuffixLinks" xml:space="preserve"><value>bağlantılar</value></data>
+  <data name="FileSuffixTable" xml:space="preserve"><value>tablo</value></data>
+  <data name="FileSuffixScreenshot" xml:space="preserve"><value>ekran</value></data>
+  <data name="FileSuffixFullPage" xml:space="preserve"><value>tam sayfa</value></data>
+</root>

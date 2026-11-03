@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Summary_ImagesSingular" xml:space="preserve">
+    <value>1 gambar</value>
+  </data>
+  <data name="Summary_ImagesPlural" xml:space="preserve">
+    <value>{0} gambar</value>
+  </data>
+  <data name="Summary_FoldersSingular" xml:space="preserve">
+    <value>1 folder</value>
+  </data>
+  <data name="Summary_FoldersPlural" xml:space="preserve">
+    <value>{0} folder</value>
+  </data>
+  <data name="Summary_FilesSingular" xml:space="preserve">
+    <value>1 berkas</value>
+  </data>
+  <data name="Summary_FilesPlural" xml:space="preserve">
+    <value>{0} file</value>
+  </data>
+  <data name="Summary_OfflineStatus" xml:space="preserve">
+    <value> ({0} offline)</value>
+  </data>
+  <data name="Summary_TableDimensions" xml:space="preserve">
+    <value>Tabel yang dipilih ({0} baris, {1} kolom)</value>
+  </data>
+  <data name="Search_ErrorDefault" xml:space="preserve">
+    <value>Pencarian aksi sementara tidak tersedia.</value>
+  </data>
+  <data name="Context_None" xml:space="preserve">
+    <value>Tidak ada pilihan</value>
+  </data>
+  <data name="Context_Unavailable" xml:space="preserve">
+    <value>Pilihan tidak tersedia</value>
+  </data>
+  <data name="Notice_Unsupported" xml:space="preserve">
+    <value>Aplikasi ini belum didukung. Tindakan umum ditampilkan.</value>
+  </data>
+  <data name="Notice_Denied" xml:space="preserve">
+    <value>PowerTrove tidak memiliki akses ke pilihan ini. Tindakan umum akan ditampilkan.</value>
+  </data>
+  <data name="Notice_TimedOut" xml:space="preserve">
+    <value>Aplikasi tidak merespons tepat waktu. Tindakan umum ditampilkan.</value>
+  </data>
+  <data name="Notice_Failed" xml:space="preserve">
+    <value>Pilihan tidak dapat dibaca. Tindakan umum ditampilkan.</value>
+  </data>
+  <data name="Action_OpenSettings_Title" xml:space="preserve">
+    <value>Pengaturan</value>
+  </data>
+  <data name="Action_OpenSettings_Description" xml:space="preserve">
+    <value>Bahasa, pintasan, dan saran.</value>
+  </data>
+  <data name="Group_Suggested" xml:space="preserve">
+    <value>Disarankan untuk pilihan ini</value>
+  </data>
+  <data name="Group_All" xml:space="preserve">
+    <value>Semua tindakan</value>
+  </data>
+  <data name="Badge_Favorite" xml:space="preserve">
+    <value>Favorit</value>
+  </data>
+  <data name="Badge_Recommended" xml:space="preserve">
+    <value>Direkomendasikan</value>
+  </data>
+  <data name="Family_Document_One" xml:space="preserve">
+    <value>Dokumen</value>
+  </data>
+  <data name="Family_Document_Other" xml:space="preserve">
+    <value>Dokumen</value>
+  </data>
+  <data name="Family_Spreadsheet_One" xml:space="preserve">
+    <value>Lembar Kerja</value>
+  </data>
+  <data name="Family_Spreadsheet_Other" xml:space="preserve">
+    <value>Lembar Kerja</value>
+  </data>
+  <data name="Family_Archive_One" xml:space="preserve">
+    <value>Arsip</value>
+  </data>
+  <data name="Family_Archive_Other" xml:space="preserve">
+    <value>Arsip</value>
+  </data>
+  <data name="Group_General" xml:space="preserve"><value>Umum</value></data>
+  <data name="Group_Workflows" xml:space="preserve"><value>Alur Kerja</value></data>
+  <data name="Group_Archives" xml:space="preserve"><value>Berkas · Arsip</value></data>
+  <data name="Group_Files" xml:space="preserve"><value>Berkas · Atur dan periksa</value></data>
+  <data name="Group_Data" xml:space="preserve"><value>Tabel dan data</value></data>
+  <data name="Group_Markdown" xml:space="preserve"><value>Markdown</value></data>
+  <data name="Group_Unavailable" xml:space="preserve"><value>Tidak tersedia untuk pilihan ini</value></data>
+  <data name="ShowUnavailable_One" xml:space="preserve"><value>Tampilkan {0} tindakan yang tidak tersedia</value></data>
+  <data name="ShowUnavailable_Other" xml:space="preserve"><value>Tampilkan {0} tindakan yang tidak tersedia</value></data>
+  <data name="Group_Image_Convert" xml:space="preserve"><value>Gambar · Konversi</value></data>
+  <data name="Group_Image_Edit" xml:space="preserve"><value>Gambar · Edit</value></data>
+  <data name="Group_Image_Combine" xml:space="preserve"><value>Gambar · Gabungkan</value></data>
+  <data name="Group_Image_Optimize" xml:space="preserve"><value>Gambar · Optimalkan dan kompres</value></data>
+  <data name="Group_Image_Privacy" xml:space="preserve"><value>Gambar · Privasi dan perlindungan</value></data>
+  <data name="Group_Image_Inspect" xml:space="preserve"><value>Gambar · Teks dan detail</value></data>
+  <data name="Group_Image_Layout" xml:space="preserve"><value>Gambar · Ukuran dan tata letak</value></data>
+  <data name="Group_Image_Orientation" xml:space="preserve"><value>Gambar · Putar dan cerminkan</value></data>
+  <data name="Group_Pdf_Convert" xml:space="preserve"><value>PDF · Konversi</value></data>
+  <data name="Group_Pdf_Edit" xml:space="preserve"><value>PDF · Edit</value></data>
+  <data name="Group_Pdf_Combine" xml:space="preserve"><value>PDF · Gabungkan</value></data>
+  <data name="Group_Pdf_Optimize" xml:space="preserve"><value>PDF · Optimalkan dan kompres</value></data>
+  <data name="Group_Pdf_Privacy" xml:space="preserve"><value>PDF · Privasi dan perlindungan</value></data>
+  <data name="Group_Pdf_Inspect" xml:space="preserve"><value>PDF · Teks dan detail</value></data>
+  <data name="Group_Pdf_Pages" xml:space="preserve"><value>PDF · Halaman dan urutan</value></data>
+  <data name="Group_Media_Convert" xml:space="preserve"><value>Audio dan video · Konversi</value></data>
+  <data name="Group_Media_Edit" xml:space="preserve"><value>Audio dan video · Edit</value></data>
+  <data name="Group_Media_Combine" xml:space="preserve"><value>Audio dan video · Gabungkan</value></data>
+  <data name="Group_Media_Optimize" xml:space="preserve"><value>Audio dan video · Optimalkan dan kompres</value></data>
+  <data name="Group_Media_Privacy" xml:space="preserve"><value>Audio dan video · Privasi dan perlindungan</value></data>
+  <data name="Group_Media_Inspect" xml:space="preserve"><value>Audio dan video · Teks dan detail</value></data>
+  <data name="RenameUndoCompleted" xml:space="preserve"><value>Nama file asli dipulihkan.</value></data>
+  <data name="RenameUndoUnavailable" xml:space="preserve"><value>Pembatalan tidak dapat diselesaikan. Batas waktu mungkin telah habis, file mungkin telah berubah, atau nama mungkin telah digunakan.</value></data>
+  <data name="ResultRevealFailed" xml:space="preserve"><value>Beberapa output tidak dapat ditampilkan di Explorer. Coba lagi.</value></data>
+  <data name="Execution_Canceled" xml:space="preserve"><value>Eksekusi dibatalkan.</value></data>
+  <data name="Execution_Error_Generic" xml:space="preserve"><value>Terjadi kesalahan.</value></data>
+  <data name="Execution_CopiedToClipboard" xml:space="preserve"><value>Disalin ke papan klip.</value></data>
+  <data name="Execution_ClipboardCopyFailed" xml:space="preserve"><value>Salin ke papan klip tidak dapat dilakukan. Coba lagi.</value></data>
+  <data name="Execution_ClipboardLimitExceeded" xml:space="preserve"><value>(Teks clipboard melebihi batas 10 MB dan tidak disalin.)</value></data>
+  <data name="Execution_Completed_Outputs_One" xml:space="preserve"><value>Selesai dengan sukses. 1 output.</value></data>
+  <data name="Execution_Completed_Outputs_Other" xml:space="preserve"><value>Selesai dengan sukses. {0} output.</value></data>
+  <data name="Execution_Completed" xml:space="preserve"><value>Selesai dengan sukses.</value></data>
+  <data name="Execution_CompletedPartially_Outputs_One" xml:space="preserve"><value>Selesai sebagian. 1 output, {1} gagal.</value></data>
+  <data name="Execution_CompletedPartially_Outputs_Other" xml:space="preserve"><value>Selesai sebagian. {0} output, {1} gagal.</value></data>
+  <data name="Execution_Failed_Items_One" xml:space="preserve"><value>Eksekusi gagal. 1 item gagal.</value></data>
+  <data name="Execution_Failed_Items_Other" xml:space="preserve"><value>Eksekusi gagal. {0} item gagal.</value></data>
+  <data name="Execution_Failed" xml:space="preserve"><value>Eksekusi gagal.</value></data>
+  <data name="Execution_Starting" xml:space="preserve"><value>Memulai...</value></data>
+  <data name="Preview_NotAvailable" xml:space="preserve"><value>Pratinjau tidak tersedia untuk tindakan ini.</value></data>
+  <data name="Context_UnknownSelection" xml:space="preserve"><value>Pilihan tidak dikenal</value></data>
+  <data name="Context_TextSelected" xml:space="preserve"><value>Teks terpilih</value></data>
+  <data name="Context_Loading" xml:space="preserve"><value>Memuat konteks...</value></data>
+  <data name="Context_CaptureFailed" xml:space="preserve"><value>Pengambilan gambar gagal.</value></data>
+  <data name="Context_ResolutionFailed" xml:space="preserve"><value>Resolusi gagal.</value></data>
+  <data name="Badge_LastUsedFor_File_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 file</value></data>
+  <data name="Badge_LastUsedFor_File_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} file</value></data>
+  <data name="Badge_LastUsedFor_Image_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 gambar</value></data>
+  <data name="Badge_LastUsedFor_Image_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} gambar</value></data>
+  <data name="Badge_LastUsedFor_Folder_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 folder</value></data>
+  <data name="Badge_LastUsedFor_Folder_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} folder</value></data>
+  <data name="Badge_LastUsedFor_Video_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 video</value></data>
+  <data name="Badge_LastUsedFor_Video_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} video</value></data>
+  <data name="Badge_LastUsedFor_Audio_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 file audio</value></data>
+  <data name="Badge_LastUsedFor_Audio_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} file audio</value></data>
+  <data name="Badge_LastUsedFor_Pdf_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 PDF</value></data>
+  <data name="Badge_LastUsedFor_Pdf_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} PDF</value></data>
+  <data name="Badge_LastUsedFor_Table_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 tabel</value></data>
+  <data name="Badge_LastUsedFor_Table_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} tabel</value></data>
+  <data name="Badge_LastUsedFor_Text_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 teks</value></data>
+  <data name="Badge_LastUsedFor_Text_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} teks</value></data>
+  <data name="Badge_LastUsedFor_Other_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 item</value></data>
+  <data name="Badge_LastUsedFor_Other_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} item</value></data>
+  <data name="Badge_LastUsedFor_Item_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 item</value></data>
+  <data name="Badge_LastUsedFor_Item_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} item</value></data>
+  <data name="Badge_LastUsedFor_Archive_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 arsip</value></data>
+  <data name="Badge_LastUsedFor_Archive_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} arsip</value></data>
+  <data name="Badge_LastUsedFor_Document_One" xml:space="preserve"><value>Terakhir digunakan untuk 1 dokumen</value></data>
+  <data name="Badge_LastUsedFor_Document_Other" xml:space="preserve"><value>Terakhir digunakan untuk {0} dokumen</value></data>
+
+  <data name="UpdatesVersionUnknown" xml:space="preserve"><value>Versi yang terpasang tidak dapat ditentukan.</value></data>
+  <data name="UpdatesInstalledVersion" xml:space="preserve"><value>Versi terinstal: {0}</value></data>
+  <data name="UpdatesNotChecked" xml:space="preserve"><value>Tidak ada permintaan pemeriksaan pembaruan.</value></data>
+  <data name="UpdatesChecking" xml:space="preserve"><value>Memeriksa rilis GitHub…</value></data>
+  <data name="UpdatesAvailable" xml:space="preserve"><value>Versi {0} tersedia.</value></data>
+  <data name="UpdatesUpToDate" xml:space="preserve"><value>Tidak ditemukan rilis yang kompatibel yang lebih baru.</value></data>
+  <data name="UpdatesNoReleases" xml:space="preserve"><value>Belum ada rilis yang diterbitkan yang tersedia.</value></data>
+  <data name="UpdatesOffline" xml:space="preserve"><value>GitHub tidak dapat dijangkau. Tindakan lokal tetap tersedia.</value></data>
+  <data name="UpdatesTimedOut" xml:space="preserve"><value>Pemeriksaan pembaruan habis waktu. Coba lagi nanti.</value></data>
+  <data name="UpdatesRateLimited" xml:space="preserve"><value>GitHub memiliki batasan permintaan. Coba lagi nanti.</value></data>
+  <data name="UpdatesInvalidData" xml:space="preserve"><value>Informasi rilis tidak dapat diverifikasi. Coba lagi nanti.</value></data>
+  <data name="UpdatesUnavailable" xml:space="preserve"><value>Saluran rilis tidak tersedia. Tindakan lokal tetap tersedia.</value></data>
+  <data name="UpdatesCanceled" xml:space="preserve"><value>Operasi pembaruan dibatalkan.</value></data>
+  <data name="UpdatesOpenFailed" xml:space="preserve"><value>Halaman rilis tidak dapat dibuka. Coba lagi.</value></data>
+  <data name="PackWorkerStopped" xml:space="preserve"><value>Alat berhenti secara tidak terduga. Tidak ada file yang diubah.</value></data>
+  <data name="PackOutputFailed" xml:space="preserve"><value>Beberapa output tidak dapat disimpan. Output yang telah selesai tercantum di bawah ini.</value></data>
+  <data name="PackInvalidSelection" xml:space="preserve"><value>Pilih file lagi.</value></data>
+  <data name="PackImagePresetNeedsImages" xml:space="preserve"><value>Instal paket Image Tools untuk menggunakan preset ini.</value></data>
+  <data name="PackTableTooLarge" xml:space="preserve"><value>Pilihan tabel ini terlalu besar untuk paket yang diunduh. Pilih rentang yang lebih kecil.</value></data>
+  <data name="PackStateInstalled" xml:space="preserve"><value>Terinstal</value></data>
+  <data name="PackStateNotInstalled" xml:space="preserve"><value>Belum terpasang</value></data>
+  <data name="PackStateUpdateAvailable" xml:space="preserve"><value>Pembaruan tersedia</value></data>
+  <data name="PackStateIncompatible" xml:space="preserve"><value>Tidak kompatibel dengan versi ini</value></data>
+  <data name="PackSizeMegabytes" xml:space="preserve"><value>{0:N1} MB</value></data>
+  <data name="PackSizeUnknown" xml:space="preserve"><value>Ukuran tidak diketahui</value></data>
+  <data name="PackVersion" xml:space="preserve"><value>Versi {0}</value></data>
+  <data name="PackActionCountOne" xml:space="preserve"><value>{0:N0} tindakan</value></data>
+  <data name="PackActionCountOther" xml:space="preserve"><value>{0:N0} tindakan</value></data>
+  <data name="PackRowAutomationName" xml:space="preserve"><value>{0}, {1}, {2}</value></data>
+  <data name="PackActionAutomationName" xml:space="preserve"><value>{0} {1}</value></data>
+  <data name="PackRemoveAutomationName" xml:space="preserve"><value>Hapus {0}</value></data>
+  <data name="PackInstall" xml:space="preserve"><value>Instal</value></data>
+  <data name="PackUpdate" xml:space="preserve"><value>Perbarui</value></data>
+  <data name="PackSummary_files" xml:space="preserve"><value>Mengganti nama, mengkompres, membandingkan, dan mengurutkan file.</value></data>
+  <data name="PackSummary_pdf" xml:space="preserve"><value>Gabungkan, pisahkan, kompres, konversi, dan atur PDF, termasuk pengenalan teks (OCR).</value></data>
+  <data name="PackSummary_images" xml:space="preserve"><value>Konversi, ubah ukuran, kompres, dan edit gambar, termasuk foto HEIC.</value></data>
+  <data name="PackSummary_media" xml:space="preserve"><value>Konversi, potong, dan kompres audio dan video.</value></data>
+  <data name="PackSummary_office" xml:space="preserve"><value>Konversi file Word, Excel, dan PowerPoint ke PDF, dan PDF ke Word.</value></data>
+  <data name="PackSummary_data" xml:space="preserve"><value>Konversi file CSV, JSON, Excel, dan kontak.</value></data>
+  <data name="PackSummary_tables" xml:space="preserve"><value>Ekspor pilihan Excel sebagai CSV, JSON, Markdown, atau SQL.</value></data>
+  <data name="PackSummary_einvoice" xml:space="preserve"><value>Lihat dan konversi faktur XRechnung dan ZUGFeRD.</value></data>
+  <data name="PackSummary_markdown" xml:space="preserve"><value>Lihat dan edit Markdown dengan pratinjau langsung, dan konversikan ke HTML atau PDF.</value></data>
+  <data name="PackWebsiteLink" xml:space="preserve"><value>Semua tindakan di situs web</value></data>
+  <data name="PackWebsiteAutomationName" xml:space="preserve"><value>{0}: semua tindakan di situs web</value></data>
+  <data name="PacksUpdateAll" xml:space="preserve"><value>Perbarui semua ({0})</value></data>
+  <data name="PacksNotOpened" xml:space="preserve"><value>Buka bagian ini untuk memeriksa katalog pemilik.</value></data>
+  <data name="PacksRefreshing" xml:space="preserve"><value>Memeriksa katalog paket…</value></data>
+  <data name="PacksReady" xml:space="preserve"><value>Daftar paket sudah mutakhir.</value></data>
+  <data name="PacksInstalling" xml:space="preserve"><value>Memverifikasi dan menginstal paket…</value></data>
+  <data name="PacksRemoving" xml:space="preserve"><value>Menghapus paket…</value></data>
+  <data name="PacksInstalled" xml:space="preserve"><value>Paket telah terinstal. Tindakannya tersedia di palet.</value></data>
+  <data name="PacksNotConfigured" xml:space="preserve"><value>Unduhan paket tidak tersedia dalam versi pengembangan ini. Anda dapat melihat alat yang dibundel dan menginstal file lokal yang ditandatangani.</value></data>
+  <data name="PacksOffline" xml:space="preserve"><value>Katalog tidak tersedia secara offline. Alat yang terpasang tetap tersedia.</value></data>
+  <data name="PacksTimedOut" xml:space="preserve"><value>Permintaan habis waktu. Coba lagi saat Anda siap.</value></data>
+  <data name="PacksInvalidData" xml:space="preserve"><value>Paket atau katalog tidak dapat diverifikasi. Alat yang ada tetap tersedia.</value></data>
+  <data name="PacksIncompatible" xml:space="preserve"><value>Paket ini membutuhkan versi aplikasi atau platform yang kompatibel.</value></data>
+  <data name="PacksBusy" xml:space="preserve"><value>Operasi paket lain masih berjalan.</value></data>
+  <data name="PacksCanceled" xml:space="preserve"><value>Operasi paket dibatalkan.</value></data>
+  <data name="PacksOperationFailed" xml:space="preserve"><value>Operasi paket tidak dapat diselesaikan. Alat yang ada tetap tersedia.</value></data>
+  <data name="PackProgressBytes" xml:space="preserve"><value>{0:N0} byte diunduh</value></data>
+  <data name="PackSizeKilobytes" xml:space="preserve"><value>{0:N1} KB</value></data>
+  <data name="PackSizeBytes" xml:space="preserve"><value>{0:N0} byte</value></data>
+  <data name="PackVersionUpdate" xml:space="preserve"><value>Versi {0} → {1}</value></data>
+  <data name="UpdatesDownloading" xml:space="preserve"><value>Mengunduh dan memverifikasi pembaruan…</value></data>
+  <data name="UpdatesDownloadProgress" xml:space="preserve"><value>Mengunduh pembaruan: {0}%</value></data>
+  <data name="UpdatesInstallerStarted" xml:space="preserve"><value>Penginstal telah dimulai. PowerTrove akan menutup dan memulai ulang setelah pembaruan.</value></data>
+  <data name="UpdatesIntegrityFailed" xml:space="preserve"><value>Pembaruan tidak dapat diverifikasi. Tidak ada yang diinstal. Coba lagi nanti.</value></data>
+  <data name="UpdatesDownloadTimedOut" xml:space="preserve"><value>Pengunduhan pembaruan habis waktu. Tidak ada yang diinstal.</value></data>
+  <data name="UpdatesFinishWork" xml:space="preserve"><value>Selesaikan tindakan yang sedang berjalan dan tutup editor atau dialog sebelum memperbarui.</value></data>
+  <data name="UpdatesInstallFailed" xml:space="preserve"><value>Pembaruan tidak dapat dimulai. Tidak ada yang diinstal. Coba lagi.</value></data>
+  <data name="UpdatesManualDownload" xml:space="preserve"><value>Versi {0} tersedia. Rilis ini tidak memiliki penginstal terverifikasi untuk pembaruan dalam aplikasi. Buka halaman rilis.</value></data>
+  <data name="ContextPackOfficial" xml:space="preserve"><value>Paket resmi: {0}</value></data>
+  <data name="ContextPackActions" xml:space="preserve"><value>{0} tindakan tambahan yang sesuai dengan pilihan ini.</value></data>
+  <data name="ContextPackDownload" xml:space="preserve"><value>Unduh {0} ({1})</value></data>
+  <data name="ContextPackUpdate" xml:space="preserve"><value>Perbarui {0} ({1})</value></data>
+  <data name="ContextPackOfferChanged" xml:space="preserve"><value>Paket yang tersedia telah berubah. Tinjau ukuran yang diperbarui dan klik lagi untuk mengunduh.</value></data>
+  <data name="ContextPackProgress" xml:space="preserve"><value>Mengunduh paket: {0:0}%</value></data>
+  <data name="ContextPackReady" xml:space="preserve"><value>Paket terpasang. Tindakannya siap tanpa memulai ulang PowerTrove.</value></data>
+  <data name="PackHostRequired" xml:space="preserve"><value>Membutuhkan PowerTrove {0} atau versi yang lebih baru. Tindakan yang sudah terpasang tetap tersedia.</value></data>
+  <data name="ContextPackIncompatible" xml:space="preserve"><value>Aplikasi yang kompatibel diperlukan</value></data>
+  <data name="PackNewerHostRequired" xml:space="preserve"><value>Versi paket {0} membutuhkan PowerTrove {1}. Versi {2} kompatibel dengan instalasi Anda.</value></data>
+  <data name="UpdatesStoreManaged" xml:space="preserve"><value>Pembaruan aplikasi dikelola oleh Microsoft Store.</value></data>
+  <data name="PackUpdatesNoticeOne" xml:space="preserve"><value>Pembaruan tersedia untuk paket alat yang terinstal.</value></data>
+  <data name="PackUpdatesNoticeOther" xml:space="preserve"><value>Pembaruan tersedia untuk {0} paket alat yang terpasang.</value></data>
+  <data name="Action_CreateRecipe_Title" xml:space="preserve"><value>Buat Resep</value></data>
+  <data name="Action_CreateRecipe_Description" xml:space="preserve"><value>Gabungkan beberapa tindakan menjadi satu resep yang menjalankannya secara berurutan.</value></data>
+  <data name="UserRecipeDescription" xml:space="preserve"><value>Resep Anda: {0}</value></data>
+  <data name="Context_BrowserPage" xml:space="preserve"><value>{0} · {1}</value></data>
+</root>

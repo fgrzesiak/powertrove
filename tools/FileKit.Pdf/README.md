@@ -66,3 +66,21 @@ dotnet test FileKit.Pdf.slnx
 ```
 
 Self-contained: `Directory.Build.props` in this folder holds all settings. License: not yet selected by the owner.
+
+## Positioned page interpretation
+
+`PdfLayoutReader.Read(document, options, cancellationToken)` yields positioned glyphs, words, lines and blocks in reading order, axis-aligned stroked lines and rectangles, and placed images. It interprets text, graphics-state, path and XObject operators (including Form XObjects and the parts of a split content array as one stream) and skips inline image data. No external packages, network or file resources are used, and pages are never rasterized: this is not a graphics renderer.
+
+**Text.** Characters map to Unicode through ToUnicode CMaps first, then Differences, the font program's built-in encoding, the Standard/WinAnsi/MacRoman/MacExpert encodings with the Adobe Glyph List, and the embedded TrueType/OpenType `cmap`, CFF charset/encoding or Type1 encoding. Type0 fonts use their encoding CMap's codespace ranges and CID mappings, so one-byte and mixed-length codes decode correctly. A character nothing maps is counted in `SkippedText` and never guessed. Font sizes are the drawn sizes, including the text matrix.
+
+**Words, lines and blocks.** Words follow content order and end at a shown space that leaves a real gap, at a gap of 15% of the font size, or where the text jumps. Lines are rows of words split only at gutters: gaps wider than a font size that the neighbouring rows leave free as well, so justified lines stay whole. Blocks join lines that follow closely below with an overlapping extent and a similar size. Blocks are ordered by recursive XY cuts; consecutive bands that share a gutter form one column area, so columns are read one after the other.
+
+**Tagged PDFs.** Words, glyphs and images carry the marked-content identifier (`Mcid`) they are drawn in and whether they are an `Artifact`; a word never spans two marked-content sequences. `PdfStructure.Read` returns the structure tree with role-mapped standard types, each element's own content as (page, MCID) pairs, its alternative text and table spans, bounded in depth and size and safe against cycles.
+
+**Links and destinations.** Each page lists its link annotations with their rectangle and either an `http`, `https` or `mailto` address (other schemes are dropped) or a `PdfDestination` (page index and view top), resolved from explicit destinations, GoTo actions and named destinations in `/Dests` or the bounded `/Names` tree. `PdfOutline` items carry the same top.
+
+**Images.** JPEG bytes are kept as they are (a soft mask is then dropped). Flate/LZW/ASCII-encoded Gray, RGB, CMYK (also ICCBased or calibrated) and Indexed images with 1 to 16 bits become PNG, RGB or with a Gray soft mask as alpha (scaled when its size differs). JPEG 2000, JBIG2, CCITT, TIFF predictors and other Decode mappings are counted in `SkippedImages`.
+
+The caller sets page, stream, total decode, letter, word, path, image and form-depth limits; `IgnoreExcessPaths` stops collecting rules on a page past the path limit instead of failing. Cancellation is checked at page, operator, glyph, image-row and filter boundaries.
+
+`docs/testing/pdf-layout-parity-corpus.md` describes an optional comparison against a pinned PdfPig baseline on local papers.

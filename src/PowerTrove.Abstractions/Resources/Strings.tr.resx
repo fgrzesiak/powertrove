@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppliesToSome" xml:space="preserve">
+    <value>{1} öğeden {0}&apos;ına uygulanır.</value>
+  </data>
+  <data name="Action_ChangesFiles" xml:space="preserve">
+    <value>Yeni dosyalar orijinallerin yanına oluşturulur; orijinaller değiştirilmez.</value>
+  </data>
+  <data name="Error_FileNoLongerExists" xml:space="preserve">
+    <value>Dosya artık mevcut değil.</value>
+  </data>
+  <data name="Error_FolderNoLongerExists" xml:space="preserve">
+    <value>Klasör artık mevcut değil.</value>
+  </data>
+  <data name="Error_ContentNotSupported" xml:space="preserve">
+    <value>İçerik, desteklenen bir {0} formatında değil.</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>Erişim reddedildi.</value>
+  </data>
+  <data name="Error_FileNotFound" xml:space="preserve">
+    <value>Gerekli bir dosya bulunamadı.</value>
+  </data>
+  <data name="Error_FolderNotFound" xml:space="preserve">
+    <value>Gerekli bir klasör bulunamadı.</value>
+  </data>
+  <data name="Error_PathTooLong" xml:space="preserve">
+    <value>Yol çok uzun.</value>
+  </data>
+  <data name="Error_FileSystemError" xml:space="preserve">
+    <value>Dosya sistemi hatası oluştu.</value>
+  </data>
+  <data name="Error_OperationNotSupported" xml:space="preserve">
+    <value>Bu işlem desteklenmiyor.</value>
+  </data>
+  <data name="Error_ProcessingFailed" xml:space="preserve">
+    <value>İşlem beklenmedik şekilde başarısız oldu.</value>
+  </data>
+  <data name="Error_SelectionExpired" xml:space="preserve">
+    <value>Seçimin süresi doldu. Dosyaları tekrar seçin.</value>
+  </data>
+  <data name="Error_NotAFileSelection" xml:space="preserve">
+    <value>Dosya seçimi değil.</value>
+  </data>
+  <data name="Error_NoSupportedFiles" xml:space="preserve">
+    <value>Seçimde desteklenen {0} yok.</value>
+  </data>
+  <data name="Error_SelectAtLeast" xml:space="preserve">
+    <value>En az {0} {1} dosya seçin.</value>
+  </data>
+  <data name="Error_SelectAtMost" xml:space="preserve">
+    <value>En fazla {0} {1} dosya seçin.</value>
+  </data>
+  <data name="Error_ChooseExistingFileTypes" xml:space="preserve">
+    <value>Mevcut bir {0} dosyası seçin.</value>
+  </data>
+  <data name="Error_ChooseExistingFile" xml:space="preserve">
+    <value>Mevcut bir dosya seçin.</value>
+  </data>
+  <data name="Summary_Canceled" xml:space="preserve">
+    <value>İptal edildi.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_One" xml:space="preserve">
+    <value>İptal edildi. İptalden önce 1 çıktı tamamlandı.</value>
+  </data>
+  <data name="Summary_CanceledOutputs_Other" xml:space="preserve">
+    <value>İptal edildi. İptalden önce {0} çıktı tamamlandı.</value>
+  </data>
+  <data name="Summary_Created_One" xml:space="preserve">
+    <value>1 çıktı oluşturuldu.</value>
+  </data>
+  <data name="Summary_Created_Other" xml:space="preserve">
+    <value>{0} çıktı oluşturuldu.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_One" xml:space="preserve">
+    <value>1 çıktı oluşturuldu; 1 öğe başarısız oldu.</value>
+  </data>
+  <data name="Summary_CreatedFailed_One_Other" xml:space="preserve">
+    <value>1 çıktı oluşturuldu; {1} öğe başarısız oldu.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_One" xml:space="preserve">
+    <value>{0} çıktı oluşturuldu; 1 öğe başarısız oldu.</value>
+  </data>
+  <data name="Summary_CreatedFailed_Other_Other" xml:space="preserve">
+    <value>{0} çıktı oluşturuldu; {1} öğe başarısız oldu.</value>
+  </data>
+  <data name="Summary_NoOutput" xml:space="preserve">
+    <value>Çıktı oluşturulmadı.</value>
+  </data>
+  <data name="Summary_Skipped_One" xml:space="preserve">
+    <value>Desteklenmeyen 1 öğe atlandı.</value>
+  </data>
+  <data name="Summary_Skipped_Other" xml:space="preserve">
+    <value>Desteklenmeyen {0} öğe atlandı.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_One" xml:space="preserve">
+    <value>1 öğede değişiklik gerekmiyor.</value>
+  </data>
+  <data name="Summary_NeededNoChanges_Other" xml:space="preserve">
+    <value>{0} öğe(ler)de değişiklik gerekmiyor.</value>
+  </data>
+  <data name="Summary_Saved_One" xml:space="preserve">
+    <value>1 çıktı oluşturuldu. {1} kaydedildi ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Saved_Other" xml:space="preserve">
+    <value>{0} çıktı oluşturuldu. {1} kaydedildi ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_One" xml:space="preserve">
+    <value>1 çıktı oluşturuldu. Çıktı {1} daha büyük ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Summary_Larger_Other" xml:space="preserve">
+    <value>{0} çıktı oluşturuldu. Çıktı {1} daha büyük ({2} -&gt; {3}).</value>
+  </data>
+  <data name="Progress_Starting" xml:space="preserve">
+    <value>Başlıyor...</value>
+  </data>
+  <data name="Progress_Processing" xml:space="preserve">
+    <value>İşleniyor</value>
+  </data>
+  <data name="Progress_Item" xml:space="preserve">
+    <value>{0} öğe {1} / {2}...</value>
+  </data>
+  <data name="Progress_Done" xml:space="preserve">
+    <value>Tamamlandı.</value>
+  </data>
+  <data name="Error_AtLeastValidRequired" xml:space="preserve">
+    <value>En az {0} geçerli {1} gereklidir.</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Çalışılıyor...</value>
+  </data>
+  <data name="Unit_B" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="Unit_KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="Unit_MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Unit_GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="Unit_TB" xml:space="preserve">
+    <value>TB</value>
+  </data>
+  <data name="Error_EngineNoOutput" xml:space="preserve">
+    <value>İşlem motoru çıktı üretmedi.</value>
+  </data>
+  <data name="Error_SaveNoFreeName" xml:space="preserve">
+    <value>Çıktı serbest bir ad altında kaydedilemedi.</value>
+  </data>
+  <data name="Error_OutputFolderUnavailable" xml:space="preserve">
+    <value>Çıktı klasörü kullanılamıyor.</value>
+  </data>
+  <data name="Error_OutputFolderNoLongerExists" xml:space="preserve">
+    <value>Çıktı klasörü artık mevcut değil.</value>
+  </data>
+  <data name="Error_ItemNeededNoChanges" xml:space="preserve">
+    <value>Öğede değişiklik gerekmiyor.</value>
+  </data>
+<data name="ContextUnavailable" xml:space="preserve"><value>Bağlam kullanılamıyor.</value></data><data name="MissingRequiredCapabilities" xml:space="preserve"><value>Gerekli özellikler eksik.</value></data><data name="RequiresType" xml:space="preserve"><value>{0} gerektirir, ancak mevcut seçim {1}.</value></data><data name="RequiresMinItems_One" xml:space="preserve"><value>En az {0} {1} dosya seçin.</value></data><data name="RequiresMinItems_Other" xml:space="preserve"><value>En az {0} {1} dosya seçin.</value></data><data name="RequiresMaxItems_One" xml:space="preserve"><value>Yalnızca {0} {1} dosya seçin.</value></data><data name="RequiresMaxItems_Other" xml:space="preserve"><value>Yalnızca {0} {1} dosya seçin.</value></data><data name="RemoveOtherItems" xml:space="preserve"><value>Seçili diğer öğeleri kaldır.</value></data></root>
