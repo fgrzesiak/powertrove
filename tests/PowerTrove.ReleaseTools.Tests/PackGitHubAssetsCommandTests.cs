@@ -75,13 +75,35 @@ public sealed class PackGitHubAssetsCommandTests : IDisposable
         Assert.False(Directory.Exists(output));
     }
 
-    private string CreateInput(string name, string version, string minimum, byte[] payload)
+    [Theory]
+    [InlineData("files", true)]
+    [InlineData("table", true)]
+    [InlineData("text", true)]
+    [InlineData("none", false)]
+    public async Task OnlyInputKindsTheHostRunsCanBePublished(string kind, bool publishable)
+    {
+        // The text and browser packs read selected text and pages; the host runs them as worker "text" input.
+        string input = CreateInput("input", "1.0.0", "0.1.0", [1], kind);
+        string output = Path.Combine(_root, "output");
+        if (publishable)
+        {
+            await PackGitHubAssetsCommand.ExecuteAsync(input, output, KeyFile);
+            Assert.True(File.Exists(Path.Combine(output, "powertrove.fixture-1.0.0.cbpack")));
+        }
+        else
+        {
+            await Assert.ThrowsAsync<InvalidDataException>(() => PackGitHubAssetsCommand.ExecuteAsync(input, output, KeyFile));
+            Assert.False(Directory.Exists(output));
+        }
+    }
+
+    private string CreateInput(string name, string version, string minimum, byte[] payload, string kind = "files")
     {
         string published = Path.Combine(_root, name + "-published"); Directory.CreateDirectory(published);
         File.WriteAllBytes(Path.Combine(published, "Fixture.Composition.dll"), payload);
         var inventory = PackBundleBuilder.Inventory(published, "Fixture.Composition.dll");
         var manifest = new ActionManifest("2.0", "powertrove.fixture", version, "Generated fixture", "PowerTrove tests", "1",
-            [new ManifestAction("powertrove.fixture.copy", "Generated action", ["files"],
+            [new ManifestAction("powertrove.fixture.copy", "Generated action", [kind],
                 Selection: new ManifestSelection(["any"], 1, null, null, null, false), ChangesFiles: true)], MinHostVersion: minimum, Payload: inventory, Capabilities: []);
         string root = Path.Combine(_root, name); Directory.CreateDirectory(Path.Combine(root, manifest.Id));
         string bundle = Path.Combine(root, manifest.Id, version + ".cbpack");
