@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/fgrzesiak/powertrove/releases"><img src="https://img.shields.io/github/v/release/fgrzesiak/powertrove?include_prereleases&label=release" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/platform-Windows%2011%20x64-0078D4" alt="Windows 11 x64">
-  <img src="https://img.shields.io/badge/actions-149-2ea44f" alt="149 actions">
+  <a href="https://www.powertrove.net/en/tools"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.powertrove.net%2Fapi%2Fv1%2Fbadges%2Factions" alt="Number of actions"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0 license"></a>
 </p>
 
